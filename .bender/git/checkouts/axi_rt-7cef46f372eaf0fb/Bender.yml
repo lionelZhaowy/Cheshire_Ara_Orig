@@ -1,0 +1,52 @@
+# Copyright 2023 ETH Zurich and University of Bologna.
+# Solderpad Hardware License, Version 0.51, see LICENSE for details.
+# SPDX-License-Identifier: SHL-0.51
+
+package:
+  name: axi_rt
+  authors:
+    - "Thomas Benz <tbenz@iis.ee.ethz.ch>"
+
+export_include_dirs:
+  - include
+
+dependencies:
+  common_cells:       { git: "https://github.com/pulp-platform/common_cells.git",       version: 1.32.0 }
+  axi:                { git: "https://github.com/pulp-platform/axi.git",                version: 0.39.1 }
+  register_interface: { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.2  }
+
+sources:
+  # Source files grouped in levels. Files in level 0 have no dependencies on files in this
+  # package. Files in level 1 only depend on files in level 0, files in level 2 on files in
+  # levels 1 and 0, etc. Files within a level are ordered alphabetically.
+
+  # Level 0
+  - src/regs/axi_rt_reg_pkg.sv
+  - src/axi_gran_burst_splitter_counters.sv
+  - src/axi_rt_unit_counter.sv
+  - src/axi_rt_err_slv.sv
+  - src/axi_rt_regbus_guard.sv
+  # Level 1
+  - src/regs/axi_rt_reg_top.sv
+  - src/axi_gran_burst_splitter_ax_chan.sv
+  # Level 2
+  - src/axi_gran_burst_splitter.sv
+  - src/axi_write_buffer.sv
+  # Level 3
+  - src/axi_rt_unit.sv
+  # Level 4
+  - src/axi_rt_unit_top.sv
+  # Level 5
+  - src/axi_rt_unit_top_synth.sv
+
+  - target: fpga
+    files:
+      # Level 0
+      - target/xilinx/src/axi_rt_unit_top_xilinx.sv
+      # Level 1
+      - target/xilinx/src/axi_rt_unit_top_xilinx_ip.v
+
+  - target: test
+    files:
+      # Level 0
+      - test/tb_axi_rt_unit_top.sv

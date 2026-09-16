@@ -1,0 +1,32 @@
+[submodule "toolchain/riscv-gnu-toolchain"]
+	path = toolchain/riscv-gnu-toolchain
+	url = https://github.com/riscv/riscv-gnu-toolchain.git
+	ignore = dirty
+	update = none
+[submodule "toolchain/riscv-isa-sim"]
+	path = toolchain/riscv-isa-sim
+	url = https://github.com/riscv/riscv-isa-sim.git
+	ignore = dirty
+[submodule "toolchain/verilator"]
+	path = toolchain/verilator
+	url = https://github.com/verilator/verilator
+[submodule "toolchain/newlib"]
+	path = toolchain/newlib
+	url = https://sourceware.org/git/newlib-cygwin.git
+	ignore = dirty
+	update = none
+[submodule "toolchain/riscv-llvm"]
+	path = toolchain/riscv-llvm
+	url = https://github.com/llvm/llvm-project.git
+	ignore = dirty
+	update = none
+[submodule "cheshire/sw/cva6-sdk"]
+	path = cheshire/sw/cva6-sdk
+	url = https://github.com/pulp-platform/cva6-sdk.git
+[submodule "apps/rvv-bench"]
+	path = apps/rvv-bench
+	url = https://github.com/camel-cdr/rvv-bench.git
+	update = none
+[submodule "cheshire/sw/riscv-vectorized-benchmark-suite"]
+	path = cheshire/sw/riscv-vectorized-benchmark-suite
+	url = https://github.com/mp-17/riscv-vectorized-benchmark-suite.git

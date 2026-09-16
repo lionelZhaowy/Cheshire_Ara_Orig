@@ -8,8 +8,33 @@
 # Nonfree repository
 nonfree/
 
-# Dependency files
-.bender/
+# Vendored dependency sources are tracked; only metadata/cache/output is ignored.
+/.bender/*
+!/.bender/README.md
+!/.bender/SNAPSHOT.tsv
+!/.bender/UPSTREAM.lock
+!/.bender/git/
+/.bender/git/*
+!/.bender/git/checkouts/
+/.bender/git/checkouts/**/.git
+/.bender/git/checkouts/**/.bender/
+/.bender/git/checkouts/**/build/
+/.bender/git/checkouts/**/build_*/
+/.bender/git/checkouts/**/buildroot/dl/
+/.bender/git/checkouts/**/buildroot/output/
+/.bender/git/checkouts/**/install*/
+/.bender/git/checkouts/**/rootfs/input_*/
+/.bender/git/checkouts/**/rootfs/*-scalar
+/.bender/git/checkouts/**/rootfs/*-vector
+/.bender/git/checkouts/**/rootfs/fmatmul
+/.bender/git/checkouts/**/rootfs/etc/ssh/ssh_host_*_key*
+/.bender/git/checkouts/**/.generated
+/.bender/git/checkouts/**/.cva6-sdk.updated
+/.bender/git/checkouts/**/*.exe
+/.bender/git/checkouts/**/u-boot/board/broadcom/bcmns3/fit/keys/dev.key
+/.bender/git/checkouts/**/riscv-vectorized-benchmark-suite/_canneal/input/2500000.nets
+/.bender/git/checkouts/**/riscv-vectorized-benchmark-suite/_spmv/input/poisson3Db.mtx
+/.bender/git/checkouts/**/riscv-vectorized-benchmark-suite/_spmv/input/venkat25.mtx
 .Xil/
 
 # Documentation site

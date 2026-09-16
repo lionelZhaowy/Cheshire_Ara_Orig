@@ -54,6 +54,10 @@ endif
 # Running this target will reset dependencies (without updating the checked-in Bender.lock)
 CHS_PHONY += chs-clean-deps
 chs-clean-deps:
+	@if [ -f "$(CHS_ROOT)/.bender/README.md" ]; then \
+		echo "Refusing clean-deps: .bender contains versioned dependency sources. See .bender/README.md."; \
+		exit 1; \
+	fi
 	rm -rf .bender
 	cd $(CHS_ROOT) && rm -rf target/sim/models target/sim/dramsys
 	cd $(CHS_ROOT) && git submodule deinit -f sw/deps/*

@@ -1,0 +1,53 @@
+# Copyright 2022 ETH Zurich and University of Bologna.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+
+# Author: Paul Scheffler <paulsc@iis.ee.ethz.ch>
+
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  check-generated:
+    name: Check generated sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+          cache: pip
+      - name: Install Python requirements
+        run: pip install -r requirements.txt
+      - name: Check generated sources
+        run: make check_generated
+
+  check-vendor:
+    name: Check vendored sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pulp-platform/pulp-actions/bender-vendor-up-to-date@v2
+        with:
+          bender-version: 0.27.1
+
+  check-license:
+    name: Check license
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pulp-platform/pulp-actions/lint-license@v2
+        with:
+          license: |
+            Copyright (\d{4}(-\d{4})?\s)?(ETH Zurich and University of Bologna|lowRISC contributors).
+            Licensed under the Apache License, Version 2.0, see LICENSE for details.
+            SPDX-License-Identifier: Apache-2.0
+          # Exclude generated headers (no license checker support for optional lines)
+          exclude_paths: |
+            sw/include/*_regs.h

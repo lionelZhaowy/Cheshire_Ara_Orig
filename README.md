@@ -1,5 +1,12 @@
 # Cheshire
 
+## 本仓库的 Cheshire-Ara 源码快照
+
+本仓库包含 VCU118 本地适配和 `.bender/git/checkouts/` 下的依赖源码及修改。
+请先阅读[依赖快照与复现说明](.bender/README.md)及[本地入门教程](docs_codex/01_Cheshire_Ara_Quick_Start.md)。
+根目录 `Bender.local` 使用仓库内相对路径；不要删除 `.bender` 或运行 `bender clean`。
+以下内容保留自上游，默认配置不等同于本仓库的 Ara 向量配置。
+
 Cheshire is a minimal Linux-capable host platform built around the RISC-V [CVA6](https://github.com/openhwgroup/cva6) core. Its goal is to provide a *lightweight*, *configurable*, *autonomously booting* host to systems that need one, from minimal Linux-capable SoCs to manycore compute accelerators.
 
 Cheshire is developed as part of the PULP project, a joint effort between ETH Zurich and the University of Bologna.
