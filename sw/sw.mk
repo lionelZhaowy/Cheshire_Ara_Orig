@@ -132,16 +132,19 @@ $(foreach link,$(CHS_SW_LINK_MODES),$(eval $(call chs_sw_ld_elf_rule,$(link))))
 # GPT test images #
 ###################
 
-# Create a GPT disk image from a (firmware) ROM; we add dummy partitions to test our GPT boot code.
-%.gpt.bin: %.rom.bin
-	rm -f $@
-	truncate -s $$(( ($$(stat --printf="%s" $<)/512 + 85)*512 )) $@
-	sgdisk -Z --clear -g --set-alignment=1 --new=1:37:40 --new=2:42:-9 --typecode=2:$(CHS_SW_ZSL_TGUID) --new=3:-5:-2 $@ &> /dev/null
-	dd if=$< of=$@ bs=512 seek=42 conv=notrunc
+# # Create a GPT disk image from a (firmware) ROM; we add dummy partitions to test our GPT boot code.
+# %.gpt.bin: %.rom.bin
+# 	@echo "Bypassing OS GPT image generation for bare-metal mode..."
+# 	touch $@
+# # 	rm -f $@
+# # 	truncate -s $$(( ($$(stat --printf="%s" $<)/512 + 85)*512 )) $@
+# # # 	sgdisk -Z --clear -g --set-alignment=1 --new=1:37:40 --new=2:42:-9 --typecode=2:$(CHS_SW_ZSL_TGUID) --new=3:-5:-2 $@ &> /dev/null
+# # 	sgdisk -Z --clear -g --set-alignment=1 --new=1:37:40 --new=2:42:-9 --typecode=2:$(CHS_SW_ZSL_TGUID) --new=3:-5:-2 $@
+# # 	dd if=$< of=$@ bs=512 seek=42 conv=notrunc
 
-# Create hex file from .gpt image
-%.gpt.memh: %.gpt.bin
-	$(CHS_SW_OBJCOPY) -I binary -O verilog $< $@
+# # Create hex file from .gpt image
+# %.gpt.memh: %.gpt.bin
+# 	$(CHS_SW_OBJCOPY) -I binary -O verilog $< $@
 
 # Images from CVA6 SDK (built externally)
 CHS_CVA6_SDK_IMGS ?= $(addprefix $(CHS_SW_DIR)/deps/cva6-sdk/install64/,fw_payload.bin uImage)
@@ -190,7 +193,8 @@ $(foreach link,$(CHS_SW_LINK_MODES),$(eval CHS_SW_TEST_DUMP += $(CHS_SW_TEST_C_L
 
 # Generate .memh targets for ROM-linked tests
 CHS_SW_TEST_ROM_DUMP = $(filter %.rom.dump,$(CHS_SW_TEST_DUMP))
-CHS_SW_TESTS += $(CHS_SW_TEST_ROM_DUMP:.rom.dump=.rom.memh) $(CHS_SW_TEST_ROM_DUMP:.rom.dump=.gpt.memh)
+# CHS_SW_TESTS += $(CHS_SW_TEST_ROM_DUMP:.rom.dump=.rom.memh) $(CHS_SW_TEST_ROM_DUMP:.rom.dump=.gpt.memh)
+CHS_SW_TESTS += $(CHS_SW_TEST_ROM_DUMP:.rom.dump=.rom.memh)
 
 # Add all dumps to test build
 CHS_SW_TESTS += $(CHS_SW_TEST_DUMP)

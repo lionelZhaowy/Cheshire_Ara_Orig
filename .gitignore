@@ -10,6 +10,7 @@ nonfree/
 
 # Dependency files
 .bender/
+.Xil/
 
 # Documentation site
 site/
@@ -23,6 +24,9 @@ site/
 *.gpth
 *.o
 *.a
+*.so
+*.so.*
+*.d
 *.dtb
 sw/deps/.patched
 
@@ -49,7 +53,77 @@ target/sim/vcs/work*
 target/sim/vcs/vc_hdrs.h
 
 # Xilinx generated files
-target/xilinx/build
-target/xilinx/out
+/target/xilinx/build/
+/target/xilinx/build_*/
+/target/xilinx/out/
+/target/xilinx/out_*/
 target/xilinx/scripts/add_sources.*
-vivado*
+
+# Vivado projects, caches, reports and implementation outputs.
+# Keep RTL, XDC constraints, Tcl rebuild scripts and source IP .prj files.
+*.xpr
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+.ipcache/
+.hbs/
+*.bit
+*.ltx
+*.dcp
+*.rpt
+*.log
+*.jou
+*.str
+*.wdb
+*.pb
+*.mcs
+*.xsa
+*.hwdef
+*.sysdef
+vivado*.log
+vivado*.debug
+vivado*.pid
+webtalk*
+usage_statistics_webtalk.*
+
+# Simulator build directories, waveforms and crash dumps.
+work/
+worklib/
+obj_dir/
+INCA_libs/
+xcelium.d/
+simv.daidir/
+csrc/
+DVEfiles/
+verdiLog/
+*.wlf
+*.vcd
+*.vpd
+*.fsdb
+*.fst
+vsim_stacktrace.vstf
+vsim_crash*.vstf
+
+# Local environments, editor/agent state, caches and backup copies.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+/.agents/
+/.codex/
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+*.bak
+*.backup
+.env
+.env.*
+!.env.example
