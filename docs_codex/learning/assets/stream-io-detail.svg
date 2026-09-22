@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="1040" viewBox="0 0 1340 1040" role="img" aria-labelledby="title desc"><title id="title">三个主动访存外设：控制寄存器与数据主接口分开看</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">三个主动访存外设：控制寄存器与数据主接口分开看</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="20" y="95" width="1300" height="255" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="121" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">Serial Link</text>
+<rect x="40" y="160" width="290" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="186" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">AXI 远端地址窗口</text>
+<text x="52" y="210" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">本地请求：TX mask/domain</text>
+<rect x="365" y="160" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="377" y="186" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">network → data_link</text>
+<text x="377" y="210" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">拆分 AXI 通道 / 流控</text>
+<rect x="690" y="160" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="702" y="186" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">physical + RX/TX FIFO</text>
+<text x="702" y="210" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">源同步时钟 + DDR data</text>
+<rect x="1015" y="160" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="1027" y="186" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">对端 → 本地 master</text>
+<text x="1027" y="210" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">回程事务与 AXI 响应</text>
+<polyline points="330,210 365,210" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="655,210 690,210" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="980,210 1015,210" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="40" y="307" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="16" fill="#263e50">当前 clk_ena/reset/isolate 输出悬空；VCU118 Link 引脚未接。寄存器存在并不证明隔离生效。</text>
+<rect x="20" y="390" width="1300" height="255" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="416" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">VGA</text>
+<rect x="40" y="455" width="290" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="481" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">Reg32 配置</text>
+<text x="52" y="505" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">frame / timing / divider</text>
+<rect x="365" y="455" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="377" y="481" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">AXI read fetcher</text>
+<text x="377" y="505" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">burst / 帧字节数 / 页边界</text>
+<rect x="690" y="455" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="702" y="481" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">buffer / 像素拆分</text>
+<text x="702" y="505" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">RGB565 / credit</text>
+<rect x="1015" y="455" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="1027" y="481" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">timing FSM → 引脚</text>
+<text x="1027" y="505" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">HSYNC / VSYNC / RGB</text>
+<polyline points="330,505 365,505" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="655,505 690,505" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="980,505 1015,505" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="40" y="602" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="16" fill="#263e50">buffer 不能消除长期带宽不足；fixture 输出悬空，没有帧校验器；VCU118 未接 VGA。</text>
+<rect x="20" y="685" width="1300" height="255" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="711" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">USB OHCI</text>
+<rect x="40" y="750" width="290" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="776" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">Reg32 → AXI32 控制</text>
+<text x="52" y="800" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">HCCA / ED head / IRQ</text>
+<rect x="365" y="750" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="377" y="776" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">调度 + descriptor DMA</text>
+<text x="377" y="800" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">32-bit 地址 → SoC AXI</text>
+<rect x="690" y="750" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="702" y="776" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">PHY 跨域 / packet FSM</text>
+<text x="702" y="800" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">usb_clk_i / reset</text>
+<rect x="1015" y="750" width="290" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="1027" y="776" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">4 端口 DP/DM</text>
+<text x="1027" y="800" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">端口电源/复位/设备协议</text>
+<polyline points="330,800 365,800" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="655,800 690,800" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="980,800 1015,800" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="40" y="897" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="16" fill="#263e50">fixture 的 PHY 时钟是 0；需要 PHY/设备模型、描述符所有权、IRQ 服务与枚举栈才能验收。</text>
+<text x="30" y="1020" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

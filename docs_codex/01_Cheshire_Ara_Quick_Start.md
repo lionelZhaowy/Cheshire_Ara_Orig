@@ -1,5 +1,9 @@
 # Cheshire-Ara 源码入门：从 SoC 顶层到裸机程序
 
+> 2026-09-20 软件专题：SDK、交叉工具链、编译链接、嵌入式库与测试程序流程，集中见[软件学习手册](software/README.md)；硬件参数见[配置手册](configuration/README.md)。两套手册均区分当前源码事实与未执行的使用示例。
+
+> 2026-09-20 方向更新：新 Agent 先读 [项目共享状态](PROJECT_STATE.md) 和 [任务分工](AGENT_TASKS.md)，再按需查阅本教程。DDR 供应商已可提供 AXI4，本文第 11.2 节的 AXI3 转换规划不再是当前必选项；独立 ASIC 提取按 [02 交接书](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) 执行，新目录不长期依赖 Bender。本文旧命令和工作区描述属于参考快照，不表示已经修正或重新验收。
+
 > 2026-09-16 更新：`.bender/git/checkouts/` 的依赖源码和本地修改已随主仓库保存，使用根 `Bender.local` 的相对路径解析。参阅[快照说明](../.bender/README.md)了解排除项；不要删除 `.bender`。本文其余分析保留编写时的源码和实测边界。
 
 ## 阅读约定

@@ -1,0 +1,162 @@
+{
+  "head": "379ae4544bc62e05a2736b11b33a3244181bba38",
+  "date": "2026-09-22",
+  "evidence": "source static inspection; not runtime validation",
+  "sources": [
+    {
+      "path": "hw/cheshire_soc.sv",
+      "symbols": "gen_cva6_cores; gen_ara; i_axi_xbar; i_llc_atomics; gen_llc; i_ara_axi_inval_filter",
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c"
+    },
+    {
+      "path": "hw/cheshire_pkg.sv",
+      "symbols": "DefaultCfg; get_llc_size; gen_cva6_cfg; gen_axi_out",
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752"
+    },
+    {
+      "path": "cheshire.mk",
+      "symbols": "CHS_BENDER_RTL_FLAGS; simulation script rules",
+      "sha256": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063"
+    },
+    {
+      "path": "sw/sw.mk",
+      "symbols": "CHS_SW_FLAGS; chs_sw_ld_elf_rule",
+      "sha256": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7"
+    },
+    {
+      "path": "sw/lib/crt0.S",
+      "symbols": "_start; _fp_init; _exit; trap_vector",
+      "sha256": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7"
+    },
+    {
+      "path": "sw/link/common.ldh",
+      "symbols": "ENTRY; MEMORY; __stack_pointer$",
+      "sha256": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620"
+    },
+    {
+      "path": "sw/link/spm.ld",
+      "symbols": ".text; .misc; .bss",
+      "sha256": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106"
+    },
+    {
+      "path": "sw/link/dram.ld",
+      "symbols": "__stack_pointer$; sections",
+      "sha256": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2"
+    },
+    {
+      "path": "sw/link/rom.ld",
+      "symbols": "LMA/VMA layout",
+      "sha256": "b03af6a441bf8104a936490bfb5b9e95fada51f5aa629e13fcf2a144c585331a"
+    },
+    {
+      "path": "sw/lib/dif/uart.c",
+      "symbols": "_putchar; uart_write; uart_write_flush",
+      "sha256": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2"
+    },
+    {
+      "path": "sw/lib/dif/clint.c",
+      "symbols": "clint_get_mtime; clint_sleep_until",
+      "sha256": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc"
+    },
+    {
+      "path": "sw/include/dif/dma.h",
+      "symbols": "sys_dma_memcpy; nextid; done",
+      "sha256": "613bc1ba6e053aefde079b5e676920245948fe4071fa3394806a1a3bdc8039e9"
+    },
+    {
+      "path": "sw/include/params.h",
+      "symbols": "__base_* declarations",
+      "sha256": "1fda153d779c2b0cdf59369ffb82a08e2e662bea44e250b2d652c5507eda01ef"
+    },
+    {
+      "path": "sw/tests/fmatmul_test_4x4.c",
+      "symbols": "main; verify_result",
+      "sha256": "673938c85af98a1438a3323b008f684e912976a3523fed91b9afcb72abad24c0"
+    },
+    {
+      "path": "sw/tests/dma_2d.spm.c",
+      "symbols": "main",
+      "sha256": "07da92ee214c2b1b817395d73f3199197fa54fb6d82a3bfd57e75a2374f51d36"
+    },
+    {
+      "path": "hw/bootrom/cheshire_bootrom.S",
+      "symbols": "_wait_llc_bist; _boot",
+      "sha256": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0"
+    },
+    {
+      "path": "hw/bootrom/cheshire_bootrom.c",
+      "symbols": "boot_passive",
+      "sha256": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_soc.sv",
+      "symbols": "SelectedCfg; plusargs; initial",
+      "sha256": "e07858e23eb8dc1521188019c98b25d819cdb3e61d096326de2a49a964137108"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_pkg.sv",
+      "symbols": "gen_cheshire_ara_cfg; TbCheshireConfigs",
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab"
+    },
+    {
+      "path": "target/sim/src/vip_cheshire_soc.sv",
+      "symbols": "jtag_elf_run; jtag_elf_preload; jtag_wait_for_eoc; uart_read_byte",
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c"
+    },
+    {
+      "path": "target/sim/src/elfloader.cpp",
+      "symbols": "load_elf; read_elf; PT_LOAD",
+      "sha256": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6"
+    },
+    {
+      "path": "target/sim/vsim/start.cheshire_soc.tcl",
+      "symbols": "SELCFG; BINARY; vsim flags",
+      "sha256": "77f69e395c3b273b6d3df9e7d3a31d2fb3c1cd7a10713302b8175656ef61934f"
+    },
+    {
+      "path": "target/sim/vcs/start.cheshire_soc.sh",
+      "symbols": "VCS_BIN; flags; pargs; tee pipelines",
+      "sha256": "059a7b028f0d39f18504d12f30d8df84ba1fc8153a793ff1febda6af1cb1faad"
+    },
+    {
+      "path": "target/sim/vsim/compile.cheshire_soc.tcl",
+      "symbols": "existing scalar profile and duplicate decoder listing",
+      "sha256": "f1c11680793f6f88b5e8bffbd3360cd198f223a43df82975d65913b5c7c415a2"
+    },
+    {
+      "path": "target/sim/vcs/compile.cheshire_soc.sh",
+      "symbols": "existing scalar profile and duplicate decoder listing",
+      "sha256": "468cc473ecc06d9b0ddcd359619ad71a6d4f2c61b5496396a3d9ca8544f64a4e"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv",
+      "symbols": "RVV; cache sizes/type",
+      "sha256": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdchsclic_sv39_wb_config_pkg.sv",
+      "symbols": "RVV; cache sizes/type",
+      "sha256": "0132bb452aefcd9492cd80e40692138c34709d8518c0a68e54db1f972d59f994"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv",
+      "symbols": "acc_cons_q; acc_cons_en_o",
+      "sha256": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv",
+      "symbols": "invalidation",
+      "sha256": "d809d7cfe3c060a61b98fde45dc549ee6a1d8b3247f3a5f54bce9011bcb5453e"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/Makefile",
+      "symbols": "COMMON_CUSTOM_TARGETS",
+      "sha256": "d8461cdcbed03584edc4c823c5b0bb60501a8e1a86e7f7e3662d77953cb08c8a"
+    },
+    {
+      "path": "target/xilinx/scripts/add_sources.vcu118.tcl",
+      "symbols": "vector profile; ARA defines",
+      "sha256": "a4ad6c0991f57320426cbae55775a49b7ca7b4ddce6daafa695100acda01457a"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<div class="goals"><strong>学完能做什么</strong><p>把中断事件、计时、异步搬运、结果校验和超时后的所有权保持连起来；能够解释每个非零返回码。前置：第10、11、14、15章。<span class="badge wait">目标执行待验证；DMA有明确接口阻塞</span></p></div>
+<h2 id="design">贯穿案例：137个整数，三个递增阶段</h2>
+<p>输入仍为137个32bit整数，src[i]=3i+1。先用GPIO INTR_TEST触发一次外部IRQ；再加入CLINT至少两次timer事件；最后让iDMA把548字节复制到另一个独占缓冲区，CPU检查每个元素和两端守卫。本工程DMA无done IRQ，所以timer ISR只计数，前台轮询DONE_ID；这比凭空定义一个DMA IRQ更接近实际工程。</p>
+<table><tr><th>build stage</th><th>输入 / 目标条件</th><th>结果判据（预期，非实测）</th></tr><tr><td>gpio / ADV_STAGE=1</td><td>PLIC + GPIO，单hart；CLIC/Router关闭</td><td>gpio≥1、timer=0、errors=0、VIP SUCCESS</td></tr><tr><td>timer / ADV_STAGE=2</td><td>上述条件 + RTC时钟/频率声明正确</td><td>gpio≥1、timer≥2、errors=0、VIP SUCCESS</td></tr><tr><td>capstone / ADV_STAGE=3</td><td>上述条件 + iDMA控制位宽验收 + 全128KiB SPM/独占缓冲</td><td>默认BLOCKED/rc16；解锁后需ID、数据、守卫和IRQ全部通过</td></tr><tr><td>eeprom / 4；flash / 5</td><td>已有VIP模型默认0x9a预填，设备/时钟配置正确</td><td>STORAGE对应stage、bytes=16、errors=0、VIP SUCCESS</td></tr></table>
+<figure><img src="assets/ownership-detail.svg" alt="综合示例从CPU准备、设备拥有、完成校验到超时隔离"><figcaption>图中状态切换是教学说明，不是真实仿真波形。</figcaption></figure>
+<div class="card" data-stepper><strong>点击追踪一次事务（非仿真）</strong><ol class="steps"><li>初始化</li><li>配置中断</li><li>交给DMA</li><li>等待与服务</li><li>校验或隔离</li></ol><button type="button">下一步</button><p class="step-text" aria-live="polite"></p><details><summary>展开所有步骤说明</summary><p>先检查features、RTC、单核条件；初始化UART。测频/UART仍有旧库无界等待，需要主机超时。</p><p>关闭全局中断，清GPIO状态，设PLIC源20优先级/使能/阈值，设timer compare，再开mie和MIE。ISR不printf、不浮点、不RVV。</p><p>先确认iDMA寄存器适配通过。只用uncached SPM别名准备src/dst，fence后填参数，单次32位NEXT_ID读提交；源与目标交给设备。</p><p>前台检查DONE_ID，GPIO ISR先清设备再complete，timer ISR把compare推到ticks()+8。循环有mcycle预算；总线卡死仍靠外部超时。</p><p>完成后fence并逐元素/守卫检查；超时保留buf与ID，不复用。返回码与UART、VIP结束标记一起判断，缺一不算通过。</p></details></div>
+<h2 id="build">准确构建命令、产物与前置条件</h2>
+<p>工作目录仓库根。需要 <code>riscv64-unknown-elf-{gcc,ar,readelf,objdump,nm,size}</code>；若不在PATH，设 <code>CROSS_COMPILE='/实际工具链/bin/riscv64-unknown-elf-'</code>（路径来自工具链安装目录，尾部保留连字符）。脚本使用 rv64gc_zifencei/lp64d/medany、原spm.ld和crt0；只在教材目录生成文件，不调用root make、不修改原sw或依赖。</p>
+<pre><code>bash docs_codex/learning/scripts/build_advanced.sh gpio
+bash docs_codex/learning/scripts/build_advanced.sh timer
+bash docs_codex/learning/scripts/build_advanced.sh capstone
+bash docs_codex/learning/scripts/build_advanced.sh eeprom
+bash docs_codex/learning/scripts/build_advanced.sh flash
+# 每次新目录，不能用上一条生成的ELF去验证下一条
+# 独立接口验收完成后才用于运行的capstone版本；设置变量本身不会修复接口
+DMA_INTERFACE_VALIDATED=1 bash docs_codex/learning/scripts/build_advanced.sh capstone
+# 反例构建：运行时应失败
+OMIT_GPIO_TRIGGER=1 bash docs_codex/learning/scripts/build_advanced.sh gpio
+DMA_INTERFACE_VALIDATED=1 INJECT_ERROR=1 bash docs_codex/learning/scripts/build_advanced.sh capstone</code></pre>
+<p>每次打印 <code>evidence/adv-&lt;stage&gt;-spm.XXXXXX</code> 的绝对路径：build.log、advanced.spm.elf、advanced.map、advanced.dump、symbols.txt、readelf.txt、advanced.i/.s。入口_start；应用低64KiB；capstone物理buffer在[0x10010000,0x10011000)，源别名0x14010000、目标0x14010800。128KiB检查不等于证明栈安全，仍需map与栈最大深度证明（本例小调用栈、ISR额外128字节）。不能随意增加大局部数组后保留旧结论。</p>
+<p><span class="badge test">本轮轻量构建</span>具体工具版本、各版本结果、警告与ELF信息见<a href="advanced-evidence.html">证据页</a>。编译成功只证明软件产物形成；DMA默认保护版本返回16是明确阻塞，不是“测试通过”。</p>
+<h2 id="run">Questa / VCS 运行入口：先满足门槛，再执行</h2>
+<p>本节命令<strong>本轮未执行</strong>。先完成 <a href="simulation.html#prepare">独立清单导出</a>和 <a href="simulation.html#questa">RTL编译</a>；确认恰好一个RVV profile和真实decoder、SELCFG=3、DPI/模型/许可证可用。标量gpio/timer例不依赖实际执行向量指令，但清单与硬件仍要自洽。原旧共享清单不可代替独立输出。</p>
+<pre><code># 仓库根，在Bash中；填本次脚本打印的真实路径
+LEARN_REPO="$PWD"
+LEARN_SIM='/实际prepare_sim输出路径/evidence/sim.XXXXXX'
+LEARN_ELF='/实际build_advanced输出路径/advanced.spm.elf'
+LEARN_STAGE='timer'  # 与ELF匹配：gpio/timer/capstone/eeprom/flash
+test -s "$LEARN_ELF"
+# 以下默认独立目录中的RTL已成功编译；完整编译步骤见第05章
+(
+  cd "$LEARN_SIM/vsim" || exit 1
+  timeout 300 vsim -c -do "onerror {quit -code 2 -f}; set SELCFG 3; set BOOTMODE 0; set PRELMODE 0; set BINARY {$LEARN_ELF}; source start.cheshire_soc.tcl; run 100 ms; quit -f" \
+    &gt; advanced-simulate.log 2&gt;&amp;1
+)
+python3 "$LEARN_REPO/docs_codex/learning/scripts/check_advanced_run.py" \
+  "$LEARN_SIM/vsim/advanced-simulate.log" --stage "$LEARN_STAGE"</code></pre>
+<p>VCS必须先用第05章真实compile/start流程完成vlogan/vcs/DPI并生成同目录simv；参数名称来自tb plusargs：</p>
+<pre><code>(
+  cd "$LEARN_SIM/vcs" || exit 1
+  timeout 300 ./simv +BOOTMODE=0 +PRELMODE=0 +BINARY="$LEARN_ELF" \
+    &gt; advanced-simulate.log 2&gt;&amp;1
+)
+python3 "$LEARN_REPO/docs_codex/learning/scripts/check_advanced_run.py" \
+  "$LEARN_SIM/vcs/advanced-simulate.log" --stage "$LEARN_STAGE"</code></pre>
+<p>每次换ELF使用新的仿真运行目录/日志备份；不要并发覆盖同一个advanced-simulate.log。Questa的100ms是目标时间，timeout300是墙钟秒；VCS这里没有虚构周期限制选项。退出124说明墙钟超时；没有期望UART行/VIP SUCCESS都失败。可选先对默认capstone运行验证BLOCKED，但它应被检查器判失败，不能把rc16列成DMA回归成功。</p>
+<h2 id="handler">ISR与失败恢复逐行剖析</h2>
+<p><code>trap_vector</code> 覆盖原弱符号，仍由原 <code>_trap_handler_wrap</code> 保存整数caller-save和mret。mcause=interrupt|7时timer_count++并推迟compare；=interrupt|11时读取PLIC CC0，只有源20走GPIO W1C，再complete。未知外部源计bad_irq并禁MEIE；同步异常记录mcause/mepc/mtval，写失败scratch2然后停住，避免不改mepc就无限重执行坏指令。未实现嵌套、S-mode、多核和F/V上下文。</p>
+<p>主循环必须同时看到DMA done（若启用）、gpio事件和timer≥2，才停止中断、fence、校验；零DMA ID会立即隔离并返回13。超时或bad_irq输出ID/DONE/STATUS、事件计数和QUARANTINED；函数返回14，但DMA buffer仍保留，不被下一任务使用。受控系统复位或证明事务排空之前不能重复运行同一内存任务。此示例不是完整可重入生产驱动。</p>
+<table><tr><th>返回码</th><th>原因</th><th>优先证据</th></tr><tr><td>0 / 1</td><td>全部判据满足 / 数据或守卫错误</td><td>UART首个结果、输入输出、dump</td></tr><tr><td>10 / 11 / 12</td><td>阶段对应的配置/频率/能力或HAL调用前提不满足</td><td>实际源码中的return分支、HW_FEATURES/RTC_FREQ/LLC_SIZE</td></tr><tr><td>13</td><td>DMA返回零ID，缓冲区隔离</td><td>NEXT_ID访问/提交握手与lane映射</td></tr><tr><td>14</td><td>等待超时或未知IRQ，buffer隔离</td><td>adv_submitted_id/last_done/status、gpio/timer、PLIC/CLINT</td></tr><tr><td>16</td><td>DMA控制接口未声明完成独立验收</td><td>第15章lane检查；不是通过码</td></tr><tr><td>31（scratch编码）</td><td>未处理trap</td><td>adv_mcause/mepc/mtval、对应机器码</td></tr></table>
+<h2 id="waves">波形不求多，先抓最短因果链</h2>
+<table><tr><th>卡点</th><th>先抓的信号/寄存器</th><th>判据</th></tr><tr><td>未进入main</td><td>reset、ROM PC、LLC BIST/SPM、DM halt/resume、ELF entry</td><td>先启动再谈外设</td></tr><tr><td>GPIO不进ISR</td><td>GPIO state/enable/intr、PLIC源20 pending/enable、meip、mie/mstatus、trap PC</td><td>找到第一个没过的门</td></tr><tr><td>timer无事件</td><td>rtc、increase_timer、mtime、mtimecmp、mtip</td><td>时钟前进且compare到期；不看PLIC</td></tr><tr><td>DMA参数不生效</td><td>AW/AR地址、size、WDATA/WSTRB/RDATA、dma_reg_req/rsp、reg2hw、next_id.re</td><td>偏移4lane正确、一次提交一次请求</td></tr><tr><td>任务不完成</td><td>job FIFO、backend AR/R/AW/W/B及resp、done_id、bus_err</td><td>读写响应都结束；请求发出不等于完成</td></tr><tr><td>完成但数据错</td><td>目标地址/长度、cache属性、首个差异、守卫、所有权交接</td><td>独立gold和失败路径有效</td></tr></table>
+<p>当前示例日志没有打印每个错误元素，避免干扰；失败时从buffer和dump定位首个差异。下一步小修改建议：把N改为1/7/64/65/137，保持保留区边界；故意少清GPIO事件观察重复中断；更改timer间隔只比较事件次数和mtime差，不先作性能结论。所有变体另存ELF/hash与日志。</p>
+<div class="source"><a href="examples/advanced.c">完整综合示例</a>；<a href="examples/storage_read.c">只读设备例</a>；<a href="scripts/build_advanced.sh">独立构建</a>；<a href="scripts/check_advanced_run.py">日志验收</a>；<a href="advanced-evidence.html">证据状态与缺口</a>。</div>
+<details><summary>1. 为什么Timer至少两次而不要求恰好两次？</summary><p>ISR和DMA并行，主循环观测/关闭中断存在延迟；这里验证事件链路，不做精确周期计数。需要精确调度时应定义绝对deadline和漏tick策略。</p></details><details><summary>2. rc16说明程序算错了吗？</summary><p>它表示明确的DMA接口前提尚未验收，任务未提交。日志检查器判失败是正确行为，不能为拿到PASS删除保护。</p></details><details><summary>3. 为什么错误注入也要交日志？</summary><p>只有正常用例通过，无法证明校验器和返回码真的发现错误；改一个元素后必须产生非零errors和失败结束。</p></details>

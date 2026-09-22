@@ -1,0 +1,257 @@
+Output: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY
++ riscv64-unknown-elf-gcc --version
+riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ git -C /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara rev-parse HEAD
+379ae4544bc62e05a2736b11b33a3244181bba38
++ flags=(-march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I"$repo_dir/sw/include" -I"$repo_dir/sw/deps/printf")
++ for src in sw/lib/dif/uart.c sw/lib/dif/clint.c sw/deps/printf/printf.c
+++ basename sw/lib/dif/uart
++ name=uart
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/uart.o
+In function '__uart_write_ready',
+    inlined from 'uart_write' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:39:13,
+    inlined from '_putchar' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:30:12: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   30 |     return *reg8(uart_base, UART_LINE_STATUS_REG_OFFSET) & (1 << UART_LINE_STATUS_THR_EMPTY_BIT);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function '_putchar':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:19:14: note: at offset 20 into object '__base_uart' of size 8
+   19 | extern void *__base_uart;
+      |              ^~~~~~~~~~~
+In function 'uart_read_ready',
+    inlined from 'uart_read' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:57:13,
+    inlined from '_getchar' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:72:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:26:12: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   26 |     return *reg8(uart_base, UART_LINE_STATUS_REG_OFFSET) & (1 << UART_LINE_STATUS_DATA_READY_BIT);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function '_getchar':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:19:14: note: at offset 20 into object '__base_uart' of size 8
+   19 | extern void *__base_uart;
+      |              ^~~~~~~~~~~
++ for src in sw/lib/dif/uart.c sw/lib/dif/clint.c sw/deps/printf/printf.c
+++ basename sw/lib/dif/clint
++ name=clint
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/clint.o
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c: In function 'clint_get_mtime':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:11:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12,
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12,
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:31:26:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:31:26:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:35:23:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:35:23:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:40:21:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:40:21:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:34:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:34:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9,
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9,
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
++ for src in sw/lib/dif/uart.c sw/lib/dif/clint.c sw/deps/printf/printf.c
+++ basename sw/deps/printf/printf
++ name=printf
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf/printf.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/printf.o
++ riscv64-unknown-elf-ar rcs /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/libsupport.a /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/uart.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/clint.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/printf.o
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/crt0.S -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/crt0.o
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -DLESSON_STAGE=5 -DINJECT_ERROR=0 -save-temps=obj -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/lesson.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.o
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/lesson.c: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/lesson.c:43:20: warning: array subscript 17 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   43 |     uint32_t rtc = *reg32(&__base_regs, CHESHIRE_RTC_FREQ_REG_OFFSET);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/lesson.c:4:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 68 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/lesson.c:80:9: warning: array subscript 21 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   80 |     if (*reg32(&__base_regs, CHESHIRE_LLC_SIZE_REG_OFFSET) != 131072) return 12;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 84 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
++ extra=()
++ [[ rvv == rvv ]]
++ riscv64-unknown-elf-gcc -march=rv64gcv_zifencei -mabi=lp64d -g -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_add.S -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/rvv_add.o
++ extra+=("$out/rvv_add.o")
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -nostartfiles -static -T /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link/spm.ld -Wl,-L/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link -Wl,--gc-sections -Wl,-Map,/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.map /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/crt0.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/rvv_add.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/libsupport.a -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
+/home/zhaowenyao/riscv_toolchain/riscv64-unknown-elf/bin/ld: warning: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf has a LOAD segment with RWX permissions
++ riscv64-unknown-elf-readelf -h -l -S /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
++ riscv64-unknown-elf-objdump -d -S /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
++ riscv64-unknown-elf-nm -n /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
++ riscv64-unknown-elf-size /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
+   text	   data	    bss	    dec	    hex	filename
+   5450	    780	    548	   6778	   1a7a	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf
++ set +x
+BUILD ONLY; hardware execution is unverified. ELF: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/rvv-spm.I9uGjY/lesson.spm.elf

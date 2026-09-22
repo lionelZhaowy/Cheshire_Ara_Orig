@@ -1,0 +1,844 @@
+Output: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb
++ riscv64-unknown-elf-gcc --version
+riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ git -C /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara rev-parse HEAD
+379ae4544bc62e05a2736b11b33a3244181bba38
++ otp=/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a
++ flags=(-march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I"$repo_dir/sw/include" -I"$repo_dir/sw/deps/printf" -I"$otp" -I"$otp/sw/include")
++ sources=("$repo_dir/sw/lib/dif/uart.c" "$repo_dir/sw/lib/dif/clint.c" "$repo_dir/sw/deps/printf/printf.c")
++ input=/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c
++ [[ 3 -ge 4 ]]
++ objects=()
++ n=0
++ for src in "${sources[@]}"
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-0.o
+In function '__uart_write_ready',
+    inlined from 'uart_write' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:39:13,
+    inlined from '_putchar' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:30:12: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   30 |     return *reg8(uart_base, UART_LINE_STATUS_REG_OFFSET) & (1 << UART_LINE_STATUS_THR_EMPTY_BIT);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function '_putchar':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:19:14: note: at offset 20 into object '__base_uart' of size 8
+   19 | extern void *__base_uart;
+      |              ^~~~~~~~~~~
+In function 'uart_read_ready',
+    inlined from 'uart_read' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:57:13,
+    inlined from '_getchar' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:72:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/uart.c:26:12: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   26 |     return *reg8(uart_base, UART_LINE_STATUS_REG_OFFSET) & (1 << UART_LINE_STATUS_DATA_READY_BIT);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function '_getchar':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:19:14: note: at offset 20 into object '__base_uart' of size 8
+   19 | extern void *__base_uart;
+      |              ^~~~~~~~~~~
++ objects+=("$out/support-$n.o")
++ n=1
++ for src in "${sources[@]}"
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-1.o
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c: In function 'clint_get_mtime':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:11:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12,
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_spin_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:20:12,
+    inlined from 'clint_spin_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:25:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_spin_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:31:26:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:31:26:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:35:23:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:35:23:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:40:21:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_get_core_freq' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:40:21:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_get_core_freq':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_until':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:34:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:34:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9,
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:15:24: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   15 |     return (((uint64_t)*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET)) << 32) |
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'clint_get_mtime',
+    inlined from 'clint_sleep_until' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:56:9,
+    inlined from 'clint_sleep_ticks' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:68:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/dif/clint.c:16:23: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   16 |            ((uint64_t)*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET));
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'clint_sleep_ticks':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
++ objects+=("$out/support-$n.o")
++ n=2
++ for src in "${sources[@]}"
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf/printf.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-2.o
++ objects+=("$out/support-$n.o")
++ n=3
++ riscv64-unknown-elf-ar rcs /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/libsupport.a /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-0.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-1.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/support-2.o
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/lib/crt0.S -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/crt0.o
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -DADV_STAGE=3 -DINJECT_ERROR=0 -DOMIT_GPIO_TRIGGER=0 -DDMA_INTERFACE_VALIDATED=0 -save-temps=obj -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.o
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c: In function 'stop_irqs':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:103:5: warning: array subscript 2048 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  103 |     *reg32(&__base_plic, RV_PLIC_IE0_0_REG_OFFSET)=0;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:14,
+                 from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 8192 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+In function 'compare',
+    inlined from 'stop_irqs' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:104:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:46:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   46 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=UINT32_MAX;
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'stop_irqs':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'stop_irqs' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:104:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:47:34: warning: array subscript 4097 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   47 |     *reg32(&__base_clint, CLINT_MTIMECMP_HIGH0_REG_OFFSET)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'stop_irqs':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16388 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'stop_irqs' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:104:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:48:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   48 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'stop_irqs':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:8:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_src_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1009: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_dst_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1130: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_num_bytes_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1257: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_nextid_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1625: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_done_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1747: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_src_stride_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1875: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_dst_stride_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2003: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_num_reps_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2129: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^                                                           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2269: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^                   
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2307: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^                   
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2345: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^                         
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2380: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^                        
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2463: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^                      
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2592:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2290: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^              
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2592:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2328: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^              
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2592:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2372: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^     
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2592:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2406: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^  
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2592:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2463: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^                      
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2631: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^                    
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_2d_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2830: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^                   
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2868: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^                   
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2906: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^                         
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2998: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^                          
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3040: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^                          
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3082: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^                        
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3127: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^                      
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2851: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^              
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2889: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^              
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:2933: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^     
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3026: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3068: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^           
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3108: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^         
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3320:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3127: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^                      
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:3396: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 | X(sys, &__base_dma)
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^                    
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:94:9: warning: array subscript 2 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   94 |         *reg32(&__base_regs, CHESHIRE_SCRATCH_2_REG_OFFSET)=(31u<<1)|1u;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 8 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:79:21: warning: array subscript 524289 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   79 |         uint32_t id=*reg32(&__base_plic, RV_PLIC_CC0_REG_OFFSET);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 2097156 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:88:17: warning: array subscript 524289 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   88 |         if (id) *reg32(&__base_plic, RV_PLIC_CC0_REG_OFFSET)=id;
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 2097156 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+In function 'ticks',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:17:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:38:10: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   38 |         h=*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET);
+      |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'ticks',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:17:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:39:10: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   39 |         l=*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET);
+      |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'ticks',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:17:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:40:11: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   40 |         h2=*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET);
+      |         ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:46:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   46 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=UINT32_MAX;
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:47:34: warning: array subscript 4097 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   47 |     *reg32(&__base_clint, CLINT_MTIMECMP_HIGH0_REG_OFFSET)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16388 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'trap_vector' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:77:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:48:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   48 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'trap_vector':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:110:9: warning: array subscript 19 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  110 |     if (*reg32(&__base_regs, CHESHIRE_NUM_INT_HARTS_REG_OFFSET)!=1 ||
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 76 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+In function 'chs_hw_feature_present',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:111:10:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:93:14: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   93 |     uint32_t features_bitmap = *reg32(&__base_regs, CHESHIRE_HW_FEATURES_REG_OFFSET);
+      |              ^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 80 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+In function 'chs_hw_feature_present',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:112:10:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:93:14: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   93 |     uint32_t features_bitmap = *reg32(&__base_regs, CHESHIRE_HW_FEATURES_REG_OFFSET);
+      |              ^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 80 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+In function 'chs_hw_feature_present',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:113:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:93:14: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   93 |     uint32_t features_bitmap = *reg32(&__base_regs, CHESHIRE_HW_FEATURES_REG_OFFSET);
+      |              ^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 80 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+In function 'chs_hw_feature_present',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:114:9:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:93:14: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   93 |     uint32_t features_bitmap = *reg32(&__base_regs, CHESHIRE_HW_FEATURES_REG_OFFSET);
+      |              ^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 80 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:115:18: warning: array subscript 17 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  115 |     uint32_t rtc=*reg32(&__base_regs, CHESHIRE_RTC_FREQ_REG_OFFSET);
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 68 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:122:5: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  122 |     *reg32(&__base_plic, GPIO_SOURCE*4)=1; // Source priority 1.
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 80 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:123:5: warning: array subscript 524288 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  123 |     *reg32(&__base_plic, RV_PLIC_THRESHOLD0_REG_OFFSET)=0;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 2097152 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:124:5: warning: array subscript 2048 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  124 |     *reg32(&__base_plic, RV_PLIC_IE0_0_REG_OFFSET)=1u<<GPIO_SOURCE;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 8192 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:125:5: warning: array subscript 2049 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  125 |     *reg32(&__base_plic, RV_PLIC_IE0_1_REG_OFFSET)=0;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:26:14: note: at offset 8196 into object '__base_plic' of size 8
+   26 | extern void *__base_plic;
+      |              ^~~~~~~~~~~
+In function 'ticks',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:13:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:38:10: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   38 |         h=*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET);
+      |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'ticks',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:13:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:39:10: warning: array subscript 12286 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   39 |         l=*reg32(&__base_clint, CLINT_MTIME_LOW_REG_OFFSET);
+      |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49144 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'ticks',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:13:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:40:11: warning: array subscript 12287 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   40 |         h2=*reg32(&__base_clint, CLINT_MTIME_HIGH_REG_OFFSET);
+      |         ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 49148 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:46:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   46 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=UINT32_MAX;
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:47:34: warning: array subscript 4097 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   47 |     *reg32(&__base_clint, CLINT_MTIMECMP_HIGH0_REG_OFFSET)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16388 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+In function 'compare',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:126:5:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:48:34: warning: array subscript 4096 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   48 |     *reg32(&__base_clint, CLINT_MTIMECMP_LOW0_REG_OFFSET)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:25:14: note: at offset 16384 into object '__base_clint' of size 8
+   25 | extern void *__base_clint;
+      |              ^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:131:13: warning: array subscript 2 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  131 |     if (!OMIT_GPIO_TRIGGER) *reg32(&__base_gpio, GPIO_INTR_TEST_REG_OFFSET)=1;
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:22:14: note: at offset 8 into object '__base_gpio' of size 8
+   22 | extern void *__base_gpio;
+      |              ^~~~~~~~~~~
+In function 'chs_hw_feature_present',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:141:10:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/util.h:93:14: warning: array subscript 20 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   93 |     uint32_t features_bitmap = *reg32(&__base_regs, CHESHIRE_HW_FEATURES_REG_OFFSET);
+      |              ^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 80 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:142:9: warning: array subscript 21 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  142 |         *reg32(&__base_regs, CHESHIRE_LLC_SIZE_REG_OFFSET)!=131072) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 84 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:57:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:53:28: warning: array subscript 54 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   53 |     *reg32(&__base_dma,low)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:57:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:54:30: warning: array subscript 55 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   54 |     *reg32(&__base_dma,low+4)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 220 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:58:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:53:28: warning: array subscript 52 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   53 |     *reg32(&__base_dma,low)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:58:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:54:30: warning: array subscript 53 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   54 |     *reg32(&__base_dma,low+4)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 212 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:59:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:53:28: warning: array subscript 56 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   53 |     *reg32(&__base_dma,low)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:59:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:54:30: warning: array subscript 57 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   54 |     *reg32(&__base_dma,low+4)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 228 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:60:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:53:28: warning: array subscript 62 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   53 |     *reg32(&__base_dma,low)=(uint32_t)v;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_pair',
+    inlined from 'dma_submit' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:60:5,
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:54:30: warning: array subscript 63 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   54 |     *reg32(&__base_dma,low+4)=(uint32_t)(v>>32);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 252 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'dma_submit',
+    inlined from 'main' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:151:22:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:64:12: warning: array subscript 17 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   64 |     return *reg32(&__base_dma,IDMA_REG64_2D_NEXT_ID_0_REG_OFFSET);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/advanced.c:163:23: warning: array subscript 33 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  163 |         adv_last_done=*reg32(&__base_dma,IDMA_REG64_2D_DONE_ID_0_REG_OFFSET);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -fno-tree-vectorize -DOT_PLATFORM_RV32 -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include -nostartfiles -static -T /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link/spm.ld -Wl,-L/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link -Wl,--gc-sections -Wl,-Map,/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.map /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/crt0.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/libsupport.a -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
+/home/zhaowenyao/riscv_toolchain/riscv64-unknown-elf/bin/ld: warning: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf has a LOAD segment with RWX permissions
++ riscv64-unknown-elf-readelf -h -l -S /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
++ riscv64-unknown-elf-objdump -d -S /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
++ riscv64-unknown-elf-nm -n /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
++ riscv64-unknown-elf-size /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
+   text	   data	    bss	    dec	    hex	filename
+   7220	      0	     76	   7296	   1c80	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf
++ set +x
+BUILD ONLY, target unverified: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/adv-capstone-spm.tRFJIb/advanced.spm.elf

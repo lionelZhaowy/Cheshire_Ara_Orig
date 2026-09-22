@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1360" viewBox="0 0 1560 1360" role="img" aria-labelledby="title desc"><title id="title">Cheshire 全系统展开：当前单核 + Ara 可选配置</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">Cheshire 全系统展开：当前单核 + Ara 可选配置</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="20" y="85" width="1520" height="1120" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="111" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">cheshire_soc · clk_i / rst_ni 主域 · 地址 48 bit / AXI 数据 64 bit（默认）</text>
+<rect x="45" y="135" width="410" height="150" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="161" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">CVA6 · gen_cva6_cores / i_core_cva6</text>
+<text x="57" y="185" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">frontend → decode → issue → execute → commit</text>
+<text x="57" y="208" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CSR / MMU / I-TLB / D-TLB</text>
+<text x="57" y="231" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">L1 I-cache / D-cache / 写缓冲</text>
+<text x="57" y="254" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">IRQ: msip / mtip / meip / seip</text>
+<rect x="535" y="135" width="430" height="150" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="547" y="161" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">Ara（Cfg.Ara + RVV profile）</text>
+<text x="547" y="185" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">dispatcher → sequencer → 2 lanes（本配置）</text>
+<text x="547" y="208" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VRF / VFU / mask unit / slide unit</text>
+<text x="547" y="231" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VLSU + translation → 独立 AXI 访存</text>
+<text x="547" y="254" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不通过 CPU L1 搬运每个向量元素</text>
+<polyline points="455,190 535,190" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="456" y="178" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">加速请求</text>
+<rect x="1045" y="135" width="465" height="150" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="1057" y="161" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">中断子系统</text>
+<text x="1057" y="185" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">UART / I2C / SPI / GPIO / USB / bus_err</text>
+<text x="1057" y="208" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">→ 可选 IRQ Router → PLIC → M/S 外部 IRQ</text>
+<text x="1057" y="231" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CLINT: rtc 边沿 → mtime/mtimecmp → MTIP</text>
+<text x="1057" y="254" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CLIC 可选：独立路由 + CPU CLIC 支持</text>
+<polyline points="1045,255 995,255 995,305 240,305 240,285" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="790" y="323" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">中断请求</text>
+<rect x="45" y="355" width="220" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="57" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">CPU AXI 适配</text>
+<text x="57" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ID 串行化 / AMO user</text>
+<text x="57" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU bus_err 监测</text>
+<rect x="295" y="355" width="220" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="307" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">Ara AXI 适配</text>
+<text x="307" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">inval filter / 宽度转换</text>
+<text x="307" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU 与 Ara 失效接口</text>
+<rect x="545" y="355" width="205" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="557" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">Debug SBA</text>
+<text x="557" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">JTAG DTM → DM</text>
+<text x="557" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">系统总线读写</text>
+<rect x="780" y="355" width="210" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="792" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">iDMA</text>
+<text x="792" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">2D FE → job FIFO</text>
+<text x="792" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ND midend → backend</text>
+<rect x="1020" y="355" width="240" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="1032" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">Serial Link RX</text>
+<text x="1032" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">远端事务 → 本地 AXI</text>
+<text x="1032" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">可反向访问本地内存</text>
+<rect x="1290" y="355" width="220" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="1302" y="381" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">VGA / USB / Ext</text>
+<text x="1302" y="405" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VGA 读；USB 读写</text>
+<text x="1302" y="428" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">外部 master 可选</text>
+<polyline points="140,285 140,355" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="148" y="277" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">CPU miss/MMIO</text>
+<polyline points="650,285 650,333 410,333 410,355" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="658" y="277" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">向量访存</text>
+<polyline points="155,450 155,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="163" y="442" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">AXI</text>
+<polyline points="405,450 405,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="645,450 645,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="885,450 885,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="1140,450 1140,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="1400,450 1400,500" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<rect x="45" y="500" width="1465" height="80" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="57" y="526" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">可选 AXI RT → i_axi_xbar</text>
+<text x="57" y="550" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">默认全连通；CUT_ALL_PORTS；ATOP 支持；地址规则由 gen_axi_out 决定；AXI RT 默认关闭，启用前核对 manager 数量</text>
+<polyline points="175,580 175,630" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="183" y="572" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">地址选择</text>
+<polyline points="470,580 470,630" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="800,580 800,630" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="1130,580 1130,630" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<polyline points="1390,580 1390,630" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<rect x="45" y="630" width="255" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="656" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">Debug subordinate</text>
+<text x="57" y="680" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">调试 ROM / abstract 命令</text>
+<text x="57" y="703" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">调试 hart 执行访问入口</text>
+<text x="57" y="726" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不是 SBA master 的同一方向</text>
+<rect x="330" y="630" width="285" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="342" y="656" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">iDMA control</text>
+<text x="342" y="680" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">0x01000000</text>
+<text x="342" y="703" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">atomic/cut → axi_to_reg</text>
+<text x="342" y="726" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">读取 NEXT_ID 提交任务</text>
+<rect x="650" y="630" width="300" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="662" y="656" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">LLC / SPM</text>
+<text x="662" y="680" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">AMO → cut → 地址重映射</text>
+<text x="662" y="703" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">axi_llc_reg_wrap + SRAM</text>
+<text x="662" y="726" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">LLC 出口或 SPM 命中</text>
+<rect x="985" y="630" width="300" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="997" y="656" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">Serial Link TX / Ext</text>
+<text x="997" y="680" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">0x1_00000000 远端窗口</text>
+<text x="997" y="703" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ID/地址适配 → 网络层</text>
+<text x="997" y="726" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">外部 AXI slave 依配置存在</text>
+<rect x="1320" y="630" width="190" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1332" y="656" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">寄存器桥</text>
+<text x="1332" y="680" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">AMO → cut</text>
+<text x="1332" y="703" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">AXI → Reg32</text>
+<text x="1332" y="726" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">decode/demux</text>
+<rect x="650" y="805" width="300" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="662" y="831" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">外部存储出口</text>
+<text x="662" y="855" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">0x80000000..0xffffffff</text>
+<text x="662" y="878" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">TB: AXI DRAM 模型</text>
+<text x="662" y="901" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">FPGA: 转换器 + CDC → MIG</text>
+<polyline points="800,735 800,805" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="810" y="787" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">未命中/回写（LLC）</text>
+<rect x="45" y="805" width="530" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="57" y="831" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">SPM 与 LLC 使用同一组数据阵列</text>
+<text x="57" y="855" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">8 ways × 256 lines × 8 × 8 B = 128 KiB</text>
+<text x="57" y="878" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">启动可把 ways 配成 SPM；不是另加一块 128 KiB RAM</text>
+<text x="57" y="901" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">0x10000000 与 0x14000000 别名到同一 SPM</text>
+<polyline points="650,760 320,760 320,805" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="380" y="754" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">本地 SRAM 路径</text>
+<polyline points="800,735 800,760 650,760" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<rect x="985" y="780" width="525" height="385" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="1000" y="806" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">Reg32 目标 · 均在主时钟域（USB PHY 除外）</text>
+<polyline points="1415,735 1415,780" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="1190" y="765" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">MMIO 配置/回读</text>
+<rect x="1005" y="825" width="230" height="90" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1017" y="851" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">SoC regs / Boot ROM</text>
+<text x="1017" y="875" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">scratch / features / freq</text>
+<text x="1017" y="898" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">只读 ROM 指令与数据</text>
+<rect x="1255" y="825" width="230" height="90" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="1267" y="851" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">CLINT / PLIC / CLIC</text>
+<text x="1267" y="875" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">计时、软件/外部中断</text>
+<text x="1267" y="898" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">IRQ Router 可选</text>
+<rect x="1005" y="930" width="230" height="90" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1017" y="956" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">UART / I2C / SPI</text>
+<text x="1017" y="980" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">APB UART / OT FIFOs</text>
+<text x="1017" y="1003" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">连接外部设备引脚</text>
+<rect x="1255" y="930" width="230" height="90" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1267" y="956" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">GPIO / Serial Link</text>
+<text x="1267" y="980" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">GPIO OE / 输入同步</text>
+<text x="1267" y="1003" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">Link 寄存器控制</text>
+<rect x="1005" y="1035" width="230" height="90" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1017" y="1061" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">VGA / USB</text>
+<text x="1017" y="1085" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">像素时序 / OHCI</text>
+<text x="1017" y="1108" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">寄存器控制各 DMA master</text>
+<rect x="1255" y="1035" width="230" height="90" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1267" y="1061" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">LLC / AXI RT / Err</text>
+<text x="1267" y="1085" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">way 配置 / 预算</text>
+<text x="1267" y="1108" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">错误 FIFO（读有副作用）</text>
+<rect x="45" y="960" width="905" height="170" rx="8" fill="#fff" stroke="#657887" stroke-width="2"/>
+<text x="57" y="986" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#657887" font-weight="700">SoC 边界与当前未实现项</text>
+<text x="57" y="1010" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">引脚：UART、I2C、SPI、GPIO、Serial Link、VGA、USB；是否接出取决于 wrapper。</text>
+<text x="57" y="1033" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">JTAG TCK、RTC 输入、USB PHY clock 是独立接口，详见时钟图。</text>
+<text x="57" y="1056" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">NPU / ISP / LVDS / 外购 DDR controller 不在当前 SoC 内：见未来规划图。</text>
+<text x="57" y="1079" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">电源：此 RTL 没有完整 UPF/CPF 电源意图；不能从 clk_i 推导实际电源分区。</text>
+<rect x="45" y="1230" width="1465" height="80" rx="8" fill="#fff" stroke="#657887" stroke-width="2"/>
+<text x="57" y="1256" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#657887" font-weight="700">阅读顺序与精度边界</text>
+<text x="57" y="1280" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">先从 CPU load 或 DMA memcpy 选一条路径，再查本文的模块/端口表。图省略逐位 AXI 信号、全部 pipeline cuts 和 SRAM 宏实现，不是网表或物理布局。</text>
+<text x="30" y="1340" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

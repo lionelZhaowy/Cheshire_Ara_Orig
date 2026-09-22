@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1080" viewBox="0 0 1280 1080" role="img" aria-labelledby="title desc"><title id="title">时钟、复位与电源边界：SoC / 测试平台 / VCU118</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">时钟、复位与电源边界：SoC / 测试平台 / VCU118</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="20" y="90" width="1240" height="240" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="116" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">通用 SoC（不是频率约束或 CDC/RDC 签核报告）</text>
+<rect x="45" y="140" width="265" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="57" y="166" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">clk_i / rst_ni</text>
+<text x="57" y="190" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU、Ara、xbar、LLC</text>
+<text x="57" y="213" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">Reg32 / 外设控制 / PLIC</text>
+<text x="57" y="236" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">Serial Link 三组逻辑时钟</text>
+<text x="57" y="259" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">本集成都连 clk_i</text>
+<rect x="360" y="140" width="255" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="372" y="166" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">rtc_i / JTAG TCK</text>
+<text x="372" y="190" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">rtc 经 clint_sync_wedge</text>
+<text x="372" y="213" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">在 clk_i 域产生递增使能</text>
+<text x="372" y="236" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">JTAG DTM 通过 CDC 到 DM</text>
+<text x="372" y="259" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">RTC 不是 CLINT 寄存器时钟</text>
+<rect x="665" y="140" width="260" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="677" y="166" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">usb_clk_i / usb_rst_ni</text>
+<text x="677" y="190" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">OHCI PHY 独立时钟域</text>
+<text x="677" y="213" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">SoC 侧 Reg/AXI 使用 clk_i</text>
+<text x="677" y="236" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">控制/PHY 内部跨域</text>
+<text x="677" y="259" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">需真实 PHY clock + reset</text>
+<rect x="975" y="140" width="260" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="987" y="166" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">Serial Link 源同步</text>
+<text x="987" y="190" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ddr_rcv_clk_i/o + data</text>
+<text x="987" y="213" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">physical / FIFO 跨域</text>
+<text x="987" y="236" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CTRL 门控/隔离输出未接</text>
+<text x="987" y="259" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不能据寄存器名假定生效</text>
+<rect x="20" y="365" width="600" height="250" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="391" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">仿真 fixture / VIP</text>
+<rect x="45" y="420" width="550" height="155" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="57" y="446" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">VIP 时钟参数</text>
+<text x="57" y="470" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">默认 ClkPeriodSys=5 ns（200 MHz）</text>
+<text x="57" y="493" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ClkPeriodRtc=30518 ns；JTAG=20 ns</text>
+<text x="57" y="516" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">fixture: usb_clk_i=0、usb_rst_ni=1</text>
+<text x="57" y="539" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">GPIO 输入=0；VGA 输出未接；Link 接 VIP 对端</text>
+<text x="57" y="562" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">更改周期必须同时核对 Cfg.RtcFreq 与外设分频</text>
+<rect x="650" y="365" width="610" height="490" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="665" y="391" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">VCU118 FPGA shell · target/xilinx</text>
+<rect x="675" y="415" width="560" height="100" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="687" y="441" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">IBUFDS → clk_wiz</text>
+<text x="687" y="465" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">sys_clk 输入；生成 clk_50 → soc_clk，clk_48 → usb_clk</text>
+<text x="687" y="488" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">locked 未接入当前 reset 路径；不能代替时序/锁定验收</text>
+<rect x="675" y="570" width="260" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="687" y="596" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">sys_rst → rstgen</text>
+<text x="687" y="620" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">同步释放 rst_n（SoC）</text>
+<text x="687" y="643" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">RTC 每 25 周期翻转</text>
+<text x="687" y="666" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">f_rtc = f_soc / 50</text>
+<text x="687" y="689" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">50 MHz 时为 1 MHz</text>
+<rect x="975" y="570" width="260" height="140" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="987" y="596" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">DDR4 MIG</text>
+<text x="987" y="620" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">sys_clk + sys_rst</text>
+<text x="987" y="643" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ui_clk → dram_axi_clk</text>
+<text x="987" y="666" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ui_clk_sync_rst → reset</text>
+<text x="987" y="689" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">校准完成信号未消费</text>
+<polyline points="820,515 820,570" fill="none" stroke="#7b55a6" stroke-width="2.2" marker-end="url(#clock)" stroke-dasharray="6 4"/>
+<text x="828" y="507" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#7b55a6">SoC clock</text>
+<polyline points="1130,515 1130,548 1220,548 1220,570" fill="none" stroke="#7b55a6" stroke-width="2.2" marker-end="url(#clock)" stroke-dasharray="6 4"/>
+<text x="960" y="539" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#7b55a6">sys_clk（非 clk_50）</text>
+<rect x="675" y="760" width="560" height="65" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="687" y="786" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">AXI 宽度/ID 转换 → axi_cdc → MIG AXI</text>
+<text x="687" y="810" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">src: soc_clk/rst_n；dst: dram_axi_clk/~dram_rst_o</text>
+<polyline points="805,710 805,760" fill="none" stroke="#7b55a6" stroke-width="2.2" marker-end="url(#clock)" stroke-dasharray="6 4"/>
+<text x="813" y="702" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#7b55a6">源域</text>
+<polyline points="1100,710 1100,760" fill="none" stroke="#7b55a6" stroke-width="2.2" marker-end="url(#clock)" stroke-dasharray="6 4"/>
+<text x="1108" y="702" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#7b55a6">目的域</text>
+<rect x="45" y="665" width="550" height="170" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="57" y="691" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">复位域交叉（RDC）需单独验收</text>
+<text x="57" y="715" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">USB 接口在 FPGA 将 rst_n 直接接给 usb_rst_ni；</text>
+<text x="57" y="738" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">源码注释认为脉宽够长，但这不是 USB 域同步释放证明。</text>
+<text x="57" y="761" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VCU118 当前 USE_USB 关闭，不等于该路径已测过。</text>
+<text x="57" y="784" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">PLL lock、MIG ready、暖复位时未完成事务都要定义处理。</text>
+<rect x="45" y="905" width="1190" height="115" rx="8" fill="#fff" stroke="#657887" stroke-width="2"/>
+<text x="57" y="931" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#657887" font-weight="700">电源域：当前未描述完整电源意图；未来 ASIC 另立设计</text>
+<text x="57" y="955" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">未发现所检查 hw/target 与 CPU/Ara 核心目录中的 UPF/CPF。不能因此声称芯片只有一个电压域。</text>
+<text x="57" y="978" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">未来若划分常开域、计算域、DDR/PHY 域，需电源开关、隔离、保持、跨电压单元和上/下电时序；本图不把它们画成现有模块。</text>
+<text x="30" y="1060" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

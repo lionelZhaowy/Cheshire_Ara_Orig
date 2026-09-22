@@ -1,0 +1,30 @@
+<div class="goals"><strong>学完能做什么</strong><p>设计一次不会误清状态、误触发 DMA 或覆盖他人位的寄存器访问；为阻塞调用补出超时与恢复契约。前置：MMIO 与 AXI。场景：C 指针读写看似正确，但硬件不响应。</p></div>
+<h2 id="contract">先写访问契约，再写 C 指针</h2>
+<p>内存映射输入输出（Memory-Mapped I/O，MMIO）使用 load/store，但目标不是普通 RAM。每个寄存器至少要记录：基址、字节偏移、总线允许宽度、复位值、访问属性、读/写副作用、保留位、谁拥有、何时可改。寄存器头文件主要提供数值；HJSON 定义访问属性，生成 reg_top 和实际状态机决定最终行为。</p>
+<table><tr><th>语义</th><th>本地实例</th><th>正确操作 / 常见误用</th></tr><tr><td>RO / RW / WO</td><td>HW_FEATURES / scratch / INTR_TEST</td><td>只读、读写、只写；不要用统一“写入后回读相等”测试全部地址</td></tr><tr><td>写 1 清除（Write One to Clear，W1C）</td><td>GPIO INTR_STATE</td><td>只写欲清的位；<code>r |= mask; write(r)</code> 会把其他已置位事件一起清掉</td></tr><tr><td>读带副作用</td><td>UART RBR、SPI RXDATA、bus_err ERR_CODE、DMA NEXT_ID</td><td>分别取数据、弹 FIFO、弹错误、提交任务；调试器刷新寄存器窗口也可能改变状态</td></tr><tr><td>同址别名</td><td>UART RBR/THR/DLL，IIR/FCR</td><td>取决于读/写方向和 LCR.DLAB；不先恢复 DLAB 就发字符可能改波特率</td></tr><tr><td>拆分 64-bit</td><td>CLINT MTIME/MTIMECMP、DMA 地址、VGA 地址</td><td>CPU 是 RV64 不等于目标寄存器能接受 64-bit 访问；顺序与原子快照要单独定义</td></tr><tr><td>硬件置位、软件消费</td><td>FIFO level / PLIC pending / LLC flush done</td><td>单次读写成功不证明设备动作完成；明确等待的最终状态</td></tr></table>
+<h2 id="code">最小驱动骨架与每一行的含义</h2>
+<pre><code>static inline uint32_t read32(uintptr_t a) {
+    return *(volatile uint32_t *)a;
+}
+static inline void write32(uintptr_t a, uint32_t v) {
+    *(volatile uint32_t *)a = v;
+}
+/* 示例：GPIO 第 3 位，低半组 masked 写，mask 在高 16 bit */
+write32(0x03005018, (1u &lt;&lt; (16+3)) | (1u &lt;&lt; 3));
+/* 示例：仅清 GPIO 第 0 位事件，不读改写 W1C */
+write32(0x03005000, 1u);</code></pre>
+<p><code>volatile</code> 约束编译器保留有意义的访问，不提供多核互斥、cache flush、设备完成等待或 DMA 一致性。<code>asm volatile("fence" ::: "memory")</code> 同时声明编译器内存边界并发出 RISC-V 排序指令；它不凭空生成某个 cache 的失效事务。当前生产代码用链接器符号 <code>&amp;__base_gpio</code> 等形成地址，GCC 可能报告 extern void* 对象边界警告；要核对最终地址和反汇编，不要静默关闭所有警告。</p>
+<h2 id="layers">从 C 调用走到硬件：六层检查</h2>
+<ol><li><strong>应用</strong> 给出可判断的输入/输出、长度、对齐、所有权和 deadline。</li><li><strong>HAL</strong>（Hardware Abstraction Layer，设备抽象层）处理 EEPROM/NOR/SD 命令协议，不只是控制器寄存器。</li><li><strong>DIF</strong>（Device Interface Function，设备接口函数）操作 I2C/SPI/GPIO 控制器；不是操作系统驱动，不默认有锁、调度器和完整超时。</li><li><strong>AXI→Regbus</strong> 做事务转换、byte strobe（字节写使能）和宽度适配；桥的工作不能靠 C 类型猜测。</li><li><strong>reg_top</strong> 产生 reg2hw 的 q/qe/re 和 hw2reg 的 d/de。写寄存器先改变配置/入队，状态机随后行动。</li><li><strong>设备状态机/数据通路</strong> 才产生串行引脚、DMA 请求或中断；最终确认应来自协议响应和数据校验。</li></ol>
+<figure><img src="assets/peripheral-internals.svg" alt="UART I2C SPI从寄存器到队列与状态机内部关系"><figcaption>三类外设共用检查方法，但协议、FIFO 与寄存器副作用不同。</figcaption></figure>
+<h2 id="timeout">超时从哪里计时，失败后谁拥有数据</h2>
+<p>轮询循环用 <code>mcycle - start &gt; limit</code> 可约束 CPU 仍能继续执行时的等待。RTC 停止时，用同一个 RTC 当 watchdog 会一起失效；MMIO 本身若被总线永久回压，CPU 可能卡在 load 内，软件计时也无能为力。因此还要有主机墙钟 timeout、目标 testbench watchdog，生产系统再设计硬件超时/恢复。</p>
+<p>失败路径至少分“未提交”“已提交、尚未完成”“已完成但校验错”。只有第一类可立即归还缓冲区；第二类要隔离，第三类保存输入/输出和首个差异。UART 打印也可能阻塞，ISR 不调用 printf。中断异步修改的标志需 volatile；多 hart 或设备共享还需原子操作、内存顺序与缓存契约，单个 volatile 标志无法包办。</p>
+<h2 id="exercise">实验：先证明访问宽度，再证明值</h2>
+<div class="lab"><pre><code># 工作目录：仓库根。轻量构建生成独立 ELF/map/dump
+bash docs_codex/learning/scripts/build_advanced.sh gpio
+# 用刚打印的目录；查看是否是 32-bit lw/lwu/sw
+LEARN_DUMP='/实际输出目录/advanced.dump'
+rg -n 'trap_vector|3005000|3005008|4200004|lwu|sw' "$LEARN_DUMP"</code></pre><p>前置：交叉编译器与本地依赖；不需要仿真许可证。产物：evidence/adv-gpio-spm.XXXXXX/build.log、advanced.spm.elf、advanced.map、advanced.dump。成功判据：GPIO/PLIC 访问宽度与偏移能对照寄存器头，trap_vector 覆盖弱符号。运行与 timeout 判据统一见 <a href="capstone.html#run">综合实验</a>；此阶段只编译不记 GPIO 中断通过。</p></div>
+<div class="source"><a href="../../sw/include/util.h">reg32 / fence / CSR helpers</a>；<a href="../../sw/link/common.ldh">基址链接符号</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/mmio.h">mmio_region_* 的访问方式</a>；<a href="registers.html">头文件字段索引</a>；<a href="dma-llc.html#lanes">本轮发现的 iDMA 宽度案例</a>。</div>
+<details><summary>1. 为什么读取全部寄存器制作快照可能把故障“读没了”？</summary><p>部分寄存器取走 FIFO 数据/错误记录，NEXT_ID 甚至会提交任务。快照应列明安全读取集合和读取顺序。</p></details><details><summary>2. W1C 为什么不应该 read-modify-write？</summary><p>读取的其他 1 再写回也会被清掉，可能丢失另一个待处理事件。</p></details><details><summary>3. 给每个轮询都加超时就一定不会挂死吗？</summary><p>不一定。计时源可能停止，MMIO 指令也可能卡在总线，外层还需要独立的超时观测与恢复设计。</p></details>

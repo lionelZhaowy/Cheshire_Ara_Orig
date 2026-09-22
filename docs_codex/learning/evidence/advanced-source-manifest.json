@@ -1,0 +1,331 @@
+{
+  "head": "379ae4544bc62e05a2736b11b33a3244181bba38",
+  "date": "2026-09-22",
+  "kind": "source static confirmation, no target execution",
+  "sources": [
+    {
+      "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+      "sha256": "95a020ecfd87d028db2f9aa0c958bc3bd300e8a45a4f3446d20a3ee9cddf51cc"
+    },
+    {
+      "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv",
+      "sha256": "49e4f5c48e76c23242fe0714089446b8f5334b91c468c8f49f8eda9992f18c2e"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/Makefile",
+      "sha256": "d8461cdcbed03584edc4c823c5b0bb60501a8e1a86e7f7e3662d77953cb08c8a"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv",
+      "sha256": "5e35d557f5b213242cc2508cb70f50b1b88200c90762d9f63248cb6814a1643e"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv",
+      "sha256": "d809d7cfe3c060a61b98fde45dc549ee6a1d8b3247f3a5f54bce9011bcb5453e"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/lib/axi_llc_reg32.c",
+      "sha256": "76c68e04dc9e7cfc12059d00e443ced3c1ff121aabbb562236c64a1bb5e2e364"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.c",
+      "sha256": "ff331060206488b18005ee659a12b2e0aadf2a8490b748f14f08ed6a7663690b"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv",
+      "sha256": "880ef76a0f53af411b6e27a3542e27749ee63c6b3501a639094a1f113603032e"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv",
+      "sha256": "1d0af37f6f66a524d68dbb179fc1068a17411abc9aa25ddeceef115acbced83f"
+    },
+    {
+      "path": ".bender/git/checkouts/clic-360fff7ce2d41116/src/clic_reg_adapter.sv",
+      "sha256": "f631dea52f031e90543d71aacf897e70adb2445d02fb9240996ebe060f4844c6"
+    },
+    {
+      "path": ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv",
+      "sha256": "72c767583ba83e4cec3ddff93ee183bd0a2c0c6169e1d5bbb2166cedb67ad75f"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv",
+      "sha256": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv",
+      "sha256": "d7760126765d3e623293ef53f21043ae6753355c8d07eb65f533ece1238a257e"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv",
+      "sha256": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba"
+    },
+    {
+      "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv",
+      "sha256": "7782f1bc3f7920d5f1c2f285110ca950ce12761c173d166cdbb15d2c988f7236"
+    },
+    {
+      "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv",
+      "sha256": "61a0e3bfa04d815dfd5bec3511b6d0e2b155f6320de16d6aa13f3a3f1988b607"
+    },
+    {
+      "path": ".bender/git/checkouts/irq_router-376b3d113c15d0ef/rtl/irq_router.sv",
+      "sha256": "51579e33bf2b95d9d586ad72d3f94ea8bcd11442c651c75fe9c191909b082d38"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+      "sha256": "978072a85fdaeeb72bd6112bb1f3b2d7555c342d72033b3e1cc3e6d85dd24129"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+      "sha256": "12a5e6e4585ad82c5b86f4475719c781ed4632ffa2556eea67a548be4e8c4adb"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host_core.sv",
+      "sha256": "84a626b971ab587b8b911fa52c866a60bbf5ff09b5b6dab6effbe49bac836fa8"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/mmio.h",
+      "sha256": "0992e649099a1e8ba7cd210577bf5cd4f320886d74c502e48050b608faa61519"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_gpio.c",
+      "sha256": "048f0e02de768a1092fb4a944620ab8b5e2f7f02c46d3b9ba7c45f5e9cda45e3"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c",
+      "sha256": "7f01c11cb1686a2d7bdfd3428953c08f7b716a0b573640555ae580be19001c03"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_spi_host.c",
+      "sha256": "0bf970c7a76fa40c8357010c275cdd5a79d803c6f525b9d6afa59676e4263a65"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/gpio_regs.h",
+      "sha256": "849fb7705fedb019dc5e25ddfffe38baac59a15eec5686813102f607ce1563ac"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/i2c_regs.h",
+      "sha256": "a0e83a9657e38bc595c5983afba70030c7fdd0318dc1b34fa72f0343d91372a7"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/rv_plic_regs.h",
+      "sha256": "4f8c87f9da046fc5bb3a1f8fc27da950cefd726230d0cd6232a74c0292ab905e"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/spi_host_regs.h",
+      "sha256": "85d7c76bb9fd2f27b0557c3dd59bb74784d6d4bdc7f4cf5028b6366c2a151d89"
+    },
+    {
+      "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_lite_to_reg.sv",
+      "sha256": "c497445d931b7a35e07d307921cf0d6aef5bcb3bc53ebade9378d0261f6776e0"
+    },
+    {
+      "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/deprecated/axi_to_reg.sv",
+      "sha256": "f7232bb4e0f914b0ecbebc5f67e681b5c3bc7e1b8229fdf2c266f9025a94cca4"
+    },
+    {
+      "path": ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_pkg.sv",
+      "sha256": "ddd883331359926221f593a853b62a21537ecf7a9ffa7427e845ac1d03c32487"
+    },
+    {
+      "path": ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_top.sv",
+      "sha256": "89a1f707cc89ec984387fec61f73966e437dd2e399d387b18e2e8fa2232dc823"
+    },
+    {
+      "path": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv",
+      "sha256": "b4a4a537349811c6e776c117f0401a3b2dae055ca6807e52f3121be8d58b4980"
+    },
+    {
+      "path": ".bender/git/checkouts/unbent-a93c32aef5b319fd/driver/bus_err_unit.h",
+      "sha256": "b6a95b20a0553cc4b7185551f52f3a8e4330e2dbcb18585f44dcd6f1af47a90d"
+    },
+    {
+      "path": ".bender/git/checkouts/unbent-a93c32aef5b319fd/src/axi_err_unit_wrap.sv",
+      "sha256": "ae9d5c14ed5658364769b9668b87f28f39b1e2af07e4b7eec820cdec9218ee36"
+    },
+    {
+      "path": ".bender/git/checkouts/unbent-a93c32aef5b319fd/src/bus_err_unit.sv",
+      "sha256": "32f1e85bef38dcf99383150dc74608f7699545b12a02d4c951efe125de0eb048"
+    },
+    {
+      "path": "cheshire.mk",
+      "sha256": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063"
+    },
+    {
+      "path": "hw/bootrom/cheshire_bootrom.S",
+      "sha256": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0"
+    },
+    {
+      "path": "hw/bootrom/cheshire_bootrom.c",
+      "sha256": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae"
+    },
+    {
+      "path": "hw/cheshire_idma_wrap.sv",
+      "sha256": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd"
+    },
+    {
+      "path": "hw/cheshire_pkg.sv",
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752"
+    },
+    {
+      "path": "hw/cheshire_soc.sv",
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c"
+    },
+    {
+      "path": "hw/future/UsbOhciAxi4.v",
+      "sha256": "f98258803336f1c285b331729a3abf1f1fc6d0424ac19947fde9dd21411fdf2f"
+    },
+    {
+      "path": "hw/future/spinal_usb_ohci.sv",
+      "sha256": "09507ee03a1e998ef5b81b058d0ff286a04677eaaa67dde957d426cb73cc1436"
+    },
+    {
+      "path": "hw/include/cheshire/typedef.svh",
+      "sha256": "ed500e4eea0a512afcdcf12cd85ec4cf7bc10ba35f516f72fbea363dce751c76"
+    },
+    {
+      "path": "hw/regs/cheshire_reg_top.sv",
+      "sha256": "8e872dabe2ac5a78eb0f7921310251bd2335a80ac465fb428dcbd834f9ddc4ea"
+    },
+    {
+      "path": "hw/serial_link.hjson",
+      "sha256": "1f29ff6dbbfcb6e635daa8f8c1d8e97ddc5b0d0531cb1943f3b18251caca6217"
+    },
+    {
+      "path": "sw/include/dif/dma.h",
+      "sha256": "613bc1ba6e053aefde079b5e676920245948fe4071fa3394806a1a3bdc8039e9"
+    },
+    {
+      "path": "sw/include/dif/uart.h",
+      "sha256": "37afa3b555582e5b404044660cdae43d44d08a49586eac507646e23122a974f1"
+    },
+    {
+      "path": "sw/include/regs/axi_llc.h",
+      "sha256": "be0e223a4ce6f95c2b066189859a1b93a5fc72a313bfa13d41c231e13fd0268e"
+    },
+    {
+      "path": "sw/include/regs/axi_rt.h",
+      "sha256": "a16b33a17ff1b3ad3427a056e482ff8cd3b6d5fed70b3f8a160363afa0536b3a"
+    },
+    {
+      "path": "sw/include/regs/axi_vga.h",
+      "sha256": "f55a9dd57d13268df1037c524717f01135481691c623f179a854a259ac2cabfa"
+    },
+    {
+      "path": "sw/include/regs/cheshire.h",
+      "sha256": "5cc142f876b5f9228f77e08dfafdff4bb59306b17c2f37b2404f04440f61ba62"
+    },
+    {
+      "path": "sw/include/regs/clint.h",
+      "sha256": "7b288e38c732a9c9b64017be86c087076b7637f2f9bf5d63488e3abd0038b431"
+    },
+    {
+      "path": "sw/include/regs/idma.h",
+      "sha256": "34b32a63cca4593c335e6055a43876802acbae158997aea4629b5ec15c7ded0d"
+    },
+    {
+      "path": "sw/include/regs/serial_link.h",
+      "sha256": "a7ddbfb9f4d35330af5817d271cecd236ba44fdb8220c83d9347d43df61db95d"
+    },
+    {
+      "path": "sw/include/util.h",
+      "sha256": "2f534f4f2ca6b4ca6990f7d03e477d2868576028d9fc292ac8332a9a80ed009e"
+    },
+    {
+      "path": "sw/lib/crt0.S",
+      "sha256": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7"
+    },
+    {
+      "path": "sw/lib/dif/clint.c",
+      "sha256": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc"
+    },
+    {
+      "path": "sw/lib/dif/uart.c",
+      "sha256": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2"
+    },
+    {
+      "path": "sw/lib/gpt.c",
+      "sha256": "bf0e29f209c04ad6c55215c149dc3752b5699feb9bbf38c9c25acc077352713c"
+    },
+    {
+      "path": "sw/lib/hal/i2c_24fc1025.c",
+      "sha256": "d253cf7b236a09872b85e33559bcf5e746b6ff56535e10c3f719403d53ff2a93"
+    },
+    {
+      "path": "sw/lib/hal/spi_s25fs512s.c",
+      "sha256": "028ecf636770cfff2e111fa8f3d11135325178b4e7e8f5e8034f95a5b2ca5ece"
+    },
+    {
+      "path": "sw/lib/hal/spi_sdcard.c",
+      "sha256": "ff368e8e115e70add8096b6be11e7231ae53b5fd07fd62c5ebc8019f04e6bbbf"
+    },
+    {
+      "path": "sw/link/common.ldh",
+      "sha256": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620"
+    },
+    {
+      "path": "sw/link/dram.ld",
+      "sha256": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2"
+    },
+    {
+      "path": "sw/link/rom.ld",
+      "sha256": "b03af6a441bf8104a936490bfb5b9e95fada51f5aa629e13fcf2a144c585331a"
+    },
+    {
+      "path": "sw/link/spm.ld",
+      "sha256": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106"
+    },
+    {
+      "path": "sw/sw.mk",
+      "sha256": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7"
+    },
+    {
+      "path": "sw/tests/dma_2d.spm.c",
+      "sha256": "07da92ee214c2b1b817395d73f3199197fa54fb6d82a3bfd57e75a2374f51d36"
+    },
+    {
+      "path": "sw/tests/fmatmul_test_4x4.c",
+      "sha256": "673938c85af98a1438a3323b008f684e912976a3523fed91b9afcb72abad24c0"
+    },
+    {
+      "path": "target/sim/src/elfloader.cpp",
+      "sha256": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6"
+    },
+    {
+      "path": "target/sim/src/fixture_cheshire_soc.sv",
+      "sha256": "28172693f9cf8de595766ee3b94e74f89b6ea702d411f0017970317323e070a8"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_pkg.sv",
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_soc.sv",
+      "sha256": "e07858e23eb8dc1521188019c98b25d819cdb3e61d096326de2a49a964137108"
+    },
+    {
+      "path": "target/sim/src/vip_cheshire_soc.sv",
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c"
+    },
+    {
+      "path": "target/sim/vcs/start.cheshire_soc.sh",
+      "sha256": "059a7b028f0d39f18504d12f30d8df84ba1fc8153a793ff1febda6af1cb1faad"
+    },
+    {
+      "path": "target/sim/vsim/start.cheshire_soc.tcl",
+      "sha256": "77f69e395c3b273b6d3df9e7d3a31d2fb3c1cd7a10713302b8175656ef61934f"
+    },
+    {
+      "path": "target/xilinx/src/cheshire_top_xilinx.sv",
+      "sha256": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2"
+    },
+    {
+      "path": "target/xilinx/src/dram_wrapper_xilinx.sv",
+      "sha256": "fa8a22e9a7e30885605cecacbc41459cf060828ffbc7995189ff80ba1c9adf6e"
+    },
+    {
+      "path": "target/xilinx/src/phy_definitions.svh",
+      "sha256": "414ce90ea25a04469dc5d19458c0c4fcbc9018551e770cdd98a497ad23e520a4"
+    }
+  ]
+}

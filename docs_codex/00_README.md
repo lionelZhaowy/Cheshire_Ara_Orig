@@ -1,5 +1,7 @@
 # Cheshire-Ara 工程学习手册
 
+> 2026-09-20 协作入口更新：新对话先读根 [AGENTS.md](../AGENTS.md)、[项目共享状态](PROJECT_STATE.md) 和 [任务分工](AGENT_TASKS.md)，无需默认通读全部教程。用户已确认 DDR 可采用 AXI4；当前近期目标是固定配置的独立 ASIC 源码提取，而不是长期维护 Bender。下文原始调查范围和路线保留为历史参考。
+
 > 2026-09-16 更新：主仓库现已纳入 `.bender` 依赖源码快照及 `Bender.local` 相对路径配置，见[依赖快照说明](../.bender/README.md)。下文的版本/工作区状态是编写教程时的历史快照，不表示依赖修改仍未上传。
 
 ## 1. 目标与本轮边界
@@ -60,17 +62,20 @@ CVA6 不只是 NPU 的控制 MCU：它承担操作系统、运行时、通用控
 | --- | --- | --- |
 | 已创建 | [00_README.md](00_README.md) | 目标、证据范围、学习和实施路线 |
 | 已创建 | [01_Cheshire_Ara_Quick_Start.md](01_Cheshire_Ara_Quick_Start.md) | 从目录、配置、构建到裸机启动、UART、Ara 和扩展边界的第一条完整路径 |
-| 计划 | `02_Configuration_and_Reproducible_Build.md` | 固定依赖与补丁；对齐仿真/FPGA 配置；生成文件追溯；EDA 服务器和 VCS 2018 适配基线 |
+| 已创建 | [02_Cheshire_Ara_ASIC_Extraction_Handoff.md](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 固定 Ara 配置、静态 filelist、独立目录提取及 DDR 旁路契约；替代原“02 配置管理专题”的近期优先安排 |
+| 已创建 | [PROJECT_STATE.md](PROJECT_STATE.md) / [AGENT_TASKS.md](AGENT_TASKS.md) | 当前目标、证据边界、待办、不同对话分工和启动提示词 |
+| 已创建 | [HANDOFF_TEMPLATE.md](HANDOFF_TEMPLATE.md) / [交接索引](handoffs/README.md) | 各任务的独立结果记录与跨对话交接 |
+| 已创建 | [离线教材入口](learning/index.html) / [进阶全外设](learning/advanced.html) | 24页中文教材、18张SVG、429项寄存器索引；系统/时钟复位、C到硬件执行、驱动与中断/DMA综合案例，明确运行缺口 |
 | 计划 | `03_Boot_and_Baremetal_Debugging.md` | ELF、链接、启动、异常、中断、定时器、DMA、UART/JTAG 调试的可执行实验 |
 | 计划 | `04_CVA6_Ara_and_Memory_System.md` | CVA6/Ara 调度、向量编程、MMU、各级缓存、数据一致性和性能定位 |
 | 计划 | `05_AXI_Address_Map_and_Custom_IP.md` | 地址设计、AXI、寄存器、中断、NPU/ISP 接入及数据所有权协议 |
-| 计划 | `06_DDR_and_Platform_Integration.md` | 外购 AXI3 DDR 控制器/PHY、时钟复位、FPGA 与 ASIC 平台差异、验证矩阵 |
+| 计划 | `06_DDR_and_Platform_Integration.md` | 外购 AXI4 DDR 控制器/PHY、旁路共享存储、时钟复位、FPGA 与 ASIC 平台差异、验证矩阵 |
 | 计划 | `07_RTOS_and_Linux.md` | 上下文保存、调度、设备树、OpenSBI、Linux 驱动与异构运行时 |
 | 计划 | `08_ASIC_Migration_and_Verification.md` | 通用顶层、工艺存储器、可测性设计、时钟域检查、等价与回归、综合和物理实现交接 |
 
-先完整阅读 01，再按自己当前任务选读未来专题。暂不把目录、地址、中断、DMA 各拆成一篇，避免同一配置事实在多篇文档中重复维护。
+人类初学者可按 01 顺序学习；新 Agent 按共享状态和任务表定向阅读。计划中的专题尚未创建，不代表对应实施已经开始。
 
-**建议下一篇优先写 02。** 团队已经在 VCU118 上完成串口输出，当前最有价值的增量是把“曾经跑通”转成“指定源码、指定参数、指定工具可以重复跑通”，而不是立即增加复杂 IP。
+**当前优先项是按 02 交接书实施 E01。** 该方案文档已完成，但源码提取和新目录验证尚未完成；实施需在对应对话中获得授权。
 
 ## 5. 从 Bare-metal 到 ASIC 的学习路线
 

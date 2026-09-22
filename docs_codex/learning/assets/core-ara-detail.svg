@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="980" viewBox="0 0 1360 980" role="img" aria-labelledby="title desc"><title id="title">CVA6 与 Ara 执行剖面：发射、完成、提交不是同一事件</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">CVA6 与 Ara 执行剖面：发射、完成、提交不是同一事件</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="20" y="95" width="1320" height="340" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="121" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">CVA6 · 本地图中不把记分牌画成通用乱序 CPU 的 ROB</text>
+<rect x="45" y="155" width="225" height="115" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="181" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">frontend</text>
+<text x="57" y="205" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">PC/分支预测/I-cache</text>
+<text x="57" y="228" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">指令队列</text>
+<rect x="305" y="155" width="225" height="115" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="317" y="181" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">id_stage</text>
+<text x="317" y="205" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">解压/译码/异常标记</text>
+<text x="317" y="228" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">寄存器号与功能单元</text>
+<rect x="565" y="155" width="225" height="115" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="577" y="181" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">issue_stage</text>
+<text x="577" y="205" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">scoreboard / operands</text>
+<text x="577" y="228" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">相关性 + 可用性判断</text>
+<rect x="825" y="155" width="225" height="115" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="837" y="181" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">ex_stage</text>
+<text x="837" y="205" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ALU / MUL / FPU / LSU</text>
+<text x="837" y="228" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CSR / 分支 / MMU</text>
+<rect x="1085" y="155" width="225" height="115" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="1097" y="181" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">commit_stage</text>
+<text x="1097" y="205" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">按架构顺序退休</text>
+<text x="1097" y="228" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">寄存器/异常/存储提交</text>
+<polyline points="270,205 305,205" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<polyline points="530,205 565,205" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<polyline points="790,205 825,205" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<polyline points="1050,205 1085,205" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="45" y="320" width="470" height="75" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="57" y="346" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">LSU / MMU / D-cache / 写缓冲</text>
+<text x="57" y="370" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">地址翻译与权限检查；缓存命中可无外部 AXI</text>
+<rect x="565" y="320" width="485" height="75" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="577" y="346" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">acc_dispatcher（不是 Cvxif 通用扩展口）</text>
+<text x="577" y="370" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">acc_req/resp、提交/flush 关联、标量操作数/结果</text>
+<polyline points="705,270 705,320" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="716" y="300" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">RVV 分派</text>
+<rect x="1085" y="320" width="225" height="75" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="1097" y="346" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">CSR / trap 控制</text>
+<text x="1097" y="370" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mstatus.VS/FS / satp</text>
+<rect x="20" y="475" width="1320" height="345" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="501" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">Ara · 同一 SoC 主时钟 · VLEN ≠ 每拍完成的元素数</text>
+<rect x="45" y="530" width="265" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">ara_dispatcher</text>
+<text x="57" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">vtype/vl/vstart 与合法性</text>
+<text x="57" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">向量命令/异常/标量响应</text>
+<polyline points="660,395 660,452 180,452 180,530" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="310" y="445" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">加速命令与状态</text>
+<rect x="355" y="530" width="255" height="105" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="367" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">ara_sequencer</text>
+<text x="367" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">PE 工作分发 / 依赖管理</text>
+<text x="367" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">指令完成汇聚</text>
+<polyline points="310,575 355,575" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="660" y="530" width="275" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="672" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">gen_lanes[i].i_lane</text>
+<text x="672" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VRF bank / operand queues</text>
+<text x="672" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ALU / MFPU / store operands</text>
+<rect x="985" y="530" width="325" height="105" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="997" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">masku / sldu</text>
+<text x="997" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">掩码、重排与跨 lane 数据</text>
+<text x="997" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不是每 lane 独立执行完整向量</text>
+<polyline points="610,575 660,575" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="615" y="560" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">PE 请求</text>
+<polyline points="935,575 985,575" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="943" y="567" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">操作数</text>
+<rect x="355" y="685" width="580" height="95" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="367" y="711" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">i_vlsu</text>
+<text x="367" y="735" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">addrgen / load unit / store unit；MMU 请求；处理长度、对齐与异常</text>
+<text x="367" y="758" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">数据走独立 AXI，经 Cheshire 适配到 xbar / LLC / SPM / DDR</text>
+<polyline points="800,635 800,685" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="808" y="627" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">向量元素数据</text>
+<rect x="45" y="860" width="1265" height="70" rx="8" fill="#fff" stroke="#657887" stroke-width="2"/>
+<text x="57" y="886" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#657887" font-weight="700">验证三件事</text>
+<text x="57" y="910" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">反汇编确有 vsetvli/vle32/vadd/vse32；运行轨迹确实执行；输出逐元素正确。前两者不能替代第三者，静态图不能提供周期数。</text>
+<text x="30" y="960" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>
