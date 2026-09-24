@@ -16,7 +16,9 @@
 
 名称 `cv64a6_imafdcv_sv39` 表示这个 profile 的 RV64、I/M/A/F/D/C/V 组合与 Sv39 翻译配置。不是可以任意拼字母的配置生成器。当前 I/M 并没有在该 user 结构体中提供独立 `RVI`/`RVM` 字段。
 
-## 2. 两个重要 profile 的实际差异
+<a id="2-两个重要-profile-的实际差异"></a>
+
+## 2. 标量与向量 profile 对照
 
 | 项目 | 根构建默认 cv64a6_imafdchsclic_sv39_wb | Ara 入口 cv64a6_imafdcv_sv39 |
 | --- | --- | --- |
@@ -140,7 +142,9 @@
 
 `NrMaxRules=16` 是数组槽位上限，实际生效条数由 `Nr*Rules` 控制。区域数组使用基址+长度；Cheshire 地址路由数组则使用起点+排他终点，修改时不要混用。
 
-## 5. 常见派生字段：读懂即可，通常不直接改
+<a id="5-常见派生字段读懂即可通常不直接改"></a>
+
+## 5. 派生配置字段
 
 | 派生字段 | 当前向量基准 | 计算/意义 |
 | --- | --- | --- |
@@ -157,7 +161,9 @@
 | DCACHE_MAX_TX | 4 | 2^MemTidWidth，不是 xbar 最大事务数 |
 | FETCH_WIDTH / INSTR_PER_FETCH | 32 / 2 | 开 RVC 后每次最多容纳两个 16 位指令片段，不表示双发射 |
 
-## 6. 常改与慎改项
+<a id="6-常改与慎改项"></a>
+
+## 6. 配置修改范围与验证要求
 
 - 初学者先冻结 profile 和 ISA；优先学习 `RASDepth/BTBEntries/BHTEntries`、cache 容量/way/line 的关系以及地址属性。改变预测器尺寸需检查数组索引和实现对 0/2 的幂的假设。
 - 改 cache 容量后，应同时检查 bank 形状、索引/标签位宽、SRAM 宏、miss/eviction 测试；本轮没有给任意 cache 组合背书。

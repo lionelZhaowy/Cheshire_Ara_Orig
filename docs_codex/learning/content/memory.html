@@ -1,29 +1,30 @@
-<div class="goals"><strong>学完能做什么</strong><p>分别追踪 CPU、Ara 和 DMA 的数据；解释 LLC/SPM 共用阵列和一致性边界；为最小 RVV 测试建立三层证据。前置：AXI 五通道、ELF/启动以及实验 1～3。</p></div>
-<h2 id="paths">同一条 load，四种可能的去处</h2>
+<div class="goals"><strong>学习目标</strong><p>分别追踪 CPU、Ara 和 DMA 的数据；解释 LLC/SPM 共用阵列和一致性边界；为最小 RVV 测试建立三层证据。前置：AXI 五通道、ELF/启动以及实验 1～3。</p></div>
+<p>本章使用小实验解释访存与共享数据规则；寄存器操作与设备使用详见第 15 章，存储组织和硬件数据通路详见 H06。</p>
+<h2 id="paths">Load/Store 访存路径</h2>
 <div class="callout"><strong>进阶轮次补充：</strong>本地iDMA的64bit控制总线与32bit生成寄存器存在lane适配缺口，旧HAL的ID访问也需核对。本页DMA机制解释仍适用，但旧dma运行示例增加这个前置门槛；详见<a href="dma-llc.html#lanes">新证据与修复建议</a>。不要把上一轮软件构建通过当成DMA已可运行。</div>
 <p>执行 <code>x = *p</code> 时，先由 CPU 的 load/store 单元和地址属性判断路径；启用虚拟地址翻译时还要经 MMU（Memory Management Unit，内存管理单元）/TLB（地址翻译缓存）。本课裸机不建立应用页表，不能把 Sv39 profile 的存在理解为软件已经运行于分页系统。</p>
 <table><tr><th>地址/情况</th><th>教学路径</th><th>观察重点</th></tr><tr><td>可缓存 RAM，L1 命中</td><td>CVA6 D-cache → 寄存器</td><td>这次读可能没有 AXI 事务，不能只看总线就说 CPU 没执行</td></tr><tr><td>SPM 缓存未命中或非缓存访问</td><td>CPU AXI → xbar → 主存原子适配器/LLC 前端 → SPM 阵列</td><td>片上结束；不需要 DDR 芯片返回数据</td></tr><tr><td>0x03002000 附近 UART</td><td>CPU MMIO → xbar → AXI-to-reg → UART 的 reg/APB 适配</td><td>访问宽度、偏移、读副作用、外设握手</td></tr><tr><td>0x80000000 外部主存</td><td>CPU AXI → xbar → 原子适配器 → LLC 路径 → axi_llc_mst 接口 → 模型/DDR</td><td>cache 模式可能命中 LLC；全 SPM 模式下外部主存请求走下游</td></tr></table>
-<h2 id="spm">地址空间与 LLC：不要把两个窗口算两份容量</h2>
+<h2 id="spm">地址空间与 LLC/SPM 映射</h2>
 <figure><img src="assets/address.svg" alt="SPM缓存窗口10000000与非缓存别名14000000映射到同一128KiB LLC阵列；DRAM窗口与链接容量独立"><figcaption>默认配置的地址教学示意，不按地址比例绘制。高别名避免 CPU L1 分配，不表示另建了一份 SRAM。</figcaption></figure>
 <p><span class="term">LLC（Last-Level Cache，末级缓存）</span>阵列大小由 <code>8 ways × 256 lines × 8 blocks × 64/8 bytes = 131072 bytes</code> 算出，即 128 KiB。Boot ROM 初始化为全 SPM，不能同时把同一份 128 KiB 全部计为 cache 容量再加上 128 KiB SPM。以后可以按 way 重分配，但这会改变仍在运行的代码、栈和数据所在空间。</p>
 <p>gen_cva6_cfg 的可缓存规则包含低 SPM 窗口，没有包含 +0x04000000 的别名；cheshire_soc 在 LLC 前把高别名映射回低地址。两者共享同一物理字节。用低别名写入 WB L1 后立即从高别名读取，可能看不到尚未写回的数据；高别名写后低别名也可能保留旧副本。</p>
 <div class="callout"><strong>高别名不是任意代码都能执行的地址。</strong><p>当前 ExecuteRegion 对 SPM 使用 2×SizeSpm，而非缓存别名与低地址相隔 64 MiB，默认执行区没有覆盖这个高别名。教材只把高别名用作数据，代码仍从低 SPM 执行。本轮不改地址图或执行属性。</p></div>
-<h2 id="timer">MMIO、定时器与中断：从轮询再走向事件</h2>
+<h2 id="timer">MMIO 访问、定时器与中断</h2>
 <p>实验 4 使用 scratch6 做单拥有者读回，保留并恢复旧值。scratch0～5 与启动协议有关，scratch2 还承载退出信号，不可随意当测试 RAM。实验 5 只轮询 CLINT（Core-Local Interruptor，核本地中断/定时器）mtime：先读高、低、再读高，避免跨 32 位低半翻转时拼出错误 64 位时间。</p>
 <p>mtime 是 RTC 时间基准，mcycle 是 CPU 周期；TB 默认 RTC 32768 Hz，FPGA wrapper 报告的 RTC 是 1 MHz，二者不能共用硬编码延时。CPU 时钟的仿真周期与主机运行速度又是两回事。</p>
 <p>升级到中断的顺序是：准备正确的 trap handler 与上下文保存 → 设置未来的 mtimecmp → 确认清/重设中断源的方法 → 打开 mie.MTIE 和 mstatus.MIE → 等待 → handler 识别中断并重设比较值 → mret。外部设备通常还经 PLIC（Platform-Level Interrupt Controller，平台级中断控制器）的 enable/priority/claim/complete。CLIC 是另一可选局部中断配置，不与默认流程混用。</p>
 <div class="callout"><strong>为什么本课计时实验先不用 clint_sleep_ticks？</strong><p>当前 clint_sleep_until 在 mtime&lt;目标时直接 return，与睡到未来时刻的意图相反；clint_get_mtime 也没有高低高重读。教材用独立 polling 示例说明可靠读法，不修改旧驱动。实际中断实验需由 S01/V01 接手 handler 与唤醒语义，不能把 wfi 当作自动延时函数。</p></div>
-<h2 id="coherence">CPU / Ara / DMA 的一致性边界</h2>
+<h2 id="coherence">CPU、Ara 与 DMA 的一致性边界</h2>
 <figure><img src="assets/coherence.svg" alt="CPU缓存、Ara带失效过滤器的独立通路和iDMA独立通路汇入总线，Ara能向L1发失效不代表所有DMA都一致"><figcaption>当前路径。紫色是 Ara 写触发的 L1 失效通知，不是 DMA 完成 IRQ；共享 xbar 与 LLC 不自动建立全系统缓存一致性。</figcaption></figure>
 <p><span class="term">缓存一致性（cache coherence）</span>关注同一地址多个副本怎样保持可见；<span class="term">内存排序（memory ordering）</span>关注不同访问的先后；<span class="term">原子性（atomicity）</span>关注操作能否被并发访问打断。三者相关，但不能用一个词代替另外两个。</p>
 <p>当前 Ara 写路径经过 i_ara_axi_inval_filter，借 acc_cons_en / inval_* 向 CVA6 L1D 发失效。csr_regfile 中 acc_cons_q 的复位值取决于 EnableAccelerator。这个具体机制不是通用的 AXI snoop（侦听）协议，iDMA 不自动穿过同一个过滤器；CPU 写缓冲、L1 类型、Ara load/store 完成顺序与 LLC 状态仍要在匹配组合上验证。</p>
-<table><tr><th>你做的事</th><th>它解决什么</th><th>还没有解决什么</th></tr><tr><td>volatile 指针</td><td>约束编译器对可观察访问的处理</td><td>L1/LLC 中的数据副本、DMA 完成、设备可见性</td></tr><tr><td>fence + 编译器 memory clobber</td><td>指令/编译器层面的访问排序</td><td>不自动执行所有级别的 cache clean / invalidate</td></tr><tr><td>CPU L1 为 WT</td><td>写向下传播的缓存策略</td><td>读行可能过期，写缓冲有时序，LLC 仍可能持有脏行</td></tr><tr><td>设备绕过 LLC</td><td>该设备不分配/替换 LLC 行</td><td>CPU/Ara 缓存副本与 DDR 的同步、DDR 争用、上游 LR/SC 观察</td></tr><tr><td>收到设备中断</td><td>设备报告了一个事件</td><td>除非契约明确，不能代替数据可见性与 CPU 侧同步</td></tr></table>
+<table><tr><th>操作或机制</th><th>作用范围</th><th>未覆盖的约束</th></tr><tr><td>volatile 指针</td><td>约束编译器对可观察访问的处理</td><td>L1/LLC 中的数据副本、DMA 完成、设备可见性</td></tr><tr><td>fence + 编译器 memory clobber</td><td>指令/编译器层面的访问排序</td><td>不自动执行所有级别的 cache clean / invalidate</td></tr><tr><td>CPU L1 为 WT</td><td>写向下传播的缓存策略</td><td>读行可能过期，写缓冲有时序，LLC 仍可能持有脏行</td></tr><tr><td>设备绕过 LLC</td><td>该设备不分配/替换 LLC 行</td><td>CPU/Ara 缓存副本与 DDR 的同步、DDR 争用、上游 LR/SC 观察</td></tr><tr><td>收到设备中断</td><td>设备报告了一个事件</td><td>除非契约明确，不能代替数据可见性与 CPU 侧同步</td></tr></table>
 <p>未来最保守的共享协议：CPU/设备分阶段拥有缓冲区，全部相关访问使用已验证的非缓存区域，按 MMIO/中断交接。若保留缓存，则必须拥有可用且已验证的分级维护方法：CPU 产出先 clean/排空和排序，再 doorbell；设备产出完成写响应与可见性契约后通知，CPU 做必要 invalidate/排序再读。本文没有把任何具体地址冻结为未来 DDR 共享区。</p>
-<h2 id="dma">DMA 小实验为什么单独保留 SPM 数据区</h2>
+<h2 id="dma">DMA 缓冲区布局与搬运验证</h2>
 <p>教材 DMA/RVV 阶段在<strong>当前单核、全 128 KiB SPM</strong>前提下，仅为本次实验保留物理 [0x10010000,0x10011000) 的 4 KiB 区间。程序链接低 64 KiB；Boot ROM 栈在高端。三个缓冲区从高别名 0x14010000、0x14010400、0x14010800 访问，各使用 548 字节。</p>
-<p>这些地址是独立示例的实验预约，不是修改生产地址图，也不是未来 DMA 内存方案。它要求没有其他 hart/程序使用该区，栈始终高于 0x10011000，不重新分配 LLC ways；默认链接器不会替你检查栈碰撞。应用读 LLC_SIZE 必须等于 131072 才继续。若容量/栈策略不同，停止本实验而非照抄地址。</p>
+<p>这些地址是独立示例的实验预约，不是修改生产地址图，也不是未来 DMA 内存方案。它要求没有其他 hart/程序使用该区，栈始终高于 0x10011000，不重新分配 LLC ways；默认链接器不检查运行时栈碰撞。应用读 LLC_SIZE 必须等于 131072 才继续。若容量/栈策略不同，停止本实验而非照抄地址。</p>
 <p>关键是<strong>从未用低别名触碰这三个共享缓冲</strong>，也不让 crt0 的 BSS 清零覆盖它们。这样避免 WB 旧脏行覆盖 DMA 结果。CPU 通过高别名初始化 a/b/c → fence → 写 DMA 配置并读取 next-id 触发 → 有界轮询 done-id → fence → 用同一高别名逐元素验证。它验证当前 SPM 数据通路，不证明 DDR 共享一致性。</p>
-<h2 id="rvv">怎样证明真的执行了 RVV 并算对</h2>
+<h2 id="rvv">RVV 执行与计算结果验证</h2>
 <p>本课用整数相加 c[i]=a[i]+b[i]：a=i，b=2i+1，因此每个期望值 3i+1。N=137 刻意不是常见向量容量整数倍。<code>vsetvli</code> 根据剩余元素数设置本轮 vl；SEW（Selected Element Width，元素宽度）为 32，LMUL（寄存器组倍数）为 1。Ara VLEN=2048 时 VLMAX=64，但当 AVL 处于 VLMAX 与 2×VLMAX 之间时，不应要求唯一的分块序列；循环始终按实际返回的 vl 前进。</p>
 <pre><code>vsetvli t0, a3, e32, m1, ta, ma  # t0 = 本轮实际元素数
 vle32.v v0, (a0)                 # 装 a 的一段
@@ -35,6 +36,6 @@ slli t1, t0, 2                   # 地址前进 vl × 4 字节</code></pre>
 <p>ta/ma 表示尾部/掩码非活动元素可不保留，程序只校验本轮有效元素。完整循环见 <a href="examples/rvv_add.S">rvv_add.S</a>。VS 必须在第一条向量指令前非 Off；本例没有向量浮点，原 crt0 已初始化 FS。规范语义参考 <a href="https://docs.riscv.org/reference/isa/unpriv/v-st-ext">RISC-V V 扩展官方资料</a>；实际硬件实现需用此本地版本验收。</p>
 <ol><li><strong>静态指令证据：</strong>反汇编 learn_vadd 中有 vsetvli、vle32.v、vadd.vv、vse32.v。本轮已完成。</li><li><strong>执行证据：</strong>仿真中 PC/退休记录确实走到这些地址，Ara 指令握手/访存活动与之对应，无非法指令 trap。本轮未执行；波形名称由实际展开层次选取，不虚构信号路径。</li><li><strong>计算证据：</strong>137 个结果逐元素对比独立公式，UART RVV checked=137/errors=0 与返回 0 一致；错误注入时必须失败。本轮未执行。</li></ol>
 <div class="source">依据：<a href="../../hw/cheshire_pkg.sv">gen_cva6_cfg、get_llc_size、AmSpmBaseUncached</a>；<a href="../../hw/cheshire_soc.sv">gen_llc 的地址重映射、i_ara_axi_inval_filter、i_llc_atomics</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv">axi_inval_filter</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">acc_cons_q</a>；<a href="../../sw/include/dif/dma.h">sys_dma_memcpy / nextid / done</a>、<a href="../../sw/lib/dif/clint.c">CLINT 驱动</a>。</div>
-<h2 id="exercise">练习与自测</h2>
+<h2 id="exercise">访存与向量计算练习</h2>
 <div class="lab"><p>完成 <a href="labs.html#lab4">实验 4～7</a>，再手算 137 个元素的总和 28085。成功判据是“能解释地址路径 + 有计算校验 + 错误能失败”，不是只找到几条 v 开头指令。若 RVV 挂住，先查配置/VS/首条向量指令 PC，再看访存响应和一致性；不先扩大矩阵规模。</p></div>
 <div class="quiz"><details><summary>1. 非缓存别名访问避开 LLC 阵列了吗？</summary><p>没有。当前 SPM 别名只是避开 CPU L1 的缓存分配，并在 LLC 前映射到同一 SPM 存储；它仍依赖 LLC 的阵列和初始化。</p></details><details><summary>2. 设备不发 AMO，旁路写就不影响 CPU LR/SC 吗？</summary><p>不成立。普通写也可能改变 CPU reservation 相关位置；上游监视器看不到旁路写时，共享原子语义需要另外设计。</p></details><details><summary>3. 为什么不用已有 4×4 fmatmul 的 SUCCESS 直接证明向量结果正确？</summary><p>其 main 最终 return 0，校验失败没有汇入返回值。还需检查真实执行了哪个函数、逐元素结果和失败传播。</p></details></div>

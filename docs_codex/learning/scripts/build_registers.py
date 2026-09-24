@@ -44,7 +44,7 @@ def main():
             rows.append(f'<tr data-register="{e(label)}"><td>{e(prefix)}</td><td>{e(v)}<br>{address}</td><td>'+('<br>'.join(e(x)for x in fields) or '整字/语义见源码')+'</td></tr>')
         total+=len(rows)
         out.append(f'<section class="register-group"><h2 id="group-{i}">{label} · {base}</h2><p><a href="{chapter}.html">回到教学章节</a> · <a href="../../{path}">{e(path)}</a></p><table><thead><tr><th>寄存器</th><th>偏移 / 地址</th><th>字段常量（不是访问权限）</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></section>')
-    out.append('''<h2 id="quiz">自测</h2><details><summary>看到 REG_OFFSET 就可以无副作用读取吗？</summary><p>不可以。iDMA NEXT_ID 读取会提交任务，bus error 的 ERR_CODE 读取会弹出记录，UART RBR 读取会取走数据。先查访问语义。</p></details><details><summary>头文件中的所有索引都能访问吗？</summary><p>不一定。还要确认实例数量、参数化寄存器生成版本及地址译码范围。先用 HW_FEATURES 和硬件配置核对，禁止靠扫描未知 MMIO 探测。</p></details>''')
+    out.append('''<h2 id="quiz">本章自测</h2><details><summary>看到 REG_OFFSET 就可以无副作用读取吗？</summary><p>不可以。iDMA NEXT_ID 读取会提交任务，bus error 的 ERR_CODE 读取会弹出记录，UART RBR 读取会取走数据。先查访问语义。</p></details><details><summary>头文件中的所有索引都能访问吗？</summary><p>不一定。还要确认实例数量、参数化寄存器生成版本及地址译码范围。先用 HW_FEATURES 和硬件配置核对，禁止靠扫描未知 MMIO 探测。</p></details>''')
     (ROOT/'content/registers.html').write_text('\n'.join(out)+'\n')
     (ROOT/'evidence/advanced-register-sources.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print(f'{len(GROUPS)} header groups, {total} register offsets; no hardware accesses')

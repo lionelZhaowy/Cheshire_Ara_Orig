@@ -1,5 +1,7 @@
 # Cheshire-Ara 源码入门：从 SoC 顶层到裸机程序
 
+> 2026-09-23 硬件学习扩充：新增[硬件主线](learning/hardware.html)，按参数化RTL、CVA6功能配置、SoC结构生成、Crossbar内部、接口适配、存储/外设原理与IP接入学习；[硬件实验与证据](learning/hardware-labs.html)区分教学模型、独立单元与尚未运行的SoC回归。
+
 > 2026-09-20 软件专题：SDK、交叉工具链、编译链接、嵌入式库与测试程序流程，集中见[软件学习手册](software/README.md)；硬件参数见[配置手册](configuration/README.md)。两套手册均区分当前源码事实与未执行的使用示例。
 
 > 2026-09-20 方向更新：新 Agent 先读 [项目共享状态](PROJECT_STATE.md) 和 [任务分工](AGENT_TASKS.md)，再按需查阅本教程。DDR 供应商已可提供 AXI4，本文第 11.2 节的 AXI3 转换规划不再是当前必选项；独立 ASIC 提取按 [02 交接书](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) 执行，新目录不长期依赖 Bender。本文旧命令和工作区描述属于参考快照，不表示已经修正或重新验收。
@@ -27,9 +29,13 @@
 
 依赖目录尾部标识不应成为团队脚本的永久接口；应使用 Bender 查询路径并保留锁文件。读取已存在的依赖和首次联网 checkout 是不同操作。
 
-## 1. Cheshire、CVA6、Ara 分别是什么
+<a id="1-cheshirecva6ara-分别是什么"></a>
 
-### 1.1 从一条指令和一次访存理解分工
+## 1. Cheshire、CVA6 与 Ara 的系统职责
+
+<a id="11-从一条指令和一次访存理解分工"></a>
+
+### 1.1 指令执行与访存的组件分工
 
 CPU 执行指令需要取指、寄存器、执行单元、异常处理和访存；但仅有 CPU 还不能从串口打印。它还需要可访问的存储、地址解码、UART、时钟复位、程序加载方法以及软件启动代码。
 
@@ -56,7 +62,9 @@ flowchart LR
 
 源码入口：[hw/cheshire_soc.sv](../hw/cheshire_soc.sv) 的 `module cheshire_soc`、`i_axi_xbar`、`gen_cva6_cores`、`gen_ara`；[hw/cheshire_pkg.sv](../hw/cheshire_pkg.sv) 的配置和地址生成函数。六级、单发射的概括来自本地 [CVA6 README](../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/README.md)，具体接口和功能则以本次所选 profile 为准。
 
-### 1.2 三个必须区分的顶层
+<a id="12-三个必须区分的顶层"></a>
+
+### 1.2 SoC、仿真与 FPGA 顶层
 
 | 场景 | 顶层及位置 | 职责 |
 | --- | --- | --- |
@@ -68,7 +76,9 @@ flowchart LR
 
 依赖 Ara 目录还包含独立的 `ara_soc` 等模块，但它们不是当前 Cheshire 系统仿真的顶层。现有 Vivado 工程某个 simulation fileset 的 `TopModule=ara_soc` 也不能代替上述判断；综合顶层和测试平台顶层必须分别核对。
 
-## 2. 工程目录：哪些要读，哪些不能带进 ASIC
+<a id="2-工程目录哪些要读哪些不能带进-asic"></a>
+
+## 2. 工程目录与平台依赖
 
 | 目录／文件 | 功能 | 是否进入硬件综合 | ASIC 处理 | 入门优先级 |
 | --- | --- | --- | --- | --- |
@@ -94,9 +104,13 @@ flowchart LR
 
 没有发现当前根工程自带完整的 ASIC 签核流程。`cheshire.mk` 有可选 `nonfree` 接口，不表示本地已具备相应授权、文件和工具环境。
 
-## 3. 配置系统：SoC 参数和编译文件选择必须一起看
+<a id="3-配置系统soc-参数和编译文件选择必须一起看"></a>
 
-### 3.1 不是修改一个配置文件就结束
+## 3. 配置体系与源码选择
+
+<a id="31-不是修改一个配置文件就结束"></a>
+
+### 3.1 配置层次与依赖关系
 
 当前链路分为三部分：
 
@@ -110,7 +124,9 @@ HJSON + 生成脚本 → 寄存器 RTL / C 头文件 → 分别参与硬件和�
 
 入口：[hw/cheshire_pkg.sv](../hw/cheshire_pkg.sv) 的 `cheshire_cfg_t`、`DefaultCfg`、`gen_cva6_cfg`、`gen_axi_in`、`gen_axi_out`、`gen_reg_out`；[cheshire.mk](../cheshire.mk) 的 `CHS_BENDER_RTL_FLAGS`。
 
-### 3.2 当前几种配置的实际区别
+<a id="32-当前几种配置的实际区别"></a>
+
+### 3.2 配置基线与平台差异
 
 | 项目 | 根 Makefile 默认 CVA6 profile | Ara 集成 Makefile 使用的 CVA6 profile |
 | --- | --- | --- |
@@ -136,7 +152,9 @@ HJSON + 生成脚本 → 寄存器 RTL / C 头文件 → 分别参与硬件和�
 
 Ara 集成的原始命令来源：[ARA_DIR/cheshire/Makefile](../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/Makefile) 的 `COMMON_CUSTOM_TARGETS`、`update_vsim_src` 和 `update_xilinx_src`。关键 target `exclude_first_pass_decoder` 用来排除 CVA6 stub。
 
-### 3.3 想改什么，应从哪里入手
+<a id="33-想改什么应从哪里入手"></a>
+
+### 3.3 配置修改入口与影响范围
 
 | 修改意图 | 主要入口 | 必须一起检查 |
 | --- | --- | --- |
@@ -156,7 +174,9 @@ Ara 集成的原始命令来源：[ARA_DIR/cheshire/Makefile](../.bender/git/che
 
 `DefaultCfg.NumCores=1`。目前 Ara 请求/响应和 AXI 信号部分在核 generate 外共享，且只有一个 `AxiIn.ara` 索引；因此“把 NumCores 改成 2 就获得两个独立 Ara”不成立，至少需要专门检查多驱动与仲裁。
 
-## 4. 第一次复现：理解构建任务而不是直接 make all
+<a id="4-第一次复现理解构建任务而不是直接-make-all"></a>
+
+## 4. 构建环境与任务入口
 
 ### 4.1 工具与工作区检查
 
@@ -182,7 +202,9 @@ command -v vivado
 
 首次迁移缺失依赖时，构建可能自动执行 Bender checkout 和 printf 子模块初始化；入口是 `.bender/.chs_deps` 规则。离线服务器需要事先准备依赖和软件子模块。不要只复制 `hw/`，也不要对有本地改动的 `.bender/` 随意运行 `clean-deps`。
 
-### 4.2 各 target 真正做什么
+<a id="42-各-target-真正做什么"></a>
+
+### 4.2 构建目标与输出产物
 
 | 命令／target | 当前规则的含义 | 不包含什么 |
 | --- | --- | --- |
@@ -200,7 +222,9 @@ ROM 没有纳入 `all` 是刻意安排：源码注释指出其可重复生成依
 
 当前 `sw/tests/` 含向量和其他本地测试，而默认软件 `-march` 不含 V；直接 `make all` 可能首先在软件测试处失败。`ARA_DIR/cheshire/Makefile` 的 `ara-chs-all` 又是先执行根 `all` 再更新仿真脚本，并不能自动解决此问题。
 
-### 4.3 对齐当前 Ara 仿真文件选择
+<a id="43-对齐当前-ara-仿真文件选择"></a>
+
+### 4.3 Ara 仿真源码清单一致性
 
 以下是根据现有 Ara 集成 Makefile 整理的分步命令，供在**已保存工作区、工具和依赖已准备好的复现副本**中执行；本轮没有执行。后续仿真示例统一使用该向量硬件配置。
 
@@ -229,7 +253,9 @@ make sw/tests/helloworld.spm.elf
 
 脚本重新生成后，用文本检查 profile、defines 和 decoder 文件，再重新编译仿真库。不要让同一个模拟器工作库混入旧配置。更改软件 flags 也不会自动重建旧 `.o` 和 `.a`；第一次建立可信基线需在复现副本中有计划地强制重建目标及其依赖，并检查编译日志。
 
-## 5. 裸机软件：C 如何变成可执行程序
+<a id="5-裸机软件c-如何变成可执行程序"></a>
+
+## 5. 裸机程序的编译与链接
 
 ### 5.1 文件与工具链
 
@@ -270,7 +296,9 @@ ELF 是携带入口、装载段和符号信息的可执行文件；裸 `.bin` �
 
 VMA 是运行地址，LMA 是镜像装载地址。当前仿真 ELF loader 按 `PT_LOAD.p_paddr` 加载，所以 `.rom.elf` 中偏移 0 的镜像不应被当成程序要写到 SoC `0x00000000`；那个 SoC 区间属于 Debug。
 
-### 5.3 Example 1：最小程序和“测试不结束”
+<a id="53-example-1最小程序和测试不结束"></a>
+
+### 5.3 实验一：最小程序与退出判据
 
 以下为未来练习示例，**本轮未创建对应 `.c` 文件**：
 
@@ -286,7 +314,9 @@ int main(void)
 
 它适合观察 `_start`、`main` 和 PC，但不会返回结束码，默认 TB 会一直等待。仿真时应设观察时间或手动停止；需要自动测试时改成 `return 0;`，并通过退出寄存器检查结果。不要把“没有 UART 输出”判成程序未执行。
 
-### 5.4 Example 2：UART Hello World
+<a id="54-example-2uart-hello-world"></a>
+
+### 5.4 实验二：UART HelloWorld
 
 当前真实入口是 [sw/tests/helloworld.c](../sw/tests/helloworld.c)。它已经被本地修改：先设置 `mstatus.VS`，再测量频率、初始化 UART，最后用 printf 打印两个字符串。按当前源代码预期得到：
 
@@ -327,7 +357,9 @@ UART 基址 `0x03002000`；驱动中的 THR 偏移是 0，LSR 偏移是 `0x14`�
 
 `clint_get_core_freq()` 通过核心周期计数与 CLINT 的参考时间估计时钟，不是读取主机时间。CLINT 是核本地中断/定时器单元；`RtcFreq` 必须反映真实参考时钟，UART 才能正确设置波特率。
 
-### 5.5 Example 3：安全地观察一个 MMIO 寄存器
+<a id="55-example-3安全地观察一个-mmio-寄存器"></a>
+
+### 5.5 实验三：MMIO 寄存器读取
 
 地址由“外设基址 + 寄存器偏移”组成。基址在 `common.ldh` 中定义为链接符号，`params.h` 用 `extern void *` 声明；代码中的 `&__base_uart` 是取这个符号代表的地址，并不是先从 UART 地址读一个指针。
 
@@ -354,7 +386,9 @@ int main(void)
 
 这是单核、无其他软件占用 scratch6 时的文档练习。scratch0～5 已被启动/退出协议使用，不要选它们随意写。`volatile` 约束编译器访问；`fence` 约束处理器可见的访问顺序。两者都不是“自动把任意缓存与 DMA 变一致”的万能指令。
 
-## 6. 仿真：从编译脚本到结束码
+<a id="6-仿真从编译脚本到结束码"></a>
+
+## 6. RTL 仿真流程与结果检查
 
 ### 6.1 Questa/ModelSim 入口
 
@@ -385,7 +419,9 @@ vsim -c -do 'set SELCFG 3; set BOOTMODE 0; set PRELMODE 0; set BINARY ../../../s
 
 正常返回 0 时，VIP 预期报告 `[JTAG] SUCCESS`；非零时报告失败。应同时检查 UART、异常、结束码和仿真日志，不要仅依靠 shell 返回 0——脚本、`quit -f` 或日志管道可能影响错误向外传播。死循环测试没有结束码，应采用有限仿真时间观察。
 
-### 6.2 VCS 入口及本轮兼容性边界
+<a id="62-vcs-入口及本轮兼容性边界"></a>
+
+### 6.2 VCS 入口与兼容性记录
 
 当前源码提供了 VCS 编译和启动脚本。在满足工具兼容性后，可从 `target/sim/vcs` 使用下列流程：
 
@@ -402,9 +438,13 @@ SELCFG=3 BOOTMODE=0 PRELMODE=0 \
 
 对于变量索引，也应先区分普通数组、常量宽度的 indexed part-select、接口实例数组和 generate 层次索引：它们的合法性不同。后续兼容性专题需要实际报错、上下文和最小复现，而不是全工程机械展开数组。所有兼容改写应单独提交并做行为回归，本轮只记录。
 
-## 7. 从 reset 追踪到应用 main
+<a id="7-从-reset-追踪到应用-main"></a>
 
-### 7.1 两段启动代码、两种 main
+## 7. 复位、程序加载与应用启动
+
+<a id="71-两段启动代码两种-main"></a>
+
+### 7.1 Boot ROM 与应用的两级启动
 
 当前默认启用 Boot ROM。`cheshire_soc.sv` 给 CVA6 的 `boot_addr_i` 连接 `AmBrom=0x02000000`；这是复位取指起点，不是应用链接地址。禁用 Boot ROM 时涉及 `PlatformRom` 路径，必须同时提供实际可执行的后备启动存储。
 
@@ -423,7 +463,9 @@ flowchart TD
 
 来源：[hw/bootrom/cheshire_bootrom.S](../hw/bootrom/cheshire_bootrom.S)、[hw/bootrom/cheshire_bootrom.c](../hw/bootrom/cheshire_bootrom.c)、[sw/lib/crt0.S](../sw/lib/crt0.S)。不要把 Boot ROM 的 `main()` 和 `sw/tests/helloworld.c` 的 `main()` 当成同一个链接单元。
 
-### 7.2 Boot ROM 为 C 环境做了什么
+<a id="72-boot-rom-为-c-环境做了什么"></a>
+
+### 7.2 Boot ROM 的 C 运行环境初始化
 
 1. 初始化整数寄存器，暂时停住非零 hart。hart 指 RISC-V 硬件线程；当前配置只有 hart0。
 2. 初始化早期栈和全局指针 `gp`。
@@ -442,7 +484,9 @@ flowchart TD
 
 已有 `docs/um/sw.md` 的 EEPROM 模式和 passive scratch 位说明存在与实现不一致之处。以当前 C/SV 执行逻辑为准：被动轮询使用 `scratch[2] & 2`，即 **bit1 请求执行**；结束协议使用 **bit0**，两者不同。
 
-### 7.3 JTAG ELF 加载实际发生在哪里
+<a id="73-jtag-elf-加载实际发生在哪里"></a>
+
+### 7.3 JTAG ELF 加载通路
 
 在默认仿真路径中，Boot ROM **不解析 ELF**：
 
@@ -473,7 +517,9 @@ crt0 不负责开启 RVV 的 `mstatus.VS`。使用向量指令的程序需要在
 
 随后执行 `ret` 交还调用者；虽然附近注释提到“wait forever”，实际并不是无限循环。调试时以执行语句为准。
 
-### 7.5 如何用已有 ELF 验证理解
+<a id="75-如何用已有-elf-验证理解"></a>
+
+### 7.5 ELF 布局与启动流程验证
 
 ```sh
 riscv64-unknown-elf-readelf -h -l sw/tests/helloworld.spm.elf
@@ -485,9 +531,13 @@ make sw/tests/helloworld.spm.dump
 
 已有产物中，SPM ELF 入口是 `0x10000000`，DRAM ELF 入口是 `0x80000000`；SPM 的 `__stack_pointer$` 为 0，与上述链接规则一致。这不能证明 ELF 与现在磁盘上的 C、库和 GCC 版本一致；重新构建后应再核对入口、装载段、符号与实际指令。
 
-## 8. 地址、AXI 和片上存储：一次 load/store 走到哪里
+<a id="8-地址axi-和片上存储一次-loadstore-走到哪里"></a>
 
-### 8.1 当前地址表
+## 8. 地址空间与 Load/Store 访存路径
+
+<a id="81-当前地址表"></a>
+
+### 8.1 地址映射表
 
 下表按 `DefaultCfg` 加 `SELCFG=3` 的 Ara 配置给出，区间统一为 **[起始地址，结束地址)**。VCU118 shell 另外关闭 serial link，且当前宏组合不启用 USB。表中的“解码窗口”不保证窗口内每个地址都有实际存储或寄存器。
 
@@ -522,13 +572,17 @@ ROM 的三种大小也不同：当前 `cheshire_bootrom.sv` 的 `NumWords=2048`�
 
 `Cva6ExtCieLength`、`Cva6ExtCieOnTop` 及 `gen_cva6_cfg()` 中的 `CieBase`、`NoCieBase` 决定外部区域的缓存、幂等及执行属性；CIE 对应 cacheable、idempotent、executable。默认的 `0x20000000`～`0x40000000` 和 `0x40000000`～`0x80000000` 属性区间，不意味着已经创建 AXI 从端口或 RAM。当前外部主从端口数量都为 0。
 
-### 8.2 软件地址不是全部自动生成
+<a id="82-软件地址不是全部自动生成"></a>
+
+### 8.2 硬件地址与软件定义的同步
 
 硬件地址规则在 `hw/cheshire_pkg.sv`；软件基址在 `sw/link/common.ldh`；软件声明在 `sw/include/params.h`；寄存器**偏移**才由 HJSON 生成。`params.h` 本身也注释了未来希望自动生成。
 
 所以改变 UART 基址必须同步更新两边。未来添加 NPU，还应一起修改或审核设备树、验证模型、调试脚本及驱动常量。建议将地址区间、端口和缓存属性集中形成可检查的设计表，但本轮未实现新的生成系统。
 
-### 8.3 LLC/SPM 并不是另一个 L1
+<a id="83-llcspm-并不是另一个-l1"></a>
+
+### 8.3 L1、LLC 与 SPM 的层次关系
 
 当前 LLC 总容量由 `get_llc_size()` 计算：
 
@@ -570,7 +624,9 @@ ROM 的三种大小也不同：当前 `cheshire_bootrom.sv` 的 `NumWords=2048`�
 
 AXI 上存在 ATOP（Atomic Operations）原子操作扩展，不能把接口简单当成“任何 AXI IP 都可直接互接”。未来 AXI3 DDR 子系统的边界契约见第 11 节。
 
-### 8.5 定时器、中断和 DMA 的第一层理解
+<a id="85-定时器中断和-dma-的第一层理解"></a>
+
+### 8.5 定时器、中断与 DMA 概览
 
 外部设备中断经 PLIC（平台级中断控制器）路由到 CVA6 的 machine/supervisor external IRQ；CLINT 提供 `msip` 软件中断和 `mtip` 定时器中断；Debug 的请求单独进入处理器。入口为 `cheshire_soc.sv` 的 `xeip`、`msip`、`mtip`、`dbg_int_req` 相关连线。
 
@@ -597,7 +653,9 @@ PLIC 源数与目标数由 [hw/rv_plic.cfg.hjson](../hw/rv_plic.cfg.hjson) 等�
 
 这里的 `cvxif_req_o` 端口名容易误导：Cheshire 将 `CvxifEn=0`，但使用这个端口名承载配置化的加速器请求结构。本组合使用的是 CVA6/Ara 的专用加速器及 MMU 交互，不应据名称宣称它就是可直接挂任意标准 CV-X-IF 加速器的通用插槽。
 
-### 9.2 一条向量指令怎样执行
+<a id="92-一条向量指令怎样执行"></a>
+
+### 9.2 向量指令执行流程
 
 1. CVA6 从同一个程序指令流取到 RVV 指令。Ara 提供的 `hardware/src/cva6_accel_first_pass_decoder.sv` 帮助识别它。
 2. `acc_dispatcher` 发出指令、标量 `rs1/rs2` 操作数、浮点舍入模式 `frm`、事务 ID 等，并用 valid/ready 握手管理请求。
@@ -607,7 +665,9 @@ PLIC 源数与目标数由 [hw/rv_plic.cfg.hjson](../hw/rv_plic.cfg.hjson) 等�
 
 `hw/cheshire_soc.sv` 的 `i_ara` 设置 `OSSupport=1`，并连接 CVA6 的地址翻译交互。但这只说明存在相应 RTL 支持，不能证明当前软件已完成 Linux 向量上下文、页异常和所有访存模式的验证。
 
-### 9.3 “有一致性机制”不等于“任意 AXI 主设备都一致”
+<a id="93-有一致性机制不等于任意-axi-主设备都一致"></a>
+
+### 9.3 CPU、Ara 与设备的一致性边界
 
 当前 CVA6/Ara 路径有明确机制：
 
@@ -619,7 +679,9 @@ PLIC 源数与目标数由 [hw/rv_plic.cfg.hjson](../hw/rv_plic.cfg.hjson) 等�
 
 未来共享缓冲区至少需要约定：谁写、谁读、何时转交所有权、完成事件如何确认、使用哪种缓存属性、何时 clean/invalidate/fence。`fence` 的顺序保证与 cache clean/invalidate 的数据处理不能混为一谈；不同 CVA6 profile 的 `DcacheFlushOnFence` 也不同。
 
-### 9.4 Example 4：一个真正使用向量的数据计算
+<a id="94-example-4一个真正使用向量的数据计算"></a>
+
+### 9.4 实验四：向量数据计算
 
 当前可读的真实例子是 [sw/tests/fmatmul_test_4x4.c](../sw/tests/fmatmul_test_4x4.c)：它设置 `mstatus`，使用 `vsetvli`、`vle64.v`、`vfmacc.vf`、`vse64.v` 执行双精度 4×4 矩阵运算，并提供标量比较实现。
 
@@ -673,7 +735,9 @@ make -B sw/tests/vector_add.spm.elf CHS_SW_FLAGS="$CHS_VECTOR_SW_FLAGS"
 
 ## 10. FPGA、仿真和 ASIC 平台边界
 
-### 10.1 当前 VCU118 shell 做了哪些工作
+<a id="101-当前-vcu118-shell-做了哪些工作"></a>
+
+### 10.1 VCU118 shell 的平台职责
 
 关键源码：[cheshire_top_xilinx.sv](../target/xilinx/src/cheshire_top_xilinx.sv)、[dram_wrapper_xilinx.sv](../target/xilinx/src/dram_wrapper_xilinx.sv)、[phy_definitions.svh](../target/xilinx/src/phy_definitions.svh)、[impl_ip.tcl](../target/xilinx/scripts/impl_ip.tcl)。
 
@@ -718,7 +782,9 @@ make chs-xilinx-vcu118 VIVADO=vivado \
 
 已有 `build_ara/vcu118.cheshire/cheshire.xpr` 记录向量 profile、Ara 宏与 `cheshire_top_xilinx` 综合顶层；已有实现时序报告记录 Vivado 2022.1、WNS 为 0.046 ns、TNS 为 0，报告称约束满足。这只证明该历史报告描述的实现结果，不证明当前源码重新构建仍有相同结果。
 
-### 10.3 bitstream 下载与 ELF 装载是两步
+<a id="103-bitstream-下载与-elf-装载是两步"></a>
+
+### 10.3 Bitstream 配置与 ELF 装载
 
 先用已确认的 bitstream 配置 FPGA，再通过 JTAG/OpenOCD/GDB 或 Boot ROM 支持的介质加载应用。只编译新的 C 文件而不重新加载 ELF，板上不会自动运行新代码。
 
@@ -750,7 +816,9 @@ continue
 
 当前 `sw/sw.mk` 中裸机 `%.gpt.bin` / `%.gpt.memh` 规则被本地注释，Linux GPT 镜像另有规则。GPT 是分区表格式。不能照原 README 的裸机 GPT 命令宣称本工作区能立即生成对应 flash 镜像。
 
-### 10.4 ASIC 必须替换或补齐什么
+<a id="104-asic-必须替换或补齐什么"></a>
+
+### 10.4 ASIC 工艺适配与实现条件
 
 | 当前实现 | ASIC 方向 |
 | --- | --- |
@@ -766,11 +834,15 @@ LLC、CVA6 cache、Ara 向量寄存器文件都要评估存储宏映射；通用
 
 外部官方项目 [Cheshire-IHP130/Basilisk](https://github.com/pulp-platform/cheshire-ihp130-o) 提供 Cheshire ASIC 系统与开放实现流程参考，但它是独立工程，不能当作当前 Ara 分支随附且已验证的流片脚本。源码转换工具链也不能自动证明 VCS 2018 的功能等价与工具兼容性。
 
-## 11. Future Extension Roadmap：从裸机异构计算到 ASIC
+<a id="11-future-extension-roadmap从裸机异构计算到-asic"></a>
+
+## 11. 异构计算与 ASIC 扩展规划
 
 本节全部为未来设计建议，不表示当前已实现 NPU、ISP、LVDS 或 AXI3 DDR。
 
-### 11.1 IP 接到哪里
+<a id="111-ip-接到哪里"></a>
+
+### 11.1 自定义 IP 接口与连接位置
 
 | 未来接口 | Cheshire 连接位置 | 首先验证什么 |
 | --- | --- | --- |
@@ -784,7 +856,9 @@ LVDS 指低压差分信号；它的电气接口与 AXI 数据通路属于不同�
 
 给 NPU 分配地址时，可研究默认 non-CIE 外部区间中的未占用子区间，例如从 `0x40000000` 起规划控制窗口；这只是候选地址，不是已有 NPU。必须新增规则、端口和响应实现，检查全部半开区间无重叠，并同步软件和验证；数据缓冲区另放到经过验证的 SPM/DRAM 地址。
 
-### 11.2 AXI3 DDR 替换不是换模块名
+<a id="112-axi3-ddr-替换不是换模块名"></a>
+
+### 11.2 AXI3 DDR 接口适配的历史方案
 
 优先保留通用 `cheshire_soc` 边界，在 LLC 外部输出之后建立可替换 DDR 子系统。先与供应商形成接口契约：AXI3 的具体子集、数据/地址/ID 宽度、突发限制、并发数、顺序、窄访问、错误响应、PHY 时序和初始化方式。
 
@@ -815,7 +889,9 @@ Linux 框架已能在源码中追踪：`sw/boot/zsl.c` 从 SPM 运行，加载�
 
 教学上可以按 Bare-metal → RTOS → Linux → NPU runtime 理解软件分层；工程上 NPU/ISP 的裸机验证不必等待 Linux 完成。最终 ASIC 阶段则要求从第一阶段就持续维护可重复构建和验证基线。
 
-## 12. 本轮发现的问题与验证边界
+<a id="12-本轮发现的问题与验证边界"></a>
+
+## 12. 源码审读记录与验证边界
 
 | 观察 | 证据性质 | 后续动作，不在本轮修复 |
 | --- | --- | --- |
@@ -835,7 +911,9 @@ Linux 框架已能在源码中追踪：`sw/boot/zsl.c` 从 SPM 运行，加载�
 
 本轮未做：源码重新编译、Questa/VCS 仿真、Vivado 重建、FPGA 下载、裸机/向量新测试执行、ASIC 综合及等价验证。用户此前报告的 VCU118 Hello World 成功属于已有团队结果，并非本轮重新验证结果。
 
-## 13. Recommended Source Reading Order
+<a id="13-recommended-source-reading-order"></a>
+
+## 13. 源码阅读顺序
 
 阅读时每一级先回答一个问题，再深入模块内部，避免一开始陷入处理器所有流水级。
 

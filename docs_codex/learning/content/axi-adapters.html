@@ -1,0 +1,21 @@
+<div class="goals"><strong>学习目标</strong><p>判断两个接口为何不能直接接线，并设计 byte-lane、背压、ID 和 CDC 检查。</p><p>前置：H04；知道 burst、beat、WSTRB。证据：2026-09-23，源码基准 ae2b69fe0；原理推导与源码静态确认，动态证据另见<a href="hardware-labs.html">硬件实验与证据</a>。</p></div>
+<h2 id="width">寄存器访问宽度与字节通道映射</h2>
+<p>数据总线宽 64 位不等于每次访问都传 8 字节。对于自然对齐的 32 位访问，AxSIZE=2；地址低位决定哪组 byte lane 有效，WSTRB 决定具体写哪些字节。在 64 位通道写偏移 +4 的完整 32 位字，通常对应高四个 byte lane：WSTRB=0xf0，数据在 [63:32]。桥转换到 32 位时必须把有效数据和 strobe 搬到目标 lane，不能直接取低 32 位。</p>
+<figure class="wide"><img src="assets/hw-adapters.svg" alt="64-bit +4 访问的 byte lane 搬移；AXI/Reg、ID 与 CDC 是不同适配维度"><figcaption>教学示意，不是真实仿真波形。64-bit +4 访问的 byte lane 搬移；AXI/Reg、ID 与 CDC 是不同适配维度</figcaption></figure>
+<p>例如写 0x11223344 到寄存器 +4：64 位上承载有效高半字的示意是 0x1122334400000000；目标 32 位接口应看到 0x11223344 与 0xf。小端序说明字节在地址间的对应，不等于任何桥都能忽略地址低位。</p>
+<h2 id="burst">AXI 数据位宽与突发转换</h2>
+<p>窄转宽不保证每笔小访问都合并成满宽事务；宽转窄则可能把一个输入拍拆成多个输出拍，并调整 burst 长度/大小、LAST 和字节掩码。回包必须重新组装并传播响应。以对齐的连续 INCR 全宽传输为例，4×64-bit 的32字节数据在32-bit侧需要8拍；这不是所有地址/窄访问的通用转换公式。</p>
+<p>检查清单：AxSIZE 与实际 beat 字节数、AxLEN+1 拍数、非对齐访问支持、4 KiB 边界、WSTRB、WLAST/RLAST、错误聚合、ATOP 支持和在途限制。对不支持的组合要有明确拒绝或上层约束，不能把“低位没用”作为接线理由。</p>
+<h2 id="reg">AXI 到 Regbus 的协议转换</h2>
+<p>Regbus（寄存器总线）以 valid/write/addr/wdata/wstrb 请求和 ready/rdata/error 响应完成一次访问。这里不像 AXI 把 AW/W/B 分成三个通道。寄存器副作用只在 valid &amp; ready 的成交边沿触发；如果 valid 等待了三拍，不能执行三次 START 或弹出三次 FIFO。</p>
+<p>Cheshire 普通 MMIO 的真实链为 <code>i_reg_atomics → i_reg_atomics_cut → i_axi_to_reg_v2(RegDataWidth=32) → addr_decode → reg_demux</code>。原子适配器处理协议转换前的原子需求，但设备寄存器有副作用时仍不能随意对它执行 AMO。</p>
+<div class="callout"><strong>不能把普通 MMIO 桥推广到 DMA 控制口。</strong><p>当前 DMA wrapper 使用另一条旧 axi_to_reg 路径，64位 Reg 类型与固定32位生成寄存器的 lane 适配存在静态疑点；原 HAL 的 ID 读宽度也有问题。详见<a href="dma-llc.html#lanes">已记录证据</a>。本轮未修复或动态复现，综合 DMA 实验门槛仍保留。</p></div>
+<h2 id="id">事务 ID 转换与流水切分</h2>
+<p><code>axi_id_serialize</code> 将 CPU 的 ID 空间映射到更窄的系统 ID，需跟踪和限制在途请求；把高位截掉会让不同请求无法区分。crossbar 随后又加来源位，所以沿路径应分别写 CPU ID、xbar 输入 ID、xbar 输出 ID、外部接口 ID。USER 的原子来源编码另有用途，不能因为“看起来没用”一并清零。</p>
+<p>cut/spill register 存的是协议拍与有效状态，不只是对每条线打一拍。存在背压时，寄存器必须保留未成交 payload，并正确传播 ready。只寄存 VALID 而未同时保存地址/数据，或者只延迟数据未匹配 VALID，都会破坏协议。</p>
+<h2 id="cdc">跨时钟域传输与状态同步</h2>
+<p>时钟域交叉（Clock Domain Crossing）不能给多位 AXI payload 的每一位各接两级同步器，那样接收侧可能得到不同周期的混合值。异步 FIFO 通常在本域写/读数据，经同步的指针维护跨域占用关系；每个通道与事务间关联还需完整 AXI CDC 模块负责。</p>
+<p>复位一侧会影响 FIFO 状态和在途事务。系统应先停止接收、排空或按协议恢复，再复位/切时钟；不能只对一个设备拉 reset 就假设已接受请求被撤销。当前 FPGA DDR wrapper 的 axi_cdc 是实际实例；未来 ASIC PLL/DDR UI 时钟关系需按供应商规格重建。</p>
+<h2 id="exercise">源码阅读与验证练习</h2><div class="lab"><p>工作目录：仓库根。以下为只读练习，工具 Python 3 / rg；终端输出即产物，可复制到个人学习记录。通常数秒完成，超过 10 秒可中止检查路径；不启动 SoC 仿真。</p><pre><code>python3 docs_codex/learning/scripts/hardware_lab.py lane --offset 4 --value 0x11223344
+rg -n &#x27;i_axi_to_reg_v2|RegDataWidth|i_axi_id_serialize&#x27; hw/cheshire_soc.sv
+rg -n &#x27;axi_cdc|DATA_WIDTH|ui_clk&#x27; target/xilinx/src/dram_wrapper_xilinx.sv</code></pre><p>成功判据：+4 示例输出 WSTRB=0xf0 和有效高半字；解释为何这只是 lane 教学，不证明现有桥接受该事务。失败时依次查访问宽度、地址低位、strobe、桥类型和生成寄存器宽度。</p></div><h2 id="sources">源码依据</h2><div class="source"><a href="../../hw/cheshire_soc.sv">i_axi_to_reg_v2、i_axi_id_serialize</a>；<a href="../../hw/cheshire_idma_wrap.sv">另一条 DMA 控制桥</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 位宽/ID/CDC 适配</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_dw_converter.sv">位宽转换入口</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_cdc.sv">AXI 异步桥</a>；<a href="../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv">axi_to_reg_v2：按Reg宽度分bank再仲裁</a></div><h2 id="quiz">本章自测</h2><details><summary>把64位 wdata[31:0]直接接32位设备为什么可能错？</summary><p>+4的32位写可能在高四个lane；还需地址与strobe搬移。</p></details><details><summary>多级同步器能同步整条 AXI 数据吗？</summary><p>不能逐位独立同步来保证多位一致性；应使用经过验证的握手/异步FIFO协议结构。</p></details><details><summary>加 cut 一定降低吞吐吗？</summary><p>会增加延迟，但在流水可持续推进时可能保持每拍吞吐，并改善频率；要区分延迟与稳态吞吐。</p></details>

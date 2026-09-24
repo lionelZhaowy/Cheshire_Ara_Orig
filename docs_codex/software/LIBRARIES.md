@@ -1,4 +1,6 @@
-# 已有嵌入式库：原理、功能和使用入口
+<a id="已有嵌入式库原理功能和使用入口"></a>
+
+# 嵌入式库原理与接口参考
 
 返回 [软件导航](README.md)。库源码由 [sw.mk](../../sw/sw.mk) 归档进 `libcheshire.a`；头文件中的 inline/宏则可能直接进入应用对象。以下按调用层次解释，API 以当前本地版本为准。
 
@@ -76,7 +78,9 @@ printf 的编译宏可裁掉浮点、指数、long long、ptrdiff 支持：`PRIN
 
 `ref_freq/ref_time_inv` 太小会使测量 ticks 为 0；RTC 不动则轮询卡住。定时中断触发后要处理比较值/使能和返回，单调用 wfi 不构成通用延时函数。
 
-## 5. iDMA：提交任务和等待完成
+<a id="5-idma提交任务和等待完成"></a>
+
+## 5. iDMA 任务提交与完成查询
 
 来源：[dif/dma.h](../../sw/include/dif/dma.h)，硬件配置说明见 [DMA 参数](../configuration/PERIPHERALS.md)。头文件用宏 `X(sys,&__base_dma)` 展开 `sys_dma_*` 函数。
 

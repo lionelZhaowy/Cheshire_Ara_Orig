@@ -1,0 +1,16 @@
+<div class="goals"><strong>学习目标</strong><p>列出仿真/FPGA/ASIC wrapper的接口契约，理解CDC、reset、启动和外部存储就绪。</p><p>前置：H05～H07；知道异步信号不能直接当同步控制。证据：2026-09-23，源码基准 ae2b69fe0；原理推导与源码静态确认，动态证据另见<a href="hardware-labs.html">硬件实验与证据</a>。</p></div>
+<h2 id="boundary">SoC 启动与平台接口条件</h2>
+<p>模块语法检查通过仅证明语法满足编译要求。启动还依赖正确时钟、复位释放、BootAddr、地址路由、可返回数据的ROM/存储模型以及异常/调试状态。若取指请求已发出但没有返回，需要查存储和桥；若根本没取指则先查reset与debug halt。</p>
+<figure class="wide"><img src="assets/hw-platform.svg" alt="testbench/FPGA/未来ASIC分别提供时钟、复位、存储和IO；主域、DDR UI与异步输入分开验证"><figcaption>教学示意，不是真实仿真波形。testbench/FPGA/未来ASIC分别提供时钟、复位、存储和IO；主域、DDR UI与异步输入分开验证</figcaption></figure>
+<h2 id="contracts">平台 wrapper 接口约定</h2>
+<table><tr><th>接口</th><th>必须写明</th><th>错误现象</th></tr><tr><td>clk_i / rst_ni</td><td>频率范围、复位极性、断言/释放方式、初始化顺序</td><td>X传播、首条访问丢失、偶发启动失败</td></tr><tr><td>RTC</td><td>实际频率与软件查询值；同步采样与tick语义</td><td>timer/UART校准错误；不是CPU主时钟已改变</td></tr><tr><td>主存AXI输出</td><td>地址/数据/ID/USER宽、burst、ATOP边界、最大在途、错误响应</td><td>访问卡住、ID截断、地址别名、部分字节错误</td></tr><tr><td>外部存储ready</td><td>校准完成之前谁阻止访问，失败后如何报告</td><td>ROM能跑而跳入DRAM后停住</td></tr><tr><td>IO与IRQ</td><td>输入同步、开漏/推挽、有效极性、输入默认值与外部模型</td><td>总线寄存器正确但引脚无协议，或者中断持续置位</td></tr><tr><td>Debug/Boot</td><td>boot mode、启动PC、hart编号、JTAG复位与系统复位关系</td><td>加载了ELF却未resume或从错误地址取指</td></tr></table>
+<h2 id="current">时钟域连接与工艺适配</h2>
+<p>通用SoC大部分组件在clk_i/rst_ni域；RTC是同步输入后生成计数使能。FPGA shell提供时钟资源，MIG提供DDR UI域并经axi_cdc连接主域。USB另有PHY时钟接口，Serial Link有源同步接收边界。VGA分频计数是状态机使能，不应见到clk_div字段就画一个新时钟域。</p>
+<p>已有<a href="system.html#clocks">源码时钟复位图</a>记录locked/MIG校准完成未纳入当前放行路径、USB复位域需验证等边界。这些是待验证集成问题，不在本轮替生产工程改线。未来ASIC需按工艺替换PLL、PAD、SRAM宏及DDR控制器/PHY，FPGA的XPM/MIG/MMCM不是ASIC工艺单元。</p>
+<h2 id="reset">复位过程与在途事务管理</h2>
+<p>单比特异步复位释放通常需遵循目标域的同步释放约束，但只加同步器并不保证系统事务恢复。设备收到AW后被复位，上游还在等B怎么办？跨域FIFO一侧清空，另一侧保留旧指针怎么办？应规定停止新请求、排空/隔离、复位、重新初始化和恢复接收的顺序，并覆盖对端不响应的超时分支。</p>
+<p>电源门控还需隔离、保持和唤醒时序，不能由时钟门控推导而来。当前未有完整UPF/CPF证据，Serial Link的隔离/门控输出也未在SoC形成完整控制闭环；本教材不虚构CPU/NPU独立电源域。</p>
+<h2 id="bringup">平台初次运行与分阶段验收</h2>
+<ol><li>先证明时钟复位、BootAddr与ROM读返回；记录首个有效PC，不只看波形有跳变。</li><li>证明SPM读写和栈；再运行不依赖复杂外设的整数计算。</li><li>证明UART寄存器写与TX帧；之后才用printf当诊断通路。</li><li>分别验收外部DDR与跨域桥的边界地址、字节写、长burst和错误响应。</li><li>最后加入中断、DMA、Ara并发；每次只引入可定位的新条件。</li></ol>
+<h2 id="exercise">源码阅读与验证练习</h2><div class="lab"><p>工作目录：仓库根。以下为只读练习，工具 Python 3 / rg；终端输出即产物，可复制到个人学习记录。通常数秒完成，超过 10 秒可中止检查路径；不启动 SoC 仿真。</p><pre><code>rg -n &#x27;BootAddr|boot_addr_i|clk_i|rst_ni&#x27; hw/cheshire_soc.sv
+rg -n &#x27;locked|init_calib_complete|axi_cdc|ui_clk&#x27; target/xilinx/src/cheshire_top_xilinx.sv target/xilinx/src/dram_wrapper_xilinx.sv</code></pre><p>成功判据：区分SoC核心、wrapper、TB各自提供的信号，并为DDR ready写一项“需实测”的启动前置条件。没有动态波形时只交接口表，不声称CDC/RDC签核。</p></div><h2 id="sources">源码依据</h2><div class="source"><a href="../../hw/cheshire_soc.sv">BootAddr与主域</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA时钟复位与IO</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR适配与ready边界</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">TB平台提供条件</a></div><h2 id="quiz">本章自测</h2><details><summary>RTL同一根reset是否意味着所有时钟域都安全？</summary><p>不是。释放时序、同步链和事务状态都要按域检查，尤其是异步桥和独立PHY。</p></details><details><summary>读到了第一条ROM指令就证明DDR可用吗？</summary><p>不能。ROM、片上SPM和外部DDR是不同目标与初始化路径。</p></details><details><summary>关闭时钟是否等于设备已经安全隔离？</summary><p>不是。仍可能有未完成事务或悬挂输出；需要停止、排空、隔离与握手协议。</p></details>

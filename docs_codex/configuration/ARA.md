@@ -2,7 +2,9 @@
 
 返回 [配置导航](README.md)。基于仓库内 `ara-2c7b103275a16c87` 快照；参数存在与特性开启均为源码事实，不代表本轮通过了对应指令测试。
 
-## 1. 先理解四个不同的“宽度/长度”
+<a id="1-先理解四个不同的宽度长度"></a>
+
+## 1. 标量与向量的位宽、长度和并行规模
 
 | 名称 | 当前向量基准 | 含义 |
 | --- | --- | --- |
@@ -46,7 +48,9 @@
 
 `FPUSupport` 的枚举包括 None、Half、Single、HalfSingle、Double、SingleDouble、HalfSingleDouble、All。`All=6'b111111` 还包含额外格式位，并非只是标准 FP16/32/64 的别名。若产品要裁掉浮点，需改 SoC 对 Ara 的参数传递或建立独立配置，再验证 decoder、软件 ISA 和异常行为；当前 `cheshire_cfg_t` 没暴露这些开关。
 
-## 3. 当前连接中容易漏掉的固定参数
+<a id="3-当前连接中容易漏掉的固定参数"></a>
+
+## 3. SoC 集成中的固定参数
 
 | 位置 | 当前参数/行为 | 意义 |
 | --- | --- | --- |
@@ -78,7 +82,9 @@ Ara 顶层明确检查：`NrLanes>0`、lane 数为 2 的幂且不超过 `MaxNrLa
 
 **仿真/FPGA 差异**：Ara Makefile 中 `ARA_CONFIGURATION` 会读取 `nr_lanes/vlen` 并形成宏；FPGA wrapper 读取宏。但当前仿真 `gen_cheshire_ara_cfg()` 明写 2/2048，修改宏不改变它。软件宏也必须与最终硬件一致。
 
-## 5. 包内常量：属于微架构，不建议初学者随意改
+<a id="5-包内常量属于微架构不建议初学者随意改"></a>
+
+## 5. 微架构常量与存储组织
 
 | 常量 | 当前值 | 作用 |
 | --- | --- | --- |
@@ -100,7 +106,9 @@ Ara 顶层明确检查：`NrLanes>0`、lane 数为 2 的幂且不超过 `MaxNrLa
 
 VRF 实现见 [vector_regfile.sv](../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vector_regfile.sv)：8 个单端口 `tc_sram` bank/lane，数据宽度 64 bit；基准每 bank 64 words。换 SRAM 宏需要保持读延迟、byte enable、时钟门控与访问仲裁契约。
 
-## 6. 软件匹配
+<a id="6-软件匹配"></a>
+
+## 6. 软件编译与运行时配置匹配
 
 硬件 profile 要 RVV=1，SoC 要 Ara=1，源码清单要真实 `cva6_accel_first_pass_decoder.sv` 并排除 stub。软件 `-march` 要包含 V，启动代码在首条向量指令前设置 `mstatus.VS`，涉及浮点还要设置 FS。
 

@@ -1,8 +1,12 @@
-# 示例程序导读：功能、执行流程与前置条件
+<a id="示例程序导读功能执行流程与前置条件"></a>
+
+# 示例程序与验证条件
 
 返回 [软件导航](README.md)。本页覆盖 `sw/tests` 当前全部 **9 个 .c/.S 主程序**，另说明辅助文件、`tests_wo_ara` 和 Ara 依赖中的 **2 个应用、16 个验证程序**。功能说明依据源码，未在本轮执行这些目标程序。
 
-## 1. 先用这张表选程序
+<a id="1-先用这张表选程序"></a>
+
+## 1. 示例分类与硬件要求
 
 | 当前主程序 | 功能 | 典型硬件配置/存储 | 判据与学习顺序 |
 | --- | --- | --- | --- |
@@ -18,7 +22,9 @@
 
 所有应用均依赖当前 crt0 的 RV64/D 浮点初始化。`SELCFG` 只选 SoC，不替换 CPU profile 或软件 ISA。默认板级没有 AXI RT/CLIC 时，不能因板上 HelloWorld 已跑通就直接运行对应测试。
 
-## 2. HelloWorld：一条 printf 如何到串口
+<a id="2-helloworld一条-printf-如何到串口"></a>
+
+## 2. HelloWorld 初始化与 UART 输出
 
 当前流程：设置 mstatus.VS→读 RTC_FREQ→用 CLINT/mcycle 测核频→UART 设 115200/8N1→printf 输出问候与 `1024/0x400`→等待 TX 空→返回 0。
 
@@ -28,7 +34,9 @@
 
 `tests_wo_ara/helloworld.c` 是更早的直接 `uart_write_str("Hello World!…")` 版本，无 VS 设置和格式化输出；它不在默认自动测试列表。
 
-## 3. DMA 2D：从重叠字符串看 stride
+<a id="3-dma-2d从重叠字符串看-stride"></a>
+
+## 3. 二维 DMA 的长度、步长与数据布局
 
 流程：
 
@@ -52,7 +60,9 @@
 
 这比二维图像更小，但机制相同：每行长度和行起点间隔可不同。图像例子中常让 dst_stride 等于目标帧 pitch；本例特意用小 stride 产生重叠。不要把这段加别名偏移的代码改成 .dram 链接后原样使用。
 
-## 4. AXI RT 三个程序：先理解 manager 编号
+<a id="4-axi-rt-三个程序先理解-manager-编号"></a>
+
+## 4. AXI RT 测试与发起端编号
 
 共同前提：有 AXI RT、DMA，至少 2 个 subordinate region，通常运行 `SELCFG=1`。CPU0 manager=0、Debug=1、DMA=`NumIntHarts+1` 是这些例程的无 Ara 假设。Ara 加入后 DMA 位置变化，同时需检查生成 RT 寄存器的 manager 数。
 
@@ -148,7 +158,9 @@ main 在栈上初始化输入，设置 VS 并初始化 UART→准备 padding 权
 
 `fmatmul` 四个 double 矩阵默认约32 KiB，不含代码/栈；扩大 `_MM_SIZE_` 时容量按平方增长。此处只是源码学习入口，不把内核注释里的最大矩阵尺寸当作 SPM 保证。
 
-## 10. Ara 专用验证测试：先确认配套寄存器
+<a id="10-ara-专用验证测试先确认配套寄存器"></a>
+
+## 10. Ara 专用验证测试与配套寄存器
 
 当前 [rvv_test.h](../../sw/tests/rvv_test.h) 在没有 `CHESHIRE_STUB_EX_EN_REG_OFFSET` 时，把多个 stub/MMU/debug offset 全部补成0；当前根 `regs/cheshire.h` 和 HJSON 没有这些字段。于是对“多个不同测试寄存器”的访问实际上都落到 SoC base+0，即 SCRATCH0。**能编译不表示 stub 硬件存在；这些测试不能直接作为当前标准 SoC 的 MMU 回归。**
 
@@ -176,7 +188,9 @@ main 在栈上初始化输入，设置 VS 并初始化 UART→准备 padding 权
 | [rvv_test_vstart_unit_stride_mmu_stub_var_lat.c](../../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/src/tests/rvv_test_vstart_unit_stride_mmu_stub_var_lat.c) | vstart连续访存正文；启用模拟虚拟访存、变化延迟→检查非零vstart处理。 |
 
 
-## 11. 从示例到团队可复用程序
+<a id="11-从示例到团队可复用程序"></a>
+
+## 11. 示例复用与验收要求
 
 保留库初始化、寄存器来源和明确返回码，替换算法/数据；不要连带复制原测试的私有假设（固定manager编号、模拟stub寄存器、ret收束中断等）。
 

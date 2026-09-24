@@ -1,0 +1,23 @@
+<div class="goals"><strong>学习目标</strong><p>解释 cache/SPM/SRAM 的不同角色，追踪 DMA 与向量流量，并判断共享数据的所有权边界。</p><p>前置：H03～H05；知道 CPU load/store。证据：2026-09-23，源码基准 ae2b69fe0；原理推导与源码静态确认，动态证据另见<a href="hardware-labs.html">硬件实验与证据</a>。</p></div>
+<p>第 06 章提供访存概念与实验，第 15 章提供设备寄存器与使用流程；本章重点解释存储阵列、控制结构和事务状态。</p>
+<h2 id="cache">Cache 命中、回填与写策略</h2>
+<p>缓存（Cache）把主存的一部分数据暂存在近端。地址分为行内偏移、组索引和标签（tag）；索引选择候选组，tag 与有效位判断是否命中。miss 时控制器选择可用/可替换位置，必要时先写回脏行，再从下级回填。回填需要完成多个数据拍的传输，其完成条件由事务协议决定。</p>
+<p>写回（WB）允许修改先留在脏缓存行，随后驱逐或维护时写到下级；写穿（WT）把写向下传播，但仍有缓存读副本和写缓冲。普通 DMA 不会自动知道 CPU 保留了什么脏数据，也不保证更新所有 CPU 读副本。</p>
+<figure class="wide"><img src="assets/hw-memory.svg" alt="CPU L1、LLC/SPM、外部内存及 Ara/DMA 路径；主存原子处理位于 LLC 之前，DMA 无通用 L1 一致性保证"><figcaption>教学示意，不是真实仿真波形。CPU L1、LLC/SPM、外部内存及 Ara/DMA 路径；主存原子处理位于 LLC 之前，DMA 无通用 L1 一致性保证</figcaption></figure>
+<h2 id="spm">SRAM 阵列与 LLC/SPM 组织</h2>
+<p>SRAM 是存储阵列实现；SPM（Scratchpad Memory，软件管理片上存储）是使用方式。cache 由硬件用 tag/替换策略管理位置，SPM 由软件按固定地址使用。本工程的 LLC 阵列可按 way 分配给 SPM，所以 Boot ROM 先设置全 SPM 后使用栈。关 LLC 也会影响这份片上存储。</p>
+<p>默认128 KiB来自 get_llc_size。cached/uncached SPM窗口最终重映射到同一阵列；别名不产生第二份128 KiB。一个别名的“不缓存”只是特定路径的属性，不能自动使另一别名中已有的缓存副本失效。修改 ways 之前先列出程序、栈、DMA保留区，再管理未完成事务、flush与地址属性。</p>
+<h2 id="dma">DMA 前端、队列与后端结构</h2>
+<ol><li>CPU 写源/目的地址、长度与选项，由寄存器前端组成任务；提交寄存器可能有读副作用，必须按真实 HAL/RTL 语义。</li><li>任务 FIFO 暂存待执行描述；2D 中间层把行/stride/repetition 转换为线性搬运请求。</li><li>后端将请求分成适合总线约束的读写事务，维护地址、剩余长度、在途数和数据缓冲。</li><li>读 R 拍进入内部缓冲，写 W 拍从缓冲流出；读快写慢时必须回压，不能覆盖未写出数据。</li><li>完成语义需依据后端响应与前端 ID 更新核对。不能把最后一拍 W 发送当成 B 成功，也不能把 BUSY=0 自行等同结果正确。</li></ol>
+<p>当前 wrapper 参数包括 DmaJobFifoDepth=2、DmaNumAxInFlight=16、DmaMemSysDepth=8；三者分别影响不同资源，不能相乘当作保证带宽。当前集成没有独立 DMA 完成 IRQ；bus error IRQ 是错误报告。backend 配置 NO_ERROR_HANDLING，不能假设已有完整的失败恢复协议。既有控制口位宽缺口见<a href="dma-llc.html">第15章</a>。</p>
+<h2 id="ara">Ara 控制与访存数据通路</h2>
+<p>CPU acc_dispatcher 把向量指令与标量操作数交给 Ara，Ara dispatcher/sequencer 分发任务；每条 lane 保存向量寄存器的一部分并执行元素运算。mask/slide 单元处理掩码与跨 lane 操作，向量 load/store 单元（VLSU）发出独立数据访问，并通过专用通路与 CPU 协作地址翻译。</p>
+<p>增大 VLEN 主要改变向量寄存器容量，增加 lanes 改变分片与执行并行度；还需核对总线宽度、转换器与功能单元资源。本 SoC 的 AraDataWideWidth=32×AraNrLanes，2 lanes 时为64位，4 lanes 时为128位后再适配系统总线。该连接公式不等于所有 Ara 版本或应用的吞吐公式。</p>
+<h2 id="ownership">共享数据一致性与原子性约束</h2>
+<p>当前 Ara 访存经过失效过滤相关连接，但 DMA/USB 等不因此获得同一套 CPU缓存协作。CPU交出缓冲区前要保证设备可见的数据，设备完成后CPU取得所有权前要处理可能过期的缓存副本。volatile约束编译器，fence约束特定访问顺序，二者都不是“把所有缓存刷干净”的通用命令。</p>
+<p>主存路径的 RISC-V 原子适配器位于 LLC 前；NPU/ISP 将来若在下游旁路汇入DDR，普通写也可能影响上游LR/SC保留和原子临界区。绕过LLC仅改变数据路径，不自动获得一致性或原子可见性。未来DDR方案必须单独约定共享区、原子区域、所有权及维护机制。</p>
+<h2 id="measure">有效带宽与事务停顿分析</h2>
+<p>理论总线字节率可写成数据宽度/8×时钟频率，但有效带宽还乘有效握手占比和有效字节占比，并受目标限制。分别记录 AR/AW 接受率、R/W有效字节、burst长度、背压周期与总完成时间。小寄存器写、长burst、随机cache miss不能混成同一种带宽测试。</p>
+<h2 id="exercise">源码阅读与验证练习</h2><div class="lab"><p>工作目录：仓库根。以下为只读练习，工具 Python 3 / rg；终端输出即产物，可复制到个人学习记录。通常数秒完成，超过 10 秒可中止检查路径；不启动 SoC 仿真。</p><pre><code>rg -n &#x27;get_llc_size|LlcSetAssoc|LlcNumLines|LlcNumBlocks&#x27; hw/cheshire_pkg.sv
+rg -n &#x27;AraDataWideWidth|gen_llc|inval_filter&#x27; hw/cheshire_soc.sv
+rg -n &#x27;NO_ERROR_HANDLING|idma_|JobFifo|InFlight&#x27; hw/cheshire_idma_wrap.sv</code></pre><p>成功判据：给 CPU、Ara、DMA 各画一次到 SPM 和主存的路径；明确 L1 hit 不出总线、SPM别名共阵列、DMA完成IRQ不存在。排错从地址/缓存属性与描述符开始，再看总线；本练习不执行 DMA。</p></div><h2 id="sources">源码依据</h2><div class="source"><a href="../../hw/cheshire_pkg.sv">get_llc_size</a>；<a href="../../hw/cheshire_soc.sv">gen_llc、原子适配与Ara数据路径</a>；<a href="../../hw/cheshire_idma_wrap.sv">DMA前端/中间层/后端</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">Ara 顶层各处理单元</a></div><h2 id="quiz">本章自测</h2><details><summary>把SPM非缓存别名交给DMA就万无一失吗？</summary><p>不。还要约束CPU是否通过其他别名留下缓存副本、地址是否指向同一物理存储、设备完成与所有权切换是否正确。</p></details><details><summary>lane翻倍是否带宽一定翻倍？</summary><p>不一定。系统口、位宽转换、内存、依赖和指令分布都可能成为瓶颈。</p></details><details><summary>最后W拍已成交，CPU就能重用buffer吗？</summary><p>不能只据此决定。还要依据设备完成协议、响应错误和所有权交接；超时情况下必须保留或隔离缓冲区。</p></details>

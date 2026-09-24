@@ -2,7 +2,9 @@
 
 返回 [配置导航](README.md)。基准：2026-09-20，本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`；以下为源码检查，未重新编译或仿真。
 
-## 1. 从哪里配置
+<a id="1-从哪里配置"></a>
+
+## 1. 配置定义与消费入口
 
 参数定义、默认值、地址映射和 CPU 覆盖函数都在 [cheshire_pkg.sv](../../hw/cheshire_pkg.sv)。消费位置在 [cheshire_soc.sv](../../hw/cheshire_soc.sv)。仿真通过 [tb_cheshire_pkg.sv](../../target/sim/src/tb_cheshire_pkg.sv) 选配置；FPGA 通过 [cheshire_top_xilinx.sv](../../target/xilinx/src/cheshire_top_xilinx.sv) 单独派生配置。
 
@@ -10,7 +12,9 @@
 
 类型缩写表示存储位宽：`byte_bt=8`、`shrt_bt=16`、`word_bt=32`、`doub_bt=64`、`dw_bt=10`、`aw_bt=6`，均为无符号二态 bit 向量。**可表示范围不等于模块支持范围**；例如 10 位字段无法表示 1024，6 位字段无法表示 64，超宽赋值会截断。`NumCores` 是 5 位；外部端口/规则计数是 4 位，不能因数组有 16 项就把计数写为 16。
 
-## 2. 全部 SoC 字段
+<a id="2-全部-soc-字段"></a>
+
+## 2. SoC 配置字段
 
 ### 2.1 CPU 与 hart
 
@@ -196,7 +200,9 @@
 
 交叉开关固定配置还包括 `FallThrough=0`、`LatencyMode=CUT_ALL_PORTS`、`PipelineStages=0`、`UniqueIds=0`；这些不在 cheshire_cfg_t 中。增加端口会改变 ID/仲裁/错误追踪容量，也会影响 AXI RT 生成寄存器。
 
-## 4. 默认地址地图
+<a id="4-默认地址地图"></a>
+
+## 4. 默认地址映射
 
 下表端点都是 byte 地址，采用 `[起点, 终点)`；窗口存在不代表其中每个 offset 都实现寄存器。关闭模块通常移除对应规则；不要继续访问旧地址。来源：`gen_axi_out()`、`gen_reg_out()`。
 
@@ -225,7 +231,9 @@
 
 **一个需要保留的源码差异**：`gen_cva6_cfg()` 的可执行 SPM 区长度写为 `2*SizeSpm`，起点 `AmSpm`；两个实际 SPM 别名却相隔 `0x04000000`。默认执行规则因此是 `[0x10000000,0x10040000)`，并没有覆盖 `0x14000000` 非缓存别名。不要根据旁边的 “AllSPM” 注释推断可从非缓存别名取指。本轮仅记录，未修改或动态验证。
 
-## 5. 修改外部端口的最小思路
+<a id="5-修改外部端口的最小思路"></a>
+
+## 5. 外部端口扩展与接口约束
 
 NPU 控制寄存器一般接 `RegExtNumSlv`；NPU 主动读写内存接 `AxiExtNumMst`。先设计地址规则、中断号、AXI 类型和 clock/reset 接口，再改配置与 wrapper。外部异步时钟需要 CDC；`NumExtIntrSyncs` 只同步中断位，不同步 AXI。
 

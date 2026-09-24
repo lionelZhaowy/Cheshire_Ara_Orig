@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>实验手册 · 从 Hello 到 RVV | Cheshire 实验课堂</title><link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
-<body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>实验课堂</span></a><p class="edition">CVA6 × Ara · 本地源码教材</p><nav aria-label="章节"><p class="nav-group">入门主线</p><a href="index.html">学习路线</a><a href="architecture.html">01 · 一张图认识系统</a><a href="foundations.html">02 · 必要基础</a><a href="configuration.html">03 · 配置何时生效</a><a href="lifecycle.html">04 · C 程序的一生</a><a href="simulation.html">05 · 仿真实验闭环</a><a href="memory.html">06 · 访存、DMA 与 RVV</a><a href="labs.html" aria-current="page">实验手册 · 从 Hello 到 RVV</a><a href="future.html">07 · 独立工程与 AI 导读</a><a href="evidence.html">证据、缺口与源码索引</a><p class="nav-group">进阶剖析</p><a href="advanced.html">进阶路线 · 外设与执行机制</a><a href="system.html">08 · 完整系统与时钟复位</a><a href="execution.html">09 · 从软件到硬件执行</a><a href="register-driver.html">10 · 寄存器与驱动方法</a><a href="uart-gpio.html">11 · UART 与 GPIO</a><a href="i2c.html">12 · I2C 与 EEPROM</a><a href="spi.html">13 · SPI、NOR 与 SD</a><a href="interrupts.html">14 · CLINT、PLIC 与 CLIC</a><a href="dma-llc.html">15 · DMA、LLC 与总线治理</a><a href="stream-io.html">16 · Serial Link、VGA 与 USB</a><a href="boot-debug.html">17 · 启动、调试与系统寄存器</a><a href="capstone.html">18 · 中断与 DMA 综合实验</a><a href="registers.html">附录 · 离线寄存器索引</a><a href="advanced-evidence.html">进阶证据与实验清单</a></nav><div class="sidebar-foot">离线可读 · 无 CDN<br>证据与执行状态请看每章标记<br><a href="README.md">维护说明</a></div></aside>
-<div class="workspace"><header class="topbar"><span>L01 / 入门学习主线</span><a href="evidence.html">源码与证据 ↗</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">READ · TRACE · BUILD · EXPLAIN</p><h1>实验手册 · 从 Hello 到 RVV</h1><p class="subtitle">同一个程序，六个阶段；每一步都有产物、判据和停止条件。</p></div><nav class="toc" aria-label="本页目录"><a href="#contract">所有实验共用的约定</a><a href="#lab0">实验 0 · 只检查环境，不启动大构建</a><a href="#lab1">实验 1 · 自己构建 HelloWorld</a><a href="#lab2">实验 2 · 整数数组、逐项校验与故障注入</a><a href="#lab3">实验 3 · 看懂 ELF、反汇编与 SPM/DRAM 链接</a><a href="#lab4">实验 4 · MMIO：读 RTC 信息、写回 scratch6</a><a href="#lab5">实验 5 · 定时器：观察时间流动，不先开中断</a><a href="#lab6">实验 6 · DMA：搬 548 字节，再逐项证明</a><a href="#lab7">实验 7 · 条件成立后运行最小 RVV</a><a href="#delivery">每次实验回传什么</a></nav><div class="goals"><strong>贯穿任务：计算并证明 result[i] = 3*i+1</strong><p>默认 N=137，总和 28085。先在标量 C 中做，再练 MMIO、时间、DMA 复制，最后以向量相加产生同样结果。输入统一为 <a href="examples/lesson.c">lesson.c</a>；RVV 增加 <a href="examples/rvv_add.S">rvv_add.S</a>。你可以直接修改教材目录的示例，不需要改原 sw/。</p></div>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>实验手册 · 裸机程序构建与验证 | Cheshire 实验课堂</title><link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
+<body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>实验课堂</span></a><p class="edition">CVA6 × Ara · 本地源码教材</p><nav aria-label="章节"><p class="nav-group">入门主线</p><a href="index.html">课程结构与学习路线</a><a href="architecture.html">01 · Cheshire/CVA6/Ara 系统架构</a><a href="foundations.html">02 · RISC-V 与 SoC 基础</a><a href="configuration.html">03 · 硬件与软件配置体系</a><a href="lifecycle.html">04 · C 程序的编译、加载与启动</a><a href="simulation.html">05 · 软件仿真流程与故障定位</a><a href="memory.html">06 · 访存、DMA 与 RVV</a><a href="labs.html" aria-current="page">实验手册 · 裸机程序构建与验证</a><a href="future.html">07 · ASIC 迁移与 AI 系统规划</a><a href="evidence.html">入门证据与源码索引</a><p class="nav-group">进阶剖析</p><a href="advanced.html">进阶路线 · 外设与执行机制</a><a href="system.html">08 · SoC 系统结构与时钟复位</a><a href="execution.html">09 · CPU 与 Ara 执行机制</a><a href="register-driver.html">10 · 寄存器访问与驱动设计</a><a href="uart-gpio.html">11 · UART 与 GPIO</a><a href="i2c.html">12 · I2C 与 EEPROM</a><a href="spi.html">13 · SPI、NOR 与 SD</a><a href="interrupts.html">14 · CLINT、PLIC 与 CLIC</a><a href="dma-llc.html">15 · DMA、LLC 与总线流量管理</a><a href="stream-io.html">16 · Serial Link、VGA 与 USB</a><a href="boot-debug.html">17 · 启动、调试与系统寄存器</a><a href="capstone.html">18 · 中断与 DMA 综合实验</a><a href="registers.html">附录 · 离线寄存器索引</a><a href="advanced-evidence.html">进阶证据与实验清单</a><p class="nav-group">硬件学习主线</p><a href="hardware.html">硬件路线 · 配置、结构与系统集成</a><a href="rtl-elaboration.html">H01 · 参数化 RTL 与展开</a><a href="cpu-config.html">H02 · CVA6 功能与配置</a><a href="soc-topology.html">H03 · SoC 配置与互连结构生成</a><a href="axi-crossbar.html">H04 · AXI Crossbar 结构与事务路由</a><a href="axi-adapters.html">H05 · 协议转换与接口适配</a><a href="hardware-memory.html">H06 · 存储、DMA 与 Ara 数据通路</a><a href="hardware-devices.html">H07 · 外设结构与中断机制</a><a href="hardware-platform.html">H08 · 时钟、复位与平台接入</a><a href="ip-integration.html">H09 · 自定义 IP 接口与集成</a><a href="hardware-labs.html">硬件实验 · 分层验证与源码证据</a></nav><div class="sidebar-foot">离线可读 · 无 CDN<br>证据与执行状态请看每章标记<br><a href="README.md">维护说明</a></div></aside>
+<div class="workspace"><header class="topbar"><span>L01 / 入门学习主线</span><a href="evidence.html">源码与证据 ↗</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">READ · TRACE · BUILD · EXPLAIN</p><h1>实验手册 · 裸机程序构建与验证</h1><p class="subtitle">围绕同一数组示例组织八个实验，分别记录输入、产物、结果与验证边界。</p></div><nav class="toc" aria-label="本页目录"><a href="#contract">实验环境与通用约定</a><a href="#lab0">实验 0 · 工具与环境检查</a><a href="#lab1">实验 1 · HelloWorld 构建</a><a href="#lab2">实验 2 · 整数数组计算与故障注入</a><a href="#lab3">实验 3 · ELF 布局与反汇编检查</a><a href="#lab4">实验 4 · MMIO 寄存器访问</a><a href="#lab5">实验 5 · 定时器轮询</a><a href="#lab6">实验 6 · DMA 搬运与数据校验</a><a href="#lab7">实验 7 · RVV 配置与计算验证</a><a href="#delivery">实验记录与提交要求</a></nav><div class="goals"><strong>贯穿任务：计算并证明 result[i] = 3*i+1</strong><p>默认 N=137，总和 28085。先在标量 C 中做，再练 MMIO、时间、DMA 复制，最后以向量相加产生同样结果。输入统一为 <a href="examples/lesson.c">lesson.c</a>；RVV 增加 <a href="examples/rvv_add.S">rvv_add.S</a>。实验修改限定在教材目录的独立示例中，原 sw/ 保持不变。</p></div>
 <div class="callout"><p><strong>执行状态：</strong>本轮实测完成六种阶段的 SPM 软件编译链接，以及 array 的 DRAM 构建；目标 CPU 上的运行均待验证。所有“预期输出”是验收条件，不是冒充实测的终端截图。完整状态见 <a href="evidence.html#checks">证据页</a>。</p></div>
-<h2 id="contract">所有实验共用的约定</h2>
+<h2 id="contract">实验环境与通用约定</h2>
 <div class="callout"><strong>进阶复核新增门槛：</strong>实验6的iDMA在当前控制桥/生成寄存器位宽下尚待lane适配验证；旧HAL的64bit ID读取也不宜直接沿用。先读<a href="dma-llc.html#lanes">寄存器适配证据</a>与<a href="capstone.html">受保护综合例</a>，接口验收前不执行DMA实验。其他阶段仍按各自前置条件推进。</div>
 <table><tr><th>项目</th><th>约定</th></tr><tr><td>工作目录</td><td>从仓库根运行；<code>pwd</code> 应指向 cheshire_ara。文中“/实际…”必须替换，不能原样复制</td></tr><tr><td>工具</td><td>Bash、Python3、rg；编译需 riscv64-unknown-elf-{gcc,ar,readelf,objdump,nm,size}；运行另需已验收 RTL 库、主机 C++、模拟器/许可</td></tr><tr><td>硬件基线</td><td>教程统一建议独立导出的向量 profile + SelectedCfg=3，Ara 2/2048，UART、CLINT、LLC/SPM、JTAG 开启；前五阶段不执行 RVV，但原 crt0 要 F/D</td></tr><tr><td>软件选项</td><td>C/库/crt0：rv64gc_zifencei、lp64d、medany、O2、禁自动向量化，无 LTO；仅 RVV 汇编对象使用 rv64gcv_zifencei。每次输出到新目录</td></tr><tr><td>构建输入</td><td>lesson.c、原 crt0.S、uart.c、clint.c、printf.c、已生成头、spm.ld/common.ldh；DMA 驱动为头内 inline，不存在需链接的 dif/dma.c</td></tr><tr><td>产物与日志</td><td>脚本打印 evidence/&lt;stage&gt;-&lt;mode&gt;.XXXXXX。含 build.log、lesson.i/.s/.o、crt0.o、libsupport.a、lesson.*.elf、lesson.map、lesson.dump、symbols.txt、readelf.txt</td></tr><tr><td>结果</td><td>程序正常返回 0；错误计数转为 return 1；前提/超时错误返回 10～14。仿真必须检查 UART、VIP 与错误日志，不只看 shell code</td></tr><tr><td>时间预算</td><td>软件构建预留 60 秒；Questa 起始 run 100 ms + 墙钟 300 秒；VCS 墙钟 300 秒。超时记为未通过/待定位，不保证这些预算适合所有服务器</td></tr><tr><td>原始驱动等待</td><td>测频与 UART 轮询无软件超时，外层 timeout 必不可少；实验 timer/DMA 的等待循环额外限 10,000,000 个 mcycle</td></tr></table>
 <p>需要自选工具链时设 <code>CROSS_COMPILE='/实际工具链/bin/riscv64-unknown-elf-'</code>；用 <code>command -v riscv64-unknown-elf-gcc</code> 得到本机路径。prefix 包含尾部连字符，不是 bin 目录本身。</p>
-<h2 id="lab0">实验 0 · 只检查环境，不启动大构建</h2>
+<h2 id="lab0">实验 0 · 工具与环境检查</h2>
 <p><strong>目标：</strong>分清目标编译器、主机 C++、RTL 模拟器；知道已有文件不等于可重建环境。输入是当前工作区，输出是新建 env 目录里的报告。</p>
 <pre><code># Bash，仓库根
 LEARN_ENV=$(mktemp -d "$PWD/docs_codex/learning/evidence/env.XXXXXX")
@@ -26,7 +26,7 @@ LEARN_ENV=$(mktemp -d "$PWD/docs_codex/learning/evidence/env.XXXXXX")
 } &gt; "$LEARN_ENV/environment.txt" 2&gt;&amp;1
 cat "$LEARN_ENV/environment.txt"</code></pre>
 <p><strong>判据：</strong>明确哪些工具缺失，gcc 目标应为 RISC-V 裸机；vsim -version 不测试许可证。本轮查到 GCC 15.2.0、Questa 2024.1，未查到 vcs/vlogan。失败先看 PATH 与可执行文件，不运行依赖升级/clean；版本查询若卡住用外部 timeout 保留状态。</p>
-<h2 id="lab1">实验 1 · 自己构建 HelloWorld</h2>
+<h2 id="lab1">实验 1 · HelloWorld 构建</h2>
 <p><strong>前置：</strong>实验 0 的交叉工具链、当前生成头与 printf 源码可读；硬件条件见共用约定。阶段 0 只初始化 UART 并输出；区别于旧 helloworld.c，它没有不必要的 VS 设置。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh hello spm
 # 读取首行 Output，填入真实路径
@@ -34,7 +34,7 @@ LEARN_OUT='/实际输出路径/evidence/hello-spm.XXXXXX'
 riscv64-unknown-elf-readelf -h -l "$LEARN_OUT/lesson.spm.elf"</code></pre>
 <p><strong>本轮构建成功；运行待验证。</strong>后续按 <a href="simulation.html#prepare">第 05 章</a>准备 RTL 清单并分别运行所选模拟器，BINARY 设为这个 ELF，日志检查用 <code>--stage hello</code>。预期 UART 含 <code>LEARN stage=0 Hello Cheshire!</code>、<code>LEARN sum=0 errors=0</code>，VIP 报 SUCCESS。</p>
 <p><strong>失败顺序：</strong>gcc 首错 → ELF entry/LOAD → RTL profile → Boot ROM/SPM → main → RTC 测频 → UART。试着把欢迎字符串改短，重新构建并确认输出确实变了；旧日志/旧 ELF 不能作为新改动通过证据。</p>
-<h2 id="lab2">实验 2 · 整数数组、逐项校验与故障注入</h2>
+<h2 id="lab2">实验 2 · 整数数组计算与故障注入</h2>
 <p><strong>前置：</strong>实验 1 通过构建；首次运行沿用同一硬件，不同时改 profile 或内存。输入仍是 lesson.c，阶段 1 写 result，再按独立公式比对每一项。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh array spm
 # 故意翻转 result[5] 的低位，生成另一份 ELF；不覆盖前一次输出
@@ -42,7 +42,7 @@ INJECT_ERROR=1 timeout 60 bash docs_codex/learning/scripts/build_example.sh arra
 <p><strong>预期正常：</strong>137 项全部正确；总和 <code>137×(1+409)/2=28085</code>，errors=0，return 0。<strong>预期注入：</strong>result[5] 从 16 变为 17，总和 28086，errors=1，return 1，VIP FAILED；检查器必须失败。分别将两个 ELF 运行日志命名保存，不能混看。</p>
 <p><strong>成功判据：</strong>正常通过且故障必被检测；不仅是 hello 文本存在。本轮只完成两类 ELF 的构建与静态检查，未获得上述目标运行输出。若和为 28085 但个别元素错，总和也不能代替逐元素判据；若 errors=1 仍 SUCCESS，先追踪返回值与 scratch2。</p>
 <p><strong>小修改：</strong>把 N 改成 17，先手算总和 425，再构建。check_run.py 默认锁定 N=137，需同步修改它的期望值；工具不会从被测数组反算 gold，防止程序与检查器共同接受错误。</p>
-<h2 id="lab3">实验 3 · 看懂 ELF、反汇编与 SPM/DRAM 链接</h2>
+<h2 id="lab3">实验 3 · ELF 布局与反汇编检查</h2>
 <p><strong>前置：</strong>拿实验 2 正常 array 的真实输出路径填 LEARN_OUT。检查是只读，通常数秒；不需要仿真许可证。</p>
 <pre><code>LEARN_OUT='/实际输出路径/evidence/array-spm.XXXXXX'
 riscv64-unknown-elf-readelf -h -l -S "$LEARN_OUT/lesson.spm.elf"
@@ -53,25 +53,25 @@ rg -n '\.misc|\.bss|\.text' "$LEARN_OUT/lesson.map"
 timeout 60 bash docs_codex/learning/scripts/build_example.sh array dram</code></pre>
 <p><strong>预期：</strong>SPM 入口 0x10000000；DRAM 入口 0x80000000。SPM 的栈符号是 0，表示继承 Boot ROM 栈；DRAM 栈符号 0x807ffff8。result 占 BSS 548 字节；有初值的 seed 位于 .misc。common.ldh 丢弃 .riscv.attributes，因此最终 ELF 的 readelf -A 可能为空；ISA 核对还需构建日志、对象属性和实际反汇编。</p>
 <p><strong>成功判据：</strong>能把 main 的 call、result 的地址和 ELF PT_LOAD 对起来。DRAM ELF 构建成功不证明 DRAM 可用；只有外部模型/DDR 覆盖装载段和栈，才能继续运行。若 relocation truncated，先看 medany、地址间距和对象参数，不先改总线。</p>
-<h2 id="lab4">实验 4 · MMIO：读 RTC 信息、写回 scratch6</h2>
+<h2 id="lab4">实验 4 · MMIO 寄存器访问</h2>
 <p><strong>前置：</strong>默认 Cheshire regs 存在，scratch6 没有其他使用者，保持单核、无并发脚本改写；SELCFG=3 并不改变其基址。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh mmio spm
 # 按第 05 章运行该 ELF，再检查真实日志
 python3 docs_codex/learning/scripts/check_run.py '/实际 simulate.log 路径' --stage mmio</code></pre>
 <p>输入：同一数组示例 + stage=2。新增动作：保存 scratch6、写 0x12345678、fence、回读并恢复。<strong>预期：</strong>sum=28085/errors=0，VIP SUCCESS。错误归入 return 1。首查生成头 CHESHIRE_SCRATCH_6_REG_OFFSET、链接 __base_regs=0x03000000、访问宽度；不要拿 scratch2 试写，它可能让 TB 提前结束。</p>
-<h2 id="lab5">实验 5 · 定时器：观察时间流动，不先开中断</h2>
+<h2 id="lab5">实验 5 · 定时器轮询</h2>
 <p><strong>前置：</strong>CLINT/RTC 时钟存在，机器态可读 mcycle；使用 stage=3 的高低高稳定读取。输入：原数组 + 等 8 个 RTC ticks。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh timer spm
 python3 docs_codex/learning/scripts/check_run.py '/实际 simulate.log 路径' --stage timer</code></pre>
 <p><strong>预期：</strong>额外出现 <code>timer ticks&gt;=8</code>，errors=0/return 0。RTC=32768 Hz 时 8 ticks 约 244 μs，这是目标时间量级，不是仿真墙钟时间。循环超过 10,000,000 mcycle 返回 11；进入该循环之前的测频仍可能等待，由外部 300 秒预算兜底。</p>
 <p><strong>失败顺序：</strong>是否卡在最初测频 → mtime 是否递增 → rtc_freq 寄存器 → CPU cycle → 轮询条件。扩展阅读练习：解释 mtimecmp、mie.MTIE、mstatus.MIE、mtvec 的顺序；本轮不给未验收的中断 handler 套上“可直接运行”。</p>
-<h2 id="lab6">实验 6 · DMA：搬 548 字节，再逐项证明</h2>
+<h2 id="lab6">实验 6 · DMA 搬运与数据校验</h2>
 <p><strong>硬前提：</strong>先读 <a href="memory.html#dma">SPM 专用缓冲契约</a>；全 128 KiB SPM、DMA=1、DmaConfEnableTwoD=1（驱动寄存器为 2D 布局）、单任务、无其他 DMA 用户、栈不入保留区。不得切换 LLC way。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh dma spm
 python3 docs_codex/learning/scripts/check_run.py '/实际 simulate.log 路径' --stage dma</code></pre>
 <p>stage=4 保留原数组计算，再把 a[i]=i 复制到 c；sys_dma_memcpy 使用 2D 前端的 1D 拷贝模式，返回任务 ID。轮询 done-id 与该 ID 相等，超时返回 14；无 DMA 返回 13；LLC_SIZE 不符返回 12。<strong>预期：</strong><code>DMA copied=548</code>、sum=28085/errors=0、VIP SUCCESS。</p>
 <p><strong>失败顺序：</strong>硬件 feature → 源/目标均为高别名且未被低别名缓存 → 长度/next-id/done-id → AXI 返回 → 比较结果。原 <a href="../../sw/tests/dma_2d.spm.c">dma_2d.spm.c</a> 的阻塞等待没有超时，可作为阅读练习而非本课默认运行入口。进一步用纸笔推演其 4 段×15 字节、dst stride=7/src stride=1 的重叠拷贝，区分“总线搬运量”与最终缓冲长度。</p>
-<h2 id="lab7">实验 7 · 条件成立后运行最小 RVV</h2>
+<h2 id="lab7">实验 7 · RVV 配置与计算验证</h2>
 <p><strong>硬前提：</strong>实验 6 的 SPM 缓冲契约 + 向量 profile 的 RVV=1 + Ara 实例 + 唯一真实 decoder + 软件 V 对象 + 进入向量函数之前 VS 非 Off。不能只把 SELCFG 改成 3。两种模拟器都要先完成标量数组闭环。</p>
 <pre><code>timeout 60 bash docs_codex/learning/scripts/build_example.sh rvv spm
 LEARN_OUT='/实际输出路径/evidence/rvv-spm.XXXXXX'
@@ -81,8 +81,8 @@ riscv64-unknown-elf-readelf -A "$LEARN_OUT/rvv_add.o"
 python3 docs_codex/learning/scripts/check_run.py '/实际 simulate.log 路径' --stage rvv</code></pre>
 <p><strong>预期：</strong>反汇编有四类向量指令；运行出现 <code>RVV checked=137</code>、sum=28085/errors=0，VIP SUCCESS；另外记录 PC 确实经过 learn_vadd 与 Ara 活动。向量汇编循环按返回的 vl 更新指针，能处理尾部；只测试 N=64 不能覆盖这个性质。</p>
 <p><strong>失败顺序：</strong>首条非法指令位置 → CPU RVV/VS/FS → decoder → Ara 握手 → 访存地址/返回 → 结果比较。若要扩大测试，选择 N=1、63、64、65、137；当前保留区每个槽只有 1024 字节，N 不得大于 256，且应同步修改检查器期望与文档契约。不要拿这份 SPM 小实验推导 DRAM 大模型性能。</p>
-<h2 id="delivery">每次实验回传什么</h2>
+<h2 id="delivery">实验记录与提交要求</h2>
 <p>一个目录应包含：HEAD 与工具版本、完整构建命令/build.log、ELF/map/dump、所用清单/profile/宏、SelectedCfg 与 BINARY、compile/展开/运行日志、退出状态、超时设置、计算错误数。失败时补 PC/mepc/mcause/mtval、scratch2、首个错误元素；无需一上来发送整个大型波形。</p>
 <table><tr><th>结果类型</th><th>可以下的结论</th></tr><tr><td>只构建成功</td><td>工具链接受并链接了这个程序；不能说硬件执行过</td></tr><tr><td>只有 VIP SUCCESS</td><td>观察到返回 0；还需确认被测程序真的检查了结果</td></tr><tr><td>正常结果 + 故障注入失败</td><td>在记录的那组配置与路径上，当前测试具备有效的结果判据</td></tr><tr><td>向量运行 + 逐项校验 + 执行路径记录</td><td>该 RVV 小用例通过；不代表全 ISA、所有异常/缓存场景或 AI 负载通过</td></tr></table>
 <div class="quiz"><details><summary>1. 为什么每次构建都新建输出目录？</summary><p>避免 flags/头文件变化被旧 make 时间戳漏掉，也避免覆盖用户旧 ELF；日志与 ELF 可以一一对应。</p></details><details><summary>2. 故障注入有何价值？</summary><p>证明错误能从逐项校验传播到 main 返回、scratch2、VIP 和外部检查器。只验证成功分支可能漏掉总是 return 0 的测试。</p></details><details><summary>3. DMA/RVV 改成 dram 模式为什么脚本拒绝？</summary><p>它们依赖本课明确预约的 SPM 非缓存数据区与栈契约。DRAM 共享数据需要另建并验证完整缓存协议，不能只换链接脚本。</p></details></div>
-<nav class="nextprev" aria-label="上下章"><a href="memory.html">← 06 · 访存、DMA 与 RVV</a><a href="future.html">07 · 独立工程与 AI 导读 →</a></nav></main><footer>本教材图表为教学示意；步骤演示不是真实仿真波形。已有板测不等于本轮回归。</footer></div></body></html>
+<nav class="nextprev" aria-label="上下章"><a href="memory.html">← 06 · 访存、DMA 与 RVV</a><a href="future.html">07 · ASIC 迁移与 AI 系统规划 →</a></nav></main><footer>本教材图表为教学示意；步骤演示不是真实仿真波形。已有板测不等于本轮回归。</footer></div></body></html>

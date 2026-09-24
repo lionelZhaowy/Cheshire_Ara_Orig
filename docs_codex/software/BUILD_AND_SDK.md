@@ -2,7 +2,9 @@
 
 返回 [软件导航](README.md)。以下以当前 [sw.mk](../../sw/sw.mk)、[根 Makefile](../../Makefile) 和 [cheshire.mk](../../cheshire.mk) 为准；命令示例未在本轮执行构建。
 
-## 1. 三套东西不要混用
+<a id="1-三套东西不要混用"></a>
+
+## 1. 裸机工具链、Ara 环境与 Linux SDK
 
 | 类别 | 当前入口 | 输出/运行环境 |
 | --- | --- | --- |
@@ -14,7 +16,9 @@
 
 当前根 `sw/deps/cva6-sdk` 仅见 `install64/`、`install64.bak_20260410_194946/`；镜像包括 `fw_payload.bin/.elf/.dump`、`u-boot/.bin/.dump`、`uImage`、`vmlinux`、`Image.gz`。这些已有产物不能证明本机具备完整重建环境或已经在板上运行。根 `.gitmodules` 记录该 SDK 与 printf 为子模块，依赖快照的搬迁边界见 [.bender/README](../../.bender/README.md)。
 
-## 2. 每个工具做什么
+<a id="2-每个工具做什么"></a>
+
+## 2. 工具职责与输入输出
 
 | 工具 | 角色 | 常用检查/操作 |
 | --- | --- | --- |
@@ -46,7 +50,9 @@ riscv64-unknown-elf-gcc -print-file-name=libc.a
 
 `CHS_SW_GCC_BINROOT` 指向含 `riscv64-unknown-elf-gcc` 等工具的 **bin 目录**，不是 SDK 根目录。未找到 gcc 时，默认路径推导可能失败；应先显式确认工具位置。
 
-## 3. 当前编译参数逐项解释
+<a id="3-当前编译参数逐项解释"></a>
+
+## 3. 软件编译参数
 
 | 参数 | 当前默认/位置 | 用途与联动 |
 | --- | --- | --- |
@@ -171,7 +177,9 @@ done
 
 crt0 单独列出，支持库放在使用它的对象后面。此例不包含 DMA/LLC/RT/HAL；扩展应用时需补对应源码和头，不把 `-I` 当成“已经链接实现”。
 
-## 6. Ara 软件入口与当前注意点
+<a id="6-ara-软件入口与当前注意点"></a>
+
+## 6. Ara 软件入口与配置约束
 
 入口：[Ara 软件 Makefile](../../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/Makefile)。
 
@@ -201,7 +209,9 @@ crt0 单独列出，支持库放在使用它的对象后面。此例不包含 DM
 
 `linux-img` 会备份根 SDK install64 后复制新镜像；可能触发子模块更新和大型 Buildroot 编译。SDK 快照不含所有下载缓存/工具链，不能宣称完整离线可重建。
 
-## 8. 镜像规则与当前板型缺口
+<a id="8-镜像规则与当前板型缺口"></a>
+
+## 8. 镜像构建规则与平台支持范围
 
 根 Linux 镜像规则仍在：`sw/boot/linux.<board>.gpt.bin` 将 ZSL、DTB、fw_payload.bin、uImage 放入 GPT 分区。通用裸机 `%.gpt.bin` / `%.gpt.memh` 规则则已注释。**“裸机不必用 GPT”和“Boot ROM 仍支持 GPT/raw”可以同时成立。**
 

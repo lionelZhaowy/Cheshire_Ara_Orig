@@ -1,18 +1,20 @@
-<div class="goals"><strong>学完能做什么</strong><p>沿一次访问说出发起者、适配器、互连、目标和返回路径；区分时钟域、复位域与电源域。前置：第 01/02/06 章。场景：为新 NPU 寻找控制口、DMA 口和中断口，先解释当前系统。</p></div>
-<h2 id="soc">完整系统组件与互连</h2>
+<div class="goals"><strong>学习目标</strong><p>沿一次访问说出发起者、适配器、互连、目标和返回路径；区分时钟域、复位域与电源域。前置：第 01/02/06 章。场景：为新 NPU 寻找控制口、DMA 口和中断口，先解释当前系统。</p></div>
+<p>本章细化第 01 章的组件概览，重点是全系统连接及平台边界。具体互连事务原理见 H04～H05；本章不以框图替代这些实现说明。</p>
+<h2 id="soc">SoC 组件与互连结构</h2>
 <figure class="wide"><img src="assets/system-detail.svg" alt="展开CPU Ara Debug DMA Serial Link VGA USB、AXI互连、LLC与寄存器目标的完整SoC组件图"><figcaption>教学示意，覆盖当前顶层功能组件与可选分支，省略逐位握手和部分 cut。<a href="assets/system-detail.svg">单独打开大图</a>，可使用浏览器缩放；箭头表示请求/事件方向，响应沿反向路径返回。</figcaption></figure>
 <p>一个 IP 可以既是被配置的目标（AXI subordinate/slave），又是主动搬运数据的发起者（AXI manager/master）。iDMA 的控制端口接在 xbar 目标侧，数据端口接在发起侧。USB、VGA 通过 Reg32 控制，却从独立 AXI master 取描述符或像素。不能把寄存器访问带宽当作数据口带宽。</p>
 <table><tr><th>边界</th><th>真实模块/参数</th><th>作用与观察点</th></tr><tr><td>CPU → xbar</td><td>gen_cva6_cores、i_axi_id_serialize、i_cva6_bus_err</td><td>压缩/序列化 ID、跟踪 AXI 错误；CPU L1 命中不会出现在此口</td></tr><tr><td>Ara → xbar</td><td>gen_ara、axi_inval_filter、宽度转换</td><td>向量数据宽度转换、CPU 失效接口；不是所有 master 都进入这条失效路径</td></tr><tr><td>xbar</td><td>i_axi_xbar、AxiMap、gen_axi_out</td><td>默认 48-bit 地址、64-bit 数据，ATOP 原子扩展；无默认目标使能，错误行为需区分地址层级</td></tr><tr><td>普通 MMIO</td><td>i_reg_atomics → cut → i_axi_to_reg_v2 → decode/demux</td><td>转换为 32-bit Regbus；Regbus 无匹配目标走 i_reg_err_slv，返回错误/0xBADCAB1E</td></tr><tr><td>LLC 与 SPM</td><td>axi_llc_reg_wrap、SPM remap、外部输出 cut</td><td>SPM/非缓存别名重映射；LLC 命中/回写；与 L1 一致性不是同一个问题</td></tr><tr><td>可选实时治理</td><td>gen_axi_rt、i_axi_rt_unit_top</td><td>发起者预算、周期和隔离控制，位于 xbar 前；不是 DDR 实时性能保证</td></tr><tr><td>扩展口</td><td>AxiExtNumMst/Slv、RegExtNumSlv、外部中断配置</td><td>VCU118 当前外部 master 请求绑零；未来新增 IP 必须提供独立地址/ID/IRQ/复位契约</td></tr></table>
 <p>默认不含 Ara 时，发起序号为 CPU=0、Debug=1、DMA=2、Link=3、VGA=4、USB=5；打开 Ara 后 Ara=2，后四项各加一。这里由 <code>gen_axi_in</code> 推导，外部 master 接在末尾。不能把这组序号永久硬编码进 AXI RT 软件或性能脚本。</p>
-<h2 id="clocks">时钟域、复位域：分平台看</h2>
+<h2 id="clocks">仿真与 FPGA 的时钟复位域</h2>
 <figure class="wide"><img src="assets/clock-reset-detail.svg" alt="通用SoC、VIP和VCU118各时钟来源、USB域、Serial Link源同步、DDR CDC和复位关系"><figcaption>时钟域交叉（Clock Domain Crossing，CDC）与复位域交叉（Reset Domain Crossing，RDC）都需专门验证。本图是源码连接说明，不是签核。</figcaption></figure>
 <p>通用 <code>cheshire_soc</code> 主域的 CPU、Ara、xbar、LLC、控制寄存器都使用 clk_i/rst_ni。RTC 输入经同步器产生计数使能；CLINT 的 mtime 寄存器仍在系统时钟域。VGA 的 clk_div 是 FSM 使能分频，并未在顶层形成另一根像素时钟输入。Serial Link 有源同步接收时钟，并且内部逻辑/寄存器时钟接口在本 SoC 都接到 clk_i。</p>
 <p>VCU118 shell 用 IBUFDS、clock wizard 产生 SoC 50 MHz，另有 48 MHz USB 时钟接口。DDR 的 MIG UI 域由 MIG 输出，经 axi_cdc 与 SoC 相连；64→512-bit 转换、ID 适配和低地址截取在 FPGA wrapper 中。RTC 计数到 24 翻转一次，故 50 MHz/50=1 MHz。测试平台默认系统周期 5 ns，RTC 周期 30518 ns；二者不该共用随意硬编码的 UART 除数。</p>
 <div class="callout"><strong>复位仍有需验证的边界。</strong><p>clock wizard 的 locked 未接复位放行；MIG init_calib_complete 未消费。USB 复位直接接 SoC 的 rst_n，源码注释说脉宽足够，但没有在此证明 PHY 域同步释放。VCU118 关闭 USE_USB 也不意味着通用 USB 集成已经通过 RDC。后续 ASIC 需要重做工艺时钟、复位树与存储就绪握手。</p></div>
-<h2 id="power">电源域：当前能说到哪里</h2>
+<h2 id="power">电源域描述与实现边界</h2>
 <p><span class="badge">源码静态确认</span>本轮定向检查 hw/、target/ 及 CPU/Ara 核心目录未发现 UPF/CPF 文件；SoC 顶层也没有完整的开关电源、隔离、保持电源序列接口。因此图中只能标“电源分区未描述”，不能断言真实芯片只有一个电压域，也不能画出已实现的 CPU/NPU 独立断电域。</p>
 <p>时钟门控（Clock Gating）减少翻转，电源门控（Power Gating）切断供电；二者不是同一件事。Serial Link 的 CTRL 描述 clk_ena/reset/isolate，但 <code>cheshire_soc</code> 将对应输出悬空、isolated_i 绑零，不能用这个寄存器证明当前集成已有电源隔离。未来划域要决定哪些寄存器保留、谁能唤醒、如何停止 outstanding AXI、何时隔离/复位/断电；这是 P01/M01 的独立交付。</p>
-<h2 id="exercise">源码练习：四条路径、三个域</h2>
+<div class="card"><strong>硬件主线：配置、结构与系统集成</strong><p>从<a href="hardware.html">硬件路线</a>开始：<a href="cpu-config.html">CVA6功能与配置</a> → <a href="soc-topology.html">SoC结构生成</a> → <a href="axi-crossbar.html">AXI Crossbar深入</a> → <a href="axi-adapters.html">接口适配</a> → <a href="ip-integration.html">自定义IP接入</a>。独立单元和实际证据见<a href="hardware-labs.html">硬件实验</a>。</p></div>
+<h2 id="exercise">系统路径与时钟域阅读练习</h2>
 <div class="lab"><p>工作目录：仓库根。工具仅 rg；不运行硬件。</p><pre><code>rg -n 'gen_axi_in|gen_axi_out|gen_reg_out|AxiDataWidth|LlcSetAssoc' hw/cheshire_pkg.sv
 rg -n 'i_axi_xbar|i_axi_to_reg_v2|i_reg_err_slv|axi_cdc|clk_ena_o|isolated_i' hw/cheshire_soc.sv
 rg -n 'clk_50|clk_48|locked|rstgen|rtc|usb_rst_ni' target/xilinx/src/cheshire_top_xilinx.sv

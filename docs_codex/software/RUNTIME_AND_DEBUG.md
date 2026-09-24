@@ -17,7 +17,9 @@
 
 `.spm/.dram/.rom` 表示链接模式，`.elf/.bin/.dump` 表示格式，两个后缀解决不同问题。
 
-## 2. 链接器怎样安排程序
+<a id="2-链接器怎样安排程序"></a>
+
+## 2. 链接布局与存储分配
 
 | section / 符号 | 当前用途 |
 | --- | --- |
@@ -47,7 +49,9 @@
 
 当前 crt0 没有通用 `.data` 从 ROM LMA 复制到 RAM VMA 的循环；它依赖 loader/Boot ROM 已把可加载内容放到运行位置。新加 `.data AT>flash` 后需要另补搬运机制，不能只改链接脚本。
 
-### 2.2 如何检查链接结果
+<a id="22-如何检查链接结果"></a>
+
+### 2.2 链接结果检查
 
 ```sh
 riscv64-unknown-elf-readelf -h -l sw/tests/helloworld.spm.elf
@@ -57,7 +61,9 @@ riscv64-unknown-elf-nm -n sw/tests/helloworld.spm.elf
 
 看入口、LOAD 段、VMA/LMA、文件大小和内存大小；再看 map 中的 `.bss/.misc/.text` 与栈是否冲突。`size` 显示的 bss 不占镜像字节但占运行 RAM。heap、stack 不会因为“还有地址空间”就自动被本 SDK 管理。
 
-## 3. 从上电到 main 的两级初始化
+<a id="3-从上电到-main-的两级初始化"></a>
+
+## 3. Boot ROM 与应用的两级初始化
 
 ```mermaid
 flowchart TD
@@ -89,7 +95,9 @@ Boot ROM 首先建立片上存储和调用环境。被动模式等待 loader；�
 
 当前不是通用 libc/RTOS 启动框架：未见 C++ 全局构造调用、完整线程调度、浮点/向量任务上下文切换或 heap 系统调用适配。需要这些功能时应另建运行时契约。
 
-## 4. 退出码、异常和“卡住”
+<a id="4-退出码异常和卡住"></a>
+
+## 4. 退出码、异常与运行停顿
 
 `_exit` 写入地址 `0x03000008`（SCRATCH2）的值为 `(main返回值<<1)|1`。bit0 表示程序已结束；其余位承载返回码。0 返回通常编码为 1。默认弱 `trap_vector` 是自循环，异常发生后程序可能没有任何串口输出，也不会走正常结束协议。
 
@@ -147,7 +155,9 @@ openocd -f util/openocd.hs2.tcl
 riscv64-unknown-elf-gdb sw/tests/helloworld.spm.elf
 ```
 
-### 6.1 优先沿用 Boot ROM 的调用协议
+<a id="61-优先沿用-boot-rom-的调用协议"></a>
+
+### 6.1 Boot ROM 调用协议与调试约束
 
 必须先确认 Boot ROM 已完成 BIST/建栈，且 CPU 正处于被动等待阶段。不要在“刚复位、SPM 还没准备好”的位置直接跳入 SPM 程序。
 
@@ -179,7 +189,9 @@ UART debug 是二进制协议，不是把 ELF 文件直接发给终端：ACK=0x0
 
 [flash.c](../../sw/boot/flash.c) 是写介质的目标端程序；[flash_disk.gdb](../../util/flash_disk.gdb) 将镜像暂存 DDR，再通过 scratch 传参，目标 1/2/3 对应 SD/Flash/EEPROM。它会实际改写介质，需明确设备、范围和镜像。当前 [flash_disk.sh](../../util/flash_disk.sh) 的长度参数注释与换算表达式不完全一致，并且向上取整采用 `len/(256*1024)+1`，整倍数会多算一块；本手册不把它列为可无审查执行的一键命令。
 
-## 8. 新程序的最小约定
+<a id="8-新程序的最小约定"></a>
+
+## 8. 新程序的运行与验证要求
 
 新增 `name.spm.c` 适合小型 MMIO/库学习；新增 `name.dram.c` 用于已可用 DDR 上的大数据。原构建规则会自动收集它们。以已有 HelloWorld 的 UART 初始化为起点，先检查需要的硬件 feature，再执行算法并返回明确错误码，返回前 flush UART。
 

@@ -1,8 +1,12 @@
-# 其他模块、存储与平台配置手册
+<a id="其他模块存储与平台配置手册"></a>
+
+# 外设、存储与平台配置参考
 
 返回 [配置导航](README.md)。本页覆盖当前 SoC 集成直接相关的模块参数、生成尺寸和运行时配置入口；不穷举所有第三方 IP 的内部 debug/test 参数，也不替代外设寄存器手册。全部 SoC 开关与默认值见 [Cheshire 参数表](CHESHIRE.md)。
 
-## 1. iDMA：按正在阅读的 cheshire_idma_wrap.sv 理解
+<a id="1-idma按正在阅读的-cheshire_idma_wrapsv-理解"></a>
+
+## 1. iDMA wrapper 参数与接口
 
 来源：[wrapper](../../hw/cheshire_idma_wrap.sv)、[后端生成 RTL](../../.bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv)、[当前软件驱动](../../sw/include/dif/dma.h)。
 
@@ -32,7 +36,9 @@ DMA 控制端是“被 CPU 访问的 slave”，搬运端是“主动访问存�
 
 wrapper 的整型/bit 默认大多为 0，类型默认为 logic；它依靠 SoC 传参，不是可直接运行的默认实例。
 
-### 1.1 wrapper 没暴露的固定设置
+<a id="11-wrapper-没暴露的固定设置"></a>
+
+### 1.1 wrapper 内部固定配置
 
 | 项目 | 当前值 | 含义 |
 | --- | --- | --- |
@@ -165,6 +171,8 @@ VCU118 的板宏没有 `USE_USB/USE_VGA/USE_I2C`，但 wrapper **只按 USE_USB 
 
 改变 RTC 模型周期时应与 DutCfg.RtcFreq 一致；否则软件测频/超时会偏移。DutCfg 与各 AXI type 参数由 fixture 传入，不能只给 VIP 换一套位宽而不改 DUT。
 
-## 8. ASIC 迁移时另立的配置清单
+<a id="8-asic-迁移时另立的配置清单"></a>
+
+## 8. ASIC 迁移配置要求
 
 必须另行确定：SRAM 宏尺寸/端口/延迟/byte enable，ROM 内容与生成工具，时钟源/门控/复位/CDC，PAD/电平/IO 时序，DDR AXI 与控制器/PHY 参数，DFT/MBIST、工艺库和约束。CVA6/Ara/LLC 有参数只说明 RTL 可参数化，不证明任何一组参数已适配工艺。后续以 [02 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md) 和真实供应商接口摘要为准。

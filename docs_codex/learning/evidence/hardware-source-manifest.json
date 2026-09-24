@@ -1,0 +1,103 @@
+{
+  "date": "2026-09-23",
+  "head": "ae2b69fe0640e57c89dfc6bcc9404bfd5008e1a5",
+  "evidence": "bounded cited local source snapshot; no production RTL simulation",
+  "sources": [
+    {
+      "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv",
+      "sha256": "49e4f5c48e76c23242fe0714089446b8f5334b91c468c8f49f8eda9992f18c2e"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv",
+      "sha256": "5e35d557f5b213242cc2508cb70f50b1b88200c90762d9f63248cb6814a1643e"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md",
+      "sha256": "ece7ec0f5bd980c855e19391b5529a79ba9c87766c835d981c925c52dbb08c50"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_cdc.sv",
+      "sha256": "060f775eb544a092bb4c8d0b5168a6cb7b0cd6128f1e4a35477918426c6307d2"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv",
+      "sha256": "0e25cd8fd1a406bbaf7c941f876a530f10016f445301d836abe14b3bf7784781"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_dw_converter.sv",
+      "sha256": "c21ec884bd4af6a5a5cff6588548108baf24838d76ff1f0e9bda8968e3fc2649"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv",
+      "sha256": "a8c330c2efe8d758071b0c183fa7d2385171d85c2f81cc9734b7f83ab07b27ba"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar.sv",
+      "sha256": "254d5be8a0cb105bd516cae31842efe69f2dd6b7350da008cc10a61deda49bbd"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv",
+      "sha256": "c78c471bb1a5b905f037de7bf14766917c1a12cfe7517c07d60a05afd6a90ef1"
+    },
+    {
+      "path": ".bender/git/checkouts/axi-ecdc900686449c15/test/tb_axi_xbar.sv",
+      "sha256": "39cc33b5f99400a85bd4aef27125f543da74bd582b52c4f5bf0b828706872965"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv",
+      "sha256": "d7760126765d3e623293ef53f21043ae6753355c8d07eb65f533ece1238a257e"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+      "sha256": "e5b41f977e6456c858276358d2e988c1ae25a0ec93f5e24727ff208a002e0281"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv",
+      "sha256": "a5e830a6f283831906d9f872592035e7f69fc836aa56a293be2ac5117b418496"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_store_unit.sv",
+      "sha256": "a375bf00ad89feb659df761b2e690e0d8cb207b502e5a15b68d404c3dd9dc3e4"
+    },
+    {
+      "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv",
+      "sha256": "df090ca44a38464c16cb88fb859e23e8dc192609a059e0c12f7325e7c87170cb"
+    },
+    {
+      "path": "hw/cheshire_idma_wrap.sv",
+      "sha256": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd"
+    },
+    {
+      "path": "hw/cheshire_pkg.sv",
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752"
+    },
+    {
+      "path": "hw/cheshire_soc.sv",
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c"
+    },
+    {
+      "path": "hw/regs/cheshire_reg_top.sv",
+      "sha256": "8e872dabe2ac5a78eb0f7921310251bd2335a80ac465fb428dcbd834f9ddc4ea"
+    },
+    {
+      "path": "target/sim/src/fixture_cheshire_soc.sv",
+      "sha256": "28172693f9cf8de595766ee3b94e74f89b6ea702d411f0017970317323e070a8"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_pkg.sv",
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab"
+    },
+    {
+      "path": "target/sim/src/tb_cheshire_soc.sv",
+      "sha256": "e07858e23eb8dc1521188019c98b25d819cdb3e61d096326de2a49a964137108"
+    },
+    {
+      "path": "target/xilinx/src/cheshire_top_xilinx.sv",
+      "sha256": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2"
+    },
+    {
+      "path": "target/xilinx/src/dram_wrapper_xilinx.sv",
+      "sha256": "fa8a22e9a7e30885605cecacbc41459cf060828ffbc7995189ff80ba1c9adf6e"
+    }
+  ]
+}

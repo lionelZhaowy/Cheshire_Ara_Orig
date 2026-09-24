@@ -3,8 +3,8 @@
 import subprocess,tempfile,time,json,socket,base64,os,struct,http.client,argparse
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
-parser=argparse.ArgumentParser();parser.add_argument('--advanced',action='store_true');options=parser.parse_args()
-shot_prefix='advanced-'if options.advanced else ''
+parser=argparse.ArgumentParser();parser.add_argument('--editorial',action='store_true');parser.add_argument('--advanced',action='store_true');parser.add_argument('--hardware',action='store_true');options=parser.parse_args()
+shot_prefix='editorial-'if options.editorial else 'hardware-'if options.hardware else 'advanced-'if options.advanced else ''
 page_count=len(list(ROOT.glob('*.html')))
 class CDP:
  def __init__(self,url):
@@ -45,6 +45,7 @@ class CDP:
   if 'exceptionDetails'in r:raise RuntimeError(r)
   return r['result'].get('value')
  def shot(self,name):
+  if options.editorial and name not in ('preview-index.png','preview-configuration.png','preview-mobile.png'):return
   r=self.call('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False})
   (ROOT/'evidence'/(shot_prefix+name)).write_bytes(base64.b64decode(r['data']))
 profile=tempfile.mkdtemp(prefix='l01-browser-')
@@ -67,9 +68,10 @@ try:
   cdp.js('document.documentElement.style.scrollBehavior="auto"');r=cdp.js('({title:document.title,h1:document.querySelectorAll("h1").length,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),overflow:document.documentElement.scrollWidth>innerWidth+1,nav:document.querySelectorAll(".sidebar nav a").length})')
   assert r['h1']==1 and r['images']and not r['overflow']and r['nav']==page_count,(page,r)
   report.append('PASS desktop 1440x1100 '+page.name+' / images, navigation, no horizontal page overflow')
-  if page.stem in (['system','execution','uart-gpio','dma-llc','stream-io'] if options.advanced else ['architecture','foundations','lifecycle','memory']):
+  if page.stem in (['index','configuration','lifecycle','hardware-devices'] if options.editorial else ['hardware','soc-topology','axi-crossbar','axi-adapters','ip-integration'] if options.hardware else ['system','execution','uart-gpio','dma-llc','stream-io'] if options.advanced else ['architecture','foundations','lifecycle','memory']):
    query='(document.querySelector("figure")||document.querySelector("h2")).scrollIntoView()'
    if page.stem=='lifecycle':query='document.querySelector("#boot").scrollIntoView()'
+   if options.editorial:query='window.scrollTo(0,0)'
    cdp.js(query);time.sleep(.1);cdp.shot('preview-'+page.stem+'.png')
   if options.advanced and page.stem=='system':
    assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
@@ -105,7 +107,7 @@ try:
   r=cdp.js('({ready:document.readyState,overflow:document.documentElement.scrollWidth>innerWidth+1,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0)})')
   assert r['ready']=='complete'and not r['overflow']and r['images'],(page,r)
   report.append('PASS mobile 390x844 '+page.name+' / images, no horizontal page overflow')
-  if page.stem==('advanced'if options.advanced else 'labs'):cdp.shot('preview-mobile.png')
+  if page.stem==('index'if options.editorial else 'hardware'if options.hardware else 'advanced'if options.advanced else 'labs'):cdp.shot('preview-mobile.png')
  # Inspect same page without script.
  cdp.call('Emulation.setScriptExecutionDisabled',{'value':True});cdp.call('Page.navigate',{'url':(ROOT/'lifecycle.html').as_uri()});time.sleep(.15)
  # Runtime.evaluate can inspect even when page scripts disabled.
@@ -123,12 +125,31 @@ try:
    assert not overflow,(name,overflow)
    if name in ('system-detail','clock-reset-detail'):cdp.shot('svg-'+name+'.png')
   report.append('PASS 8 advanced SVGs: no text outside their viewBox; topology is illustrative')
+ if options.hardware:
+  cdp.call('Page.navigate',{'url':(ROOT/'axi-crossbar.html').as_uri()});time.sleep(.15)
+  assert cdp.js('document.querySelectorAll("h2").length>=8 && document.querySelectorAll("details").length>=3')
+  report.append('PASS script-disabled crossbar retains explanations and quizzes')
+  cdp.call('Emulation.setScriptExecutionDisabled',{'value':False})
+  cdp.call('Page.navigate',{'url':(ROOT/'axi-crossbar.html').as_uri()});time.sleep(.15)
+  assert cdp.js('(()=>{const d=document.querySelector("details");d.querySelector("summary").click();return d.open})()')
+  assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
+  assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-full]").click();return f.querySelector("img").clientWidth>=f.querySelector("img").naturalWidth})()')
+  assert cdp.js('(()=>{const b=document.querySelector("[data-stepper]");const old=b.querySelector(".step-text").textContent;b.querySelector("button").click();return old!==b.querySelector(".step-text").textContent&&b.querySelectorAll(".active").length===1})()')
+  report.append('PASS hardware write-transaction stepper (teaching animation, not waveform)')
+  report.append('PASS hardware quiz and figure fit/full controls')
+  cdp.call('Emulation.setDeviceMetricsOverride',{'width':1280,'height':1000,'deviceScaleFactor':1,'mobile':False})
+  for svg in sorted((ROOT/'assets').glob('hw-*.svg')):
+   cdp.call('Page.navigate',{'url':svg.as_uri()});time.sleep(.1)
+   overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox();return b.x<0||b.x+b.width>v.width||b.y<0||b.y+b.height>v.height}).map(t=>t.textContent)})()')
+   assert not overflow,(svg.name,overflow)
+   if svg.stem in ('hw-xbar','hw-write','hw-adapters'):cdp.shot('svg-'+svg.stem+'.png')
+  report.append('PASS 10 hardware SVGs: text within viewBox (not topology validation)')
  errors=[e for e in cdp.events if e.get('method')=='Runtime.exceptionThrown']
  external=[e['params']['request']['url']for e in cdp.events if e.get('method')=='Network.requestWillBeSent'and e['params']['request']['url'].startswith(('http:','https:'))]
  assert not errors,errors
  assert not external,external
  report.append('PASS no JavaScript exceptions and no HTTP(S) page resource requests')
- (ROOT/'evidence'/('advanced-browser.txt'if options.advanced else 'browser.txt')).write_text(subprocess.check_output(['google-chrome','--version'],text=True).strip()+'; file:// offline preview; '+time.strftime('%Y-%m-%d')+'\n'+'\n'.join(report)+'\n')
+ (ROOT/'evidence'/('editorial-browser.txt'if options.editorial else 'hardware-browser.txt'if options.hardware else 'advanced-browser.txt'if options.advanced else 'browser.txt')).write_text(subprocess.check_output(['google-chrome','--version'],text=True).strip()+'; file:// offline preview; '+time.strftime('%Y-%m-%d')+'\n'+'\n'.join(report)+'\n')
  print('\n'.join(report))
 finally:
  p.terminate()
