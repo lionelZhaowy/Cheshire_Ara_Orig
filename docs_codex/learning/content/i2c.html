@@ -1,23 +1,26 @@
-<div class="goals"><strong>本章任务</strong><p>已经掌握寄存器与事件，本章把访问延伸到片外器件。I2C 控制器负责线路时序，EEPROM 协议决定地址和读写顺序；读完能解释一次 16 字节读取在哪一步停住，并与下一章的 SPI 事务比较。</p></div>
+<div class="goals"><strong>本章任务</strong><p>从线路、FIFO 和控制寄存器到器件读取。 前置：<a href="uart-gpio.html">18 · MMIO 驱动、UART 与 GPIO</a>、<a href="clocks.html">04 · 时钟系统与 PLL</a>。</p></div>
 <h2 id="lines">开漏线路与字节应答</h2>
 <p>I2C 使用 SCL 时钟线和 SDA 数据线。开漏输出只主动拉低，逻辑高由释放线路和上拉共同形成，因此输入值要看所有参与者的实际驱动。host 发起 START 并发送地址，target 在应答位给出 ACK；释放形成的 NAK 表示未应答。器件还可能拉低 SCL 延长等待，称为时钟拉伸。</p>
 <p><code>Cfg.I2c</code> 选择控制器及 0x03003000 窗口。SoC 引出 scl/sda 的值、输出使能与输入，平台负责三态、上拉和器件连接。VIP 有 24FC1025 EEPROM 模型，VCU118 当前没有启用 I2C 引脚宏；同一驱动在这两个环境中的可验证范围不同。</p>
-<h2 id="structure">从寄存器到命令状态机</h2>
+<h2 id="controller">控制器资源与访问契约</h2>
+<h3 id="structure">从寄存器到命令状态机</h3>
 <p>控制器的 host 命令排入格式 FIFO（FMT），接收字节进入 RX FIFO；target 模式另有采集请求的 ACQ 和回复数据的 TX FIFO。软件写 FDATA 是排入“下一步做什么”的命令，状态机随后产生 START、位时钟和 ACK 检测。这种解耦让软件不用逐个系统周期翻转 SCL。</p>
 <p>CTRL(+0x10) 的 bit0/bit1 启用 host/target；FDATA(+0x1c) 的低字节存数据或长度，START/STOP/READ/RCONT/NAKOK 分别在 bit8..12；RDATA(+0x18) 读取并弹出 host 接收字节。FIFO_CTRL/STATUS(+0x20/+0x24) 管复位和队列深度，TIMING0..4(+0x30..0x40) 则规定时序计数。</p>
-<p>初始化函数 i2c_24fc1025_init 禁用 host、复位四个 FIFO，用 core_hz 换算纳秒到周期，配置 Fast mode 的 2500 ns SCL 周期及 100/300 ns 上升/下降假设，再启用 host。硬件参数提供队列资源，运行时计数落实外部时序；真实板上的上拉、负载和器件条件还要满足这些假设。</p>
-<h2 id="transaction">EEPROM 地址如何变成总线事务</h2>
+
+<h3 id="register-contract">I2C 寄存器访问和错误退出契约</h3>
+<p>按本地 HJSON，CTRL 的 host/target/loopback 使能复位为 0；RDATA 是硬件更新的只读弹出窗口，FDATA 为写命令窗口，二者不能做普通 RW 回读测试。STATUS/FIFO_STATUS 由队列和状态机产生，FIFO_CTRL 的复位字段用于清队列；先停任务再复位，防止把旧数据和新任务拼接。寄存器均通过 Reg32 访问。</p>
+<p>一次读的驱动状态依次是空闲→排入地址命令→排入读命令→等待 RX→取满指定长度→检查错误。每阶段同时考虑截止时间与错误状态；命令排入成功不等于外部 ACK。NAK/超时后记录 FMT/RX 深度和当前阶段，确认线路释放再决定重新初始化。当前 HAL 的边界与等待缺口仍保留为独立修复任务。</p>
+<h3 id="init">初始化与频率换算</h3><p>初始化函数 i2c_24fc1025_init 禁用 host、复位四个 FIFO，用 core_hz 换算纳秒到周期，配置 Fast mode 的 2500 ns SCL 周期及 100/300 ns 上升/下降假设，再启用 host。硬件参数提供队列资源，运行时计数落实外部时序；真实板上的上拉、负载和器件条件还要满足这些假设。</p>
+<h2 id="device">EEPROM 软件操作与边界</h2>
+<h3 id="transaction">EEPROM 地址如何变成总线事务</h3>
 <p>硬件控制器不知道“EEPROM 内部第几个字节”，HAL（硬件抽象层）把这个要求翻译成器件协议，DIF（设备接口函数）再写控制器寄存器。当前读取顺序是 START → 写方向控制字 → 地址高字节 → 地址低字节并 STOP → 新 START → 读方向控制字 → 收 len 字节 → CPU 取 RX FIFO。此实现使用 STOP 后再 START，而非一律采用 repeated START。</p>
 <figure><img src="assets/new-serial.svg" alt="EEPROM先写器件地址再读数据；NOR保持片选发送命令和地址再收数据"><figcaption>两种只读事务的层次对照。CPU 寄存器地址、器件内部地址和 RAM 缓冲区地址分别属于不同空间。</figcaption></figure>
 <p>HAL 中 0xa0 是含读写方向位的线上控制字基值，和通常讨论的 7 位设备地址不是同一个数。block/chip 选择也进入控制字。调用 <code>i2c_24fc1025_read(&amp;dev, bytes, 0, 16)</code> 时，0 是 EEPROM 内部地址，bytes 指向目标 RAM；CPU 实际 MMIO 仍访问 0x03003000 附近。</p>
+<h3 id="limits">边界条件与 target 模式</h3>
+<p>本地 HAL 的未对齐首块长度直接取 FIFO_DEPTH−addr_offs，未与请求长度取 min，可能对短读越界；写分支的末字节 STOP 与递归 buf/addr 偏移也存在静态疑点，高地址 chip 编码需要模型核对。本次保留证据而不修改生产库，只读实验选择对齐的 16 字节范围。后续修复应覆盖短未对齐、跨 FIFO/页/块、NAK、写结束及写周期。</p>
+<p>SoC 自身作为 I2C target 时，要设置 TARGET_ID(+0x48)，复位并服务 ACQ/TX，启用 target，根据 ACQDATA(+0x4c) 收到的请求提供 TXDATA(+0x50)。这需要外部 host 模型；现有 EEPROM 是另一 target，无法替代该激励。恢复锁死线路时要明确谁在拉低、停住新任务并按器件协议恢复，单纯清中断不保证线路释放。</p>
 <h2 id="result">只读验证与错误定位</h2>
 <p>实验 D 的 EEPROM 分支使用现有 storage_read.c，固定 addr=0、len=16。默认 VIP 预填 0x9a，程序检查 16 个字节并把错误传入返回码。应同时观察 SCL/SDA 的 START、控制字、ACK、收数长度以及 UART <code>STORAGE stage=4 bytes=16 errors=0</code>。仅 API 返回 0 还未检验器件内容。</p>
 <p>无结果先查线路是否释放为高，再查设备地址与 ACK、FMT 是否执行、RX 深度是否增长。NAK、stretch timeout、host timeout 等进入 INTR_STATE/ENABLE/TEST（+0/+4/+8），对应 15 类内部源。HAL 在若干地址命令中允许 NAK，且 FIFO 等待缺统一 deadline，实验保留外层墙钟超时。具体命令与产物见<a href="labs.html#lab-d">实验 D</a>。</p>
-<h2 id="limits">边界条件与 target 模式</h2>
-<p>本地 HAL 的未对齐首块长度直接取 FIFO_DEPTH−addr_offs，未与请求长度取 min，可能对短读越界；写分支的末字节 STOP 与递归 buf/addr 偏移也存在静态疑点，高地址 chip 编码需要模型核对。本次保留证据而不修改生产库，只读实验选择对齐的 16 字节范围。后续修复应覆盖短未对齐、跨 FIFO/页/块、NAK、写结束及写周期。</p>
-<p>SoC 自身作为 I2C target 时，要设置 TARGET_ID(+0x48)，复位并服务 ACQ/TX，启用 target，根据 ACQDATA(+0x4c) 收到的请求提供 TXDATA(+0x50)。这需要外部 host 模型；现有 EEPROM 是另一 target，无法替代该激励。恢复锁死线路时要明确谁在拉低、停住新任务并按器件协议恢复，单纯清中断不保证线路释放。</p>
-<h2 id="register-contract">I2C 寄存器访问和错误退出契约</h2>
-<p>按本地 HJSON，CTRL 的 host/target/loopback 使能复位为 0；RDATA 是硬件更新的只读弹出窗口，FDATA 为写命令窗口，二者不能做普通 RW 回读测试。STATUS/FIFO_STATUS 由队列和状态机产生，FIFO_CTRL 的复位字段用于清队列；先停任务再复位，防止把旧数据和新任务拼接。寄存器均通过 Reg32 访问。</p>
-<p>一次读的驱动状态依次是空闲→排入地址命令→排入读命令→等待 RX→取满指定长度→检查错误。每阶段同时考虑截止时间与错误状态；命令排入成功不等于外部 ACK。NAK/超时后记录 FMT/RX 深度和当前阶段，确认线路释放再决定重新初始化。当前 HAL 的边界与等待缺口仍保留为独立修复任务。</p>
-<div class="source"><strong>本节依据</strong><p><a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/data/i2c.hjson">I2C 访问属性和复位字段</a></p></div>
-<div class="source"><strong>本章源码依据</strong><p><a href="../../sw/lib/hal/i2c_24fc1025.c">EEPROM 初始化及事务</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c">时序与格式命令</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv">FIFO 与状态机</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">模型与预填充</a></p></div><details class="quiz"><summary>SCL 一直为低，应首先改分频吗？</summary><p>先区分是 host 仍驱动、target 在拉伸，还是线路未释放；结合输出使能、实际输入与状态机位置判断，之后再检查时序参数。</p></details>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/data/i2c.hjson">I2C 访问属性和复位字段</a>；<a href="../../sw/lib/hal/i2c_24fc1025.c">EEPROM 初始化及事务</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c">时序与格式命令</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv">FIFO 与状态机</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">模型与预填充</a></p></div>
+<details class="quiz"><summary>SCL 一直为低，应首先改分频吗？</summary><p>先区分是 host 仍驱动、target 在拉伸，还是线路未释放；结合输出使能、实际输入与状态机位置判断，之后再检查时序参数。</p></details>

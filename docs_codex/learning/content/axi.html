@@ -1,0 +1,17 @@
+<div class="goals"><strong>本章任务</strong><p>沿真实握手语义理解一笔读写事务。 前置：<a href="address-map.html">07 · 地址空间与访问属性</a>。</p></div>
+<h2 id="handshake">五条通道与一次传输</h2>
+<p>AXI 是本工程的内存映射互连接口。读事务用 AR 传地址、R 传数据和状态；写事务用 AW 传地址、W 传数据、B 返回状态。每条通道有 VALID 和 READY：发送端准备好有效内容后置 VALID，接收端能接收时置 READY，二者在同一个时钟边沿为 1 才完成这一拍。接收端暂时拒收形成背压，发送端需保持 VALID 和对应内容，不能等到 READY 才首次提出 VALID。</p>
+<h3 id="burst">拍数、字节使能和事务标识</h3>
+<p>一笔请求可以包含多个数据拍，称为 burst。LEN 编码拍数减一，SIZE 编码每拍字节数的二进制对数；WSTRB 逐位指定有效写字节，LAST 标记最后一个数据拍。ID 标记事务身份，让同时在途的请求和返回能够关联；BRESP/RRESP 携带成功或错误状态。</p>
+<h3 id="write-lifecycle">写地址、写数据与响应分别完成</h3>
+<p>发送方可以先提出 W，也可以 AW 和 W 错开到达。AW 握手表示接受地址，W 最后一拍握手表示数据传完，B 握手才结束写响应。这个区别决定了何时能释放路由状态，也决定了设备报告任务完成前要等待哪些响应。</p>
+<figure><img src="assets/new-transaction.svg" alt="写地址保存路由，写数据按握手推进，最后等待写响应"><figcaption>写事务通道与路由流程图；具体握手见下面的 WaveDrom 教学时序。</figcaption></figure>
+<h3 id="timing">用 WaveDrom 检查背压</h3>
+<figure><img src="assets/depth-axi-backpressure.svg" alt="AXI 地址和两拍数据分别背压，最后响应被接收"><figcaption>教学时序，非仿真波形。两拍 W 分别成交，WLAST 只标记第二拍；B 等待接收时也保持 BID/RESP。 · <a href="assets/waves/axi-backpressure.json">WaveDrom 源文件</a></figcaption></figure>
+<p>按图逐拍检查：AW 等待时地址/ID 不变；第一拍 W 等到 WREADY 才推进；第二拍即使已经 LAST，也必须等自己的握手；BVALID 后若 BREADY 尚未开放，响应继续保持。一个验证器应同时检查稳定性、拍数、LAST、ID 和响应，不能只计 AW 次数。规范语义参照 <a href="OFFICIAL_SOURCES.md">Arm AMBA AXI 官方资料</a>，本地队列行为以源码为准。</p>
+<h2 id="read-write-evidence">从协议语义形成检查点</h2>
+<h3 id="read-lifecycle">读事务的接受与返回</h3>
+<p>AR 握手接受地址、长度、尺寸和 ID；目标随后通过 R 返回数据、RID、RRESP，并在最后一拍标 RLAST。RVALID 遇到 RREADY=0 时，数据和状态保持到成交。CPU cache 命中时不一定有出核 AR，必须先定位实际请求边界再计数。</p>
+<h3 id="transaction-error">在途量和错误响应</h3>
+<p>已接受但尚未返回的事务占用队列和路由状态；允许多个在途不等于允许任意顺序。错误响应也必须完成协议要求的拍数与关联，事务终止后软件仍须检查数据结果。Crossbar 怎样保存这些状态见<a href="interconnect.html#crossbar">Crossbar 事务状态</a>，设备怎样记录错误见<a href="dma.html#errors">总线错误诊断</a>。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Crossbar 与 Reg 桥</a>；<a href="../../hw/cheshire_pkg.sv">两级地址规则</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv">译码与分流</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv">来源 ID 与 W FIFO</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv">ID 跟踪</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">顺序及切分说明</a></p></div>

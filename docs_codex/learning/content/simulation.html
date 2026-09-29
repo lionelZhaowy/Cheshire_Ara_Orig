@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>已经知道 ELF 的形成和启动交接，本章把它落实成一次能判定结果的实验。先确定共同阶段，再选择模拟器入口；下一章将沿已经观察到的 UART 输出深入设备内部。</p></div>
+<div class="goals"><strong>本章任务</strong><p>按阶段检查输入、运行、数值和退出。 前置：<a href="build.html">14 · 工具链、链接与 ELF</a>、<a href="boot-debug.html">16 · JTAG 与程序加载调试</a>。</p></div>
 <h2 id="flow">一次运行所需的四类输入</h2>
 <p>仿真需要目标软件、硬件模型、主机加载器和外部环境。RISC-V GCC 生成应用 ELF；RTL 编译器处理模块和类型；展开器按 SelectedCfg 建立实例层级；主机 C++ 编译器生成 DPI 加载器。运行时再由 TB 提供复位、器件响应和程序加载。软件构建成功可以推进到后面阶段，不能跳过这些输入检查。</p>
 <p>教材先使用 UseDramSys=0 的 AXI 行为内存，不依赖额外 SystemC/DRAMSys 库。它适合检查地址和总线行为；真实 DDR 的 PHY、校准、刷新和板级时序属于另外的验证对象。当前默认 fixture 有 UART 接收、NOR 和 EEPROM 模型，也有未接出的外设观测点。</p>
@@ -40,7 +40,7 @@ python3 "$LEARN_REPO/docs_codex/learning/scripts/check_run.py" "$LEARN_SIM/vsim/
   timeout 300 ./simv +BOOTMODE=0 +PRELMODE=0 +BINARY="$LEARN_ELF" &gt; simulate.log 2&gt;&amp;1
 )
 python3 "$LEARN_REPO/docs_codex/learning/scripts/check_run.py" "$LEARN_SIM/vcs/simulate.log" --stage array</code></pre>
-<p>参数来自当前本地入口，目标 VCS 对它们的支持仍需实测。本组命令仅设置墙钟限制；需要统一目标周期 watchdog 时应由独立验证任务在 TB 中定义。当前环境探测及本轮实际执行范围见<a href="evidence.html#current">证据记录</a>，历史版本号不作为兼容性保证。</p>
+<p>参数来自当前本地入口，目标 VCS 对它们的支持仍需实测。本组命令仅设置墙钟限制；需要统一目标周期 watchdog 时应由独立验证任务在 TB 中定义。此前环境探测见<a href="evidence.html#current">2026-09-28 记录</a>；本次结构检查见<a href="evidence.html#structure">结构修订记录</a>，历史版本号不作为兼容性保证。</p>
 <h2 id="judgement">输出、退出与独立结果校验</h2>
 <p>贯穿例按独立公式逐个比较 <code>result[i] == 3*i+1</code>，同时计算总和。N=137 时总和为 28085，正常日志应含 <code>LEARN stage=1 Hello Cheshire!</code> 和 <code>LEARN sum=28085 errors=0</code>，并以 [JTAG] SUCCESS 结束。新例另报告初态检查；初态错误会进入同一个 errors 和返回码。</p>
 <p>注错构建翻转 result[5] 的低位，从 16 变为 17，预期总和 28086、errors=1、程序返回 1。检查器应拒绝该日志。这个对照验证了“数据差异 → 错误计数 → main 返回 → scratch2 → VIP → 主机检查器”的传播链。手工日志只能检验检查器规则，真正的运行证据需要目标日志。</p>
@@ -49,7 +49,8 @@ python3 "$LEARN_REPO/docs_codex/learning/scripts/check_run.py" "$LEARN_SIM/vcs/s
 <p>没有 UART 时，先确认装载完成并恢复执行，再用 PC 判断是否到 main。PC 落在 trap_vector 时读 mepc/mcause/mtval，按 dump 找出错指令；落在测频函数时看 RTC 是否推进；落在 UART 等待时看 LSR、除数和 TX。每一步都用实际观察缩小范围，而非一开始改多个模块。</p>
 <p>结果错误时先记录首个差异元素、地址和机器指令，再查共享数据路径；不结束时看是否已返回 main、scratch2 bit0 是否置位、是否有仍在等待的 MMIO。旧测频和 UART 驱动包含无界等待，保留主机 timeout 能避免工具无限运行。回传最小材料为 HEAD、profile/Cfg、ELF/map/dump、完整命令、首错上下文、PC/CSR 和最后进度；波形只截相关事务。</p>
 <h2 id="vector-trace">为向量实验建立最小动态证据链</h2>
-<p>目标仿真首先要保存实际展开的 profile/EnAra/NrLanes/VLEN、decoder 源清单和 ELF 哈希，再按符号地址定位 learn_vadd/learn_sum。波形观察依次取 CPU PC/scoreboard trans_id、acc_dispatcher req_valid/ready 与 insn、Ara resp_valid/exception、sequencer running、VLSU AR/R/AW/W/B 及 load_complete/store_complete。层次路径以本次展开为准，不复制另一配置的固定 dut 路径。</p>
+<p>目标仿真首先要保存实际展开的 profile/Cfg.Ara/Cfg.AraNrLanes/Cfg.AraVLEN、decoder 源清单和 ELF 哈希，再按符号地址定位 learn_vadd/learn_sum。波形观察依次取 CPU PC/scoreboard trans_id、acc_dispatcher req_valid/ready 与 insn、Ara resp_valid/exception、sequencer running、VLSU AR/R/AW/W/B 及 load_complete/store_complete。层次路径以本次展开为准，不复制另一配置的固定 dut 路径。</p>
 <p>一条教学 WaveDrom 只说明应该追踪什么关系，真实波形需保存 simulator 数据库及导出的时间区间、时钟尺度、信号层次与工具版本。把请求接受、应答、CPU 提交、内部完成和结果读取标在同一事务上。先确认选中了真实 Ara 路径，再用逐项参考及故障注入验证数据，最后才进入性能计时。</p>
 <p>超时先找最早未完成的握手：ROM 仍在 BIST/测频，调试未 halt，首条 V 非法，MMU 地址等待，还是 AXI 队列背压。保存首个错误 PC/CSR/地址/ID 和软件首错元素，通常比一张截断 UART 尾部截图更能定位原因。本轮仅制作教学波形，未生成新的生产 RTL 仿真数据库。</p>
-<div class="source"><strong>本章源码依据</strong><p><a href="../../target/sim/vsim/start.cheshire_soc.tcl">Questa 启动</a>；<a href="../../target/sim/vcs/start.cheshire_soc.sh">VCS 启动</a>；<a href="../../target/sim/src/tb_cheshire_soc.sv">plusargs 与结束</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">UART 与退出检查</a></p></div><details class="quiz"><summary>只换 BINARY，要重编译 RTL 吗？</summary><p>软件字节变化通常只需重新装载运行；profile、宏或生成输入变化要重编译，SelectedCfg 变化要重新展开。按变化发生的阶段处理。</p></details>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../target/sim/vsim/start.cheshire_soc.tcl">Questa 启动</a>；<a href="../../target/sim/vcs/start.cheshire_soc.sh">VCS 启动</a>；<a href="../../target/sim/src/tb_cheshire_soc.sv">plusargs 与结束</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">UART 与退出检查</a></p></div>
+<details class="quiz"><summary>只换 BINARY，要重编译 RTL 吗？</summary><p>软件字节变化通常只需重新装载运行；profile、宏或生成输入变化要重编译，SelectedCfg 变化要重新展开。按变化发生的阶段处理。</p></details>

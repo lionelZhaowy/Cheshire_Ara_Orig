@@ -1,0 +1,22 @@
+<div class="goals"><strong>本章任务</strong><p>把 ISA、CSR、访存与实现资源联系起来。 前置：<a href="architecture.html">01 · 整体架构与平台边界</a>。</p></div>
+<h2 id="isa">指令能力与 CPU profile</h2>
+<p>指令集架构（ISA）规定处理器能够识别哪些机器指令，以及指令对寄存器和存储的作用。RISC-V 通过扩展组合表达能力：RV64I 的整数寄存器为 64 位；M 增加乘除，A 增加原子操作，F/D 增加单/双精度浮点，C 提供压缩指令，V 提供向量指令。常见的 G 简写包含 IMAFD、Zicsr 和 Zifencei，后两者分别涉及控制状态寄存器访问和指令获取同步。</p>
+<p>profile 是编译时选入的 CPU 配置包。根 <code>cheshire.mk</code> 默认选择 <code>cv64a6_imafdchsclic_sv39_wb</code>，其 RVV=0；向量组合使用 <code>cv64a6_imafdcv_sv39</code>，其 RVV=1。两者还分别选择 16/32 KiB 与 4/8 KiB 的指令/数据缓存，数据缓存策略从写回（WB）变为写穿（WT）。选择 profile 是选择一组能力与实现资源。</p>
+<p>控制状态寄存器（CSR）是 CPU 内部管理执行状态的专用寄存器，以 CSR 指令访问。它与 MMIO 的设备地址不同。硬件有浮点或向量能力后，软件还要在 <code>mstatus</code> 的 FS/VS 字段中启用相应状态。这里先建立“硬件能力”和“运行许可”的区别，启动及向量章会解释操作顺序。</p>
+<h2 id="functional-units">功能模块怎样影响软件和系统接口</h2>
+<figure><img src="assets/mechanism-cva6.svg" alt="CVA6 取指译码发射到整数浮点访存和 Ara 接口，再经结果跟踪与提交，CSR翻译保护在旁协作"><figcaption>CVA6 功能层次教学图；表示职责与主要依赖，不是逐级流水电路图。依据本地 core/cva6.sv、issue_stage.sv、ex_stage.sv、commit_stage.sv。</figcaption></figure>
+<p>取指前端依据 PC 与预测取得指令，译码识别操作，发射检查操作数及执行资源，再把任务交给整数、浮点、访存或专用 Ara 接口。结果可以在不同时间返回；提交阶段按架构顺序确认可见更新，并与异常/中断控制协作。标量 load/store 经地址翻译与保护检查及数据缓存路径；Ara 的独立数据口见<a href="ara.html#vector-memory">向量访存章</a>。</p>
+<h3 id="csr-trap">CSR、异常和中断</h3>
+<p>对熟悉 MIPS 的读者，可以先把 CSR 理解成管理处理器状态的寄存器组，而不是外部总线上的设备。异常由当前指令引起，中断来自异步事件；两者都通过 trap 入口转交软件。mepc 保存返回位置，mcause 表达原因，mtval 提供相关信息，mtvec 指定入口。硬件记录原因并不替软件保存完整整数、浮点或向量上下文。</p>
+<h3 id="memory-protection">访存、MMU 与 PMP</h3>
+<p>MMU 把虚拟地址翻译成物理地址并检查页表权限；PMP 对物理区域实施访问保护；地址属性又决定区域是否可缓存、可执行或有设备副作用。这三个机制回答不同问题。本地向量 profile 有 MMU，裸机实验却没有建立页表；profile 原有 8 个 PMP 条目还被 SoC 默认 Cva6NrPMPEntries=0 覆盖。不能根据文件名含 sv39 就推断应用已启用虚拟存储或隔离。</p>
+<h3 id="compute-state">整数、FPU 与协处理器</h3>
+<p>整数指令推进地址计算与控制流；FPU 提供标量浮点，是否存在由 profile 能力决定，还受 FS 状态门控。Ara 通过专用接口接受向量指令并独立访存，VS 管理向量状态许可。当前 crt0 使用双精度浮点初始化，即使应用 C 没有浮点表达式，也不能随意关闭 F/D。</p>
+<h2 id="resource-consequences">CVA6 资源配置的结构影响</h2>
+<p>scoreboard（指令记分牌）保存已发射指令、依赖和结果就绪状态，帮助把异步返回结果关联到原指令；commit ports（提交端口）限制每周期能够确认的指令数量；load buffer（读请求缓冲）容纳尚未完成的读访问。写缓冲用于暂存待处理写，和保存缓存行的 Dcache 阵列是不同资源。</p>
+<p>取指侧 RAS（返回地址栈）预测函数返回目标，BTB（分支目标缓冲）预测跳转去向，BHT（分支历史表）帮助预测分支是否发生。预测错误会触发纠正并丢弃错误路径的推测工作；容量增加的实际收益仍取决于程序分支行为。</p>
+<table><tr><th>本地向量 profile 的资源</th><th>结构后果</th><th>软件与验证关注点</th></tr><tr><td>Icache 4096 B、Dcache 8192 B；DcacheType=WT</td><td>缓存阵列、行大小、缺失和写缓冲路径变化</td><td>工作集、访问属性和设备共享协议；WT 仍可能有旧读副本</td></tr><tr><td>NrScoreboardEntries=8，NrCommitPorts=2</td><td>未完成指令跟踪与提交接口尺寸</td><td>不代表任意程序每周期提交两条；停顿取决于依赖及功能单元</td></tr><tr><td>WtDcacheWbufDepth=8，NrLoadBufEntries=2</td><td>不同类型的在途存储资源</td><td>长背压时的排空、异常和顺序，不能把这些深度当 cache 容量</td></tr><tr><td>AxiIdWidth=4，系统输入默认 2 位</td><td>出核后通过 ID serialize 适配</td><td>同号事务、来源与返回关联不能截位处理</td></tr><tr><td>RVV=1，CvxifEn=0</td><td>本地 build_config 派生加速器路径</td><td>选择真实 first-pass decoder；专用接口不是任意扩展单元插槽</td></tr></table>
+<p>RAS/BTB/BHT 是返回地址和分支预测资源，本地 SoC 会再次覆盖其尺寸。缓存容量与流水队列、分支表是不同资源；调整后先看有效配置和展开端口，再看执行与性能。完整字段见<a href="../configuration/README.md">CVA6 配置参考</a>；配置传递和约束集中在<a href="configuration.html#fields">配置字段与消费者</a>。</p>
+<p class="source">本节依据：<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv">向量 profile 的资源原值</a>。</p><p class="source">本节依据：<a href="../../hw/cheshire_pkg.sv">gen_cva6_cfg 的平台覆盖</a>。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../cheshire.mk">默认选源</a>；<a href="../../target/sim/src/tb_cheshire_pkg.sv">四种 TB 配置</a>；<a href="../../hw/cheshire_pkg.sv">配置及覆盖函数</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv">CPU 派生配置</a>；<a href="../../hw/cheshire_soc.sv">实例消费者</a></p></div>
+<details class="quiz"><summary>提交端口有两个，为什么缓存缺失时仍可能没有指令提交？</summary><p>端口数是吞吐上限；较早指令未就绪、依赖或异常处理可能阻止提交。增加端口不会消除访存延迟和顺序约束。</p></details>

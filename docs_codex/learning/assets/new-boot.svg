@@ -8,15 +8,15 @@
 <text x="255.0" y="211.5" class="box" text-anchor="middle">取得入口与装载段</text>
 <rect x="585" y="150" width="440" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
 <text x="805.0" y="185.5" class="box" text-anchor="middle">复位 PC → Boot ROM</text>
-<text x="805.0" y="211.5" class="box" text-anchor="middle">建立栈、BIST、配置全 SPM</text>
+<text x="805.0" y="211.5" class="box" text-anchor="middle">BIST → 写 SPM 配置</text>
 <path d="M255,235 L255,275" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M805,235 L805,275" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="35" y="275" width="440" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
 <text x="255.0" y="310.5" class="box" text-anchor="middle">运行 TB 与 JTAG VIP</text>
-<text x="255.0" y="336.5" class="box" text-anchor="middle">等待 LLC 全 SPM 标志</text>
+<text x="255.0" y="336.5" class="box" text-anchor="middle">检查 CFG_SPM_LOW.bit0</text>
 <rect x="585" y="275" width="440" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
 <text x="805.0" y="310.5" class="box" text-anchor="middle">处理器进入调试暂停</text>
-<text x="805.0" y="336.5" class="box" text-anchor="middle">SPM 已可访问</text>
+<text x="805.0" y="336.5" class="box" text-anchor="middle">PC / sp 与栈范围须独立核对</text>
 <path d="M255,360 L255,400" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M805,360 L805,400" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="35" y="400" width="440" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
@@ -36,4 +36,4 @@
 <path d="M585,193 L475,318" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M475,443 L585,443" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
 <path d="M585,568 L475,568" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="32" y="665" class="small" text-anchor="start">Serial Link 被动启动另用 scratch0/1 传入口、scratch2 掩码 2 触发；不等同 JTAG 设置 DPC。</text></svg>
+<text x="32" y="665" class="small" text-anchor="start">VIP 无显式等待扩栈或 ROM C 的条件；应用继承栈须独立核对 PC / sp。</text></svg>

@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Lightweight offline documentation checks (not browser or RTL verification)."""
+import sys
+sys.dont_write_bytecode=True
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import xml.etree.ElementTree as ET
 import re,subprocess,unicodedata
 from html import unescape
-from build_site import PAGES
+from build_site import PAGES,ENTRIES,PARTS
 ROOT=Path(__file__).resolve().parent.parent
 class Page(HTMLParser):
     def __init__(self,s):
@@ -47,11 +49,18 @@ for slug,title,_ in PAGES:
     if re.findall(r'<h1>(.*?)</h1>',html)!=[title]:errors.append(f'H1 mismatch: {slug}')
     if re.findall(r'<title>(.*?)</title>',html)!=[title+' | Cheshire 实验课堂']:errors.append(f'title mismatch: {slug}')
     sidebar=re.search(r'<nav aria-label="章节">(.*?)</nav>',html,re.S)[1]
-    names=[(a,unescape(b)) for a,b in re.findall(r'<a href="([^"]+)"[^>]*>(.*?)</a>',sidebar)]
+    names=[(a,unescape(b)) for a,b in re.findall(r'<a class="chapter-link" href="([^"]+)"[^>]*>(.*?)</a>',sidebar)]
     if names!=[(x+'.html',y) for x,y,_ in PAGES]:errors.append(f'sidebar mismatch: {slug}')
-    h2=re.findall(r'<h2 id="([^"]+)">(.*?)</h2>',html)
+    hs=re.findall(r'<h([23]) id="([^"]+)">(.*?)</h\1>',html)
     toc=re.search(r'<nav class="toc"[^>]*>(.*?)</nav>',html,re.S)[1]
-    if re.findall(r'<a href="#([^"]+)">(.*?)</a>',toc)!=[(a,re.sub('<[^>]+>','',b)) for a,b in h2]:errors.append(f'TOC mismatch: {slug}')
+    if re.findall(r'<a href="#([^"]+)">(.*?)</a>',toc)!=[(a,re.sub('<[^>]+>','',b)) for _,a,b in hs]:errors.append(f'TOC mismatch: {slug}')
+    entry=next(x for x in ENTRIES if x['slug']==slug)
+    opened=re.findall(r'<details class="nav-part" data-part="([^"]+)" open>',sidebar)
+    if opened!=([entry['part']] if entry.get('part') else []):errors.append(f'current part expansion: {slug}')
+    if sidebar.count('aria-current="page"')!=1:errors.append(f'current chapter mark: {slug}')
+    if sidebar.count('data-part=')!=len(PARTS):errors.append(f'part count: {slug}')
+    crumb=re.search(r'<nav aria-label="面包屑">(.*?)</nav>',html,re.S)[1]
+    if entry.get('part') and '#part-'+entry['part'] not in crumb:errors.append(f'breadcrumb: {slug}')
     i=[x[0] for x in PAGES].index(slug)
     adjacent=re.search(r'<nav class="nextprev"[^>]*>(.*?)</nav>',html,re.S)[1]
     if i and f'<a href="{PAGES[i-1][0]}.html">← {PAGES[i-1][1]}</a>' not in adjacent:errors.append(f'previous mismatch: {slug}')

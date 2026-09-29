@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-29",
+  "scope": "Targeted local source review for structure revision; not upstream verification or dynamic testing.",
+  "head": "69fabdd227e225bf9f5f0b9ec5fe9d056999fea6",
+  "files": {
+    "hw/cheshire_pkg.sv": {
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+      "symbols": [
+        "cheshire_cfg_t",
+        "gen_cva6_cfg",
+        "DefaultCfg"
+      ]
+    },
+    "hw/cheshire_soc.sv": {
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+      "symbols": [
+        "NumIntHarts",
+        "gen_ara",
+        "AraDataWideWidth",
+        "Ara single-core assertion"
+      ]
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv": {
+      "sha256": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba",
+      "symbols": [
+        "cva6_cfg"
+      ]
+    },
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv": {
+      "sha256": "5e35d557f5b213242cc2508cb70f50b1b88200c90762d9f63248cb6814a1643e",
+      "symbols": [
+        "NrLanes/VLEN assertions"
+      ]
+    },
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara_pkg.sv": {
+      "sha256": "1db38551089ae654f7c0e20410ad05fc39a73a135d7d6d4344d7581ef14cff3d",
+      "symbols": [
+        "MaxNrLanes"
+      ]
+    },
+    "target/sim/src/tb_cheshire_pkg.sv": {
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab",
+      "symbols": [
+        "gen_cheshire_ara_cfg"
+      ]
+    },
+    "target/sim/src/vip_cheshire_soc.sv": {
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+      "symbols": [
+        "jtag_elf_halt_load",
+        "jtag_elf_run"
+      ]
+    },
+    "hw/bootrom/cheshire_bootrom.S": {
+      "sha256": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+      "symbols": [
+        "_wait_llc_bist",
+        "CFG_COMMIT and stack expansion"
+      ]
+    },
+    "sw/lib/dif/uart.c": {
+      "sha256": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2",
+      "symbols": [
+        "uart_init",
+        "uart_write",
+        "__uart_write_ready"
+      ]
+    }
+  }
+}

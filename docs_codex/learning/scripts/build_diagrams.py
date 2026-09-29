@@ -71,13 +71,13 @@ def main():
  d.note(510,'链接成功说明对象和布局可组成程序文件；处理器是否正确执行，需要随后装载与运行。');d.save()
  d=Diagram('boot','两条时间线在调试装载处汇合','主机工具和目标 CPU 并行推进；箭头表示关键依赖。',690)
  d.text(40,120,'主机：构建器 / 模拟器 / VIP','title');d.text(590,120,'目标：ROM / 应用','title')
- left=[('构建 ELF','取得入口与装载段'),('运行 TB 与 JTAG VIP','等待 LLC 全 SPM 标志'),('halt → SBA 写段','设置 DPC = ELF entry → resume'),('采样 UART / 读退出状态','检查数据与结束码')]
- right=[('复位 PC → Boot ROM','建立栈、BIST、配置全 SPM'),('处理器进入调试暂停','SPM 已可访问'),('应用入口 crt0','gp / BSS / FS → main'),('main 返回 → scratch2','(code << 1) | 1；crt0 执行 ret')]
+ left=[('构建 ELF','取得入口与装载段'),('运行 TB 与 JTAG VIP','检查 CFG_SPM_LOW.bit0'),('halt → SBA 写段','设置 DPC = ELF entry → resume'),('采样 UART / 读退出状态','检查数据与结束码')]
+ right=[('复位 PC → Boot ROM','BIST → 写 SPM 配置'),('处理器进入调试暂停','PC / sp 与栈范围须独立核对'),('应用入口 crt0','gp / BSS / FS → main'),('main 返回 → scratch2','(code << 1) | 1；crt0 执行 ret')]
  for i,((a,b),(c,f)) in enumerate(zip(left,right)):
   y=150+i*125;d.box(35,y,440,85,a,b);d.box(585,y,440,85,c,f)
   if i<3:d.arrow(255,y+85,255,y+125);d.arrow(805,y+85,805,y+125)
  d.arrow(585,193,475,318);d.arrow(475,443,585,443);d.arrow(585,568,475,568)
- d.note(665,'Serial Link 被动启动另用 scratch0/1 传入口、scratch2 掩码 2 触发；不等同 JTAG 设置 DPC。');d.save()
+ d.note(665,'VIP 无显式等待扩栈或 ROM C 的条件；应用继承栈须独立核对 PC / sp。');d.save()
  d=Diagram('device','一条寄存器指令怎样成为器件动作','把访问地址、寄存器语义、硬件状态和外部观测连起来。')
  for i,(a,b) in enumerate([('CPU load/store','volatile + 正确访问宽度'),('AXI → Reg / APB','译码、lane、握手'),('寄存器 / FIFO','配置、状态、读写副作用'),('状态机 / 引脚','UART 帧、GPIO 电平')]):
   x=30+i*260;d.box(x,140,230,105,a,b)

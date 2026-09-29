@@ -1,0 +1,14 @@
+<div class="goals"><strong>本章任务</strong><p>分别核对路由窗口、实际容量和 CPU 属性。 前置：<a href="architecture.html">01 · 整体架构与平台边界</a>、<a href="configuration.html">03 · Cheshire、CVA6、Ara 与软件配置</a>。</p></div>
+<h2 id="spaces">三种“地址正确”需要分别核对</h2>
+<h3 id="routing">路由、物理存储和 CPU 属性</h3>
+<p>一个 CPU 指针首先对应软件约定；地址译码决定事务发到哪里；目标设备才决定该偏移有什么作用。路由覆盖 2 GiB 不表示安装了 2 GiB DDR，CPU 将一段地址标为可执行也不会在那里创造 RAM。对每段地址同时记录窗口、实际资源、访问宽度、缓存属性、执行许可与软件用途。</p>
+<h3 id="allocation">扩展 IP 的地址分配</h3>
+<p>新设备先选无重叠窗口，再核对 AXI 与 Reg 两层规则、软件链接符号、CPU 属性及故障响应。参数生成的内部索引可以压紧，物理地址未必变化；因此不能拿端口下标计算软件基址。具体路由实现见<a href="interconnect.html#decode">Crossbar 译码</a>。</p>
+<h2 id="address-map">默认地址范围、真实容量与访问属性</h2>
+<p>下表按当前 gen_axi_out/gen_reg_out 计算，区间均为 [起点,终点)。关闭设备会移除其规则；外部扩展由有效 Cfg 添加。官方架构图的一些范围表示预留空间，本地代码只映射实际计算出的窗口。例如默认 SPM 是 128 KiB，不能照抄历史图中的 64 MiB 预留值作为容量。</p>
+<figure><img src="assets/depth-address-map.svg" alt="Debug、DMA、Reg、SPM 双别名、主存和 Link 的分段地址图"><figcaption>范围不按比例；主存和 Link 的路由跨度不是已安装存储容量。</figcaption></figure>
+<h3 id="windows">AXI 与 Reg 的实际默认窗口</h3>
+<table><tr><th>对象</th><th>区间（十六进制）</th><th>实际解释</th></tr><tr><td>Debug / DMA ctrl</td><td>00000000–00040000 / 01000000–01001000</td><td>256 KiB 调试目标；4 KiB 控制窗口</td></tr><tr><td>Reg 总窗口</td><td>02000000–0c000000</td><td>160 MiB 路由空间，内部有未映射洞</td></tr><tr><td>ROM / CLINT</td><td>02000000–02040000 / 02040000–02080000</td><td>各 256 KiB 窗口；ROM 镜像实际长度另查</td></tr><tr><td>Router / AXI RT（可选）</td><td>02080000–020c0000 / 020c0000–02100000</td><td>各 256 KiB 预留路由，寄存器只占其中一部分</td></tr><tr><td>SoC、LLC、UART、I2C、SPI、GPIO、Link、VGA、USB</td><td>03000000 + n×1000，n=0…8</td><td>每项 4 KiB；内寄存器偏移见各章及索引</td></tr><tr><td>BusErr</td><td>03009000 + j×40，长度 40</td><td>单核默认 3 单元，共 0xc0 字节；不能按整个 4 KiB 推出寄存器均存在</td></tr><tr><td>PLIC</td><td>04000000–08000000</td><td>64 MiB 窗口；source/context 尺寸另定</td></tr><tr><td>CLIC（可选）</td><td>08000000 + hart×40000，长度 40000</td><td>每核 256 KiB</td></tr><tr><td>SPM 低 / 高</td><td>10000000–10020000 / 14000000–14020000</td><td>同一 128 KiB 阵列的两个别名</td></tr><tr><td>LLC 下游 / Link</td><td>80000000–100000000 / 100000000–200000000</td><td>2 GiB / 4 GiB 路由窗口，平台决定容量与有效远端</td></tr></table>
+<h3 id="attributes">缓存、执行和非幂等属性</h3>
+<p>CPU 的 cached、executable、non-idempotent 属性是另一组规则，不等于 Crossbar 译码。本地低 SPM 和主存可缓存；高 SPM 用作非缓存数据别名。当前执行属性把低 SPM 从起点覆盖 2×SizeSpm，即默认到 0x10040000，超过实际低窗口，且不包含高别名；多出的属性范围不会创造 RAM。调试/ROM/主存另有执行规则，设备空间按非幂等处理。生成地址、PMA 属性、链接脚本三者应逐项对照。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Crossbar 与 Reg 桥</a>；<a href="../../hw/cheshire_pkg.sv">两级地址规则</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv">译码与分流</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv">来源 ID 与 W FIFO</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv">ID 跟踪</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">顺序及切分说明</a></p></div>

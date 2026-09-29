@@ -1,14 +1,14 @@
 {
   "signal": [
     {
-      "name": "ROM init",
+      "name": "ROM fragment",
       "wave": "3...x.........",
       "data": [
-        "BIST / SPM / stack"
+        "BIST / write SPM config"
       ]
     },
     {
-      "name": "SPM ready",
+      "name": "CFG_SPM_LOW.bit0",
       "wave": "0...1........."
     },
     {
@@ -50,7 +50,7 @@
     "tick": 0
   },
   "foot": {
-    "text": "依据：bootrom.S / JTAG VIP；加载与恢复须等待前置状态，图不是实测波形"
+    "text": "教学示意，非实测：VIP 检查配置位，不等待 ROM C / 测频；halt 后独立核对 sp"
   },
   "config": {
     "hscale": 2

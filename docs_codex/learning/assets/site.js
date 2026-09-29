@@ -46,11 +46,19 @@ if(regSearch){
   }
   regSearch.addEventListener('input',filterRegisters);filterRegisters();
 }
-const selected=document.querySelector('.sidebar nav [aria-current="page"]');
-if(selected && matchMedia('(min-width:901px)').matches){
+// Old fragment URLs keep their exact semantic destination, including on retained pages.
+const movedElement=document.querySelector('#moved-anchors');
+function followMovedAnchor(){
+  if(!movedElement)return;
+  let key;try{key=decodeURIComponent(location.hash.slice(1));}catch(_){return;}
+  const target=JSON.parse(movedElement.textContent)[key];
+  if(target)location.replace(target);
+}
+followMovedAnchor();window.addEventListener('hashchange',followMovedAnchor);
+const menu=document.querySelector('.site-menu');
+if(menu&&matchMedia('(max-width:720px)').matches)menu.open=false;
+const selected=document.querySelector('.sidebar .chapter-link[aria-current="page"]');
+if(selected&&matchMedia('(min-width:901px)').matches){
   const sidebar=document.querySelector('.sidebar');
   sidebar.scrollTop=Math.max(0,selected.offsetTop-sidebar.clientHeight/2);
-} else if(selected){
-  const nav=document.querySelector('.sidebar nav');
-  nav.scrollTop+=selected.getBoundingClientRect().top-nav.getBoundingClientRect().top-nav.clientHeight/2;
 }

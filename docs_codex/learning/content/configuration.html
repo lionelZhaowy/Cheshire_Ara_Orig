@@ -1,29 +1,35 @@
-<div class="goals"><strong>本章任务</strong><p>上一章分清了模块职责；本章把“选哪种硬件”落实到源码、参数和展开结果。读完能解释向量组合的共同前提，并推导新增端口带来的尺寸变化，为下一章追踪事务做好准备。</p></div>
-<h2 id="isa">指令能力与 CPU profile</h2>
-<p>指令集架构（ISA）规定处理器能够识别哪些机器指令，以及指令对寄存器和存储的作用。RISC-V 通过扩展组合表达能力：RV64I 的整数寄存器为 64 位；M 增加乘除，A 增加原子操作，F/D 增加单/双精度浮点，C 提供压缩指令，V 提供向量指令。常见的 G 简写包含 IMAFD、Zicsr 和 Zifencei，后两者分别涉及控制状态寄存器访问和指令获取同步。</p>
-<p>profile 是编译时选入的 CPU 配置包。根 <code>cheshire.mk</code> 默认选择 <code>cv64a6_imafdchsclic_sv39_wb</code>，其 RVV=0；向量组合使用 <code>cv64a6_imafdcv_sv39</code>，其 RVV=1。两者还分别选择 16/32 KiB 与 4/8 KiB 的指令/数据缓存，数据缓存策略从写回（WB）变为写穿（WT）。选择 profile 是选择一组能力与实现资源。</p>
-<p>控制状态寄存器（CSR）是 CPU 内部管理执行状态的专用寄存器，以 CSR 指令访问。它与 MMIO 的设备地址不同。硬件有浮点或向量能力后，软件还要在 <code>mstatus</code> 的 FS/VS 字段中启用相应状态。这里先建立“硬件能力”和“运行许可”的区别，启动及向量章会解释操作顺序。</p>
-<h2 id="elaboration">从常量配置到硬件实例</h2>
+<div class="goals"><strong>本章任务</strong><p>按真实字段及消费者建立自洽组合。 前置：<a href="cva6.html">02 · CVA6 功能与 RISC-V 系统基础</a>。</p></div>
+<h2 id="inputs">配置入口与生效阶段</h2>
+<h3 id="elaboration">从常量配置到硬件实例</h3>
 <p><code>cheshire_cfg_t</code> 是打包的配置结构，<code>DefaultCfg</code> 提供起点。平台函数复制它并修改字段，再以 parameter 传入 SoC。编译器读取包、类型和模块定义；展开器确定参数、计算常量函数、展开 generate 分支和实例数组；综合器随后优化逻辑并映射实现单元。软件写寄存器时，这些实例和位宽已经确定。</p>
 <figure><img src="assets/new-configuration.svg" alt="profile 与 SoC 配置经覆盖和派生生成 CPU、Ara 和互连，软件配置另行匹配"><figcaption>箭头表示实际消费者关系；运行时寄存器使用已展开的资源。</figcaption></figure>
 <p>CPU 实际配置经历 <code>profile::cva6_cfg → gen_cva6_cfg(Cfg) → build_config → cva6</code>。第一步给出原值，第二步覆盖地址属性、总线、PMP 和 CLIC 等平台字段，第三步派生内部能力，例如由 RVV 得到 EnableAccelerator。SoC 默认把 PMP 条目数覆盖为 0，且设置 CvxifEn=0；本地 Ara 组合采用专用加速器及地址翻译协作接口。</p>
 <p><code>generate if</code> 选择实例，<code>generate for</code> 复制实例；普通 <code>always_comb</code> 中的地址判断则在运行中对每笔请求求值。<code>parameter type</code> 携带请求结构类型，其地址、数据、ID 和字节使能宽度必须与数值参数匹配。<code>$clog2(N)</code> 用于来源编码，单端口时还需留意防零宽的辅助函数。</p>
-<h2 id="ara">落实一个自洽的向量组合</h2>
+<h3 id="ara">落实一个自洽的向量组合</h3>
 <p>当前 TB 的 <code>SelectedCfg=3</code> 从四项数组中选取 <code>gen_cheshire_ara_cfg()</code>：在默认值上设置 Ara=1、AraNrLanes=2、AraVLEN=2048。它在展开阶段生效，CPU profile 早在编译时已经选定。因此真实向量 decoder、向量 profile 和 SoC Ara 实例必须在同一组输入中匹配。</p>
 <p>lane 数决定向量寄存器分片和执行并行规模；Ara VLEN 是每个架构向量寄存器的位数。32 个寄存器在 VLEN=2048 时共保存 8 KiB 有效数据。CPU profile 中同名 VLEN=64 表示地址容器宽度。当前 Ara 本地 AXI 数据宽度为 <code>32×AraNrLanes</code>，增加 lane 会影响位宽转换及存储压力。</p>
 <table><tr><th>配置位置</th><th>本地取值与落实方式</th></tr><tr><td>RTL 源码清单</td><td>唯一 cv64a6_imafdcv_sv39 profile；选择真实 first-pass decoder，排除 stub</td></tr><tr><td>SoC 展开</td><td>TB SelectedCfg=3，单核、Ara 2 lanes / VLEN 2048</td></tr><tr><td>FPGA wrapper</td><td>读取 ARA/NR_LANES/VLEN 宏；TB 函数则直接写定 2/2048</td></tr><tr><td>软件</td><td>选择匹配 ISA、调用约定和存储布局；第一条向量指令前设置 VS，浮点还需 FS</td></tr></table>
-<p>现有 FPGA 加源脚本已选向量 profile；现有两套旧仿真清单仍是标量 profile 且包含 decoder stub 与真实实现。教材在独立目录导出自洽清单，第 07 章给出入口。常用标量组合是 DefaultCfg、Ara=0 和标量 profile；RT 与 CLIC 分别有 SelectedCfg=1/2，它们只覆盖各自字段。</p>
-<h2 id="topology">端口、规则与 ID 的全局依赖</h2>
+<p>现有 FPGA 加源脚本已选向量 profile；现有两套旧仿真清单仍是标量 profile 且包含 decoder stub 与真实实现。教材在独立目录导出自洽清单，<a href="simulation.html">第 17 章</a>给出入口。常用标量组合是 DefaultCfg、Ara=0 和标量 profile；RT 与 CLIC 分别有 SelectedCfg=1/2，它们只覆盖各自字段。</p>
+<h2 id="fields">按字段、消费者和约束核对配置</h2>
+<h3 id="soc-fields">SoC 与 Ara 实例参数</h3>
+<table><tr><th>真实入口 / 来源</th><th>约束依据与本地取值</th><th>结构与软件后果</th></tr><tr><td>Cfg.Ara / cheshire_cfg_t</td><td>bit，0/1；gen_cheshire_ara_cfg 置 1</td><td>实例化 Ara 并增加 AXI 发起端；CPU RVV、宏和 decoder 要配套</td></tr><tr><td>Cfg.NumCores</td><td>SoC 断言：Ara 开启时不允许大于 1</td><td>不能把单核向量接口直接复制为多核共享接口</td></tr><tr><td>Cfg.AraNrLanes</td><td>Ara 顶层要求非零、2 的幂、≤MaxNrLanes=16；当前 2</td><td>VRF/计算分片及本地 AXI 宽度 32×lane 数变化</td></tr><tr><td>Cfg.AraVLEN</td><td>非零、2 的幂且≥ELEN；当前 2048，ELEN=64</td><td>改变每个向量寄存器容量；软件按实际 vl 分块</td></tr><tr><td>Cfg.LlcOutConnect / LlcNotBypass</td><td>当前 1/1；1/0 旁路；0/0 关闭；避免 0/1</td><td>SPM 是否存在和 ROM/栈契约一起变化，详见存储章</td></tr><tr><td>Cfg.Cva6NrPMPEntries</td><td>当前默认 0，覆盖 profile 原值</td><td>不能宣称已有 PMP 区域隔离；新增保护需重新配置和验证</td></tr></table>
+<p>Ara 顶层断言是必要条件，不是所有参数组合均已通过的证明。lane 内 bank、队列和 SoC 位宽消费者还需展开验证。当前 2/2048 是本地选值；允许范围与已验证组合必须分别记录。</p>
+<h3 id="profile-software-fields">CPU 选源与软件选项</h3>
+<table><tr><th>入口</th><th>谁消费、何时生效</th><th>需要同时检查</th></tr><tr><td>CPU profile::cva6_cfg.RVV / RVF / RVD / DcacheType</td><td>源文件选入后由 gen_cva6_cfg 覆盖、build_config 派生</td><td>只选一份 profile；比较最终有效值，不能只看上游原值</td></tr><tr><td>TB SelectedCfg=0/1/2/3</td><td>tb_cheshire_pkg 的四项配置，展开时选择</td><td>依次为默认/AXI RT/CLIC/Ara；不会重新选择 CPU 文件</td></tr><tr><td>FPGA ARA / NR_LANES / VLEN</td><td>预处理宏，由 wrapper 赋入 SoC 字段</td><td>与 TB 的直接赋值属于不同入口，名称不可混用</td></tr><tr><td>-march / -mabi / linker script</td><td>编译器与链接器</td><td>指令能力、调用约定、地址布局；运行时还需 VS/FS 和存储就绪</td></tr></table>
+<p class="source">本节依据：<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">参数断言</a>。</p><p class="source">本节依据：<a href="../../hw/cheshire_soc.sv">gen_ara、AraDataWideWidth、单核断言</a>。</p>
+<h2 id="consequences">跨模块的结构影响</h2>
+<h3 id="topology">端口、规则与 ID 的全局依赖</h3>
 <p>地址规则说明一个地址区间通向哪个目标；端口是实际请求/响应接口。多个窗口可以通向同一端口，例如两个 SPM 别名都通向 LLC 阵列。<code>gen_axi_in</code> 按启用设备分配发起者序号，<code>gen_axi_out</code> 生成 AXI 目标和窗口，<code>gen_reg_out</code> 生成寄存器目标和窗口。它们是展开时计算结构的常量函数。</p>
 <p>默认单核且保留各设备时，发起者依次为 CPU、Debug、DMA、Link、VGA、USB，共 6 个。打开 Ara 后把 Ara 放在序号 2，其余后移，总数变为 7。输入 ID 为 2 位时，Crossbar 在目标侧附加来源位，6 或 7 个来源都需要 3 位，故目标侧 ID 为 5 位；再增加两个外部发起者变为 9 个，才需要 6 位。这是路由标识的尺寸推导。</p>
 <p>关闭寄存器设备会删除它的实例和地址规则，并压紧后续内部端口索引；其他设备的固定地址通常保持。例如 UART 关闭后 I2C 的内部 Reg 索引从 7 变为 6，地址仍为 0x03003000。软件地址和中断号应各自核对，不能从紧凑端口索引推算。</p>
-<h2 id="platform">生成尺寸与平台条件</h2>
+<h3 id="platform">生成尺寸与平台条件</h3>
 <p>部分模块来自生成工具，当前 PLIC 为 58 个源、2 个 context，CLINT 为 1 个核，AXI RT 为 6 个 manager、每个 2 个 region。SoC 字段变化需要同步生成尺寸、软件头和实例消费者。Ara 与多核组合在当前顶层还有明确约束，应以实际展开检查为准。</p>
 <p>平台再决定时钟、复位、引脚及存储连接。<code>USE_I2C</code> 等板级宏和 <code>Cfg.I2c</code> 处于不同层，缺少引脚宏可能只是不接引脚。外设专属 FIFO、同步级数和时序参数将在各设备章随操作解释；总配置章只保留跨模块依赖。</p>
 <p>配置修改应留下四项结果：选入的源码与宏、覆盖后的有效参数、实际展开层级及接口位宽、正常/错误事务验证。源码阅读时可以由三个常量函数手算端口变化；参数全集按需查<a href="../configuration/README.md">配置参考</a>。</p>
-<h2 id="combinations">把三个配置入口放在同一张验收表</h2>
+<h2 id="combinations">配置组合与验证条件</h2>
 <p>第一入口是 SoC 的 Cfg，它决定实例、端口和地址；第二入口是源文件选择及 CVA6 profile，它决定译码、缓存和处理器能力；第三入口是软件 ISA/ABI、启动状态与链接布局。它们在不同阶段生效，不会因名字相似而自动联动。表中“候选合法”只说明约束能配对，动态结果仍要单独记录。</p>
-<table><tr><th>用途</th><th>SoC / CPU / 软件组合</th><th>验收与边界</th></tr><tr><td>标量 SPM 起步</td><td>当前标量 profile，EnAra=0；rv64gc_zifencei/lp64d；spm.ld</td><td>FS 与实际指令匹配；核实 ROM 建立 SPM/栈。本轮只构建独立教材 ELF</td></tr><tr><td>RVV 整数数组</td><td>cv64a6_imafdcv_sv39；EnAra=1、2 lanes、VLEN=2048；仅内核加 V，lp64d</td><td>定义 ARA、使用真实 first-pass decoder 并排除 stub；VS 必须开启；验证 req/resp 与逐项结果</td></tr><tr><td>RVV 浮点</td><td>上述组合，加 VS/FS；本地 Ara 默认 HalfSingleDouble</td><td>ISA 中有 F/D/V 不表示所有浮点组合已验收；本轮 FP32 intrinsic 只做编译探针</td></tr><tr><td>外部 DRAM 程序</td><td>LLC 下游连接、有效平台内存；dram.ld 把应用放在 0x80000000</td><td>当前链接区 8 MiB 不是 DDR 容量声明；控制器初始化和模型容量另查</td></tr><tr><td>AXI RT / CLIC / Router</td><td>可选 SoC 分支 + CPU 能力 + 生成尺寸</td><td>Ara 增加发起者会使旧 6-manager RT 表失配；CLIC 需对应 CPU/启动代码</td></tr><tr><td>ASIC 固定基线</td><td>建议冻结上述向量组合和静态清单，换平台 wrapper</td><td>尚未提取；PLL/PAD/SRAM/DDR/DFT 都有外部约束，不能只改 target 宏</td></tr></table>
+<table><tr><th>用途</th><th>SoC / CPU / 软件组合</th><th>验收与边界</th></tr><tr><td>标量 SPM 起步</td><td>当前标量 profile，Cfg.Ara=0；rv64gc_zifencei/lp64d；spm.ld</td><td>FS 与实际指令匹配；核实 ROM 建立 SPM/栈。深度扩充时只构建独立教材 ELF</td></tr><tr><td>RVV 整数数组</td><td>cv64a6_imafdcv_sv39；Cfg.Ara=1、2 lanes、VLEN=2048；仅内核加 V，lp64d</td><td>定义 ARA、使用真实 first-pass decoder 并排除 stub；VS 必须开启；验证 req/resp 与逐项结果</td></tr><tr><td>RVV 浮点</td><td>上述组合，加 VS/FS；本地 Ara 默认 HalfSingleDouble</td><td>ISA 中有 F/D/V 不表示所有浮点组合已验收；深度扩充的 FP32 intrinsic 只做编译探针</td></tr><tr><td>外部 DRAM 程序</td><td>LLC 下游连接、有效平台内存；dram.ld 把应用放在 0x80000000</td><td>当前链接区 8 MiB 不是 DDR 容量声明；控制器初始化和模型容量另查</td></tr><tr><td>AXI RT / CLIC / Router</td><td>可选 SoC 分支 + CPU 能力 + 生成尺寸</td><td>Ara 增加发起者会使旧 6-manager RT 表失配；CLIC 需对应 CPU/启动代码</td></tr><tr><td>ASIC 固定基线</td><td>建议冻结上述向量组合和静态清单，换平台 wrapper</td><td>尚未提取；PLL/PAD/SRAM/DDR/DFT 都有外部约束，不能只改 target 宏</td></tr></table>
 <p>VLEN 是寄存器容量，lane 数是物理并行度，两者还受 Ara 参数断言、每 lane 存储大小及支持的组合限制。本地 SoC 的 Ara 集成按单核使用；多核加多个 Ara 需要重新设计连接与软件所有权。编译 C 时 -march 声明编译器可生成什么，-mabi 决定调用约定；lp64d 并不会自动让任意调用经过向量寄存器传参，本例以普通标量 ABI 传指针和长度。</p>
-<p>每次构建保留 profile 源路径、宏、展开 Cfg、编译器版本、完整命令、ELF attributes 和 dump。软件 ELF 中含 V、硬件接受 V、最终数据正确是三个不同检查。具体接口与编程见<a href="vector.html#interface">向量专题</a>，本章只建立匹配关系。</p>
-<div class="source"><strong>本章源码依据</strong><p><a href="../../cheshire.mk">默认选源</a>；<a href="../../target/sim/src/tb_cheshire_pkg.sv">四种 TB 配置</a>；<a href="../../hw/cheshire_pkg.sv">配置及覆盖函数</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv">CPU 派生配置</a>；<a href="../../hw/cheshire_soc.sv">实例消费者</a></p></div><details class="quiz"><summary>增加两个外部 master 后，哪些信息需要重算？</summary><p>发起者表和 ID 位宽、AXI RT manager 数及编号、原子来源编码都要核对；新增访问还需要地址属性和存储契约。</p></details>
+<p>每次构建保留 profile 源路径、宏、展开 Cfg、编译器版本、完整命令、ELF attributes 和 dump。软件 ELF 中含 V、硬件接受 V、最终数据正确是三个不同检查。具体接口与编程见<a href="ara.html#interface">向量专题</a>，本章只建立匹配关系。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../cheshire.mk">默认选源</a>；<a href="../../target/sim/src/tb_cheshire_pkg.sv">四种 TB 配置</a>；<a href="../../hw/cheshire_pkg.sv">配置及覆盖函数</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv">CPU 派生配置</a>；<a href="../../hw/cheshire_soc.sv">实例消费者</a></p></div>
+<details class="quiz"><summary>增加两个外部 master 后，哪些信息需要重算？</summary><p>发起者表和 ID 位宽、AXI RT manager 数及编号、原子来源编码都要核对；新增访问还需要地址属性和存储契约。</p></details>

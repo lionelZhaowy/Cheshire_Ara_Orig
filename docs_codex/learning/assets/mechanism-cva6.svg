@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 690" role="img" aria-labelledby="title desc"><title id="title">CVA6 功能层次与 Ara 边界</title><desc id="desc">教学功能图：箭头表示主要职责联系，不表示完整流水级或全部反馈线。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="690" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">CVA6 功能层次与 Ara 边界</text>
+<text x="32" y="74" class="small" text-anchor="start">教学功能图：箭头表示主要职责联系，不表示完整流水级或全部反馈线。</text>
+<rect x="30" y="125" width="300" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="180.0" y="163.0" class="box" text-anchor="middle">取指前端 / Icache</text>
+<text x="180.0" y="189.0" class="box" text-anchor="middle">PC、RAS / BTB / BHT</text>
+<rect x="370" y="125" width="300" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="163.0" class="box" text-anchor="middle">译码与发射</text>
+<text x="520.0" y="189.0" class="box" text-anchor="middle">操作数、依赖、资源</text>
+<rect x="710" y="125" width="300" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="860.0" y="163.0" class="box" text-anchor="middle">CSR 与异常控制</text>
+<text x="860.0" y="189.0" class="box" text-anchor="middle">特权状态 / trap</text>
+<path d="M330,170 L370,170" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M710,170 L670,170" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="25" y="335" width="230" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="140.0" y="378.0" class="box" text-anchor="middle">整数 / 分支</text>
+<text x="140.0" y="404.0" class="box" text-anchor="middle">地址与控制计算</text>
+<rect x="285" y="335" width="230" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="400.0" y="378.0" class="box" text-anchor="middle">标量 FPU</text>
+<text x="400.0" y="404.0" class="box" text-anchor="middle">FS 与浮点结果</text>
+<rect x="545" y="335" width="230" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="660.0" y="378.0" class="box" text-anchor="middle">标量 load/store</text>
+<text x="660.0" y="404.0" class="box" text-anchor="middle">MMU / PMP / Dcache</text>
+<rect x="805" y="335" width="230" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="920.0" y="378.0" class="box" text-anchor="middle">Ara 专用接口</text>
+<text x="920.0" y="404.0" class="box" text-anchor="middle">VS、请求及应答</text>
+<path d="M520,215 L140,335" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M520,215 L400,335" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M520,215 L660,335" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M520,215 L920,335" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="235" y="535" width="590" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="530.0" y="570.5" class="box" text-anchor="middle">结果关联 / scoreboard / 顺序提交</text>
+<text x="530.0" y="596.5" class="box" text-anchor="middle">记录未完成指令，关联返回结果，按允许条件更新架构状态</text>
+<path d="M140,435 L530,535" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M400,435 L530,535" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M660,435 L530,535" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M920,435 L530,535" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="662" class="small" text-anchor="start">源码：core/cva6.sv、issue_stage.sv、ex_stage.sv、commit_stage.sv；Ara 数据 AXI 独立接 SoC。</text></svg>

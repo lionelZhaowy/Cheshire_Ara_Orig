@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""Generate five structural teaching SVGs; no timing waveforms or target evidence."""
+import sys
+sys.dont_write_bytecode=True
+from build_diagrams import Diagram,ROOT
+class Figure(Diagram):
+ def save(self):(ROOT/'assets'/f'mechanism-{self.name}.svg').write_text('\n'.join(self.s)+'</svg>\n')
+
+def main():
+ d=Figure('xbar','两输入 × 两目标：地址、W 与响应分别跟踪','教学缩图：普通 AXI4，原 ID 为两位；不含端口 cut 的周期延迟。',650)
+ for y,i,t in [(150,0,0),(350,1,1)]:
+  d.box(25,y,150,80,f'I{i} 发起端','AW / W / AR')
+  d.box(230,y-20,300,120,f'输入 {i}：decode + demux','w_select_q / w_open','AW / AR ID → 目标计数')
+  d.box(635,y-20,270,120,f'目标 {t}：mux / 仲裁','i_aw_arbiter / i_w_fifo','W 按 FIFO 来源前进')
+  d.box(940,y,100,80,f'T{t}')
+  d.arrow(175,y+40,230,y+40);d.arrow(530,y+20,635,y+20);d.arrow(905,y+40,940,y+40)
+ d.arrow(530,220,635,350);d.arrow(530,350,635,220)
+ d.box(130,510,800,65,'B / R 返回：ID 来源前缀选输入 → 去前缀 → demux → 原发起端',color='#ddf0e9')
+ d.note(610,'源码：axi_xbar_unmuxed / axi_xbar / axi_mux / axi_demux_simple；例子与状态释放条件见正文。');d.save()
+ d=Figure('ddr','一次读请求：AXI 到器件，再返回 AXI','通用原理；供应商控制器的地址位分配、队列和训练寄存器尚待确定。',610)
+ for x,title,sub in [(25,'AXI AR 队列','保存地址 / ID / burst'),(290,'映射与调度','bank / row / column'),(555,'PHY 发命令','ACT / READ / PRE'),(820,'DRAM bank','开行 / 列读 / 刷新')]:
+  d.box(x,150,215,105,title,sub)
+  if x<820:d.arrow(x+215,202,x+265,202)
+ d.box(820,360,215,105,'DQ / DQS 返回','器件输出读数据');d.arrow(927,255,927,360)
+ d.box(555,360,215,105,'PHY 采样与对齐','训练决定采样关系');d.arrow(820,412,770,412)
+ d.box(290,360,215,105,'控制器返回缓冲','重组 AXI 数据拍');d.arrow(555,412,505,412)
+ d.box(25,360,215,105,'AXI R 通道','RID / RLAST / 握手');d.arrow(290,412,240,412)
+ d.note(530,'行命中可省去换行步骤；行冲突、刷新、仲裁和 R 背压都会改变可见延迟。')
+ d.note(570,'本图表示数据路径，不代表固定周期时序；不能用一次 AR 握手推断 DRAM 已完成读取。');d.save()
+ d=Figure('clocks','PLL、分频、门控与两个时钟域','候选机制示例；没有指定本工程的 ASIC 频率、倍频参数或最终域划分。',620)
+ d.box(25,170,170,90,'参考时钟','f_ref');d.box(250,150,290,130,'PLL 反馈环','相位比较 / 振荡源','参考 ÷N，反馈 ÷M');d.arrow(195,215,250,215)
+ d.box(660,120,160,80,'输出 ÷C0');d.box(875,120,160,80,'系统域');d.arrow(540,190,660,160);d.arrow(820,160,875,160)
+ d.box(605,350,135,80,'输出 ÷C1');d.box(775,350,110,80,'门控');d.box(915,335,120,110,'外设域','复位同步');d.arrow(540,250,605,390);d.arrow(740,390,775,390);d.arrow(885,390,915,390)
+ d.arrow(955,200,955,335);d.text(945,265,'事务经 CDC 桥','small','end')
+ d.box(80,365,430,80,'常开控制：停发 / 排空 / lock / 就绪','控制门控与各域复位，恢复后再接收新任务',color='#ddf0e9')
+ d.note(535,'分频改变节拍；门控停止脉冲；clock-enable 只控制状态更新。')
+ d.note(575,'当前 RTL 的域与平台连接另见现状图；lock、复位释放和设备就绪是不同条件。');d.save()
+ d=Figure('power','关电边界：隔离输出与保留状态','候选示例：done 有效高，因此接收侧协议允许隔离时钳为 0。',600)
+ d.box(30,155,265,120,'可关断设备域','状态机 → done','普通状态掉电后丢失')
+ d.box(405,155,240,120,'常开隔离单元','隔离有效：输出 0','恢复后：透传 done',color='#ddf0e9')
+ d.box(765,155,260,120,'常开控制域','完成邮箱 / epoch','任务与缓冲区所有权')
+ d.arrow(295,215,405,215);d.arrow(645,215,765,215)
+ d.box(30,365,265,100,'保持资源（独立供电）','保存选定配置 / 恢复');d.arrow(160,275,160,365)
+ d.box(405,365,620,100,'控制顺序','停发并排空 → 保存 → 隔离 → 按 IP 规范关电','上电与复位 → 恢复 / 重建 → 就绪 → 解除隔离')
+ d.note(530,'电平转换负责不同电压的兼容；隔离负责已知输出；保持负责选定状态，三者职责独立。')
+ d.note(565,'AXI 已接受事务必须先完成或受控终止；钳低信号本身不撤销事务。');d.save()
+ d=Figure('cva6','CVA6 功能层次与 Ara 边界','教学功能图：箭头表示主要职责联系，不表示完整流水级或全部反馈线。',690)
+ for x,title,sub in [(30,'取指前端 / Icache','PC、RAS / BTB / BHT'),(370,'译码与发射','操作数、依赖、资源'),(710,'CSR 与异常控制','特权状态 / trap')]:d.box(x,125,300,90,title,sub)
+ d.arrow(330,170,370,170);d.arrow(710,170,670,170)
+ for x,title,sub in [(25,'整数 / 分支','地址与控制计算'),(285,'标量 FPU','FS 与浮点结果'),(545,'标量 load/store','MMU / PMP / Dcache'),(805,'Ara 专用接口','VS、请求及应答')]:d.box(x,335,230,100,title,sub)
+ for x in [140,400,660,920]:d.arrow(520,215,x,335)
+ d.box(235,535,590,85,'结果关联 / scoreboard / 顺序提交','记录未完成指令，关联返回结果，按允许条件更新架构状态',color='#ddf0e9')
+ for x in [140,400,660,920]:d.arrow(x,435,530,535)
+ d.note(662,'源码：core/cva6.sv、issue_stage.sv、ex_stage.sv、commit_stage.sv；Ara 数据 AXI 独立接 SoC。');d.save()
+ print('Built 5 mechanism SVGs')
+if __name__=='__main__':main()

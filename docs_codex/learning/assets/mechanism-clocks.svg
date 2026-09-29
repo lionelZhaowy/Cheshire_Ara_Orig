@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 620" role="img" aria-labelledby="title desc"><title id="title">PLL、分频、门控与两个时钟域</title><desc id="desc">候选机制示例；没有指定本工程的 ASIC 频率、倍频参数或最终域划分。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="620" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">PLL、分频、门控与两个时钟域</text>
+<text x="32" y="74" class="small" text-anchor="start">候选机制示例；没有指定本工程的 ASIC 频率、倍频参数或最终域划分。</text>
+<rect x="25" y="170" width="170" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="110.0" y="208.0" class="box" text-anchor="middle">参考时钟</text>
+<text x="110.0" y="234.0" class="box" text-anchor="middle">f_ref</text>
+<rect x="250" y="150" width="290" height="130" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="395.0" y="195.0" class="box" text-anchor="middle">PLL 反馈环</text>
+<text x="395.0" y="221.0" class="box" text-anchor="middle">相位比较 / 振荡源</text>
+<text x="395.0" y="247.0" class="box" text-anchor="middle">参考 ÷N，反馈 ÷M</text>
+<path d="M195,215 L250,215" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="660" y="120" width="160" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="740.0" y="166.0" class="box" text-anchor="middle">输出 ÷C0</text>
+<rect x="875" y="120" width="160" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="955.0" y="166.0" class="box" text-anchor="middle">系统域</text>
+<path d="M540,190 L660,160" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M820,160 L875,160" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="605" y="350" width="135" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="672.5" y="396.0" class="box" text-anchor="middle">输出 ÷C1</text>
+<rect x="775" y="350" width="110" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="396.0" class="box" text-anchor="middle">门控</text>
+<rect x="915" y="335" width="120" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="975.0" y="383.0" class="box" text-anchor="middle">外设域</text>
+<text x="975.0" y="409.0" class="box" text-anchor="middle">复位同步</text>
+<path d="M540,250 L605,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M740,390 L775,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M885,390 L915,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M955,200 L955,335" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="945" y="265" class="small" text-anchor="end">事务经 CDC 桥</text>
+<rect x="80" y="365" width="430" height="80" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="295.0" y="398.0" class="box" text-anchor="middle">常开控制：停发 / 排空 / lock / 就绪</text>
+<text x="295.0" y="424.0" class="box" text-anchor="middle">控制门控与各域复位，恢复后再接收新任务</text>
+<text x="32" y="535" class="small" text-anchor="start">分频改变节拍；门控停止脉冲；clock-enable 只控制状态更新。</text>
+<text x="32" y="575" class="small" text-anchor="start">当前 RTL 的域与平台连接另见现状图；lock、复位释放和设备就绪是不同条件。</text></svg>

@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-29T12:29:33.451180+08:00",
+  "existing_directory_unchanged": true,
+  "cases": [
+    {
+      "script": "check_structure.py",
+      "returncode": 2,
+      "result": "refused existing output directory before writing"
+    },
+    {
+      "script": "preview_structure_site.py",
+      "returncode": 2,
+      "result": "refused existing output directory before writing"
+    }
+  ]
+}

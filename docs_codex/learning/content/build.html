@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>上一章确定了代码、常量、全局数据和栈的需求。本章沿同一个 journey.c 看工具如何生成字节、解决函数地址并分配目标空间，得到下一章加载器真正能使用的程序文件。</p></div>
+<div class="goals"><strong>本章任务</strong><p>让同一数组程序形成可解释的装载产物。 前置：<a href="configuration.html">03 · Cheshire、CVA6、Ara 与软件配置</a>、<a href="runtime.html">13 · 裸机 C 程序运行模型</a>。</p></div>
 <h2 id="tools">主机工具与目标程序</h2>
 <p>我们在开发主机上运行交叉编译器，生成供 RISC-V CPU 执行的机器码。工具名字 <code>riscv64-unknown-elf-gcc</code> 描述目标体系；它本身运行在主机。<code>g++</code> 则用于编译仿真器调用的主机 C++ 加载器，两者的输出用途不同。</p>
 <p>教材构建脚本 <a href="scripts/build_journey.sh">build_journey.sh</a> 只取本地 crt0、UART、CLINT 和 printf 的必要源文件，在新输出目录生成产物。它采用原软件入口的基本 ISA/ABI 与链接约定，关闭自动向量化并省略 LTO（链接期优化），以保留容易观察的编译单元边界。生产入口仍在 <code>sw/sw.mk</code>；原 Make 规则会在 sw 和部分依赖目录旁写产物，主线实验采用隔离输出。</p>
@@ -22,14 +22,6 @@ JOURNEY_OUT="$LEARN_OUT" timeout 60 bash docs_codex/learning/scripts/build_journ
 cat "$LEARN_OUT/readelf.txt"
 rg -n '(_start|main|make_value|seed|result|greeting|__bss|__stack_pointer)' "$LEARN_OUT/symbols.txt"
 rg -n '\.misc|\.bss|greeting|seed' "$LEARN_OUT/journey.map"</code></pre>
-<p>期望得到 .i/.s/.o、支持库、journey.spm.elf、map、dump 和检查文本。下一章把这份 ELF 装到目标，而不是重新寻找某个旧文件。出现 undefined reference 时先核对对象和库；地址重定位溢出先查寻址选项与布局；出现工具链告警时保留完整日志并定位源行。本地原 MMIO 声明可能触发对象边界告警，原链接布局可能报告 RWX 段，记录它们而不静默屏蔽。</p>
-<h2 id="toolchain-contract">编译器入口与向量对象边界</h2>
-<p>本轮实测 riscv64-unknown-elf-gcc 为 15.2.0。汇编、intrinsics 和自动向量化版本均生成了 vadd.vv、连续 load/store 及 vredsum.vs；自动向量化报告标记两个循环使用 variable length vectors。编译器诊断中的 missed 行可能描述变换后语句的再次分析，应结合函数级 optimized 行和反汇编判断，不能看到一个 missed 就断言整个函数没有向量化。</p>
-<p>包含 riscv_vector.h 的本地探针给出 __riscv_v_intrinsic=12000、__riscv_v=1000000、__riscv_v_elen=64、__riscv_v_min_vlen=128。最后一个值是该编译目标的最低保证，不是本工程 RTL 的 VLEN=2048；实际 vl 在运行时选择。固定版本 GCC 手册仍写 intrinsic 0.11，而当前安装工具的宏和可编译名字必须独立记录，不能将网站版本文字替代本地探针。</p>
-<pre><code>riscv64-unknown-elf-gcc -march=rv64gcv_zifencei -mabi=lp64d   -dM -E -x c -include riscv_vector.h /dev/null
-# 具体内核按 build_journey.sh 编译；逐个对象检查能力边界。
-riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
-riscv64-unknown-elf-objdump -d "$LEARN_RVV/journey.o"</code></pre>
-<p>本例 -fno-tree-vectorize 用于 main、独立参考和支持库，含 V 的代码集中在专用内核对象，确保启用 VS 之前不会因自动优化提前执行 V。所有对象仍使用一致的 lp64d ABI 与 medany 代码模型。链接器合并出的 ISA 属性是一种静态声明，不能证明实际调用顺序、VS 状态或平台支持。</p>
-<p>错误定位按阶段：缺头文件查 include/toolchain；unknown intrinsic 查实际 header/API；汇编 illegal operands 查 -march 与编码；链接 relocation 查代码模型/脚本与对象 ABI；运行首条 V 陷入查 profile、真实 decoder、VS/FS。构建记录见<a href="evidence/depth-20260929-builds.txt">本轮编译及指令检查</a>。</p>
-<div class="source"><strong>本章源码依据</strong><p><a href="../../sw/sw.mk">原构建规则与 flags</a>；<a href="../../sw/link/spm.ld">SPM 布局</a>；<a href="../../sw/link/dram.ld">DRAM 布局</a>；<a href="../../sw/link/rom.ld">镜像装载布局</a>；<a href="../../sw/link/common.ldh">入口、基址和链接预算</a></p></div><details class="quiz"><summary>readelf 看不到独立 .data，seed=1 去哪里了？</summary><p>先在 map 中查看输入节到输出节的合并。本地脚本把初始化数据收进 .misc，加载责任没有因此消失。</p></details>
+<p>期望得到 .i/.s/.o、支持库、journey.spm.elf、map、dump 和检查文本。<a href="boot-debug.html">第 16 章</a>把这份 ELF 装到目标，而不是重新寻找某个旧文件。出现 undefined reference 时先核对对象和库；地址重定位溢出先查寻址选项与布局；出现工具链告警时保留完整日志并定位源行。本地原 MMIO 声明可能触发对象边界告警，原链接布局可能报告 RWX 段，记录它们而不静默屏蔽。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../sw/sw.mk">原构建规则与 flags</a>；<a href="../../sw/link/spm.ld">SPM 布局</a>；<a href="../../sw/link/dram.ld">DRAM 布局</a>；<a href="../../sw/link/rom.ld">镜像装载布局</a>；<a href="../../sw/link/common.ldh">入口、基址和链接预算</a></p></div>
+<details class="quiz"><summary>readelf 看不到独立 .data，seed=1 去哪里了？</summary><p>先在 map 中查看输入节到输出节的合并。本地脚本把初始化数据收进 .misc，加载责任没有因此消失。</p></details>

@@ -1,0 +1,16 @@
+2026-09-29 L01 structure revision checks
+Scope: local source/document checks and offline site; no software build or target execution.
+PASS immutable backup: 728 files, 66754766 bytes
+PASS prior evidence and examples unchanged: 783 files; review report unchanged
+PASS unchanged non-edited assets: 71; only navigation and two boot figures intentionally revised
+PASS prior technical source hashes still match: 94
+PASS targeted local source snapshot: 9 files
+PASS all 148 original H2 sections allocated, source hashes checked, canonical targets present
+PASS 373 canonical URL mappings; curated topic-to-chapter targets checked
+PASS content audit: 423/466 normalized blocks retained; 43 individually classified revisions; 429 register rows and source/example/image references preserved
+PASS deterministic regeneration: 57 generated HTML/SVG/index files; history still intact
+PASS Python source syntax
+PASS production tracked files unchanged; git diff --check
+PASS: 54 HTML pages, 2652 local links/resources, anchors, 63 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 440 Markdown links and fragments
+NOT RUN: software build, RTL compile/elaboration/simulation, board, performance, NPU implementation, synthesis or ASIC extraction.

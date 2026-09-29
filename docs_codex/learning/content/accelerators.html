@@ -1,0 +1,27 @@
+<div class="goals"><strong>本章任务</strong><p>逐 IP 明确接口、缓冲、跨域和验收交付。 前置：<a href="integration.html">27 · 自定义 IP 的控制、数据和中断接入</a>、<a href="sharing.html">26 · CPU、Ara、DMA 与 NPU 的共享数据</a>、<a href="ddr.html">12 · DDR 控制器、PHY 与 AXI4 接入</a>。</p></div>
+<h2 id="image">LVDS、ISP 与 NPU 的接口约定</h2>
+<p>LVDS 描述低压差分电气传输，图像接入还需传感器的 lane 数、位时钟、字对齐、帧行同步和像素格式。ISP 要声明输入输出格式、边界处理、帧缓冲与背压；NPU 要声明 tensor 布局、精度、任务描述符、DMA、完成和错误。控制寄存器、数据口、中断以及复位恢复由同一任务契约约束。</p>
+<p>图像吞吐先用宽×高×每像素字节×帧率估算，再乘上实际读写遍数。例如 ISP 写一遍、NPU 再读一遍已经是两次存储流量，乒乓缓冲还增加容量。持续输入不能无限背压时，需要定义溢出、丢帧及恢复策略，和 VGA 的有期限消费形成对应。</p>
+<h2 id="ddr">AXI4 DDR 与设备旁路</h2>
+<p>用户已确认供应商可提供 AXI4 DDR，旧 AXI3 桥规划不再是必选项。接口契约需列地址/数据/ID/USER 宽、容量映射、burst 与窄访问、最大在途、顺序、错误响应、时钟复位及初始化完成。现有 FPGA 的 64→512 位、ID 适配和 MIG UI CDC 是板级实现，后续应按供应商 AXI 接口重新核对。</p>
+<p>用户要求 NPU/ISP 数据绕过 LLC，减少其分配和替换压力。可在 DDR 上游增加互连，把 CPU/Ara 的 LLC 出口与设备数据口汇合；这仍共享 DDR 带宽。CPU/设备共享区域要统一缓存属性、所有权和通知协议，旁路写还需考虑上游 AMO/LRSC 的观察范围。把原子单元移位置并不会自动生成全系统一致性。</p>
+<figure><img src="assets/new-future.svg" alt="规划中的图像输入、ISP与NPU走DDR旁路，CPU/Ara保留LLC，控制和IRQ独立连接"><figcaption>未来方案。没有为新 IP 冻结地址、位宽、时钟或最终软件栈。</figcaption></figure>
+<h2 id="npu-topology">NPU / ISP 旁路 LLC 的系统接入规划</h2>
+<p>用户规划让 NPU/ISP 数据流绕过 LLC，并与 LLC 下游在 DDR 前合流。新增一层互连需要合并 ID 空间、保存 W 路由和读写顺序、限制各端在途量，并定义背压与带宽保障。当前 SoC 的外部 master 入口通常仍进入原系统拓扑，接到该入口不自动等于实现 DDR 旁路。</p>
+<figure><img src="assets/depth-npu-bypass.svg" alt="已有 CPU Ara LLC 路径和未来 NPU ISP 旁路在新 DDR 互连合流"><figcaption>未来拓扑候选，尚未修改 RTL。控制、IRQ、缓存副本和原子边界分别验收。</figcaption></figure>
+<h3 id="ip-contracts">逐 IP 的数据与控制交付</h3>
+<table><tr><th>模块</th><th>数据与控制接口</th><th>接入前需要的规格</th></tr><tr><td>NPU</td><td>AXI 主端搬张量；Reg/AXI-Lite 控制；状态/IRQ；可选本地 SRAM</td><td>算子、数据类型、布局、地址位宽、描述符/队列、错误与取消、对齐、支持的 burst、量化与数值规则</td></tr><tr><td>ISP</td><td>流输入/输出或 DDR 缓冲；控制寄存器</td><td>像素格式/位深、行/帧边界、stride、裁剪、背压或丢帧规则、最大突发与缓冲量</td></tr><tr><td>LVDS 接收</td><td>PAD/PHY → 解串 → 字/行/帧恢复 → CDC FIFO</td><td>电气与速率、lane 数、时钟方式、训练、码字对齐、帧协议；LVDS 本身不规定图像包格式</td></tr><tr><td>DDR AXI4 IP</td><td>共享从端 + 控制面 + PHY</td><td>见<a href="ddr.html#ddr-subsystem">DDR 接口表</a>；端口容量和响应约束成为上游设计输入</td></tr></table>
+<h3 id="staged-checks">分阶段验收</h3>
+<p>分阶段验收：先用独立内存模型验证设备描述符和结果；再接 Reg/IRQ、检查只提交一次及错误传播；然后接共享 SPM 或预留 DDR 区、执行所有权交接；最后增加多主竞争、长背压、复位中断与错误注入。每阶段记录配置、事务数/字节数、数值比对和超时恢复，不能只看 DONE。</p>
+<p>描述符控制区、完成邮箱和数据区应按用途分配，但本轮不分配生产地址。驱动必须知道设备可见地址、长度上限、layout/quant 版本、完成 token 与 epoch；缓存和所有权协议见<a href="sharing.html#sharing">共享数据章</a>。Ara/NPU 任务划分与完整教学案例见<a href="models.html#model-case">模型协作章</a>，拓扑方案不能替代算子和性能实测。</p>
+<h2 id="delivery-contracts">每个 IP 共同需要的集成交付</h2>
+<h3 id="control-registers">寄存器与软件</h3>
+<p>NPU/ISP 应交付寄存器偏移、允许访问宽度、RO/RW/W1C、复位值、保留位、启动和忙状态的合法操作；LVDS 接收应定义训练/字对齐/帧状态，DDR 应定义初始化与故障状态。基址、IRQ 编号尚待本工程分配。软件提供完整 init→submit→wait/error→stop/recover 流程和实际结果校验，不能仅给一张宏列表。</p>
+<h3 id="lifecycle-contracts">时钟、复位、中断与带宽</h3>
+<table><tr><th>IP</th><th>时钟/复位与事件</th><th>数据边界与验收</th></tr><tr><td>LVDS</td><td>传感器源同步域→解串/CDC；失锁、错码、丢帧通知</td><td>lane/字/帧同步模式，输入不接受背压时的溢出策略</td></tr><tr><td>ISP</td><td>行/帧状态与系统域交接；复位后从明确帧边界重启</td><td>输入输出像素格式、stride、边缘算法、每帧读写量和黄金图像</td></tr><tr><td>NPU</td><td>任务队列、完成/错误/超时；复位与取消不混淆旧 token</td><td>算子、精度、布局、实际长度、最大在途量与独立数值参考</td></tr><tr><td>DDR</td><td>控制器/PHY 时钟、训练与校准、失锁和 ECC 事件</td><td>容量/地址映射、AXI 限制、刷新压力、错误模型与供应商约束</td></tr></table>
+<p>设备是否有内部 SRAM、是否可保持状态、哪一类错误可恢复，都待实际 IP 规格确认。共同的软件共享规则集中在<a href="sharing.html#handoff">所有权与元数据契约</a>。</p>
+<h2 id="stream-budget">用数据率反推 FIFO 与 DDR 压力</h2>
+<p>只作算例：1920×1080、每像素 2 字节、60 帧/秒，单向有效载荷为 248,832,000 B/s；一帧约 3.96 MiB。写一次再读一次至少 497,664,000 B/s，不含 blanking、padding、协议和中间结果。若输入不能背压，100 μs 的下游停顿要吸收至少 24,884 字节有效数据，还需裕量。设计 FIFO 深度时应采用最大连续到达率和最坏停顿，而不是只用平均帧率。</p>
+<p>ISP 若产生多份中间图、NPU 若多次读权重，上述流量继续增加。先画每块数据的写读次数和生存期，再决定行缓冲、tile、双缓冲或整帧 DDR。丢帧后要在明确帧边界重新对齐，不能将残留半帧当作新任务输入。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">当前平台适配参考</a>；<a href="../../hw/cheshire_soc.sv">gen_ext_reg_slv / gen_ext_axi_mst / IRQ</a>；<a href="../../hw/cheshire_pkg.sv">外部 Reg / AXI 规则</a></p></div>
+<details class="quiz"><summary>NPU 旁路 LLC 后，CPU 的 DDR 服务就不受影响了吗？</summary><p>两者仍竞争下游互连及 DDR；旁路减少的是 LLC 内的分配/替换压力，带宽仲裁、数据可见性和原子观察仍需独立设计。</p></details>

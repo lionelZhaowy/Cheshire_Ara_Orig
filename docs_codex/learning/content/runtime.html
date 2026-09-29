@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>前面说明硬件如何接受请求，现在转到产生请求的软件。先用小程序解释对象、调用和初始化，再引入节名与 ABI；下一章才能据此理解链接器给谁分配地址、加载器需要放入哪些字节。</p></div>
+<div class="goals"><strong>本章任务</strong><p>从对象、调用和初始化理解存储布局。 前置：<a href="address-map.html">07 · 地址空间与访问属性</a>。</p></div>
 <h2 id="program">指令与数据的存储需求</h2>
 <p>CPU 取到的是存储器中的机器码，不是 C 源文件。机器码告诉它执行什么，数据保存被运算的值，两者都需要可达的地址。即使只有一个 CPU、没有操作系统，处理器也要取得循环指令、读取初值并保存结果。寄存器很快但容量有限，而且函数调用会复用它们。</p>
 <p>本书使用 <a href="examples/journey.c">journey.c</a> 作为贯穿程序：生成 137 个整数、逐个检查并打印总和。下面截取其计算部分；完整文件还包含 UART 初始化和后续向量对照分支。选择 137 是为了以后覆盖向量循环的尾部。</p>
@@ -27,13 +27,13 @@ for (unsigned i = 0; i &lt; N; ++i) {
 <figure><img src="assets/new-runtime.svg" alt="指令与常量、初始化全局量、BSS及调用栈具有不同生命周期和初始化责任"><figcaption>概念布局。局部变量可以位于寄存器，栈图只示意实际需要保存的调用状态。</figcaption></figure>
 <h2 id="abi">ABI 约定软件之间的边界</h2>
 <p>应用二进制接口（ABI）规定不同编译单元如何相互调用，包括参数、返回值、哪些寄存器由谁保存，以及栈对齐要求。本教材采用 <code>lp64d</code>：long 和指针为 64 位，int 为 32 位，浮点参数采用双精度硬浮点调用约定。它决定函数之间怎样合作，AXI 数据宽度仍由硬件配置决定。</p>
-<p>调用者保存寄存器的旧值若还需要，由调用者在调用前保留；被调用者保存寄存器若被函数使用，由该函数恢复。常规 RISC-V ABI 的栈有 16 字节对齐要求，启动汇编必须建立能够承接编译器代码的边界。Boot ROM 和应用 crt0 还保存进入时上下文，不能只看某个早期 sp 数值判断最终调用状态。中断的现场保存入口将在第 09 章核对。</p>
+<p>调用者保存寄存器的旧值若还需要，由调用者在调用前保留；被调用者保存寄存器若被函数使用，由该函数恢复。常规 RISC-V ABI 的栈有 16 字节对齐要求，启动汇编必须建立能够承接编译器代码的边界。Boot ROM 和应用 crt0 还保存进入时上下文，不能只看某个早期 sp 数值判断最终调用状态。中断的现场保存入口将在<a href="interrupts.html">第 19 章</a>核对。</p>
 <h2 id="initialization">有初值与零初始化的不同责任</h2>
 <p>链接器为 seed 分配空间，并把数值 1 的字节保存在待装载内容中。加载器把这些字节放进目标存储，main 才能读到初值。result 的初态全为零，可以只记录所需空间而不在文件中保存 548 个零字节；本地应用启动代码按区间清零。因此“占用目标 RAM”和“占用文件字节”是两件不同的事。</p>
 <p>没有操作系统时，由 Boot ROM、主机加载器和应用启动汇编分担这些责任。Boot ROM 使片上存储可用并建立初始栈；加载器放置机器码和初值；应用 crt0 设置调用环境、清零数据、建立异常入口，再调用 main。自定义入口应当完整承担相同的前置条件。</p>
 <h2 id="sections">用节名表达存储用途</h2>
 <p>工具把用途相近的内容分组为 section，中文称“节”。函数机器码通常进入 .text；字符串等只读内容进入 .rodata；需要文件提供初值的可写全局对象进入 .data；零初始化的全局或 static 对象通常进入 .bss。static 局部对象也具有整个程序的存储期，和每次调用重新建立的自动局部变量不同。</p>
-<p>这些是常见输入节名。当前 <code>spm.ld</code> 把 .rodata、.data 及对应的小数据节合并成 <code>.misc</code> 输出节，故 ELF 中未必单独列出 .data/.rodata。seed 在 .misc，result 在 .bss；.misc 名称也不表示里面只有只读数据。下一章的 map 文件会展示合并过程。</p>
+<p>这些是常见输入节名。当前 <code>spm.ld</code> 把 .rodata、.data 及对应的小数据节合并成 <code>.misc</code> 输出节，故 ELF 中未必单独列出 .data/.rodata。seed 在 .misc，result 在 .bss；.misc 名称也不表示里面只有只读数据。<a href="build.html#layout">构建章的 map 文件</a>会展示合并过程。</p>
 <table><tr><th>内容</th><th>存储要求</th><th>当前责任方</th></tr><tr><td>make_value / main 指令</td><td>可取指的代码字节</td><td>编译链接生成，加载器放入 .text 对应地址</td></tr><tr><td>greeting / seed</td><td>固定字符 / 可写的初值 1</td><td>链接进 .misc，加载时写入</td></tr><tr><td>result[137]</td><td>548 字节，启动时为零</td><td>链接器保留 .bss，crt0 清零</td></tr><tr><td>调用保存状态</td><td>对齐且容量足够的栈</td><td>启动建立 sp，函数维护各自栈帧</td></tr></table>
 <h2 id="heap">容量与堆的边界</h2>
 <p>堆是供动态分配器管理的存储区域，malloc/free 通过运行时算法分配和归还空间。本程序使用固定全局数组与函数栈，没有调用 malloc，因此无需假设存在正在使用的堆。以后需要动态分配时，应明确区域、边界、失败处理和库适配；链接脚本中的空闲地址不会自行形成分配器。</p>
@@ -41,4 +41,5 @@ for (unsigned i = 0; i &lt; N; ++i) {
 <h2 id="object-lifetime">把数组、栈和设备缓冲分开验证</h2>
 <p>journey 的全局 result[137] 在 BSS 中占 548 字节，crt0 在进入 main 前清零；常量字符串和已初始化变量由 ELF 装载段提供。RVV 的 a/b/c 则是约定物理 SPM 区域的指针，不由链接器自动分配。静态区没有越界，并不能证明运行栈不会向下侵入该区；先从 map/nm 确定边界，再在目标环境观测最大栈使用。</p>
 <p>函数实参通常在 a0… 寄存器中传递，需要跨调用保存的值按 ABI 保存；优化器可能内联函数、消去局部变量或让它一直留在寄存器。学习时同时看 C、反汇编和符号，避免用“每个 C 变量都有一个固定 RAM 地址”解释程序。代码装载、BSS 初始化、栈建立、VS/FS 开启各有独立责任。</p>
-<div class="source"><strong>本章源码依据</strong><p><a href="../../sw/lib/crt0.S">栈、gp、BSS 与 main</a>；<a href="../../sw/link/spm.ld">输入节合并</a>；<a href="../../sw/link/common.ldh">地址与链接预算</a></p></div><details class="quiz"><summary>result 后来会被循环覆盖，为什么还讲启动清零？</summary><p>零初始化是进入 main 前的语言环境契约，其他分支可能先读它。贯穿例也检查初态，把启动责任与后续计算分开。</p></details>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../sw/lib/crt0.S">栈、gp、BSS 与 main</a>；<a href="../../sw/link/spm.ld">输入节合并</a>；<a href="../../sw/link/common.ldh">地址与链接预算</a></p></div>
+<details class="quiz"><summary>result 后来会被循环覆盖，为什么还讲启动清零？</summary><p>零初始化是进入 main 前的语言环境契约，其他分支可能先读它。贯穿例也检查初态，把启动责任与后续计算分开。</p></details>

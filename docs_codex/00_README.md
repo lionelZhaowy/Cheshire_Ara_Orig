@@ -73,7 +73,7 @@ CVA6 不只是 NPU 的控制 MCU：它承担操作系统、运行时、通用控
 | 已创建 | [02_Cheshire_Ara_ASIC_Extraction_Handoff.md](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 固定 Ara 配置、静态 filelist、独立目录提取及 DDR 旁路契约；替代原“02 配置管理专题”的近期优先安排 |
 | 已创建 | [PROJECT_STATE.md](PROJECT_STATE.md) / [AGENT_TASKS.md](AGENT_TASKS.md) | 当前目标、证据边界、待办、不同对话分工和启动提示词 |
 | 已创建 | [HANDOFF_TEMPLATE.md](HANDOFF_TEMPLATE.md) / [交接索引](handoffs/README.md) | 各任务的独立结果记录与跨对话交接 |
-| 已创建 | [单线离线教材](learning/index.html) / [实验手册](learning/labs.html) / [旧版备份](learning_backup/index.html) | 2026-09-28 重写为 16 章、6 项实验、2 页参考和 16 张新 SVG；按硬件→运行模型→构建启动→设备与扩展推进；429 项寄存器参考，实际验证见证据页 |
+| 已创建 | [单线离线教材](learning/index.html) / [实验手册](learning/labs.html) / [旧版备份](learning_backup/index.html) | 2026-09-29 完善为七篇/30 章，另有六项实验和两页参考；分层目录与首次 C 程序短路线，补重点机制图和分模式启动；429 项寄存器索引，历史构建与本次网页检查分开记录 |
 | 计划 | `03_Boot_and_Baremetal_Debugging.md` | ELF、链接、启动、异常、中断、定时器、DMA、UART/JTAG 调试的可执行实验 |
 | 计划 | `04_CVA6_Ara_and_Memory_System.md` | CVA6/Ara 调度、向量编程、MMU、各级缓存、数据一致性和性能定位 |
 | 计划 | `05_AXI_Address_Map_and_Custom_IP.md` | 地址设计、AXI、寄存器、中断、NPU/ISP 接入及数据所有权协议 |
