@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="title desc"><title id="title">两条不同的中断路径：外设 → PLIC；RTC → CLINT</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">两条不同的中断路径：外设 → PLIC；RTC → CLINT</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="35" y="110" width="330" height="140" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="47" y="136" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">GPIO / UART / I2C / SPI / USB</text>
+<text x="47" y="160" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">外部事件或 INTR_TEST</text>
+<text x="47" y="183" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">事件状态 + 本地 enable</text>
+<text x="47" y="206" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">清源：处理 FIFO 或 W1C</text>
+<rect x="445" y="110" width="340" height="140" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="457" y="136" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">IRQ Router（默认关闭）</text>
+<text x="457" y="160" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">源号 → 目标 bit mask</text>
+<text x="457" y="183" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">关闭时直接送 PLIC / CLIC</text>
+<text x="457" y="206" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不替代 pending / priority</text>
+<rect x="865" y="110" width="375" height="140" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="877" y="136" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">PLIC</text>
+<text x="877" y="160" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">源优先级 + pending / gateway</text>
+<text x="877" y="183" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">context enable + threshold</text>
+<text x="877" y="206" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">M context0 / S context1</text>
+<polyline points="365,177 445,177" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="373" y="169" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">IRQ</text>
+<polyline points="785,177 865,177" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="793" y="169" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">源号</text>
+<rect x="865" y="325" width="375" height="120" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="877" y="351" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">CVA6 接收</text>
+<text x="877" y="375" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mie.MEIE &amp; mstatus.MIE</text>
+<text x="877" y="398" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mcause=interrupt|11 → mtvec</text>
+<text x="877" y="421" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">进入时保存 mepc；mret 返回</text>
+<polyline points="1050,250 1050,325" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="1058" y="242" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">meip</text>
+<rect x="35" y="325" width="330" height="120" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="47" y="351" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">ISR 外设处理</text>
+<text x="47" y="375" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">claim 读源号；0 表示无可领</text>
+<text x="47" y="398" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">清外设状态 / 排空相应 FIFO</text>
+<text x="47" y="421" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">complete 写相同源号</text>
+<polyline points="865,405 365,405" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="525" y="392" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">软件服务</text>
+<polyline points="185,325 185,250" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="198" y="292" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">设备清源</text>
+<rect x="35" y="530" width="330" height="125" rx="8" fill="#fff" stroke="#7b55a6" stroke-width="2"/>
+<text x="47" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#7b55a6" font-weight="700">rtc_i → 同步边沿检测</text>
+<text x="47" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mtime++ 在 clk_i 域执行</text>
+<text x="47" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mtime &gt;= mtimecmp → MTIP</text>
+<text x="47" y="626" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">msip[0] → 软件中断 MSIP</text>
+<rect x="445" y="530" width="340" height="125" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="457" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">mie.MTIE + mstatus.MIE</text>
+<text x="457" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mcause=interrupt|7</text>
+<text x="457" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">把 mtimecmp 改到未来清源</text>
+<text x="457" y="626" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">不访问 PLIC claim/complete</text>
+<polyline points="365,585 445,585" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="373" y="577" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">MTIP</text>
+<rect x="865" y="530" width="375" height="125" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="877" y="556" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">CLIC（可选）</text>
+<text x="877" y="580" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">每源 ip/ie/attr/ctl + level</text>
+<text x="877" y="603" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">mtvec/mtvt/mintthresh 特定模式</text>
+<text x="877" y="626" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">需匹配 CPU 配置；非 PLIC API</text>
+<rect x="35" y="715" width="1205" height="105" rx="8" fill="#fff" stroke="#657887" stroke-width="2"/>
+<text x="47" y="741" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#657887" font-weight="700">调试闸门：事件 → 外设状态 → 本地使能 → 路由 → PLIC 阈值/使能 → mip → mie → mstatus → mtvec</text>
+<text x="47" y="765" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">一次只开一个源。先用 GPIO INTR_TEST 验证软件链路，再加入引脚激励；软件注入不会证明引脚输入同步/滤波正确。</text>
+<text x="47" y="788" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">中断处理不要 printf、浮点或 RVV；原 crt0 包装只保存整数 caller-save，示例不支持中断嵌套。</text>
+<text x="30" y="860" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1110" viewBox="0 0 1300 1110" role="img" aria-labelledby="title desc"><title id="title">从编写 C 到硬件执行：每一层的输入、产物与可观测点</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">从编写 C 到硬件执行：每一层的输入、产物与可观测点</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="40" y="100" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="126" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">1 · 编写算法 / 驱动</text>
+<text x="52" y="150" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">C + 头文件 + volatile MMIO</text>
+<rect x="480" y="100" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="126" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">数组公式 / 返回码 / 缓冲区所有权</text>
+<text x="492" y="150" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">对应寄存器语义、地址图、硬件能力</text>
+<polyline points="425,140 480,140" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="128" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,191 225,217" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="217" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="243" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">2 · 交叉编译 / 汇编</text>
+<text x="52" y="267" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">ISA + ABI + 优化选项</text>
+<rect x="480" y="217" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="243" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">预处理 .i → 汇编 .s → .o</text>
+<text x="492" y="267" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">RVV profile 与 mstatus.VS/FS 仍需另对齐</text>
+<polyline points="425,257 480,257" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="245" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,308 225,334" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="334" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="360" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">3 · 链接</text>
+<text x="52" y="384" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">crt0.o + 程序 .o + 库 + spm.ld</text>
+<rect x="480" y="334" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="360" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">ELF: PT_LOAD / entry / .text / .bss / map</text>
+<text x="492" y="384" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">地址在硬件译码范围内，栈与 DMA 缓冲区不重叠</text>
+<polyline points="425,374 480,374" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="362" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,425 225,451" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="451" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="477" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">4 · 主机仿真与加载</text>
+<text x="52" y="501" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">RTL 编译/展开/DPI；reset→ROM 初始化</text>
+<rect x="480" y="451" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="477" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">halt → ELF loader → VIP JTAG → DM SBA 写内存</text>
+<text x="492" y="501" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">每个 segment 地址/字节与内存读回；不是 CPU 在读 ELF</text>
+<polyline points="425,491 480,491" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="479" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,542 225,568" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="568" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="594" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">5 · 运行交接与应用启动</text>
+<text x="52" y="618" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">加载后改变 DPC 并 resume（JTAG）</text>
+<rect x="480" y="568" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="594" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">PC 到 ELF entry；Link/UART 则经 ROM 协议跳转</text>
+<text x="492" y="618" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">crt0 建立 ABI、清 BSS、设 trap → main</text>
+<polyline points="425,608 480,608" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="596" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,659 225,685" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="685" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="711" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">6 · 执行一条标量/向量指令</text>
+<text x="52" y="735" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">取指 → 译码 → 记分牌 / 发射</text>
+<rect x="480" y="685" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="711" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">标量执行/LSU；RVV → acc_dispatcher → Ara</text>
+<text x="492" y="735" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">提交事件 / pc / 指令字 / 异常；不只看总运行时间</text>
+<polyline points="425,725 480,725" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="713" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,776 225,802" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="802" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="828" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">7 · 地址变成硬件动作</text>
+<text x="52" y="852" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">MMIO → AXI/Reg32 → FIFO/状态机</text>
+<rect x="480" y="802" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="828" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">RAM → L1 miss 或 Ara/DMA → xbar → LLC/SPM/DDR</text>
+<text x="492" y="852" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">握手、地址、byte strobe、response、IRQ、引脚协议</text>
+<polyline points="425,842 480,842" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="830" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<polyline points="225,893 225,919" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<rect x="40" y="919" width="385" height="91" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="945" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">8 · 验证与退出</text>
+<text x="52" y="969" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">done/status + fence + CPU 读取数据</text>
+<rect x="480" y="919" width="775" height="91" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="492" y="945" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">逐元素校验 → UART 结果 → return → scratch2</text>
+<text x="492" y="969" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">VIP 检查退出码；保存日志；错误注入必须能失败</text>
+<polyline points="425,959 480,959" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="427" y="947" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">依据/产物</text>
+<text x="40" y="1060" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="16" fill="#263e50">独立路径：Flash/GPT 启动由 ROM 驱动设备读介质；不能把 ELF 文件字节直接当作 Flash 裸启动镜像。</text>
+<text x="30" y="1090" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

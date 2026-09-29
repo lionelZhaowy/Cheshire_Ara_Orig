@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 560" role="img" aria-labelledby="title desc"><title id="title">配置在不同阶段成为不同事实</title><desc id="desc">软件选项声明程序使用什么；硬件配置决定系统实际提供什么。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="560" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">配置在不同阶段成为不同事实</text>
+<text x="32" y="74" class="small" text-anchor="start">软件选项声明程序使用什么；硬件配置决定系统实际提供什么。</text>
+<rect x="35" y="125" width="300" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="185.0" y="165.5" class="box" text-anchor="middle">源码选择</text>
+<text x="185.0" y="191.5" class="box" text-anchor="middle">Bender targets / 宏 / profile</text>
+<rect x="375" y="125" width="300" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="525.0" y="165.5" class="box" text-anchor="middle">编译与展开</text>
+<text x="525.0" y="191.5" class="box" text-anchor="middle">package → 参数 → generate</text>
+<rect x="715" y="125" width="300" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="865.0" y="165.5" class="box" text-anchor="middle">可运行结构</text>
+<text x="865.0" y="191.5" class="box" text-anchor="middle">实例、端口、规则与寄存器</text>
+<path d="M335,172 L375,172" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M675,172 L715,172" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="35" y="325" width="300" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="185.0" y="360.0" class="box" text-anchor="middle">SoC Cfg</text>
+<text x="185.0" y="386.0" class="box" text-anchor="middle">EnAra / 核数 / 外设开关</text>
+<text x="185.0" y="412.0" class="box" text-anchor="middle">gen_cva6_cfg → CVA6Cfg</text>
+<rect x="375" y="325" width="300" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="525.0" y="360.0" class="box" text-anchor="middle">三个派生关系</text>
+<text x="525.0" y="386.0" class="box" text-anchor="middle">gen_axi_in / out / reg</text>
+<text x="525.0" y="412.0" class="box" text-anchor="middle">端口数 → 索引 → 地址规则</text>
+<rect x="715" y="325" width="300" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="865.0" y="360.0" class="box" text-anchor="middle">软件构建</text>
+<text x="865.0" y="386.0" class="box" text-anchor="middle">-march / -mabi / 链接脚本</text>
+<text x="865.0" y="412.0" class="box" text-anchor="middle">必须落在硬件能力以内</text>
+<path d="M185,220 L185,325" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M525,220 L525,325" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M865,325 L865,220" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="490" class="small" text-anchor="start">例：默认 6 个 AXI 发起端 → 加 Ara 为 7 个；加第 9 个发起端时，来源标识位数增长。</text></svg>

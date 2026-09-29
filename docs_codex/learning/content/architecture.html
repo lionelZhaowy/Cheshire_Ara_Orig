@@ -1,15 +1,32 @@
-<div class="goals"><strong>学习目标</strong><p>指出 printf、普通访存、向量运算分别需要谁；分清 RTL、testbench、软件和平台封装。前置：组合/时序逻辑、CPU 取指执行、C 函数调用。</p></div>
-<h2 id="scene">SoC 组件职责与系统连接</h2>
-<p>在 MIPS 处理器中，ALU 执行加法只需要寄存器与运算资源；要输出字符，还需要地址译码、外设寄存器、串行发送器、时钟以及初始化软件。<span class="term">片上系统（System on Chip，SoC）</span>就是把这些资源接成可运行系统的集成层。</p>
-<p><strong>CVA6</strong>负责标量 CPU：取指、译码、整数/浮点运算、特权状态、异常、地址翻译和一级缓存。<strong>Ara</strong>负责 RISC-V 向量扩展（RISC-V Vector，RVV）：接受 CPU 发来的指令与操作数，通过向量寄存器、运算 lane（并行数据通道）和向量访存单元 VLSU 工作。<strong>Cheshire</strong>提供互连、存储路径、调试、启动和外设集成。</p>
-<figure><img src="assets/architecture.svg" alt="CVA6与Ara通过指令接口联系，各自AXI通路和DMA进入Cheshire互连，再路由到主存或外设"><figcaption>当前功能关系，教学示意。箭头名称表示事务用途，返回响应大多省略；不是精确 RTL 网表。CLINT/PLIC 中断线直达 CPU 相关输入，不随 load/store 返回。</figcaption></figure>
-<h2 id="analogy">MIPS 与自定义总线的概念对照</h2>
-<table><tr><th>MIPS / 自定义系统经验</th><th>在本工程中的对应理解</th><th>类比边界</th></tr><tr><td>CPU 核 + 外设顶层</td><td>CVA6 + Cheshire 集成</td><td>SoC 不只是核的别名；地址属性、cache、调试影响可见行为</td></tr><tr><td>CP0 状态与异常寄存器</td><td>CSR：mstatus、mtvec、mepc、mcause</td><td>寄存器编号、权限、异常入口和返回语义不同，不能直接移植 CP0 代码</td></tr><tr><td>req/ack 自定义总线</td><td>AXI VALID/READY 的传输确认</td><td>AXI 地址/数据/响应通道独立，有突发与多个在途事务，不是一根 ack 全部完成</td></tr><tr><td>专用协处理器</td><td>Ara 由 CVA6 指令驱动</td><td>此组合的 cvxif 命名端口不是任意 IP 可插的标准插槽；gen_cva6_cfg 设置 CvxifEn=0</td></tr><tr><td>神经网络专用阵列</td><td>未来 NPU（Neural Processing Unit，神经网络处理器）</td><td>Ara 是通用向量执行器；NPU 常用任务描述符、DMA、专用精度与片上复用，编程与性能模型不同</td></tr></table>
-<h2 id="layers">RTL、测试平台与软件的层次关系</h2>
-<table><tr><th>层</th><th>本仓库入口</th><th>谁在“运行”它</th></tr><tr><td>RTL（寄存器传输级，Register Transfer Level）</td><td><a href="../../hw/cheshire_soc.sv">cheshire_soc</a></td><td>模拟器求值，或综合成硬件；描述真实逻辑</td></tr><tr><td>Testbench（测试平台，TB）与 VIP（验证环境组件）</td><td><a href="../../target/sim/src/tb_cheshire_soc.sv">tb_cheshire_soc</a> → <a href="../../target/sim/src/fixture_cheshire_soc.sv">fix</a> → dut 与 vip</td><td>主机模拟器生成时钟/复位、加载 ELF、解码 UART、判结束；不是芯片内固件</td></tr><tr><td>裸机软件（bare metal）</td><td><a href="../../sw/lib/crt0.S">crt0.S</a> 与应用 C</td><td>目标 CPU 执行指令；没有 OS 不等于没有运行时、链接器或驱动</td></tr><tr><td>平台 shell / wrapper（封装）</td><td><a href="../../target/xilinx/src/cheshire_top_xilinx.sv">cheshire_top_xilinx</a></td><td>FPGA 板级时钟/引脚/DDR；未来 ASIC wrapper 要对接工艺资源</td></tr></table>
-<p>编译 ELF 没有“生成 CPU”。编译 RTL 也没有“把 C 烧进去”。FPGA bitstream 配置硬件逻辑；ELF 携带软件字节和装载信息，两者可以在不同时间更新。</p>
-<div class="source"><strong>源码依据 · 源码静态确认</strong><br><a href="../../hw/cheshire_soc.sv">hw/cheshire_soc.sv</a>：gen_cva6_cores、gen_ara、i_axi_xbar、i_llc、BootAddr；<a href="../../hw/cheshire_pkg.sv">hw/cheshire_pkg.sv</a>：gen_axi_in/out、gen_cva6_cfg。向量端口的类型与实际连线比端口名字更有证明力。</div>
-<h2 id="practice">系统实例的源码阅读练习</h2>
-<div class="lab"><p>工作目录：仓库根。工具：rg。输入：当前 SoC 源码。输出：终端行号，无构建产物。</p><pre><code>rg -n 'gen_ara|i_axi_xbar|i_llc_atomics|i_llc \(|boot_addr_i|BootAddr' hw/cheshire_soc.sv
-rg -n 'SelectedCfg|fixture_cheshire_soc' target/sim/src/tb_cheshire_soc.sv</code></pre><p>成功判据：能找到 CPU 与 Ara 各自接互连的证据，能指出 TB 参数在哪里传递。常见错误是拿依赖中的 ara_soc 代替当前仿真顶层；先看启动脚本 TESTBENCH，再跟 fixture 到 dut。此静态练习无仿真超时，文件缺失时先确认当前目录与 HEAD。</p></div>
-<div class="quiz"><strong>自测</strong><details><summary>1. 没有 Ara，CPU 能执行 printf 吗？</summary><p>可以，若标量 ISA、启动、UART 与软件相匹配。printf 不天然需要向量扩展。</p></details><details><summary>2. TB 里的 C++ ELF loader 在 RISC-V CPU 上执行吗？</summary><p>不。它由主机 C++ 编译器生成，通过 DPI 与模拟器互调；目标端执行的是 ELF 中的 RISC-V 指令。</p></details><details><summary>3. HelloWorld 板测证明了 DDR 和 Ara 吗？</summary><p>必须看实际 ELF 的地址、指令与硬件路径。SPM 上的标量输出不能证明 DDR 全功能，也不能证明 RVV 执行。</p></details></div>
+<div class="goals"><strong>本章任务</strong><p>从团队熟悉的处理器与 RTL 出发，解释一个程序除了计算单元还需要什么。读完能追踪取指、数组访问和字符输出，并区分 SoC 本体与运行平台；这些边界是下一章选择硬件配置的依据。</p></div>
+<h2 id="system">从计算单元到可运行系统</h2>
+<p>处理器执行加法时，操作数可以已经在寄存器里；完整程序却还需要保存指令、取得输入、放置输出，并知道从哪里开始执行。片上系统（SoC）把处理器、存储、设备和连接它们的逻辑组合起来。Cheshire 是本工程的系统集成层，CVA6 是标量处理器，Ara 是由向量指令驱动的计算加速器。程序控制流主要由 CVA6 推进，Ara 按指令处理一组元素。</p>
+<p>CVA6 包含取指和译码、整数及浮点运算、访存、异常处理，以及靠近核心的一级缓存（L1）。缓存保存近期指令或数据的副本，命中时可在核附近完成访问。地址翻译单元（MMU）可以把软件使用的虚拟地址转换为物理地址；本教材的机器态裸机程序采用直接的存储布局，没有创建应用页表。理解这些功能足以解释外部行为，本书不展开流水级电路设计。</p>
+<p>Ara 把向量寄存器和运算资源分布在若干 lane，即并行的数据处理通道上。CPU 送来指令和标量操作数，Ara 自己发起向量数据访问。另一个主动访存设备 iDMA 负责搬运字节：CPU 设置源地址、目标地址和长度，随后由硬件执行传输。因此 CPU、Ara 和 DMA 都可能向互连发请求，但它们接受工作的方式不同。</p>
+<figure><img src="assets/new-system.svg" alt="CPU、Ara、调试和设备发起请求，互连分别连接片上存储、外部存储及寄存器设备"><figcaption>当前 SoC 的功能关系；可选设备是否存在由配置决定。箭头标出用途，响应沿对应事务返回。</figcaption></figure>
+<figure><img src="assets/depth-system-full.svg" alt="包含 CVA6、Ara、全部主动设备、AXI、Reg、LLC/SPM 与平台边界的总图"><figcaption>当前有效配置决定可选模块是否存在。先沿请求方向读图，再沿同一事务的响应方向回溯。</figcaption></figure>
+<h2 id="requests">沿三个具体请求理解职责</h2>
+<p>程序执行 <code>result[i] = 3*i+1</code> 时，CPU 先取得循环指令，在整数运算单元中计算值和地址，再把结果交给访存单元。若目标是可缓存数据，访问还受 L1 缓存和写策略影响；需要出核时，CPU 通过 AXI 接口提交请求。互连按照地址选择存储目标，并把响应送回原请求者。数组赋值对应的实际总线流量取决于机器码及缓存行为。</p>
+<p>打印结果时，软件库先把整数转换成字符，再向 UART 的发送寄存器写字节。UART 是异步串行收发器，它按约定波特率把字节变成引脚上的串行帧。这里的地址指向设备寄存器，称为内存映射输入输出（MMIO）；普通 load/store 指令通过地址选择产生设备动作。完整的寄存器与输出过程将在第 08 章展开。</p>
+<p>程序尚未开始时，调试模块也能发起总线访问，把主机文件里的程序字节写入片上存储。调试模块既有供 CPU 访问的目标窗口，也有访问系统存储的发起端口。和 DMA 一样，同一模块可以同时扮演“接受配置”和“主动发起传输”两种角色。</p>
+<h2 id="storage">片上存储与外部存储</h2>
+<p>LLC 是末级缓存控制结构，其存储阵列还可以分配成 SPM，即由软件按固定地址管理的暂存存储器。默认阵列容量为 128 KiB。启动固件把它配置为全 SPM，给程序、数据和栈提供片上空间；缓存用途和 SPM 用途共享同一份阵列。</p>
+<p>Boot ROM 保存复位后执行的初始指令，默认从 <code>0x02000000</code> 取指。ROM 的代码建立初始环境，应用随后进入 SPM 或外部存储执行。外部主存从 <code>0x80000000</code> 所在窗口进入 LLC 下游接口；平台可以在这里接仿真内存模型或真实 DDR 子系统。地址窗口规定可路由的范围，实际容量和就绪条件由平台提供。</p>
+<h2 id="layers">RTL、SoC 顶层与运行平台</h2>
+<p>RTL 是寄存器传输级硬件描述，规定寄存器如何更新、组合逻辑如何计算以及模块怎样连接。<code>hw/cheshire_soc.sv</code> 是系统顶层：它实例化 CPU、互连和设备，并把时钟、复位、引脚及外部总线交给上层。源码文件中的模块定义需要被实例化后才成为运行设计的一部分。</p>
+<p>testbench 是运行在主机模拟器中的测试平台。当前 <code>tb_cheshire_soc → fixture_cheshire_soc → dut/vip</code> 层次由 fixture 连接被测 SoC（DUT）与验证组件（VIP）。VIP 生成时钟和复位、模拟外部器件、加载程序及采样 UART；这些任务提供实验环境，不是芯片内的应用代码。</p>
+<p>FPGA shell 把同一个 SoC 接到开发板资源：时钟向导、DDR 控制器、引脚缓冲和调试。bitstream 用于配置 FPGA 逻辑，应用 ELF 用于描述待装载的软件，两者具有不同的更新流程。未来 ASIC wrapper 要接工艺 SRAM、时钟源、PAD 和 DDR 控制器/PHY，属于后续平台适配。</p>
+<h2 id="clocks">时钟与复位决定请求何时有效</h2>
+<p>通用 SoC 的 CPU、Ara、互连和 LLC 主要使用 <code>clk_i/rst_ni</code>。RTC 是实时时间参考输入，经同步后驱动计时器计数。仿真默认系统周期 5 ns、RTC 周期约 30518 ns；VCU118 shell 连接 50 MHz 系统时钟并声明 1 MHz RTC。软件必须使用所在平台的实际频率来配置 UART 和串行设备。</p>
+<p>DDR 的控制器侧时钟来自 MIG 的 UI 接口，通过跨时钟桥连接系统；USB PHY 另有时钟，Serial Link 接收侧有源同步时钟。VGA 的分频寄存器形成状态机使能，本地顶层没有因此新增一根独立像素时钟输入。跨域传输和事务恢复将在互连及系统接入章继续解释。</p>
+<p>当前 FPGA 连接中，时钟向导 locked 和 MIG 校准完成没有纳入完整的放行协议；这需要在平台启动验证中专项检查。已有 VCU118 HelloWorld 是用户历史报告，覆盖当时的具体程序和输出路径。后续每个实验按自己的存储、设备和结果判据记录证据。</p>
+<h2 id="clock-domains">把时钟域、分频和同步器区分开</h2>
+<p>时钟域由真正采样寄存器的时钟决定。UART 的波特率计数、SPI/I2C 的串行节拍和 VGA 的像素使能都可在系统时钟内实现；有一个分频寄存器，不等于已经建立独立时钟域。当前 CPU、Ara、AXI Crossbar、LLC 及 Reg 主通路采用同一 clk_i/rst_ni。SoC 暴露的 LLC 下游 AXI 也在该域，跨 DDR UI 时钟的桥放在平台 wrapper。</p>
+<figure><img src="assets/depth-clocks-current.svg" alt="列出系统、RTC、JTAG、Link、USB 与 FPGA DDR 跨域边界"><figcaption>当前源码核对图；异步事件同步不等于完整 AXI CDC。</figcaption></figure>
+<table><tr><th>入口</th><th>消费者与边界</th><th>验证问题</th></tr><tr><td>rtc_i</td><td>CLINT 内同步、形成时间计数</td><td>慢参考是否持续跳变？RTC_FREQ 是否匹配？</td></tr><tr><td>JTAG TCK / TRST</td><td>DTM 串行协议，DMI 跨到系统侧</td><td>系统复位和调试复位分离时，有无遗留请求？</td></tr><tr><td>Link 接收时钟</td><td>源同步采样与内部 FIFO</td><td>两端复位和训练、时钟停止能否恢复？</td></tr><tr><td>USB PHY 时钟/复位</td><td>独立 PHY 接口，系统端仍连接 AXI</td><td>fixture 未提供有效 PHY 激励，不能据编译声称 USB 可用</td></tr><tr><td>GPIO / IRQ</td><td>按参数使用同步器；PLIC/CLIC 接收事件</td><td>窄脉冲可能丢失，电平和脉冲必须分别定义</td></tr></table>
+<h2 id="asic-clock-power">ASIC 的时钟、复位和电源需要独立契约</h2>
+<p>PLL 把参考时钟合成为所需工作时钟，其 lock 是平台就绪条件之一。当前通用 SoC 没有厂商 PLL 控制寄存器；FPGA MMCM/MIG 的寄存器和复位信号不能当作 ASIC 交付。未来应先列出每个时钟的来源、范围、生成关系、门控条件与约束，再决定是否把 NPU、ISP、DDR 与 CPU 分域。</p>
+<figure><img src="assets/depth-clocks-future.svg" alt="候选常开控制、计算、NPU ISP、DDR 和 PAD 域，分域仍需设计"><figcaption>未来方案；没有宣称已有这些电源域或经过低功耗签核。</figcaption></figure><figure><img src="assets/depth-reset-release.svg" alt="电源稳定、PLL锁定、系统复位释放、DDR初始化与隔离解除的顺序"><figcaption>未来协议的 WaveDrom 教学时序。真正的同步级数、超时和故障回退由平台实现确定。 · <a href="assets/waves/reset-release.json">WaveDrom 源文件</a></figcaption></figure>
+<p>复位通常要求异步进入安全状态、在每个工作域同步释放；此原则需要与库单元、DFT 和 IP 的要求一起验证。DM 的 ndmreset_o 在当前 SoC 中未使用，不能当作现成的全芯片复位源。Link 的隔离相关端口也不能证明已实现可独立掉电的域。</p>
+<p>本次审读顶层和平台连接未建立电源意图证明。未来电源表应逐域记录供电/开关、隔离位置与钳位值、保留寄存器、SRAM 保持方式、level shifter、上电顺序、复位来源及测试模式。电压、频率、关断收益都需工艺库和 PPA 数据；实现时再形成 UPF、CDC/RDC、低功耗仿真与物理验收。</p>
+<div class="source"><strong>本章源码依据</strong><p><a href="../../hw/cheshire_soc.sv">顶层实例</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">平台连接</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">VIP 时钟与模型</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA shell</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 接口</a></p></div><details class="quiz"><summary>CPU 读到数组元素时，总线上一定出现 AR 吗？</summary><p>L1 命中时可能在核内完成。先由实际机器指令和地址属性判断，再到出核接口查缺失或非缓存访问。</p></details>

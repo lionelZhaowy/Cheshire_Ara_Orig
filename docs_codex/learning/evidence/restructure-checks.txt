@@ -1,0 +1,14 @@
+2026-09-28 L01 final integrity checks
+Scope: documentation / independent software build inputs; NO production RTL execution.
+PASS backup: 728 files, 66754766 bytes; exact SHA256 and file set
+PASS preserved historical evidence: 595 original files unchanged
+PASS current source/reference provenance: 70 hashes match
+PASS deterministic regeneration: 58 generated files unchanged
+PASS: 40 HTML pages, 1074 local links/resources, anchors, 44 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 340 Markdown links and fragments
+PASS Python source syntax (no simulator invocation)
+PASS main content uses only new figures and does not depend on retired teaching pages
+Editorial audit: 0 verbatim old paragraphs (>35 characters), excluding generated register reference
+PASS tracked changes confined to docs_codex; production RTL/sw/platform/dependencies/shared build inputs unchanged
+PASS git diff --check
+Not executed: production RTL compilation/elaboration, full SoC simulation, synthesis, board operations, ASIC extraction, or repeat of historical Reg unit.

@@ -1,0 +1,21 @@
+2026-09-29 L01 depth extension checks
+Scope: documentation and independent software examples; no target execution.
+PASS backup unchanged: 728 files, 66754766 bytes
+PASS pre-extension evidence unchanged: 670 files
+PASS current source provenance: 94 hashes
+PASS deterministic regeneration: 59 generated HTML/SVG files
+PASS Python source syntax
+PASS parser-only synthetic case: complete synthetic fixture
+PASS parser-only synthetic case: missing reduction
+PASS parser-only synthetic case: wrong sum
+PASS parser-only synthetic case: case failure
+PASS parser-only synthetic case: wrong stage
+PASS parser-only synthetic case: missing target completion
+PASS parser-only synthetic case: simulation error
+PASS parser-only synthetic case: software failure
+PASS six editable WaveDrom teaching sources; AXI and load backpressure payload stability
+PASS tracked changes confined to docs_codex; production RTL/sw/platform/dependencies unchanged
+PASS git diff --check
+PASS: 40 HTML pages, 1182 local links/resources, anchors, 63 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 374 Markdown links and fragments
+NOT RUN: production RTL compile/elaboration/simulation, board, performance, NPU integration, synthesis, ASIC extraction.

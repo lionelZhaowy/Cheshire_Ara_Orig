@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="890" viewBox="0 0 1300 890" role="img" aria-labelledby="title desc"><title id="title">低速外设内部：软件写的是队列和状态，不是瞬时引脚电平</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">低速外设内部：软件写的是队列和状态，不是瞬时引脚电平</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="20" y="90" width="1260" height="200" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="116" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">UART · 所有寄存器偏移见对应章节与离线索引</text>
+<rect x="45" y="145" width="370" height="100" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="171" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">Reg32 → APB</text>
+<text x="57" y="195" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">DLAB 地址别名 / LCR</text>
+<rect x="465" y="145" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="477" y="171" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">TX FIFO → uart_transmitter</text>
+<text x="477" y="195" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">分频 / 起始位 / 数据 / 停止位</text>
+<rect x="885" y="145" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="897" y="171" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">uart_receiver → RX FIFO</text>
+<text x="897" y="195" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">采样 / 奇偶/帧错误 / IIR</text>
+<polyline points="415,190 465,190" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="416" y="176" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">配置</text>
+<polyline points="835,190 885,190" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="836" y="176" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">字节/位</text>
+<text x="45" y="276" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">观察顺序：MMIO handshake → FIFO level / ready → FSM → 引脚协议 → 接收数据 / 错误状态 / IRQ</text>
+<rect x="20" y="340" width="1260" height="200" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="366" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">I2C · 所有寄存器偏移见对应章节与离线索引</text>
+<rect x="45" y="395" width="370" height="100" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="421" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">寄存器 + 格式 FIFO</text>
+<text x="57" y="445" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">FDATA: START/STOP/READ</text>
+<rect x="465" y="395" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="477" y="421" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">i2c_core / i2c_fsm</text>
+<text x="477" y="445" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">SCL/SDA 开漏 / ACK / stretch</text>
+<rect x="885" y="395" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="897" y="421" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">RX / ACQ / TX FIFO</text>
+<text x="897" y="445" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">host 接收 / target 请求与响应</text>
+<polyline points="415,440 465,440" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="416" y="426" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">配置</text>
+<polyline points="835,440 885,440" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="836" y="426" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">字节/位</text>
+<text x="45" y="526" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">观察顺序：MMIO handshake → FIFO level / ready → FSM → 引脚协议 → 接收数据 / 错误状态 / IRQ</text>
+<rect x="20" y="590" width="1260" height="200" rx="12" fill="#f5f8fa" stroke="#abbfcc" stroke-dasharray="7 4"/>
+<text x="35" y="616" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50" font-weight="700">SPI host · 所有寄存器偏移见对应章节与离线索引</text>
+<rect x="45" y="645" width="370" height="100" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="57" y="671" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">CONFIGOPTS / CSID</text>
+<text x="57" y="695" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">分频 / CPOL / CPHA / CS 时序</text>
+<rect x="465" y="645" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="477" y="671" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">命令 FIFO / 控制状态机</text>
+<text x="477" y="695" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">direction/speed/LEN/CSAAT</text>
+<rect x="885" y="645" width="370" height="100" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="897" y="671" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">TX/RX FIFO + 移位器</text>
+<text x="897" y="695" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">SCK / CSB / SD[3:0]</text>
+<polyline points="415,690 465,690" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="416" y="676" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">配置</text>
+<polyline points="835,690 885,690" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="836" y="676" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">字节/位</text>
+<text x="45" y="776" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">观察顺序：MMIO handshake → FIFO level / ready → FSM → 引脚协议 → 接收数据 / 错误状态 / IRQ</text>
+<text x="30" y="870" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

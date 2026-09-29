@@ -1,0 +1,71 @@
+[
+  {
+    "mode": "scalar",
+    "inject": 0,
+    "directory": "evidence/journey-scalar-spm.c4PChI",
+    "sha256": "d489e11108ae92285e489acc43164400850bbed183494cd50563579c292c1cae",
+    "vector_instructions": []
+  },
+  {
+    "mode": "rvv",
+    "inject": 0,
+    "directory": "evidence/journey-rvv-spm.5bdYNR",
+    "sha256": "973808b31d3145a6bd17830e1d92553a7e2f27358073eb00118e01454cadeb68",
+    "vector_instructions": [
+      "vadd.vv",
+      "vle32.v",
+      "vmv.s.x",
+      "vmv.x.s",
+      "vredsum.vs",
+      "vse32.v",
+      "vsetvli"
+    ]
+  },
+  {
+    "mode": "rvv-auto",
+    "inject": 0,
+    "directory": "evidence/journey-rvv-auto-spm.7K9yB9",
+    "sha256": "f036de0ddff4e58647c6969bbe88b2910f1e2ee1438bee4e9999371a4c07a77c",
+    "vector_instructions": [
+      "vadd.vv",
+      "vle32.v",
+      "vmv.s.x",
+      "vmv.v.i",
+      "vmv.x.s",
+      "vredsum.vs",
+      "vse32.v",
+      "vsetvli"
+    ]
+  },
+  {
+    "mode": "rvv",
+    "inject": 1,
+    "directory": "evidence/journey-rvv-spm.FUWXW0",
+    "sha256": "32f48d3dc3bdb80381149a2f51f92fbc46569e14052c5dad061b625fa0507bd5",
+    "vector_instructions": [
+      "vadd.vv",
+      "vle32.v",
+      "vmv.s.x",
+      "vmv.x.s",
+      "vredsum.vs",
+      "vse32.v",
+      "vsetvli"
+    ]
+  },
+  {
+    "mode": "rvv-intrinsics",
+    "inject": 0,
+    "directory": "evidence/journey-rvv-intrinsics-spm.IKfyrI",
+    "sha256": "d246bb124ce768eb4f0da24ed03778b7184e279bfe7334233c72a7ce6d567e33",
+    "vector_instructions": [
+      "vadd.vv",
+      "vle32.v",
+      "vmv.s.x",
+      "vmv.x.s",
+      "vredsum.vs",
+      "vse32.v",
+      "vsetivli",
+      "vsetvli"
+    ]
+  }
+]

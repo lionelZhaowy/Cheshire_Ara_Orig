@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 580" role="img" aria-labelledby="title desc"><title id="title">地址窗口与物理阵列</title><desc id="desc">低 / 高 SPM 别名映射到同一阵列，不能当作两份 RAM。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="580" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">地址窗口与物理阵列</text>
+<text x="32" y="74" class="small" text-anchor="start">低 / 高 SPM 别名映射到同一阵列，不能当作两份 RAM。</text>
+<rect x="35" y="130" width="405" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="237.5" y="170.5" class="box" text-anchor="middle">0x10000000：低 SPM 别名</text>
+<text x="237.5" y="196.5" class="box" text-anchor="middle">CPU 属性允许缓存</text>
+<rect x="35" y="280" width="405" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="237.5" y="320.5" class="box" text-anchor="middle">0x14000000：高 SPM 别名</text>
+<text x="237.5" y="346.5" class="box" text-anchor="middle">显式实验缓冲区仅通过此处访问</text>
+<rect x="625" y="175" width="395" height="155" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="822.5" y="232.5" class="box" text-anchor="middle">LLC 的 128 KiB 阵列</text>
+<text x="822.5" y="258.5" class="box" text-anchor="middle">可分为缓存 ways 与 SPM ways</text>
+<text x="822.5" y="284.5" class="box" text-anchor="middle">ROM 主线配置为全 SPM</text>
+<path d="M440,177 L625,220" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M440,327 L625,280" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="35" y="435" width="405" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="237.5" y="481.0" class="box" text-anchor="middle">0x80000000：外部存储窗口</text>
+<rect x="625" y="435" width="395" height="80" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="822.5" y="481.0" class="box" text-anchor="middle">LLC 下游 → 平台内存模型 / DDR</text>
+<path d="M440,475 L625,475" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="558" class="small" text-anchor="start">地址图描述路由；实际可用容量、缓存策略、执行许可和就绪状态是另外的约束。</text></svg>

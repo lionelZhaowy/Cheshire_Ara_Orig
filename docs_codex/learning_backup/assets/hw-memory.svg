@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="900" viewBox="0 0 1240 900" role="img"><title>存储路径与一致性边界</title><rect width="1240" height="900" fill="#f5f8fc"/><defs>
+<marker id="data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#245fc7"/></marker>
+<marker id="control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#16806b"/></marker>
+<marker id="irq" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#b94b29"/></marker>
+<marker id="clock" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#8251af"/></marker>
+</defs><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif">
+<text x="32" y="40" font-size="25" fill="#20334c">存储路径与一致性边界</text>
+<text x="32" y="73" font-size="16" fill="#20334c">缓存命中不出下一级总线；SPM别名共用阵列。</text>
+<rect x="30" y="125" width="310" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="45" y="154" font-size="18" fill="#245fc7">CVA6：L1 I/D cache</text>
+<text x="45" y="181" font-size="15" fill="#20334c">tag/data、WT或WB、写缓冲</text>
+<text x="45" y="203" font-size="15" fill="#20334c">MMU/TLB影响地址与权限</text>
+<rect x="455" y="125" width="330" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="470" y="154" font-size="18" fill="#245fc7">Ara：控制与VLSU</text>
+<text x="470" y="181" font-size="15" fill="#20334c">CPU专用指令/翻译协作</text>
+<text x="470" y="203" font-size="15" fill="#20334c">独立向量AXI→失效过滤/变宽</text>
+<rect x="900" y="125" width="300" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="915" y="154" font-size="18" fill="#245fc7">DMA / USB / VGA</text>
+<text x="915" y="181" font-size="15" fill="#20334c">独立AXI发起者</text>
+<text x="915" y="203" font-size="15" fill="#20334c">不自动获得Ara缓存协作</text>
+<polyline points="185,285 185,340 620,340 620,375" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<polyline points="620,285 620,340 620,340 620,375" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<polyline points="1050,285 1050,340 620,340 620,375" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<rect x="420" y="385" width="400" height="100" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="435" y="414" font-size="18" fill="#245fc7">主 AXI Crossbar</text>
+<text x="435" y="441" font-size="15" fill="#20334c">地址选择与响应归属</text>
+<polyline points="620,485 620,535" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<rect x="30" y="550" width="325" height="125" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="45" y="579" font-size="18" fill="#245fc7">SPM窗口与别名</text>
+<text x="45" y="606" font-size="15" fill="#20334c">cached / uncached</text>
+<text x="45" y="628" font-size="15" fill="#20334c">重映射到同一LLC阵列</text>
+<rect x="420" y="550" width="400" height="125" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="435" y="579" font-size="18" fill="#245fc7">原子适配 → LLC/SPM</text>
+<text x="435" y="606" font-size="15" fill="#20334c">AMO/LRSC边界在LLC之前</text>
+<text x="435" y="628" font-size="15" fill="#20334c">命中、回填、回写、way用途</text>
+<rect x="900" y="550" width="300" height="125" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="915" y="579" font-size="18" fill="#245fc7">外部存储接口</text>
+<text x="915" y="606" font-size="15" fill="#20334c">FPGA：DDR wrapper / MIG</text>
+<text x="915" y="628" font-size="15" fill="#20334c">ASIC：未来DDR控制器/PHY</text>
+<polyline points="355,610 408,610" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<polyline points="820,610 888,610" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<text x="32" y="795" font-size="16" fill="#20334c">来源路径与内存属性一起决定可见性；volatile/fence/旁路LLC都不能单独完成所有缓存维护。</text>
+<text x="32" y="819" font-size="16" fill="#20334c">未来NPU/ISP若下游汇入DDR，需要重新论证原子可见性和buffer所有权，本图未实现该旁路。</text>
+<text x="32" y="878" font-size="14" fill="#20334c">教学示意 · 蓝：数据/请求  绿：控制/响应  橙：中断/错误  紫：时钟/复位 · 未标拍数不代表零延迟</text>
+</g></svg>

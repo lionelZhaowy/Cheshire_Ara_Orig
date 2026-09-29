@@ -1,0 +1,13 @@
+2026-09-23 / standalone teaching RTL only / QuestaSim 2024.1
+Command: bash docs_codex/learning/scripts/run_hw_unit.sh
+Sources: examples/hw/lesson_reg_adder.sv and tb_lesson_reg_adder.sv only.
+Final output directory: /tmp/cheshire-hw-unit.WkvQee
+Compilation: exit 0; 0 errors, 0 warnings.
+Normal simulation: HW_UNIT_PASS checks=35, completed at 630 ns; checker exit 0.
+Injected simulation: +INJECT_FAIL; HW_UNIT_FAIL injected checker failure at 630 ns.
+Simulator raw injected exit: 0. Final log checker rejects with exit 1.
+Final wrapper exit: 0 (normal checks passed AND injected failure correctly rejected).
+Prior attempt /tmp/cheshire-hw-unit.4UcDjw: normal unit passed, wrapper exit 1 because it incorrectly required injected simulator process exit to be nonzero.
+Fix: shared check_hw_unit.py rejects fatal/failure/missing or incomplete success marker independent of raw simulator status; rerun above passed.
+No Cheshire, production AXI, DMA, DDR, CPU or Ara RTL compiled or run. No VCS execution.
+Full logs remain in the stated temporary directories; these paths are machine-local and may expire. Re-run creates a fresh directory.

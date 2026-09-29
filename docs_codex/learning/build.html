@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>05 · 从 C 源码到目标程序 | Cheshire 实验课堂</title><link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
+<body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>实验课堂</span></a><p class="edition">CVA6 × Ara · 从硬件到程序</p><nav aria-label="章节"><p class="nav-group">学习主线</p><a href="index.html">阅读路线</a><a href="architecture.html">01 · 系统职责与运行平台</a><a href="configuration.html">02 · 硬件配置与结构展开</a><a href="interconnect.html">03 · 互连、地址译码与接口适配</a><a href="runtime.html">04 · 裸机程序的运行模型</a><a href="build.html" aria-current="page">05 · 从 C 源码到目标程序</a><a href="boot-debug.html">06 · 程序加载、复位与启动</a><a href="simulation.html">07 · 仿真运行与结果验证</a><a href="uart-gpio.html">08 · 寄存器驱动、UART 与 GPIO</a><a href="interrupts.html">09 · 计时、中断与事件处理</a><a href="i2c.html">10 · I2C 与 EEPROM</a><a href="spi.html">11 · SPI、NOR Flash 与 SD</a><a href="memory.html">12 · 存储、DMA 与流量管理</a><a href="vector.html">13 · Ara 向量计算</a><a href="stream-io.html">14 · Serial Link、VGA 与 USB</a><a href="integration.html">15 · 自定义 IP 与系统接入</a><a href="future.html">16 · 独立工程与 ASIC 扩展规划</a><p class="nav-group">实验与参考</p><a href="labs.html">实验手册</a><a href="registers.html">参考 · 寄存器索引</a><a href="evidence.html">参考 · 来源与验证记录</a></nav><div class="sidebar-foot">离线可读 · 单线课程<br><a href="README.md">维护说明</a> · <a href="../learning_backup/index.html">旧版备份</a></div></aside>
+<div class="workspace"><header class="topbar"><span>L01 / 学习主线</span><a href="evidence.html">来源与验证记录 ↗</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">UNDERSTAND · TRACE · BUILD · VERIFY</p><h1>05 · 从 C 源码到目标程序</h1><p class="subtitle">用同一个数组程序理解编译、汇编、链接和 ELF。</p></div><nav class="toc" aria-label="本页目录"><a href="#tools">主机工具与目标程序</a><a href="#stages">预处理、编译、汇编与链接</a><a href="#elf">ELF 把机器码和装载信息放在一起</a><a href="#layout">从 C 对象追到输出地址</a><a href="#practice">完成一次可解释的构建</a><a href="#toolchain-contract">编译器入口与向量对象边界</a></nav><div class="goals"><strong>本章任务</strong><p>上一章确定了代码、常量、全局数据和栈的需求。本章沿同一个 journey.c 看工具如何生成字节、解决函数地址并分配目标空间，得到下一章加载器真正能使用的程序文件。</p></div>
+<h2 id="tools">主机工具与目标程序</h2>
+<p>我们在开发主机上运行交叉编译器，生成供 RISC-V CPU 执行的机器码。工具名字 <code>riscv64-unknown-elf-gcc</code> 描述目标体系；它本身运行在主机。<code>g++</code> 则用于编译仿真器调用的主机 C++ 加载器，两者的输出用途不同。</p>
+<p>教材构建脚本 <a href="scripts/build_journey.sh">build_journey.sh</a> 只取本地 crt0、UART、CLINT 和 printf 的必要源文件，在新输出目录生成产物。它采用原软件入口的基本 ISA/ABI 与链接约定，关闭自动向量化并省略 LTO（链接期优化），以保留容易观察的编译单元边界。生产入口仍在 <code>sw/sw.mk</code>；原 Make 规则会在 sw 和部分依赖目录旁写产物，主线实验采用隔离输出。</p>
+<h2 id="stages">预处理、编译、汇编与链接</h2>
+<p>预处理先展开 <code>#include</code> 和宏，得到 <code>journey.i</code>。头文件告诉编译器函数叫什么、参数是什么，以及寄存器偏移等常量；函数实现仍需从源文件或库中取得。编译阶段依据 ISA、ABI 和优化选项把 C 语义变成汇编，得到 <code>journey.s</code>。汇编阶段把指令编码成机器字节，形成 <code>journey.o</code>，同时保留符号与尚待解决的地址引用。</p>
+<p>例如编译 main 时，编译器知道要调用 uart_init，却未决定它最终位于哪个目标地址。对象中的重定位记录告诉链接器在哪里补地址。<code>ar</code> 将 uart.o、clint.o、printf.o 打包成静态库 libsupport.a；链接器把应用、crt0 和所需库对象组合起来，解析调用目标，并按链接脚本安排空间。只增加头文件搜索路径 <code>-I</code> 无法补上缺失函数实现。</p>
+<figure><img src="assets/new-build.svg" alt="journey.c 经预处理、编译、汇编形成对象，与启动对象和支持库链接成 ELF"><figcaption>主机上的构建流程。map、dump 和符号表用于解释同一份 ELF，均不是硬件执行记录。</figcaption></figure>
+<p>本例 C 和支持库使用 <code>-march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany</code>。march 限定指令，mabi 约定调用，medany 选择代码寻址方式。<code>-nostartfiles</code> 让项目 crt0 承担启动；<code>--gc-sections</code> 删除不可达的节。后续仅 RVV 汇编对象使用带 V 的 ISA，进入它之前由标量代码打开 VS。</p>
+<h2 id="elf">ELF 把机器码和装载信息放在一起</h2>
+<p>仅有机器字节还不够：加载器需要知道写到哪里、占多大空间、从哪里开始。ELF（Executable and Linkable Format，可执行与可链接格式）把这些信息和代码数据放在一个文件中。对当前流程最有用的是入口地址，以及描述可装载区间的 program headers。调试符号和源码信息帮助定位，但不会全部装入目标存储。</p>
+<p>链接用的 section 组织用途，加载用的 segment 描述连续装载区间；一个 PT_LOAD 段可以覆盖 .text、.misc 等多个节。<code>p_offset</code> 是文件内偏移，<code>p_filesz</code> 是文件提供的字节数，<code>p_memsz</code> 是目标内存需求。BSS 使后者可能更大。<code>e_entry</code> 指向应用 _start，由它建立 C 环境后调用 main。</p>
+<p>运行地址称 VMA，镜像中内容的装载地址称 LMA。当前 spm.ld/dram.ld 用于直接装到运行位置；本地 JTAG ELF loader 具体使用 <code>p_paddr</code>。rom.ld 则把 SPM 运行内容安排在外部镜像布局中，供 Boot ROM 搬运。应按加载器的规则选文件，而不是只看文件后缀。</p>
+<h2 id="layout">从 C 对象追到输出地址</h2>
+<p>当前 spm.ld 从 0x10000000 安排 .text，并先放 .text._start；.rodata/.data 等进入 .misc，result 的 548 字节进入 .bss。common.ldh 给 SPM 应用 64 KiB 链接预算，令 <code>__stack_pointer$=0</code>，表示由启动汇编继承已存在的栈。栈容量需要结合物理 SPM 和调用深度检查。</p>
+<p>链接到 DRAM 时入口移到 0x80000000，预算为 8 MiB，栈符号是 0x807ffff8。重新链接能改变程序地址，但真实外存模型或 DDR 必须覆盖所有装载段与栈。原 crt0 没有通用 .data 拷贝循环，加载器或介质加载流程负责把有初值内容放到运行位置。</p>
+<p>读取 map 时，从 <code>.rodata.greeting</code> 或相应小数据节找到 greeting 的输入来源，再看它落在哪个输出节；从 symbols.txt 找 seed、result、_start、main。dump 是 objdump 生成的反汇编文本，可把 PC 对回机器指令与函数，不能作为 BINARY 交给加载器。当前 common.ldh 丢弃最终 ELF 的 .riscv.attributes，ISA 还需看对象属性和构建日志。</p>
+<h2 id="practice">完成一次可解释的构建</h2>
+<p>以下是<a href="labs.html#lab-a">实验 A</a>的入口，Bash 工作目录为仓库根。先用 <code>command -v riscv64-unknown-elf-gcc</code> 确认工具，构建只写预先创建的空目录。</p>
+<pre><code>LEARN_OUT=$(mktemp -d "$PWD/docs_codex/learning/evidence/journey.XXXXXX")
+JOURNEY_OUT="$LEARN_OUT" timeout 60 bash docs_codex/learning/scripts/build_journey.sh scalar spm
+cat "$LEARN_OUT/readelf.txt"
+rg -n '(_start|main|make_value|seed|result|greeting|__bss|__stack_pointer)' "$LEARN_OUT/symbols.txt"
+rg -n '\.misc|\.bss|greeting|seed' "$LEARN_OUT/journey.map"</code></pre>
+<p>期望得到 .i/.s/.o、支持库、journey.spm.elf、map、dump 和检查文本。下一章把这份 ELF 装到目标，而不是重新寻找某个旧文件。出现 undefined reference 时先核对对象和库；地址重定位溢出先查寻址选项与布局；出现工具链告警时保留完整日志并定位源行。本地原 MMIO 声明可能触发对象边界告警，原链接布局可能报告 RWX 段，记录它们而不静默屏蔽。</p>
+<h2 id="toolchain-contract">编译器入口与向量对象边界</h2>
+<p>本轮实测 riscv64-unknown-elf-gcc 为 15.2.0。汇编、intrinsics 和自动向量化版本均生成了 vadd.vv、连续 load/store 及 vredsum.vs；自动向量化报告标记两个循环使用 variable length vectors。编译器诊断中的 missed 行可能描述变换后语句的再次分析，应结合函数级 optimized 行和反汇编判断，不能看到一个 missed 就断言整个函数没有向量化。</p>
+<p>包含 riscv_vector.h 的本地探针给出 __riscv_v_intrinsic=12000、__riscv_v=1000000、__riscv_v_elen=64、__riscv_v_min_vlen=128。最后一个值是该编译目标的最低保证，不是本工程 RTL 的 VLEN=2048；实际 vl 在运行时选择。固定版本 GCC 手册仍写 intrinsic 0.11，而当前安装工具的宏和可编译名字必须独立记录，不能将网站版本文字替代本地探针。</p>
+<pre><code>riscv64-unknown-elf-gcc -march=rv64gcv_zifencei -mabi=lp64d   -dM -E -x c -include riscv_vector.h /dev/null
+# 具体内核按 build_journey.sh 编译；逐个对象检查能力边界。
+riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
+riscv64-unknown-elf-objdump -d "$LEARN_RVV/journey.o"</code></pre>
+<p>本例 -fno-tree-vectorize 用于 main、独立参考和支持库，含 V 的代码集中在专用内核对象，确保启用 VS 之前不会因自动优化提前执行 V。所有对象仍使用一致的 lp64d ABI 与 medany 代码模型。链接器合并出的 ISA 属性是一种静态声明，不能证明实际调用顺序、VS 状态或平台支持。</p>
+<p>错误定位按阶段：缺头文件查 include/toolchain；unknown intrinsic 查实际 header/API；汇编 illegal operands 查 -march 与编码；链接 relocation 查代码模型/脚本与对象 ABI；运行首条 V 陷入查 profile、真实 decoder、VS/FS。构建记录见<a href="evidence/depth-20260929-builds.txt">本轮编译及指令检查</a>。</p>
+<div class="source"><strong>本章源码依据</strong><p><a href="../../sw/sw.mk">原构建规则与 flags</a>；<a href="../../sw/link/spm.ld">SPM 布局</a>；<a href="../../sw/link/dram.ld">DRAM 布局</a>；<a href="../../sw/link/rom.ld">镜像装载布局</a>；<a href="../../sw/link/common.ldh">入口、基址和链接预算</a></p></div><details class="quiz"><summary>readelf 看不到独立 .data，seed=1 去哪里了？</summary><p>先在 map 中查看输入节到输出节的合并。本地脚本把初始化数据收进 .misc，加载责任没有因此消失。</p></details>
+<nav class="nextprev" aria-label="上下章"><a href="runtime.html">← 04 · 裸机程序的运行模型</a><a href="boot-debug.html">06 · 程序加载、复位与启动 →</a></nav></main><footer>Cheshire / CVA6 / Ara · L01 中文工程教材 · 2026-09-29</footer></div></body></html>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="820" viewBox="0 0 1240 820" role="img"><title>写事务的状态：AW ≠ W ≠ B</title><rect width="1240" height="820" fill="#f5f8fc"/><defs>
+<marker id="data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#245fc7"/></marker>
+<marker id="control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#16806b"/></marker>
+<marker id="irq" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#b94b29"/></marker>
+<marker id="clock" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#8251af"/></marker>
+</defs><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif">
+<text x="32" y="40" font-size="25" fill="#20334c">写事务的状态：AW ≠ W ≠ B</text>
+<text x="32" y="73" font-size="16" fill="#20334c">教学顺序，不是真实周期；AW/W独立，背压时payload保持稳定。</text>
+<rect x="25" y="115" width="120" height="64" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="40" y="144" font-size="18" fill="#245fc7">阶段</text>
+<rect x="155" y="115" width="280" height="64" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="170" y="144" font-size="18" fill="#245fc7">AW / 路由选择</text>
+<rect x="445" y="115" width="255" height="64" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="460" y="144" font-size="18" fill="#245fc7">W / 数据流</text>
+<rect x="710" y="115" width="160" height="64" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="725" y="144" font-size="18" fill="#245fc7">B / 完成</text>
+<rect x="880" y="115" width="335" height="64" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="895" y="144" font-size="18" fill="#245fc7">必须保留的状态</text>
+<rect x="25" y="185" width="120" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="33" y="213" font-size="15" fill="#20334c">①</text>
+<rect x="155" y="185" width="280" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="163" y="213" font-size="15" fill="#20334c">CPU写地址被选中</text>
+<rect x="445" y="185" width="255" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="453" y="213" font-size="15" fill="#20334c">数据可先到或后到</text>
+<rect x="710" y="185" width="160" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="718" y="213" font-size="15" fill="#20334c">尚无响应</text>
+<rect x="880" y="185" width="335" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="888" y="213" font-size="15" fill="#20334c">仲裁选择锁定</text>
+<rect x="25" y="270" width="120" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="33" y="298" font-size="15" fill="#20334c">②</text>
+<rect x="155" y="270" width="280" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="163" y="298" font-size="15" fill="#20334c">目标接受地址</text>
+<rect x="445" y="270" width="255" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="453" y="298" font-size="15" fill="#20334c">等待WREADY</text>
+<rect x="710" y="270" width="160" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="718" y="298" font-size="15" fill="#20334c">尚无响应</text>
+<rect x="880" y="270" width="335" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="888" y="298" font-size="15" fill="#20334c">记录来源/目标</text>
+<rect x="25" y="355" width="120" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="33" y="383" font-size="15" fill="#20334c">③</text>
+<rect x="155" y="355" width="280" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="163" y="383" font-size="15" fill="#20334c">可有后续地址排队</text>
+<rect x="445" y="355" width="255" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="453" y="383" font-size="15" fill="#20334c">中间拍被背压</text>
+<rect x="710" y="355" width="160" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="718" y="383" font-size="15" fill="#20334c">尚无响应</text>
+<rect x="880" y="355" width="335" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="888" y="383" font-size="15" fill="#20334c">WDATA/STRB/LAST稳定</text>
+<rect x="25" y="440" width="120" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="33" y="468" font-size="15" fill="#20334c">④</text>
+<rect x="155" y="440" width="280" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="163" y="468" font-size="15" fill="#20334c">写选择已建立</text>
+<rect x="445" y="440" width="255" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="453" y="468" font-size="15" fill="#20334c">WLAST握手</text>
+<rect x="710" y="440" width="160" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="718" y="468" font-size="15" fill="#20334c">可能仍未返回</text>
+<rect x="880" y="440" width="335" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="888" y="468" font-size="15" fill="#20334c">推进W选择；保留响应跟踪</text>
+<rect x="25" y="525" width="120" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="33" y="553" font-size="15" fill="#20334c">⑤</text>
+<rect x="155" y="525" width="280" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="163" y="553" font-size="15" fill="#20334c">可继续接收新请求</text>
+<rect x="445" y="525" width="255" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="453" y="553" font-size="15" fill="#20334c">下一burst可推进</text>
+<rect x="710" y="525" width="160" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="718" y="553" font-size="15" fill="#20334c">BVALID &amp; BREADY</text>
+<rect x="880" y="525" width="335" height="75" rx="4" fill="white" stroke="#c8d5e5"/>
+<text x="888" y="553" font-size="15" fill="#20334c">检查BID/BRESP，结束响应</text>
+<text x="32" y="715" font-size="16" fill="#20334c">axi_mux的W来源FIFO遵守AW选择；W没有WID，不能每拍重新选“当前最优”来源。</text>
+<text x="32" y="739" font-size="16" fill="#20334c">数据发完不等于结果可用；还要核对目标响应、设备完成协议与缓冲区所有权。</text>
+<text x="32" y="798" font-size="14" fill="#20334c">教学示意 · 蓝：数据/请求  绿：控制/响应  橙：中断/错误  紫：时钟/复位 · 未标拍数不代表零延迟</text>
+</g></svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 690" role="img" aria-labelledby="title desc"><title id="title">当前 CPU / Ara 的数据可见性路径</title><desc id="desc">实线表示已存在的连接；不包含未来 NPU。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="690" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">当前 CPU / Ara 的数据可见性路径</text>
+<text x="32" y="74" class="small" text-anchor="start">实线表示已存在的连接；不包含未来 NPU。</text>
+<rect x="40.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="164.0" class="box" text-anchor="middle">CPU：WT L1D / 写缓冲</text>
+<text x="190.0" y="190.0" class="box" text-anchor="middle">一致性 CSR + pending 等待</text>
+<rect x="360.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="164.0" class="box" text-anchor="middle">Ara：VRF / VLSU</text>
+<text x="510.0" y="190.0" class="box" text-anchor="middle">无独立地址标记 D-cache</text>
+<rect x="680.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="164.0" class="box" text-anchor="middle">iDMA / 其他设备</text>
+<text x="830.0" y="190.0" class="box" text-anchor="middle">不自动进入 Ara 失效协议</text>
+<path d="M190.0,217 L190.0,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,217 L510.0,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,217 L830.0,390" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M515,248 L195,248" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="440" y="280" class="label" text-anchor="middle">Ara AW → invalidation filter → L1 line invalidation</text>
+<rect x="45" y="390" width="940" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="515.0" y="425.5" class="box" text-anchor="middle">系统 Crossbar → 主存原子处理 → LLC / SPM</text>
+<text x="515.0" y="451.5" class="box" text-anchor="middle">CPU cache 属性、SPM 别名和 LLC way 模式分别控制副本存在条件</text>
+<rect x="350" y="550" width="390" height="65" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="545.0" y="588.5" class="box" text-anchor="middle">LLC 下游 AXI → 外部存储</text>
+<path d="M545,475 L545,550" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="660" class="small" text-anchor="start">源码：csr_regfile、acc_dispatcher、axi_inval_filter、cheshire_soc；该协作不覆盖任意新主设备。</text></svg>

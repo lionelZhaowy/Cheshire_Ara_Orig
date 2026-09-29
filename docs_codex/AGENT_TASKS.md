@@ -13,7 +13,7 @@
 | M01 DDR 旁路与存储一致性 | 未开始 | AXI4 接口契约、DMA 区/所有权方案、验证矩阵，再按授权实施 | 初期写专题/交接；涉及 top/config/address map 的改动与 E01 协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
 | P01 ASIC 工艺与实现准备 | 未开始 | SRAM/时钟/PAD/DDR PHY/DFT 适配表、约束缺口和实现验收项 | 初期可盘点；真实映射依赖工艺/IP 资料；不制造假通过报告 |
-| L01 学习与源码问答 | 完成（2026-09-23 硬件主线与全套教材编排；生产SoC运行待验证） | [离线教材](learning/index.html)、[编排交接](handoffs/2026-09-23_L01_editorial_revision.md)、[硬件主线](learning/hardware.html)、[硬件交接](handoffs/2026-09-23_L01_hardware_track.md)、[进阶外设](learning/advanced.html)、[进阶交接](handoffs/2026-09-22_L01_advanced_peripherals.md)；既有配置/软件手册保留 | 全站35页/28图；18项模型检查、Questa独立教学单元35项检查及注错、浏览器预览通过；未编译运行生产SoC。保护原RTL/sw/共享清单，DMA缺口仍交S01/V01 |
+| L01 学习与源码问答 | 完成（2026-09-29 深度扩充；目标 SoC 运行待验证） | [新教材](learning/index.html)、[本轮交接](handoffs/2026-09-29_L01_depth_asic_vector.md)、[扩充分工](learning/DEPTH_EXTENSION.md)、[旧站备份](learning_backup/index.html) | 保持 16 章/6 实验/2 参考；新增 13 张结构图与 6 张 WaveDrom。五个整数 ELF、FP32 编译及网页检查通过；未生产 RTL 仿真/板测。DMA 与 Ara 总线错误缺口交 S01/V01 |
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
 

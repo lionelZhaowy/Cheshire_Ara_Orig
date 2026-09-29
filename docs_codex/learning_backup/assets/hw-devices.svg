@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="800" viewBox="0 0 1240 800" role="img"><title>外设内部：从寄存器到物理事件再返回中断</title><rect width="1240" height="800" fill="#f5f8fc"/><defs>
+<marker id="data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#245fc7"/></marker>
+<marker id="control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#16806b"/></marker>
+<marker id="irq" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#b94b29"/></marker>
+<marker id="clock" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#8251af"/></marker>
+</defs><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif">
+<text x="32" y="40" font-size="25" fill="#20334c">外设内部：从寄存器到物理事件再返回中断</text>
+<text x="32" y="73" font-size="16" fill="#20334c">数据、控制状态和IRQ是三条相关但不同的链。</text>
+<rect x="35" y="135" width="350" height="160" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="50" y="164" font-size="18" fill="#16806b">CPU寄存器访问</text>
+<text x="50" y="191" font-size="15" fill="#20334c">地址/访问宽度/WSTRB</text>
+<text x="50" y="213" font-size="15" fill="#20334c">valid &amp; ready只成交一次</text>
+<polyline points="385,215 434,215" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)"/>
+<rect x="445" y="135" width="350" height="160" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="460" y="164" font-size="18" fill="#16806b">寄存器与FIFO</text>
+<text x="460" y="191" font-size="15" fill="#20334c">RW/W1C/START/读弹出</text>
+<text x="460" y="213" font-size="15" fill="#20334c">队列满空与副作用</text>
+<polyline points="795,215 844,215" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)"/>
+<rect x="855" y="135" width="350" height="160" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="870" y="164" font-size="18" fill="#16806b">状态机与引脚</text>
+<text x="870" y="191" font-size="15" fill="#20334c">UART移位 / SPI片选</text>
+<text x="870" y="213" font-size="15" fill="#20334c">I2C开漏 / GPIO同步采样</text>
+<rect x="35" y="380" width="350" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="50" y="409" font-size="18" fill="#245fc7">设备事件锁存</text>
+<text x="50" y="436" font-size="15" fill="#20334c">硬件置位与软件清除优先级</text>
+<text x="50" y="458" font-size="15" fill="#20334c">mask决定是否输出IRQ</text>
+<polyline points="385,460 434,460" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)"/>
+<rect x="445" y="380" width="350" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="460" y="409" font-size="18" fill="#245fc7">PLIC / CLIC / CLINT</text>
+<text x="460" y="436" font-size="15" fill="#20334c">按路径路由/优先级/许可</text>
+<text x="460" y="458" font-size="15" fill="#20334c">timer与外部IRQ机制不同</text>
+<polyline points="795,460 844,460" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)"/>
+<rect x="855" y="380" width="350" height="160" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="870" y="409" font-size="18" fill="#245fc7">CPU handler</text>
+<text x="870" y="436" font-size="15" fill="#20334c">claim→处理/清设备原因</text>
+<text x="870" y="458" font-size="15" fill="#20334c">complete；未清可再次触发</text>
+<polyline points="1150,295 1150,335 15,335 15,460 35,460" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)"/>
+<text x="600" y="322" font-size="14" fill="#16806b">继续推导</text>
+<text x="32" y="695" font-size="16" fill="#20334c">UART FIFO空不保证移位寄存器发完；软件注入GPIO事件不验证真实引脚同步链。</text>
+<text x="32" y="719" font-size="16" fill="#20334c">控制器存在、平台接出、有设备模型、端到端通过必须分别提供证据。</text>
+<text x="32" y="778" font-size="14" fill="#20334c">教学示意 · 蓝：数据/请求  绿：控制/响应  橙：中断/错误  紫：时钟/复位 · 未标拍数不代表零延迟</text>
+</g></svg>

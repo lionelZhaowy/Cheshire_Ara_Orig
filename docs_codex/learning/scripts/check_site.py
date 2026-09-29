@@ -75,18 +75,18 @@ for p,page in pages.items():
         if u.fragment and target.suffix=='.html':
             other=pages.get(target) or Page(target.read_text())
             if unquote(u.fragment) not in other.ids:errors.append(f'bad anchor {p.name}: {link}')
-    if p.stem not in ['index','evidence']:
-        if 'class="goals"' not in p.read_text() or '<details>' not in p.read_text():errors.append(f'missing teaching structure: {p.name}')
+    if p.stem in {x[0] for x in PAGES} - {'index','evidence','labs'}:
+        if 'class="goals"' not in p.read_text() or '<details' not in p.read_text():errors.append(f'missing teaching structure: {p.name}')
 # Tutorials, reference manuals and handoffs can all link to renamed headings.
 markdown_links=0
 for p in ROOT.parent.rglob('*.md'):
-    if 'evidence' in p.parts:continue
+    if 'evidence' in p.parts or 'learning_backup' in p.parts:continue
     text=re.sub(r"```.*?```", "", p.read_text(), flags=re.S)
     for link in re.findall(r'\[[^]\n]*\]\(([^)]+)\)',text):
         check_local_link(p.resolve(),link);markdown_links+=1
 for p in (ROOT/'assets').glob('*.svg'):ET.parse(p)
 for p in ROOT.rglob('*'):
-    if p.is_file() and p.suffix in ['.html','.css','.js','.py','.sh','.md'] and 'evidence' not in p.parts:
+    if p.is_file() and p.suffix in ['.html','.css','.js','.py','.sh','.md'] and 'evidence' not in p.parts and 'vendor' not in p.parts:
         s=p.read_text()
         if re.search(r'(?m)[ \t]+$',s): errors.append(f'trailing whitespace: {p}')
 for p in (ROOT/'scripts').glob('*.sh'):

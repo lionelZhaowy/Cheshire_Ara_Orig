@@ -1,0 +1,12 @@
+L01 advanced: SOFTWARE BUILD / STATIC CHECKS ONLY; no RTL run or board operation.
+PASS gpio: exit=0 entry=0x10000000 bss_end=0x10001a68 elf_sha256=feef77d2677ac89a51e04e2c23fc8696938e636aeaeb8ec2783826080d087929 warnings=87 output=docs_codex/learning/evidence/adv-gpio-spm.AThwig
+PASS timer: exit=0 entry=0x10000000 bss_end=0x10001a78 elf_sha256=dd5cb7f008aea2e56fb28f0860942b4b76241fddb0e01399478d76d6139dfb95 warnings=87 output=docs_codex/learning/evidence/adv-timer-spm.9E5ckm
+PASS capstone-guard: exit=0 entry=0x10000000 bss_end=0x10001c8c elf_sha256=e5b929fd20b68f057a902e022434d947820e7a0056e425f02c31121919369410 warnings=99 output=docs_codex/learning/evidence/adv-capstone-spm.tRFJIb
+PASS capstone-path: exit=0 entry=0x10000000 bss_end=0x10001c88 elf_sha256=13fe325aaf14c461357ee0209ba97547be4e6c38c2ce35d8da0e1d5bfc490127 warnings=99 output=docs_codex/learning/evidence/adv-capstone-spm.wcn85v
+PASS capstone-corrupt: exit=0 entry=0x10000000 bss_end=0x10001c98 elf_sha256=b8201cc860bef3f6cfa39f39db3be83220f76664334c75654f5dafc240ddc28f warnings=99 output=docs_codex/learning/evidence/adv-capstone-spm.Thm0Mp
+PASS gpio-missing: exit=0 entry=0x10000000 bss_end=0x10001a58 elf_sha256=0cc3d991840adc40552a8a9c90a8fd62210666a4032255fa56b22b5e9fbb23ad warnings=86 output=docs_codex/learning/evidence/adv-gpio-spm.FuHAIf
+PASS eeprom: exit=0 entry=0x10000000 bss_end=0x10001e10 elf_sha256=f41eada79ea143a3e2647316022e37027e5b2d0d3470d8da54b7c03c86deb6a0 warnings=26 output=docs_codex/learning/evidence/adv-eeprom-spm.kJrWdt
+PASS flash: exit=0 entry=0x10000000 bss_end=0x10001e40 elf_sha256=4c94da7a57d2715ed6912769b355586bc91db925a701994049927f7ea2f1996c warnings=26 output=docs_codex/learning/evidence/adv-flash-spm.Z9mwTg
+PASS 12 SYNTHETIC log-checker cases (not target logs)
+PASS DMA access comparison compiled to evidence/advanced-dma-access.s; this is NOT RTL lane validation
+PASS 31 protected source hashes equal previous baseline

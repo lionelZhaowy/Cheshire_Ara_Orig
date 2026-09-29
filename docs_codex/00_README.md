@@ -1,5 +1,7 @@
 # Cheshire-Ara 工程学习手册
 
+> 2026-09-29 教材扩充：新版 [HTML 教材](learning/index.html) 保持单线结构，增加 [CVA6–Ara/RVV](learning/vector.html)、[共享数据交接](learning/memory.html#sharing) 和 [ASIC/NPU 接口规划](learning/integration.html#npu-topology)。时序图统一采用 WaveDrom 源文件与离线 SVG；[本轮证据](learning/evidence.html#depth)区分软件构建、教学图与未执行的目标验证。
+
 > 2026-09-20 协作入口更新：新对话先读根 [AGENTS.md](../AGENTS.md)、[项目共享状态](PROJECT_STATE.md) 和 [任务分工](AGENT_TASKS.md)，无需默认通读全部教程。用户已确认 DDR 可采用 AXI4；当前近期目标是固定配置的独立 ASIC 源码提取，而不是长期维护 Bender。下文原始调查范围和路线保留为历史参考。
 
 > 2026-09-16 更新：主仓库现已纳入 `.bender` 依赖源码快照及 `Bender.local` 相对路径配置，见[依赖快照说明](../.bender/README.md)。下文的版本/工作区状态是编写教程时的历史快照，不表示依赖修改仍未上传。
@@ -71,7 +73,7 @@ CVA6 不只是 NPU 的控制 MCU：它承担操作系统、运行时、通用控
 | 已创建 | [02_Cheshire_Ara_ASIC_Extraction_Handoff.md](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 固定 Ara 配置、静态 filelist、独立目录提取及 DDR 旁路契约；替代原“02 配置管理专题”的近期优先安排 |
 | 已创建 | [PROJECT_STATE.md](PROJECT_STATE.md) / [AGENT_TASKS.md](AGENT_TASKS.md) | 当前目标、证据边界、待办、不同对话分工和启动提示词 |
 | 已创建 | [HANDOFF_TEMPLATE.md](HANDOFF_TEMPLATE.md) / [交接索引](handoffs/README.md) | 各任务的独立结果记录与跨对话交接 |
-| 已创建 | [离线教材入口](learning/index.html) / [进阶全外设](learning/advanced.html) / [硬件主线](learning/hardware.html) | 35页中文教材、28张SVG、429项寄存器索引；系统/时钟复位、C到硬件执行、驱动与中断/DMA综合案例，明确运行缺口 |
+| 已创建 | [单线离线教材](learning/index.html) / [实验手册](learning/labs.html) / [旧版备份](learning_backup/index.html) | 2026-09-28 重写为 16 章、6 项实验、2 页参考和 16 张新 SVG；按硬件→运行模型→构建启动→设备与扩展推进；429 项寄存器参考，实际验证见证据页 |
 | 计划 | `03_Boot_and_Baremetal_Debugging.md` | ELF、链接、启动、异常、中断、定时器、DMA、UART/JTAG 调试的可执行实验 |
 | 计划 | `04_CVA6_Ara_and_Memory_System.md` | CVA6/Ara 调度、向量编程、MMU、各级缓存、数据一致性和性能定位 |
 | 计划 | `05_AXI_Address_Map_and_Custom_IP.md` | 地址设计、AXI、寄存器、中断、NPU/ISP 接入及数据所有权协议 |

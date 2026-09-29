@@ -1,0 +1,31 @@
+L01 2026-09-22 checks (scope is documentation and lightweight software build)
+
+Software: 8 final build invocations completed with exit 0; see builds.txt and build_logs/.
+No RTL compile/elaboration/simulation, synthesis or board test was run.
+Independent Bender local source-list export succeeded; see prepare.txt (W28 warnings retained).
+Browser: initial sandboxed Chrome failed on a local socket setsockopt restriction.
+A subsequent authorized local preview outside that sandbox succeeded for index.html.
+Full browser results are recorded in browser.txt after the page/interaction checks complete.
+
+Final checks:
+- 10 generated HTML pages; local links/resources and page anchors pass (see final count below).
+- 10 SVG files parse as XML; image alt text and offline rendering assets pass.
+- Shell helper scripts and 13 tutorial shell blocks pass bash -n (examples were NOT run as simulations).
+- 8 final software builds pass; RVV dump contains vsetvli, two vle32.v, vadd.vv, vse32.v.
+- Source hash audit: 31 original inputs unchanged after inspection/builds.
+- Log checker: four SYNTHETIC inputs tested (normal, wrong result, missing completion, tool error).
+  These check the parser only and are not fabricated DUT output or execution evidence.
+- Chrome 151.0.7922.108: all 10 pages at desktop 1440x1100 and mobile 390x844 loaded.
+- Steps, details, calculator, local image loading, no page-width overflow, no JS exceptions pass.
+- No HTTP(S) page resource requests; file:// browsing works. Lifecycle content checked with scripts disabled.
+- Desktop entry, architecture, AXI, boot sequence, memory, calculator and mobile screenshots saved.
+- Visual inspection of entry/architecture/boot sequence/AXI/calculator/mobile screenshots completed.
+- Initial preview harness had an incorrect minimum heading count (expected 7; actual 6);
+  corrected the check and reran; this was not a website rendering failure.
+- git diff --check passes; original RTL/sw/FPGA/dependency/compile scripts remain unmodified.
+PASS: 10 HTML pages, 345 local links/resources, anchors, 10 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: 10 HTML pages, 347 local links/resources, anchors, 10 SVG XML, alt text, offline assets, shell syntax, whitespace
+
+Final portable browser command: python3 docs_codex/learning/scripts/preview_site.py; exit 0.
+Final site check: 10 HTML, 347 local links/resources/anchors, 10 SVG; exit 0.
+README/handoff/shared-index check: 5 files, 35 relative links and paired fences; exit 0.

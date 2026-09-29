@@ -1,0 +1,75 @@
+{
+  "signal": [
+    {
+      "name": "ACLK",
+      "wave": "p..........."
+    },
+    {
+      "name": "AWVALID",
+      "wave": "01..0......."
+    },
+    {
+      "name": "AWREADY",
+      "wave": "0..10......."
+    },
+    {
+      "name": "AWADDR/ID",
+      "wave": "x3..x.......",
+      "data": [
+        "A / ID=2"
+      ]
+    },
+    {
+      "name": "WVALID",
+      "wave": "0.1....0...."
+    },
+    {
+      "name": "WREADY",
+      "wave": "0...1010...."
+    },
+    {
+      "name": "WDATA",
+      "wave": "x.3..4.x....",
+      "data": [
+        "D0",
+        "D1"
+      ]
+    },
+    {
+      "name": "WSTRB",
+      "wave": "x.5....x....",
+      "data": [
+        "全部有效"
+      ]
+    },
+    {
+      "name": "WLAST",
+      "wave": "0....1.0...."
+    },
+    {
+      "name": "BVALID",
+      "wave": "0.......1.0."
+    },
+    {
+      "name": "BREADY",
+      "wave": "0........1.."
+    },
+    {
+      "name": "BRESP/BID",
+      "wave": "x.......5.x.",
+      "data": [
+        "OKAY / 2"
+      ]
+    }
+  ],
+  "head": {
+    "text": "AXI 两拍写：教学时序（全部信号在同一时钟域）",
+    "tick": 0
+  },
+  "foot": {
+    "text": "WREADY 需在 D1/LAST 时再次有效；源保持 VALID 与内容直到握手"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

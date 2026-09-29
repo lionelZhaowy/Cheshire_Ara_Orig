@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 720" role="img" aria-labelledby="title desc"><title id="title">当前时钟、复位与事件入口</title><desc id="desc">SoC 本体与平台时钟分开；信号方向用箭头表示。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="720" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">当前时钟、复位与事件入口</text>
+<text x="32" y="74" class="small" text-anchor="start">SoC 本体与平台时钟分开；信号方向用箭头表示。</text>
+<rect x="40.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="154.0" class="box" text-anchor="middle">clk_i / rst_ni</text>
+<text x="190.0" y="180.0" class="box" text-anchor="middle">CPU / Ara / AXI / LLC / Reg</text>
+<rect x="360.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="154.0" class="box" text-anchor="middle">rtc_i</text>
+<text x="510.0" y="180.0" class="box" text-anchor="middle">CLINT 同步后计数</text>
+<rect x="680.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="154.0" class="box" text-anchor="middle">JTAG tck / trst_n</text>
+<text x="830.0" y="180.0" class="box" text-anchor="middle">DTM → DMI 跨域</text>
+<rect x="40.0" y="310" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="349.0" class="box" text-anchor="middle">Link 接收源同步时钟</text>
+<text x="190.0" y="375.0" class="box" text-anchor="middle">接收 FIFO / 跨域逻辑</text>
+<rect x="360.0" y="310" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="349.0" class="box" text-anchor="middle">USB PHY clock/reset</text>
+<text x="510.0" y="375.0" class="box" text-anchor="middle">PHY 域与系统逻辑</text>
+<rect x="680.0" y="310" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="349.0" class="box" text-anchor="middle">GPIO / 外部 IRQ</text>
+<text x="830.0" y="375.0" class="box" text-anchor="middle">按配置同步 → 中断控制</text>
+<rect x="45" y="510" width="940" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="515.0" y="550.5" class="box" text-anchor="middle">FPGA 平台：系统时钟 ↔ axi_cdc ↔ MIG UI clock</text>
+<text x="515.0" y="576.5" class="box" text-anchor="middle">SoC 的 LLC 下游接口仍属于 clk_i；UART/SPI/I2C 分频不是新的 SoC 输入时钟</text>
+<text x="32" y="660" class="small" text-anchor="start">源码：cheshire_soc.sv、dram_wrapper_xilinx.sv；DM ndmreset_o 未连接，不能据此声称已有系统复位。</text></svg>

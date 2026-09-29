@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 560" role="img" aria-labelledby="title desc"><title id="title">一条寄存器指令怎样成为器件动作</title><desc id="desc">把访问地址、寄存器语义、硬件状态和外部观测连起来。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="560" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">一条寄存器指令怎样成为器件动作</text>
+<text x="32" y="74" class="small" text-anchor="start">把访问地址、寄存器语义、硬件状态和外部观测连起来。</text>
+<rect x="30" y="140" width="230" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="145.0" y="185.5" class="box" text-anchor="middle">CPU load/store</text>
+<text x="145.0" y="211.5" class="box" text-anchor="middle">volatile + 正确访问宽度</text>
+<path d="M260,192 L290,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="290" y="140" width="230" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="405.0" y="185.5" class="box" text-anchor="middle">AXI → Reg / APB</text>
+<text x="405.0" y="211.5" class="box" text-anchor="middle">译码、lane、握手</text>
+<path d="M520,192 L550,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="550" y="140" width="230" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="665.0" y="185.5" class="box" text-anchor="middle">寄存器 / FIFO</text>
+<text x="665.0" y="211.5" class="box" text-anchor="middle">配置、状态、读写副作用</text>
+<path d="M780,192 L810,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="810" y="140" width="230" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="925.0" y="185.5" class="box" text-anchor="middle">状态机 / 引脚</text>
+<text x="925.0" y="211.5" class="box" text-anchor="middle">UART 帧、GPIO 电平</text>
+<rect x="70" y="350" width="410" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="275.0" y="390.5" class="box" text-anchor="middle">驱动提交：写 THR</text>
+<text x="275.0" y="416.5" class="box" text-anchor="middle">先检查发送 FIFO 能接受数据</text>
+<rect x="580" y="350" width="410" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="785.0" y="390.5" class="box" text-anchor="middle">驱动完成：读取 LSR</text>
+<text x="785.0" y="416.5" class="box" text-anchor="middle">FIFO 空与串行移位结束需区分</text>
+<path d="M480,395 L580,395" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="510" class="small" text-anchor="start">地址正确只解决“访问谁”；DLAB、W1C、读弹出等语义决定“这次访问发生什么”。</text></svg>

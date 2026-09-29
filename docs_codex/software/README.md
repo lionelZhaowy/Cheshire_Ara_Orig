@@ -2,9 +2,13 @@
 
 # Cheshire/CVA6/Ara 软件参考手册
 
+2026-09-29 新教材补充了[RVV 三种编程入口](../learning/vector.html#programming)和[同一数组的尾部/归约实验](../learning/labs.html#rvv-depth)，附本地 GCC 构建证据；未执行目标 SoC 回归。
+
 本手册说明 `sw/` 软件目录、工具链、链接布局、程序启动、库接口及示例执行流程。
 
 基准日期：2026-09-20；输入提交：`379ae4544bc62e05a2736b11b33a3244181bba38`。依据当前本地源码和工具查询整理；**本轮未编译应用、未运行仿真、未连接板卡、未烧写存储器**。命令标为使用示例，不代表已经跑通。硬件配置另见 [配置手册](../configuration/README.md)。
+
+连续入门请从新版教材的[裸机运行模型](../learning/runtime.html)开始，接着读[程序构建](../learning/build.html)、[加载与启动](../learning/boot-debug.html)、[仿真运行](../learning/simulation.html)。本手册保留为细节参考；以下 2026-09-20 记录保持其历史验证范围。
 
 ## 1. 阅读路线
 

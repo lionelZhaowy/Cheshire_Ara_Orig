@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 450" role="img" aria-labelledby="title desc"><title id="title">64 位数据总线上的 32 位寄存器访问</title><desc id="desc">地址 +4 选择高半字节 lane；下面不是两次独立的 32 位事务。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="450" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">64 位数据总线上的 32 位寄存器访问</text>
+<text x="32" y="74" class="small" text-anchor="start">地址 +4 选择高半字节 lane；下面不是两次独立的 32 位事务。</text>
+<rect x="35" y="125" width="116" height="90" rx="9" fill="#eef1f4" stroke="#a7c2cb"/>
+<text x="93.0" y="163.0" class="box" text-anchor="middle">lane 0</text>
+<text x="93.0" y="189.0" class="box" text-anchor="middle">bit 7:0</text>
+<rect x="158" y="125" width="116" height="90" rx="9" fill="#eef1f4" stroke="#a7c2cb"/>
+<text x="216.0" y="163.0" class="box" text-anchor="middle">lane 1</text>
+<text x="216.0" y="189.0" class="box" text-anchor="middle">bit 15:8</text>
+<rect x="281" y="125" width="116" height="90" rx="9" fill="#eef1f4" stroke="#a7c2cb"/>
+<text x="339.0" y="163.0" class="box" text-anchor="middle">lane 2</text>
+<text x="339.0" y="189.0" class="box" text-anchor="middle">bit 23:16</text>
+<rect x="404" y="125" width="116" height="90" rx="9" fill="#eef1f4" stroke="#a7c2cb"/>
+<text x="462.0" y="163.0" class="box" text-anchor="middle">lane 3</text>
+<text x="462.0" y="189.0" class="box" text-anchor="middle">bit 31:24</text>
+<rect x="527" y="125" width="116" height="90" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="585.0" y="163.0" class="box" text-anchor="middle">lane 4</text>
+<text x="585.0" y="189.0" class="box" text-anchor="middle">bit 39:32</text>
+<rect x="650" y="125" width="116" height="90" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="708.0" y="163.0" class="box" text-anchor="middle">lane 5</text>
+<text x="708.0" y="189.0" class="box" text-anchor="middle">bit 47:40</text>
+<rect x="773" y="125" width="116" height="90" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="831.0" y="163.0" class="box" text-anchor="middle">lane 6</text>
+<text x="831.0" y="189.0" class="box" text-anchor="middle">bit 55:48</text>
+<rect x="896" y="125" width="116" height="90" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="954.0" y="163.0" class="box" text-anchor="middle">lane 7</text>
+<text x="954.0" y="189.0" class="box" text-anchor="middle">bit 63:56</text>
+<text x="35" y="262" class="box" text-anchor="start">基址 +0：WSTRB = 0x0f，低 32 位承载有效数据</text>
+<text x="35" y="306" class="box" text-anchor="start">基址 +4：WSTRB = 0xf0，高 32 位承载有效数据</text>
+<text x="35" y="350" class="box" text-anchor="start">Reg 桥：地址、数据选择、写使能和读返回必须一起适配</text>
+<text x="32" y="407" class="small" text-anchor="start">静态 typedef 变成 32 位，并不会自动完成 lane 选择；DMA 控制路径必须专项验证。</text></svg>

@@ -2,11 +2,13 @@
 
 # Cheshire/CVA6/Ara 配置参考手册
 
+2026-09-29 新教材补充了[三个配置入口的组合验收表](../learning/configuration.html#combinations)与[当前地址/属性差异](../learning/interconnect.html#address-map)；本参考表保持原有静态基准。
+
 本手册面向有 MIPS/自定义总线经验、正在学习 RISC-V/AXI 的团队，按“在哪里改、参数是什么意思、实际值是多少、哪些地方要一起改”组织。
 
 整理日期：2026-09-20；任务：L01 配置学习文档；源码基准：本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`，含版本管理中的 `.bender/` 本地依赖快照。**本轮只做源码与文档静态检查，未编译、仿真、综合或板测。** 用户此前报告的 VCU118 HelloWorld 不扩展解释成 Ara/DDR 全功能已验证。
 
-> 如果已知道字段含义，却不清楚它如何改变硬件结构，请从[硬件学习主线](../learning/hardware.html)进入；重点读[CVA6功能配置](../learning/cpu-config.html)、[SoC结构推导](../learning/soc-topology.html)与[Crossbar原理](../learning/axi-crossbar.html)。本页仍作为参数字典。
+> 配置机制与系统行为请从[单线教材](../learning/index.html)进入，重点读[硬件配置与结构展开](../learning/configuration.html)和[互连、地址译码与接口适配](../learning/interconnect.html)。本页仍作为参数字典。
 
 <a id="1-建议阅读顺序"></a>
 

@@ -1,0 +1,38 @@
+L01 restructure: software BUILD ONLY; 2026-09-28
+4f240258ca683913b7e17949aff23139bff981f1
+riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0
+scalar-spm-inject0: exit=0; output=evidence/journey-scalar-spm.4Dt3dq; warnings=24
+ELF SHA256 acc956f0e2026fcdeb3075b13b3a6bc63f537a6c24a50767d8080e7dfc8dbe46
+Entry point address:               0x10000000
+0000000000000000 A __stack_pointer$
+0000000010000190 000000000000000e T make_value
+0000000010001550 0000000000000010 D greeting
+00000000100017e8 0000000000000004 D seed
+00000000100017f0 0000000000000224 B result
+PASS: intermediates, 548-byte BSS, scalar/RVV instruction boundary; execution UNVERIFIED
+scalar-dram-inject0: exit=0; output=evidence/journey-scalar-dram.WlqEHW; warnings=24
+ELF SHA256 0bbb0128aa01af9d9ae765c22eb69d367c7b342915b6f2b12849c278dec9e83a
+Entry point address:               0x80000000
+0000000080000190 000000000000000e T make_value
+0000000080001550 0000000000000010 D greeting
+00000000800017e8 0000000000000004 D seed
+00000000800017f0 0000000000000224 B result
+00000000807ffff8 T __stack_pointer$
+PASS: intermediates, 548-byte BSS, scalar/RVV instruction boundary; execution UNVERIFIED
+scalar-spm-inject1: exit=0; output=evidence/journey-scalar-spm.d9hjpe; warnings=24
+ELF SHA256 aee3380f60bb22bc6b91a5c3f3e8ca3ad9df1d9a0484bc9b8089f50e2e342678
+Entry point address:               0x10000000
+0000000000000000 A __stack_pointer$
+0000000010000190 000000000000000e T make_value
+0000000010001560 0000000000000010 D greeting
+00000000100017f8 0000000000000004 D seed
+0000000010001800 0000000000000224 B result
+PASS: intermediates, 548-byte BSS, scalar/RVV instruction boundary; execution UNVERIFIED
+rvv-spm-inject0: exit=0; output=evidence/journey-rvv-spm.9MVNSM; warnings=25
+ELF SHA256 1cfd38116ca752ff9d5d6c39209ea160ac9dcf80ae8d263228c918c9b68ae579
+Entry point address:               0x10000000
+0000000000000000 A __stack_pointer$
+0000000010001688 0000000000000010 D greeting
+0000000010001920 0000000000000004 D seed
+0000000010001930 0000000000000224 B result
+PASS: intermediates, 548-byte BSS, scalar/RVV instruction boundary; execution UNVERIFIED

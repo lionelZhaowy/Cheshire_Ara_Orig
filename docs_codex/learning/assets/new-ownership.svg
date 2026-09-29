@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 560" role="img" aria-labelledby="title desc"><title id="title">共享缓冲区：所有权比地址更重要</title><desc id="desc">fence 排序访问，但不替代 cache 清理或失效。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="560" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">共享缓冲区：所有权比地址更重要</text>
+<text x="32" y="74" class="small" text-anchor="start">fence 排序访问，但不替代 cache 清理或失效。</text>
+<rect x="35" y="160" width="310" height="150" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="215.0" class="box" text-anchor="middle">CPU 拥有</text>
+<text x="190.0" y="241.0" class="box" text-anchor="middle">准备源数据</text>
+<text x="190.0" y="267.0" class="box" text-anchor="middle">同步缓存 / 发布任务</text>
+<path d="M345,235 L375,235" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="375" y="160" width="310" height="150" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="530.0" y="215.0" class="box" text-anchor="middle">硬件拥有</text>
+<text x="530.0" y="241.0" class="box" text-anchor="middle">DMA / Ara / 设备访问</text>
+<text x="530.0" y="267.0" class="box" text-anchor="middle">CPU 不并发修改</text>
+<path d="M685,235 L715,235" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="715" y="160" width="310" height="150" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="870.0" y="215.0" class="box" text-anchor="middle">CPU 重新拥有</text>
+<text x="870.0" y="241.0" class="box" text-anchor="middle">观察完成并排序</text>
+<text x="870.0" y="267.0" class="box" text-anchor="middle">同步可见性 / 校验内容</text>
+<rect x="130" y="395" width="800" height="80" rx="9" fill="#fff3da" stroke="#a7c2cb"/>
+<text x="530.0" y="441.0" class="box" text-anchor="middle">三件事分别判断：请求已接受？处理已完成？结果已对消费者可见？</text>
+<text x="32" y="530" class="small" text-anchor="start">本教材 RVV 采用独占高别名 SPM 缓冲区，避免把实验结果建立在未经证明的硬件一致性上。</text></svg>

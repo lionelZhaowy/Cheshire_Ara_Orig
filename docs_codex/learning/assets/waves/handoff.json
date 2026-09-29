@@ -1,0 +1,59 @@
+{
+  "signal": [
+    {
+      "name": "owner",
+      "wave": "3...4....5...3",
+      "data": [
+        "CPU/Ara",
+        "NPU",
+        "CPU/Ara",
+        "FREE"
+      ]
+    },
+    {
+      "name": "Ara stores",
+      "wave": "1.0..........."
+    },
+    {
+      "name": "publish done",
+      "wave": "0..10........."
+    },
+    {
+      "name": "doorbell",
+      "wave": "0...10........"
+    },
+    {
+      "name": "NPU read/compute",
+      "wave": "0....1.0......"
+    },
+    {
+      "name": "NPU writes/drain",
+      "wave": "0......1.0...."
+    },
+    {
+      "name": "completion token",
+      "wave": "x........4....",
+      "data": [
+        "epoch + status"
+      ]
+    },
+    {
+      "name": "CPU acquire",
+      "wave": "0.........10.."
+    },
+    {
+      "name": "Ara consume",
+      "wave": "0..........1.0"
+    }
+  ],
+  "head": {
+    "text": "Ara → NPU → Ara：未来任务交接教学时序",
+    "tick": 0
+  },
+  "foot": {
+    "text": "前提：已定义可见性操作；超时进入隔离状态，不能直接复用 buffer；非当前 NPU 实现"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

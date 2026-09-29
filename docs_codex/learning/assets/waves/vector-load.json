@@ -1,0 +1,74 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p............."
+    },
+    {
+      "name": "req_valid",
+      "wave": "010..........."
+    },
+    {
+      "name": "req_ready",
+      "wave": "1............."
+    },
+    {
+      "name": "addr/MMU",
+      "wave": "x.3.x.........",
+      "data": [
+        "地址检查 / 可选翻译"
+      ]
+    },
+    {
+      "name": "resp_valid",
+      "wave": "0...10........"
+    },
+    {
+      "name": "resp_ready",
+      "wave": "1............."
+    },
+    {
+      "name": "ARVALID",
+      "wave": "0....10......."
+    },
+    {
+      "name": "ARREADY",
+      "wave": "1............."
+    },
+    {
+      "name": "RVALID",
+      "wave": "0......1...0.."
+    },
+    {
+      "name": "RREADY",
+      "wave": "1.......01...."
+    },
+    {
+      "name": "RDATA",
+      "wave": "x......34.5x..",
+      "data": [
+        "D0",
+        "D1",
+        "D2 / LAST"
+      ]
+    },
+    {
+      "name": "VRF accept",
+      "wave": "0.......101.0."
+    },
+    {
+      "name": "load_complete",
+      "wave": "0...........10"
+    }
+  ],
+  "head": {
+    "text": "向量 load：教学时序（单 burst 示意）",
+    "tick": 0
+  },
+  "foot": {
+    "text": "依据：addrgen / vldu；地址应答不表示 load_complete，R 背压时数据保持"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

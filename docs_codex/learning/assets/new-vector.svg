@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 580" role="img" aria-labelledby="title desc"><title id="title">同一数组任务分批经过 Ara</title><desc id="desc">N = 137；e32,m1；VLEN = 2048 时 VLMAX = 64。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="580" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">同一数组任务分批经过 Ara</text>
+<text x="32" y="74" class="small" text-anchor="start">N = 137；e32,m1；VLEN = 2048 时 VLMAX = 64。</text>
+<rect x="35" y="120" width="300" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="185.0" y="152.5" class="box" text-anchor="middle">CPU 设置 VS 并调用</text>
+<text x="185.0" y="178.5" class="box" text-anchor="middle">a0/a1/a2 为地址</text>
+<text x="185.0" y="204.5" class="box" text-anchor="middle">a3 = 剩余元素数</text>
+<rect x="395" y="120" width="275" height="105" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="532.5" y="165.5" class="box" text-anchor="middle">vsetvli → 实际 vl</text>
+<text x="532.5" y="191.5" class="box" text-anchor="middle">示例：64 → 64 → 9</text>
+<rect x="735" y="120" width="290" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="880.0" y="165.5" class="box" text-anchor="middle">向量 load / add / store</text>
+<text x="880.0" y="191.5" class="box" text-anchor="middle">读取 a、b；写 c</text>
+<path d="M335,172 L395,172" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M670,172 L735,172" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="35" y="340" width="410" height="75" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="240.0" y="383.5" class="box" text-anchor="middle">0…63：64 元素</text>
+<rect x="455" y="340" width="410" height="75" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="660.0" y="383.5" class="box" text-anchor="middle">64…127：64 元素</text>
+<rect x="875" y="340" width="145" height="75" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="947.5" y="370.5" class="box" text-anchor="middle">128…136</text>
+<text x="947.5" y="396.5" class="box" text-anchor="middle">9 元素</text>
+<text x="35" y="290" class="title" text-anchor="start">137 个元素的连续逻辑序列</text>
+<text x="32" y="470" class="small" text-anchor="start">每轮地址推进 vl × 4 字节，remaining 减去实际 vl；不能硬编码每次推进 64 个元素。</text>
+<text x="32" y="510" class="small" text-anchor="start">检查三层证据：ELF 存在 V 指令；运行轨迹确实执行；137 项与尾部保护字校验正确。</text></svg>

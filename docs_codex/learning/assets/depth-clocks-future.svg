@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 640" role="img" aria-labelledby="title desc"><title id="title">未来 ASIC：时钟 / 复位 / 电源的实施边界</title><desc id="desc">候选分域，尚无最终频率、电压、工艺 SRAM 或电源意图签核。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="640" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">未来 ASIC：时钟 / 复位 / 电源的实施边界</text>
+<text x="32" y="74" class="small" text-anchor="start">候选分域，尚无最终频率、电压、工艺 SRAM 或电源意图签核。</text>
+<rect x="40.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="159.0" class="box" text-anchor="middle">参考时钟 / PLL</text>
+<text x="190.0" y="185.0" class="box" text-anchor="middle">锁定监测 / 切换策略</text>
+<rect x="360.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="159.0" class="box" text-anchor="middle">常开控制域</text>
+<text x="510.0" y="185.0" class="box" text-anchor="middle">复位原因 / 超时 / 门控</text>
+<rect x="680.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="159.0" class="box" text-anchor="middle">DDR controller / PHY</text>
+<text x="830.0" y="185.0" class="box" text-anchor="middle">参考时钟 / 训练 / 校准</text>
+<rect x="40.0" y="345" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="384.0" class="box" text-anchor="middle">CPU / Ara / SRAM 域</text>
+<text x="190.0" y="410.0" class="box" text-anchor="middle">时序收敛后决定是否分域</text>
+<rect x="360.0" y="345" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="384.0" class="box" text-anchor="middle">NPU / ISP 候选域</text>
+<text x="510.0" y="410.0" class="box" text-anchor="middle">隔离 / 排空 / 保留状态</text>
+<rect x="680.0" y="345" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="384.0" class="box" text-anchor="middle">PAD / LVDS / 外存域</text>
+<text x="830.0" y="410.0" class="box" text-anchor="middle">接口电平 / CDC / RDC</text>
+<path d="M190.0,212 L190.0,345" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,212 L510.0,345" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,212 L830.0,345" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="525" class="small" text-anchor="start">电源关闭前：停发 → 排空/终止 → 保存必要状态 → 隔离 → 关时钟/电源。</text>
+<text x="32" y="560" class="small" text-anchor="start">恢复：电源稳定 → 时钟稳定 → 同步释放复位 → 恢复/重建状态 → 解除隔离；需 UPF 与库支持。</text></svg>

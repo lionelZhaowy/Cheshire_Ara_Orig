@@ -1,0 +1,39 @@
+2026-09-29; host software builds only; no RTL/board execution
+PASS scalar depth=1 inject=0: evidence/journey-scalar-spm.c4PChI
+  5328	    796	    548	   6672	   1a10	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/journey-scalar-spm.c4PChI/journey.spm.elf
+  ELF SHA256 d489e11108ae92285e489acc43164400850bbed183494cd50563579c292c1cae
+  vector instructions: none
+PASS rvv depth=1 inject=0: evidence/journey-rvv-spm.5bdYNR
+  6092	    908	    548	   7548	   1d7c	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/journey-rvv-spm.5bdYNR/journey.spm.elf
+  ELF SHA256 973808b31d3145a6bd17830e1d92553a7e2f27358073eb00118e01454cadeb68
+  vector instructions: vadd.vv, vle32.v, vmv.s.x, vmv.x.s, vredsum.vs, vse32.v, vsetvli
+PASS rvv-auto depth=1 inject=0: evidence/journey-rvv-auto-spm.7K9yB9
+  6096	    908	    548	   7552	   1d80	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/journey-rvv-auto-spm.7K9yB9/journey.spm.elf
+  ELF SHA256 f036de0ddff4e58647c6969bbe88b2910f1e2ee1438bee4e9999371a4c07a77c
+  vector instructions: vadd.vv, vle32.v, vmv.s.x, vmv.v.i, vmv.x.s, vredsum.vs, vse32.v, vsetvli
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:6:33: optimized: loop vectorized using variable length vectors
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:4:6: note: vectorized 1 loops in function.
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:6:51: missed: statement clobbers memory: vect__3.8_25 = .MASK_LEN_LOAD (vectp_a.6_28, 32B, { -1, ... }, _26(D), _37, 0);
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:6:58: missed: statement clobbers memory: vect__5.11_17 = .MASK_LEN_LOAD (vectp_b.9_23, 32B, { -1, ... }, _18(D), _37, 0);
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:6:48: missed: statement clobbers memory: .MASK_LEN_STORE (vectp_c.13_32, 32B, { -1, ... }, _37, 0, vect__7.12_9);
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:7:1: note: ***** Analysis failed with vector mode VOID
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:10:33: optimized: loop vectorized using variable length vectors
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:8:10: note: vectorized 1 loops in function.
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:10:51: missed: statement clobbers memory: vect__3.23_11 = .MASK_LEN_LOAD (vectp_a.21_17, 32B, { -1, ... }, _12(D), _25, 0);
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/examples/rvv_auto.c:11:12: note: ***** Analysis failed with vector mode VOID
+
+PASS rvv depth=1 inject=1: evidence/journey-rvv-spm.FUWXW0
+  6100	    908	    548	   7556	   1d84	/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/journey-rvv-spm.FUWXW0/journey.spm.elf
+  ELF SHA256 32f48d3dc3bdb80381149a2f51f92fbc46569e14052c5dad061b625fa0507bd5
+  vector instructions: vadd.vv, vle32.v, vmv.s.x, vmv.x.s, vredsum.vs, vse32.v, vsetvli
+PASS rvv-intrinsics depth=1 inject=0: evidence/journey-rvv-intrinsics-spm.IKfyrI
+  6090	    908	    548	   7546	   1d7a	docs_codex/learning/evidence/journey-rvv-intrinsics-spm.IKfyrI/journey.spm.elf
+  ELF SHA256 d246bb124ce768eb4f0da24ed03778b7184e279bfe7334233c72a7ce6d567e33
+  vector instructions: vadd.vv, vle32.v, vmv.s.x, vmv.x.s, vredsum.vs, vse32.v, vsetivli, vsetvli
+PASS FP32 compile-only probe: vfadd.vv present
+#define __riscv_v_intrinsic 12000
+#define __riscv_v_min_vlen 128
+#define __riscv_v_elen 64
+#define __riscv_v 1000000
+#define __riscv_vector 1
+UNVERIFIED: actual CVA6/Ara execution, numerical output on target, bus-error injection, timing/performance

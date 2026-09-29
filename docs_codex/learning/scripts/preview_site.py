@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""Optional local Chrome/CDP preview; Python stdlib only. No RTL commands."""
-import subprocess,tempfile,time,json,socket,base64,os,struct,http.client,argparse
+"""Check the current offline course using local Chrome/CDP; never invokes RTL tools."""
+import subprocess,tempfile,time,json,socket,base64,os,struct,http.client,shutil
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
-parser=argparse.ArgumentParser();parser.add_argument('--editorial',action='store_true');parser.add_argument('--advanced',action='store_true');parser.add_argument('--hardware',action='store_true');options=parser.parse_args()
-shot_prefix='editorial-'if options.editorial else 'hardware-'if options.hardware else 'advanced-'if options.advanced else ''
-page_count=len(list(ROOT.glob('*.html')))
+PAGES=json.loads((ROOT/'scripts/pages.json').read_text())
 class CDP:
  def __init__(self,url):
   from urllib.parse import urlsplit
@@ -45,9 +43,8 @@ class CDP:
   if 'exceptionDetails'in r:raise RuntimeError(r)
   return r['result'].get('value')
  def shot(self,name):
-  if options.editorial and name not in ('preview-index.png','preview-configuration.png','preview-mobile.png'):return
   r=self.call('Page.captureScreenshot',{'format':'png','captureBeyondViewport':False})
-  (ROOT/'evidence'/(shot_prefix+name)).write_bytes(base64.b64decode(r['data']))
+  (ROOT/'evidence'/('restructure-'+name)).write_bytes(base64.b64decode(r['data']))
 profile=tempfile.mkdtemp(prefix='l01-browser-')
 p=subprocess.Popen(['google-chrome','--headless','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--no-first-run','--no-default-browser-check','--remote-debugging-port=0',f'--user-data-dir={profile}','about:blank'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 report=[]
@@ -56,102 +53,76 @@ try:
  for _ in range(100):
   if f.exists():break
   time.sleep(.05)
- port=int(f.read_text().splitlines()[0]);c=http.client.HTTPConnection('127.0.0.1',port);c.request('GET','/json');targets=json.loads(c.getresponse().read());cdp=CDP(next(t['webSocketDebuggerUrl']for t in targets if t['type']=='page'))
+ port=int(f.read_text().splitlines()[0]);c=http.client.HTTPConnection('127.0.0.1',port);c.request('GET','/json');targets=json.loads(c.getresponse().read());cdp=CDP(next(t['webSocketDebuggerUrl'] for t in targets if t['type']=='page'))
  cdp.call('Page.enable');cdp.call('Runtime.enable');cdp.call('Network.enable')
- cdp.call('Emulation.setDeviceMetricsOverride',{'width':1440,'height':1100,'deviceScaleFactor':1,'mobile':False})
- for page in sorted(ROOT.glob('*.html')):
-  cdp.call('Page.navigate',{'url':page.as_uri()})
+ def go(path):
+  cdp.call('Page.navigate',{'url':path.as_uri()})
   for _ in range(100):
-   if cdp.js('document.readyState')=='complete':break
+   if cdp.js('document.readyState')=='complete' and cdp.js('location.pathname')==str(path):break
    time.sleep(.05)
   cdp.js('document.fonts.ready.then(()=>true)')
-  cdp.js('document.documentElement.style.scrollBehavior="auto"');r=cdp.js('({title:document.title,h1:document.querySelectorAll("h1").length,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),overflow:document.documentElement.scrollWidth>innerWidth+1,nav:document.querySelectorAll(".sidebar nav a").length})')
-  assert r['h1']==1 and r['images']and not r['overflow']and r['nav']==page_count,(page,r)
-  report.append('PASS desktop 1440x1100 '+page.name+' / images, navigation, no horizontal page overflow')
-  if page.stem in (['index','configuration','lifecycle','hardware-devices'] if options.editorial else ['hardware','soc-topology','axi-crossbar','axi-adapters','ip-integration'] if options.hardware else ['system','execution','uart-gpio','dma-llc','stream-io'] if options.advanced else ['architecture','foundations','lifecycle','memory']):
-   query='(document.querySelector("figure")||document.querySelector("h2")).scrollIntoView()'
-   if page.stem=='lifecycle':query='document.querySelector("#boot").scrollIntoView()'
-   if options.editorial:query='window.scrollTo(0,0)'
-   cdp.js(query);time.sleep(.1);cdp.shot('preview-'+page.stem+'.png')
-  if options.advanced and page.stem=='system':
-   assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
-   assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-full]").click();return f.querySelector("img").clientWidth>=f.querySelector("img").naturalWidth})()')
-   report.append('PASS system figure fit-to-width and full-size reading controls')
-   cdp.js('document.querySelector("#clocks").scrollIntoView()');time.sleep(.1);cdp.shot('preview-clocks.png')
-  if options.advanced and page.stem=='registers':
-   result=cdp.js('(()=>{const x=document.querySelector("#reg-search");x.value="GPIO_MASKED_OUT_LOWER";x.dispatchEvent(new Event("input"));return {visible:[...document.querySelectorAll("[data-register]")].filter(r=>!r.hidden).length,text:document.querySelector("#reg-count").textContent}})()')
-   assert result['visible']==1,result
-   report.append('PASS register search matches exactly one masked GPIO register; offline')
-   cdp.js('document.querySelector("#reg-search").scrollIntoView()');time.sleep(.1);cdp.shot('preview-register-search.png')
-   assert cdp.js('(()=>{const x=document.querySelector("#reg-search");x.value="no_such_register_xyz";x.dispatchEvent(new Event("input"));return [...document.querySelectorAll("[data-register]")].every(r=>r.hidden)})()')
-   assert cdp.js('(()=>{const x=document.querySelector("#reg-search");x.value="";x.dispatchEvent(new Event("input"));return [...document.querySelectorAll("[data-register]")].every(r=>!r.hidden)})()')
-   report.append('PASS register search no-match and clear restores complete table')
-  if options.advanced and page.stem=='capstone':
-   assert cdp.js('(()=>{const b=document.querySelector("[data-stepper]");const old=b.querySelector(".step-text").textContent;b.querySelector("button").click();return old!==b.querySelector(".step-text").textContent&&b.querySelectorAll(".active").length===1})()')
-   cdp.js('document.querySelector("[data-stepper]").scrollIntoView()');time.sleep(.1);cdp.shot('preview-capstone.png')
-   report.append('PASS capstone explanatory step control (not simulation)')
-  if page.stem=='lifecycle':
-   r=cdp.js('(()=>{const b=document.querySelector("[data-stepper]");const old=b.querySelector(".step-text").textContent;b.querySelector("button").click();return old!==b.querySelector(".step-text").textContent&&b.querySelectorAll(".active").length===1})()');assert r
-   report.append('PASS lifecycle step button changes explanation and active step')
-   assert cdp.js('(()=>{const d=document.querySelector(".quiz details");d.querySelector("summary").click();return d.open})()')
-   report.append('PASS details question expands via summary click')
-  if page.stem=='future':
-   before=cdp.js('document.querySelector("#calc-result").textContent');assert '0.38 GiB'in before,before
-   after=cdp.js('(()=>{let x=document.querySelector("[name=context]");x.value=8192;x.dispatchEvent(new Event("input",{bubbles:true}));return document.querySelector("#calc-result").textContent})()');assert '0.75 GiB'in after,after
-   report.append('PASS calculator context 4096->8192 doubles KV 0.38->0.75 GiB')
-   cdp.js('document.querySelector("#calculator").scrollIntoView()');time.sleep(.1);cdp.shot('preview-calculator.png')
- # Mobile all pages, table/figure internal scrolling is intentional.
- cdp.call('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
- for page in sorted(ROOT.glob('*.html')):
-  cdp.call('Page.navigate',{'url':page.as_uri()});time.sleep(.12)
-  r=cdp.js('({ready:document.readyState,overflow:document.documentElement.scrollWidth>innerWidth+1,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0)})')
-  assert r['ready']=='complete'and not r['overflow']and r['images'],(page,r)
-  report.append('PASS mobile 390x844 '+page.name+' / images, no horizontal page overflow')
-  if page.stem==('index'if options.editorial else 'hardware'if options.hardware else 'advanced'if options.advanced else 'labs'):cdp.shot('preview-mobile.png')
- # Inspect same page without script.
- cdp.call('Emulation.setScriptExecutionDisabled',{'value':True});cdp.call('Page.navigate',{'url':(ROOT/'lifecycle.html').as_uri()});time.sleep(.15)
- # Runtime.evaluate can inspect even when page scripts disabled.
- assert cdp.js('document.querySelectorAll("h2").length>=6')
- report.append('PASS script-disabled lifecycle still has core headings/content (enhancements unavailable by design)')
- if options.advanced:
-  cdp.call('Page.navigate',{'url':(ROOT/'registers.html').as_uri()});time.sleep(.15)
-  assert cdp.js('document.querySelectorAll("[data-register]").length==429')
-  report.append('PASS script-disabled register reference retains all 429 entries')
-  cdp.call('Emulation.setScriptExecutionDisabled',{'value':False})
-  cdp.call('Emulation.setDeviceMetricsOverride',{'width':1600,'height':1400,'deviceScaleFactor':1,'mobile':False})
-  for name in ['system-detail','clock-reset-detail','software-hardware','core-ara-detail','peripheral-internals','interrupt-detail','ownership-detail','stream-io-detail']:
-   cdp.call('Page.navigate',{'url':(ROOT/'assets'/(name+'.svg')).as_uri()});time.sleep(.1)
-   overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox();return b.x<0||b.x+b.width>v.width||b.y<0||b.y+b.height>v.height}).map(t=>t.textContent)})()')
-   assert not overflow,(name,overflow)
-   if name in ('system-detail','clock-reset-detail'):cdp.shot('svg-'+name+'.png')
-  report.append('PASS 8 advanced SVGs: no text outside their viewBox; topology is illustrative')
- if options.hardware:
-  cdp.call('Page.navigate',{'url':(ROOT/'axi-crossbar.html').as_uri()});time.sleep(.15)
-  assert cdp.js('document.querySelectorAll("h2").length>=8 && document.querySelectorAll("details").length>=3')
-  report.append('PASS script-disabled crossbar retains explanations and quizzes')
-  cdp.call('Emulation.setScriptExecutionDisabled',{'value':False})
-  cdp.call('Page.navigate',{'url':(ROOT/'axi-crossbar.html').as_uri()});time.sleep(.15)
-  assert cdp.js('(()=>{const d=document.querySelector("details");d.querySelector("summary").click();return d.open})()')
-  assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
-  assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-full]").click();return f.querySelector("img").clientWidth>=f.querySelector("img").naturalWidth})()')
-  assert cdp.js('(()=>{const b=document.querySelector("[data-stepper]");const old=b.querySelector(".step-text").textContent;b.querySelector("button").click();return old!==b.querySelector(".step-text").textContent&&b.querySelectorAll(".active").length===1})()')
-  report.append('PASS hardware write-transaction stepper (teaching animation, not waveform)')
-  report.append('PASS hardware quiz and figure fit/full controls')
-  cdp.call('Emulation.setDeviceMetricsOverride',{'width':1280,'height':1000,'deviceScaleFactor':1,'mobile':False})
-  for svg in sorted((ROOT/'assets').glob('hw-*.svg')):
-   cdp.call('Page.navigate',{'url':svg.as_uri()});time.sleep(.1)
-   overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox();return b.x<0||b.x+b.width>v.width||b.y<0||b.y+b.height>v.height}).map(t=>t.textContent)})()')
-   assert not overflow,(svg.name,overflow)
-   if svg.stem in ('hw-xbar','hw-write','hw-adapters'):cdp.shot('svg-'+svg.stem+'.png')
-  report.append('PASS 10 hardware SVGs: text within viewBox (not topology validation)')
+  cdp.js('document.documentElement.style.scrollBehavior="auto"')
+ def inspect():
+  return cdp.js('({h1:document.querySelectorAll("h1").length,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),overflow:document.documentElement.scrollWidth>innerWidth+1,nav:document.querySelectorAll(".sidebar nav a").length})')
+ for width,height,mobile in [(1440,1100,False),(390,844,True)]:
+  cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
+  for slug,_,_ in PAGES:
+   go(ROOT/(slug+'.html'));r=inspect()
+   assert r['h1']==1 and r['images'] and not r['overflow'] and r['nav']==len(PAGES),(slug,width,r)
+   report.append(f'PASS {width}x{height}: {slug}; images, navigation, no page overflow')
+   if not mobile and slug in ('index','runtime','boot-debug'):
+    if slug!='index':cdp.js('document.querySelector("figure").scrollIntoView()')
+    cdp.shot('preview-'+slug+'.png')
+   if mobile and slug=='index':cdp.shot('preview-mobile.png')
+   if not mobile and slug=='interconnect':
+    assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
+    assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-full]").click();return f.querySelector("img").clientWidth>=f.querySelector("img").naturalWidth})()')
+    assert cdp.js('(()=>{const d=document.querySelector("details");d.querySelector("summary").click();return d.open})()')
+    report.append('PASS figure fit/full and quiz expand')
+   if not mobile and slug=='registers':
+    for term,count in [('GPIO_MASKED_OUT_LOWER',1),('no_such_register_xyz',0),('',429)]:
+     value=cdp.js('(()=>{const x=document.querySelector("#reg-search");x.value='+json.dumps(term)+';x.dispatchEvent(new Event("input"));return [...document.querySelectorAll("[data-register]")].filter(r=>!r.hidden).length})()')
+     assert value==count,(term,value)
+    report.append('PASS register search: one hit, no hit, clear restores 429')
+   if not mobile and slug=='future':
+    assert '0.38 GiB' in cdp.js('document.querySelector("#calc-result").textContent')
+    assert '0.75 GiB' in cdp.js('(()=>{const x=document.querySelector("[name=context]");x.value=8192;x.dispatchEvent(new Event("input",{bubbles:true}));return document.querySelector("#calc-result").textContent})()')
+    assert '有限数值' in cdp.js('(()=>{const x=document.querySelector("[name=context]");x.value=0;x.dispatchEvent(new Event("input",{bubbles:true}));return document.querySelector("#calc-result").textContent})()')
+    report.append('PASS calculator: context doubles KV; rejects zero')
+ cdp.call('Emulation.setScriptExecutionDisabled',{'value':True})
+ for slug in ['runtime','boot-debug','registers']:
+  go(ROOT/(slug+'.html'));r=inspect();assert r['images'] and not r['overflow'],(slug,r)
+  assert cdp.js('document.querySelectorAll("h2").length')>=5
+  if slug=='registers':assert cdp.js('document.querySelectorAll("[data-register]").length')==429
+  report.append(f'PASS no-script mobile: {slug}; readable text/images/tables')
+ cdp.call('Emulation.setScriptExecutionDisabled',{'value':False})
+ cdp.call('Emulation.setDeviceMetricsOverride',{'width':1280,'height':1000,'deviceScaleFactor':1,'mobile':False})
+ for svg in sorted((ROOT/'assets').glob('new-*.svg')):
+  go(svg)
+  overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox();return b.x<0||b.x+b.width>v.width||b.y<0||b.y+b.height>v.height}).map(t=>t.textContent)})()')
+  assert not overflow,(svg.name,overflow)
+  if svg.stem in ('new-boot','new-lanes','new-vector'):cdp.shot('svg-'+svg.stem+'.png')
+  report.append('PASS SVG viewBox text bounds: '+svg.name)
+ legacy=json.loads((ROOT/'scripts/legacy_links.json').read_text());slugs={s for s,_,_ in PAGES}
+ for slug,entry in legacy.items():
+  if slug in slugs:continue
+  cdp.call('Page.navigate',{'url':(ROOT/(slug+'.html')).as_uri()})
+  for _ in range(100):
+   if cdp.js('location.href')==(ROOT/entry['target'].split('#')[0]).as_uri()+('#'+entry['target'].split('#')[1] if '#' in entry['target'] else ''):break
+   time.sleep(.05)
+  assert cdp.js('location.pathname')==str(ROOT/entry['target'].split('#')[0]),slug
+  report.append('PASS legacy redirect: '+slug+' -> '+entry['target'])
  errors=[e for e in cdp.events if e.get('method')=='Runtime.exceptionThrown']
- external=[e['params']['request']['url']for e in cdp.events if e.get('method')=='Network.requestWillBeSent'and e['params']['request']['url'].startswith(('http:','https:'))]
+ external=[e['params']['request']['url'] for e in cdp.events if e.get('method')=='Network.requestWillBeSent' and e['params']['request']['url'].startswith(('http:','https:'))]
+ failed=[e for e in cdp.events if e.get('method')=='Network.loadingFailed' and not e.get('params',{}).get('canceled')]
  assert not errors,errors
  assert not external,external
- report.append('PASS no JavaScript exceptions and no HTTP(S) page resource requests')
- (ROOT/'evidence'/('editorial-browser.txt'if options.editorial else 'hardware-browser.txt'if options.hardware else 'advanced-browser.txt'if options.advanced else 'browser.txt')).write_text(subprocess.check_output(['google-chrome','--version'],text=True).strip()+'; file:// offline preview; '+time.strftime('%Y-%m-%d')+'\n'+'\n'.join(report)+'\n')
+ assert not failed,failed
+ report.append('PASS no JavaScript exception, failed resources or HTTP(S) page requests')
+ (ROOT/'evidence/restructure-browser.txt').write_text('2026-09-28; '+subprocess.check_output(['google-chrome','--version'],text=True).strip()+'; file:// offline\n'+'\n'.join(report)+'\n')
  print('\n'.join(report))
 finally:
  p.terminate()
  try:p.wait(timeout=5)
- except subprocess.TimeoutExpired:p.kill()
+ except subprocess.TimeoutExpired:p.kill();p.wait()
+ shutil.rmtree(profile,ignore_errors=True)

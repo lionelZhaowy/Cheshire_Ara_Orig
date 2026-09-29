@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="850" viewBox="0 0 1240 850" role="img"><title>自定义IP教学案例：控制→中断→主动访存</title><rect width="1240" height="850" fill="#f5f8fc"/><defs>
+<marker id="data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#245fc7"/></marker>
+<marker id="control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#16806b"/></marker>
+<marker id="irq" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#b94b29"/></marker>
+<marker id="clock" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#8251af"/></marker>
+</defs><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif">
+<text x="32" y="40" font-size="25" fill="#20334c">自定义IP教学案例：控制→中断→主动访存</text>
+<text x="32" y="73" font-size="16" fill="#20334c">实线：独立Reg加法设备；虚线：后续SoC接入与DMA扩展方案。</text>
+<rect x="30" y="140" width="280" height="145" rx="10" fill="white" stroke="#16806b" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="45" y="169" font-size="18" fill="#16806b">CPU / AXI→Reg桥</text>
+<text x="45" y="196" font-size="15" fill="#20334c">未来接入现有RegExt</text>
+<text x="45" y="218" font-size="15" fill="#20334c">地址窗口和宽度契约</text>
+<rect x="435" y="140" width="360" height="180" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="450" y="169" font-size="18" fill="#245fc7">独立 lesson_reg_adder</text>
+<text x="450" y="196" font-size="15" fill="#20334c">A/B按字节写 → START锁存</text>
+<text x="450" y="218" font-size="15" fill="#20334c">busy计数 → RESULT/DONE</text>
+<text x="450" y="240" font-size="15" fill="#20334c">STATUS W1C；IRQ_EN</text>
+<rect x="920" y="140" width="280" height="145" rx="10" fill="white" stroke="#b94b29" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="935" y="169" font-size="18" fill="#b94b29">PLIC / CPU IRQ</text>
+<text x="935" y="196" font-size="15" fill="#20334c">irq = DONE &amp; IRQ_EN</text>
+<text x="935" y="218" font-size="15" fill="#20334c">清设备原因后complete</text>
+<polyline points="310,220 423,220" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)" stroke-dasharray="6 5"/>
+<text x="330" y="202" font-size="14" fill="#16806b">配置/读取</text>
+<polyline points="795,220 908,220" fill="none" stroke="#b94b29" stroke-width="2.5" marker-end="url(#irq)" stroke-dasharray="6 5"/>
+<text x="814" y="202" font-size="14" fill="#b94b29">电平IRQ</text>
+<rect x="435" y="440" width="360" height="150" rx="10" fill="white" stroke="#245fc7" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="450" y="469" font-size="18" fill="#245fc7">未来数组数据引擎</text>
+<text x="450" y="496" font-size="15" fill="#20334c">源/目的/长度/任务标识</text>
+<text x="450" y="518" font-size="15" fill="#20334c">读写FIFO、burst、错误/完成</text>
+<rect x="920" y="440" width="280" height="150" rx="10" fill="white" stroke="#245fc7" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="935" y="469" font-size="18" fill="#245fc7">AXI master → 存储</text>
+<text x="935" y="496" font-size="15" fill="#20334c">AxiExt增加发起者</text>
+<text x="935" y="518" font-size="15" fill="#20334c">不是自动LLC旁路</text>
+<polyline points="615,320 615,428" fill="none" stroke="#16806b" stroke-width="2.5" marker-end="url(#control)" stroke-dasharray="6 5"/>
+<text x="630" y="376" font-size="14" fill="#16806b">未来扩展描述符</text>
+<polyline points="795,510 908,510" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)" stroke-dasharray="6 5"/>
+<text x="808" y="491" font-size="14" fill="#245fc7">数据读写</text>
+<text x="32" y="745" font-size="16" fill="#20334c">独立示例不包含AXI五通道、缓存一致性或生产地址分配；单元通过不等于SoC集成通过。</text>
+<text x="32" y="769" font-size="16" fill="#20334c">依次验收字节写/错误/重入、IRQ清除、背压/ID/4KiB边界，最后验证共享buffer协议。</text>
+<text x="32" y="828" font-size="14" fill="#20334c">教学示意 · 蓝：数据/请求  绿：控制/响应  橙：中断/错误  紫：时钟/复位 · 未标拍数不代表零延迟</text>
+</g></svg>

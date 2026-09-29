@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="800" viewBox="0 0 1240 800" role="img"><title>接口适配：64位的 +4 访问如何进入32位寄存器</title><rect width="1240" height="800" fill="#f5f8fc"/><defs>
+<marker id="data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#245fc7"/></marker>
+<marker id="control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#16806b"/></marker>
+<marker id="irq" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#b94b29"/></marker>
+<marker id="clock" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9" fill="#8251af"/></marker>
+</defs><g font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif">
+<text x="32" y="40" font-size="25" fill="#20334c">接口适配：64位的 +4 访问如何进入32位寄存器</text>
+<text x="32" y="73" font-size="16" fill="#20334c">自然对齐32-bit示例：AxSIZE=2；窄访问和总线宽度是两回事。</text>
+<rect x="35" y="130" width="350" height="180" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="50" y="159" font-size="18" fill="#245fc7">64-bit AXI侧</text>
+<text x="50" y="186" font-size="15" fill="#20334c">地址偏移 +4</text>
+<text x="50" y="208" font-size="15" fill="#20334c">WDATA有效部分在[63:32]</text>
+<text x="50" y="230" font-size="15" fill="#20334c">0x1122334400000000</text>
+<text x="50" y="252" font-size="15" fill="#20334c">WSTRB = 0xf0</text>
+<rect x="450" y="130" width="350" height="180" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="465" y="159" font-size="18" fill="#245fc7">转换与事务状态</text>
+<text x="465" y="186" font-size="15" fill="#20334c">根据地址低位选择lane</text>
+<text x="465" y="208" font-size="15" fill="#20334c">搬移data与strobe</text>
+<text x="465" y="230" font-size="15" fill="#20334c">匹配AW/W，返回B错误</text>
+<rect x="865" y="130" width="340" height="180" rx="10" fill="white" stroke="#245fc7" stroke-width="2"/>
+<text x="880" y="159" font-size="18" fill="#245fc7">32-bit Reg侧</text>
+<text x="880" y="186" font-size="15" fill="#20334c">addr：仍指向+4寄存器</text>
+<text x="880" y="208" font-size="15" fill="#20334c">wdata = 0x11223344</text>
+<text x="880" y="230" font-size="15" fill="#20334c">wstrb = 0xf</text>
+<text x="880" y="252" font-size="15" fill="#20334c">valid &amp; ready才生效</text>
+<polyline points="385,210 438,210" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<polyline points="800,210 853,210" fill="none" stroke="#245fc7" stroke-width="2.5" marker-end="url(#data)"/>
+<rect x="35" y="400" width="340" height="175" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="50" y="429" font-size="18" fill="#16806b">ID适配</text>
+<text x="50" y="456" font-size="15" fill="#20334c">不能直接截断ID</text>
+<text x="50" y="478" font-size="15" fill="#20334c">需要映射/序列化与响应跟踪</text>
+<rect x="450" y="400" width="340" height="175" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="465" y="429" font-size="18" fill="#16806b">cut / spill</text>
+<text x="465" y="456" font-size="15" fill="#20334c">保存payload与有效状态</text>
+<text x="465" y="478" font-size="15" fill="#20334c">在READY低时保持待成交拍</text>
+<rect x="865" y="400" width="340" height="175" rx="10" fill="white" stroke="#16806b" stroke-width="2"/>
+<text x="880" y="429" font-size="18" fill="#16806b">CDC / 异步FIFO</text>
+<text x="880" y="456" font-size="15" fill="#20334c">跨域同步指针/握手</text>
+<text x="880" y="478" font-size="15" fill="#20334c">复位也必须遵守事务契约</text>
+<text x="32" y="695" font-size="16" fill="#20334c">三种适配解决不同问题；增加cut不能替代CDC，ID适配不能替代原子来源USER编码。</text>
+<text x="32" y="719" font-size="16" fill="#20334c">只取低32位会丢失本例有效数据；当前DMA旧桥问题仍待独立动态验证。</text>
+<text x="32" y="778" font-size="14" fill="#20334c">教学示意 · 蓝：数据/请求  绿：控制/响应  橙：中断/错误  紫：时钟/复位 · 未标拍数不代表零延迟</text>
+</g></svg>

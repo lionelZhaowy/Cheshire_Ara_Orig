@@ -11,17 +11,17 @@ REPO=ROOT.parent.parent
 OT='.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/'
 GROUPS=[
  ('SoC','0x03000000','sw/include/regs/cheshire.h','boot-debug'),
- ('LLC','0x03001000','sw/include/regs/axi_llc.h','dma-llc'),
+ ('LLC','0x03001000','sw/include/regs/axi_llc.h','memory'),
  ('GPIO','0x03005000',OT+'gpio_regs.h','uart-gpio'),
  ('I2C','0x03003000',OT+'i2c_regs.h','i2c'),
  ('SPI host','0x03004000',OT+'spi_host_regs.h','spi'),
  ('CLINT','0x02040000','sw/include/regs/clint.h','interrupts'),
  ('PLIC','0x04000000',OT+'rv_plic_regs.h','interrupts'),
- ('iDMA 2D','0x01000000','sw/include/regs/idma.h','dma-llc'),
+ ('iDMA 2D','0x01000000','sw/include/regs/idma.h','memory'),
  ('Serial Link','0x03006000','sw/include/regs/serial_link.h','stream-io'),
  ('VGA','0x03007000','sw/include/regs/axi_vga.h','stream-io'),
- ('AXI RT（可选）','0x020c0000','sw/include/regs/axi_rt.h','dma-llc'),
- ('Bus error 单元','见章节内各读/写子块','.bender/git/checkouts/unbent-a93c32aef5b319fd/driver/bus_err_unit.h','dma-llc'),
+ ('AXI RT（可选）','0x020c0000','sw/include/regs/axi_rt.h','memory'),
+ ('Bus error 单元','见章节内各读/写子块','.bender/git/checkouts/unbent-a93c32aef5b319fd/driver/bus_err_unit.h','memory'),
 ]
 def main():
     intro='''<div class="goals"><strong>用途与前置</strong><p>学会由基址、字节偏移和字段组成访问；先读寄存器与驱动方法。本表不代替外设章节的访问语义。</p></div>
@@ -46,6 +46,6 @@ def main():
         out.append(f'<section class="register-group"><h2 id="group-{i}">{label} · {base}</h2><p><a href="{chapter}.html">回到教学章节</a> · <a href="../../{path}">{e(path)}</a></p><table><thead><tr><th>寄存器</th><th>偏移 / 地址</th><th>字段常量（不是访问权限）</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></section>')
     out.append('''<h2 id="quiz">本章自测</h2><details><summary>看到 REG_OFFSET 就可以无副作用读取吗？</summary><p>不可以。iDMA NEXT_ID 读取会提交任务，bus error 的 ERR_CODE 读取会弹出记录，UART RBR 读取会取走数据。先查访问语义。</p></details><details><summary>头文件中的所有索引都能访问吗？</summary><p>不一定。还要确认实例数量、参数化寄存器生成版本及地址译码范围。先用 HW_FEATURES 和硬件配置核对，禁止靠扫描未知 MMIO 探测。</p></details>''')
     (ROOT/'content/registers.html').write_text('\n'.join(out)+'\n')
-    (ROOT/'evidence/advanced-register-sources.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    (ROOT/'evidence/restructure-register-sources.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print(f'{len(GROUPS)} header groups, {total} register offsets; no hardware accesses')
 if __name__=='__main__':main()

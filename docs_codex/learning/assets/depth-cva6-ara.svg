@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 735" role="img" aria-labelledby="title desc"><title id="title">CVA6–Ara：专用控制协议与独立访存</title><desc id="desc">当前 CvxifEn=0；端口名字 cvxif 不表示通用 CORE-V XIF。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="735" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">CVA6–Ara：专用控制协议与独立访存</text>
+<text x="32" y="74" class="small" text-anchor="start">当前 CvxifEn=0；端口名字 cvxif 不表示通用 CORE-V XIF。</text>
+<rect x="40.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="164.0" class="box" text-anchor="middle">CVA6 decoder / scoreboard</text>
+<text x="190.0" y="190.0" class="box" text-anchor="middle">first-pass decode / trans_id</text>
+<rect x="360.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="164.0" class="box" text-anchor="middle">acc_dispatcher</text>
+<text x="510.0" y="190.0" class="box" text-anchor="middle">队列 / 非推测发出 / pending</text>
+<rect x="680.0" y="125" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="164.0" class="box" text-anchor="middle">Ara dispatcher / sequencer</text>
+<text x="830.0" y="190.0" class="box" text-anchor="middle">完整译码 / 依赖 / 内部运行表</text>
+<path d="M340,170 L360,170" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M660,170 L680,170" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="100" y="320" width="870" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="535.0" y="358.0" class="box" text-anchor="middle">CVA6 → Ara：req_valid / insn / rs1 / rs2 / frm / trans_id</text>
+<text x="535.0" y="384.0" class="box" text-anchor="middle">Ara → CVA6：req_ready；resp_valid / result / exception / trans_id</text>
+<rect x="100" y="445" width="870" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="535.0" y="483.0" class="box" text-anchor="middle">Ara → CVA6：load_complete / store_complete / store_pending / fflags</text>
+<text x="535.0" y="509.0" class="box" text-anchor="middle">另有 MMU 请求/应答与 L1 invalidate；CPU resp_ready 固定为 1</text>
+<rect x="100" y="580" width="870" height="70" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="535.0" y="621.0" class="box" text-anchor="middle">Ara VLSU → 自身 AXI → invalidation filter → 位宽适配 → 系统 Crossbar</text>
+<text x="32" y="700" class="small" text-anchor="start">源码：ara/intf_typedef.svh、acc_dispatcher.sv、cheshire_soc::gen_ara；握手因果见 WaveDrom 图。</text></svg>

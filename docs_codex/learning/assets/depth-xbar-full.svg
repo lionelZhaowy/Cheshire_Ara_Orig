@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 730" role="img" aria-labelledby="title desc"><title id="title">当前 AXI 与 Reg 拓扑</title><desc id="desc">当前默认参数示例；Ara 作为附加输入，关闭可选设备会改变索引。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="730" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">当前 AXI 与 Reg 拓扑</text>
+<text x="32" y="74" class="small" text-anchor="start">当前默认参数示例；Ara 作为附加输入，关闭可选设备会改变索引。</text>
+<rect x="40.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="154.0" class="box" text-anchor="middle">CPU / debug / iDMA</text>
+<text x="190.0" y="180.0" class="box" text-anchor="middle">核心请求、调试装载、搬运</text>
+<rect x="360.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="154.0" class="box" text-anchor="middle">Ara / Serial Link</text>
+<text x="510.0" y="180.0" class="box" text-anchor="middle">向量数据、外部链路</text>
+<rect x="680.0" y="115" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="154.0" class="box" text-anchor="middle">VGA / USB</text>
+<text x="830.0" y="180.0" class="box" text-anchor="middle">帧读取、描述符及数据</text>
+<path d="M190.0,207 L190.0,260" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,207 L510.0,260" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,207 L830.0,260" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="260" width="940" height="75" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="510.0" y="290.5" class="box" text-anchor="middle">每输入：decode + demux → 每目标：mux / arbitration</text>
+<text x="510.0" y="316.5" class="box" text-anchor="middle">ID 加来源前缀；W 来源 FIFO；同 ID 的目标与计数</text>
+<rect x="40.0" y="400" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="439.0" class="box" text-anchor="middle">Debug / DMA / Link</text>
+<text x="190.0" y="465.0" class="box" text-anchor="middle">各自地址目标</text>
+<rect x="360.0" y="400" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="439.0" class="box" text-anchor="middle">AXI → Reg32</text>
+<text x="510.0" y="465.0" class="box" text-anchor="middle">atomics → cut → bridge</text>
+<rect x="680.0" y="400" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="439.0" class="box" text-anchor="middle">AMO / LRSC → LLC</text>
+<text x="830.0" y="465.0" class="box" text-anchor="middle">SPM 或外部 AXI</text>
+<path d="M190.0,335 L190.0,400" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,335 L510.0,400" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,335 L830.0,400" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="280" y="550" width="450" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="505.0" y="580.0" class="box" text-anchor="middle">reg_demux → ROM / CLINT / 可选路由器</text>
+<text x="505.0" y="606.0" class="box" text-anchor="middle">SoC / LLC / UART / I2C / SPI / GPIO / Link</text>
+<text x="505.0" y="632.0" class="box" text-anchor="middle">VGA / USB / BusErr / PLIC / 可选 CLIC</text>
+<path d="M510,492 L510,550" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="700" class="small" text-anchor="start">源码：gen_axi_in/out、gen_reg_out（cheshire_pkg.sv）及 cheshire_soc.sv；窗口见地址表。</text></svg>

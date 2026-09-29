@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 680" role="img" aria-labelledby="title desc"><title id="title">默认地址图：路由窗口不等于存储容量</title><desc id="desc">示意分段，不按地址跨度比例；右边界不包含。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="680" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">默认地址图：路由窗口不等于存储容量</text>
+<text x="32" y="74" class="small" text-anchor="start">示意分段，不按地址跨度比例；右边界不包含。</text>
+<rect x="45" y="115" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="152.0" class="box" text-anchor="middle">0x00000000 → 0x00040000   Debug 目标：256 KiB</text>
+<rect x="45" y="195" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="232.0" class="box" text-anchor="middle">0x01000000 → 0x01001000   iDMA 控制：4 KiB</text>
+<rect x="45" y="275" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="312.0" class="box" text-anchor="middle">0x02000000 → 0x0c000000   Reg 大窗口：160 MiB，内部存在空洞</text>
+<rect x="45" y="355" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="392.0" class="box" text-anchor="middle">0x10000000 / 0x14000000   SPM 两个别名：各 128 KiB，同一阵列</text>
+<rect x="45" y="435" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="472.0" class="box" text-anchor="middle">0x80000000 → 0x100000000   LLC 下游主存窗口：2 GiB</text>
+<rect x="45" y="515" width="950" height="62" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="520.0" y="552.0" class="box" text-anchor="middle">0x100000000 → 0x200000000   Serial Link：4 GiB 窗口</text>
+<text x="32" y="640" class="small" text-anchor="start">源码：cheshire_pkg.sv；实际 DDR 容量、器件地址译码及可选项由有效 Cfg / 平台决定。</text></svg>

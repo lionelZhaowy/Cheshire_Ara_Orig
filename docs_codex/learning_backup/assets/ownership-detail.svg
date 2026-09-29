@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="title desc"><title id="title">DMA 缓冲区所有权与超时：停止等待 ≠ 硬件停止写入</title><desc id="desc">教学示意。带文字的箭头分别表示数据、配置、事件与时钟复位；不是布局图或仿真波形。</desc><defs>
+<marker id="data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#147a72"/></marker>
+<marker id="ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#236bad"/></marker>
+<marker id="irq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b34a31"/></marker>
+<marker id="clock" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b55a6"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#657887"/></marker>
+</defs><rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="38" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="25" fill="#263e50" font-weight="700">DMA 缓冲区所有权与超时：停止等待 ≠ 硬件停止写入</text>
+<text x="30" y="65" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教学示意 · 据本地 RTL 整理 · 控制/数据箭头表示请求或事件方向，AXI 响应沿反向返回</text>
+<rect x="40" y="115" width="335" height="130" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="52" y="141" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">CPU_OWNED</text>
+<text x="52" y="165" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">写源数组 / 初始化目标哨兵</text>
+<text x="52" y="188" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">本实验只用 uncached SPM 别名</text>
+<text x="52" y="211" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">fence → 源数据交给 DMA</text>
+<rect x="475" y="115" width="335" height="130" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="487" y="141" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">DEVICE_OWNED</text>
+<text x="487" y="165" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">填 SRC/DST/LENGTH/CONF</text>
+<text x="487" y="188" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">读 NEXT_ID 提交；保存返回 ID</text>
+<text x="487" y="211" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU 不改这两块 buffer</text>
+<rect x="905" y="115" width="335" height="130" rx="8" fill="#fff" stroke="#236bad" stroke-width="2"/>
+<text x="917" y="141" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#236bad" font-weight="700">DONE + 验证</text>
+<text x="917" y="165" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">DONE_ID 匹配单个任务</text>
+<text x="917" y="188" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">fence → 逐字读取目标</text>
+<text x="917" y="211" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">比较值/守卫/返回码</text>
+<polyline points="375,180 475,180" fill="none" stroke="#236bad" stroke-width="2.2" marker-end="url(#ctrl)"/>
+<text x="383" y="172" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#236bad">交接</text>
+<polyline points="810,180 905,180" fill="none" stroke="#147a72" stroke-width="2.2" marker-end="url(#data)"/>
+<text x="818" y="172" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#147a72">完成 ID</text>
+<rect x="40" y="350" width="555" height="150" rx="8" fill="#fff" stroke="#147a72" stroke-width="2"/>
+<text x="52" y="376" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#147a72" font-weight="700">硬件路径</text>
+<text x="52" y="400" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU 配置 → DMA control AXI subordinate</text>
+<text x="52" y="423" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">前端请求 → job FIFO → ND midend → backend</text>
+<text x="52" y="446" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">AR/R 读源 → 缓冲 → AW/W/B 写目标</text>
+<text x="52" y="469" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">经过 xbar 与 LLC/SPM；没有 DMA done IRQ 输出</text>
+<rect x="675" y="350" width="565" height="150" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="687" y="376" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">计时与事件并行</text>
+<text x="687" y="400" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CLINT ISR 计数 / GPIO PLIC ISR 清源</text>
+<text x="687" y="423" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">主循环检查 DONE_ID 与错误；mcycle 做等待上限</text>
+<text x="687" y="446" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">CPU L1、Ara、设备不会因 volatile 自动全局一致</text>
+<text x="687" y="469" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">教程固定别名和所有权；生产系统需完整缓存契约</text>
+<rect x="475" y="595" width="765" height="160" rx="8" fill="#fff" stroke="#b34a31" stroke-width="2"/>
+<text x="487" y="621" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="18" fill="#b34a31" font-weight="700">QUARANTINED：超时后的缓冲区隔离</text>
+<text x="487" y="645" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">禁用本示例新任务；记录已提交 ID / DONE_ID / STATUS</text>
+<text x="487" y="668" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">保留源/目标缓冲区，不归还给下一项任务、不覆盖重试</text>
+<text x="487" y="691" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">软件没有通用 DMA abort 寄存器可直接调用</text>
+<text x="487" y="714" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="15" fill="#263e50">需证明 outstanding 已排空或执行经过设计的系统复位后才能重用</text>
+<polyline points="640,245 640,307 640,560 760,560 760,595" fill="none" stroke="#b34a31" stroke-width="2.2" marker-end="url(#irq)" stroke-dasharray="6 4"/>
+<text x="658" y="544" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#b34a31">超时（不代表取消）</text>
+<text x="40" y="811" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="17" fill="#263e50">成功还需中断服务至少一次、全部元素匹配、哨兵不变；任何一个条件不成立都返回非零。</text>
+<text x="30" y="860" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="14" fill="#263e50">蓝：配置/控制   绿：数据事务   橙虚线：中断/异常   紫虚线：时钟/复位   灰：阶段或说明</text></svg>

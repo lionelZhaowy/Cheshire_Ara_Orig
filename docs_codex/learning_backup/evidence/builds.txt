@@ -1,0 +1,37 @@
+L01 2026-09-22: software build and static inspection only; NO RTL simulation.
+All listed final build invocations exited 0. Logs: evidence/build_logs/*.log.
+
+array-dram.log
+  output=docs_codex/learning/evidence/array-dram.ipbCU3
+  entry=0x80000000; warnings=24; sha256=dd7c56109b08f18fc563cb814411fa14e19b40a4c77d294cc1ba8a74eafb9221
+array-inject.log
+  output=docs_codex/learning/evidence/array-spm.40RGNS
+  entry=0x10000000; warnings=24; sha256=76433f898ac005dce86d6732cc4ff78af402828b22ee67fc1bb1c39a6847f410
+array-spm.log
+  output=docs_codex/learning/evidence/array-spm.0K7vKq
+  entry=0x10000000; warnings=24; sha256=b62f89261207859a319a9e5faf4ff68ce230545b16da641e4d948374c9b12d6d
+  0000000000000000 A __stack_pointer$
+  0000000010001770 D seed
+  0000000010001780 B __bss_start
+  0000000010001780 B result
+  00000000100019a4 B __bss_end
+dma-spm.log
+  output=docs_codex/learning/evidence/dma-spm.VyMUsV
+  entry=0x10000000; warnings=66; sha256=b2b0216808b0c95e9e8166787e2b9dd214741e841a0a7f2741a337a1cd42940a
+hello-spm.log
+  output=docs_codex/learning/evidence/hello-spm.ju0N6H
+  entry=0x10000000; warnings=23; sha256=cb340d5a9d28167711dc271ce7e2853bbe9c14ff2bf37471af0b2bd277973ed9
+mmio-spm.log
+  output=docs_codex/learning/evidence/mmio-spm.Ye8aXn
+  entry=0x10000000; warnings=28; sha256=e2449ef24fd91ff6ccd89a2d3df876fcfe94b95d64c1ad9d14eee9df6fe172d9
+rvv-spm.log
+  output=docs_codex/learning/evidence/rvv-spm.I9uGjY
+  entry=0x10000000; warnings=25; sha256=fc52a826be52ca5608c731cfad257b99a4b16b5849ede2c955e55bc24902a164
+    100002fa:	0d06f2d7          	vsetvli	t0,a3,e32,m1,ta,ma
+    100002fe:	02056007          	vle32.v	v0,(a0)
+    10000302:	0205e087          	vle32.v	v1,(a1)
+    10000306:	02008157          	vadd.vv	v2,v0,v1
+    1000030a:	02066127          	vse32.v	v2,(a2)
+timer-spm.log
+  output=docs_codex/learning/evidence/timer-spm.2quk2M
+  entry=0x10000000; warnings=30; sha256=ee4d1e45fd91c41aeba49a07b276d7dddbec2d4208028f5346bd9ec6bcd9194a

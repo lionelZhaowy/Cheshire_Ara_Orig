@@ -9,3 +9,8 @@ scripts/__pycache__/
 # Keep the compiler evidence linked by the lessons despite the root *.log rule.
 !evidence/build_logs/*.log
 !evidence/advanced_build_logs/*.log
+
+# New continuous-program artifacts. Reports are tracked separately.
+evidence/journey.*/
+evidence/journey-bad.*/
+evidence/journey-rvv.*/

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 560" role="img" aria-labelledby="title desc"><title id="title">后续系统规划：先定义边界，再分配带宽</title><desc id="desc">虚线式规划由色块区分；本图不是现有 RTL 集成结果。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="560" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">后续系统规划：先定义边界，再分配带宽</text>
+<text x="32" y="74" class="small" text-anchor="start">虚线式规划由色块区分；本图不是现有 RTL 集成结果。</text>
+<rect x="35" y="120" width="310" height="110" rx="9" fill="#f0eaf9" stroke="#a7c2cb"/>
+<text x="190.0" y="168.0" class="box" text-anchor="middle">LVDS / 图像输入</text>
+<text x="190.0" y="194.0" class="box" text-anchor="middle">像素打包与跨域</text>
+<path d="M345,175 L375,175" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="375" y="120" width="310" height="110" rx="9" fill="#f0eaf9" stroke="#a7c2cb"/>
+<text x="530.0" y="168.0" class="box" text-anchor="middle">ISP / 图像处理</text>
+<text x="530.0" y="194.0" class="box" text-anchor="middle">行缓存与帧格式</text>
+<path d="M685,175 L715,175" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="715" y="120" width="310" height="110" rx="9" fill="#f0eaf9" stroke="#a7c2cb"/>
+<text x="870.0" y="168.0" class="box" text-anchor="middle">脉动阵列 / NPU</text>
+<text x="870.0" y="194.0" class="box" text-anchor="middle">命令、张量与完成事件</text>
+<rect x="155" y="350" width="750" height="90" rx="9" fill="#fff3da" stroke="#a7c2cb"/>
+<text x="530.0" y="388.0" class="box" text-anchor="middle">AXI4 DDR 子系统：端口宽度、突发、ID、带宽、时序与错误约定</text>
+<text x="530.0" y="414.0" class="box" text-anchor="middle">软件缓冲区布局 + 缓存边界 + QoS / 背压预算</text>
+<path d="M190,230 L190,350" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M530,230 L530,350" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M870,230 L870,350" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="505" class="small" text-anchor="start">独立 cheshire_ara_asic/：固定配置与静态清单；Bender 至多用于一次性离线解析。</text></svg>

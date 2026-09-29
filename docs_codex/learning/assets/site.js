@@ -23,7 +23,7 @@ if(calc){
   }
   calc.addEventListener('input',update);update();
 }
-document.querySelectorAll('table').forEach(t=>{const w=document.createElement('div');w.className='table-wrap';t.before(w);w.append(t);});
+document.querySelectorAll('table').forEach(t=>{if(t.parentElement.classList.contains('table-wrap'))return;const w=document.createElement('div');w.className='table-wrap';t.before(w);w.append(t);});
 document.querySelectorAll('figure').forEach(f=>{
   const img=f.querySelector('img');if(!img)return;
   const bar=document.createElement('div');bar.className='figure-controls';
