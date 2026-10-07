@@ -10,6 +10,7 @@
 | E01 固定配置 ASIC 源码提取 | 未开始 | 独立 `cheshire_ara_asic/`、固定配置、静态清单、可运行入口、来源记录 | 按 02 文档；保护旧工程；首轮通常拥有新目录骨架及清单的编辑权 |
 | V01 仿真与验收 | 未开始 | 回归用例、编译/展开/运行结果、可重现日志 | 计划可先做；新目录验证依赖 E01；与 E01 协调 TB、filelist 编辑权 |
 | S01 裸机软件与启动 | 未开始 | 启动/链接/软件构建、向量结果验证、启动路径分析 | 与 E01 确认目录及地址布局后管理新目录软件；原 `sw/` 默认只读 |
+| S01-B01 Platform ROM 返回路径修复 | 未开始（2026-10-06 已登记，尚未授权实施） | 对照官方 #187 最小修复、同步生成 ROM、验收正常返回及默认启动；[规格](03_Platform_ROM_Clock_IP_Configuration.md#s01-b01) | S01 主责，V01 验收、E01 同步提取；旧启动源码/生成 RTL 修改需另行明确授权，禁止为修复升级全工程依赖 |
 | M01 DDR 旁路与存储一致性 | 未开始 | AXI4 接口契约、DMA 区/所有权方案、验证矩阵，再按授权实施 | 初期写专题/交接；涉及 top/config/address map 的改动与 E01 协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
 | P01 ASIC 工艺与实现准备 | 未开始 | SRAM/时钟/PAD/DDR PHY/DFT 适配表、约束缺口和实现验收项 | 初期可盘点；真实映射依赖工艺/IP 资料；不制造假通过报告 |
@@ -25,13 +26,15 @@
 | --- | --- | --- |
 | E01 | 02 全文 | `Bender.local`、Ara 集成 Makefile、SoC/配置和技术单元；01 第 3、10 节 |
 | V01 | 02 第 3、7、9 节及 E01 最新交接 | `target/sim/src/`、DPI、01 第 6 节 |
-| S01 | 02 第 7 节及 E01 配置/地址交接 | Boot ROM、`crt0.S`、`common.ldh`、01 第 5、7、9 节 |
+| S01 / S01-B01 | 02 第 7 节及 E01 配置/地址交接；[Platform ROM 规格](03_Platform_ROM_Clock_IP_Configuration.md)及[缺陷证据](handoffs/2026-10-06_L01_platform_rom_boot_review.md) | Boot ROM、`crt0.S`、`common.ldh`、01 第 5、7、9 节；官方修复 #187 |
 | M01 | 02 第 8 节 | `cheshire_soc.sv` 的 atomics/LLC、LLC/AXI 实现、01 第 8、9 节 |
 | I01 | M01 已确认接口契约 | 自有 IP 资料、SoC 控制/中断扩展边界 |
-| P01 | 02 第 6、9 节 | `tech_cells_generic`、CVA6/Ara/LLC 存储实例、01 第 10 节 |
+| P01 | 02 第 6、9 节；[Platform ROM 决策与接口边界](03_Platform_ROM_Clock_IP_Configuration.md) | `tech_cells_generic`、CVA6/Ara/LLC 存储实例、PLL/PHY 授权资料、01 第 10 节 |
 | L01 | 当前问题对应小节 | 当前问题相关源码即可 |
 
 初次接手不重复全仓库审计。遇到过期结论或缺失证据时，定向重新检查。
+
+2026-10-06 用户已确认平台启动方向：沿官方 Platform ROM 钩子配置安全启动 PLL，并按需求安排其他 IP 初始化；保留运行软件可重复配置的接口。外部配置、受控调频和异常回退的具体实现需在 IP 契约确定后交付。此记录不表示已实现 PLL/DDR、运行时调频或 Linux 驱动，也不授予修复源码权限。
 
 ## 3. 可复制到新对话的提示词
 

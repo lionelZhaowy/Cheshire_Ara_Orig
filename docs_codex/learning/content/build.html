@@ -3,6 +3,12 @@
 <p>我们在开发主机上运行交叉编译器，生成供 RISC-V CPU 执行的机器码。工具名字 <code>riscv64-unknown-elf-gcc</code> 描述目标体系；它本身运行在主机。<code>g++</code> 则用于编译仿真器调用的主机 C++ 加载器，两者的输出用途不同。</p>
 <p>教材构建脚本 <a href="scripts/build_journey.sh">build_journey.sh</a> 只取本地 crt0、UART、CLINT 和 printf 的必要源文件，在新输出目录生成产物。它采用原软件入口的基本 ISA/ABI 与链接约定，关闭自动向量化并省略 LTO（链接期优化），以保留容易观察的编译单元边界。生产入口仍在 <code>sw/sw.mk</code>；原 Make 规则会在 sw 和部分依赖目录旁写产物，主线实验采用隔离输出。</p>
 <h2 id="stages">预处理、编译、汇编与链接</h2>
+<h3 id="software-options">原 Make 入口的配置选项</h3>
+<p>工具链前缀定位主机上可执行的编译器、汇编器和链接器；编译选项决定它们生成什么。两者要分别检查。当前 <code>sw/sw.mk</code> 从 <code>CHS_SW_GCC_BINROOT</code> 拼接工具路径，默认取 PATH 中 <code>riscv64-unknown-elf-gcc</code> 所在目录。换工具版本时，既要确认命令确实指向新版本，也要检查它提供的库是否支持所选 ABI。</p>
+<table><tr><th>配置入口</th><th>本地消费者与默认含义</th><th>修改时一起检查</th></tr><tr><td>CHS_SW_GCC_BINROOT</td><td>GCC、objdump、objcopy 等目标工具路径</td><td>路径、版本、同套 binutils 和 LTO 插件；路径应指向工具所在目录</td></tr><tr><td>CHS_SW_FLAGS</td><td>公共 ISA/ABI、优化、静态链接、分节及 LTO 选项</td><td>覆盖整个变量会替换全部默认 flags；更换 ISA 后所有参与对象/库须匹配</td></tr><tr><td>CHS_SW_CCFLAGS</td><td>公共 flags 加 medany、调试信息、显式重定位等</td><td>代码寻址范围、优化对调试的影响；不能只看 C 表达式猜指令</td></tr><tr><td>CHS_SW_LDFLAGS</td><td>公共 flags 加 nostartfiles、gc-sections 和脚本搜索路径</td><td>启动对象、实际链接脚本、所需库是否进入最终 ELF</td></tr><tr><td>CHS_SW_LD_DIR / CHS_SW_LINK_MODES</td><td>脚本目录及由其中 *.ld 得到的链接模式</td><td>SPM、DRAM、ROM 镜像采用不同装载契约</td></tr><tr><td>CHS_SW_INCLUDES</td><td>项目与依赖头文件搜索路径</td><td>寄存器头版本要与当前 RTL 相同；头文件不能替代实现库</td></tr></table>
+<p>本地包含 <code>-DOT_PLATFORM_RV32</code> 这样的依赖库宏，同时实际目标 ISA 是 RV64；宏名属于特定库的适配接口，CPU 位数由 <code>-march</code> 和硬件决定。原规则还默认使用 LTO，需要兼容的编译器和链接插件。教材独立脚本刻意保留 .i/.s/.o 以便学习，其完整命令见实验 A；原 Make 与独立教学脚本的选项不能混称为同一次构建。</p>
+<p>本地寄存器头由 HJSON 和 <code>REGTOOL --cdefines</code> 规则生成。新版在线说明使用的 RDL/PeakRDL 流程不适用于当前输入文件。查配置时应沿当前 Make 规则找到生成器，再确认它消费的寄存器定义；详细入口见<a href="../software/BUILD_AND_SDK.md">构建与 SDK 手册</a>。</p>
+<h3 id="translation-units">从翻译单元到最终映像</h3>
 <p>预处理先展开 <code>#include</code> 和宏，得到 <code>journey.i</code>。头文件告诉编译器函数叫什么、参数是什么，以及寄存器偏移等常量；函数实现仍需从源文件或库中取得。编译阶段依据 ISA、ABI 和优化选项把 C 语义变成汇编，得到 <code>journey.s</code>。汇编阶段把指令编码成机器字节，形成 <code>journey.o</code>，同时保留符号与尚待解决的地址引用。</p>
 <p>例如编译 main 时，编译器知道要调用 uart_init，却未决定它最终位于哪个目标地址。对象中的重定位记录告诉链接器在哪里补地址。<code>ar</code> 将 uart.o、clint.o、printf.o 打包成静态库 libsupport.a；链接器把应用、crt0 和所需库对象组合起来，解析调用目标，并按链接脚本安排空间。只增加头文件搜索路径 <code>-I</code> 无法补上缺失函数实现。</p>
 <figure><img src="assets/new-build.svg" alt="journey.c 经预处理、编译、汇编形成对象，与启动对象和支持库链接成 ELF"><figcaption>主机上的构建流程。map、dump 和符号表用于解释同一份 ELF，均不是硬件执行记录。</figcaption></figure>
@@ -16,6 +22,10 @@
 <p>链接到 DRAM 时入口移到 0x80000000，预算为 8 MiB，栈符号是 0x807ffff8。重新链接能改变程序地址，但真实外存模型或 DDR 必须覆盖所有装载段与栈。原 crt0 没有通用 .data 拷贝循环，加载器或介质加载流程负责把有初值内容放到运行位置。</p>
 <p>读取 map 时，从 <code>.rodata.greeting</code> 或相应小数据节找到 greeting 的输入来源，再看它落在哪个输出节；从 symbols.txt 找 seed、result、_start、main。dump 是 objdump 生成的反汇编文本，可把 PC 对回机器指令与函数，不能作为 BINARY 交给加载器。当前 common.ldh 丢弃最终 ELF 的 .riscv.attributes，ISA 还需看对象属性和构建日志。</p>
 <h2 id="practice">完成一次可解释的构建</h2>
+<h3 id="source-to-hardware">从源文件到执行结果的责任交接</h3>
+<figure><img src="assets/teaching-code-to-execution.svg" alt="主机编写编译链接生成ELF；复位执行ROM并准备SPM；主机加载器解析ELF写内存设置入口；CPU执行crt0再进入main，软件经驱动访问设备并检查结果"><figcaption>当前 JTAG 直接加载路径的教学流程。自主介质路径在启动章单独说明；图中先后为责任依赖，不表示固定周期。</figcaption></figure>
+<p>ELF 的生成和芯片的复位可以发生在不同时间。两条流程在“目标存储可写、装载内容已准备好”时汇合：加载器解析 ELF 段并写入内存，设置调试入口后恢复 CPU；CPU 执行的是 _start 的机器码，随后才进入 main。本地 JTAG 的 SPM 标志轮询不保证早期栈已建立；使用继承栈的链接模式时，还需确认该启动前提，见<a href="boot-debug.html#takeover">实际接管条件</a>。应用打印出正确文本仍应配合逐项结果和退出码，防止只证明执行过输出代码。</p>
+<h3 id="build-practice">隔离输出与产物检查</h3>
 <p>以下是<a href="labs.html#lab-a">实验 A</a>的入口，Bash 工作目录为仓库根。先用 <code>command -v riscv64-unknown-elf-gcc</code> 确认工具，构建只写预先创建的空目录。</p>
 <pre><code>LEARN_OUT=$(mktemp -d "$PWD/docs_codex/learning/evidence/journey.XXXXXX")
 JOURNEY_OUT="$LEARN_OUT" timeout 60 bash docs_codex/learning/scripts/build_journey.sh scalar spm

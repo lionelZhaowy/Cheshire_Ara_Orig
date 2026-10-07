@@ -24,3 +24,36 @@
 - [扩充章节与证据分工](DEPTH_EXTENSION.md)
 
 配图不得复制厂商受限数据手册。新架构图为按本地连接重绘的教学抽象；新时序图全部保留 WaveDrom JSON 与离线 SVG，明确标注教学时序。真实波形应额外标明运行配置、信号层次、时间单位及仿真产物，不能用教学图冒充。
+
+<a id="teaching-20261007"></a>
+
+## 2026-10-07：官方章节拆解与本地消费者核对
+
+本节是新一轮记录，不改写上文 09-29 的访问结果。输入 HEAD 为 `5ddec4fb4e982b460b12c3f3587523807602d5d4`。本次成功读取 Cheshire 在线架构、集成、软件页及 CVA6 Parameters/PMA 页；在线网页属于持续更新版本。教学正文以概念解释和本地实现推演为主，第三方参数全集仍在现有配置字典中。
+
+| 官方章节或随附官方说明 | 融入的教学内容 | 本地依据与适用边界 |
+| --- | --- | --- |
+| [Cheshire Architecture](https://pulp-platform.github.io/cheshire/um/arch/)：Components / Interconnect | [模块的多种接口角色](architecture.html#port-roles)、[结构配置与运行时控制](interconnect.html#configuration-versus-registers) | `cheshire_soc` 的实际端口/实例与 `gen_axi_in/out`；外设是否存在由有效 Cfg 决定 |
+| 同页 Memory Map / LLC | [地址逐层解释](address-map.html#address-translation-example)、[LLC/SPM 请求推演](memory.html#llc-transaction) | 区别路由窗口、物理容量、PMA 与链接预算；官方 SPM 预留区不当作本地容量 |
+| 同页配置表；[CVA6 Parameters](https://cva6.readthedocs.io/en/latest/01_cva6_user/Parameters_Configuration.html) | [CPU 可选配置族](cva6.html#configuration-families)、[有效值](cva6.html#profile-effective-values)、[组合约束](configuration.html#legality-levels) | 本地 88 个 CPU 用户字段、113 个 SoC 字段；profile → gen_cva6_cfg → build_config → RTL。在线新增字段不反填本地结构 |
+| [CVA6 PMA](https://cva6.readthedocs.io/en/latest/01_cva6_user/PMA.html) | [PMA/PMP/MMU 职责](address-map.html#address-translation-example) | `gen_cva6_cfg` 的静态属性与核内消费者；普通独立核的概念描述不替代本地 Ara 专用协作实现 |
+| [本地 AXI Crossbar 说明](../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md) | [地址规则、来源 ID、顺序与修改边界](interconnect.html) | 文档与 `axi_xbar_unmuxed/axi_mux/axi_demux_simple` 交叉阅读；本地 `AxiMap` 是常量，通用 IP 的动态输入能力未成为 SoC MMIO 功能 |
+| [本地 LLC 设计说明](../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/doc/axi_llc.md) | [按行拆分、脏行写回、填充和 SPM](memory.html#llc-transaction) | `axi_llc_hit_miss/evict_unit/refill_unit` 与 Cheshire Reg32 wrapper；文档的通用 AXI-Lite 包装不替代当前寄存器偏移 |
+| [SoC Integration](https://pulp-platform.github.io/cheshire/tg/integr/)：Instantiating | [Cfg 与接口类型、各扩展端口方向](integration.html#official-instantiation)、[DDR 平台契约](ddr.html#platform-contract) | `CHESHIRE_TYPEDEF_ALL`、SoC 顶层及平台 wrapper；固定配置/静态清单仍为用户确认方向 |
+| 同页 Platform ROM；[Architecture Boot ROM](https://pulp-platform.github.io/cheshire/um/arch/#boot-rom) | [平台钩子三种配置情况](boot.html#platform-rom)、[PLL 启动与运行时设置](clocks.html#boot-and-runtime-frequency) | `BootAddr`、只读 PLATFORM_ROM、`_prom_check_run`、生成 ROM；正常返回缺口见下表 |
+| [Software Stack](https://pulp-platform.github.io/cheshire/um/sw/) | [软件职责分层](runtime.html#software-stack)、[Make 配置](build.html#software-options)、[ZSL 后续阶段](boot.html#later-stages) | `sw/sw.mk`、crt0、链接脚本、DIF/HAL、zsl；裸机与 Linux 层次分开，本地寄存器生成流程按 HJSON |
+| [tech_cells_generic 随附说明](../../.bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/README.md) | [工艺资源映射与 SRAM 时序推演](future.html#resource-mapping)、[时钟/复位/电源边界](power.html#domain-orthogonality) | 抽象层需要平台实现；未假定选定宏、频率、电源域或供应商寄存器 |
+| Ara 本地 [FUNCTIONALITIES](../../.bender/git/checkouts/ara-2c7b103275a16c87/FUNCTIONALITIES.md) 与 [lane 说明](../../.bender/git/checkouts/ara-2c7b103275a16c87/docs/source/lane.rst) | 既有 [专用接口](ara.html#interface)、新增 [VRF 与共享张量](sharing.html#vrf-versus-shared-memory) | `ara.sv`、dispatcher、VLSU、失效过滤与 CVA6 acc_dispatcher；NPU 共享协议为未来方案 |
+
+版本差异与未验证条件：
+
+| 项目 | 当前核对结果 | 教材处理 |
+| --- | --- | --- |
+| Platform ROM 正常返回 | 本地 jalr 后落入 boot_next_stage；本地 git 对象中可读上游修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`，但它不是当前 HEAD 祖先 | 说明官方契约和本地缺口，独立修复/ROM 重生成/返回回归；不修改生产代码。在线 commit 页本轮抓取失败，修复依据为本地 git 对象 |
+| 扩展端口上限 | 官方概述写最多 16，同页参数表为 0..15，本地计数字段为 4 bit | 不以概述证明值 16 可用，按本地字段与消费者审查 |
+| 寄存器头生成 | 在线软件页使用 RDL/PeakRDL；本地 Make 使用 HJSON/REGTOOL | 用当前规则解释编译，不要求升级生成器 |
+| EEPROM boot mode | 随附旧说明存在编码笔误，本地 C switch 使用 3 | 正文使用源码模式 3，保留历史差异记录 |
+| CPU cache 字段名称 | 本地用户字段 `DCacheType`，辅助 localparam `CVA6ConfigDcacheType` | 修正网页两处字段大小写，不改变 cache 选择结论 |
+| ASIC 资料 | Cheshire 提供系统数字接口与平台钩子；未提供本项目选定工艺的完整 PLL/DDR/低功耗交付 | 按职责、依赖和验收解释未来方案，不编造寄存器及频率 |
+
+源文件哈希见 [sources.json](evidence/teaching-20261007/sources.json)。HTML 与 Markdown 采用相同概念和当前源码结论，原有表格、命令、实验和动态验证记录保留。

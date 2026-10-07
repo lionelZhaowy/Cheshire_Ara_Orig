@@ -71,3 +71,13 @@
 ## 5. 与工程任务的关系
 
 本轮是 L01 软件学习文档，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。项目状态见 [PROJECT_STATE](../PROJECT_STATE.md)，本轮检查与源码缺口见 [交接记录](../handoffs/2026-09-20_L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。
+
+<a id="teaching-20261007"></a>
+
+## 软件栈与硬件前提的连贯阅读（2026-10-07）
+
+首次阅读按“[软件分层](../learning/runtime.html#software-stack) → [对象与初始化](../learning/runtime.html#section-purpose) → [工具选项与 ELF](../learning/build.html#software-options) → [ROM/Platform ROM](../learning/boot.html#platform-rom) → [实际加载与仿真](../learning/simulation.html)”推进。每个阶段回答谁负责下一步，以及下一步需要什么已成立的条件。
+
+驱动不是一串孤立寄存器写：以 UART 为例，应用选择输出内容，printf 转成字符，DIF 根据实际时钟配置 UART 并操作状态/数据寄存器，RTL 驱动引脚，测试端采样并报告输出。初始化失败、链接缺函数和物理链路不可用分别属于不同层。DIF/HAL 函数和源码索引保留在 [LIBRARIES.md](LIBRARIES.md)。
+
+官方软件文档在此与硬件架构共同解释。时钟/复位决定 CPU 能否执行 ROM，LLC/SPM 决定早期栈与装载空间，DDR ready 决定 ZSL 或应用能否访问主存。更换芯片平台时，应先确定这些契约再调整链接脚本或驱动。静态原理、原有构建结果与未来 ASIC 方案继续分别标注。

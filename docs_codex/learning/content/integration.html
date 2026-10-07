@@ -1,5 +1,10 @@
 <div class="goals"><strong>本章任务</strong><p>从独立 Reg 单元逐步进入系统。 前置：<a href="adapters.html">10 · 接口适配与 RegBus</a>、<a href="interrupts.html">19 · 定时器与中断系统</a>、<a href="dma.html">22 · iDMA、流量管理与总线错误</a>。</p></div>
 <h2 id="control-path">一个设备操作的控制闭环</h2>
+<h3 id="official-instantiation">官方集成入口与本地接口类型</h3>
+<p>官方集成方式以一份 Cfg 同时驱动 SoC 实例和接口类型。先在平台包中用函数复制 <code>DefaultCfg</code>，覆盖本平台需要的字段，再调用 <code>CHESHIRE_TYPEDEF_ALL(前缀, Cfg)</code> 产生配套 AXI/Reg 请求响应类型。这样 ID 位宽等派生量随端口数变化，而不是由 wrapper 另写一组容易漂移的数字。</p>
+<table><tr><th>SoC 顶层边界</th><th>请求方向</th><th>适合连接的对象</th></tr><tr><td>axi_llc_mst_req_o / rsp_i</td><td>SoC → 主存系统</td><td>DDR 子系统、仿真主存或新的下游互连</td></tr><tr><td>axi_ext_mst_req_i / rsp_o</td><td>外部设备 → SoC</td><td>NPU/ISP 等主动访存口；受 SoC 已有地址图约束</td></tr><tr><td>axi_ext_slv_req_o / rsp_i</td><td>SoC → 外部 AXI 目标</td><td>额外存储或需要完整 AXI 的设备</td></tr><tr><td>reg_ext_slv_req_o / rsp_i</td><td>SoC → 外部寄存器目标</td><td>PLL、PAD、NPU 等轻量配置口</td></tr><tr><td>intr_ext_i</td><td>外部事件 → 中断汇集</td><td>完成/错误中断；另配源数、生成尺寸和软件编号</td></tr></table>
+<p>这些扩展总线在 SoC 侧使用其接口时钟契约。将另一个时钟域的 IP 直接接上同型 struct 并不能完成跨域；需要协议级 CDC、逐域复位与就绪处理。零有效端口在类型声明中有时仍保留占位宽度，未用输入应绑成不会发起请求的值，不能因看到一个数组元素就推断存在可用端口。</p>
+<p class="source">依据：<a href="https://pulp-platform.github.io/cheshire/tg/integr/">SoC Integration</a>，本地<a href="../../hw/include/cheshire/typedef.svh">CHESHIRE_TYPEDEF_ALL</a>与<a href="../../hw/cheshire_soc.sv">顶层端口、gen_ext_axi_mst/slv、gen_ext_reg_slv</a>。以下教学单元用于逐步实现该接口契约。</p>
 <h3 id="unit">先定义一个完整的设备操作</h3>
 <p><a href="examples/hw/lesson_reg_adder.sv">lesson_reg_adder.sv</a> 是教材独立的 32 位 Reg 单元。软件写 A/B，发 START，硬件计算模 2³² 加法，置 DONE 并按 IRQ_EN 输出电平中断。它没有 AXI burst 或 ID，接入系统时需要已有 AXI→Reg 桥和地址适配。该单元未接入生产 SoC。</p>
 <p>设计重点是任务生命周期：START 接受时锁存操作数，busy 时禁止改输入和重入；DONE 未清时也拒绝新任务，避免覆盖尚未消费的完成结果。STATUS 中 DONE 用 W1C 清除，新完成与清除同拍时以新事件置位优先。这样软件可以判断每个操作是否被接受、结果是否有效，以及怎样解除中断。</p>

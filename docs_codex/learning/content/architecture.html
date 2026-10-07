@@ -6,6 +6,11 @@
 <figure><img src="assets/new-system.svg" alt="CPU、Ara、调试和设备发起请求，互连分别连接片上存储、外部存储及寄存器设备"><figcaption>当前 SoC 的功能关系；可选设备是否存在由配置决定。箭头标出用途，响应沿对应事务返回。</figcaption></figure>
 <figure><img src="assets/depth-system-full.svg" alt="包含 CVA6、Ara、全部主动设备、AXI、Reg、LLC/SPM 与平台边界的总图"><figcaption>当前有效配置决定可选模块是否存在。先沿请求方向读图，再沿同一事务的响应方向回溯。</figcaption></figure>
 <h2 id="paths">用三种请求理解系统</h2>
+<h3 id="port-roles">模块职责与接口方向</h3>
+<p>系统框图中的一个方框往往有不止一种接口。以 DMA 为例，CPU 向 DMA 的控制口写入搬运任务，DMA 再从自己的数据口读写内存，最后通过状态寄存器或中断报告完成。第一条路径传递“做什么”，第二条路径传递“被处理的数据”，第三条路径传递“发生了什么”。读硬件图时，先为每条连线确定这三种职责，再判断谁发起事务。</p>
+<table><tr><th>模块</th><th>控制或配置入口</th><th>主动数据路径</th><th>事件返回</th></tr><tr><td>CVA6</td><td>复位入口、CSR、调试请求</td><td>取指/标量访存，经核内 cache 后接 AXI</td><td>trap 进入软件处理；接受外部中断</td></tr><tr><td>Ara</td><td>CVA6 专用加速器请求与地址翻译协作</td><td>向量 load/store 的独立 AXI 口</td><td>指令应答、标量结果及访存状态；不是普通 MMIO 启动的设备</td></tr><tr><td>iDMA</td><td>0x01000000 所在的 AXI 配置窗口</td><td>读源内存、写目标内存的 AXI 发起口</td><td>当前前端的完成状态/任务编号；按驱动查询其完成语义</td></tr><tr><td>UART/I2C/SPI/GPIO</td><td>AXI → Regbus → 寄存器</td><td>软件经数据寄存器操作 FIFO/引脚；这些实例没有独立系统 DMA 口</td><td>状态位和中断源</td></tr><tr><td>VGA/USB/Serial Link</td><td>Regbus 上的设备控制口</td><td>各自的 AXI 发起口；Link 另有向远端发送访问的目标口</td><td>设备状态/事件，按对应章节解释</td></tr><tr><td>Debug Module</td><td>JTAG → DTM → DMI</td><td>SBA 系统总线访问口；另有 CPU 可访问的调试目标口</td><td>调试状态和系统总线错误</td></tr></table>
+<p>AXI 的 manager/master 表示发起者，subordinate/slave 表示被访问者。同一个 Crossbar 的 <code>slv_ports</code> 接 CPU 等发起者，因为 Crossbar 在该边界接受请求；它的 <code>mst_ports</code> 接 LLC 等目标，因为它向外发起请求。模块端口名描述本模块的角色，不能直接当成对端角色。这一点能帮助有自定义总线经验的读者避免把框图方向读反。</p>
+<p class="source">源码静态确认：<a href="../../hw/cheshire_pkg.sv">gen_axi_in / gen_axi_out / gen_reg_out</a> 决定各端口的存在与编号；<a href="../../hw/cheshire_soc.sv">i_axi_xbar、gen_ara、i_idma 及各外设实例</a>决定连接。官方章节导航：<a href="https://pulp-platform.github.io/cheshire/um/arch/">Architecture</a>。后续每个外设章都沿“控制口 → 内部状态 → 数据动作 → 完成/错误”展开。</p>
 <h3 id="requests">沿三个具体请求理解职责</h3>
 <p>程序执行 <code>result[i] = 3*i+1</code> 时，CPU 先取得循环指令，在整数运算单元中计算值和地址，再把结果交给访存单元。若目标是可缓存数据，访问还受 L1 缓存和写策略影响；需要出核时，CPU 通过 AXI 接口提交请求。互连按照地址选择存储目标，并把响应送回原请求者。数组赋值对应的实际总线流量取决于机器码及缓存行为。</p>
 <p>打印结果时，软件库先把整数转换成字符，再向 UART 的发送寄存器写字节。UART 是异步串行收发器，它按约定波特率把字节变成引脚上的串行帧。这里的地址指向设备寄存器，称为内存映射输入输出（MMIO）；普通 load/store 指令通过地址选择产生设备动作。完整的寄存器与输出过程将在<a href="uart-gpio.html">第 18 章</a>展开。</p>
@@ -14,8 +19,14 @@
 <p>LLC 是末级缓存控制结构，其存储阵列还可以分配成 SPM，即由软件按固定地址管理的暂存存储器。默认阵列容量为 128 KiB。启动固件把它配置为全 SPM，给程序、数据和栈提供片上空间；缓存用途和 SPM 用途共享同一份阵列。</p>
 <p>Boot ROM 保存复位后执行的初始指令，默认从 <code>0x02000000</code> 取指。ROM 的代码建立初始环境，应用随后进入 SPM 或外部存储执行。外部主存从 <code>0x80000000</code> 所在窗口进入 LLC 下游接口；平台可以在这里接仿真内存模型或真实 DDR 子系统。地址窗口规定可路由的范围，实际容量和就绪条件由平台提供。</p>
 <h2 id="layers">RTL、SoC 顶层与运行平台</h2>
+<h3 id="integration-boundary">SoC IP 与完整芯片的责任边界</h3>
+<p>Cheshire 可以嵌入更大的芯片。因此 <code>cheshire_soc</code> 同时是一个可运行处理器子系统，也是一个需要平台供给资源的 IP。它接收系统时钟和复位，通过 LLC 出口访问外部主存，通过扩展 AXI/Reg 口连接新设备；PAD、PLL、DDR PHY 和芯片级电源控制不因为实例化 SoC 就自然出现。</p>
+<p>例如 CPU 读 <code>0x80000000</code>：SoC 负责把访问送到 LLC 路径，平台负责该出口后面的存储能够应答。仿真中可以是行为内存；FPGA 上是板卡 DDR wrapper；ASIC 上需要选定控制器、PHY、时钟复位和封装引脚。三者可保持软件地址一致，但就绪条件、延迟及错误行为各不相同。<a href="ddr.html#platform-contract">DDR 接口契约</a>与<a href="future.html#resource-mapping">工艺资源映射</a>继续解释这条边界。</p>
+<h3 id="implementation-layers">硬件描述与运行环境</h3>
 <p>RTL 是寄存器传输级硬件描述，规定寄存器如何更新、组合逻辑如何计算以及模块怎样连接。<code>hw/cheshire_soc.sv</code> 是系统顶层：它实例化 CPU、互连和设备，并把时钟、复位、引脚及外部总线交给上层。源码文件中的模块定义需要被实例化后才成为运行设计的一部分。</p>
 <p>testbench 是运行在主机模拟器中的测试平台。当前 <code>tb_cheshire_soc → fixture_cheshire_soc → dut/vip</code> 层次由 fixture 连接被测 SoC（DUT）与验证组件（VIP）。VIP 生成时钟和复位、模拟外部器件、加载程序及采样 UART；这些任务提供实验环境，不是芯片内的应用代码。</p>
 <p>FPGA shell 把同一个 SoC 接到开发板资源：时钟向导、DDR 控制器、引脚缓冲和调试。bitstream 用于配置 FPGA 逻辑，应用 ELF 用于描述待装载的软件，两者具有不同的更新流程。未来 ASIC wrapper 要接工艺 SRAM、时钟源、PAD 和 DDR 控制器/PHY，属于后续平台适配。</p>
 <div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">顶层实例</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">平台连接</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">VIP 时钟与模型</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA shell</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 接口</a></p></div>
 <details class="quiz"><summary>CPU 读到数组元素时，总线上一定出现 AR 吗？</summary><p>L1 命中时可能在核内完成。先由实际机器指令和地址属性判断，再到出核接口查缺失或非缓存访问。</p></details>
+
+<details class="quiz"><summary>同一个 DMA 为什么既是总线目标又是总线发起者？</summary><p>CPU 通过控制目标口设置任务；DMA 再通过独立发起口读写源/目的内存。接口角色按事务方向判断，不按模块名称固定。</p></details>

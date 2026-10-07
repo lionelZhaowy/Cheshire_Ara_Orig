@@ -4,6 +4,14 @@
 <p>当前第一层把 <code>[0x02000000,0x0c000000)</code> 路由到寄存器桥。桥转换协议和位宽后，第二层再次译码，选出 UART 的 <code>[0x03002000,0x03003000)</code> 等窗口。区间含起点、不含终点。关闭 UART 后，该地址仍可到第一层桥，随后在第二层进入错误目标。</p>
 <p>本地译码对重叠规则采用高下标优先，新增窗口应消除意外重叠。第一层不匹配通过 AXI 错误目标返回 DECERR；Reg 层不匹配经 <code>i_reg_err_slv</code> 返回 error 和错误数据 0xBADCAB1E。错误也需要完整应答：写事务仍要接受规定的数据，读 burst 仍需完成相应返回拍。</p>
 <h2 id="crossbar">Crossbar 内部保存的事务状态</h2>
+<h3 id="configuration-versus-registers">结构配置与运行时控制的区别</h3>
+<p>当前 Crossbar 的端口数、ID 宽、连接矩阵和地址规则来自常量配置；<code>i_axi_xbar.addr_map_i</code> 接的是 <code>AxiMap</code>。它没有一套供 C 程序重新规划路由的 MMIO 配置寄存器。通用 AXI IP 把地址表做成输入，允许满足特定空闲条件的外部更新；当前 Cheshire 的连接选择了静态表。阅读 IP 文档时，要继续检查上层究竟把输入接到了常量还是寄存器。</p>
+<p>与此不同，AXI RT 的带宽预算/时间窗口、UNBENT 的错误记录、LLC 的 SPM way 选择有运行时寄存器。它们分别影响流量放行、错误观测和存储用途，并不更改主 Crossbar 的目标窗口。软件配置表应当只列真正可写的控制项，把其余选项放入硬件配置表。</p>
+<h3 id="address-rule-worked-example">外部设备与地址规则的展开</h3>
+<p>设一个未来平台需要两个 AXI 发起者 NPU、ISP 和一个 NPU 控制口。<code>AxiExtNumMst=2</code> 增加接收这两个设备请求的端口，但不为设备分配“内存地址”；发起者使用系统已有目标地址。控制口才是可寻址目标，需要 <code>RegExtNumSlv</code>、规则数和窗口/目标索引。<code>gen_axi_out</code> 将外部 Reg 窗口先指向公共寄存器桥，<code>gen_reg_out</code> 再将其指向对应外部 Reg 口。</p>
+<p>端口数与地址规则数由此可以不同：同一目标可以有多个窗口；同一发起者可以访问多个目标。按当前单核默认配置，加入 Ara 后为 7 个内部来源，再加两个外部来源成为 9 个，Crossbar 需要 4 位来源前缀。系统输入 ID 为 2 位时，Crossbar 目标侧 ID 是 6 位。后续原子适配/LLC 还可能改变 ID 宽度，芯片 wrapper 应使用 typedef 宏计算类型，不能把这 6 位直接套给所有接口。</p>
+<p class="source">源码静态确认：<a href="../../hw/cheshire_soc.sv">AxiMap、i_axi_xbar、gen_ext_axi_mst、gen_ext_reg_slv</a>；<a href="../../hw/cheshire_pkg.sv">gen_axi_in、gen_axi_out、gen_reg_out</a>。IP 能力与顺序条件见本地<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">axi_xbar 设计说明</a>；新增 NPU/ISP 为未来方案。</p>
+<h3 id="transaction-storage">路由信息与在途事务</h3>
 <p><code>axi_xbar_unmuxed</code> 为输入配置译码和 demux（分流器），<code>axi_xbar</code> 在每个目标配置 mux（汇聚仲裁器）。mux 给请求 ID 添加来源编号。例如原 ID 两位、两个来源时，来源 0 的 ID=01 变为 001，来源 1 的同号 ID 变为 101；响应按前缀分送，再恢复原 ID。</p>
 <h3 id="write-route">W 来源与目标的保存</h3>
 <p>AXI4 的 W 没有 WID，所以 mux 需要预留写地址仲裁所选来源，demux 需要记住目标。若 CPU 的 AW 已选中，后续这个 burst 的 W 都应来自 CPU。W 来源 FIFO 直到 mux 内部 WLAST 真正握手才推进，写响应跟踪继续等待 B。W 可以早于 AW 提出，本地互连会在路由条件未建立时对其背压。</p>

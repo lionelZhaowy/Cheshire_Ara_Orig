@@ -2,10 +2,10 @@
 
 用浏览器打开 [index.html](index.html)：**七篇、30 章，另有首页、六项实验合册和两页参考，共 34 个主页面**。正文、导航和静态 SVG 可用 `file://` 离线阅读，无服务器或 CDN。当前篇默认展开；H2/H3 页内目录可折叠；手机可收起全书目录。关闭 JavaScript 仍能阅读并使用原生目录。
 
-- [本次机制与维护完善](REFINEMENT.md)：重点章节、启动模式与独立证据输出。
+- [此前机制与维护完善](REFINEMENT.md)：重点章节、启动模式与独立证据输出。
 - [此前结构修订](STRUCTURE_REVISION.md)：审查回应、当前职责、旧页迁移和内容保护。
 - [实验手册](labs.html)：命令、输入、产物、结果判据和失败首查；贯穿同一个数组示例。
-- [来源与验证](evidence.html#refinement)：结构检查、此前软件构建和目标环境缺口分开。
+- [来源与验证](evidence.html#teaching-20261007)：结构检查、此前软件构建和目标环境缺口分开。
 - [旧站备份](../learning_backup/index.html)：728 文件原样保留；[哈希清单](evidence/restructure-backup.json)。
 - [此前深度扩充](DEPTH_EXTENSION.md)、[09-28 编排设计](CONTENT_REDESIGN.md)为历史范围说明；其中 16 章编号不再定义当前目录。[官方来源](OFFICIAL_SOURCES.md)保留原查阅日期。
 
@@ -48,7 +48,7 @@ python3 docs_codex/learning/scripts/build_registers.py
 
 前两个脚本分别维护 16 张原重构结构图与 13 张深度扩充结构/状态图。新增五张机制结构图由 `build_mechanism_diagrams.py` 维护。6 张时序图编辑 `assets/waves/*.json`，使用本地保留许可证的 WaveDrom 3.5.0 导出 SVG；阅读网页不用加载 WaveDrom。时序图必须标明教学示意或真实运行依据。寄存器索引仍为 12 组/429 项，各组直达关键语义与初始化节；宏不代表读写属性或实际实例数量。
 
-`check_structure.py` 核对备份与本轮修改前的证据/示例/资产哈希、七篇/30章、旧锚点、章号与目标、启动目录、导航/链接；`--check-generated` 另查临时生成一致性。`preview_structure_site.py` 检查桌面/手机、无脚本、迁移与交互。过去 `structure-20260929-*`、`depth-*`、`restructure-*` 保持原样；本次发布证据见 `evidence/refinement-20260929/`，日后检查须使用另一个新目录。
+`check_structure.py` 核对备份与本轮修改前的证据/示例/资产哈希、七篇/30章、旧锚点、章号与目标、启动目录、导航/链接；`--check-generated` 另查临时生成一致性。`preview_structure_site.py` 检查桌面/手机、无脚本、迁移与交互。过去 `structure-20260929-*`、`depth-*`、`restructure-*` 保持原样；09-29 发布证据见 `evidence/refinement-20260929/`，日后检查须使用另一个新目录。
 
 寄存器生成器现在只更新索引，不再写固定日期来源报告；本次检查的 `run.json` 保存教材输入快照，定向 RTL/软件来源另记本次 sources.json。旧内容逐块审计仍保留在此前报告，新检查不再用旧轮次的固定段落序号约束后续教学扩充。
 
@@ -63,3 +63,13 @@ python3 docs_codex/learning/scripts/build_registers.py
 复制 `learning/` 可阅读教材；源码链接 `../../hw/...` 等需要完整仓库，备份入口需要相邻 `learning_backup/`。生产 RTL、软件、工具链及 FPGA 工程的维护不属于教材生成流程。
 
 报告的 `run.json` 将 `inputs`（内容源、脚本、资产）与 `tested_html`（根目录主页面及兼容 HTML 的 SHA-256）分开记录。浏览器结束前检查被测 HTML 的文件集合和字节哈希未变；历史报告不回填新字段。
+
+## 2026-10-07 官方资料与源码解读
+
+本轮输入 HEAD 为 `5ddec4fb4e982b460b12c3f3587523807602d5d4`。以官方架构、参数、平台集成和软件栈为概念入口，逐项对照本地模块、字段和调用路径；不同版本的行为在正文及 [OFFICIAL_SOURCES.md](OFFICIAL_SOURCES.md#teaching-20261007) 中明确区分。扩充同时进入现有 HTML 正文和 configuration/software Markdown，未改变七篇/30 章或新增主页面。
+
+维护新增正文时采用“定义职责 → 解释原因 → 推演一个过程 → 指向配置/源码 → 说明验证条件”的顺序。例子中的固定数值只在已给定配置下成立。不要把在线最新参数、候选 ASIC 频率或供应商寄存器填成现有能力。新图 `assets/teaching-*.svg` 是直接维护的结构化 SVG，文字保留为 text 元素；不由旧图生成器覆盖，也不加载 CDN。浏览器检查入口已纳入这三张图的边界检查和截图。
+
+新增内容从 [硬件职责](architecture.html#port-roles)、[CPU 配置族](cva6.html#configuration-families)、[组合约束](configuration.html#legality-levels)、[软件分层](runtime.html#software-stack)、[Platform ROM](boot.html#platform-rom)、[ASIC 资源映射](future.html#resource-mapping)进入。原六项实验保留，不为参数阅读和概念辨析增加重复实验。
+
+本轮证据独立写入 `evidence/teaching-20261007/`：input.json 保存修改前输入，sources.json 保存本次事实依据，检查脚本创建各自的新子目录。历史记录和生产 RTL/软件保持原样。共享状态文档在本轮开始时已有其他修改，实施交接单独提交 C00 合并。

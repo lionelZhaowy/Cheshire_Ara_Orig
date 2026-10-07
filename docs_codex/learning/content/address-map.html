@@ -2,7 +2,12 @@
 <h2 id="spaces">三种“地址正确”需要分别核对</h2>
 <h3 id="routing">路由、物理存储和 CPU 属性</h3>
 <p>一个 CPU 指针首先对应软件约定；地址译码决定事务发到哪里；目标设备才决定该偏移有什么作用。路由覆盖 2 GiB 不表示安装了 2 GiB DDR，CPU 将一段地址标为可执行也不会在那里创造 RAM。对每段地址同时记录窗口、实际资源、访问宽度、缓存属性、执行许可与软件用途。</p>
-<h3 id="allocation">扩展 IP 的地址分配</h3>
+<h3 id="address-translation-example">一次地址访问的逐层解释</h3>
+<p>以机器态裸机程序读 <code>0x03002014</code> 为例，它落在 UART 窗口中，偏移为 <code>0x14</code>，对应当前 UART 的 LSR 状态寄存器。C 指针提供地址，CPU 依据访问属性处理这次 load，Crossbar 将它送到 Reg 桥，Reg 译码选择 UART，UART 按偏移返回发送/接收状态。每一层都使用地址，但回答的问题不同。</p>
+<p>物理存储属性（PMA，Physical Memory Attributes）描述区域是否可缓存、可执行及是否允许具有副作用的访问。UART 的读可能观察不断变化的硬件状态，数据/FIFO 寄存器还可能在读时产生动作，因此不能用普通内存的推测和重复读取方式解释所有 MMIO。物理内存保护（PMP）则管理访问许可；页表/MMU 在启用时还增加虚拟地址到物理地址的转换。裸机直接使用物理布局不等于后两种机制已经配置完成。</p>
+<p>“幂等”表示重复执行相同操作不增加额外效果。普通 RAM 读可以重复获得存储值，而 FIFO 出队寄存器每读一次可能移走一个元素，属于有副作用的访问。这是地址属性影响硬件行为的具体原因。将设备错误地归入缓存区，可能让第二次读取停在旧缓存副本中；将一个地址归入可执行区，也仍需真实设备能返回指令。</p>
+<p class="source">本地依据：<a href="../../hw/cheshire_pkg.sv">gen_cva6_cfg 的 PMA 规则与 gen_reg_out</a>、<a href="../../sw/include/dif/uart.h">UART_LINE_STATUS_REG_OFFSET</a>；概念对照<a href="https://cva6.readthedocs.io/en/latest/01_cva6_user/PMA.html">CVA6 PMA 手册</a>。当前 CPU 的实际访问许可仍取决于特权状态及最终配置。</p>
+<h3 id="allocation">外部窗口的分配流程</h3>
 <p>新设备先选无重叠窗口，再核对 AXI 与 Reg 两层规则、软件链接符号、CPU 属性及故障响应。参数生成的内部索引可以压紧，物理地址未必变化；因此不能拿端口下标计算软件基址。具体路由实现见<a href="interconnect.html#decode">Crossbar 译码</a>。</p>
 <h2 id="address-map">默认地址范围、真实容量与访问属性</h2>
 <p>下表按当前 gen_axi_out/gen_reg_out 计算，区间均为 [起点,终点)。关闭设备会移除其规则；外部扩展由有效 Cfg 添加。官方架构图的一些范围表示预留空间，本地代码只映射实际计算出的窗口。例如默认 SPM 是 128 KiB，不能照抄历史图中的 64 MiB 预留值作为容量。</p>

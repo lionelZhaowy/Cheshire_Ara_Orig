@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="620" viewBox="0 0 1680 620" role="img" aria-labelledby="title desc"><title id="title">NPU 与 ISP 旁路 LLC 时的 DDR 汇聚及流量管理建议</title><desc id="desc">设计建议，尚未实现。CPU 与 Ara 保留 LLC 路径，NPU 和 ISP 各自绕过 LLC，在共享 DDR 互连前按源管理流量。LLC 下游是 CPU 和 Ara 的合并流量，不能在此区分二者。</desc><style>text{font-family:"WenQuanYi Zen Hei","Noto Sans CJK SC",sans-serif;fill:#183044;font-size:21px}.title{font-size:34px;font-weight:bold}.h{font-size:25px;font-weight:bold}.sub{font-size:19px;fill:#50667a}.small{font-size:17px;fill:#50667a}.mono{font-family:monospace;font-size:18px}.box{fill:#fff;stroke:#bccbd8;stroke-width:2}.wire{fill:none;stroke:#8094a6;stroke-width:2}.note{fill:#edf3f8;stroke:#cbd9e4;stroke-width:1.5}</style><defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8" fill="#526b80"/></marker><marker id="blue" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10" fill="#2774c7"/></marker><marker id="orange" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10" fill="#c66a20"/></marker></defs><rect width="1680" height="620" fill="#f7fafc"/>
+<text x="30" y="52" class="title">NPU + ISP 的建议接入位置：在共享 DDR 的汇聚入口管理流量</text>
+<text x="30" y="88" class="sub">设计建议，当前 RTL 尚未实现；虚线框表示待选择/验证的流量管理功能，不等于必须使用本地 AXI RT IP。</text>
+<rect x="30" y="110" width="1620" height="53" rx="12" fill="#fff4e8" stroke="#dfbb91" stroke-width="2" />
+<text x="48" y="144" >目标：CPU / Ara 保留 LLC；NPU / ISP 数据旁路 LLC；为实时输入留出可验证的带宽与服务机会。</text>
+<rect x="30" y="204" width="215" height="74" rx="12" fill="#fff" stroke="#bccbd8" stroke-width="2" />
+<text x="50" y="237" class="h">CPU + Ara</text>
+<text x="50" y="263" class="sub">两路独立发起端</text>
+<rect x="285" y="204" width="215" height="74" rx="12" fill="#fff" stroke="#bccbd8" stroke-width="2" />
+<text x="305" y="237" class="sub">原 SoC Crossbar</text>
+<text x="305" y="263" class="sub">已有互连</text>
+<rect x="540" y="193" width="245" height="96" rx="12" fill="#e8f2fe" stroke="#96b9df" stroke-width="2" />
+<text x="560" y="225" class="sub">现有原子适配 + LLC</text>
+<text x="560" y="253" class="small">未命中 / 回写的外存流量</text>
+<text x="560" y="277" class="small">SPM 留在片内</text>
+<path d="M245 241 H285" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M500 241 H540" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M785 241 H840" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="337" width="340" height="76" rx="12" fill="#edf5ee" stroke="#a5c5ae" stroke-width="2" />
+<text x="50" y="371" class="h">NPU 数据 DMA / AXI master</text>
+<text x="50" y="400" class="sub">直接访问 DDR，绕过 LLC</text>
+<path d="M370 375 H840" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="471" width="340" height="76" rx="12" fill="#fff2e5" stroke="#d9b48e" stroke-width="2" />
+<text x="50" y="505" class="h">ISP 输出 DMA / AXI master</text>
+<text x="50" y="534" class="sub">写帧缓存，绕过 LLC</text>
+<path d="M370 509 H840" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="840" y="201" width="260" height="80" rx="12" fill="#f9f5ff" stroke="#b9a6d4" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="860" y="234" class="sub">可选：按源流量管理</text>
+<text x="860" y="263" class="small">CPU/Ara 的合并外存流量</text>
+<path d="M1100 241 H1170" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="840" y="335" width="260" height="80" rx="12" fill="#f9f5ff" stroke="#b9a6d4" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="860" y="368" class="sub">可选：按源流量管理</text>
+<text x="860" y="397" class="small">NPU 突发长度 / 预算</text>
+<path d="M1100 375 H1170" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="840" y="469" width="260" height="80" rx="12" fill="#f9f5ff" stroke="#b9a6d4" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="860" y="502" class="sub">可选：按源流量管理</text>
+<text x="860" y="531" class="small">ISP 服务需求 / 缓冲约束</text>
+<path d="M1100 509 H1170" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1170" y="200" width="200" height="350" rx="12" fill="#eef4f9" stroke="#9ab3c9" stroke-width="2" />
+<text x="1190" y="317" class="h">共享 DDR</text>
+<text x="1190" y="349" class="h">AXI4 互连</text>
+<text x="1190" y="390" class="sub">各入口仲裁</text>
+<text x="1190" y="420" class="sub">ID / 响应路由</text>
+<path d="M1370 375 H1430" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1430" y="310" width="220" height="130" rx="12" fill="#fff" stroke="#bccbd8" stroke-width="2" />
+<text x="1450" y="350" class="sub">DDR Controller</text>
+<text x="1450" y="382" class="h">+ PHY</text>
+<text x="1450" y="416" class="small">含控制器内部调度</text>
+<text x="410" y="491" class="small">ISP 不能无限等待：输入 FIFO 必须覆盖最坏停顿</text>
+<text x="30" y="590" class="sub">此处按源管理只能限制经过它的流量；共享一致性、AMO/LRSC 边界和 DDR 最坏服务时间仍需独立设计与验证。</text>
+</svg>

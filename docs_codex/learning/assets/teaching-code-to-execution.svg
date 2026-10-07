@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 960" role="img" aria-labelledby="title desc"><title id="title">C 源代码到硬件执行：JTAG 直接加载路径</title><desc id="desc">教学流程：左右两条流程在装载条件满足时汇合；不是周期精确的仿真时序。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="context-stroke"/></marker></defs>
+<rect width="1100" height="960" fill="#fcfefe"/>
+<style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.note{font-size:16px;fill:#536b78}.body{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="30" y="42" class="title" text-anchor="start">C 源代码到硬件执行：JTAG 直接加载路径</text>
+<text x="30" y="75" class="note" text-anchor="start">教学流程：左右两条流程在装载条件满足时汇合；不是周期精确的仿真时序。</text>
+<text x="255" y="117" class="body" text-anchor="middle">主机上的软件工具</text>
+<text x="835" y="117" class="body" text-anchor="middle">目标硬件与启动程序</text>
+<rect x="40" y="145" width="430" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="255.0" y="187.0" class="body" text-anchor="middle">journey.c + crt0 + 支持库</text>
+<text x="255.0" y="215.0" class="body" text-anchor="middle">编写算法、结果校验与初始化</text>
+<rect x="40" y="300" width="430" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="255.0" y="342.0" class="body" text-anchor="middle">预处理 → 编译 → 汇编 → 链接</text>
+<text x="255.0" y="370.0" class="body" text-anchor="middle">得到 ELF / map / dump</text>
+<rect x="40" y="460" width="430" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="255.0" y="493.0" class="body" text-anchor="middle">VIP / 主机 ELF loader</text>
+<text x="255.0" y="521.0" class="body" text-anchor="middle">解析 PT_LOAD 与入口</text>
+<text x="255.0" y="549.0" class="body" text-anchor="middle">通过 JTAG SBA 写入目标内存</text>
+<rect x="620" y="145" width="440" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="840.0" y="187.0" class="body" text-anchor="middle">时钟与复位 → Boot ROM</text>
+<text x="840.0" y="215.0" class="body" text-anchor="middle">CPU 从复位地址取指</text>
+<rect x="620" y="300" width="440" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="840.0" y="342.0" class="body" text-anchor="middle">ROM 配置 LLC/SPM</text>
+<text x="840.0" y="370.0" class="body" text-anchor="middle">JTAG 按 VIP 条件请求 halt</text>
+<rect x="620" y="460" width="440" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="840.0" y="493.0" class="body" text-anchor="middle">目标处于暂停，存储可写</text>
+<text x="840.0" y="521.0" class="body" text-anchor="middle">代码和初值到达段地址</text>
+<text x="840.0" y="549.0" class="body" text-anchor="middle">设置 DPC，resume 进入 _start</text>
+<rect x="620" y="640" width="440" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="840.0" y="682.0" class="body" text-anchor="middle">crt0：栈 / gp / BSS / FS</text>
+<text x="840.0" y="710.0" class="body" text-anchor="middle">调用 main，执行数组计算</text>
+<rect x="620" y="800" width="440" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="840.0" y="842.0" class="body" text-anchor="middle">驱动 MMIO → UART 输出</text>
+<text x="840.0" y="870.0" class="body" text-anchor="middle">逐项核对结果，写退出状态</text>
+<rect x="40" y="800" width="430" height="100" rx="9" fill="#f0f4ec" stroke="#a7c2cb"/>
+<text x="255.0" y="842.0" class="body" text-anchor="middle">VIP 观察输出与完成寄存器</text>
+<text x="255.0" y="870.0" class="body" text-anchor="middle">日志、数值和返回码共同判定</text>
+<path d="M255,245 L255,300" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M255,400 L255,460" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M840,245 L840,300" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M840,400 L840,460" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470,510 L620,510" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="495" y="485" class="body" text-anchor="start">程序字节</text>
+<path d="M840,570 L840,640" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="865" y="610" class="body" text-anchor="start">取指执行</text>
+<path d="M840,740 L840,800" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="865" y="775" class="body" text-anchor="start">调用与访存</text>
+<path d="M620,850 L470,850" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="491" y="824" class="body" text-anchor="start">事件/结果</text>
+<text x="45" y="635" class="note" text-anchor="start">ELF 的 e_entry 是应用入口。</text>
+<text x="45" y="665" class="note" text-anchor="start">复位 PC 与 main 入口属于其他阶段。</text>
+<text x="45" y="695" class="note" text-anchor="start">自主 NOR/SD/EEPROM 启动使用</text>
+<text x="45" y="725" class="note" text-anchor="start">ROM 的介质读取与 GPT/raw 规则。</text>
+<text x="30" y="936" class="note" text-anchor="start">依据：sw/lib/crt0.S、hw/bootrom、target/sim/src/elfloader.cpp 与 vip_cheshire_soc.sv。</text>
+<text x="45" y="765" class="note">继承栈时，须另行确认栈已经建立。</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 850" role="img" aria-labelledby="title desc"><title id="title">三类配置共同定义可执行系统</title><desc id="desc">教学示意：实线表示配置消费；虚线表示软硬件匹配要求。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="context-stroke"/></marker></defs>
+<rect width="1100" height="850" fill="#fcfefe"/>
+<style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.note{font-size:16px;fill:#536b78}.body{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="30" y="42" class="title" text-anchor="start">三类配置共同定义可执行系统</text>
+<text x="30" y="75" class="note" text-anchor="start">教学示意：实线表示配置消费；虚线表示软硬件匹配要求。</text>
+<rect x="40" y="115" width="280" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="180.0" y="162.0" class="body" text-anchor="middle">CVA6 profile</text>
+<text x="180.0" y="190.0" class="body" text-anchor="middle">ISA / cache / 资源原值</text>
+<rect x="410" y="115" width="280" height="110" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="550.0" y="162.0" class="body" text-anchor="middle">Cheshire Cfg</text>
+<text x="550.0" y="190.0" class="body" text-anchor="middle">模块 / 地址 / 位宽</text>
+<rect x="780" y="115" width="280" height="110" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="920.0" y="162.0" class="body" text-anchor="middle">软件构建输入</text>
+<text x="920.0" y="190.0" class="body" text-anchor="middle">工具版本 / 源码 / 库</text>
+<rect x="40" y="315" width="280" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="180.0" y="357.0" class="body" text-anchor="middle">gen_cva6_cfg</text>
+<text x="180.0" y="385.0" class="body" text-anchor="middle">平台覆盖后的用户配置</text>
+<rect x="410" y="315" width="280" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="550.0" y="357.0" class="body" text-anchor="middle">gen_axi_in/out、Reg</text>
+<text x="550.0" y="385.0" class="body" text-anchor="middle">端口、规则与类型</text>
+<rect x="780" y="315" width="280" height="100" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="920.0" y="357.0" class="body" text-anchor="middle">ISA / ABI / 链接布局</text>
+<text x="920.0" y="385.0" class="body" text-anchor="middle">启动对象 / 生成头文件</text>
+<path d="M180,225 L180,315" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="45" y="285" class="body" text-anchor="start">原值</text>
+<path d="M550,225 L550,270 L300,270 L300,315" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="330" y="256" class="body" text-anchor="start">覆盖 CPU 平台字段</text>
+<path d="M550,270 L550,315" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M920,225 L920,315" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="485" width="650" height="100" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="365.0" y="527.0" class="body" text-anchor="middle">build_config + RTL 展开</text>
+<text x="365.0" y="555.0" class="body" text-anchor="middle">CVA6 / Ara / 互连 / LLC / 外设</text>
+<rect x="780" y="485" width="280" height="100" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="920.0" y="527.0" class="body" text-anchor="middle">编译与链接</text>
+<text x="920.0" y="555.0" class="body" text-anchor="middle">ELF：字节、地址、入口</text>
+<path d="M180,415 L180,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="458" class="body" text-anchor="start">派生内部能力</text>
+<path d="M550,415 L550,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="570" y="458" class="body" text-anchor="start">生成结构</text>
+<path d="M920,415 L920,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M780,535 L690,535" fill="none" stroke="#966b35" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="702" y="505" class="body" text-anchor="start">匹配</text>
+<rect x="40" y="680" width="1020" height="90" rx="9" fill="#f0f4ec" stroke="#a7c2cb"/>
+<text x="550.0" y="717.0" class="body" text-anchor="middle">运行时初始化：CSR 的 VS/FS、设备 MMIO、存储就绪与装载入口</text>
+<text x="550.0" y="745.0" class="body" text-anchor="middle">软件使用已经生成的资源；动态状态不增加硬件实例</text>
+<path d="M360,585 L360,680" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="637" class="body" text-anchor="start">提供可执行的硬件环境</text>
+<path d="M920,585 L920,680" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="700" y="637" class="body" text-anchor="start">装载后执行启动代码</text>
+<text x="30" y="817" class="note" text-anchor="start">依据：cheshire_pkg::gen_cva6_cfg、build_config_pkg::build_config、sw/sw.mk。</text>
+</svg>

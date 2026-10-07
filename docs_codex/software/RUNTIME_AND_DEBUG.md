@@ -196,3 +196,17 @@ UART debug 是二进制协议，不是把 ELF 文件直接发给终端：ACK=0x0
 新增 `name.spm.c` 适合小型 MMIO/库学习；新增 `name.dram.c` 用于已可用 DDR 上的大数据。原构建规则会自动收集它们。以已有 HelloWorld 的 UART 初始化为起点，先检查需要的硬件 feature，再执行算法并返回明确错误码，返回前 flush UART。
 
 需要异常处理时提供自定义 `trap_vector`，先用整数代码保存/报告 CSR，不在未建立上下文保护时调用向量/浮点处理。需要 RTOS、malloc、文件 IO 或 C++ 时，先设计运行时适配，不能仅因为工具链带 libc/libstdc++ 就认为这些功能已经接好。
+
+<a id="teaching-20261007"></a>
+
+## ROM、运行环境与平台初始化补充（2026-10-07）
+
+Boot ROM、外部镜像和执行存储承担不同职责。NOR 启动时，CPU 先执行片上 ROM 中的 SPI 驱动，把外部 NOR 载荷读到 SPM，再跳到 SPM。四种 boot mode 是固定 ROM 中的策略分支；选择不同介质并不改变 ROM 本身。
+
+Platform ROM 是平台提供的早期代码入口。`Cfg.PlatformRom` 决定地址，SoC 将其报告到只读 `PLATFORM_ROM` 寄存器；wrapper 还要提供对应存储、映射和代码。内置 Boot ROM 开启时，平台调用位于 SPM/早期栈建立之后、通用启动之前。关闭 Bootrom 时 CPU 直接从 PlatformRom 地址开始，平台必须自行承担第一阶段职责。
+
+本地 `_prom_check_run` 的 `jalr t0` 正常返回会落入紧邻的 `boot_next_stage`，与官方允许正常返回继续通用启动的契约不符。上游修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）不在当前 HEAD 祖先链中。源码及生成 ROM 的核对见 [Platform ROM 专题](../03_Platform_ROM_Clock_IP_Configuration.md)；本轮没有修改生产 ROM，非零钩子的正常返回需要独立修复与回归。
+
+ROM 指令固定，不妨碍其向可编程 PLL 写安全初值，也不妨碍后续软件按 IP 契约调频。约束来自执行依赖：CVA6 在调用 Platform ROM 前已经需要时钟、取指路径、SPM 和栈；修改当前 CPU 的时钟源时也要保证控制路径持续可运行。外部配置表只能在读取介质已可用后加载和校验。详细推演见[启动安全频率与运行时调频](../learning/clocks.html#boot-and-runtime-frequency)。
+
+C 环境的责任继续由各层分担：链接器为 `.text` 代码、`.rodata` 常量、`.data` 初值和 `.bss` 零初始化对象安排空间；加载器放置有字节载荷的内容；本地 crt0 清 BSS、建立 gp/栈条件和 FS 后调用 main。本地链接脚本把部分输入节合并为 `.misc`，所以 ELF 节名不一定逐项等于 C 存储类别。分组有利于分配权限和减少镜像零字节，但节名本身不产生硬件保护。

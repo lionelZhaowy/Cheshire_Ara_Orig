@@ -240,3 +240,23 @@ NPU 控制寄存器一般接 `RegExtNumSlv`；NPU 主动读写内存接 `AxiExtN
 `AxiExtNumMst=1` 接入的是已有 SoC xbar，访问 DDR 地址仍按现有规则经过 LLC 路径。团队要求的 ISP/NPU 绕过 LLC 需要 DDR 侧新拓扑与一致性契约，无法只靠某个参数完成，见 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。
 
 `iomsb(0)=0` 用于保留合法占位端口范围；它不表示配置为 0 的模块实际存在。wrapper 要按有效计数连接，并给闲置输入稳定值。
+
+<a id="teaching-20261007"></a>
+
+## 结构展开补充：端口、地址与 ASIC 边界（2026-10-07）
+
+`gen_axi_in` 为 CPU、Debug、可选 Ara、DMA、Link、VGA、USB 和外部发起者分配输入序号；`gen_axi_out` 生成目标与 AXI 地址规则；`gen_reg_out` 再生成寄存器目标。规则是区间到目标的映射，一个目标可以有多个窗口。端口数、规则数和设备寄存器数不是同一个数量。
+
+默认 6 个内部发起者开启 Ara 后成为 7 个，再加入 2 个外部发起者成为 9 个。若输入 ID 为 2 位，Crossbar 目标侧 ID 分别需要 `2+ceil(log2(7))=5` 位、`2+ceil(log2(9))=6` 位。LLC 前后的原子适配和自身接口可能继续改变类型，因此应由 `hw/include/cheshire/typedef.svh` 的类型宏派生各边界，而不是全系统写死一个 ID 宽度。
+
+当前 Crossbar 的 `addr_map_i` 接常量 `AxiMap`，没有供 C 程序重新规划主路由的寄存器。AXI RT 预算、LLC way 用途和设备工作模式则通过各自寄存器改变。软件能改变既有资源的运行状态；实例数量、SRAM 容量和接口尺寸属于硬件展开输入。
+
+| 修改 | 需要同步推导 | 本地静态边界 |
+| --- | --- | --- |
+| 加 Ara | profile/宏/decoder、AXI 来源、软件 V 和 VS | 当前集成限制单核 |
+| 加 AXI 发起者 | 类型宽度、RT 生成尺寸、来源编码 | 当前 RT 固定 6 manager，不随 Cfg 自动生成 |
+| 加 Reg 目标 | 两层规则、局部端口索引、基址、访问属性 | `RegExt*` 单独配置；PMA 属性不会创建译码 |
+| 改核数/中断源 | CLINT、PLIC、CLIC/Router、软件编号与 handler | 当前 CLINT 1 核、PLIC 58 源/2 context |
+| 取消 LLC 阵列 | 启动存储、ROM/栈、链接与装载方式 | 原启动链依赖 SPM，不能只保留 DRAM 地址窗 |
+
+ASIC wrapper 还承担 PLL/复位、工艺 SRAM/ROM、PAD、DDR CTRL/PHY 和低功耗/测试边界。SoC 的扩展 AXI/Reg 请求响应只是数字接口，不包含这些平台资源的电气与启动保证。阅读[官方入口与本地端口方向](../learning/integration.html#official-instantiation)和[工艺资源推演](../learning/future.html#resource-mapping)，再填写平台接口规格。尚未选定供应商 IP 的寄存器、频率与电源域保留为待交付项。

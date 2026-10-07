@@ -111,6 +111,13 @@ try:
     assert '有限数值' in cdp.js('(()=>{const x=document.querySelector("[name=context]");x.value=0;x.dispatchEvent(new Event("input",{bubbles:true}));return document.querySelector("#calc-result").textContent})()')
     report.append('PASS moved calculator: context doubles KV; rejects zero')
    report.append(f'PASS {width}x{height}: {slug}; images, current part/chapter, collapsible menu/TOC, no page overflow')
+ for width,height,mobile in [(1440,1100,False),(390,844,True)]:
+  cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
+  for slug,anchor in [('cva6','configuration-families'),('boot','platform-rom'),('integration','official-instantiation'),('future','resource-mapping')]:
+   go(slug+'.html#'+anchor)
+   assert cdp.js('(()=>{const e=document.getElementById('+json.dumps(anchor)+');e.scrollIntoView();return !!e&&document.documentElement.scrollWidth<=innerWidth+1})()')
+   cdp.shot('teaching-'+str(width)+'-'+slug+'.png')
+   report.append(f'PASS teaching section at {width}: {slug}#{anchor}; target visible, no page overflow')
  cdp.call('Emulation.setScriptExecutionDisabled',{'value':True})
  for slug in ['index','ara','vector','ddr','sharing','boot-debug','registers']:
   go(slug+'.html');r=inspect();assert r['images'] and not r['overflow'],(slug,r)
@@ -129,7 +136,7 @@ try:
   if '#' in dest:assert cdp.js('!!document.getElementById(decodeURIComponent(location.hash.slice(1)))'),(old,dest)
   report.append('PASS precise bookmark redirect: '+old+' -> '+dest)
  cdp.call('Emulation.setDeviceMetricsOverride',{'width':1280,'height':1000,'deviceScaleFactor':1,'mobile':False})
- for name in ['new-boot.svg','depth-boot-phases.svg']+[p.name for p in sorted((ROOT/'assets').glob('mechanism-*.svg'))]:
+ for name in ['new-boot.svg','depth-boot-phases.svg']+[p.name for pattern in ['mechanism-*.svg','teaching-*.svg'] for p in sorted((ROOT/'assets').glob(pattern))]:
   go('assets/'+name)
   overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox(),m=document.documentElement.getScreenCTM().inverse().multiply(t.getScreenCTM());return [[b.x,b.y],[b.x+b.width,b.y+b.height]].some(([x,y])=>{const p=new DOMPoint(x,y).matrixTransform(m);return p.x<v.x-1||p.x>v.x+v.width+1||p.y<v.y-1||p.y>v.y+v.height+1})}).map(t=>t.textContent)})()')
   assert not overflow,(name,overflow)

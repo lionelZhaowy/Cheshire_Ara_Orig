@@ -93,3 +93,21 @@ flowchart TD
 本轮发现的消费者差异与待核查项集中在 [修改流程的已知缺口](RECIPES.md#6-本轮静态发现与待验证项)，包括仿真 profile/decoder、Serial Link 分频字段、SPM 执行属性、DMA 1D busy、VGA 错误追踪容量。没有顺手修改 RTL。
 
 项目目标与边界见 [PROJECT_STATE](../PROJECT_STATE.md)、[AGENT_TASKS](../AGENT_TASKS.md) 和 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。本轮验证与交接见 [L01 记录](../handoffs/2026-09-20_L01_configuration_reference.md)。
+
+<a id="teaching-20261007"></a>
+
+## 配置学习补充：从参数字典到系统契约（2026-10-07）
+
+本节基于当前 HEAD `5ddec4fb4e982b460b12c3f3587523807602d5d4` 静态核对，保留前文历史基准。配置字典列出选项，教材解释它们为什么必须一起选择：
+
+| 阅读目的 | HTML 讲解 | Markdown 对照 |
+| --- | --- | --- |
+| CPU 能力、cache 与接口的可选项 | [CVA6 配置族](../learning/cva6.html#configuration-families) | [88 个本地字段](CVA6.md) |
+| 参数如何形成实例和总线尺寸 | [三个入口的系统契约](../learning/configuration.html#configuration-contract) | [113 个 SoC 字段](CHESHIRE.md) |
+| 组合约束与验证状态 | [合法性分层与候选组合](../learning/configuration.html#legality-levels) | [推导流程](RECIPES.md#teaching-20261007) |
+| 官方集成接口到 ASIC wrapper | [实例化及接口方向](../learning/integration.html#official-instantiation) | [Cheshire 的结构联动](CHESHIRE.md#teaching-20261007) |
+| 工具链、启动代码、链接布局 | [软件选项](../learning/build.html#software-options) | [当前 Make/SDK](../software/BUILD_AND_SDK.md#teaching-20261007) |
+
+一组能工作的系统配置应同时回答：硬件识别哪些指令，指令在哪里执行，数据在哪里保存，各模块如何得到时钟/复位，软件怎样把它们初始化。以 RVV 为例，V 编译选项、RVV profile、真实 decoder、Ara 实例、VS 状态和可访问缓冲区缺一不可。这是约束链，不能由某个名字相似的选项自动推出其余条件。
+
+官方在线手册描述的范围可能大于当前依赖快照。CVA6 的其他 RV32/profile 或 HPDcache 分支需要各自的集成适配，Cheshire 的概述也不能替代本地字段宽度及固定生成文件检查。全文所列“候选组合”是静态条件，不新增动态通过记录；官方与本地差异见[来源对照](../learning/OFFICIAL_SOURCES.md#teaching-20261007)。

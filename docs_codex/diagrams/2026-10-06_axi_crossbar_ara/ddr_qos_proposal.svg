@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="900" viewBox="0 0 1680 900"><title>参考 DDR Controller V2.1 的三端口接入建议</title><desc>尚未实现的接入建议。保留当前 Cheshire Crossbar、原子适配及 LLC；LLC 出口接控制器 S0，ISP 接 S1，NPU 接 S2。仲裁器和 FR-FCFS 命令调度位于控制器内部。独立 urgent 接口不支持，带宽保底及最坏等待时间尚待评估。</desc><style>text{font-family:"WenQuanYi Zen Hei","Noto Sans CJK SC",sans-serif;fill:#183044;font-size:21px}.title{font-size:34px;font-weight:bold}.h{font-size:25px;font-weight:bold}.sub{font-size:19px;fill:#50667a}.small{font-size:17px;fill:#50667a}.mono{font-family:monospace;font-size:18px}.box{fill:#fff;stroke:#bccbd8;stroke-width:2}.wire{fill:none;stroke:#8094a6;stroke-width:2}.note{fill:#edf3f8;stroke:#cbd9e4;stroke-width:1.5}</style><defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8" fill="#526b80"/></marker><marker id="blue" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10" fill="#2774c7"/></marker><marker id="orange" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10" fill="#c66a20"/></marker></defs><rect x="0" y="0" width="1680" height="900" fill="#f7fafc"/>
+<text x="30" y="52" class="title">参考 DDR Controller V2.1 的多端口接入建议</text>
+<text x="30" y="90" class="sub">工程建议，当前 RTL 尚未集成供应商 IP；Crossbar 原有结构沿用，ISP/NPU 数据直接进入控制器的不同 AXI Slave。</text>
+<rect x="30" y="112" width="1620" height="51" fill="#e8f4ed" stroke="#b4d5c2" stroke-width="2"/>
+<text x="48" y="145">SoC → S0  ·  ISP → S1  ·  NPU → S2 ；控制器集成多端口仲裁，可配置优先级及 QoS。</text>
+<rect x="775" y="182" width="690" height="485" fill="#eef4f9" stroke="#9ab3c9" stroke-width="2"/>
+<text x="795" y="216" class="h">DDR Controller 内部（仅画与接入相关的功能）</text>
+<rect x="30" y="248" width="185" height="74" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="48" y="280" class="h">CVA6 + Ara</text>
+<text x="48" y="307" class="small">当前 SoC 发起端</text>
+<rect x="255" y="248" width="180" height="74" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="270" y="280" class="sub">Cheshire</text>
+<text x="270" y="307" class="sub">Crossbar</text>
+<rect x="475" y="235" width="270" height="100" fill="#e8f2fe" stroke="#96b9df" stroke-width="2"/>
+<text x="491" y="267" class="sub">现有原子适配 + LLC</text>
+<text x="491" y="295" class="sub">经 LLC 出口访问外存</text>
+<text x="491" y="321" class="small">SPM 访问仍可在片内完成</text>
+<path d="M215 285 H255" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M435 285 H475" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M745 285 H795" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="393" width="360" height="84" fill="#fff2e5" stroke="#d9b48e" stroke-width="2"/>
+<text x="48" y="428" class="h">ISP 数据 AXI Master</text>
+<text x="48" y="458" class="sub">写帧缓存，绕过 Crossbar / LLC</text>
+<path d="M390 435 H795" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="543" width="360" height="84" fill="#edf5ee" stroke="#a5c5ae" stroke-width="2"/>
+<text x="48" y="578" class="h">NPU 数据 AXI Master</text>
+<text x="48" y="608" class="sub">读写权重 / 特征图，绕过 LLC</text>
+<path d="M390 585 H795" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="795" y="240" width="140" height="90" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="810" y="275" class="h">AXI S0</text>
+<text x="810" y="308" class="small">SoC 外存流量</text>
+<path d="M935 285 H975" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="795" y="390" width="140" height="90" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="810" y="425" class="h">AXI S1</text>
+<text x="810" y="458" class="small">ISP 写入</text>
+<path d="M935 435 H975" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="795" y="540" width="140" height="90" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="810" y="575" class="h">AXI S2</text>
+<text x="810" y="608" class="small">NPU 读 / 写</text>
+<path d="M935 585 H975" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="975" y="240" width="200" height="390" fill="#f9f5ff" stroke="#b9a6d4" stroke-width="2"/>
+<text x="994" y="315" class="h">内部 Arbiter</text>
+<text x="994" y="359" class="sub">可配置优先级</text>
+<text x="994" y="394" class="sub">轮询 / QoS</text>
+<text x="994" y="470" class="sub">页命中限制</text>
+<text x="994" y="510" class="small">端口请求仲裁</text>
+<path d="M1175 435 H1210" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1210" y="345" width="230" height="190" fill="#e8f2fe" stroke="#96b9df" stroke-width="2"/>
+<text x="1227" y="383" class="sub">Controller Core</text>
+<text x="1227" y="423">内部命令队列</text>
+<text x="1227" y="467" class="sub">FR-FCFS 调度</text>
+<text x="1227" y="508" class="sub">遵守 DRAM 时序</text>
+<path d="M1440 435 H1490" fill="none" stroke="#8094a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1490" y="394" width="160" height="82" fill="#fff" stroke="#bccbd8" stroke-width="2"/>
+<text x="1510" y="428" class="h">PHY</text>
+<text x="1510" y="457" class="sub">+ SDRAM</text>
+<rect x="30" y="696" width="1620" height="168" fill="#fff" stroke="#cbd9e4" stroke-width="2"/>
+<text x="48" y="728" class="h">依据与待确认边界</text>
+<text x="48" y="762" class="sub">Datasheet V2.1：p8 最多 8 个 AXI 端口；p10 仲裁特性；p13 每端口 QoS；p17–18 内部结构与命令调度。</text>
+<text x="48" y="794" class="sub">p14：独立 AXI Urgent 接口不支持。优先级 / QoS 的具体寄存器、映射规则、带宽保底和最坏延迟仍需用户手册确认。</text>
+<text x="48" y="826" class="sub">多端口不会自动保证共享缓存一致性或旁路写的 AMO/LRSC 语义；RT 是否需要添加，后续结合控制器能力评估。</text>
+</svg>

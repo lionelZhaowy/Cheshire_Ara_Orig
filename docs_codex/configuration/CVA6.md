@@ -172,3 +172,17 @@
 - `FpgaEn=0` 不能证明 ASIC 就绪；技术 cell、SRAM 和 clock gating 的源码选择仍要独立核对。
 
 当前结构体没有简单的 `NumCores`、CPU 主频、LLC 容量或 Ara lane 数字段：这些分别归 SoC、时钟实现、LLC、Ara 管理。profile 中 `CVA6ConfigRvfiTrace` 也没有同名 user 字段，不能把一个未接入的 localparam 当成已经生效的 trace 开关。
+
+<a id="teaching-20261007"></a>
+
+## 配置原理补充：能力、资源与平台覆盖（2026-10-07）
+
+CPU 配置先区分三类。ISA/特权字段规定软件可使用的功能；cache、scoreboard 和缓冲深度规定实现资源；AXI 宽度和调试/加速器字段规定系统接口。这三类都会影响展开，但软件承担的责任不同。例如增大 scoreboard 不改变整数加法语义，关闭 RVD 却会使已有双精度初始化指令失去执行条件。
+
+`config_pkg::cache_type_t` 在当前本地源码有 `WB`、`WT`、`HPDCACHE_WT`、`HPDCACHE_WB`、`HPDCACHE_WT_WB`。字段准确名称是 `DCacheType`，profile 的辅助 localparam 则叫 `CVA6ConfigDcacheType`。这些枚举对应实现分支，不能当成在 Cheshire/Ara 上都已验证的产品配置。WT 仍可保留读副本和写缓冲；WB 还可能把最新数据保存在脏行中，因此选择时要同时决定设备共享内存的策略。
+
+当前向量 profile 原始 PMP 条目数为 8，但 `gen_cva6_cfg` 用 `Cfg.Cva6NrPMPEntries` 覆盖，默认结果为 0。标量 profile 原始 RVSCLIC=1，进入同一函数后取 `Cfg.Clic`，默认结果仍为 0。接着 `build_config` 从 RVV 等字段派生内部能力。这解释了为什么只看 profile 名或上游表不足以确定最终硬件。
+
+逐项追踪方法：在 profile 找原值，在 `hw/cheshire_pkg.sv::gen_cva6_cfg` 找赋值覆盖，在 `build_config_pkg.sv::build_config` 找派生，再到 `core/cva6.sv` 找实现分支。源码链接及两组 profile 对照见[网页有效配置表](../learning/cva6.html#profile-effective-values)。当前本地配置结构的 88 字段是本手册全集；新版在线手册增加的字段不能写入旧结构后期待自动生效。
+
+选项之间还存在约束。例如本地 `config_pkg.sv` 明确断言禁止 `SuperscalarEn && RVF`。SuperscalarEn、提交端口数、FPU 等并非彼此独立的“越大越好”选项。此处只确认断言与实现，性能和工艺时序需要另行测量。

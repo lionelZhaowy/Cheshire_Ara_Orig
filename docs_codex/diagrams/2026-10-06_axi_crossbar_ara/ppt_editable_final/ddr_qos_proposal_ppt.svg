@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1680" height="900" viewBox="0 0 1680 900">
+  <title id="title-001">参考 DDR Controller V2.1 的三端口接入建议</title>
+  <desc id="desc-001">尚未实现的接入建议。保留当前 Cheshire Crossbar、原子适配及 LLC；LLC 出口接控制器 S0，ISP 接 S1，NPU 接 S2。仲裁器和 FR-FCFS 命令调度位于控制器内部。独立 urgent 接口不支持，带宽保底及最坏等待时间尚待评估。</desc>
+  <rect id="rect-001" x="0" y="0" width="1680" height="900" fill="#f7fafc" stroke="none" stroke-width="0" />
+  <text id="text-001" x="30" y="52" font-family="Microsoft YaHei" font-size="34" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">参考 DDR Controller V2.1 的多端口接入建议</text>
+  <text id="text-002" x="30" y="90" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">工程建议，当前 RTL 尚未集成供应商 IP；Crossbar 原有结构沿用，ISP/NPU 数据直接进入控制器的不同 AXI Slave。</text>
+  <rect id="rect-002" x="30" y="112" width="1620" height="51" fill="#e8f4ed" stroke="#b4d5c2" stroke-width="2" />
+  <text id="text-003" x="48" y="145" font-family="Microsoft YaHei" font-size="21" font-weight="normal" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">SoC → S0  ·  ISP → S1  ·  NPU → S2 ；控制器集成多端口仲裁，可配置优先级及 QoS。</text>
+  <rect id="rect-003" x="775" y="182" width="690" height="485" fill="#eef4f9" stroke="#9ab3c9" stroke-width="2" />
+  <text id="text-004" x="795" y="216" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">DDR Controller 内部（仅画与接入相关的功能）</text>
+  <rect id="rect-004" x="30" y="248" width="185" height="74" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-005" x="48" y="280" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">CVA6 + Ara</text>
+  <text id="text-006" x="48" y="307" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">当前 SoC 发起端</text>
+  <rect id="rect-005" x="255" y="248" width="180" height="74" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-007" x="270" y="280" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">Cheshire</text>
+  <text id="text-008" x="270" y="307" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">Crossbar</text>
+  <rect id="rect-006" x="475" y="235" width="270" height="100" fill="#e8f2fe" stroke="#96b9df" stroke-width="2" />
+  <text id="text-009" x="491" y="267" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">现有原子适配 + LLC</text>
+  <text id="text-010" x="491" y="295" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">经 LLC 出口访问外存</text>
+  <text id="text-011" x="491" y="321" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">SPM 访问仍可在片内完成</text>
+  <line id="line-001" x1="215" y1="285" x2="255" y2="285" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-001" points="247,281 255,285 247,289" fill="#526b80" stroke="none" />
+  <line id="line-002" x1="435" y1="285" x2="475" y2="285" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-002" points="467,281 475,285 467,289" fill="#526b80" stroke="none" />
+  <line id="line-003" x1="745" y1="285" x2="795" y2="285" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-003" points="787,281 795,285 787,289" fill="#526b80" stroke="none" />
+  <rect id="rect-007" x="30" y="393" width="360" height="84" fill="#fff2e5" stroke="#d9b48e" stroke-width="2" />
+  <text id="text-012" x="48" y="428" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">ISP 数据 AXI Master</text>
+  <text id="text-013" x="48" y="458" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">写帧缓存，绕过 Crossbar / LLC</text>
+  <line id="line-004" x1="390" y1="435" x2="795" y2="435" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-004" points="787,431 795,435 787,439" fill="#526b80" stroke="none" />
+  <rect id="rect-008" x="30" y="543" width="360" height="84" fill="#edf5ee" stroke="#a5c5ae" stroke-width="2" />
+  <text id="text-014" x="48" y="578" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">NPU 数据 AXI Master</text>
+  <text id="text-015" x="48" y="608" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">读写权重 / 特征图，绕过 LLC</text>
+  <line id="line-005" x1="390" y1="585" x2="795" y2="585" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-005" points="787,581 795,585 787,589" fill="#526b80" stroke="none" />
+  <rect id="rect-009" x="795" y="240" width="140" height="90" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-016" x="810" y="275" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">AXI S0</text>
+  <text id="text-017" x="810" y="308" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">SoC 外存流量</text>
+  <line id="line-006" x1="935" y1="285" x2="975" y2="285" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-006" points="967,281 975,285 967,289" fill="#526b80" stroke="none" />
+  <rect id="rect-010" x="795" y="390" width="140" height="90" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-018" x="810" y="425" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">AXI S1</text>
+  <text id="text-019" x="810" y="458" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">ISP 写入</text>
+  <line id="line-007" x1="935" y1="435" x2="975" y2="435" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-007" points="967,431 975,435 967,439" fill="#526b80" stroke="none" />
+  <rect id="rect-011" x="795" y="540" width="140" height="90" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-020" x="810" y="575" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">AXI S2</text>
+  <text id="text-021" x="810" y="608" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">NPU 读 / 写</text>
+  <line id="line-008" x1="935" y1="585" x2="975" y2="585" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-008" points="967,581 975,585 967,589" fill="#526b80" stroke="none" />
+  <rect id="rect-012" x="975" y="240" width="200" height="390" fill="#f9f5ff" stroke="#b9a6d4" stroke-width="2" />
+  <text id="text-022" x="994" y="315" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">内部 Arbiter</text>
+  <text id="text-023" x="994" y="359" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">可配置优先级</text>
+  <text id="text-024" x="994" y="394" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">轮询 / QoS</text>
+  <text id="text-025" x="994" y="470" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">页命中限制</text>
+  <text id="text-026" x="994" y="510" font-family="Microsoft YaHei" font-size="17" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">端口请求仲裁</text>
+  <line id="line-009" x1="1175" y1="435" x2="1210" y2="435" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-009" points="1202,431 1210,435 1202,439" fill="#526b80" stroke="none" />
+  <rect id="rect-013" x="1210" y="345" width="230" height="190" fill="#e8f2fe" stroke="#96b9df" stroke-width="2" />
+  <text id="text-027" x="1227" y="383" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">Controller Core</text>
+  <text id="text-028" x="1227" y="423" font-family="Microsoft YaHei" font-size="21" font-weight="normal" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">内部命令队列</text>
+  <text id="text-029" x="1227" y="467" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">FR-FCFS 调度</text>
+  <text id="text-030" x="1227" y="508" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">遵守 DRAM 时序</text>
+  <line id="line-010" x1="1440" y1="435" x2="1490" y2="435" fill="none" stroke="#8094a6" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" />
+  <polygon id="polygon-010" points="1482,431 1490,435 1482,439" fill="#526b80" stroke="none" />
+  <rect id="rect-014" x="1490" y="394" width="160" height="82" fill="#ffffff" stroke="#bccbd8" stroke-width="2" />
+  <text id="text-031" x="1510" y="428" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">PHY</text>
+  <text id="text-032" x="1510" y="457" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">+ SDRAM</text>
+  <rect id="rect-015" x="30" y="696" width="1620" height="168" fill="#ffffff" stroke="#cbd9e4" stroke-width="2" />
+  <text id="text-033" x="48" y="728" font-family="Microsoft YaHei" font-size="25" font-weight="bold" font-style="normal" text-anchor="start" fill="#183044" stroke="none" xml:space="preserve">依据与待确认边界</text>
+  <text id="text-034" x="48" y="762" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">Datasheet V2.1：p8 最多 8 个 AXI 端口；p10 仲裁特性；p13 每端口 QoS；p17–18 内部结构与命令调度。</text>
+  <text id="text-035" x="48" y="794" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">p14：独立 AXI Urgent 接口不支持。优先级 / QoS 的具体寄存器、映射规则、带宽保底和最坏延迟仍需用户手册确认。</text>
+  <text id="text-036" x="48" y="826" font-family="Microsoft YaHei" font-size="19" font-weight="normal" font-style="normal" text-anchor="start" fill="#50667a" stroke="none" xml:space="preserve">多端口不会自动保证共享缓存一致性或旁路写的 AMO/LRSC 语义；RT 是否需要添加，后续结合控制器能力评估。</text>
+</svg>

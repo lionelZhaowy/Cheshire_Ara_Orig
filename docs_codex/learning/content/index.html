@@ -6,6 +6,7 @@
 <li><a href="boot.html#rom">15 ROM 与应用初始化</a> → <a href="boot-debug.html#takeover">16 JTAG 接管</a> → <a href="simulation.html">17 仿真</a> → <a href="labs.html#lab-b">实验 B</a>：装载、执行、逐项校验并让注错正确失败。</li></ol>
 <p>实际 RTL 编译、目标运行和板测仍按<a href="evidence.html#gaps">证据页</a>列出的缺口验收。按目录读完全部硬件设计章节不是开始实验 A 的前置条件。</p>
 <h2 id="example">贯穿示例与阅读方法</h2>
+<p>硬件与 ASIC 阅读路线：<a href="architecture.html#port-roles">模块接口职责</a> → <a href="cva6.html#configuration-families">CPU 配置族</a> → <a href="configuration.html#legality-levels">组合约束</a> → <a href="interconnect.html#address-rule-worked-example">互连展开</a> → <a href="memory.html#llc-transaction">LLC/SPM 事务</a> → <a href="integration.html#official-instantiation">平台接入</a> → <a href="future.html#resource-mapping">工艺资源映射</a>。每一步先解释职责与因果，再对照源码，不以参数表替代原理讲解。</p>
 <p><a href="examples/journey.c">journey.c</a> 从 137 项标量数组开始，检查初值、BSS、逐项结果和总和 28085。向量实践仍用同一 main，逐步比较汇编、intrinsics、自动向量化、尾部及归约。六项实验共享构建—配置—执行—数值—错误证据链，不以反汇编或一行 PASS 代替所有结论。</p>
 <p>侧栏默认展开当前篇，并列出当前章的节；页内目录同时展示节与小节，可折叠。手机可收起全书目录，关闭 JavaScript 仍可用原生目录和静态图。WaveDrom 图标为教学时序，真实波形必须另外关联运行记录。</p>
 <figure><img src="assets/new-route.svg" alt="硬件与配置连接到软件运行模型，再到构建启动验证、设备存储向量和系统扩展"><figcaption>沿用的知识依赖图；按问题沿箭头实践，篇章检索按下方七篇目录。</figcaption></figure>
@@ -17,6 +18,6 @@
 <h2 id="part-vector">第六篇 · Ara 向量执行与异构协作</h2><ol class="chapter-list"><li><a href="ara.html">24 · Ara 结构与 CVA6 协处理器接口</a> — 分清请求、应答、CPU 提交和实际完成。</li><li><a href="vector.html">25 · RVV 编程与结果验证</a> — 用同一数组比较汇编、intrinsics 和自动向量化。</li><li><a href="sharing.html">26 · CPU、Ara、DMA 与 NPU 的共享数据</a> — 建立可见性、所有权和有界恢复协议。</li></ol>
 <h2 id="part-integration">第七篇 · IP 集成与 ASIC 工程规划</h2><ol class="chapter-list"><li><a href="integration.html">27 · 自定义 IP 的控制、数据和中断接入</a> — 从独立 Reg 单元逐步进入系统。</li><li><a href="accelerators.html">28 · LVDS、ISP、NPU 与外部 DDR 集成</a> — 逐 IP 明确接口、缓冲、跨域和验收交付。</li><li><a href="models.html">29 · 模型任务划分与容量带宽预算</a> — 用透明假设衡量 Ara/NPU 协作成本。</li><li><a href="future.html">30 · 固定配置工程与 ASIC 集成验收</a> — 冻结可搬迁输入并形成分阶段实现证据。</li></ol>
 <h2 id="scope">覆盖范围与证据边界</h2>
-<p>当前源码实现、候选配置、主机构建和未来 ASIC/NPU 方案分别标明。结构修订输入 HEAD 为 69fabdd227e225bf9f5f0b9ec5fe9d056999fea6；本次调整教材组织与导航，不重新运行软件或生产 RTL。<a href="evidence.html#refinement">本轮机制与维护检查</a>及<a href="evidence.html#structure">此前结构检查</a>与<a href="evidence.html#depth">此前深度扩充构建</a>按日期及任务区分。</p>
+<p>当前源码实现、候选配置、主机构建和未来 ASIC/NPU 方案分别标明。2026-10-07 的官方资料与源码解读以 HEAD <code>5ddec4fb4e982b460b12c3f3587523807602d5d4</code> 为输入，保留既有七篇结构、实验与证据。<a href="evidence.html#teaching-20261007">本轮扩充记录</a>、<a href="evidence.html#refinement">此前机制完善</a>及<a href="evidence.html#depth">此前软件构建</a>分别说明检查范围。</p>
 <h2 id="reference">实验、查询与维护</h2>
 <p><a href="labs.html">六项实验</a> · <a href="registers.html">429 项寄存器索引</a> · <a href="evidence.html">来源与验证记录</a> · <a href="../configuration/README.md">配置参考</a> · <a href="../software/README.md">软件参考</a> · <a href="STRUCTURE_REVISION.md">本次归属与迁移说明</a> · <a href="README.md">维护说明</a>。历史记录和备份保留原日期，正文、图和导航可离线阅读；源码链接需完整仓库。</p>

@@ -3,9 +3,21 @@
 <p>计划中的 cheshire_ara_asic/ 把唯一配置、必要源码、平台 wrapper、启动软件和最小回归集中到可搬迁目录。当前建议以单核、cv64a6_imafdcv_sv39、Ara 2/2048 为首个基线，先保留必要功能并建立回归，再按产品保留表裁切。任务范围见<a href="../02_Cheshire_Ara_ASIC_Extraction_Handoff.md">ASIC 提取交接书</a>。</p>
 <p>静态 filelist 需要保留编译顺序、include 路径、宏和编译单元分组；Bender 至多用于一次性离线解析。当前 .bender 包含版本管理的依赖与本地修改，提取时保留版权、许可证、来源版本及差异。搬到另一目录、断网仍可按固定输入构建，是可维护性的具体验收。</p>
 <h2 id="asic">工艺资源与平台实现</h2>
+<h3 id="resource-mapping">从可综合逻辑到工艺资源</h3>
+<p>ASIC 集成包含两个相连的层面：通用 RTL 描述功能和协议，工艺资源实现存储、时钟、电气接口及测试。官方 Cheshire 集成入口提供 Cfg、类型宏和扩展端口；本地 <code>tech_cells_generic</code> 提供薄的技术抽象层。选择了 ASIC target 后，仍需为实际工艺实现这些抽象并验证其时序语义。</p>
+<figure><img src="assets/teaching-asic-responsibilities.svg" alt="Cheshire数字系统经存储、时钟复位、外设与DDR接口分别映射ASIC资源，平台固件和验证交付横跨边界"><figcaption>ASIC 规划教学示意：上层为当前数字系统职责，下层为待落实的工艺/IP 交付；不表示已冻结的频率、电源域或供应商方案。</figcaption></figure>
+<table><tr><th>资源</th><th>接口匹配不能只看名称</th><th>进入系统前的验证</th></tr><tr><td>CPU cache / Ara VRF / LLC SRAM</td><td>深度、数据宽、端口数、读延迟、字节写、读写冲突、初始化与测试脚</td><td>用宏模型核对请求到响应周期、写掩码和碰撞语义；再验证消费者</td></tr><tr><td>Boot ROM / Platform ROM</td><td>内容生成方式、取指时序、大小及映射；可用综合常量逻辑或合适的 ROM 宏实现</td><td>比对指令字节、复位入口和访问延迟；选择掩膜 ROM 时还需明确制造后不可更新的边界</td></tr><tr><td>PLL / 时钟门控 / 复位</td><td>参考源、合法倍分频、锁定、无毛刺切换、测试旁路、逐域释放</td><td>安全启动和调频序列；时序约束、CDC/RDC、失锁恢复</td></tr><tr><td>PAD / 电平转换</td><td>电压、方向、驱动强度、上拉、开漏、ESD 与封装复用</td><td>I2C 开漏等电气契约；输入/输出/输出使能极性和上电默认值</td></tr><tr><td>DDR CTRL/PHY</td><td>AXI、控制寄存器、训练固件、存储器型号、DFI 或供应商接口及板级约束</td><td>初始化、容量/地址、刷新、错误及并发压力</td></tr><tr><td>DFT / MBIST</td><td>扫描、测试时钟复位、SRAM 测试/修复接口和模式隔离</td><td>可测试性与测试覆盖报告；LLC 标签 BIST 不能代替整芯片 MBIST</td></tr></table>
+<h3 id="sram-example">SRAM 读延迟的适配推演</h3>
+<p>设某个 RTL 消费者在周期 k 提出地址，并约定 k+1 取得读数据。若选定 SRAM 宏多一级输出寄存器，使数据在 k+2 才有效，仅修改实例端口名称会让消费者把上一笔数据当作本笔结果。适配必须保持原约定，或连同消费者的有效位/握手时序一起修改。容量相同的宏也可能因读延迟不同而无法直接替换。</p>
+<p>字节写也有类似问题：64 位总线的 8 位 WSTRB 表示哪些字节更新；若宏只支持整字写，适配可能需要读改写并防止并发冲突。读写同地址时返回旧值、新值还是未定义值，必须服从消费者的要求。上述是选择和适配工艺宏的通用推演；当前尚未选定 ASIC SRAM 型号。</p>
+<h3 id="implementation-deliverables">约束、模型和软件的共同交付</h3>
 <p>FPGA 的 XPM/BRAM、时钟向导和引脚缓冲要分别落实为工艺 SRAM/ROM、PLL/时钟门控和 PAD。SRAM 的读延迟、端口数、字节写及读写冲突会影响 CPU、Ara 和 LLC 的连接；DDR 还需控制器与 PHY 的校准/训练契约。DFT 是可测试性设计，MBIST 是存储自测，STA 是静态时序分析，它们都需要各自的输入和验收报告。</p>
 <p>平台启动应依次验证时钟复位、ROM 取指、SPM/栈、标量计算、UART，再加入外存与并发设备。CDC/RDC、电源意图、时序约束和物理实现随后有明确交付。当前源码清单或开发板输出记录只覆盖已经执行的相应工作。</p>
 <h2 id="acceptance-gates">把 ASIC 规划落实为逐项准入条件</h2>
 <p>结构冻结先确认当前向量 profile、decoder、地址和尺寸一致，并完成标量/RVV 小程序回归；平台替换再处理 SRAM/PLL/PAD/DDR 的真实接口和约束；新设备阶段先完成控制与独立数值验证，再接共享存储与并发；实现阶段才进入综合、时序、CDC/RDC、DFT/MBIST、低功耗和物理签核。每阶段记录证据，不以某个 FPGA bitstream 代替所有阶段。</p>
 <p>当前电源域并未实现为可签核的 ASIC 电源意图；候选时钟、电源、复位顺序见<a href="power.html#asic-clock-power">第 06 章</a>。DDR 控制器/PHY 资料见<a href="ddr.html#ddr-subsystem">接口需求</a>；NPU/ISP/LVDS 的端口与数据率规划见<a href="accelerators.html#npu-topology">第 28 章</a>。本轮交付教学与候选方案，不冻结供应商参数或修改生产接口。</p>
 <div class="source"><strong>源码与进一步阅读</strong><p><a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">当前平台适配参考</a>；<a href="../../hw/cheshire_soc.sv">现有 LLC 与扩展边界</a></p></div>
+
+<details class="quiz"><summary>容量和数据位宽相同的 SRAM 宏可以直接替换吗？</summary><p>还要匹配端口数量、读延迟、字节写、同址读写语义、测试脚及消费者时序。容量匹配只解决存储规模，不能证明事务时序正确。</p></details>
+
+<details class="quiz"><summary>完成 RTL 综合后，还缺哪些 ASIC 系统证据？</summary><p>至少需要真实工艺/IP 约束下的时序与物理实现、CDC/RDC、复位/启动、低功耗和测试交付；系统软件还需在选定存储和接口上回归。各报告覆盖各自范围，不能互相替代。</p></details>
