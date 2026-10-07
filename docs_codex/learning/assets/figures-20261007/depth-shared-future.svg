@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>未来共享存储：资源位置、访问路径与协议职责</title>
+<desc>共享地址空间只是第一步；选择 SPM / SRAM 或 DDR 还会改变容量、延迟和缓存边界。；依据：未来 M01 / I01 契约；当前 VRF 不是可被 NPU 共享寻址的 cache</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="495,305.0 655,305.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="655.00,305.00 643.00,300.00 643.00,310.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1305,305.0 1145,305.0" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1145.00,305.00 1157.00,310.00 1157.00,300.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="275.0,380 275.0,555" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="275.00,555.00 280.00,543.00 270.00,543.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1525.0,380 1525.0,555" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1525.00,555.00 1530.00,543.00 1520.00,543.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="275.0,705 275,912 600,912.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="600.00,912.50 588.01,907.48 587.99,917.48" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1525.0,705 1525,912 1200,912.5" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1200.00,912.50 1212.01,917.48 1211.99,907.48" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">未来共享存储：资源位置、访问路径与协议职责</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">共享地址空间只是第一步；选择 SPM / SRAM 或 DDR 还会改变容量、延迟和缓存边界。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：未来 M01 / I01 契约；当前 VRF 不是可被 NPU 共享寻址的 cache</text>
+<rect id="cpu" x="55" y="230" width="440" height="150" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="230" width="5" height="150" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="262" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU / Ara</text>
+<text x="72" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">任务控制与后处理</text>
+<text x="72" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">现有 LLC 路径</text>
+<rect id="npu" x="1305" y="230" width="440" height="150" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1305" y="230" width="5" height="150" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1322" y="262" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="npu">NPU / ISP</text>
+<text x="1322" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="npu">独立数据发起端</text>
+<text x="1322" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="npu">未来 DDR 旁路</text>
+<rect id="sram" x="655" y="230" width="490" height="150" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="655" y="230" width="5" height="150" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="672" y="262" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="sram">共享 SPM / SRAM 候选</text>
+<text x="672" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="sram">小块数据 / 明确地址与所有权</text>
+<text x="672" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="sram">新增接入路径需单独定义</text>
+<rect id="llc" x="55" y="555" width="440" height="150" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="555" width="5" height="150" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="587" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="llc">现有 LLC 路径</text>
+<text x="72" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="llc">缓存副本与脏数据处理</text>
+<text x="72" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="llc">CPU / Ara 维护条件</text>
+<rect id="bypass" x="1305" y="555" width="440" height="150" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1305" y="555" width="5" height="150" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1322" y="587" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="bypass">旁路互连候选</text>
+<text x="1322" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="bypass">CDC / ID / 带宽与错误</text>
+<text x="1322" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="bypass">与 LLC 下游汇合</text>
+<rect id="ddr" x="600" y="840" width="600" height="145" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="600" y="840" width="5" height="145" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="617" y="872" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ddr">AXI4 DDR CTRL + PHY + DRAM</text>
+<text x="617" y="908" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ddr">共用数据布局与可见性协议</text>
+<text x="617" y="938" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ddr">普通旁路写也纳入原子 / LRSC 验证</text>
+<rect id="note-6" x="655" y="525" width="490" height="200" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="655" y="525" width="5" height="200" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="672" y="557" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">一次任务的协议</text>
+<text x="672" y="593" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">谁可写？何时可读？</text>
+<text x="672" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">由谁发布、观察并核对完成？</text>
+<text x="672" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">超时后谁保证设备已停止？</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 590" role="img" aria-labelledby="title desc"><title id="title">两种串行读：控制器操作和器件协议</title><desc id="desc">固定读取 16 字节，才能把总线波形与软件结果对应起来。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="590" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">两种串行读：控制器操作和器件协议</text>
+<text x="32" y="74" class="small" text-anchor="start">固定读取 16 字节，才能把总线波形与软件结果对应起来。</text>
+<text x="35" y="120" class="title" text-anchor="start">I2C EEPROM：开漏 SDA / SCL</text>
+<rect x="35" y="150" width="235" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="152.5" y="198.5" class="box" text-anchor="middle">START + 器件写址</text>
+<path d="M270,192 L290,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="290" y="150" width="235" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="407.5" y="198.5" class="box" text-anchor="middle">16 位内部地址</text>
+<path d="M525,192 L545,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="545" y="150" width="235" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="662.5" y="198.5" class="box" text-anchor="middle">STOP；新 START</text>
+<path d="M780,192 L800,192" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="800" y="150" width="235" height="85" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="917.5" y="198.5" class="box" text-anchor="middle">器件读址 + 16 字节</text>
+<text x="35" y="320" class="title" text-anchor="start">SPI NOR：控制器主动输出 SCK / CS</text>
+<rect x="35" y="350" width="235" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="152.5" y="398.5" class="box" text-anchor="middle">CS1 有效</text>
+<path d="M270,392 L290,392" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="290" y="350" width="235" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="407.5" y="398.5" class="box" text-anchor="middle">命令 0x13</text>
+<path d="M525,392 L545,392" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="545" y="350" width="235" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="662.5" y="398.5" class="box" text-anchor="middle">四字节地址</text>
+<path d="M780,392 L800,392" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="800" y="350" width="235" height="85" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="917.5" y="398.5" class="box" text-anchor="middle">RX：16 字节</text>
+<text x="32" y="495" class="small" text-anchor="start">当前 EEPROM HAL 在地址后 STOP，再发 START；不能把理想 repeated START 图当成本地行为。</text>
+<text x="32" y="530" class="small" text-anchor="start">VIP 默认预填 0x9a；SD 虽共用 SPI，却使用另一套命令、响应和块校验协议。</text></svg>

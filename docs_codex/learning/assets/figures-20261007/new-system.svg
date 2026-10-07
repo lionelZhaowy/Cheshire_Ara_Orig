@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>三种访问辨认 SoC：字符输出、数组计算、调试装载</title>
+<desc>用具体请求区分控制面与数据面；Ara 由 CPU 向量指令驱动，并通过自身 AXI 口访存。；源码：cheshire_soc.sv；UART DIF；CVA6–Ara 专用控制接口</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="215" width="1690" height="215" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="55" y="470" width="1690" height="215" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="55" y="725" width="1690" height="215" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="720,337.5 1005,337.5" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1005.00,337.50 993.00,332.50 993.00,342.50" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="720,592.5 1005,592.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1005.00,592.50 993.00,587.50 993.00,597.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="720,847.5 1005,847.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1005.00,847.50 993.00,842.50 993.00,852.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">三种访问辨认 SoC：字符输出、数组计算、调试装载</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">用具体请求区分控制面与数据面；Ara 由 CPU 向量指令驱动，并通过自身 AXI 口访存。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire_soc.sv；UART DIF；CVA6–Ara 专用控制接口</text>
+<text x="73" y="250" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">① CPU 输出字符</text>
+<rect id="a0" x="85" y="280" width="635" height="115" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="85" y="280" width="5" height="115" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="102" y="312" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a0">CPU store → UART THR</text>
+<text x="102" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a0">走寄存器控制路径</text>
+<rect id="b0" x="1005" y="280" width="710" height="115" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="1005" y="280" width="5" height="115" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="1022" y="312" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b0">Crossbar → AXI/Reg → UART</text>
+<text x="1022" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="b0">TX FIFO / 串行状态机 → TX 引脚</text>
+<text x="73" y="505" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">② Ara 处理数组</text>
+<rect id="a1" x="85" y="535" width="635" height="115" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="85" y="535" width="5" height="115" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="102" y="567" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a1">CPU 发向量指令 / 操作数</text>
+<text x="102" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a1">Ara VLSU 主动读写数据</text>
+<rect id="b1" x="1005" y="535" width="710" height="115" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1005" y="535" width="5" height="115" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1022" y="567" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b1">Crossbar → LLC / SPM</text>
+<text x="1022" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="b1">片上命中或 LLC 下游外存</text>
+<text x="73" y="760" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">③ Debug 装载程序</text>
+<rect id="a2" x="85" y="790" width="635" height="115" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="85" y="790" width="5" height="115" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="102" y="822" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a2">主机 JTAG → DTM / DM</text>
+<text x="102" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a2">SBA 成为 AXI 请求发起端</text>
+<rect id="b2" x="1005" y="790" width="710" height="115" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1005" y="790" width="5" height="115" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1022" y="822" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b2">Crossbar → 目标可写内存</text>
+<text x="1022" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="b2">halt / 写段 / DPC / resume</text>
+<text x="65" y="1008" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="start">控制寄存器口、主动数据口、完成事件口是不同角色；完整连接结构见下一张系统图。</text>
+</svg>

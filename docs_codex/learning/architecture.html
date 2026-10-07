@@ -6,8 +6,8 @@
 <p>处理器执行加法时，操作数可以已经在寄存器里；完整程序却还需要保存指令、取得输入、放置输出，并知道从哪里开始执行。片上系统（SoC）把处理器、存储、设备和连接它们的逻辑组合起来。Cheshire 是本工程的系统集成层，CVA6 是标量处理器，Ara 是由向量指令驱动的计算加速器。程序控制流主要由 CVA6 推进，Ara 按指令处理一组元素。</p>
 <p>CVA6 包含取指和译码、整数及浮点运算、访存、异常处理，以及靠近核心的一级缓存（L1）。缓存保存近期指令或数据的副本，命中时可在核附近完成访问。地址翻译单元（MMU）可以把软件使用的虚拟地址转换为物理地址；本教材的机器态裸机程序采用直接的存储布局，没有创建应用页表。理解这些功能足以解释外部行为，本书不展开流水级电路设计。</p>
 <p>Ara 把向量寄存器和运算资源分布在若干 lane，即并行的数据处理通道上。CPU 送来指令和标量操作数，Ara 自己发起向量数据访问。另一个主动访存设备 iDMA 负责搬运字节：CPU 设置源地址、目标地址和长度，随后由硬件执行传输。因此 CPU、Ara 和 DMA 都可能向互连发请求，但它们接受工作的方式不同。</p>
-<figure><img src="assets/new-system.svg" alt="CPU、Ara、调试和设备发起请求，互连分别连接片上存储、外部存储及寄存器设备"><figcaption>当前 SoC 的功能关系；可选设备是否存在由配置决定。箭头标出用途，响应沿对应事务返回。</figcaption></figure>
-<figure><img src="assets/depth-system-full.svg" alt="包含 CVA6、Ara、全部主动设备、AXI、Reg、LLC/SPM 与平台边界的总图"><figcaption>当前有效配置决定可选模块是否存在。先沿请求方向读图，再沿同一事务的响应方向回溯。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-system.svg" alt="CPU、Ara、调试和设备发起请求，互连分别连接片上存储、外部存储及寄存器设备"><figcaption>当前 SoC 的功能关系；可选设备是否存在由配置决定。箭头标出用途，响应沿对应事务返回。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-system-full.svg" alt="包含 CVA6、Ara、全部主动设备、AXI、Reg、LLC/SPM 与平台边界的总图"><figcaption>当前有效配置决定可选模块是否存在。先沿请求方向读图，再沿同一事务的响应方向回溯。</figcaption></figure>
 <h2 id="paths"><span class="section-number">1.2</span> 用三种请求理解系统</h2>
 <h3 id="port-roles"><span class="section-number">1.2.1</span> 模块职责与接口方向</h3>
 <p>系统框图中的一个方框往往有不止一种接口。以 DMA 为例，CPU 向 DMA 的控制口写入搬运任务，DMA 再从自己的数据口读写内存，最后通过状态寄存器或中断报告完成。第一条路径传递“做什么”，第二条路径传递“被处理的数据”，第三条路径传递“发生了什么”。读硬件图时，先为每条连线确定这三种职责，再判断谁发起事务。</p>

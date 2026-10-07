@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>主机上的构建产物：每个文件回答不同问题</title>
+<desc>C / 汇编是程序描述；目标文件保存编码与重定位；ELF 将符号解析与内存布局落实。；依据：sw/sw.mk；sw/lib/crt0.S；当前链接脚本与教材 journey 构建入口</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="425,312.5 495,312.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="495.00,312.50 483.00,307.50 483.00,317.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="865,312.5 935,312.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="935.00,312.50 923.00,307.50 923.00,317.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1305,312.5 1375,312.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1375.00,312.50 1363.00,307.50 1363.00,317.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="525,677.5 675,677.5" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="675.00,677.50 663.00,672.50 663.00,682.50" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1145,677.5 1295,677.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1295.00,677.50 1283.00,672.50 1283.00,682.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1560,395 1560,475 910,475 910,590" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="910.00,590.00 915.00,578.00 905.00,578.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">主机上的构建产物：每个文件回答不同问题</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">C / 汇编是程序描述；目标文件保存编码与重定位；ELF 将符号解析与内存布局落实。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：sw/sw.mk；sw/lib/crt0.S；当前链接脚本与教材 journey 构建入口</text>
+<rect id="a0" x="55" y="230" width="370" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="230" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="262" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a0">journey.c</text>
+<text x="72" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a0">算法与结果校验</text>
+<text x="72" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a0">源程序</text>
+<rect id="a1" x="495" y="230" width="370" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="495" y="230" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="512" y="262" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a1">journey.i</text>
+<text x="512" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a1">宏展开、包含头文件</text>
+<text x="512" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a1">预处理结果</text>
+<rect id="a2" x="935" y="230" width="370" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="935" y="230" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="952" y="262" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a2">journey.s</text>
+<text x="952" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a2">选定 ISA 的指令序列</text>
+<text x="952" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a2">编译结果</text>
+<rect id="a3" x="1375" y="230" width="370" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1375" y="230" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1392" y="262" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a3">journey.o</text>
+<text x="1392" y="298" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a3">字节、符号、重定位</text>
+<text x="1392" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="a3">汇编结果</text>
+<rect id="lib" x="55" y="590" width="470" height="175" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="590" width="5" height="175" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="622" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="lib">crt0.o + libsupport.a</text>
+<text x="72" y="658" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="lib">入口 / BSS / FS 初始化</text>
+<text x="72" y="688" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="lib">UART / CLINT / printf 等实现</text>
+<text x="72" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="lib">库只提供被链接进程序的代码</text>
+<rect id="link" x="675" y="590" width="470" height="175" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="675" y="590" width="5" height="175" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="692" y="622" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="link">链接器 + .ld</text>
+<text x="692" y="658" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="link">解析符号与重定位</text>
+<text x="692" y="688" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="link">安排运行地址与装载段</text>
+<text x="692" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="link">检查容量、对齐与段布局</text>
+<rect id="elf" x="1295" y="590" width="450" height="175" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1295" y="590" width="5" height="175" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1312" y="622" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="elf">journey.spm.elf</text>
+<text x="1312" y="658" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="elf">e_entry：应用入口</text>
+<text x="1312" y="688" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="elf">PT_LOAD：装载段</text>
+<text x="1312" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="elf">文件字节数与运行大小可不同</text>
+<rect id="note-7" x="55" y="885" width="1690" height="120" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="885" width="5" height="120" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="917" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-7">旁证文件与验收用途</text>
+<text x="72" y="953" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">map：段与符号来自哪里；nm：符号地址；dump：反汇编与静态指令。链接成功之后仍须装载、执行和检查数值。</text>
+</svg>

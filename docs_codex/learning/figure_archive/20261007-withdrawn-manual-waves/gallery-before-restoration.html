@@ -1,0 +1,231 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>教材插图 · 新旧对照</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:#19364b;font:16px/1.7 system-ui,"WenQuanYi Zen Hei",sans-serif}
+main{max-width:1680px;margin:auto;padding:30px}a{color:#216bb1}h1{font-size:32px}h2{font-size:23px;margin:0 0 12px}
+nav{display:flex;gap:20px;flex-wrap:wrap}section{background:white;border:1px solid #c8d6e0;border-radius:10px;margin:30px 0;padding:24px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}.pair img{width:100%;height:auto;display:block}figure{margin:0;min-width:0}
+figcaption{font-size:14px;color:#536b7d;margin-bottom:10px}p{overflow-wrap:anywhere}details li{margin:5px 0}
+@media(max-width:850px){main{padding:16px}.pair{grid-template-columns:1fr}section{padding:15px}}
+</style></head><body><main><h1>教材插图：43 张新旧对照</h1>
+<p>新版按对象、接口、空间关系与因果过程重绘；旧图保留原始字节。点击图片可打开完整 SVG。</p>
+<nav><a href="../../index.html">返回教材</a><a href="editable/diagrams.pptx">下载 43 页可编辑 PPTX</a>
+<a href="../../FIGURES.md">维护与验证说明</a><a href="editable/export_report.json">PPTX 结构检查</a></nav>
+<p>SVG 保留文本；PPTX 使用独立形状与文本框。已做 SVG 浏览器检查与 PPTX 结构检查，未在 Office 实测。</p><details><summary>按图跳转</summary><ol>
+<li><a href="#depth-address-map">地址路由窗口与物理资源的映射</a></li>
+<li><a href="#depth-ara-internals">Ara 内部：向量元素分散到 lanes，再重排回内存</a></li>
+<li><a href="#depth-axi-backpressure">AXI 两拍写：教学时序</a></li>
+<li><a href="#depth-boot-phases">JTAG 装载：教学事件时序</a></li>
+<li><a href="#depth-clocks-current">当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域</a></li>
+<li><a href="#depth-clocks-future">未来 ASIC：时钟、复位、电源分别划分责任</a></li>
+<li><a href="#depth-cva6-ara">CVA6–Ara：控制协议与 AXI 数据通路分离</a></li>
+<li><a href="#depth-ddr">DDR 子系统：AXI 事务、控制器、PHY 与器件引脚</a></li>
+<li><a href="#depth-handoff">Ara → NPU → Ara：未来任务交接教学时序</a></li>
+<li><a href="#depth-npu-bypass">未来 DDR 旁路：数据汇合不等于一致性自动成立</a></li>
+<li><a href="#depth-ownership">未来异构任务：所有权状态与异常回收</a></li>
+<li><a href="#depth-reset-release">未来 ASIC 放行条件：教学时序</a></li>
+<li><a href="#depth-shared-current">当前共享数据：Ara 的失效协作有明确参与者</a></li>
+<li><a href="#depth-shared-future">未来共享存储：资源位置、访问路径与协议职责</a></li>
+<li><a href="#depth-system-full">Cheshire / CVA6 / Ara：计算、控制与存储边界</a></li>
+<li><a href="#depth-vector-arithmetic">向量算术：教学时序</a></li>
+<li><a href="#depth-vector-load">向量 load：教学时序</a></li>
+<li><a href="#depth-vector-memory">向量访存：地址翻译与数据搬运是两条路径</a></li>
+<li><a href="#depth-xbar-full">AXI Crossbar：7 个发起端、5 个目标与两级译码</a></li>
+<li><a href="#mechanism-clocks">PLL、分频与门控：时钟生成和事务跨域分别设计</a></li>
+<li><a href="#mechanism-cva6">CVA6 功能层次：发射、执行、提交与系统接口</a></li>
+<li><a href="#mechanism-ddr">一次 DDR 读：请求调度与返回数据分别穿过控制器</a></li>
+<li><a href="#mechanism-power">关电域与常开域：隔离、保持、电平转换各有职责</a></li>
+<li><a href="#mechanism-xbar">Crossbar 内部：选择目标、预留 W、归还 ID</a></li>
+<li><a href="#new-boot">JTAG 直接装载：主机与目标两条时间线如何汇合</a></li>
+<li><a href="#new-build">主机上的构建产物：每个文件回答不同问题</a></li>
+<li><a href="#new-configuration">配置何时生效：源码选择、展开结构与运行状态</a></li>
+<li><a href="#new-device">一次 UART 寄存器访问：地址、寄存器副作用与引脚</a></li>
+<li><a href="#new-future">未来图像系统：流数据、帧缓冲与控制路径分层</a></li>
+<li><a href="#new-integration">新增 IP：控制面、主动数据面与完成事件独立定义</a></li>
+<li><a href="#new-interrupt">外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环</a></li>
+<li><a href="#new-lanes">64 位 AXI 数据拍中的 32 位寄存器访问</a></li>
+<li><a href="#new-memory">LLC / SPM：两个别名如何访问同一组 ways</a></li>
+<li><a href="#new-ownership">缓冲区交接：地址相同还需要所有权与可见性</a></li>
+<li><a href="#new-route">七篇、30 章：由系统概念进入实现与验证</a></li>
+<li><a href="#new-runtime">C 对象与运行内存：指令、初值、零初始化与栈</a></li>
+<li><a href="#new-serial">I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议</a></li>
+<li><a href="#new-system">三种访问辨认 SoC：字符输出、数组计算、调试装载</a></li>
+<li><a href="#new-transaction">AXI 写事务：地址、数据与响应三条独立通道</a></li>
+<li><a href="#new-vector">137 个 e32 元素：按实际 vl 分批执行</a></li>
+<li><a href="#teaching-asic-responsibilities">ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么</a></li>
+<li><a href="#teaching-code-to-execution">从 C 到执行：主机产物如何变成目标内存与 CPU 状态</a></li>
+<li><a href="#teaching-config-contract">配置契约：profile、SoC Cfg、软件与运行状态共同约束</a></li>
+</ol></details>
+<section id="depth-address-map"><h2>01 · 地址路由窗口与物理资源的映射</h2><p>教材位置：<a href="../../address-map.html">address-map</a> · <a href="editable/depth-address-map.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-address-map.svg"><img src="../../assets/figures-20261007/depth-address-map.svg" alt="地址路由窗口与物理资源的映射 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-address-map.svg"><img src="../../figure_archive/20261007/assets/depth-address-map.svg" alt="地址路由窗口与物理资源的映射 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_pkg.sv::gen_axi_out / gen_reg_out / get_llc_size；默认配置</p></section>
+<section id="depth-ara-internals"><h2>02 · Ara 内部：向量元素分散到 lanes，再重排回内存</h2><p>教材位置：<a href="../../ara.html">ara</a> · <a href="editable/depth-ara-internals.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-ara-internals.svg"><img src="../../assets/figures-20261007/depth-ara-internals.svg" alt="Ara 内部：向量元素分散到 lanes，再重排回内存 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-ara-internals.svg"><img src="../../figure_archive/20261007/assets/depth-ara-internals.svg" alt="Ara 内部：向量元素分散到 lanes，再重排回内存 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：ara.sv / lane.sv / vlsu.sv；数据分布示意，不表示每周期恰好完成一元素</p></section>
+<section id="depth-axi-backpressure"><h2>03 · AXI 两拍写：教学时序</h2><p>教材位置：<a href="../../axi.html">axi</a> · <a href="editable/depth-axi-backpressure.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-axi-backpressure.svg"><img src="../../assets/figures-20261007/depth-axi-backpressure.svg" alt="AXI 两拍写：教学时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-axi-backpressure.svg"><img src="../../figure_archive/20261007/assets/depth-axi-backpressure.svg" alt="AXI 两拍写：教学时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。信号母版：assets/waves/axi-backpressure.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-boot-phases"><h2>04 · JTAG 装载：教学事件时序</h2><p>教材位置：<a href="../../boot-debug.html">boot-debug</a> · <a href="editable/depth-boot-phases.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-boot-phases.svg"><img src="../../assets/figures-20261007/depth-boot-phases.svg" alt="JTAG 装载：教学事件时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-boot-phases.svg"><img src="../../figure_archive/20261007/assets/depth-boot-phases.svg" alt="JTAG 装载：教学事件时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。信号母版：assets/waves/boot-phases.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-clocks-current"><h2>05 · 当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域</h2><p>教材位置：<a href="../../clocks.html">clocks</a> · <a href="editable/depth-clocks-current.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-clocks-current.svg"><img src="../../assets/figures-20261007/depth-clocks-current.svg" alt="当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-clocks-current.svg"><img src="../../figure_archive/20261007/assets/depth-clocks-current.svg" alt="当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_soc.sv；target/xilinx/src/dram_wrapper_xilinx.sv；各外设同步逻辑</p></section>
+<section id="depth-clocks-future"><h2>06 · 未来 ASIC：时钟、复位、电源分别划分责任</h2><p>教材位置：<a href="../../power.html">power</a> · <a href="editable/depth-clocks-future.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-clocks-future.svg"><img src="../../assets/figures-20261007/depth-clocks-future.svg" alt="未来 ASIC：时钟、复位、电源分别划分责任 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-clocks-future.svg"><img src="../../figure_archive/20261007/assets/depth-clocks-future.svg" alt="未来 ASIC：时钟、复位、电源分别划分责任 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：平台启动与配置约定；工艺/IP 交付待确认</p></section>
+<section id="depth-cva6-ara"><h2>07 · CVA6–Ara：控制协议与 AXI 数据通路分离</h2><p>教材位置：<a href="../../ara.html">ara</a> · <a href="editable/depth-cva6-ara.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-cva6-ara.svg"><img src="../../assets/figures-20261007/depth-cva6-ara.svg" alt="CVA6–Ara：控制协议与 AXI 数据通路分离 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-cva6-ara.svg"><img src="../../figure_archive/20261007/assets/depth-cva6-ara.svg" alt="CVA6–Ara：控制协议与 AXI 数据通路分离 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：acc_dispatcher.sv；ara/intf_typedef.svh；cheshire_soc.sv::gen_ara</p></section>
+<section id="depth-ddr"><h2>08 · DDR 子系统：AXI 事务、控制器、PHY 与器件引脚</h2><p>教材位置：<a href="../../ddr.html">ddr</a> · <a href="editable/depth-ddr.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-ddr.svg"><img src="../../assets/figures-20261007/depth-ddr.svg" alt="DDR 子系统：AXI 事务、控制器、PHY 与器件引脚 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-ddr.svg"><img src="../../figure_archive/20261007/assets/depth-ddr.svg" alt="DDR 子系统：AXI 事务、控制器、PHY 与器件引脚 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：现有 FPGA dram_wrapper_xilinx 边界；ASIC 供应商控制器/PHY 接口尚未冻结</p></section>
+<section id="depth-handoff"><h2>09 · Ara → NPU → Ara：未来任务交接教学时序</h2><p>教材位置：<a href="../../sharing.html">sharing</a> · <a href="editable/depth-handoff.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-handoff.svg"><img src="../../assets/figures-20261007/depth-handoff.svg" alt="Ara → NPU → Ara：未来任务交接教学时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-handoff.svg"><img src="../../figure_archive/20261007/assets/depth-handoff.svg" alt="Ara → NPU → Ara：未来任务交接教学时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。信号母版：assets/waves/handoff.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-npu-bypass"><h2>10 · 未来 DDR 旁路：数据汇合不等于一致性自动成立</h2><p>教材位置：<a href="../../accelerators.html">accelerators</a> · <a href="editable/depth-npu-bypass.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-npu-bypass.svg"><img src="../../assets/figures-20261007/depth-npu-bypass.svg" alt="未来 DDR 旁路：数据汇合不等于一致性自动成立 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-npu-bypass.svg"><img src="../../figure_archive/20261007/assets/depth-npu-bypass.svg" alt="未来 DDR 旁路：数据汇合不等于一致性自动成立 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：当前 cheshire_soc.sv 主存路径与 M01 待定义接口契约</p></section>
+<section id="depth-ownership"><h2>11 · 未来异构任务：所有权状态与异常回收</h2><p>教材位置：<a href="../../sharing.html">sharing</a> · <a href="editable/depth-ownership.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-ownership.svg"><img src="../../assets/figures-20261007/depth-ownership.svg" alt="未来异构任务：所有权状态与异常回收 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-ownership.svg"><img src="../../figure_archive/20261007/assets/depth-ownership.svg" alt="未来异构任务：所有权状态与异常回收 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：教材异构协议伪代码；NPU / ISP 尚未集成</p></section>
+<section id="depth-reset-release"><h2>12 · 未来 ASIC 放行条件：教学时序</h2><p>教材位置：<a href="../../reset.html">reset</a> · <a href="editable/depth-reset-release.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-reset-release.svg"><img src="../../assets/figures-20261007/depth-reset-release.svg" alt="未来 ASIC 放行条件：教学时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-reset-release.svg"><img src="../../figure_archive/20261007/assets/depth-reset-release.svg" alt="未来 ASIC 放行条件：教学时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。信号母版：assets/waves/reset-release.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-shared-current"><h2>13 · 当前共享数据：Ara 的失效协作有明确参与者</h2><p>教材位置：<a href="../../sharing.html">sharing</a> · <a href="editable/depth-shared-current.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-shared-current.svg"><img src="../../assets/figures-20261007/depth-shared-current.svg" alt="当前共享数据：Ara 的失效协作有明确参与者 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-shared-current.svg"><img src="../../figure_archive/20261007/assets/depth-shared-current.svg" alt="当前共享数据：Ara 的失效协作有明确参与者 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：csr_regfile / acc_dispatcher / axi_inval_filter / cheshire_soc.sv</p></section>
+<section id="depth-shared-future"><h2>14 · 未来共享存储：资源位置、访问路径与协议职责</h2><p>教材位置：<a href="../../sharing.html">sharing</a> · <a href="editable/depth-shared-future.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-shared-future.svg"><img src="../../assets/figures-20261007/depth-shared-future.svg" alt="未来共享存储：资源位置、访问路径与协议职责 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-shared-future.svg"><img src="../../figure_archive/20261007/assets/depth-shared-future.svg" alt="未来共享存储：资源位置、访问路径与协议职责 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：未来 M01 / I01 契约；当前 VRF 不是可被 NPU 共享寻址的 cache</p></section>
+<section id="depth-system-full"><h2>15 · Cheshire / CVA6 / Ara：计算、控制与存储边界</h2><p>教材位置：<a href="../../architecture.html">architecture</a> · <a href="editable/depth-system-full.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-system-full.svg"><img src="../../assets/figures-20261007/depth-system-full.svg" alt="Cheshire / CVA6 / Ara：计算、控制与存储边界 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-system-full.svg"><img src="../../figure_archive/20261007/assets/depth-system-full.svg" alt="Cheshire / CVA6 / Ara：计算、控制与存储边界 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_soc.sv::gen_ara / i_axi_xbar / i_reg_demux / gen_llc；cheshire_pkg.sv</p></section>
+<section id="depth-vector-arithmetic"><h2>16 · 向量算术：教学时序</h2><p>教材位置：<a href="../../ara.html">ara</a> · <a href="editable/depth-vector-arithmetic.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-vector-arithmetic.svg"><img src="../../assets/figures-20261007/depth-vector-arithmetic.svg" alt="向量算术：教学时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-vector-arithmetic.svg"><img src="../../figure_archive/20261007/assets/depth-vector-arithmetic.svg" alt="向量算术：教学时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。信号母版：assets/waves/vector-arithmetic.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-vector-load"><h2>17 · 向量 load：教学时序</h2><p>教材位置：<a href="../../ara.html">ara</a> · <a href="editable/depth-vector-load.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-vector-load.svg"><img src="../../assets/figures-20261007/depth-vector-load.svg" alt="向量 load：教学时序 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-vector-load.svg"><img src="../../figure_archive/20261007/assets/depth-vector-load.svg" alt="向量 load：教学时序 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。信号母版：assets/waves/vector-load.json；所有文字、波形段与总线块可独立编辑</p></section>
+<section id="depth-vector-memory"><h2>18 · 向量访存：地址翻译与数据搬运是两条路径</h2><p>教材位置：<a href="../../ara.html">ara</a> · <a href="editable/depth-vector-memory.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-vector-memory.svg"><img src="../../assets/figures-20261007/depth-vector-memory.svg" alt="向量访存：地址翻译与数据搬运是两条路径 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-vector-memory.svg"><img src="../../figure_archive/20261007/assets/depth-vector-memory.svg" alt="向量访存：地址翻译与数据搬运是两条路径 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：Ara addrgen / vldu / vstu；CVA6 load_store_unit；cheshire_soc::gen_ara</p></section>
+<section id="depth-xbar-full"><h2>19 · AXI Crossbar：7 个发起端、5 个目标与两级译码</h2><p>教材位置：<a href="../../interconnect.html">interconnect</a> · <a href="editable/depth-xbar-full.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/depth-xbar-full.svg"><img src="../../assets/figures-20261007/depth-xbar-full.svg" alt="AXI Crossbar：7 个发起端、5 个目标与两级译码 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/depth-xbar-full.svg"><img src="../../figure_archive/20261007/assets/depth-xbar-full.svg" alt="AXI Crossbar：7 个发起端、5 个目标与两级译码 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：hw/cheshire_pkg.sv::gen_axi_in / gen_axi_out / gen_reg_out；hw/cheshire_soc.sv::i_axi_xbar</p></section>
+<section id="mechanism-clocks"><h2>20 · PLL、分频与门控：时钟生成和事务跨域分别设计</h2><p>教材位置：<a href="../../clocks.html">clocks</a> · <a href="editable/mechanism-clocks.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/mechanism-clocks.svg"><img src="../../assets/figures-20261007/mechanism-clocks.svg" alt="PLL、分频与门控：时钟生成和事务跨域分别设计 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/mechanism-clocks.svg"><img src="../../figure_archive/20261007/assets/mechanism-clocks.svg" alt="PLL、分频与门控：时钟生成和事务跨域分别设计 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：时钟生成通用原理；当前平台边界见 depth-clocks-current</p></section>
+<section id="mechanism-cva6"><h2>21 · CVA6 功能层次：发射、执行、提交与系统接口</h2><p>教材位置：<a href="../../cva6.html">cva6</a> · <a href="editable/mechanism-cva6.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/mechanism-cva6.svg"><img src="../../assets/figures-20261007/mechanism-cva6.svg" alt="CVA6 功能层次：发射、执行、提交与系统接口 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/mechanism-cva6.svg"><img src="../../figure_archive/20261007/assets/mechanism-cva6.svg" alt="CVA6 功能层次：发射、执行、提交与系统接口 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：core/cva6.sv / issue_stage.sv / ex_stage.sv / commit_stage.sv</p></section>
+<section id="mechanism-ddr"><h2>22 · 一次 DDR 读：请求调度与返回数据分别穿过控制器</h2><p>教材位置：<a href="../../ddr.html">ddr</a> · <a href="editable/mechanism-ddr.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/mechanism-ddr.svg"><img src="../../assets/figures-20261007/mechanism-ddr.svg" alt="一次 DDR 读：请求调度与返回数据分别穿过控制器 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/mechanism-ddr.svg"><img src="../../figure_archive/20261007/assets/mechanism-ddr.svg" alt="一次 DDR 读：请求调度与返回数据分别穿过控制器 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：DDR 控制器/PHY 通用职责；不表示固定周期，也不代表已完成 DDR 验证</p></section>
+<section id="mechanism-power"><h2>23 · 关电域与常开域：隔离、保持、电平转换各有职责</h2><p>教材位置：<a href="../../power.html">power</a> · <a href="editable/mechanism-power.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/mechanism-power.svg"><img src="../../assets/figures-20261007/mechanism-power.svg" alt="关电域与常开域：隔离、保持、电平转换各有职责 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/mechanism-power.svg"><img src="../../figure_archive/20261007/assets/mechanism-power.svg" alt="关电域与常开域：隔离、保持、电平转换各有职责 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：ASIC 低功耗通用机制；需工艺库、UPF 与平台协议支持</p></section>
+<section id="mechanism-xbar"><h2>24 · Crossbar 内部：选择目标、预留 W、归还 ID</h2><p>教材位置：<a href="../../interconnect.html">interconnect</a> · <a href="editable/mechanism-xbar.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/mechanism-xbar.svg"><img src="../../assets/figures-20261007/mechanism-xbar.svg" alt="Crossbar 内部：选择目标、预留 W、归还 ID · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/mechanism-xbar.svg"><img src="../../figure_archive/20261007/assets/mechanism-xbar.svg" alt="Crossbar 内部：选择目标、预留 W、归还 ID · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：axi_xbar_unmuxed、axi_mux、axi_demux_simple、axi_demux_id_counters（本地 axi 依赖）</p></section>
+<section id="new-boot"><h2>25 · JTAG 直接装载：主机与目标两条时间线如何汇合</h2><p>教材位置：<a href="../../boot-debug.html">boot-debug</a> · <a href="editable/new-boot.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-boot.svg"><img src="../../assets/figures-20261007/new-boot.svg" alt="JTAG 直接装载：主机与目标两条时间线如何汇合 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-boot.svg"><img src="../../figure_archive/20261007/assets/new-boot.svg" alt="JTAG 直接装载：主机与目标两条时间线如何汇合 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：hw/bootrom；sw/lib/crt0.S；elfloader.cpp；vip_cheshire_soc.sv</p></section>
+<section id="new-build"><h2>26 · 主机上的构建产物：每个文件回答不同问题</h2><p>教材位置：<a href="../../build.html">build</a> · <a href="editable/new-build.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-build.svg"><img src="../../assets/figures-20261007/new-build.svg" alt="主机上的构建产物：每个文件回答不同问题 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-build.svg"><img src="../../figure_archive/20261007/assets/new-build.svg" alt="主机上的构建产物：每个文件回答不同问题 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：sw/sw.mk；sw/lib/crt0.S；当前链接脚本与教材 journey 构建入口</p></section>
+<section id="new-configuration"><h2>27 · 配置何时生效：源码选择、展开结构与运行状态</h2><p>教材位置：<a href="../../configuration.html">configuration</a> · <a href="editable/new-configuration.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-configuration.svg"><img src="../../assets/figures-20261007/new-configuration.svg" alt="配置何时生效：源码选择、展开结构与运行状态 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-configuration.svg"><img src="../../figure_archive/20261007/assets/new-configuration.svg" alt="配置何时生效：源码选择、展开结构与运行状态 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire.mk；cheshire_pkg；gen_cva6_cfg；sw/sw.mk</p></section>
+<section id="new-device"><h2>28 · 一次 UART 寄存器访问：地址、寄存器副作用与引脚</h2><p>教材位置：<a href="../../uart-gpio.html">uart-gpio</a> · <a href="editable/new-device.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-device.svg"><img src="../../assets/figures-20261007/new-device.svg" alt="一次 UART 寄存器访问：地址、寄存器副作用与引脚 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-device.svg"><img src="../../figure_archive/20261007/assets/new-device.svg" alt="一次 UART 寄存器访问：地址、寄存器副作用与引脚 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：UART DIF / HAL；AXI→Reg / APB 适配；UART 寄存器实现</p></section>
+<section id="new-future"><h2>29 · 未来图像系统：流数据、帧缓冲与控制路径分层</h2><p>教材位置：<a href="../../accelerators.html">accelerators</a> · <a href="editable/new-future.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-future.svg"><img src="../../assets/figures-20261007/new-future.svg" alt="未来图像系统：流数据、帧缓冲与控制路径分层 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-future.svg"><img src="../../figure_archive/20261007/assets/new-future.svg" alt="未来图像系统：流数据、帧缓冲与控制路径分层 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：用户产品方向与未来 IP 集成契约；不代表已实现 RTL 或已验证吞吐</p></section>
+<section id="new-integration"><h2>30 · 新增 IP：控制面、主动数据面与完成事件独立定义</h2><p>教材位置：<a href="../../integration.html">integration</a> · <a href="editable/new-integration.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-integration.svg"><img src="../../assets/figures-20261007/new-integration.svg" alt="新增 IP：控制面、主动数据面与完成事件独立定义 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-integration.svg"><img src="../../figure_archive/20261007/assets/new-integration.svg" alt="新增 IP：控制面、主动数据面与完成事件独立定义 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：Cheshire 扩展 Reg / AXI 端口；教材独立 Reg 单元；未来数据面尚需实现</p></section>
+<section id="new-interrupt"><h2>31 · 外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环</h2><p>教材位置：<a href="../../interrupts.html">interrupts</a> · <a href="editable/new-interrupt.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-interrupt.svg"><img src="../../assets/figures-20261007/new-interrupt.svg" alt="外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-interrupt.svg"><img src="../../figure_archive/20261007/assets/new-interrupt.svg" alt="外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：PLIC / CLINT 接入；CPU 中断门控；现有驱动与 trap handler</p></section>
+<section id="new-lanes"><h2>32 · 64 位 AXI 数据拍中的 32 位寄存器访问</h2><p>教材位置：<a href="../../adapters.html">adapters</a> · <a href="editable/new-lanes.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-lanes.svg"><img src="../../assets/figures-20261007/new-lanes.svg" alt="64 位 AXI 数据拍中的 32 位寄存器访问 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-lanes.svg"><img src="../../figure_archive/20261007/assets/new-lanes.svg" alt="64 位 AXI 数据拍中的 32 位寄存器访问 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：AXI byte-lane 语义；cheshire_idma_wrap 与 idma_reg64_2d_reg_top 的当前接口差异</p></section>
+<section id="new-memory"><h2>33 · LLC / SPM：两个别名如何访问同一组 ways</h2><p>教材位置：<a href="../../memory.html">memory</a> · <a href="editable/new-memory.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-memory.svg"><img src="../../assets/figures-20261007/new-memory.svg" alt="LLC / SPM：两个别名如何访问同一组 ways · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-memory.svg"><img src="../../figure_archive/20261007/assets/new-memory.svg" alt="LLC / SPM：两个别名如何访问同一组 ways · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_pkg.sv::get_llc_size；cheshire_soc.sv::gen_llc；axi_llc 依赖</p></section>
+<section id="new-ownership"><h2>34 · 缓冲区交接：地址相同还需要所有权与可见性</h2><p>教材位置：<a href="../../sharing.html">sharing</a> · <a href="editable/new-ownership.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-ownership.svg"><img src="../../assets/figures-20261007/new-ownership.svg" alt="缓冲区交接：地址相同还需要所有权与可见性 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-ownership.svg"><img src="../../figure_archive/20261007/assets/new-ownership.svg" alt="缓冲区交接：地址相同还需要所有权与可见性 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：教材共享缓冲区协议；fence 不替代 cache 清理 / 失效；非硬件自动一致性</p></section>
+<section id="new-route"><h2>35 · 七篇、30 章：由系统概念进入实现与验证</h2><p>教材位置：<a href="../../index.html">index</a> · <a href="editable/new-route.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-route.svg"><img src="../../assets/figures-20261007/new-route.svg" alt="七篇、30 章：由系统概念进入实现与验证 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-route.svg"><img src="../../figure_archive/20261007/assets/new-route.svg" alt="七篇、30 章：由系统概念进入实现与验证 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。维护依据：scripts/pages.json；离线教材当前目录</p></section>
+<section id="new-runtime"><h2>36 · C 对象与运行内存：指令、初值、零初始化与栈</h2><p>教材位置：<a href="../../runtime.html">runtime</a> · <a href="editable/new-runtime.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-runtime.svg"><img src="../../assets/figures-20261007/new-runtime.svg" alt="C 对象与运行内存：指令、初值、零初始化与栈 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-runtime.svg"><img src="../../figure_archive/20261007/assets/new-runtime.svg" alt="C 对象与运行内存：指令、初值、零初始化与栈 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：教材 journey.c；sw/lib/crt0.S；sw/link/common.ldh 与 spm.ld</p></section>
+<section id="new-serial"><h2>37 · I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议</h2><p>教材位置：<a href="../../i2c.html">i2c</a> · <a href="editable/new-serial.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-serial.svg"><img src="../../assets/figures-20261007/new-serial.svg" alt="I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-serial.svg"><img src="../../figure_archive/20261007/assets/new-serial.svg" alt="I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：本地 EEPROM HAL 的 STOP/START 流程；SPI NOR 0x13 读命令；VIP 预填值 0x9a</p></section>
+<section id="new-system"><h2>38 · 三种访问辨认 SoC：字符输出、数组计算、调试装载</h2><p>教材位置：<a href="../../architecture.html">architecture</a> · <a href="editable/new-system.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-system.svg"><img src="../../assets/figures-20261007/new-system.svg" alt="三种访问辨认 SoC：字符输出、数组计算、调试装载 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-system.svg"><img src="../../figure_archive/20261007/assets/new-system.svg" alt="三种访问辨认 SoC：字符输出、数组计算、调试装载 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_soc.sv；UART DIF；CVA6–Ara 专用控制接口</p></section>
+<section id="new-transaction"><h2>39 · AXI 写事务：地址、数据与响应三条独立通道</h2><p>教材位置：<a href="../../axi.html">axi</a> · <a href="editable/new-transaction.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-transaction.svg"><img src="../../assets/figures-20261007/new-transaction.svg" alt="AXI 写事务：地址、数据与响应三条独立通道 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-transaction.svg"><img src="../../figure_archive/20261007/assets/new-transaction.svg" alt="AXI 写事务：地址、数据与响应三条独立通道 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：本地 axi_xbar / axi_mux / axi_demux_simple；教学事件图，不表示固定周期</p></section>
+<section id="new-vector"><h2>40 · 137 个 e32 元素：按实际 vl 分批执行</h2><p>教材位置：<a href="../../vector.html">vector</a> · <a href="editable/new-vector.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/new-vector.svg"><img src="../../assets/figures-20261007/new-vector.svg" alt="137 个 e32 元素：按实际 vl 分批执行 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/new-vector.svg"><img src="../../figure_archive/20261007/assets/new-vector.svg" alt="137 个 e32 元素：按实际 vl 分批执行 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。依据：教材 journey.c；RVV vsetvli 语义与当前 Ara 配置；非运行结果</p></section>
+<section id="teaching-asic-responsibilities"><h2>41 · ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么</h2><p>教材位置：<a href="../../future.html">future</a> · <a href="editable/teaching-asic-responsibilities.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/teaching-asic-responsibilities.svg"><img src="../../assets/figures-20261007/teaching-asic-responsibilities.svg" alt="ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/teaching-asic-responsibilities.svg"><img src="../../figure_archive/20261007/assets/teaching-asic-responsibilities.svg" alt="ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么 · 旧图归档" loading="lazy"></a></figure>
+</div><p>未来方案 / 待实现与验证。依据：Cheshire 集成接口；tech_cells_generic；平台启动与配置约定</p></section>
+<section id="teaching-code-to-execution"><h2>42 · 从 C 到执行：主机产物如何变成目标内存与 CPU 状态</h2><p>教材位置：<a href="../../build.html">build</a> · <a href="editable/teaching-code-to-execution.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/teaching-code-to-execution.svg"><img src="../../assets/figures-20261007/teaching-code-to-execution.svg" alt="从 C 到执行：主机产物如何变成目标内存与 CPU 状态 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/teaching-code-to-execution.svg"><img src="../../figure_archive/20261007/assets/teaching-code-to-execution.svg" alt="从 C 到执行：主机产物如何变成目标内存与 CPU 状态 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：sw/lib/crt0.S；hw/bootrom；elfloader.cpp；vip_cheshire_soc.sv</p></section>
+<section id="teaching-config-contract"><h2>43 · 配置契约：profile、SoC Cfg、软件与运行状态共同约束</h2><p>教材位置：<a href="../../configuration.html">configuration</a> · <a href="editable/teaching-config-contract.editable.svg">导出器规范化 SVG</a></p><div class="pair">
+<figure><figcaption>新版</figcaption><a href="../../assets/figures-20261007/teaching-config-contract.svg"><img src="../../assets/figures-20261007/teaching-config-contract.svg" alt="配置契约：profile、SoC Cfg、软件与运行状态共同约束 · 新版" loading="lazy"></a></figure>
+<figure><figcaption>旧图归档</figcaption><a href="../../figure_archive/20261007/assets/teaching-config-contract.svg"><img src="../../figure_archive/20261007/assets/teaching-config-contract.svg" alt="配置契约：profile、SoC Cfg、软件与运行状态共同约束 · 旧图归档" loading="lazy"></a></figure>
+</div><p>当前源码结构 / 教学示意；非运行证据。源码：cheshire_pkg::gen_cva6_cfg / gen_axi_in/out；build_config_pkg；sw/sw.mk</p></section>
+</main></body></html>

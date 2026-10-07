@@ -5,10 +5,10 @@
 <h2 id="ddr">AXI4 DDR 与设备旁路</h2>
 <p>用户已确认供应商可提供 AXI4 DDR，旧 AXI3 桥规划不再是必选项。接口契约需列地址/数据/ID/USER 宽、容量映射、burst 与窄访问、最大在途、顺序、错误响应、时钟复位及初始化完成。现有 FPGA 的 64→512 位、ID 适配和 MIG UI CDC 是板级实现，后续应按供应商 AXI 接口重新核对。</p>
 <p>用户要求 NPU/ISP 数据绕过 LLC，减少其分配和替换压力。可在 DDR 上游增加互连，把 CPU/Ara 的 LLC 出口与设备数据口汇合；这仍共享 DDR 带宽。CPU/设备共享区域要统一缓存属性、所有权和通知协议，旁路写还需考虑上游 AMO/LRSC 的观察范围。把原子单元移位置并不会自动生成全系统一致性。</p>
-<figure><img src="assets/new-future.svg" alt="规划中的图像输入、ISP与NPU走DDR旁路，CPU/Ara保留LLC，控制和IRQ独立连接"><figcaption>未来方案。没有为新 IP 冻结地址、位宽、时钟或最终软件栈。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-future.svg" alt="规划中的图像输入、ISP与NPU走DDR旁路，CPU/Ara保留LLC，控制和IRQ独立连接"><figcaption>未来方案。没有为新 IP 冻结地址、位宽、时钟或最终软件栈。</figcaption></figure>
 <h2 id="npu-topology">NPU / ISP 旁路 LLC 的系统接入规划</h2>
 <p>用户规划让 NPU/ISP 数据流绕过 LLC，并与 LLC 下游在 DDR 前合流。新增一层互连需要合并 ID 空间、保存 W 路由和读写顺序、限制各端在途量，并定义背压与带宽保障。当前 SoC 的外部 master 入口通常仍进入原系统拓扑，接到该入口不自动等于实现 DDR 旁路。</p>
-<figure><img src="assets/depth-npu-bypass.svg" alt="已有 CPU Ara LLC 路径和未来 NPU ISP 旁路在新 DDR 互连合流"><figcaption>未来拓扑候选，尚未修改 RTL。控制、IRQ、缓存副本和原子边界分别验收。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-npu-bypass.svg" alt="已有 CPU Ara LLC 路径和未来 NPU ISP 旁路在新 DDR 互连合流"><figcaption>未来拓扑候选，尚未修改 RTL。控制、IRQ、缓存副本和原子边界分别验收。</figcaption></figure>
 <h3 id="ip-contracts">逐 IP 的数据与控制交付</h3>
 <table><tr><th>模块</th><th>数据与控制接口</th><th>接入前需要的规格</th></tr><tr><td>NPU</td><td>AXI 主端搬张量；Reg/AXI-Lite 控制；状态/IRQ；可选本地 SRAM</td><td>算子、数据类型、布局、地址位宽、描述符/队列、错误与取消、对齐、支持的 burst、量化与数值规则</td></tr><tr><td>ISP</td><td>流输入/输出或 DDR 缓冲；控制寄存器</td><td>像素格式/位深、行/帧边界、stride、裁剪、背压或丢帧规则、最大突发与缓冲量</td></tr><tr><td>LVDS 接收</td><td>PAD/PHY → 解串 → 字/行/帧恢复 → CDC FIFO</td><td>电气与速率、lane 数、时钟方式、训练、码字对齐、帧协议；LVDS 本身不规定图像包格式</td></tr><tr><td>DDR AXI4 IP</td><td>共享从端 + 控制面 + PHY</td><td>见<a href="ddr.html#ddr-subsystem">DDR 接口表</a>；端口容量和响应约束成为上游设计输入</td></tr></table>
 <h3 id="staged-checks">分阶段验收</h3>

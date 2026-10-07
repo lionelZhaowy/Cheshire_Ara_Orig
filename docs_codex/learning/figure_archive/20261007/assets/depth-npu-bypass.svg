@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 695" role="img" aria-labelledby="title desc"><title id="title">未来 NPU / ISP 绕过 LLC 的拓扑候选</title><desc id="desc">现有 CPU/Ara 主存路径与未来旁路合流；该图不是已实现 RTL。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="695" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">未来 NPU / ISP 绕过 LLC 的拓扑候选</text>
+<text x="32" y="74" class="small" text-anchor="start">现有 CPU/Ara 主存路径与未来旁路合流；该图不是已实现 RTL。</text>
+<rect x="40.0" y="115" width="460.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="270.0" y="154.0" class="box" text-anchor="middle">CPU / Ara / 当前互连</text>
+<text x="270.0" y="180.0" class="box" text-anchor="middle">L1 与 pending 协作</text>
+<rect x="520.0" y="115" width="460.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="750.0" y="154.0" class="box" text-anchor="middle">未来 NPU / ISP</text>
+<text x="750.0" y="180.0" class="box" text-anchor="middle">独立读写 / 不经 LLC</text>
+<rect x="60" y="290" width="420" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="270.0" y="328.0" class="box" text-anchor="middle">现有原子处理 → LLC</text>
+<text x="270.0" y="354.0" class="box" text-anchor="middle">AMO / LRSC 的监视边界需重审</text>
+<path d="M270,207 L270,290" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="590" y="290" width="420" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="800.0" y="328.0" class="box" text-anchor="middle">旁路数据端口 / CDC / 限流</text>
+<text x="800.0" y="354.0" class="box" text-anchor="middle">普通写也会影响 CPU 缓存与 reservation</text>
+<path d="M750,207 L800,290" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="130" y="470" width="820" height="70" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="540.0" y="511.0" class="box" text-anchor="middle">新增 DDR 仲裁 / ID 与顺序适配 → AXI4 DDR 子系统</text>
+<path d="M270,380 L350,470" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M800,380 L730,470" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="590" class="small" text-anchor="start">选择：禁止共享原子区，或设计涵盖所有访问者的原子/一致性协议并验证。</text>
+<text x="32" y="635" class="small" text-anchor="start">控制寄存器仍经 Reg，完成经 IRQ/状态；旁路与控制面各自定义地址、复位、错误和超时。</text></svg>

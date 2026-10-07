@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 610" role="img" aria-labelledby="title desc"><title id="title">设备事件怎样让 CPU 执行处理函数</title><desc id="desc">PLIC 外部中断与 CLINT 计时器是不同入口。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="610" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">设备事件怎样让 CPU 执行处理函数</text>
+<text x="32" y="74" class="small" text-anchor="start">PLIC 外部中断与 CLINT 计时器是不同入口。</text>
+<rect x="35" y="130" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="170.5" class="box" text-anchor="middle">设备状态</text>
+<text x="190.0" y="196.5" class="box" text-anchor="middle">产生事件 / 保持 IRQ</text>
+<path d="M345,177 L375,177" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="375" y="130" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="530.0" y="170.5" class="box" text-anchor="middle">PLIC</text>
+<text x="530.0" y="196.5" class="box" text-anchor="middle">pending / priority / enable</text>
+<path d="M685,177 L715,177" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="715" y="130" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="870.0" y="170.5" class="box" text-anchor="middle">CPU CSR 门控</text>
+<text x="870.0" y="196.5" class="box" text-anchor="middle">mie、mstatus → mtvec</text>
+<rect x="715" y="325" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="870.0" y="365.5" class="box" text-anchor="middle">trap handler</text>
+<text x="870.0" y="391.5" class="box" text-anchor="middle">识别 mcause → claim 来源</text>
+<rect x="375" y="325" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="530.0" y="365.5" class="box" text-anchor="middle">设备处理</text>
+<text x="530.0" y="391.5" class="box" text-anchor="middle">读数据 / 清设备事件</text>
+<rect x="35" y="325" width="310" height="95" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="365.5" class="box" text-anchor="middle">PLIC complete → mret</text>
+<text x="190.0" y="391.5" class="box" text-anchor="middle">释放服务状态 / 返回执行</text>
+<path d="M870,225 L870,325" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M715,372 L685,372" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M375,372 L345,372" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="190" y="470" width="680" height="70" rx="9" fill="#fff3da" stroke="#a7c2cb"/>
+<text x="530.0" y="511.0" class="box" text-anchor="middle">CLINT：mtime ≥ mtimecmp → MTIP；处理后推迟下一次比较值</text>
+<text x="32" y="580" class="small" text-anchor="start">中断通知不自动清设备状态；只 complete 而不清源，可能立即再次进入处理函数。</text></svg>

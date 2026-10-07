@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>Ara 内部：向量元素分散到 lanes，再重排回内存</title>
+<desc>示例：VLEN=2048、2 lanes、32 个向量寄存器；每个寄存器 256 B，VRF 总计 8 KiB。；源码：ara.sv / lane.sv / vlsu.sv；数据分布示意，不表示每周期恰好完成一元素</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="355" width="770" height="430" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="965" y="355" width="770" height="430" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="440.0,532 440,570 250,570 250.0,610" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="250.00,610.00 255.00,598.00 245.00,598.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="415,667.5 470,667.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="470.00,667.50 458.00,662.50 458.00,672.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="635,610 635,565 680,565 680,532" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="680.00,532.00 675.00,544.00 685.00,544.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1350.0,532 1350,570 1160,570 1160.0,610" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1160.00,610.00 1165.00,598.00 1155.00,598.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1325,667.5 1380,667.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1380.00,667.50 1368.00,662.50 1368.00,672.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1545,610 1545,565 1590,565 1590,532" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1590.00,532.00 1585.00,544.00 1595.00,544.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="440,298 440,420" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="440.00,420.00 445.00,408.00 435.00,408.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1350,298 1350,420" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1350.00,420.00 1355.00,408.00 1345.00,408.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="825,755 900,755 900,820" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="900.00,820.00 905.00,808.00 895.00,808.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="965,755 925,755 925,820" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="925.00,820.00 930.00,808.00 920.00,808.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="710,820 710,800 765,800 765,785" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="765.00,785.00 760.00,797.00 770.00,797.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1090,820 1090,800 1040,800 1040,785" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1040.00,785.00 1035.00,797.00 1045.00,797.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="440,785 440,930" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="440.00,930.00 445.00,918.00 435.00,918.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1350,785 1350,930" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1350.00,930.00 1355.00,918.00 1345.00,918.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">Ara 内部：向量元素分散到 lanes，再重排回内存</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">示例：VLEN=2048、2 lanes、32 个向量寄存器；每个寄存器 256 B，VRF 总计 8 KiB。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：ara.sv / lane.sv / vlsu.sv；数据分布示意，不表示每周期恰好完成一元素</text>
+<rect id="disp" x="55" y="200" width="1680" height="98" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="55" y="200" width="5" height="98" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="72" y="232" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="disp">dispatcher → sequencer</text>
+<text x="72" y="268" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="disp">vtype / vl / vstart → 依赖跟踪、功能单元发出与完成汇总</text>
+<text x="73" y="390" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">lane 0：VRF 4 KiB</text>
+<rect id="vrf0" x="85" y="420" width="710" height="112" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="85" y="420" width="5" height="112" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="102" y="452" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vrf0">分布式寄存器字节</text>
+<text x="102" y="488" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf0">e32 元素 0、2、4、6 …</text>
+<text x="102" y="518" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf0">VLEN 与 lane 数共同决定存储分片</text>
+<rect id="alu0" x="85" y="610" width="330" height="115" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="85" y="610" width="5" height="115" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="102" y="642" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="alu0">操作数队列 → ALU</text>
+<text x="102" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="alu0">整数 / MUL / FPU</text>
+<rect id="res0" x="470" y="610" width="325" height="115" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="470" y="610" width="5" height="115" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="487" y="642" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="res0">结果写回 VRF</text>
+<text x="487" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="res0">按目标寄存器归位</text>
+<text x="983" y="390" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">lane 1：VRF 4 KiB</text>
+<rect id="vrf1" x="995" y="420" width="710" height="112" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="995" y="420" width="5" height="112" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1012" y="452" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vrf1">分布式寄存器字节</text>
+<text x="1012" y="488" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf1">e32 元素 1、3、5、7 …</text>
+<text x="1012" y="518" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf1">VLEN 与 lane 数共同决定存储分片</text>
+<rect id="alu1" x="995" y="610" width="330" height="115" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="995" y="610" width="5" height="115" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1012" y="642" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="alu1">操作数队列 → ALU</text>
+<text x="1012" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="alu1">整数 / MUL / FPU</text>
+<rect id="res1" x="1380" y="610" width="325" height="115" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1380" y="610" width="5" height="115" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1397" y="642" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="res1">结果写回 VRF</text>
+<text x="1397" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="res1">按目标寄存器归位</text>
+<rect id="cross" x="635" y="820" width="525" height="70" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="635" y="820" width="5" height="70" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="652" y="852" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cross">masku / sldu：使能与跨 lane 交换</text>
+<rect id="vlsu" x="55" y="930" width="1680" height="83" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="930" width="5" height="83" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="962" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vlsu">VLSU：连续内存 → load 分发 → lanes → store 重排 → AXI</text>
+<text x="72" y="998" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="vlsu">VRF 与临时 FIFO 不构成 NPU 可寻址共享 cache</text>
+</svg>

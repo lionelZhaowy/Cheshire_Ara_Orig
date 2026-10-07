@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 570" role="img" aria-labelledby="title desc"><title id="title">写事务：接受地址不等于写入完成</title><desc id="desc">同一笔写入横跨 AW、W、B 三条独立通道；W 没有 WID。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="570" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">写事务：接受地址不等于写入完成</text>
+<text x="32" y="74" class="small" text-anchor="start">同一笔写入横跨 AW、W、B 三条独立通道；W 没有 WID。</text>
+<rect x="40" y="110" width="245" height="55" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="162.5" y="143.5" class="box" text-anchor="middle">发起端</text>
+<rect x="315" y="110" width="245" height="55" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="437.5" y="143.5" class="box" text-anchor="middle">地址译码 / demux</text>
+<rect x="590" y="110" width="185" height="55" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="682.5" y="143.5" class="box" text-anchor="middle">仲裁 / mux</text>
+<rect x="805" y="110" width="210" height="55" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="910.0" y="143.5" class="box" text-anchor="middle">目标</text>
+<path d="M60,235 L995,235" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="217" class="box" text-anchor="start">AW：地址 / ID</text>
+<text x="460" y="265" class="small" text-anchor="start">记住所选目标</text>
+<path d="M60,330 L995,330" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="312" class="box" text-anchor="start">W：数据 / STRB / LAST</text>
+<text x="460" y="360" class="small" text-anchor="start">按 AW 顺序路由</text>
+<path d="M995,425 L60,425" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="70" y="407" class="box" text-anchor="start">B：ID / RESP</text>
+<text x="460" y="455" class="small" text-anchor="start">完成或报告错误</text>
+<text x="32" y="510" class="small" text-anchor="start">每通道独立 VALID/READY 握手；FIFO 和在途状态保存接受顺序，不能只凭组合地址选择 W。</text></svg>

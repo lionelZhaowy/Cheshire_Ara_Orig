@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>PLL、分频与门控：时钟生成和事务跨域分别设计</title>
+<desc>候选原理图：未指定最终 ASIC 频率、倍频值、电压或域划分。；依据：时钟生成通用原理；当前平台边界见 depth-clocks-current</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="410" y="205" width="610" height="440" rx="12" fill="#F3EFF9" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="330,337.5 445,342.5" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="445.00,342.50 433.23,336.98 432.79,346.97" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="680,342.5 745,342.5" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="745.00,342.50 733.00,337.50 733.00,347.50" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="860,400 860,465 720,465 720,490" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="720.00,490.00 725.00,478.00 715.00,478.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="545,540 425,540 425,435 565,435 565,400" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="565.00,400.00 560.00,412.00 570.00,412.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="980,345 1070,345 1070,270 1120,270" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1120.00,270.00 1108.00,265.00 1108.00,275.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="980,345 1070,345 1070,597 1120,597" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1120.00,597.00 1108.00,592.00 1108.00,602.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1360,270.0 1460,285.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1460.00,285.00 1448.87,278.28 1447.39,288.16" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1360,597.5 1460,600.0" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1460.00,600.00 1448.13,594.70 1447.88,604.70" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1602.5,350 1602.5,535" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1602.50,535.00 1607.50,523.00 1597.50,523.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">PLL、分频与门控：时钟生成和事务跨域分别设计</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">候选原理图：未指定最终 ASIC 频率、倍频值、电压或域划分。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：时钟生成通用原理；当前平台边界见 depth-clocks-current</text>
+<rect id="ref" x="50" y="280" width="280" height="115" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="50" y="280" width="5" height="115" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="67" y="312" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ref">参考时钟</text>
+<text x="67" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ref">f_ref</text>
+<text x="428" y="240" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">PLL 反馈环（简化原理）</text>
+<rect id="divn" x="445" y="285" width="235" height="115" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="445" y="285" width="5" height="115" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="462" y="317" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="divn">参考 ÷N</text>
+<text x="462" y="353" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="divn">送相位比较</text>
+<rect id="vco" x="745" y="285" width="235" height="115" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="745" y="285" width="5" height="115" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="762" y="317" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vco">相位 / 振荡源</text>
+<text x="762" y="353" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vco">闭环调节</text>
+<rect id="feedback" x="545" y="490" width="350" height="100" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="545" y="490" width="5" height="100" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="562" y="522" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="feedback">反馈 ÷M</text>
+<text x="562" y="558" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="feedback">锁定状态由平台监测</text>
+<rect id="c0" x="1120" y="220" width="240" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1120" y="220" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1137" y="252" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c0">输出 ÷C0</text>
+<text x="1137" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="c0">系统时钟</text>
+<rect id="sys" x="1460" y="220" width="285" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1460" y="220" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1477" y="252" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="sys">系统域</text>
+<text x="1477" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="sys">复位同步释放</text>
+<text x="1477" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="sys">CPU / 互连</text>
+<rect id="c1" x="1120" y="535" width="240" height="125" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1120" y="535" width="5" height="125" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1137" y="567" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c1">输出 ÷C1</text>
+<text x="1137" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="c1">门控：停止脉冲</text>
+<text x="1137" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="c1">安全开关时钟</text>
+<rect id="per" x="1460" y="535" width="285" height="130" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1460" y="535" width="5" height="130" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1477" y="567" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="per">外设候选域</text>
+<text x="1477" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="per">本域复位同步</text>
+<text x="1477" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="per">事务通过 CDC</text>
+<text x="1520" y="450" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">CDC 桥</text>
+<rect id="note-8" x="50" y="790" width="790" height="145" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="50" y="790" width="5" height="145" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="67" y="822" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">常开控制的事务顺序</text>
+<text x="67" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">停发 → 排空 → 切换 / lock → 域内复位 / 就绪 → 放行</text>
+<text x="67" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">lock、复位释放与设备可工作是三个不同条件</text>
+<rect id="note-9" x="930" y="790" width="815" height="145" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="930" y="790" width="5" height="145" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="947" y="822" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-9">分频 / 门控 / clock-enable</text>
+<text x="947" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">分频改变周期；门控停止时钟脉冲</text>
+<text x="947" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">clock-enable 决定寄存器是否更新，不是新的时钟域</text>
+</svg>

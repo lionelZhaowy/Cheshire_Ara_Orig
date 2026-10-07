@@ -5,7 +5,7 @@
 <p>一笔请求可以包含多个数据拍，称为 burst。LEN 编码拍数减一，SIZE 编码每拍字节数的二进制对数；WSTRB 逐位指定有效写字节，LAST 标记最后一个数据拍。ID 标记事务身份，让同时在途的请求和返回能够关联；BRESP/RRESP 携带成功或错误状态。</p>
 <h3 id="write-lifecycle">写地址、写数据与响应分别完成</h3>
 <p>发送方可以先提出 W，也可以 AW 和 W 错开到达。AW 握手表示接受地址，W 最后一拍握手表示数据传完，B 握手才结束写响应。这个区别决定了何时能释放路由状态，也决定了设备报告任务完成前要等待哪些响应。</p>
-<figure><img src="assets/new-transaction.svg" alt="写地址保存路由，写数据按握手推进，最后等待写响应"><figcaption>写事务通道与路由流程图；具体握手见下面的 WaveDrom 教学时序。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-transaction.svg" alt="写地址保存路由，写数据按握手推进，最后等待写响应"><figcaption>写事务通道与路由流程图；具体握手见下面的 WaveDrom 教学时序。</figcaption></figure>
 <h3 id="timing">用 WaveDrom 检查背压</h3>
 <figure><img src="assets/depth-axi-backpressure.svg" alt="AXI 地址和两拍数据分别背压，最后响应被接收"><figcaption>教学时序，非仿真波形。两拍 W 分别成交，WLAST 只标记第二拍；B 等待接收时也保持 BID/RESP。 · <a href="assets/waves/axi-backpressure.json">WaveDrom 源文件</a></figcaption></figure>
 <p>按图逐拍检查：AW 等待时地址/ID 不变；第一拍 W 等到 WREADY 才推进；第二拍即使已经 LAST，也必须等自己的握手；BVALID 后若 BREADY 尚未开放，响应继续保持。一个验证器应同时检查稳定性、拍数、LAST、ID 和响应，不能只计 AW 次数。规范语义参照 <a href="OFFICIAL_SOURCES.md">Arm AMBA AXI 官方资料</a>，本地队列行为以源码为准。</p>

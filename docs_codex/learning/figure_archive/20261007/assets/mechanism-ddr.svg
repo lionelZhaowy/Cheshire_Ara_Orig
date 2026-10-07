@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 610" role="img" aria-labelledby="title desc"><title id="title">一次读请求：AXI 到器件，再返回 AXI</title><desc id="desc">通用原理；供应商控制器的地址位分配、队列和训练寄存器尚待确定。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="610" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">一次读请求：AXI 到器件，再返回 AXI</text>
+<text x="32" y="74" class="small" text-anchor="start">通用原理；供应商控制器的地址位分配、队列和训练寄存器尚待确定。</text>
+<rect x="25" y="150" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="132.5" y="195.5" class="box" text-anchor="middle">AXI AR 队列</text>
+<text x="132.5" y="221.5" class="box" text-anchor="middle">保存地址 / ID / burst</text>
+<path d="M240,202 L290,202" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="290" y="150" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="397.5" y="195.5" class="box" text-anchor="middle">映射与调度</text>
+<text x="397.5" y="221.5" class="box" text-anchor="middle">bank / row / column</text>
+<path d="M505,202 L555,202" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="555" y="150" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="662.5" y="195.5" class="box" text-anchor="middle">PHY 发命令</text>
+<text x="662.5" y="221.5" class="box" text-anchor="middle">ACT / READ / PRE</text>
+<path d="M770,202 L820,202" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="820" y="150" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="927.5" y="195.5" class="box" text-anchor="middle">DRAM bank</text>
+<text x="927.5" y="221.5" class="box" text-anchor="middle">开行 / 列读 / 刷新</text>
+<rect x="820" y="360" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="927.5" y="405.5" class="box" text-anchor="middle">DQ / DQS 返回</text>
+<text x="927.5" y="431.5" class="box" text-anchor="middle">器件输出读数据</text>
+<path d="M927,255 L927,360" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="555" y="360" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="662.5" y="405.5" class="box" text-anchor="middle">PHY 采样与对齐</text>
+<text x="662.5" y="431.5" class="box" text-anchor="middle">训练决定采样关系</text>
+<path d="M820,412 L770,412" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="290" y="360" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="397.5" y="405.5" class="box" text-anchor="middle">控制器返回缓冲</text>
+<text x="397.5" y="431.5" class="box" text-anchor="middle">重组 AXI 数据拍</text>
+<path d="M555,412 L505,412" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="25" y="360" width="215" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="132.5" y="405.5" class="box" text-anchor="middle">AXI R 通道</text>
+<text x="132.5" y="431.5" class="box" text-anchor="middle">RID / RLAST / 握手</text>
+<path d="M290,412 L240,412" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="530" class="small" text-anchor="start">行命中可省去换行步骤；行冲突、刷新、仲裁和 R 背压都会改变可见延迟。</text>
+<text x="32" y="570" class="small" text-anchor="start">本图表示数据路径，不代表固定周期时序；不能用一次 AR 握手推断 DRAM 已完成读取。</text></svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>新增 IP：控制面、主动数据面与完成事件独立定义</title>
+<desc>从只读写寄存器的计算单元起步，再按需求增加 AXI 主端与 IRQ；不改变现有接口就不能假定具备新能力。；依据：Cheshire 扩展 Reg / AXI 端口；教材独立 Reg 单元；未来数据面尚需实现</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="595" y="200" width="680" height="650" rx="12" fill="#F3EFF9" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="440,382.5 640,355.0" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="640.00,355.00 627.43,351.68 628.79,361.59" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="935.0,440 935.0,580" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="935.00,580.00 940.00,568.00 930.00,568.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1230,670.0 1420,367.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1420.00,367.50 1409.38,375.00 1417.85,380.32" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1230,670.0 1420,677.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1420.00,677.50 1408.21,672.03 1407.81,682.02" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">新增 IP：控制面、主动数据面与完成事件独立定义</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">从只读写寄存器的计算单元起步，再按需求增加 AXI 主端与 IRQ；不改变现有接口就不能假定具备新能力。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：Cheshire 扩展 Reg / AXI 端口；教材独立 Reg 单元；未来数据面尚需实现</text>
+<rect id="cpu" x="55" y="280" width="385" height="205" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="280" width="5" height="205" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="312" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU / 驱动</text>
+<text x="72" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">写参数 → START</text>
+<text x="72" y="378" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">轮询 STATUS / 读取 RESULT</text>
+<text x="72" y="408" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">中断模式仍需检查设备状态</text>
+<text x="613" y="235" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">自有 IP 的职责边界</text>
+<rect id="reg" x="640" y="270" width="590" height="170" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="640" y="270" width="5" height="170" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="657" y="302" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="reg">Reg 目标：START / BUSY / DONE / ERROR</text>
+<text x="657" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="reg">地址、字节写、副作用与复位值</text>
+<text x="657" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="reg">忙时提交、参数快照与结果稳定条件</text>
+<rect id="compute" x="640" y="580" width="590" height="180" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="640" y="580" width="5" height="180" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="657" y="612" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="compute">内部状态机 / 计算资源</text>
+<text x="657" y="648" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="compute">接受一次任务 → 执行 → 发布结果</text>
+<text x="657" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="compute">局部复位要处理已接受事务</text>
+<text x="657" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="compute">异常结束须保留可诊断状态</text>
+<rect id="axi" x="1420" y="275" width="325" height="185" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1420" y="275" width="5" height="185" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1437" y="307" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="axi">可选 AXI 主端</text>
+<text x="1437" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="axi">地址 / 长度 / 对齐</text>
+<text x="1437" y="373" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="axi">ID / 在途 / 错误恢复</text>
+<text x="1437" y="403" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="axi">共享缓冲区所有权</text>
+<rect id="irq" x="1420" y="595" width="325" height="165" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1420" y="595" width="5" height="165" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1437" y="627" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="irq">可选 IRQ → PLIC</text>
+<text x="1437" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="irq">设备事件清除</text>
+<text x="1437" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="irq">claim / complete</text>
+<text x="1437" y="723" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="irq">不替代结果检查</text>
+<rect id="note-5" x="55" y="915" width="1690" height="110" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="915" width="5" height="110" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="947" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-5">系统验收必须跨过接口边界</text>
+<text x="72" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">寄存器副作用 → 一次受控任务 → 数值结果 → 错误 / 超时 / 重置；增加主端还要验证地址权限、缓存可见性与跨域排空。</text>
+</svg>

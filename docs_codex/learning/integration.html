@@ -16,7 +16,7 @@
 <h3 id="control"><span class="section-number">27.1.3</span> 接入 Reg 扩展端口</h3>
 <p>生产接入前要先选择未冲突的地址窗口，再配置 RegExtNumSlv、RegExtNumRules 和 RegionIdx/Start/End。端口数描述接口数量，规则数描述窗口数量；外部规则索引使用局部端口编号。gen_axi_out 同时把外部 Reg 窗口送向第一层桥，gen_reg_out 再选择外部设备。</p>
 <p>wrapper 应检查绝对地址在本设备窗口内，减去基址形成内部偏移，适配请求/响应字段，并为关闭分支和错误访问提供响应。若随意截掉高地址位，会让其他地址别名到同一寄存器。软件头、地址属性与测试模型使用同一分配记录，本教材不预先占用生产地址。</p>
-<figure><img src="assets/new-integration.svg" alt="CPU经两级译码和Reg桥访问独立计算单元，IRQ接入控制器，新增AXI数据口需另外定义"><figcaption>实线展示拟接入的控制关系，虚线为后续主动访存扩展。当前只存在独立教学单元。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-integration.svg" alt="CPU经两级译码和Reg桥访问独立计算单元，IRQ接入控制器，新增AXI数据口需另外定义"><figcaption>实线展示拟接入的控制关系，虚线为后续主动访存扩展。当前只存在独立教学单元。</figcaption></figure>
 <h3 id="irq"><span class="section-number">27.1.4</span> 接入中断并验证完成协议</h3>
 <p>把 irq 接到明确的外部源，更新 PLIC/Router/CLIC 生成尺寸和软件源号。此单元采用电平中断，直到清 DONE 才消除原因；CPU handler 领取源号、读取 RESULT、清 DONE，再 complete。源同步和 reset 期间电平也要有定义。</p>
 <p>独立单元只证明 irq 引脚按约定变化；系统验证还要执行真实 CPU handler，检查被屏蔽、使能、未清、重复事件及异常源号。当前 58 个 PLIC 源由内部向量占用，新增源需要生成配置配合，不能仅接一根外部线就沿用旧表。</p>

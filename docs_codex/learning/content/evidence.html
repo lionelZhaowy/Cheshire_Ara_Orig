@@ -1,7 +1,13 @@
+<h2 id="figures-20261007">2026-10-07：现用插图重绘与可编辑导出</h2>
+<p>当前使用37张重绘结构图与6张WaveDrom教学时序，保留七篇/30章及历史证据。按用户2026-10-07的最新要求，已撤回6张手工波形，恢复既有WaveDrom生成路径；最新检查见<a href="evidence/wavedrom-restoration-20261007/">恢复记录</a>，PPTX只包含37张结构图。<a href="figures/20261007/index.html">新旧图对照页</a>提供章节入口与原生可编辑PPTX；<a href="FIGURES.md">维护说明</a>记录母版、归档和检查方式。Crossbar 的7×5编号限于图中明确的配置，所有时序仍为教学示意。</p>
+<p>独立证据位于<a href="evidence/figures-20261007/">本轮目录</a>，包含输入快照、来源哈希、SVG实际渲染及网页检查；具体范围以各报告为准。本轮未构建软件，未编译或运行生产RTL，未综合、板测或实施ASIC。</p>
 <h2 id="teaching-20261007">2026-10-07：官方资料与本地实现的教学解读</h2>
 <p>输入 HEAD 为 <code>5ddec4fb4e982b460b12c3f3587523807602d5d4</code>，工作区原有协作记录保留。本轮扩充硬件角色、CVA6 配置族、SoC 组合约束、AXI/LLC 事务、ASIC 资源与初始化依赖，并同步软件分层、工具链和各级启动。保留七篇/30 章、六项实验、原参数字典和既有证据。</p>
 <p><a href="OFFICIAL_SOURCES.md#teaching-20261007">官方章节与教程落点</a>明确在线版本与本地实现的区别；<a href="evidence/teaching-20261007/sources.json">本轮源码哈希</a>用于复核字段与消费者；<a href="evidence/teaching-20261007/input.json">修改前输入快照</a>用于保护检查。网站检查报告保存在 <a href="evidence/teaching-20261007/">本轮独立证据目录</a>，每次检查使用新子目录，实际结果以其中 checks.txt/browser.txt 与 run.json 为准。</p>
 <p>技术结论来自源码静态确认，三张新增 SVG 为教学示意。未新增软件构建、RTL 仿真、综合或板测记录。Platform ROM 正常返回、仿真 profile/decoder、生成模块尺寸及设备 HAL 等已有缺口继续保留；未来 ASIC 的 PLL、SRAM、DDR 寄存器与电源域需供应商/平台交付。</p>
+<h3 id="review-fixes-20261007">独立评审 R1/R2 的定向修正</h3>
+<p>以 HEAD <code>f01487c2f3c3e990b515bff813227b97049976a3</code> 复核：<a href="boot.html#platform-rom">Platform ROM</a> 区分保留内部 LLC、旁路及关闭 Boot ROM 的首次栈访问责任；同步时钟、运行环境与平台专题。<a href="configuration.html#case-baseline">AXI RT、CLIC、IRQ Router</a> 拆为独立配置记录，分别说明 CPU 有效值、尺寸/编号、软件依赖、最小验收及阻塞。三个案例仍是静态确认/待验证，未运行软件或 RTL。</p>
+<p>检查按现有入口写入<a href="evidence/review-fixes-20261007/">新证据目录</a>，旧报告及独立评审原件保留。源文件快照见<a href="evidence/review-fixes-20261007/sources.json">本轮来源哈希</a>；结果以本目录各次 checks.txt/browser.txt 为准。</p>
 <h2 id="refinement">2026-09-29：机制讲解与维护完善</h2>
 <p>保留七篇/30章，修正主题引用，补 Crossbar、DDR、PLL、电源与 CVA6 的机制图和实例，按模式展开 Boot。此次验证限于本地源码审阅、文档生成和离线网页；软件、RTL、板测与性能证据没有新增。</p>
 <p><a href="REFINEMENT.md">复审落实与来源</a> · <a href="evidence/refinement-20260929/checks/checks.txt">结构检查</a> · <a href="evidence/refinement-20260929/browser/browser.txt">浏览器检查</a> · <a href="evidence/refinement-20260929/output-protection.json">输出保护检查</a> · <a href="evidence/refinement-20260929/sources.json">本地来源</a>。维护脚本默认在新目录输出，不重写下面的历史报告；生成一致性检查在临时副本执行。</p>

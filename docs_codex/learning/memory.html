@@ -6,7 +6,7 @@
 <p>缓存把数据行保存在近端，用索引选择候选组、标签和有效位判断命中。缺失时从下级取回，写回缓存还可能先把被替换的脏行写下去。写回（WB）允许修改暂留缓存；写穿（WT）把写向下传播，但仍有读副本和写缓冲。外部设备访问同一物理地址时，必须明确这些副本如何同步。</p>
 <h3 id="array"><span class="section-number">11.1.1</span> 同一阵列的缓存与 SPM 用途</h3>
 <p>SPM 是软件直接管理固定地址的方式，SRAM 是实现存储阵列的技术，两者描述不同层次。当前 LLC 阵列可按 way 分给缓存或 SPM；默认容量为 <code>8 ways × 256 lines × 8 blocks × 64/8 bytes = 128 KiB</code>。启动全部分为 SPM 后，CPU 代码和栈实际依赖这份阵列。</p>
-<figure><img src="assets/new-memory.svg" alt="CPU经过L1，Ara和DMA各自发起AXI，SPM两个别名共享LLC阵列，外存走下游接口"><figcaption>当前存储关系。Ara 的失效通知是特定路径，不覆盖全部设备；未来 DDR 旁路见<a href="accelerators.html#ddr">外部 DDR 集成拓扑</a>。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-memory.svg" alt="CPU经过L1，Ara和DMA各自发起AXI，SPM两个别名共享LLC阵列，外存走下游接口"><figcaption>当前存储关系。Ara 的失效通知是特定路径，不覆盖全部设备；未来 DDR 旁路见<a href="accelerators.html#ddr">外部 DDR 集成拓扑</a>。</figcaption></figure>
 <h2 id="llc"><span class="section-number">11.2</span> LLC/SPM 的配置和访问路径</h2>
 <p>CPU 的低 SPM 窗口从 0x10000000 起，可按地址属性进入 L1；0x14000000 是同一阵列的非缓存数据别名，在 LLC 前重映射回低地址。两个窗口共享物理字节。若先用低别名产生缓存副本，再用高别名访问，不同观察者仍可能看到不同内容。当前高别名未包含在默认 SPM 执行区中，本书把它用于共享数据，代码仍从低地址执行。</p>
 <h3 id="llc-transaction"><span class="section-number">11.2.1</span> 一次缓存缺失与一次 SPM 访问</h3>

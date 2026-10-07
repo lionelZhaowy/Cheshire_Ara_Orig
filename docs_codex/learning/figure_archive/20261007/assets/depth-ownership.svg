@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 660" role="img" aria-labelledby="title desc"><title id="title">未来缓冲区所有权：一次只允许一方写</title><desc id="desc">状态转换由 CPU 软件管理；硬件完成令牌需要 epoch 与状态匹配。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="660" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">未来缓冲区所有权：一次只允许一方写</text>
+<text x="32" y="74" class="small" text-anchor="start">状态转换由 CPU 软件管理；硬件完成令牌需要 epoch 与状态匹配。</text>
+<rect x="40.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="159.0" class="box" text-anchor="middle">FREE</text>
+<text x="190.0" y="185.0" class="box" text-anchor="middle">分配 buffer / epoch</text>
+<rect x="360.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="159.0" class="box" text-anchor="middle">PRODUCER</text>
+<text x="510.0" y="185.0" class="box" text-anchor="middle">独占写入</text>
+<rect x="680.0" y="120" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="159.0" class="box" text-anchor="middle">PUBLISHED</text>
+<text x="830.0" y="185.0" class="box" text-anchor="middle">排空并发布描述符</text>
+<path d="M340,166 L360,166" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M660,166 L680,166" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40.0" y="350" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="389.0" class="box" text-anchor="middle">RECLAIM</text>
+<text x="190.0" y="415.0" class="box" text-anchor="middle">消费者排空后归还</text>
+<rect x="360.0" y="350" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="389.0" class="box" text-anchor="middle">CONSUMER</text>
+<text x="510.0" y="415.0" class="box" text-anchor="middle">读取 / 计算 / 写结果</text>
+<rect x="680.0" y="350" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="389.0" class="box" text-anchor="middle">QUEUED</text>
+<text x="830.0" y="415.0" class="box" text-anchor="middle">通知并移交所有权</text>
+<path d="M830,212 L830,350" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M680,395 L660,395" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M360,395 L340,395" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M195,350 L195,212" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="520" width="680" height="65" rx="9" fill="#fff3da" stroke="#a7c2cb"/>
+<text x="540.0" y="558.5" class="box" text-anchor="middle">任意在途状态超时 / 错误 → QUARANTINED → 隔离/确认停止 → 回收</text>
+<text x="32" y="630" class="small" text-anchor="start">IRQ 只触发查询；过期完成令牌不得释放新任务的 buffer。当前教材仅提供协议伪代码。</text></svg>

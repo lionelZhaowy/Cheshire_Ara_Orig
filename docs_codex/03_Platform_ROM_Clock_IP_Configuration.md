@@ -27,7 +27,7 @@
 | --- | --- |
 | 平台入口 | `hw/cheshire_pkg.sv::cheshire_cfg_t.PlatformRom`；默认未赋值，通过 `DefaultCfg` 的 `default:'0` 得到 0 |
 | 入口寄存器 | `hw/cheshire_soc.sv::reg_hw2reg.platform_rom` 来自 `Cfg.PlatformRom`；`hw/regs/cheshire_regs.hjson` 定义软件只读 |
-| 调用顺序 | `hw/bootrom/cheshire_bootrom.S::_prom_check_run` 位于 LLC BIST/SPM/栈设置之后，读取入口，非零则调用 |
+| 调用顺序 | `hw/bootrom/cheshire_bootrom.S::_prom_check_run` 在保留内部 LLC 时位于 BIST/SPM/栈调整之后；HW_FEATURES.llc=0 则跳过该初始化。随后读取入口，非零则调用 |
 | 系统启动时钟 | `cheshire_soc.clk_i` 为外部输入；CVA6、互连、LLC、ROM 访问逻辑须先具备可用时钟，Platform ROM 由同一个 CPU 执行 |
 | 配置扩展口 | `Cfg.RegExtNumSlv/RegExtNumRules/RegExtRegion*` 与 `cheshire_soc.reg_ext_slv_req_o/reg_ext_slv_rsp_i`；平台需自己实现配置银行及必要跨域适配 |
 | 后续可更新软件 | `sw/boot/zsl.c` 是现有加载器参考；尚未实现本项目 PLL/PHY 管理，不能直接宣称已有调频功能 |
@@ -36,7 +36,7 @@
 
 ## 3. 启动与运行时职责
 
-以下是目标职责，尚未实现。正常返回步骤以 S01-B01 修复并验收为前提。
+以下是保留内部 LLC 的目标职责，尚未实现。正常返回步骤以 S01-B01 修复并验收为前提。无内部 LLC（例如出口旁路）时，平台须在首次栈访问前提供替代可写存储和有效 sp，或先用不依赖栈的早期汇编建立这些条件；ROM 加载链接栈值不保证对应存储存在。此责任不因 Bootrom=1 而免除。
 
 ```text
 POR / 有效参考时钟 / 硬件安全初值

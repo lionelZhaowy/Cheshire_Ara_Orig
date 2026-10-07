@@ -24,7 +24,7 @@ sub a3, a3, t0
 slli t1, t0, 2
 # a0/a1/a2 均增加 t1，剩余 a3 非零时继续</code></pre>
 <p>a3 是剩余元素，a0/a1/a2 是数组指针，t0 接住实际 vl。地址增加 vl×4 字节，避免把元素数错当字节数。ta/ma 允许尾部和掩码非活动元素不保留，本程序只检查有效元素。137 必须多轮执行，最后有尾部；当剩余长度落在 VLMAX 与 2×VLMAX 之间时，程序也不依赖某个唯一分块序列。</p>
-<figure><img src="assets/new-vector.svg" alt="CPU设置状态后调用向量函数，Ara按实际vl分块访存和运算，CPU收回缓冲校验"><figcaption>处理一个非整倍长度数组，图中给出一种分块。当前 dispatcher 按剩余数与 vlmax 取小值；箭头表达依赖，不承诺固定拍数。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-vector.svg" alt="CPU设置状态后调用向量函数，Ara按实际vl分块访存和运算，CPU收回缓冲校验"><figcaption>处理一个非整倍长度数组，图中给出一种分块。当前 dispatcher 按剩余数与 vlmax 取小值；箭头表达依赖，不承诺固定拍数。</figcaption></figure>
 <h3 id="programming">三种编程入口与当前工具链</h3>
 <p>手写汇编最直接表达每条指令，本例 rvv_add.S 用标量 ABI 传指针/长度，在独立函数里设置 vl。内联汇编还必须正确声明输入输出、修改的寄存器和 memory clobber；遗漏声明会导致优化器跨越真实依赖。对初学者，本书保留独立汇编函数作为可逐条对照的基线。</p>
 <p>intrinsics 是编译器提供的带类型 C 接口，例如 vuint32m1_t 对应 e32/m1 的一组值，<code>__riscv_vle32_v_u32m1</code> 显式加载，<code>__riscv_vadd_vv_u32m1</code> 运算，<code>__riscv_vse32_v_u32m1</code> 存储。<a href="examples/rvv_intrinsics.c">完整可构建内核</a>每轮接收实际 vl，再推进三个指针；归约使用 __riscv_vredsum_vs_u32m1_u32m1 和标量取出函数。深度扩充时用实际 GCC 15.2.0 编译核对名称及反汇编，不把网上其他版本 API 直接当作本地事实。</p>

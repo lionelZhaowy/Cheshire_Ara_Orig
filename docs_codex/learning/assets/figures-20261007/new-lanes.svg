@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>64 位 AXI 数据拍中的 32 位寄存器访问</title>
+<desc>一个 64 位总线拍有 8 个字节 lane；地址、WSTRB、数据位置与读返回必须一致适配。；依据：AXI byte-lane 语义；cheshire_idma_wrap 与 idma_reg64_2d_reg_top 的当前接口差异</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">64 位 AXI 数据拍中的 32 位寄存器访问</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">一个 64 位总线拍有 8 个字节 lane；地址、WSTRB、数据位置与读返回必须一致适配。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：AXI byte-lane 语义；cheshire_idma_wrap 与 idma_reg64_2d_reg_top 的当前接口差异</text>
+<text x="60" y="220" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="start">地址 +0：低 32 位有效</text>
+<text x="60" y="525" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="start">地址 +4：高 32 位有效</text>
+<rect id="l0-0" x="65" y="260" width="196" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="65" y="260" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="82" y="292" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-0">lane 0</text>
+<text x="82" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-0">bit 7:0</text>
+<text x="82" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-0">STRB[0] = 1</text>
+<text x="82" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-0">有效字节</text>
+<rect id="l0-1" x="274" y="260" width="196" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="274" y="260" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="291" y="292" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-1">lane 1</text>
+<text x="291" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-1">bit 15:8</text>
+<text x="291" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-1">STRB[1] = 1</text>
+<text x="291" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-1">有效字节</text>
+<rect id="l0-2" x="483" y="260" width="196" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="483" y="260" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="500" y="292" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-2">lane 2</text>
+<text x="500" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-2">bit 23:16</text>
+<text x="500" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-2">STRB[2] = 1</text>
+<text x="500" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-2">有效字节</text>
+<rect id="l0-3" x="692" y="260" width="196" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="692" y="260" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="709" y="292" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-3">lane 3</text>
+<text x="709" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-3">bit 31:24</text>
+<text x="709" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-3">STRB[3] = 1</text>
+<text x="709" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-3">有效字节</text>
+<rect id="l0-4" x="901" y="260" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="901" y="260" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="918" y="292" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-4">lane 4</text>
+<text x="918" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-4">bit 39:32</text>
+<text x="918" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-4">STRB[4] = 0</text>
+<text x="918" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-4">不写入</text>
+<rect id="l0-5" x="1110" y="260" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1110" y="260" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1127" y="292" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-5">lane 5</text>
+<text x="1127" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-5">bit 47:40</text>
+<text x="1127" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-5">STRB[5] = 0</text>
+<text x="1127" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-5">不写入</text>
+<rect id="l0-6" x="1319" y="260" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1319" y="260" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1336" y="292" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-6">lane 6</text>
+<text x="1336" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-6">bit 55:48</text>
+<text x="1336" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-6">STRB[6] = 0</text>
+<text x="1336" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-6">不写入</text>
+<rect id="l0-7" x="1528" y="260" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1528" y="260" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1545" y="292" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l0-7">lane 7</text>
+<text x="1545" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-7">bit 63:56</text>
+<text x="1545" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-7">STRB[7] = 0</text>
+<text x="1545" y="388" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l0-7">不写入</text>
+<text x="75" y="472" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="start">WSTRB = 0x0F；WDATA[31:0] = value</text>
+<rect id="l1-0" x="65" y="565" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="65" y="565" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="82" y="597" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-0">lane 0</text>
+<text x="82" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-0">bit 7:0</text>
+<text x="82" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-0">STRB[0] = 0</text>
+<text x="82" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-0">不写入</text>
+<rect id="l1-1" x="274" y="565" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="274" y="565" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="291" y="597" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-1">lane 1</text>
+<text x="291" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-1">bit 15:8</text>
+<text x="291" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-1">STRB[1] = 0</text>
+<text x="291" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-1">不写入</text>
+<rect id="l1-2" x="483" y="565" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="483" y="565" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="500" y="597" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-2">lane 2</text>
+<text x="500" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-2">bit 23:16</text>
+<text x="500" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-2">STRB[2] = 0</text>
+<text x="500" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-2">不写入</text>
+<rect id="l1-3" x="692" y="565" width="196" height="165" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="692" y="565" width="5" height="165" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="709" y="597" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-3">lane 3</text>
+<text x="709" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-3">bit 31:24</text>
+<text x="709" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-3">STRB[3] = 0</text>
+<text x="709" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-3">不写入</text>
+<rect id="l1-4" x="901" y="565" width="196" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="901" y="565" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="918" y="597" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-4">lane 4</text>
+<text x="918" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-4">bit 39:32</text>
+<text x="918" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-4">STRB[4] = 1</text>
+<text x="918" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-4">有效字节</text>
+<rect id="l1-5" x="1110" y="565" width="196" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1110" y="565" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1127" y="597" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-5">lane 5</text>
+<text x="1127" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-5">bit 47:40</text>
+<text x="1127" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-5">STRB[5] = 1</text>
+<text x="1127" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-5">有效字节</text>
+<rect id="l1-6" x="1319" y="565" width="196" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1319" y="565" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1336" y="597" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-6">lane 6</text>
+<text x="1336" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-6">bit 55:48</text>
+<text x="1336" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-6">STRB[6] = 1</text>
+<text x="1336" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-6">有效字节</text>
+<rect id="l1-7" x="1528" y="565" width="196" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1528" y="565" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1545" y="597" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="l1-7">lane 7</text>
+<text x="1545" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-7">bit 63:56</text>
+<text x="1545" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-7">STRB[7] = 1</text>
+<text x="1545" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="l1-7">有效字节</text>
+<text x="75" y="777" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="start">WSTRB = 0xF0；WDATA[63:32] = value</text>
+<rect id="note-16" x="65" y="885" width="790" height="128" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="65" y="885" width="5" height="128" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="82" y="917" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-16">桥的写方向</text>
+<text x="82" y="953" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-16">按地址选择 lane → 提取对应 32 位 → 保持字节使能</text>
+<text x="82" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-16">只改变 typedef 位宽，不会自动完成数据搬移</text>
+<rect id="note-17" x="905" y="885" width="825" height="128" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="905" y="885" width="5" height="128" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="922" y="917" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-17">桥的读方向</text>
+<text x="922" y="953" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-17">32 位寄存器值须回填到正确的 64 位总线 lane</text>
+<text x="922" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-17">DMA 控制位宽与 HAL ID 访问问题仍待专项验证</text>
+</svg>

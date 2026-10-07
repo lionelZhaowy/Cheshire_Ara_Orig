@@ -113,11 +113,28 @@ try:
    report.append(f'PASS {width}x{height}: {slug}; images, current part/chapter, collapsible menu/TOC, no page overflow')
  for width,height,mobile in [(1440,1100,False),(390,844,True)]:
   cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
-  for slug,anchor in [('cva6','configuration-families'),('boot','platform-rom'),('integration','official-instantiation'),('future','resource-mapping')]:
+  for slug,anchor in [('cva6','configuration-families'),('boot','platform-rom'),('integration','official-instantiation'),('future','resource-mapping'),('configuration','case-axi-rt'),('configuration','case-clic'),('configuration','case-irq-router')]:
    go(slug+'.html#'+anchor)
    assert cdp.js('(()=>{const e=document.getElementById('+json.dumps(anchor)+');e.scrollIntoView();return !!e&&document.documentElement.scrollWidth<=innerWidth+1})()')
-   cdp.shot('teaching-'+str(width)+'-'+slug+'.png')
+   cdp.shot('teaching-'+str(width)+'-'+slug+'-'+anchor+'.png')
    report.append(f'PASS teaching section at {width}: {slug}#{anchor}; target visible, no page overflow')
+ # The comparison gallery is a standalone artifact, outside the 34-page course.
+ for width,height,mobile in [(1440,1100,False),(390,844,True)]:
+  cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
+  go('figures/20261007/index.html')
+  loaded=cdp.js('Promise.all([...document.images].map(i=>{i.loading="eager";return i.decode().then(()=>true,()=>false)})).then(a=>a.length===86&&a.every(Boolean))')
+  assert loaded and cdp.js('document.documentElement.scrollWidth<=innerWidth+1'),('gallery',width)
+  assert cdp.js('document.querySelectorAll("section").length')==43
+  from urllib.parse import urlsplit,unquote
+  for href in cdp.js('[...document.querySelectorAll("a")].map(a=>a.href)'):
+   u=urlsplit(href)
+   if u.scheme=='file':assert Path(unquote(u.path)).is_file(),href
+  cdp.js('document.getElementById("depth-xbar-full").scrollIntoView()')
+  cdp.shot('gallery-crossbar-'+str(width)+'.png')
+  go('interconnect.html#cuts')
+  cdp.js('document.querySelectorAll("figure")[1].scrollIntoView()')
+  cdp.shot('course-crossbar-'+str(width)+'.png')
+  report.append(f'PASS gallery {width}: 43 comparisons / 86 loaded SVGs / local links / no page overflow; course Crossbar preview')
  cdp.call('Emulation.setScriptExecutionDisabled',{'value':True})
  for slug in ['index','ara','vector','ddr','sharing','boot-debug','registers']:
   go(slug+'.html');r=inspect();assert r['images'] and not r['overflow'],(slug,r)
@@ -136,8 +153,10 @@ try:
   if '#' in dest:assert cdp.js('!!document.getElementById(decodeURIComponent(location.hash.slice(1)))'),(old,dest)
   report.append('PASS precise bookmark redirect: '+old+' -> '+dest)
  cdp.call('Emulation.setDeviceMetricsOverride',{'width':1280,'height':1000,'deviceScaleFactor':1,'mobile':False})
- for name in ['new-boot.svg','depth-boot-phases.svg']+[p.name for pattern in ['mechanism-*.svg','teaching-*.svg'] for p in sorted((ROOT/'assets').glob(pattern))]:
-  go('assets/'+name)
+ wave_paths=[ROOT/'assets'/('depth-'+p.stem+'.svg') for p in sorted((ROOT/'assets/waves').glob('*.json'))]
+ for figure_path in sorted((ROOT/'assets/figures-20261007').glob('*.svg')) + wave_paths:
+  name=figure_path.name
+  go(str(figure_path.relative_to(ROOT)))
   overflow=cdp.js('(()=>{const v=document.documentElement.viewBox.baseVal;return [...document.querySelectorAll("text")].filter(t=>{const b=t.getBBox(),m=document.documentElement.getScreenCTM().inverse().multiply(t.getScreenCTM());return [[b.x,b.y],[b.x+b.width,b.y+b.height]].some(([x,y])=>{const p=new DOMPoint(x,y).matrixTransform(m);return p.x<v.x-1||p.x>v.x+v.width+1||p.y<v.y-1||p.y>v.y+v.height+1})}).map(t=>t.textContent)})()')
   assert not overflow,(name,overflow)
   cdp.shot('svg-'+name+'.png');report.append('PASS edited SVG viewBox text bounds: '+name)

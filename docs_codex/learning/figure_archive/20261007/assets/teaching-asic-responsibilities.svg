@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 870" role="img" aria-labelledby="title desc"><title id="title">ASIC 集成的资源与责任边界</title><desc id="desc">教学规划图：当前数字系统与待实现工艺资源分层；不指定电源域、频率或供应商。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="context-stroke"/></marker></defs>
+<rect width="1100" height="870" fill="#fcfefe"/>
+<style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.note{font-size:16px;fill:#536b78}.body{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="30" y="42" class="title" text-anchor="start">ASIC 集成的资源与责任边界</text>
+<text x="30" y="75" class="note" text-anchor="start">教学规划图：当前数字系统与待实现工艺资源分层；不指定电源域、频率或供应商。</text>
+<rect x="40" y="120" width="1020" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="550.0" y="157.0" class="body" text-anchor="middle">当前数字系统：CVA6 / Ara / AXI / Reg / LLC / 外设</text>
+<text x="550.0" y="185.0" class="body" text-anchor="middle">Cfg、接口类型、软件地址与启动契约</text>
+<rect x="40" y="290" width="320" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="200.0" y="327.0" class="body" text-anchor="middle">存储请求</text>
+<text x="200.0" y="355.0" class="body" text-anchor="middle">地址 / 数据 / 字节写</text>
+<path d="M200,210 L200,290" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="220" y="259" class="label" text-anchor="start">接口消费</text>
+<rect x="390" y="290" width="320" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="550.0" y="327.0" class="body" text-anchor="middle">时钟与控制</text>
+<text x="550.0" y="355.0" class="body" text-anchor="middle">clk / reset / 配置</text>
+<path d="M550,210 L550,290" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="570" y="259" class="label" text-anchor="start">接口消费</text>
+<rect x="740" y="290" width="320" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="900.0" y="327.0" class="body" text-anchor="middle">外部交互</text>
+<text x="900.0" y="355.0" class="body" text-anchor="middle">AXI / 串行 / IO</text>
+<path d="M900,210 L900,290" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="920" y="259" class="label" text-anchor="start">接口消费</text>
+<rect x="40" y="465" width="320" height="145" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="200.0" y="515.5" class="body" text-anchor="middle">工艺 SRAM / ROM</text>
+<text x="200.0" y="543.5" class="body" text-anchor="middle">端口、延迟与碰撞语义</text>
+<text x="200.0" y="571.5" class="body" text-anchor="middle">容量、测试与修复脚</text>
+<rect x="390" y="465" width="320" height="145" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="550.0" y="515.5" class="body" text-anchor="middle">PLL / 门控 / 复位 / 电源</text>
+<text x="550.0" y="543.5" class="body" text-anchor="middle">安全启动与运行时切换</text>
+<text x="550.0" y="571.5" class="body" text-anchor="middle">跨域、隔离与保持</text>
+<rect x="740" y="465" width="320" height="145" rx="9" fill="#fff5e6" stroke="#a7c2cb"/>
+<text x="900.0" y="515.5" class="body" text-anchor="middle">PAD / DDR CTRL + PHY</text>
+<text x="900.0" y="543.5" class="body" text-anchor="middle">电气条件与引脚复用</text>
+<text x="900.0" y="571.5" class="body" text-anchor="middle">训练、时序及错误响应</text>
+<path d="M200,380 L200,465" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="220" y="428" class="label" text-anchor="start">映射与适配</text>
+<path d="M550,380 L550,465" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="570" y="428" class="label" text-anchor="start">映射与适配</text>
+<path d="M900,380 L900,465" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="920" y="428" class="label" text-anchor="start">映射与适配</text>
+<rect x="40" y="705" width="1020" height="90" rx="9" fill="#f0f4ec" stroke="#a7c2cb"/>
+<text x="550.0" y="742.0" class="body" text-anchor="middle">共同交付：宏模型与 RTL 适配、平台固件、时序/CDC/RDC 约束、DFT/MBIST 与电源意图</text>
+<text x="550.0" y="770.0" class="body" text-anchor="middle">先核对资源契约，再执行单元、平台启动和系统回归</text>
+<path d="M200,610 L200,705" fill="none" stroke="#966b35" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<path d="M550,610 L550,705" fill="none" stroke="#966b35" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<path d="M900,610 L900,705" fill="none" stroke="#966b35" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="40" y="825" class="label" text-anchor="start">虚线：待交付的实现与验证</text>
+<text x="30" y="852" class="note" text-anchor="start">依据：Cheshire 集成接口、tech_cells_generic README；下层为未来 ASIC 平台交付。</text>
+</svg>

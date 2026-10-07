@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议</title>
+<desc>固定读 16 字节；下图表示协议阶段与片选边界，不表示按比例绘制的电气时序。；依据：本地 EEPROM HAL 的 STOP/START 流程；SPI NOR 0x13 读命令；VIP 预填值 0x9a</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="210" width="1690" height="325" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="55" y="610" width="1690" height="260" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="440,382.5 500,382.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="500.00,382.50 488.00,377.50 488.00,387.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="855,382.5 915,382.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="915.00,382.50 903.00,377.50 903.00,387.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1270,382.5 1330,382.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1330.00,382.50 1318.00,377.50 1318.00,387.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="440,750.0 500,750.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="500.00,750.00 488.00,745.00 488.00,755.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="855,750.0 915,750.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="915.00,750.00 903.00,745.00 903.00,755.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1270,750.0 1330,750.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1330.00,750.00 1318.00,745.00 1318.00,755.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">固定读 16 字节；下图表示协议阶段与片选边界，不表示按比例绘制的电气时序。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：本地 EEPROM HAL 的 STOP/START 流程；SPI NOR 0x13 读命令；VIP 预填值 0x9a</text>
+<text x="73" y="245" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">I2C：SDA / SCL 开漏，需要器件地址和内部地址</text>
+<rect id="i0" x="85" y="315" width="355" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="85" y="315" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="102" y="347" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i0">START + 写址</text>
+<text x="102" y="383" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="i0">选择 EEPROM</text>
+<rect id="i1" x="500" y="315" width="355" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="500" y="315" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="517" y="347" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i1">16 位内部地址</text>
+<text x="517" y="383" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="i1">设定器件读指针</text>
+<rect id="i2" x="915" y="315" width="355" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="915" y="315" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="932" y="347" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i2">STOP；新 START</text>
+<text x="932" y="383" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="i2">本地 HAL 行为</text>
+<rect id="i3" x="1330" y="315" width="355" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1330" y="315" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1347" y="347" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i3">读址 + 16 字节</text>
+<text x="1347" y="383" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="i3">接收并检查数据</text>
+<text x="73" y="645" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">SPI NOR：控制器主动驱动 SCK；一次 CS1 有效覆盖命令、地址和读数据</text>
+<rect id="s0" x="85" y="690" width="355" height="120" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="85" y="690" width="5" height="120" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="102" y="722" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="s0">CS1 有效</text>
+<text x="102" y="758" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="s0">选择 Flash</text>
+<rect id="s1" x="500" y="690" width="355" height="120" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="500" y="690" width="5" height="120" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="517" y="722" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="s1">命令 0x13</text>
+<text x="517" y="758" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="s1">四字节地址读</text>
+<rect id="s2" x="915" y="690" width="355" height="120" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="915" y="690" width="5" height="120" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="932" y="722" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="s2">四字节地址</text>
+<text x="932" y="758" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="s2">指定读取起点</text>
+<rect id="s3" x="1330" y="690" width="355" height="120" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1330" y="690" width="5" height="120" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1347" y="722" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="s3">RX 16 字节</text>
+<text x="1347" y="758" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="s3">检查预期内容</text>
+<rect id="note-8" x="55" y="915" width="1690" height="110" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="915" width="5" height="110" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="947" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">器件协议与平台支持分别验证</text>
+<text x="72" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">EEPROM 当前流程不能标成 repeated START；SD 虽共用 SPI 控制器，但使用不同命令、响应与块校验协议。</text>
+</svg>

@@ -1,0 +1,298 @@
+{
+  "depth-address-map": {
+    "title": "地址路由窗口与物理资源的映射",
+    "source": "源码：cheshire_pkg.sv::gen_axi_out / gen_reg_out / get_llc_size；默认配置",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "ec1d014e20c0a99d6af245b23151ff51be1c31b65fbfdbd25553c4fc7d279ed9",
+    "previous": "assets/depth-address-map.svg",
+    "current": "assets/figures-20261007/depth-address-map.svg"
+  },
+  "depth-ara-internals": {
+    "title": "Ara 内部：向量元素分散到 lanes，再重排回内存",
+    "source": "源码：ara.sv / lane.sv / vlsu.sv；数据分布示意，不表示每周期恰好完成一元素",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "f9f7bf38985d056eac67a1201f916708a640f4be326110a99ac6b7756ab1dd65",
+    "previous": "assets/depth-ara-internals.svg",
+    "current": "assets/figures-20261007/depth-ara-internals.svg"
+  },
+  "depth-clocks-current": {
+    "title": "当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域",
+    "source": "源码：cheshire_soc.sv；target/xilinx/src/dram_wrapper_xilinx.sv；各外设同步逻辑",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "5d3103ca2ac459752001e6eefd759f7325d52cbc6c1719d491cc88a4919a81ca",
+    "previous": "assets/depth-clocks-current.svg",
+    "current": "assets/figures-20261007/depth-clocks-current.svg"
+  },
+  "depth-clocks-future": {
+    "title": "未来 ASIC：时钟、复位、电源分别划分责任",
+    "source": "依据：平台启动与配置约定；工艺/IP 交付待确认",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "94684f27b363fa16cc2adf558436d49164ae66b3f9650815159b9c6cf0cffc15",
+    "previous": "assets/depth-clocks-future.svg",
+    "current": "assets/figures-20261007/depth-clocks-future.svg"
+  },
+  "depth-cva6-ara": {
+    "title": "CVA6–Ara：控制协议与 AXI 数据通路分离",
+    "source": "源码：acc_dispatcher.sv；ara/intf_typedef.svh；cheshire_soc.sv::gen_ara",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "08e361c1e881b55e62ea582a134f8a1951ab481e1f5e11d0a9f074df28031bc9",
+    "previous": "assets/depth-cva6-ara.svg",
+    "current": "assets/figures-20261007/depth-cva6-ara.svg"
+  },
+  "depth-ddr": {
+    "title": "DDR 子系统：AXI 事务、控制器、PHY 与器件引脚",
+    "source": "依据：现有 FPGA dram_wrapper_xilinx 边界；ASIC 供应商控制器/PHY 接口尚未冻结",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "cc15299520c43f4ff16beeffa1011c0315afbcf7334a21eafd6b6d43432c126b",
+    "previous": "assets/depth-ddr.svg",
+    "current": "assets/figures-20261007/depth-ddr.svg"
+  },
+  "depth-npu-bypass": {
+    "title": "未来 DDR 旁路：数据汇合不等于一致性自动成立",
+    "source": "依据：当前 cheshire_soc.sv 主存路径与 M01 待定义接口契约",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "28a3063818e23a7a41a1148d5f592420b71ef95f23ae65e684b608a22a3649b4",
+    "previous": "assets/depth-npu-bypass.svg",
+    "current": "assets/figures-20261007/depth-npu-bypass.svg"
+  },
+  "depth-ownership": {
+    "title": "未来异构任务：所有权状态与异常回收",
+    "source": "依据：教材异构协议伪代码；NPU / ISP 尚未集成",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "51d571a25abc4a5e87610d68140f4ab99a01010f2f10a7a9315ce4952216b8f4",
+    "previous": "assets/depth-ownership.svg",
+    "current": "assets/figures-20261007/depth-ownership.svg"
+  },
+  "depth-shared-current": {
+    "title": "当前共享数据：Ara 的失效协作有明确参与者",
+    "source": "源码：csr_regfile / acc_dispatcher / axi_inval_filter / cheshire_soc.sv",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "5e580ae2f4cf499c568cdcbff71fa09725a85dad2ed58a76ba56c6b8c2ea1b51",
+    "previous": "assets/depth-shared-current.svg",
+    "current": "assets/figures-20261007/depth-shared-current.svg"
+  },
+  "depth-shared-future": {
+    "title": "未来共享存储：资源位置、访问路径与协议职责",
+    "source": "依据：未来 M01 / I01 契约；当前 VRF 不是可被 NPU 共享寻址的 cache",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "45e264873198dd7a7c5e9a375c74d3420b9bcb834f2413611e26ed226977c95e",
+    "previous": "assets/depth-shared-future.svg",
+    "current": "assets/figures-20261007/depth-shared-future.svg"
+  },
+  "depth-system-full": {
+    "title": "Cheshire / CVA6 / Ara：计算、控制与存储边界",
+    "source": "源码：cheshire_soc.sv::gen_ara / i_axi_xbar / i_reg_demux / gen_llc；cheshire_pkg.sv",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "2cc303b24d36110b00d2675571cb0371be25ea72c0a6e872ac3d2f0793c7cff4",
+    "previous": "assets/depth-system-full.svg",
+    "current": "assets/figures-20261007/depth-system-full.svg"
+  },
+  "depth-vector-memory": {
+    "title": "向量访存：地址翻译与数据搬运是两条路径",
+    "source": "源码：Ara addrgen / vldu / vstu；CVA6 load_store_unit；cheshire_soc::gen_ara",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "738f20805ed1324b8a15b13499fa1da74768b5a9cc9f04e0a991f581aad0c988",
+    "previous": "assets/depth-vector-memory.svg",
+    "current": "assets/figures-20261007/depth-vector-memory.svg"
+  },
+  "depth-xbar-full": {
+    "title": "AXI Crossbar：7 个发起端、5 个目标与两级译码",
+    "source": "源码：hw/cheshire_pkg.sv::gen_axi_in / gen_axi_out / gen_reg_out；hw/cheshire_soc.sv::i_axi_xbar",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "195305e51586228bd1556be3dd16bcfae84fa83a352d2af3cbe91b46ca9562df",
+    "previous": "assets/depth-xbar-full.svg",
+    "current": "assets/figures-20261007/depth-xbar-full.svg"
+  },
+  "mechanism-clocks": {
+    "title": "PLL、分频与门控：时钟生成和事务跨域分别设计",
+    "source": "依据：时钟生成通用原理；当前平台边界见 depth-clocks-current",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "c64e61cb5d53bc686547673ea4a7496b650809418e2d3ceae82b8c6d801f35aa",
+    "previous": "assets/mechanism-clocks.svg",
+    "current": "assets/figures-20261007/mechanism-clocks.svg"
+  },
+  "mechanism-cva6": {
+    "title": "CVA6 功能层次：发射、执行、提交与系统接口",
+    "source": "源码：core/cva6.sv / issue_stage.sv / ex_stage.sv / commit_stage.sv",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "d5cb61efb28f960e54db00187f6b73e7585b2a3b07059fbf0d2c4d18e6ef894f",
+    "previous": "assets/mechanism-cva6.svg",
+    "current": "assets/figures-20261007/mechanism-cva6.svg"
+  },
+  "mechanism-ddr": {
+    "title": "一次 DDR 读：请求调度与返回数据分别穿过控制器",
+    "source": "依据：DDR 控制器/PHY 通用职责；不表示固定周期，也不代表已完成 DDR 验证",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "edb75c8f02154b6c971962663796666dac81726d3163a925b15e2c093c1099f7",
+    "previous": "assets/mechanism-ddr.svg",
+    "current": "assets/figures-20261007/mechanism-ddr.svg"
+  },
+  "mechanism-power": {
+    "title": "关电域与常开域：隔离、保持、电平转换各有职责",
+    "source": "依据：ASIC 低功耗通用机制；需工艺库、UPF 与平台协议支持",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "f4e269b38dd1c7da105d895b7d4f9646689d46a7b0422ceca33535dcf2b69575",
+    "previous": "assets/mechanism-power.svg",
+    "current": "assets/figures-20261007/mechanism-power.svg"
+  },
+  "mechanism-xbar": {
+    "title": "Crossbar 内部：选择目标、预留 W、归还 ID",
+    "source": "依据：axi_xbar_unmuxed、axi_mux、axi_demux_simple、axi_demux_id_counters（本地 axi 依赖）",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "8510099b7f95d2d188241ed27f4cf208969faa8330a0fb1eed629bd0d48ac4d8",
+    "previous": "assets/mechanism-xbar.svg",
+    "current": "assets/figures-20261007/mechanism-xbar.svg"
+  },
+  "new-boot": {
+    "title": "JTAG 直接装载：主机与目标两条时间线如何汇合",
+    "source": "源码：hw/bootrom；sw/lib/crt0.S；elfloader.cpp；vip_cheshire_soc.sv",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "bf88456d5fceea55bdfe51ef8266f1ff00ed35e1bd1ed30de44c6aa2ce6276b3",
+    "previous": "assets/new-boot.svg",
+    "current": "assets/figures-20261007/new-boot.svg"
+  },
+  "new-build": {
+    "title": "主机上的构建产物：每个文件回答不同问题",
+    "source": "依据：sw/sw.mk；sw/lib/crt0.S；当前链接脚本与教材 journey 构建入口",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "b3e2d40b65300fca0a6275e62111fa5c4786dc9a0c3ada282ad01693b1db7388",
+    "previous": "assets/new-build.svg",
+    "current": "assets/figures-20261007/new-build.svg"
+  },
+  "new-configuration": {
+    "title": "配置何时生效：源码选择、展开结构与运行状态",
+    "source": "源码：cheshire.mk；cheshire_pkg；gen_cva6_cfg；sw/sw.mk",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "829a1e4b074445727c07e3e6f13f7e8ee81cf6e18e35d152ab58194095260a2f",
+    "previous": "assets/new-configuration.svg",
+    "current": "assets/figures-20261007/new-configuration.svg"
+  },
+  "new-device": {
+    "title": "一次 UART 寄存器访问：地址、寄存器副作用与引脚",
+    "source": "源码：UART DIF / HAL；AXI→Reg / APB 适配；UART 寄存器实现",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "7ed61ad3310560b515851b99ba84b5fa7962a93f1c4dead4602b2c85fada3271",
+    "previous": "assets/new-device.svg",
+    "current": "assets/figures-20261007/new-device.svg"
+  },
+  "new-future": {
+    "title": "未来图像系统：流数据、帧缓冲与控制路径分层",
+    "source": "依据：用户产品方向与未来 IP 集成契约；不代表已实现 RTL 或已验证吞吐",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "cb0d9b823679d2f9832ff7c62a14404fe97ae3bc08456ff01d57e829d42bc48c",
+    "previous": "assets/new-future.svg",
+    "current": "assets/figures-20261007/new-future.svg"
+  },
+  "new-integration": {
+    "title": "新增 IP：控制面、主动数据面与完成事件独立定义",
+    "source": "依据：Cheshire 扩展 Reg / AXI 端口；教材独立 Reg 单元；未来数据面尚需实现",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "bebfc6185ad3faa34d4f3c08073ede176447b36403f3ae4a587e06451c35721f",
+    "previous": "assets/new-integration.svg",
+    "current": "assets/figures-20261007/new-integration.svg"
+  },
+  "new-interrupt": {
+    "title": "外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环",
+    "source": "源码：PLIC / CLINT 接入；CPU 中断门控；现有驱动与 trap handler",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "b3ef4c949b35d87da12ca51332ecb0f5629ace9a42d8a2abfa4b09bf7c49e8a1",
+    "previous": "assets/new-interrupt.svg",
+    "current": "assets/figures-20261007/new-interrupt.svg"
+  },
+  "new-lanes": {
+    "title": "64 位 AXI 数据拍中的 32 位寄存器访问",
+    "source": "依据：AXI byte-lane 语义；cheshire_idma_wrap 与 idma_reg64_2d_reg_top 的当前接口差异",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "e496c82805cc8be23ea66d5795eaef1ca2e18aef07e9eef8fe8e6faf2e901949",
+    "previous": "assets/new-lanes.svg",
+    "current": "assets/figures-20261007/new-lanes.svg"
+  },
+  "new-memory": {
+    "title": "LLC / SPM：两个别名如何访问同一组 ways",
+    "source": "源码：cheshire_pkg.sv::get_llc_size；cheshire_soc.sv::gen_llc；axi_llc 依赖",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "ad363e11d36612e5d894cc868e563d5f10ce89a27222fabc5fd824fd97ec5036",
+    "previous": "assets/new-memory.svg",
+    "current": "assets/figures-20261007/new-memory.svg"
+  },
+  "new-ownership": {
+    "title": "缓冲区交接：地址相同还需要所有权与可见性",
+    "source": "依据：教材共享缓冲区协议；fence 不替代 cache 清理 / 失效；非硬件自动一致性",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "ea3aa45fde4926aad34a1c0d407c635d6fa59c7dc88da01e6ded90c1ce589ff7",
+    "previous": "assets/new-ownership.svg",
+    "current": "assets/figures-20261007/new-ownership.svg"
+  },
+  "new-route": {
+    "title": "七篇、30 章：由系统概念进入实现与验证",
+    "source": "维护依据：scripts/pages.json；离线教材当前目录",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "c8d5ff18a00e0465271063dcd8cb650e7f1d645f3ace870a8270ad9344ed79cb",
+    "previous": "assets/new-route.svg",
+    "current": "assets/figures-20261007/new-route.svg"
+  },
+  "new-runtime": {
+    "title": "C 对象与运行内存：指令、初值、零初始化与栈",
+    "source": "源码：教材 journey.c；sw/lib/crt0.S；sw/link/common.ldh 与 spm.ld",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "355d49088e0345d7585231afb4fb0ae27b185365a7ec720c5be3d0ace7d47e7b",
+    "previous": "assets/new-runtime.svg",
+    "current": "assets/figures-20261007/new-runtime.svg"
+  },
+  "new-serial": {
+    "title": "I2C EEPROM 与 SPI NOR：控制器动作映射到器件协议",
+    "source": "依据：本地 EEPROM HAL 的 STOP/START 流程；SPI NOR 0x13 读命令；VIP 预填值 0x9a",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "23f9c771ab0e5385663fb37b02c44a1cd45fb18b718b846e70562cf49e508fcb",
+    "previous": "assets/new-serial.svg",
+    "current": "assets/figures-20261007/new-serial.svg"
+  },
+  "new-system": {
+    "title": "三种访问辨认 SoC：字符输出、数组计算、调试装载",
+    "source": "源码：cheshire_soc.sv；UART DIF；CVA6–Ara 专用控制接口",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "94dbc68f26731e7ba6407b3c5b7a0b6f44caa7569b45e643d1e4a7069a3657ed",
+    "previous": "assets/new-system.svg",
+    "current": "assets/figures-20261007/new-system.svg"
+  },
+  "new-transaction": {
+    "title": "AXI 写事务：地址、数据与响应三条独立通道",
+    "source": "依据：本地 axi_xbar / axi_mux / axi_demux_simple；教学事件图，不表示固定周期",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "81375184654bd2580a74d1022ff85c9eec113d9897f42449711ee18fd1ea3c96",
+    "previous": "assets/new-transaction.svg",
+    "current": "assets/figures-20261007/new-transaction.svg"
+  },
+  "new-vector": {
+    "title": "137 个 e32 元素：按实际 vl 分批执行",
+    "source": "依据：教材 journey.c；RVV vsetvli 语义与当前 Ara 配置；非运行结果",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "9260d0336032da0f9a2e503619c0608fe914cbe1bd976044e88ea57bebe09b1f",
+    "previous": "assets/new-vector.svg",
+    "current": "assets/figures-20261007/new-vector.svg"
+  },
+  "teaching-asic-responsibilities": {
+    "title": "ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么",
+    "source": "依据：Cheshire 集成接口；tech_cells_generic；平台启动与配置约定",
+    "status": "未来方案 / 待实现与验证",
+    "sha256": "de6e70d564d4587e616c703fd89cea34f35b64c29aa6ff472186b503638ed2d5",
+    "previous": "assets/teaching-asic-responsibilities.svg",
+    "current": "assets/figures-20261007/teaching-asic-responsibilities.svg"
+  },
+  "teaching-code-to-execution": {
+    "title": "从 C 到执行：主机产物如何变成目标内存与 CPU 状态",
+    "source": "源码：sw/lib/crt0.S；hw/bootrom；elfloader.cpp；vip_cheshire_soc.sv",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "47eff492b6576198cde7cdaa3c935bb0b958ae26792bd1b50dc6dc72d44a6726",
+    "previous": "assets/teaching-code-to-execution.svg",
+    "current": "assets/figures-20261007/teaching-code-to-execution.svg"
+  },
+  "teaching-config-contract": {
+    "title": "配置契约：profile、SoC Cfg、软件与运行状态共同约束",
+    "source": "源码：cheshire_pkg::gen_cva6_cfg / gen_axi_in/out；build_config_pkg；sw/sw.mk",
+    "status": "当前源码结构 / 教学示意；非运行证据",
+    "sha256": "408b73f36e02c39e2a85a8867d180b092eab80f3fc276d5dffb01375eca56a54",
+    "previous": "assets/teaching-config-contract.svg",
+    "current": "assets/figures-20261007/teaching-config-contract.svg"
+  }
+}

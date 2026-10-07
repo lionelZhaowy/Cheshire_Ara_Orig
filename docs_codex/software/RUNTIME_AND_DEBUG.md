@@ -203,10 +203,10 @@ UART debug 是二进制协议，不是把 ELF 文件直接发给终端：ACK=0x0
 
 Boot ROM、外部镜像和执行存储承担不同职责。NOR 启动时，CPU 先执行片上 ROM 中的 SPI 驱动，把外部 NOR 载荷读到 SPM，再跳到 SPM。四种 boot mode 是固定 ROM 中的策略分支；选择不同介质并不改变 ROM 本身。
 
-Platform ROM 是平台提供的早期代码入口。`Cfg.PlatformRom` 决定地址，SoC 将其报告到只读 `PLATFORM_ROM` 寄存器；wrapper 还要提供对应存储、映射和代码。内置 Boot ROM 开启时，平台调用位于 SPM/早期栈建立之后、通用启动之前。关闭 Bootrom 时 CPU 直接从 PlatformRom 地址开始，平台必须自行承担第一阶段职责。
+Platform ROM 是平台提供的早期代码入口。`Cfg.PlatformRom` 决定地址，SoC 将其报告到只读 `PLATFORM_ROM` 寄存器；wrapper 还要提供对应存储、映射和代码。内置 Boot ROM 开启且内部 LLC 保留时，平台调用位于 SPM 初始化及栈调整之后、通用启动之前。若 `HW_FEATURES.llc=0`，ROM 直接跳到 `_prom_check_run`，没有建立内部 SPM；先前加载的链接栈值不保证对应地址可写。平台需提前提供覆盖该地址的可写存储，或先以不依赖栈的早期汇编建立替代存储并设置符合 ABI 的 sp，再调用需要栈的 C 代码。这也适用于 Bootrom=1 的 LLC 旁路组合。关闭 Bootrom 时 CPU 直接从 PlatformRom 地址开始，平台必须自行承担第一阶段职责。
 
 本地 `_prom_check_run` 的 `jalr t0` 正常返回会落入紧邻的 `boot_next_stage`，与官方允许正常返回继续通用启动的契约不符。上游修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）不在当前 HEAD 祖先链中。源码及生成 ROM 的核对见 [Platform ROM 专题](../03_Platform_ROM_Clock_IP_Configuration.md)；本轮没有修改生产 ROM，非零钩子的正常返回需要独立修复与回归。
 
-ROM 指令固定，不妨碍其向可编程 PLL 写安全初值，也不妨碍后续软件按 IP 契约调频。约束来自执行依赖：CVA6 在调用 Platform ROM 前已经需要时钟、取指路径、SPM 和栈；修改当前 CPU 的时钟源时也要保证控制路径持续可运行。外部配置表只能在读取介质已可用后加载和校验。详细推演见[启动安全频率与运行时调频](../learning/clocks.html#boot-and-runtime-frequency)。
+ROM 指令固定，不妨碍其向可编程 PLL 写安全初值，也不妨碍后续软件按 IP 契约调频。约束来自执行依赖：CVA6 在调用 Platform ROM 前需要有效时钟和取指路径；保留 LLC 时还经过内部 SPM/栈初始化，无 LLC 时首次栈访问的安全条件由平台保证；修改当前 CPU 的时钟源时也要保证控制路径持续可运行。外部配置表只能在读取介质已可用后加载和校验。详细推演见[启动安全频率与运行时调频](../learning/clocks.html#boot-and-runtime-frequency)。
 
 C 环境的责任继续由各层分担：链接器为 `.text` 代码、`.rodata` 常量、`.data` 初值和 `.bss` 零初始化对象安排空间；加载器放置有字节载荷的内容；本地 crt0 清 BSS、建立 gp/栈条件和 FS 后调用 main。本地链接脚本把部分输入节合并为 `.misc`，所以 ELF 节名不一定逐项等于 C 存储类别。分组有利于分配权限和减少镜像零字节，但节名本身不产生硬件保护。

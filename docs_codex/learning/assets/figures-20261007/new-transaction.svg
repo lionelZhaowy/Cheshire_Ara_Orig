@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>AXI 写事务：地址、数据与响应三条独立通道</title>
+<desc>同一笔两拍写入；AW 与 W 可以独立提出。W 没有 WID，互连需要保存目标与来源。；依据：本地 axi_xbar / axi_mux / axi_demux_simple；教学事件图，不表示固定周期</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="190" y1="270" x2="190" y2="855" stroke="#B9CAD6" stroke-width="2" fill="none"/>
+<line x1="665" y1="270" x2="665" y2="855" stroke="#B9CAD6" stroke-width="2" fill="none"/>
+<line x1="1140" y1="270" x2="1140" y2="855" stroke="#B9CAD6" stroke-width="2" fill="none"/>
+<line x1="1615" y1="270" x2="1615" y2="855" stroke="#B9CAD6" stroke-width="2" fill="none"/>
+<polyline points="190,325 1615,325" fill="none" stroke="#B76315" stroke-width="4"/>
+<polygon points="1615.00,325.00 1603.00,320.00 1603.00,330.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="190,445 1615,445" fill="none" stroke="#216BB1" stroke-width="4"/>
+<polygon points="1615.00,445.00 1603.00,440.00 1603.00,450.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="190,565 1615,565" fill="none" stroke="#216BB1" stroke-width="4"/>
+<polygon points="1615.00,565.00 1603.00,560.00 1603.00,570.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1615,780 190,780" fill="none" stroke="#087E83" stroke-width="4"/>
+<polygon points="190.00,780.00 202.00,785.00 202.00,775.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">AXI 写事务：地址、数据与响应三条独立通道</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">同一笔两拍写入；AW 与 W 可以独立提出。W 没有 WID，互连需要保存目标与来源。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：本地 axi_xbar / axi_mux / axi_demux_simple；教学事件图，不表示固定周期</text>
+<rect id="发起者" x="50" y="185" width="280" height="72" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="50" y="185" width="5" height="72" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="67" y="217" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="发起者">发起者</text>
+<rect id="输入 demux" x="525" y="185" width="280" height="72" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="525" y="185" width="5" height="72" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="542" y="217" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="输入 demux">输入 demux</text>
+<rect id="目标 mux" x="1000" y="185" width="280" height="72" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1000" y="185" width="5" height="72" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1017" y="217" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="目标 mux">目标 mux</text>
+<rect id="目标设备" x="1475" y="185" width="280" height="72" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1475" y="185" width="5" height="72" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1492" y="217" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="目标设备">目标设备</text>
+<text x="890" y="308" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle">AW：addr / ID / LEN=1</text>
+<text x="890" y="428" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle">W：D0 / STRB / LAST=0</text>
+<text x="890" y="548" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle">W：D1 / STRB / LAST=1</text>
+<text x="890" y="763" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle">B：ID / RESP；软件仍需检查结果</text>
+<rect id="saved" x="455" y="650" width="880" height="75" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="455" y="650" width="5" height="75" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="472" y="682" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="saved">路由状态跨周期保存</text>
+<text x="472" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="saved">目标 / 来源 FIFO / 同 ID 在途数</text>
+<rect id="note-5" x="55" y="900" width="530" height="120" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="900" width="5" height="120" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="932" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-5">AW 被接收</text>
+<text x="72" y="968" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">该接口接受写地址</text>
+<text x="72" y="998" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">不代表目标已经写入</text>
+<rect id="note-6" x="630" y="900" width="530" height="120" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="630" y="900" width="5" height="120" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="647" y="932" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">W 末拍握手</text>
+<text x="647" y="968" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">该接口结束本 burst 数据</text>
+<text x="647" y="998" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">B 响应仍可能在途</text>
+<rect id="note-7" x="1205" y="900" width="540" height="120" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1205" y="900" width="5" height="120" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1222" y="932" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-7">B 握手并检查 RESP</text>
+<text x="1222" y="968" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">AXI 写事务响应已返回</text>
+<text x="1222" y="998" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">设备动作完成语义仍由寄存器定义</text>
+</svg>

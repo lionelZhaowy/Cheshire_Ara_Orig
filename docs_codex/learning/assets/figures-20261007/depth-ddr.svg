@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>DDR 子系统：AXI 事务、控制器、PHY 与器件引脚</title>
+<desc>AXI 是事务接口；DQ / DQS / 命令引脚是存储器电气接口。两侧不能直接相连。；依据：现有 FPGA dram_wrapper_xilinx 边界；ASIC 供应商控制器/PHY 接口尚未冻结</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="400" y="190" width="1050" height="470" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="330,392.5 450,392.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="450.00,392.50 438.00,387.50 438.00,397.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="885,392.5 1000,392.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1000.00,392.50 988.00,387.50 988.00,397.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1350,392.5 1500,392.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1500.00,392.50 1488.00,387.50 1488.00,397.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="565,887.5 710,887.5" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,887.50 698.00,882.50 698.00,892.50" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="970,805 970,735 665,735 665,515" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="665.00,515.00 660.00,527.00 670.00,527.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">DDR 子系统：AXI 事务、控制器、PHY 与器件引脚</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">AXI 是事务接口；DQ / DQS / 命令引脚是存储器电气接口。两侧不能直接相连。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：现有 FPGA dram_wrapper_xilinx 边界；ASIC 供应商控制器/PHY 接口尚未冻结</text>
+<text x="418" y="225" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">平台存储子系统：实现由 FPGA / ASIC 平台承担</text>
+<rect id="n0" x="50" y="270" width="280" height="245" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="50" y="270" width="5" height="245" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="67" y="302" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="n0">SoC LLC 下游</text>
+<text x="67" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n0">AXI4 事务</text>
+<text x="67" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n0">ID / burst / STRB</text>
+<text x="67" y="398" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n0">RESP / 背压</text>
+<rect id="n1" x="450" y="270" width="435" height="245" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="450" y="270" width="5" height="245" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="467" y="302" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="n1">适配 / 控制器</text>
+<text x="467" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n1">可选 CDC / 宽度适配</text>
+<text x="467" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n1">地址映射、队列、调度</text>
+<text x="467" y="398" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n1">刷新与错误状态</text>
+<rect id="n2" x="1000" y="270" width="350" height="245" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1000" y="270" width="5" height="245" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1017" y="302" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="n2">DDR PHY</text>
+<text x="1017" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n2">训练、采样、对齐</text>
+<text x="1017" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n2">时钟与 DQ / DQS</text>
+<text x="1017" y="398" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n2">命令 / 电气时序</text>
+<rect id="n3" x="1500" y="270" width="245" height="245" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1500" y="270" width="5" height="245" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1517" y="302" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="n3">DRAM 器件</text>
+<text x="1517" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n3">bank / row /</text>
+<text x="1517" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n3">column</text>
+<text x="1517" y="398" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n3">存储单元 / 刷新</text>
+<text x="1517" y="428" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="n3">引脚与板级连线</text>
+<rect id="fw" x="65" y="805" width="500" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="65" y="805" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="82" y="837" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="fw">平台初始化固件</text>
+<text x="82" y="873" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="fw">配置 PLL / 控制寄存器</text>
+<text x="82" y="903" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="fw">轮询状态、超时与失败回退</text>
+<text x="82" y="933" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="fw">运行软件可重复查询状态</text>
+<rect id="ready" x="710" y="805" width="1030" height="165" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="710" y="805" width="5" height="165" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="727" y="837" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ready">放行条件：PLL lock + 初始化 / 校准完成 + 复位协调</text>
+<text x="727" y="873" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ready">执行初始化的代码、栈必须先位于可用存储</text>
+<text x="727" y="903" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ready">供应商需给出 AXI 限制、容量、ECC / 错误、寄存器、模型与复位顺序</text>
+</svg>

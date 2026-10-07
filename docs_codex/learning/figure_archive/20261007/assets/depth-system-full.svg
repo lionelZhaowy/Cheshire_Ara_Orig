@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 830" role="img" aria-labelledby="title desc"><title id="title">当前 Cheshire SoC：计算、互连、存储与外部边界</title><desc id="desc">实线＝当前连接；可选设备受 Cfg 控制。返回沿相应事务反向传递。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="830" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">当前 Cheshire SoC：计算、互连、存储与外部边界</text>
+<text x="32" y="74" class="small" text-anchor="start">实线＝当前连接；可选设备受 Cfg 控制。返回沿相应事务反向传递。</text>
+<rect x="40.0" y="110" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="149.0" class="box" text-anchor="middle">CVA6</text>
+<text x="190.0" y="175.0" class="box" text-anchor="middle">取指 / 整数 / FPU / MMU</text>
+<rect x="360.0" y="110" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="149.0" class="box" text-anchor="middle">Ara</text>
+<text x="510.0" y="175.0" class="box" text-anchor="middle">VRF / lanes / VLSU</text>
+<rect x="680.0" y="110" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="149.0" class="box" text-anchor="middle">DM / DMA / Link / VGA / USB</text>
+<text x="830.0" y="175.0" class="box" text-anchor="middle">主动数据请求</text>
+<path d="M350,145 L365,145" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="355" y="130" class="label" text-anchor="middle">指令</text>
+<rect x="40" y="240" width="940" height="90" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="278.0" class="box" text-anchor="middle">L1 + ID 适配 / Ara 失效过滤与位宽适配 / 各设备 AXI 适配</text>
+<text x="510.0" y="304.0" class="box" text-anchor="middle">CVA6 与 Ara 另有 MMU、pending、completion、invalidate 控制线</text>
+<path d="M190.0,202 L190.0,240" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,202 L510.0,240" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,202 L830.0,240" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="375" width="940" height="60" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="510.0" y="411.0" class="box" text-anchor="middle">AXI Crossbar：每输入译码分流，每目标仲裁，保存 W 路由与响应来源</text>
+<path d="M190.0,330 L190.0,375" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,330 L510.0,375" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,330 L830.0,375" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40.0" y="485" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="524.0" class="box" text-anchor="middle">Debug 目标 / DMA 控制</text>
+<text x="190.0" y="550.0" class="box" text-anchor="middle">双重角色：目标与发起端</text>
+<rect x="360.0" y="485" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="510.0" y="524.0" class="box" text-anchor="middle">Reg 桥 → 二级译码</text>
+<text x="510.0" y="550.0" class="box" text-anchor="middle">ROM / CLINT / PLIC / MMIO</text>
+<rect x="680.0" y="485" width="300.0" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="830.0" y="524.0" class="box" text-anchor="middle">原子单元 → LLC / SPM</text>
+<text x="830.0" y="550.0" class="box" text-anchor="middle">LLC 下游 AXI4</text>
+<path d="M190.0,435 L190.0,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M510.0,435 L510.0,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830.0,435 L830.0,485" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="625" width="560" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="320.0" y="664.0" class="box" text-anchor="middle">UART / I2C / SPI / GPIO / Link / VGA / USB</text>
+<text x="320.0" y="690.0" class="box" text-anchor="middle">外部引脚；IRQ 经同步/PLIC 进入 CPU</text>
+<rect x="660" y="625" width="320" height="92" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="820.0" y="664.0" class="box" text-anchor="middle">平台存储边界</text>
+<text x="820.0" y="690.0" class="box" text-anchor="middle">仿真 RAM / FPGA DDR / ASIC DDR</text>
+<path d="M510,577 L330,625" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830,577 L820,625" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="775" class="small" text-anchor="start">源码：cheshire_soc.sv 的 gen_ara、i_axi_xbar、i_reg_demux、gen_llc；时钟/复位见后图。</text></svg>

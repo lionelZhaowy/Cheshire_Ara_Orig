@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>向量访存：地址翻译与数据搬运是两条路径</title>
+<desc>控制平面确定地址、权限与异常；数据平面在 AXI 和分布式 VRF 之间传输。；源码：Ara addrgen / vldu / vstu；CVA6 load_store_unit；cheshire_soc::gen_ara</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="45" y="185" width="1710" height="340" rx="12" fill="#F3EFF9" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="45" y="575" width="1710" height="280" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="485,355.0 660,355.0" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="660.00,355.00 648.00,350.00 648.00,360.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1090,332.5 1295,332.5" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1295.00,332.50 1283.00,327.50 1283.00,337.50" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1295,400.0 1090,400.0" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1090.00,400.00 1102.00,405.00 1102.00,395.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="485,702.25 660,702.25" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="660.00,702.25 648.00,697.25 648.00,707.25" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="660,763.0 485,763.0" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="485.00,763.00 497.00,768.00 497.00,758.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1090,722.5 1295,722.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1295.00,722.50 1283.00,717.50 1283.00,727.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="875.0,430 875.0,655" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="875.00,655.00 880.00,643.00 870.00,643.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">向量访存：地址翻译与数据搬运是两条路径</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">控制平面确定地址、权限与异常；数据平面在 AXI 和分布式 VRF 之间传输。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：Ara addrgen / vldu / vstu；CVA6 load_store_unit；cheshire_soc::gen_ara</text>
+<text x="63" y="220" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">地址 / 权限 / 异常平面</text>
+<rect id="regs" x="75" y="280" width="410" height="150" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="75" y="280" width="5" height="150" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="92" y="312" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="regs">CVA6 标量寄存器</text>
+<text x="92" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="regs">rs1 = base；rs2 = stride</text>
+<text x="92" y="378" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="regs">vstart / 元素索引影响地址</text>
+<rect id="addr" x="660" y="280" width="430" height="150" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="660" y="280" width="5" height="150" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="677" y="312" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="addr">Ara addrgen</text>
+<text x="677" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="addr">base + 元素偏移</text>
+<text x="677" y="378" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="addr">可选地址翻译与异常处理</text>
+<rect id="mmu" x="1295" y="280" width="430" height="150" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1295" y="280" width="5" height="150" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1312" y="312" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="mmu">CVA6 MMU / LSU</text>
+<text x="1312" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mmu">仲裁翻译、PMP / 权限</text>
+<text x="1312" y="378" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mmu">物理地址或异常返回</text>
+<text x="63" y="610" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">load / store 数据平面</text>
+<rect id="vrf" x="75" y="655" width="410" height="135" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="75" y="655" width="5" height="135" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="92" y="687" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vrf">VRF / lanes</text>
+<text x="92" y="723" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf">store 数据 / index / mask</text>
+<text x="92" y="753" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vrf">load 目的寄存器</text>
+<rect id="vlsu" x="660" y="655" width="430" height="135" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="660" y="655" width="5" height="135" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="677" y="687" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vlsu">VLSU · vldu / vstu</text>
+<text x="677" y="723" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vlsu">队列、重排、字节计数</text>
+<text x="677" y="753" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vlsu">地址应答与数据完成分开</text>
+<rect id="axi" x="1295" y="655" width="430" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1295" y="655" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1312" y="687" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="axi">Ara AXI</text>
+<text x="1312" y="723" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="axi">AR → / R ←</text>
+<text x="1312" y="753" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="axi">AW、W → / B ←</text>
+<rect id="note-6" x="55" y="915" width="1690" height="115" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="915" width="5" height="115" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="947" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">系统路径与验收边界</text>
+<text x="72" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">失效过滤 / 位宽适配 → Crossbar → SPM 或 LLC → 外存；AXI 口独立于 CPU L1 数据口</text>
+<text x="72" y="1013" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">本地 store B 错误处理仍有 TODO；complete 不能单独作为传输成功证据</text>
+</svg>

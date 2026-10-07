@@ -3,7 +3,7 @@
 <p>JTAG 是调试传输链路。调试传输模块（DTM）在 JTAG TCK 域接收调试操作，再通过 调试模块接口（DMI）访问系统域的 Debug Module（DM）。DM 可以停止/恢复 hart（一个硬件执行线程），执行寄存器访问命令，还能通过 SBA，即系统总线访问，主动读写目标内存。DMI 地址属于调试协议空间，不是 CPU 的 MMIO 地址。</p>
 <h2 id="timelines">主机与目标的两条时间线</h2>
 <p>主机可以在启动模拟器之前完成软件构建。目标 CPU 的复位逻辑只知道 BootAddr，默认指向 0x02000000 的 Boot ROM；它不会自行读取主机路径里的 ELF。仿真启动后，VIP 先提供时钟和复位，ROM 开始执行，另一边的加载任务等待目标存储达到可装载状态。两条时间线在装载和入口交接处汇合。</p>
-<figure><img src="assets/new-boot.svg" alt="主机与目标的依赖流程；VIP 检查 SPM 配置位，再 halt、SBA 装载与 DPC 恢复，ROM C 和栈须另查"><figcaption>对应 BOOTMODE=0、PRELMODE=0 的当前 JTAG 路径。ROM 的 C main 与应用 main 分属不同程序。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-boot.svg" alt="主机与目标的依赖流程；VIP 检查 SPM 配置位，再 halt、SBA 装载与 DPC 恢复，ROM C 和栈须另查"><figcaption>对应 BOOTMODE=0、PRELMODE=0 的当前 JTAG 路径。ROM 的 C main 与应用 main 分属不同程序。</figcaption></figure>
 <h2 id="takeover">JTAG 装载前置条件</h2>
 <h3 id="vip-ready">CFG_SPM_LOW.bit0 与暂停应答</h3>
 <p>jtag_elf_halt_load 在 DutCfg.LlcNotBypass 为真时轮询 LLC CFG_SPM_LOW.bit0，然后写 DMCONTROL.haltreq，并轮询 DMSTATUS.allhalted。它既不等待 ROM C main，也不等待 clint_get_core_freq 返回。该位来自软件写配置，不能单独扩大成所有初始化完成标志。</p>

@@ -2,7 +2,7 @@
 <h2 id="internals">加载—计算—存储在 Ara 内部怎样流动</h2>
 <h3 id="dispatch-sequence">Dispatcher、Sequencer 与执行单元</h3>
 <p>dispatcher 保存 vl/vtype/vstart 等向量状态，检查编码及寄存器分组，必要时发起元素宽度重排。sequencer 追踪寄存器读写冲突、功能单元队列和在途指令。每条 lane 包含 VRF 分片、操作数请求/队列、整数与乘除/浮点资源；masku 向各单元提供每元素使能，sldu 处理跨 lane 数据移动及部分归约协作，VLSU 包含 addrgen、vldu、vstu。</p>
-<figure><img src="assets/depth-ara-internals.svg" alt="dispatcher、sequencer、两个 lane、mask/slide 和 VLSU 连接，VRF 与访存缓冲分开"><figcaption>本地结构的分层教学图；源码依据 ara.sv、ara_sequencer.sv、lane.sv、vlsu.sv。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-ara-internals.svg" alt="dispatcher、sequencer、两个 lane、mask/slide 和 VLSU 连接，VRF 与访存缓冲分开"><figcaption>本地结构的分层教学图；源码依据 ara.sv、ara_sequencer.sv、lane.sv、vlsu.sv。</figcaption></figure>
 <h3 id="lane-layout">Lane、VRF 与加载—计算—存储</h3>
 <p>以两 lane、e32、vl=4 为小例子，内存中 a[0..3] 连续排列；load 后，元素 0/2 放到 lane0 的两个 32 位位置，1/3 放到 lane1。vadd.vv 分别读取相同 lane 的 a/b 分片，结果写回目的向量寄存器；store 再组合成 c[0],c[1],c[2],c[3] 的自然内存顺序。更窄元素需要字节 shuffle，变化 EEW 时还可能需要 reshuffle；软件依赖架构元素顺序，不依赖物理 bank 地址。</p>
 <p>VRF 是由指令显式寻址的 32 个架构寄存器，当前共 8 KiB，每 lane 分摊 4 KiB。其 bank 冲突、操作数 FIFO、load 结果队列和 store 队列会造成背压。这些临时存储不提供按主存地址查 tag 的通用数据缓存。在当前 ara.sv → vlsu → AXI 的路径中没有独立 Ara 数据 cache；CPU L1、LLC、LLC 的 SPM ways 与外部 DDR 各有不同地址、容量及一致性责任。未来 NPU 无法凭同在片上就直接访问 Ara VRF。</p>
@@ -10,7 +10,7 @@
 <h3 id="first-pass">初译码、标量操作数与非推测发出</h3>
 <p>以 <code>vadd.vv v2,v0,v1</code> 为例，CVA6 取得 32 位编码后，在 decoder 的加速器分支调用 Ara 提供的 <code>cva6_accel_first_pass_decoder</code>。这一步识别向量操作、标量源/目的寄存器、load/store 类别，并检查 VS；涉及向量浮点还检查 FS。它把功能单元标为 ACCEL，把原始指令保留下来，完整的向量合法性检查交给 Ara dispatcher。初译码能认出某类编码，尚不能证明 Ara 实现该操作的全部变体。</p>
 <p>CVA6 读出需要的标量操作数并维护 scoreboard，即记录未完成指令及其依赖的表。<code>acc_dispatcher</code> 有深度 3 的指令队列和后续 spill register；队列满附近会停止接收新的加速器指令。指令只有到达可非推测发出的提交边界，才通过请求寄存器送给 Ara。这防止一条后来会被分支冲刷的指令提前改变向量状态；变量名 acc_commit 在这里表达“允许非推测发出”，应与最终 commit_ack 区分。</p>
-<figure><img src="assets/depth-cva6-ara.svg" alt="CVA6 的初译码、scoreboard 和 acc_dispatcher 连接 Ara dispatcher，MMU 协作与独立 AXI 分开"><figcaption>当前源码连接，教学抽象省略流水级。控制方向和 AXI 数据方向独立；依据 cheshire_soc::gen_ara、acc_dispatcher 和 ara/intf_typedef.svh。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-cva6-ara.svg" alt="CVA6 的初译码、scoreboard 和 acc_dispatcher 连接 Ara dispatcher，MMU 协作与独立 AXI 分开"><figcaption>当前源码连接，教学抽象省略流水级。控制方向和 AXI 数据方向独立；依据 cheshire_soc::gen_ara、acc_dispatcher 和 ara/intf_typedef.svh。</figcaption></figure>
 <h3 id="handshake-fields">请求字段、握手与标量返回值</h3>
 <p>请求结构的 insn 携带编码，rs1/rs2 携带实际标量值，frm 携带浮点舍入模式，trans_id 关联 CPU scoreboard 项。req_valid 与 req_ready 同时成立才接受请求；等待期间请求保持稳定。应答携带 resp_valid、同一个 trans_id、result 和 exception；CPU 本地把 resp_ready 固定为 1。无标量目的寄存器的 vadd.vv 不把整个向量结果装进 result；它的目的数据写入 Ara VRF。vsetvli 的实际 vl、vmv.x.s 或浮点标量传送才需要相应的标量返回值。</p>
 <h3 id="interface-boundary">专用接口与通用扩展接口的边界</h3>
@@ -28,7 +28,7 @@
 <h2 id="vector-memory">向量地址与独立数据通路</h2>
 <h3 id="address-translation">地址生成、翻译和权限</h3>
 <p><code>vle32.v v0,(a0)</code> 的 a0 值由 CPU 放入请求 rs1，addrgen 按基址、vl、元素宽度形成地址；跨步访问另取标量 stride，索引访问从 VRF 取得偏移。它把地址请求交给 CVA6 的 MMU 协作端口，load_store_unit 中的仲裁选择标量或加速器翻译，返回物理地址、DTLB 命中信息或异常。页表权限与 PMP 的作用取决于有效配置：本教程机器态主线没有建立页表，且 SoC 默认 NrPMPEntries=0，不能宣称已有 NPU/IOMMU 隔离。</p>
-<figure><img src="assets/depth-vector-memory.svg" alt="addrgen 使用 CPU 的 MMU 服务，VLSU 通过自己的 AXI 传输数据，load/store 完成独立返回"><figcaption>当前源码数据/控制路径。依据 ara/vlsu、CVA6 load_store_unit、cheshire_soc 中 invalidation filter 与位宽转换。</figcaption></figure><figure><img src="assets/depth-vector-load.svg" alt="向量加载请求经过地址检查与 AXI 返回，数据写入 VRF 后才产生 load_complete"><figcaption>教学时序：应答、R 握手和 VRF 写入之间只表达因果，实际延迟和 burst 数由配置/地址/背压决定。 · <a href="assets/waves/vector-load.json">WaveDrom 源文件</a></figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-vector-memory.svg" alt="addrgen 使用 CPU 的 MMU 服务，VLSU 通过自己的 AXI 传输数据，load/store 完成独立返回"><figcaption>当前源码数据/控制路径。依据 ara/vlsu、CVA6 load_store_unit、cheshire_soc 中 invalidation filter 与位宽转换。</figcaption></figure><figure><img src="assets/depth-vector-load.svg" alt="向量加载请求经过地址检查与 AXI 返回，数据写入 VRF 后才产生 load_complete"><figcaption>教学时序：应答、R 握手和 VRF 写入之间只表达因果，实际延迟和 burst 数由配置/地址/背压决定。 · <a href="assets/waves/vector-load.json">WaveDrom 源文件</a></figcaption></figure>
 <h3 id="data-completion">独立 AXI 数据通路与实现限制</h3>
 <p>AR/R 直接在 Ara 自身 AXI 上传输数据，load 数据经重排和结果缓冲写入各 lane；store 从 VRF 读取，重排成内存字节顺序，经 AW/W/B 完成。两个 lane 时 Ara AXI 为 32×2=64 位，之后仍有显式位宽转换以适配系统。向量元素不经 CPU 的标量 result 总线逐项传送，也不借 CPU L1D 作为向量数据接口。</p>
 <p>本地 addrgen 对元素未对齐地址有拒绝分支，使用 ILLEGAL_INSTR 上报；索引访问还留有 vstart 支持限制注释。用本地实现规划测试时，应覆盖对齐、页边界、尾部、mask、故障元素和复位；不要用规范中存在某条指令来替代本版本的逐项验证。</p>

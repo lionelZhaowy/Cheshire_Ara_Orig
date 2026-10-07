@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>配置契约：profile、SoC Cfg、软件与运行状态共同约束</title>
+<desc>编译时配置生成硬件能力；软件 ISA / ABI / 链接布局必须与硬件及启动环境匹配。；源码：cheshire_pkg::gen_cva6_cfg / gen_axi_in/out；build_config_pkg；sw/sw.mk</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="195" width="470" height="620" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="665" y="195" width="470" height="620" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="1275" y="195" width="470" height="620" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="290.0,425 290.0,500" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="290.00,500.00 295.00,488.00 285.00,488.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900.0,425 900.0,500" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,500.00 905.00,488.00 895.00,488.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1510.0,425 1510.0,500" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1510.00,500.00 1515.00,488.00 1505.00,488.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="690,350.0 610,350 610,575 500,575.0" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="500.00,575.00 512.00,580.00 512.00,570.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">配置契约：profile、SoC Cfg、软件与运行状态共同约束</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">编译时配置生成硬件能力；软件 ISA / ABI / 链接布局必须与硬件及启动环境匹配。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire_pkg::gen_cva6_cfg / gen_axi_in/out；build_config_pkg；sw/sw.mk</text>
+<text x="73" y="230" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">CPU 配置链</text>
+<text x="683" y="230" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">系统结构配置链</text>
+<text x="1293" y="230" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">软件构建链</text>
+<rect id="profile" x="80" y="275" width="420" height="150" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="80" y="275" width="5" height="150" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="97" y="307" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="profile">CVA6 profile</text>
+<text x="97" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="profile">ISA / cache / 资源原值</text>
+<rect id="override" x="80" y="500" width="420" height="150" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="80" y="500" width="5" height="150" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="97" y="532" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="override">gen_cva6_cfg</text>
+<text x="97" y="568" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="override">平台覆盖 PMP / CLIC 等字段</text>
+<text x="97" y="598" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="override">再由 build_config 派生内部能力</text>
+<rect id="cfg" x="690" y="275" width="420" height="150" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="690" y="275" width="5" height="150" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="707" y="307" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cfg">Cheshire Cfg</text>
+<text x="707" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="cfg">Cfg.Ara / 核数 / 外设开关</text>
+<text x="707" y="373" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="cfg">Ara lanes / VLEN</text>
+<rect id="ports" x="690" y="500" width="420" height="150" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="690" y="500" width="5" height="150" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="707" y="532" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ports">端口、类型与地址规则</text>
+<text x="707" y="568" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="ports">gen_axi_in / out / reg</text>
+<text x="707" y="598" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="ports">数量变化影响索引与来源 ID</text>
+<rect id="sw" x="1300" y="275" width="420" height="150" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="1300" y="275" width="5" height="150" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="1317" y="307" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="sw">工具链 / 源码 / 库</text>
+<text x="1317" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="sw">-march / -mabi / 链接脚本</text>
+<text x="1317" y="373" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="sw">启动对象与驱动头文件</text>
+<rect id="elf" x="1300" y="500" width="420" height="150" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="1300" y="500" width="5" height="150" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="1317" y="532" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="elf">ELF / map / dump</text>
+<text x="1317" y="568" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="elf">字节、符号、入口与装载段</text>
+<text x="1317" y="598" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="elf">不能由编译成功推断目标运行</text>
+<text x="560" y="450" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start">覆盖</text>
+<text x="90" y="745" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">RTL 展开：CVA6 / Ara / 互连 / LLC / 外设</text>
+<text x="1300" y="745" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">装载程序与有效硬件匹配</text>
+<rect id="note-6" x="55" y="895" width="1690" height="120" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="55" y="895" width="5" height="120" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="72" y="927" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">运行时初始化不是再次生成硬件</text>
+<text x="72" y="963" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">VS / FS、MMIO 配置、存储就绪、有效栈与入口：软件使用已存在的资源；SELCFG 不会自动替换 CPU profile。</text>
+</svg>

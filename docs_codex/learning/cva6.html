@@ -16,7 +16,7 @@
 <p>因此，“标量 profile 名字含 CLIC”与“系统中存在 CLIC”不是同一证据。CPU 内部的 <code>build_config</code> 还会根据用户字段计算内部常量；学习本地实现时应顺着 profile、平台覆盖、派生配置、模块 generate 四步追踪。下一章将把这些 CPU 条件与 Ara、SoC 和软件组合起来。</p>
 <p class="source">源码静态确认：<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/config_pkg.sv">cva6_user_cfg_t / cache_type_t</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv">build_config</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv">cache 实现选择</a>、<a href="../../hw/cheshire_pkg.sv">gen_cva6_cfg</a>。<a href="https://cva6.readthedocs.io/en/latest/01_cva6_user/Parameters_Configuration.html">在线参数手册</a>用于解释配置类别；其中新增字段不直接纳入本地 88 字段清单。</p>
 <h3 id="functional-overview"><span class="section-number">2.2.3</span> 执行资源与系统行为</h3>
-<figure><img src="assets/mechanism-cva6.svg" alt="CVA6 取指译码发射到整数浮点访存和 Ara 接口，再经结果跟踪与提交，CSR翻译保护在旁协作"><figcaption>CVA6 功能层次教学图；表示职责与主要依赖，不是逐级流水电路图。依据本地 core/cva6.sv、issue_stage.sv、ex_stage.sv、commit_stage.sv。</figcaption></figure>
+<figure><img src="assets/figures-20261007/mechanism-cva6.svg" alt="CVA6 取指译码发射到整数浮点访存和 Ara 接口，再经结果跟踪与提交，CSR翻译保护在旁协作"><figcaption>CVA6 功能层次教学图；表示职责与主要依赖，不是逐级流水电路图。依据本地 core/cva6.sv、issue_stage.sv、ex_stage.sv、commit_stage.sv。</figcaption></figure>
 <p>取指前端依据 PC 与预测取得指令，译码识别操作，发射检查操作数及执行资源，再把任务交给整数、浮点、访存或专用 Ara 接口。结果可以在不同时间返回；提交阶段按架构顺序确认可见更新，并与异常/中断控制协作。标量 load/store 经地址翻译与保护检查及数据缓存路径；Ara 的独立数据口见<a href="ara.html#vector-memory">向量访存章</a>。</p>
 <h3 id="csr-trap"><span class="section-number">2.2.4</span> CSR、异常和中断</h3>
 <p>对熟悉 MIPS 的读者，可以先把 CSR 理解成管理处理器状态的寄存器组，而不是外部总线上的设备。异常由当前指令引起，中断来自异步事件；两者都通过 trap 入口转交软件。mepc 保存返回位置，mcause 表达原因，mtval 提供相关信息，mtvec 指定入口。硬件记录原因并不替软件保存完整整数、浮点或向量上下文。</p>

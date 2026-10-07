@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>CVA6 功能层次：发射、执行、提交与系统接口</title>
+<desc>以职责和接口组织；不展开每一级流水线电路，也不把图中连线当成精确时序。；源码：core/cva6.sv / issue_stage.sv / ex_stage.sv / commit_stage.sv</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="540,300.0 660,300.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="660.00,300.00 648.00,295.00 648.00,305.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1260,300.0 1140,300.0" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1140.00,300.00 1152.00,305.00 1152.00,295.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="900,380 900,445 232,445 232,505" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="232.00,505.00 237.00,493.00 227.00,493.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900,380 900,445 677,445 677,505" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="677.00,505.00 682.00,493.00 672.00,493.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900,380 900,445 1122,445 1122,505" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1122.00,505.00 1127.00,493.00 1117.00,493.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900,380 900,445 1567,445 1567,505" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1567.00,505.00 1572.00,493.00 1562.00,493.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="232,670 232,740 900,740 900,805" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="900.00,805.00 905.00,793.00 895.00,793.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="677,670 677,740 900,740 900,805" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="900.00,805.00 905.00,793.00 895.00,793.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1122,670 1122,740 900,740 900,805" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="900.00,805.00 905.00,793.00 895.00,793.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1567,670 1567,740 900,740 900,805" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="900.00,805.00 905.00,793.00 895.00,793.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">CVA6 功能层次：发射、执行、提交与系统接口</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">以职责和接口组织；不展开每一级流水线电路，也不把图中连线当成精确时序。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：core/cva6.sv / issue_stage.sv / ex_stage.sv / commit_stage.sv</text>
+<rect id="front" x="60" y="220" width="480" height="160" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="220" width="5" height="160" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="252" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="front">取指前端 / Icache</text>
+<text x="77" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="front">PC 与指令流</text>
+<text x="77" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="front">RAS / BTB / BHT 分支预测</text>
+<rect id="issue" x="660" y="220" width="480" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="660" y="220" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="677" y="252" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="issue">译码 / 发射 / scoreboard</text>
+<text x="677" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="issue">操作数、依赖与资源检查</text>
+<text x="677" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="issue">未完成指令与 trans_id 跟踪</text>
+<rect id="csr" x="1260" y="220" width="480" height="160" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1260" y="220" width="5" height="160" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1277" y="252" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="csr">CSR / trap 控制</text>
+<text x="1277" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="csr">特权级、异常与中断</text>
+<text x="1277" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="csr">FS / VS 等运行时状态</text>
+<rect id="ex0" x="60" y="505" width="345" height="165" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="505" width="5" height="165" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="537" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ex0">整数 / 分支</text>
+<text x="77" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex0">地址与标量计算</text>
+<text x="77" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex0">分支结果与控制流</text>
+<rect id="ex1" x="505" y="505" width="345" height="165" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="505" y="505" width="5" height="165" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="522" y="537" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ex1">标量 FPU</text>
+<text x="522" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex1">浮点计算 / fflags</text>
+<text x="522" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex1">使用前正确设置 FS</text>
+<rect id="ex2" x="950" y="505" width="345" height="165" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="950" y="505" width="5" height="165" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="967" y="537" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ex2">标量 load / store</text>
+<text x="967" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex2">MMU / PMP / Dcache</text>
+<text x="967" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex2">地址权限与数据返回</text>
+<rect id="ex3" x="1395" y="505" width="345" height="165" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1395" y="505" width="5" height="165" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1412" y="537" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ex3">Ara 专用接口</text>
+<text x="1412" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex3">请求 / 应答 / pending</text>
+<text x="1412" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ex3">Ara 自身 AXI 独立</text>
+<rect id="commit" x="250" y="805" width="1300" height="150" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="250" y="805" width="5" height="150" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="267" y="837" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="commit">结果关联与顺序提交</text>
+<text x="267" y="873" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="commit">返回结果匹配未完成指令；满足条件后更新架构状态</text>
+<text x="267" y="903" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="commit">异常、重定向与资源等待属于控制反馈；本图仅保留主要职责联系</text>
+</svg>

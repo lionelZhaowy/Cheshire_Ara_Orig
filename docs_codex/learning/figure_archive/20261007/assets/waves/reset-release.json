@@ -1,0 +1,42 @@
+{
+  "signal": [
+    {
+      "name": "ref clock",
+      "wave": "p............."
+    },
+    {
+      "name": "power_good",
+      "wave": "0.1..........."
+    },
+    {
+      "name": "pll_lock sync",
+      "wave": "0....1........"
+    },
+    {
+      "name": "sys rst_n",
+      "wave": "0......1......"
+    },
+    {
+      "name": "DDR init done",
+      "wave": "0.........1..."
+    },
+    {
+      "name": "DDR isolation",
+      "wave": "1..........0.."
+    },
+    {
+      "name": "new DDR req",
+      "wave": "0...........10"
+    }
+  ],
+  "head": {
+    "text": "未来 ASIC 放行条件：教学时序（跨域延迟省略）",
+    "tick": 0
+  },
+  "foot": {
+    "text": "候选协议，尚未实现：各域异步置位/同步释放；PLL/DDR 就绪和故障回退由平台确认"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

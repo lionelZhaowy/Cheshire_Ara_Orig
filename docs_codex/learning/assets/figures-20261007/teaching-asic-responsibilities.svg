@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么</title>
+<desc>当前 RTL 的功能边界与未来 SRAM / PLL / PAD / DDR 实现分层；不预设供应商或最终工艺。；依据：Cheshire 集成接口；tech_cells_generic；平台启动与配置约定</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="320,345 320,475" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="320.00,475.00 325.00,463.00 315.00,463.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900,345 900,475" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="900.00,475.00 905.00,463.00 895.00,463.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1480,345 1480,475" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1480.00,475.00 1485.00,463.00 1475.00,463.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">ASIC 交付边界：数字逻辑消费什么，工艺平台提供什么</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">当前 RTL 的功能边界与未来 SRAM / PLL / PAD / DDR 实现分层；不预设供应商或最终工艺。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：Cheshire 集成接口；tech_cells_generic；平台启动与配置约定</text>
+<rect id="rtl" x="55" y="215" width="1690" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="215" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="247" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="rtl">当前数字系统：CVA6 / Ara / AXI / Reg / LLC / 外设</text>
+<text x="72" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="rtl">固定 Cfg、接口类型、软件地址与启动契约；RTL 存在不代表工艺实现可直接签核</text>
+<rect id="r0" x="55" y="475" width="530" height="285" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="475" width="5" height="285" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="507" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r0">存储抽象 → 宏适配</text>
+<text x="72" y="543" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r0">SRAM / ROM 端口、深度、位宽</text>
+<text x="72" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r0">读延迟、字节写、碰撞语义</text>
+<text x="72" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r0">DFT / MBIST / 修复脚</text>
+<text x="72" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r0">多一拍延迟须与消费者匹配</text>
+<rect id="r1" x="635" y="475" width="530" height="285" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="635" y="475" width="5" height="285" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="652" y="507" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r1">时钟 / 复位 / 电源</text>
+<text x="652" y="543" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r1">PLL、门控与复位同步</text>
+<text x="652" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r1">安全启动、动态切换与回退</text>
+<text x="652" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r1">CDC / RDC、隔离与保持</text>
+<text x="652" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r1">频率 / 电压 / 域划分待确认</text>
+<rect id="r2" x="1215" y="475" width="530" height="285" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1215" y="475" width="5" height="285" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1232" y="507" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r2">外部 IO 与外存</text>
+<text x="1232" y="543" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r2">PAD、电平与引脚复用</text>
+<text x="1232" y="573" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r2">DDR controller + PHY</text>
+<text x="1232" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r2">训练、命令 / 数据时序与错误</text>
+<text x="1232" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="r2">授权接口摘要及受控模型</text>
+<rect id="note-4" x="55" y="890" width="1690" height="125" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="890" width="5" height="125" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="922" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-4">成套交付与验证</text>
+<text x="72" y="958" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-4">宏模型 + RTL 适配 + 平台固件 + STA / CDC / RDC 约束 + DFT / MBIST + 电源意图；依次验收单元、平台启动和系统回归。</text>
+</svg>

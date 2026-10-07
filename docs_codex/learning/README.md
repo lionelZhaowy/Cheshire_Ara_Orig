@@ -73,3 +73,9 @@ python3 docs_codex/learning/scripts/build_registers.py
 新增内容从 [硬件职责](architecture.html#port-roles)、[CPU 配置族](cva6.html#configuration-families)、[组合约束](configuration.html#legality-levels)、[软件分层](runtime.html#software-stack)、[Platform ROM](boot.html#platform-rom)、[ASIC 资源映射](future.html#resource-mapping)进入。原六项实验保留，不为参数阅读和概念辨析增加重复实验。
 
 本轮证据独立写入 `evidence/teaching-20261007/`：input.json 保存修改前输入，sources.json 保存本次事实依据，检查脚本创建各自的新子目录。历史记录和生产 RTL/软件保持原样。共享状态文档在本轮开始时已有其他修改，实施交接单独提交 C00 合并。
+
+2026-10-07 独立评审定向修正：Platform ROM 的内部 LLC/栈前提，以及 [AXI RT、CLIC、Router 独立案例](configuration.html#case-baseline)。同步现有 Markdown，检查使用 `evidence/review-fixes-20261007/` 新目录；此前 `teaching-20261007/` 报告保持历史身份。
+
+## 2026-10-07 全部现用插图重绘
+
+当前正文使用37张重绘结构图与6张WaveDrom教学时序图；波形按用户最新要求保留WaveDrom绘制。维护入口为 [FIGURES.md](FIGURES.md)，可从[新旧图对照页](figures/20261007/index.html)逐图审阅，或下载[原生可编辑 PPTX](figures/20261007/editable/diagrams.pptx)。旧图、旧生成输入和原路径均保留。结构图由 `build_research_figures.py` 生成；波形由既有 `build_waves.py` 调用WaveDrom 3.5.0生成，输入仍为 `assets/waves/*.json`。当前PPTX只包含37张结构图。

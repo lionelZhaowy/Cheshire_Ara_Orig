@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>Cheshire / CVA6 / Ara：计算、控制与存储边界</title>
+<desc>可选 IP 是否存在由 Cfg 决定；数据箭头表示请求，响应沿相应事务返回。；源码：cheshire_soc.sv::gen_ara / i_axi_xbar / i_reg_demux / gen_llc；cheshire_pkg.sv</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="40" y="175" width="1720" height="665" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="455,307.5 710,307.5" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="710.00,307.50 698.00,302.50 698.00,312.50" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="265.0,370 265.0,405 900,405 900.0,450" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,450.00 905.00,438.00 895.00,438.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="905.0,370 905.0,405 900,405 900.0,450" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,450.00 905.00,438.00 895.00,438.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1532.5,370 1532.5,405 900,405 900.0,450" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,450.00 905.00,438.00 895.00,438.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900.0,548 900,600 295,600 295.0,650" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="295.00,650.00 300.00,638.00 290.00,638.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900.0,548 900,600 900,600 900.0,650" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,650.00 905.00,638.00 895.00,638.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900.0,548 900,600 1505,600 1505.0,650" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1505.00,650.00 1510.00,638.00 1500.00,638.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">Cheshire / CVA6 / Ara：计算、控制与存储边界</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">可选 IP 是否存在由 Cfg 决定；数据箭头表示请求，响应沿相应事务返回。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire_soc.sv::gen_ara / i_axi_xbar / i_reg_demux / gen_llc；cheshire_pkg.sv</text>
+<text x="58" y="210" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">Cheshire 数字 SoC 边界</text>
+<rect id="cpu" x="75" y="245" width="380" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="75" y="245" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="92" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CVA6</text>
+<text x="92" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">取指 / 标量 / FPU / MMU</text>
+<text x="92" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">L1 cache 与写缓冲</text>
+<rect id="ara" x="710" y="245" width="390" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="710" y="245" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="727" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ara">Ara · 可选</text>
+<text x="727" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">dispatcher / VRF / lanes</text>
+<text x="727" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">VLSU：独立 AXI 访存</text>
+<rect id="masters" x="1340" y="245" width="385" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1340" y="245" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1357" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="masters">其他发起端</text>
+<text x="1357" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="masters">Debug SBA / iDMA / Link</text>
+<text x="1357" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="masters">VGA / USB 数据请求</text>
+<text x="470" y="284" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start">指令 / 操作数</text>
+<text x="480" y="347" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">MMU / 完成 / 失效协作</text>
+<rect id="xbar" x="270" y="450" width="1260" height="98" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="270" y="450" width="5" height="98" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="287" y="482" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="xbar">AXI Crossbar</text>
+<text x="287" y="518" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="xbar">每输入译码 / 分流；每目标仲裁；W 路由与 ID 响应跟踪</text>
+<rect id="reg" x="75" y="650" width="440" height="130" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="75" y="650" width="5" height="130" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="92" y="682" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="reg">AXI → Reg 桥</text>
+<text x="92" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="reg">二级地址译码 → 启动 ROM</text>
+<text x="92" y="748" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="reg">CLINT / PLIC / MMIO 控制</text>
+<rect id="mem" x="680" y="650" width="440" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="680" y="650" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="697" y="682" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="mem">原子处理 → LLC / SPM</text>
+<text x="697" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mem">SPM / cache 共用片上阵列</text>
+<text x="697" y="748" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mem">LLC 下游 AXI → 平台外存</text>
+<rect id="duo" x="1285" y="650" width="440" height="130" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1285" y="650" width="5" height="130" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1302" y="682" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="duo">Debug / iDMA / Link 目标</text>
+<text x="1302" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="duo">配置或对端访问窗口</text>
+<text x="1302" y="748" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="duo">与各自的发起端口分开</text>
+<rect id="note-7" x="75" y="880" width="760" height="130" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="75" y="880" width="5" height="130" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="92" y="912" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-7">寄存器、引脚与事件</text>
+<text x="92" y="948" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">CPU 写 MMIO → 外设状态机 → UART / SPI / I2C / GPIO 引脚</text>
+<text x="92" y="978" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">外设 IRQ 经同步 / PLIC 等入口返回 CPU</text>
+<rect id="note-8" x="935" y="880" width="790" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="935" y="880" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="952" y="912" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">平台外存边界</text>
+<text x="952" y="948" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">仿真：RAM 模型；FPGA：MIG / DDR；ASIC：待采购 CTRL + PHY</text>
+<text x="952" y="978" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">CVA6–Ara 控制接口、AXI 数据口、MMIO 与 IRQ 是不同路径</text>
+</svg>

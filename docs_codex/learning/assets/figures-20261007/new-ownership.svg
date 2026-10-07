@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>缓冲区交接：地址相同还需要所有权与可见性</title>
+<desc>以 CPU → 设备 → CPU 为例；三条泳道分别记录写入者、数据可见性和控制通知。；依据：教材共享缓冲区协议；fence 不替代 cache 清理 / 失效；非硬件自动一致性</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="315" y="205" width="450" height="660" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="805" y="205" width="450" height="660" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="1295" y="205" width="450" height="660" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="740,737.5 830,737.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="830.00,737.50 818.00,732.50 818.00,742.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1230,737.5 1320,737.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1320.00,737.50 1308.00,732.50 1308.00,742.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">缓冲区交接：地址相同还需要所有权与可见性</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">以 CPU → 设备 → CPU 为例；三条泳道分别记录写入者、数据可见性和控制通知。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：教材共享缓冲区协议；fence 不替代 cache 清理 / 失效；非硬件自动一致性</text>
+<text x="333" y="240" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">CPU 拥有</text>
+<text x="823" y="240" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">硬件拥有</text>
+<text x="1313" y="240" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">CPU 重新拥有</text>
+<text x="50" y="340" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" text-anchor="start">数据操作</text>
+<text x="50" y="540" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" text-anchor="start">可见性操作</text>
+<text x="50" y="735" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" text-anchor="start">控制交接</text>
+<rect id="o00" x="340" y="285" width="400" height="105" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="340" y="285" width="5" height="105" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="357" y="317" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o00">写源数据 / 描述符</text>
+<rect id="o01" x="340" y="485" width="400" height="105" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="340" y="485" width="5" height="105" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="357" y="517" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o01">同步缓存并排空必要写入</text>
+<rect id="o02" x="340" y="685" width="400" height="105" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="340" y="685" width="5" height="105" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="357" y="717" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o02">发布任务 / doorbell</text>
+<rect id="o10" x="830" y="285" width="400" height="105" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="830" y="285" width="5" height="105" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="847" y="317" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o10">DMA / Ara / 设备读写</text>
+<rect id="o11" x="830" y="485" width="400" height="105" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="830" y="485" width="5" height="105" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="847" y="517" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o11">完成访问并排空结果写入</text>
+<rect id="o12" x="830" y="685" width="400" height="105" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="830" y="685" width="5" height="105" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="847" y="717" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o12">发布完成状态 / IRQ</text>
+<rect id="o20" x="1320" y="285" width="400" height="105" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1320" y="285" width="5" height="105" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1337" y="317" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o20">读取并校验结果</text>
+<rect id="o21" x="1320" y="485" width="400" height="105" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1320" y="485" width="5" height="105" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1337" y="517" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o21">acquire / 排序 / 必要失效</text>
+<rect id="o22" x="1320" y="685" width="400" height="105" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1320" y="685" width="5" height="105" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1337" y="717" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="o22">确认 token / 回收缓冲区</text>
+<rect id="note-9" x="55" y="920" width="1690" height="100" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="920" width="5" height="100" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="952" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-9">每次交接分别回答三个问题</text>
+<text x="72" y="988" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">请求是否接受？设备是否处理完成？结果是否已对消费者可见？三者不能互相替代。</text>
+</svg>

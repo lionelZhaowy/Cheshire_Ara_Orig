@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>配置何时生效：源码选择、展开结构与运行状态</title>
+<desc>同一个选项名可能属于不同阶段；软件写寄存器不能凭空增加 RTL 实例。；源码：cheshire.mk；cheshire_pkg；gen_cva6_cfg；sw/sw.mk</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="205" width="500" height="650" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="650" y="205" width="500" height="650" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="1245" y="205" width="500" height="650" rx="12" fill="#EAF6F3" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="530,355.0 675,355.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="675.00,355.00 663.00,350.00 663.00,360.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="530,530.0 675,530.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="675.00,530.00 663.00,525.00 663.00,535.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="530,705.0 590,705 590,185 1495,185 1495.0,300" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1495.00,300.00 1500.00,288.00 1490.00,288.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">配置何时生效：源码选择、展开结构与运行状态</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">同一个选项名可能属于不同阶段；软件写寄存器不能凭空增加 RTL 实例。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire.mk；cheshire_pkg；gen_cva6_cfg；sw/sw.mk</text>
+<text x="73" y="240" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">构建输入</text>
+<text x="668" y="240" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">展开后的硬件</text>
+<text x="1263" y="240" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">程序与运行状态</text>
+<rect id="c00" x="80" y="300" width="450" height="110" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="80" y="300" width="5" height="110" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="97" y="332" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c00">CPU profile / 宏 / targets</text>
+<rect id="c01" x="80" y="475" width="450" height="110" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="80" y="475" width="5" height="110" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="97" y="507" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c01">SoC Cfg 与 Ara lanes / VLEN</text>
+<rect id="c02" x="80" y="650" width="450" height="110" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="80" y="650" width="5" height="110" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="97" y="682" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c02">软件 -march / -mabi / .ld</text>
+<rect id="c10" x="675" y="300" width="450" height="110" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="675" y="300" width="5" height="110" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="692" y="332" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c10">有效 CVA6Cfg 与派生参数</text>
+<rect id="c11" x="675" y="475" width="450" height="110" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="675" y="475" width="5" height="110" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="692" y="507" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c11">端口数、索引、地址规则</text>
+<rect id="c12" x="675" y="650" width="450" height="110" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="675" y="650" width="5" height="110" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="692" y="682" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c12">实例存在性与接口位宽</text>
+<rect id="c20" x="1270" y="300" width="450" height="110" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1270" y="300" width="5" height="110" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1287" y="332" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c20">ELF 指令与 ABI / 内存布局</text>
+<rect id="c21" x="1270" y="475" width="450" height="110" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1270" y="475" width="5" height="110" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1287" y="507" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c21">VS / FS、设备 MMIO 状态</text>
+<rect id="c22" x="1270" y="650" width="450" height="110" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1270" y="650" width="5" height="110" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1287" y="682" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="c22">存储就绪、有效栈、装载入口</text>
+<rect id="note-9" x="55" y="915" width="1690" height="110" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="915" width="5" height="110" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="947" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-9">例：增加 AXI 发起端会牵动系统结构</text>
+<text x="72" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">默认 6 来源，加 Ara 为 7；再增加两个外部来源为 9，来源前缀由 3 位增到 4 位。有效组合仍需检查软件与启动契约。</text>
+</svg>

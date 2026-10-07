@@ -14,7 +14,7 @@
 <h2 id="device">EEPROM 软件操作与边界</h2>
 <h3 id="transaction">EEPROM 地址如何变成总线事务</h3>
 <p>硬件控制器不知道“EEPROM 内部第几个字节”，HAL（硬件抽象层）把这个要求翻译成器件协议，DIF（设备接口函数）再写控制器寄存器。当前读取顺序是 START → 写方向控制字 → 地址高字节 → 地址低字节并 STOP → 新 START → 读方向控制字 → 收 len 字节 → CPU 取 RX FIFO。此实现使用 STOP 后再 START，而非一律采用 repeated START。</p>
-<figure><img src="assets/new-serial.svg" alt="EEPROM先写器件地址再读数据；NOR保持片选发送命令和地址再收数据"><figcaption>两种只读事务的层次对照。CPU 寄存器地址、器件内部地址和 RAM 缓冲区地址分别属于不同空间。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-serial.svg" alt="EEPROM先写器件地址再读数据；NOR保持片选发送命令和地址再收数据"><figcaption>两种只读事务的层次对照。CPU 寄存器地址、器件内部地址和 RAM 缓冲区地址分别属于不同空间。</figcaption></figure>
 <p>HAL 中 0xa0 是含读写方向位的线上控制字基值，和通常讨论的 7 位设备地址不是同一个数。block/chip 选择也进入控制字。调用 <code>i2c_24fc1025_read(&amp;dev, bytes, 0, 16)</code> 时，0 是 EEPROM 内部地址，bytes 指向目标 RAM；CPU 实际 MMIO 仍访问 0x03003000 附近。</p>
 <h3 id="limits">边界条件与 target 模式</h3>
 <p>本地 HAL 的未对齐首块长度直接取 FIFO_DEPTH−addr_offs，未与请求长度取 min，可能对短读越界；写分支的末字节 STOP 与递归 buf/addr 偏移也存在静态疑点，高地址 chip 编码需要模型核对。本次保留证据而不修改生产库，只读实验选择对齐的 16 字节范围。后续修复应覆盖短未对齐、跨 FIFO/页/块、NAK、写结束及写周期。</p>

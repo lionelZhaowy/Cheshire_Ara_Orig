@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>当前共享数据：Ara 的失效协作有明确参与者</title>
+<desc>CPU / Ara 的协作不自动扩展到 iDMA、其他设备或未来 NPU。；源码：csr_regfile / acc_dispatcher / axi_inval_filter / cheshire_soc.sv</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="900.0,405 900.0,525" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,525.00 905.00,513.00 895.00,513.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="665,585 295,585 295,405" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="295.00,405.00 290.00,417.00 300.00,417.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="135.5,405 135,715 900,715 900,775" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,775.00 905.00,763.00 895.00,763.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="900.0,650 900,715 900,715 900,775" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,775.00 905.00,763.00 895.00,763.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1500.0,405 1500,715 900,715 900,775" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,775.00 905.00,763.00 895.00,763.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">当前共享数据：Ara 的失效协作有明确参与者</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">CPU / Ara 的协作不自动扩展到 iDMA、其他设备或未来 NPU。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：csr_regfile / acc_dispatcher / axi_inval_filter / cheshire_soc.sv</text>
+<rect id="cpu" x="65" y="215" width="470" height="190" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="65" y="215" width="5" height="190" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="82" y="247" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU · WT L1D + 写缓冲</text>
+<text x="82" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">一致性 CSR 与 pending 等待</text>
+<text x="82" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">是否存在缓存副本取决于属性</text>
+<text x="82" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">fence 与 cache 操作职责不同</text>
+<rect id="ara" x="665" y="215" width="470" height="190" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="665" y="215" width="5" height="190" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="682" y="247" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ara">Ara · VRF / VLSU</text>
+<text x="682" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">无独立地址标记 D-cache</text>
+<text x="682" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">store 通过自身 AXI AW/W</text>
+<text x="682" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">VRF 是寄存器文件</text>
+<rect id="other" x="1265" y="215" width="470" height="190" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1265" y="215" width="5" height="190" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1282" y="247" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="other">iDMA / 其他设备</text>
+<text x="1282" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="other">独立 AXI 发起端</text>
+<text x="1282" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="other">未自动加入 Ara 失效协议</text>
+<text x="1282" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="other">驱动需管理数据可见性</text>
+<rect id="inval" x="665" y="525" width="470" height="125" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="665" y="525" width="5" height="125" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="682" y="557" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="inval">Ara AW 失效过滤</text>
+<text x="682" y="593" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="inval">向 CPU L1 发 line invalidate</text>
+<text x="682" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="inval">同时处理系统方向访存</text>
+<text x="65" y="555" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start">L1 line invalidation</text>
+<rect id="mem" x="280" y="775" width="1240" height="150" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="280" y="775" width="5" height="150" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="297" y="807" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="mem">Crossbar → 主存原子处理 → LLC / SPM → 外存</text>
+<text x="297" y="843" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mem">CPU 属性、SPM 别名和 LLC way 模式共同决定缓存副本存在条件</text>
+<text x="297" y="873" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mem">全路径可见性须包含写缓冲、cache、副本、通知与消费者获取顺序</text>
+<text x="70" y="1000" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="start">教材实验：独占高别名 SPM 缓冲区；实验结果不能推导出任意主设备之间的硬件一致性。</text>
+</svg>

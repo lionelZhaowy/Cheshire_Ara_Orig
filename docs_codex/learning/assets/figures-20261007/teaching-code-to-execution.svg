@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>从 C 到执行：主机产物如何变成目标内存与 CPU 状态</title>
+<desc>JTAG 直接加载路径；自主介质启动另由 ROM 按 GPT/raw 等规则读取镜像。；源码：sw/lib/crt0.S；hw/bootrom；elfloader.cpp；vip_cheshire_soc.sv</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="205" width="725" height="665" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="990" y="205" width="755" height="665" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="417.5,410 417.5,485" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="417.50,485.00 422.50,473.00 412.50,473.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="417.5,610 417.5,695" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="417.50,695.00 422.50,683.00 412.50,683.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1367.5,410 1367.5,485" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1367.50,485.00 1372.50,473.00 1362.50,473.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1367.5,610 1367.5,695" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1367.50,695.00 1372.50,683.00 1362.50,683.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="750,757.5 885,757 885,547 1020,547.5" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1020.00,547.50 1008.02,542.46 1007.98,552.46" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">从 C 到执行：主机产物如何变成目标内存与 CPU 状态</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">JTAG 直接加载路径；自主介质启动另由 ROM 按 GPT/raw 等规则读取镜像。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：sw/lib/crt0.S；hw/bootrom；elfloader.cpp；vip_cheshire_soc.sv</text>
+<text x="73" y="240" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">主机侧：字节、布局与入口</text>
+<text x="1008" y="240" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">目标侧：存储、寄存器与执行</text>
+<rect id="source" x="85" y="285" width="665" height="125" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="85" y="285" width="5" height="125" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="102" y="317" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="source">journey.c + crt0 + 支持库</text>
+<text x="102" y="353" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="source">预处理 / 编译 / 汇编 / 链接</text>
+<rect id="elf" x="85" y="485" width="665" height="125" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="85" y="485" width="5" height="125" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="102" y="517" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="elf">ELF / map / dump</text>
+<text x="102" y="553" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="elf">PT_LOAD 决定段字节与地址</text>
+<text x="102" y="583" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="elf">e_entry 决定应用入口</text>
+<rect id="loader" x="85" y="695" width="665" height="125" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="85" y="695" width="5" height="125" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="102" y="727" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="loader">主机 / VIP ELF loader</text>
+<text x="102" y="763" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="loader">解析段 → JTAG SBA 写内存</text>
+<text x="102" y="793" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="loader">设置 DPC → resume</text>
+<rect id="rom" x="1020" y="285" width="695" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1020" y="285" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1037" y="317" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="rom">复位 PC → Boot ROM</text>
+<text x="1037" y="353" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="rom">时钟 / 复位与存储初始化</text>
+<text x="1037" y="383" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="rom">独立确认首次栈访问条件</text>
+<rect id="mem" x="1020" y="485" width="695" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1020" y="485" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1037" y="517" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="mem">目标处于 halt 且存储可写</text>
+<text x="1037" y="553" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="mem">代码、初值到达段地址</text>
+<text x="1037" y="583" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="mem">目标寄存器可由调试接口设置</text>
+<rect id="run" x="1020" y="695" width="695" height="125" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1020" y="695" width="5" height="125" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1037" y="727" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="run">_start → crt0 → main</text>
+<text x="1037" y="763" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="run">gp / BSS / FS；向量入口设置 VS</text>
+<text x="1037" y="793" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="run">MMIO / UART / 数值与退出状态</text>
+<text x="810" y="465" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start">段字节</text>
+<text x="810" y="825" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start">DPC / resume</text>
+<rect id="note-6" x="55" y="930" width="1690" height="100" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="930" width="5" height="100" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="962" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">三个地址属于不同阶段</text>
+<text x="72" y="998" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">复位 PC：最早取指位置；ELF e_entry：应用入口；main：由启动代码调用的 C 函数。它们不能互相替代。</text>
+</svg>

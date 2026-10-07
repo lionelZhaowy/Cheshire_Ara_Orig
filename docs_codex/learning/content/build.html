@@ -11,7 +11,7 @@
 <h3 id="translation-units">从翻译单元到最终映像</h3>
 <p>预处理先展开 <code>#include</code> 和宏，得到 <code>journey.i</code>。头文件告诉编译器函数叫什么、参数是什么，以及寄存器偏移等常量；函数实现仍需从源文件或库中取得。编译阶段依据 ISA、ABI 和优化选项把 C 语义变成汇编，得到 <code>journey.s</code>。汇编阶段把指令编码成机器字节，形成 <code>journey.o</code>，同时保留符号与尚待解决的地址引用。</p>
 <p>例如编译 main 时，编译器知道要调用 uart_init，却未决定它最终位于哪个目标地址。对象中的重定位记录告诉链接器在哪里补地址。<code>ar</code> 将 uart.o、clint.o、printf.o 打包成静态库 libsupport.a；链接器把应用、crt0 和所需库对象组合起来，解析调用目标，并按链接脚本安排空间。只增加头文件搜索路径 <code>-I</code> 无法补上缺失函数实现。</p>
-<figure><img src="assets/new-build.svg" alt="journey.c 经预处理、编译、汇编形成对象，与启动对象和支持库链接成 ELF"><figcaption>主机上的构建流程。map、dump 和符号表用于解释同一份 ELF，均不是硬件执行记录。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-build.svg" alt="journey.c 经预处理、编译、汇编形成对象，与启动对象和支持库链接成 ELF"><figcaption>主机上的构建流程。map、dump 和符号表用于解释同一份 ELF，均不是硬件执行记录。</figcaption></figure>
 <p>本例 C 和支持库使用 <code>-march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany</code>。march 限定指令，mabi 约定调用，medany 选择代码寻址方式。<code>-nostartfiles</code> 让项目 crt0 承担启动；<code>--gc-sections</code> 删除不可达的节。后续仅 RVV 汇编对象使用带 V 的 ISA，进入它之前由标量代码打开 VS。</p>
 <h2 id="elf">ELF 把机器码和装载信息放在一起</h2>
 <p>仅有机器字节还不够：加载器需要知道写到哪里、占多大空间、从哪里开始。ELF（Executable and Linkable Format，可执行与可链接格式）把这些信息和代码数据放在一个文件中。对当前流程最有用的是入口地址，以及描述可装载区间的 program headers。调试符号和源码信息帮助定位，但不会全部装入目标存储。</p>
@@ -23,7 +23,7 @@
 <p>读取 map 时，从 <code>.rodata.greeting</code> 或相应小数据节找到 greeting 的输入来源，再看它落在哪个输出节；从 symbols.txt 找 seed、result、_start、main。dump 是 objdump 生成的反汇编文本，可把 PC 对回机器指令与函数，不能作为 BINARY 交给加载器。当前 common.ldh 丢弃最终 ELF 的 .riscv.attributes，ISA 还需看对象属性和构建日志。</p>
 <h2 id="practice">完成一次可解释的构建</h2>
 <h3 id="source-to-hardware">从源文件到执行结果的责任交接</h3>
-<figure><img src="assets/teaching-code-to-execution.svg" alt="主机编写编译链接生成ELF；复位执行ROM并准备SPM；主机加载器解析ELF写内存设置入口；CPU执行crt0再进入main，软件经驱动访问设备并检查结果"><figcaption>当前 JTAG 直接加载路径的教学流程。自主介质路径在启动章单独说明；图中先后为责任依赖，不表示固定周期。</figcaption></figure>
+<figure><img src="assets/figures-20261007/teaching-code-to-execution.svg" alt="主机编写编译链接生成ELF；复位执行ROM并准备SPM；主机加载器解析ELF写内存设置入口；CPU执行crt0再进入main，软件经驱动访问设备并检查结果"><figcaption>当前 JTAG 直接加载路径的教学流程。自主介质路径在启动章单独说明；图中先后为责任依赖，不表示固定周期。</figcaption></figure>
 <p>ELF 的生成和芯片的复位可以发生在不同时间。两条流程在“目标存储可写、装载内容已准备好”时汇合：加载器解析 ELF 段并写入内存，设置调试入口后恢复 CPU；CPU 执行的是 _start 的机器码，随后才进入 main。本地 JTAG 的 SPM 标志轮询不保证早期栈已建立；使用继承栈的链接模式时，还需确认该启动前提，见<a href="boot-debug.html#takeover">实际接管条件</a>。应用打印出正确文本仍应配合逐项结果和退出码，防止只证明执行过输出代码。</p>
 <h3 id="build-practice">隔离输出与产物检查</h3>
 <p>以下是<a href="labs.html#lab-a">实验 A</a>的入口，Bash 工作目录为仓库根。先用 <code>command -v riscv64-unknown-elf-gcc</code> 确认工具，构建只写预先创建的空目录。</p>

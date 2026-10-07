@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>地址路由窗口与物理资源的映射</title>
+<desc>区间含起点、不含终点；图不按地址跨度比例。容量、权限与就绪状态分别判断。；源码：cheshire_pkg.sv::gen_axi_out / gen_reg_out / get_llc_size；默认配置</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="800,289.0 960,289.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="960.00,289.00 948.00,284.00 948.00,294.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="800,406.0 960,406.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="960.00,406.00 948.00,401.00 948.00,411.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="800,523.0 960,523.0" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="960.00,523.00 948.00,518.00 948.00,528.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="800,640.0 960,640.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="960.00,640.00 948.00,635.00 948.00,645.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="800,757.0 960,757.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="960.00,757.00 948.00,752.00 948.00,762.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="800,874.0 960,874.0" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="960.00,874.00 948.00,869.00 948.00,879.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">地址路由窗口与物理资源的映射</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">区间含起点、不含终点；图不按地址跨度比例。容量、权限与就绪状态分别判断。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire_pkg.sv::gen_axi_out / gen_reg_out / get_llc_size；默认配置</text>
+<text x="65" y="205" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" text-anchor="start">AXI 地址范围</text>
+<text x="1010" y="205" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" text-anchor="start">路由去向与实际资源</text>
+<rect id="a0" x="65" y="245" width="735" height="88" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="65" y="245" width="5" height="88" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="82" y="277" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a0">0x0000_0000 … 0x0004_0000</text>
+<rect id="b0" x="960" y="245" width="775" height="88" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="960" y="245" width="5" height="88" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="977" y="277" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b0">Debug 目标</text>
+<text x="977" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b0">256 KiB 地址窗口；与 Debug SBA 发起口不同</text>
+<rect id="a1" x="65" y="362" width="735" height="88" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="65" y="362" width="5" height="88" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="82" y="394" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a1">0x0100_0000 … 0x0100_1000</text>
+<rect id="b1" x="960" y="362" width="775" height="88" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="960" y="362" width="5" height="88" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="977" y="394" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b1">iDMA 控制</text>
+<text x="977" y="430" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b1">4 KiB 控制窗口；数据传输使用独立发起口</text>
+<rect id="a2" x="65" y="479" width="735" height="88" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="65" y="479" width="5" height="88" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="82" y="511" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a2">0x0200_0000 … 0x0C00_0000</text>
+<rect id="b2" x="960" y="479" width="775" height="88" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="960" y="479" width="5" height="88" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="977" y="511" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b2">Reg 桥 → 二级译码</text>
+<text x="977" y="547" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b2">160 MiB 总窗口；包含空洞，不是连续 RAM</text>
+<rect id="a3" x="65" y="596" width="735" height="88" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="65" y="596" width="5" height="88" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="82" y="628" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a3">0x1000_0000 / 0x1400_0000</text>
+<rect id="b3" x="960" y="596" width="775" height="88" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="960" y="596" width="5" height="88" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="977" y="628" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b3">同一 LLC / SPM 阵列</text>
+<text x="977" y="664" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b3">默认每个 SPM 别名各 128 KiB；并非双份容量</text>
+<rect id="a4" x="65" y="713" width="735" height="88" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="65" y="713" width="5" height="88" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="82" y="745" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a4">0x8000_0000 … 0x1_0000_0000</text>
+<rect id="b4" x="960" y="713" width="775" height="88" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="960" y="713" width="5" height="88" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="977" y="745" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b4">LLC 下游主存</text>
+<text x="977" y="781" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b4">2 GiB 路由窗；实际 DDR 容量取决于平台</text>
+<rect id="a5" x="65" y="830" width="735" height="88" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="65" y="830" width="5" height="88" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="82" y="862" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="a5">0x1_0000_0000 … 0x2_0000_0000</text>
+<rect id="b5" x="960" y="830" width="775" height="88" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="960" y="830" width="5" height="88" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="977" y="862" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="b5">Serial Link TX</text>
+<text x="977" y="898" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="b5">4 GiB 对端窗口；受配置与地址映射约束</text>
+<text x="80" y="1000" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="start">同一目标可有多个地址规则；关闭设备不等于其上层总窗口消失。未匹配访问应完成错误应答。</text>
+</svg>

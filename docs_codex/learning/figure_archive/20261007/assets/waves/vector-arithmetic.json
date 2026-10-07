@@ -1,0 +1,60 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p..........."
+    },
+    {
+      "name": "CPU insn/ID",
+      "wave": "x.3...x.....",
+      "data": [
+        "vadd / ID=k"
+      ]
+    },
+    {
+      "name": "req_valid",
+      "wave": "0.1...0....."
+    },
+    {
+      "name": "req_ready",
+      "wave": "1.0..1......"
+    },
+    {
+      "name": "resp_valid",
+      "wave": "0.....10...."
+    },
+    {
+      "name": "resp_ready",
+      "wave": "1..........."
+    },
+    {
+      "name": "resp ID",
+      "wave": "x.....4x....",
+      "data": [
+        "k"
+      ]
+    },
+    {
+      "name": "CPU commit",
+      "wave": "0......10..."
+    },
+    {
+      "name": "Ara running",
+      "wave": "0.....1...0."
+    },
+    {
+      "name": "VRF write",
+      "wave": "0......1..0."
+    }
+  ],
+  "head": {
+    "text": "向量算术：教学时序（延迟不按比例）",
+    "tick": 0
+  },
+  "foot": {
+    "text": "依据：acc_dispatcher / ara_dispatcher / ara_sequencer；接受后即可应答，VRF 随后完成"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

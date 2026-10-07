@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域</title>
+<desc>时钟域由真实连接划分；UART / SPI / I2C 的分频节拍不自动成为独立 SoC 输入时钟。；源码：cheshire_soc.sv；target/xilinx/src/dram_wrapper_xilinx.sv；各外设同步逻辑</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="660" y="185" width="680" height="680" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="545,258 615,258 615,535 710,535" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,535.00 698.00,530.00 698.00,540.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="545,383 615,383 615,535 710,535" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,535.00 698.00,530.00 698.00,540.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="545,508 615,508 615,535 710,535" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,535.00 698.00,530.00 698.00,540.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="545,633 615,633 615,535 710,535" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,535.00 698.00,530.00 698.00,540.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="545,758 615,758 615,535 710,535" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="710.00,535.00 698.00,530.00 698.00,540.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1290,535.0 1440,530.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1440.00,530.00 1427.84,525.40 1428.17,535.40" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1590.0,600 1567.5,720" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1567.50,720.00 1574.63,709.13 1564.80,707.28" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">当前时钟与事件：SoC 主域、异步入口、FPGA DDR 域</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">时钟域由真实连接划分；UART / SPI / I2C 的分频节拍不自动成为独立 SoC 输入时钟。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：cheshire_soc.sv；target/xilinx/src/dram_wrapper_xilinx.sv；各外设同步逻辑</text>
+<text x="678" y="220" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">clk_i / rst_ni：SoC 主时钟域</text>
+<rect id="soc" x="710" y="455" width="580" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="710" y="455" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="727" y="487" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="soc">CVA6 / Ara / AXI / LLC / Reg</text>
+<text x="727" y="523" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="soc">LLC 下游 AXI 仍属于 clk_i</text>
+<text x="727" y="553" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="soc">外设状态机在其实际连接域运行</text>
+<text x="727" y="583" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="soc">DM ndmreset_o 在本 SoC 未连接</text>
+<rect id="e0" x="60" y="210" width="485" height="96" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="210" width="5" height="96" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="242" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="e0">rtc_i</text>
+<text x="77" y="278" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="e0">CLINT 同步后计数</text>
+<rect id="e1" x="60" y="335" width="485" height="96" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="335" width="5" height="96" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="367" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="e1">JTAG tck / trst_n</text>
+<text x="77" y="403" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="e1">DTM → DMI 跨域</text>
+<rect id="e2" x="60" y="460" width="485" height="96" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="460" width="5" height="96" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="492" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="e2">Serial Link RX clock</text>
+<text x="77" y="528" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="e2">源同步接收与跨域 FIFO</text>
+<rect id="e3" x="60" y="585" width="485" height="96" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="585" width="5" height="96" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="617" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="e3">USB PHY clock/reset</text>
+<text x="77" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="e3">PHY 域与系统逻辑</text>
+<rect id="e4" x="60" y="710" width="485" height="96" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="60" y="710" width="5" height="96" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="77" y="742" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="e4">GPIO / 外部 IRQ</text>
+<text x="77" y="778" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="e4">按配置同步 → 中断控制</text>
+<rect id="cdc" x="1440" y="460" width="300" height="140" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1440" y="460" width="5" height="140" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1457" y="492" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cdc">AXI CDC</text>
+<text x="1457" y="528" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cdc">FPGA 平台</text>
+<text x="1457" y="558" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cdc">跨域事务队列</text>
+<rect id="mig" x="1390" y="720" width="355" height="145" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1390" y="720" width="5" height="145" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1407" y="752" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="mig">MIG UI clock 域</text>
+<text x="1407" y="788" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mig">DDR 控制器 / PHY</text>
+<text x="1407" y="818" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="mig">平台复位与校准</text>
+<rect id="note-8" x="60" y="925" width="1680" height="100" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="60" y="925" width="5" height="100" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="77" y="957" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">跨域不是只给信号加寄存器</text>
+<text x="77" y="993" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">单比特事件、计数、多位数据和 AXI 事务需不同同步契约；FIFO / CDC 的两侧复位还需协调在途事务。</text>
+</svg>

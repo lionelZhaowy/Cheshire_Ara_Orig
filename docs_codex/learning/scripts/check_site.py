@@ -93,7 +93,7 @@ for p in ROOT.parent.rglob('*.md'):
     text=re.sub(r"```.*?```", "", p.read_text(), flags=re.S)
     for link in re.findall(r'\[[^]\n]*\]\(([^)]+)\)',text):
         check_local_link(p.resolve(),link);markdown_links+=1
-for p in (ROOT/'assets').glob('*.svg'):ET.parse(p)
+for p in (ROOT/'assets').rglob('*.svg'):ET.parse(p)
 for p in ROOT.rglob('*'):
     if p.is_file() and p.suffix in ['.html','.css','.js','.py','.sh','.md'] and 'evidence' not in p.parts and 'vendor' not in p.parts:
         s=p.read_text()
@@ -103,5 +103,5 @@ for p in (ROOT/'scripts').glob('*.sh'):
     if r.returncode:errors.append(r.stderr)
 if errors:
     print('\n'.join(errors));raise SystemExit(1)
-print(f'PASS: {len(pages)} HTML pages, {links} local links/resources, anchors, {len(list((ROOT/"assets").glob("*.svg")))} SVG XML, alt text, offline assets, shell syntax, whitespace')
+print(f'PASS: {len(pages)} HTML pages, {links} local links/resources, anchors, {len(list((ROOT/"assets").rglob("*.svg")))} SVG XML, alt text, offline assets, shell syntax, whitespace')
 print(f'PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; {markdown_links} Markdown links and fragments')

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环</title>
+<desc>PLIC 外部中断与 CLINT 定时器走不同入口；complete 不自动清除设备事件。；源码：PLIC / CLINT 接入；CPU 中断门控；现有驱动与 trap handler</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="445,320.0 705,320.0" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="705.00,320.00 693.00,315.00 693.00,325.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1095,320.0 1355,320.0" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1355.00,320.00 1343.00,315.00 1343.00,325.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1550.0,400 1467.5,590" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1467.50,590.00 1476.87,580.98 1467.69,577.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1190,675 250,675 250,400" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="250.00,400.00 245.00,412.00 255.00,412.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">外设事件进入 CPU：设备状态、PLIC 与 trap 服务闭环</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">PLIC 外部中断与 CLINT 定时器走不同入口；complete 不自动清除设备事件。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：PLIC / CLINT 接入；CPU 中断门控；现有驱动与 trap handler</text>
+<rect id="dev" x="55" y="240" width="390" height="160" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="240" width="5" height="160" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="272" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="dev">设备事件</text>
+<text x="72" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="dev">FIFO / 状态置位</text>
+<text x="72" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="dev">保持 IRQ 直到按协议清源</text>
+<rect id="plic" x="705" y="240" width="390" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="705" y="240" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="722" y="272" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="plic">PLIC</text>
+<text x="722" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="plic">pending / priority</text>
+<text x="722" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="plic">enable / threshold</text>
+<rect id="cpu" x="1355" y="240" width="390" height="160" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1355" y="240" width="5" height="160" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1372" y="272" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU CSR 门控</text>
+<text x="1372" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">mie / mstatus / mcause</text>
+<text x="1372" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">跳转 mtvec 的 trap 入口</text>
+<rect id="handler" x="1190" y="590" width="555" height="165" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1190" y="590" width="5" height="165" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1207" y="622" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="handler">软件 handler</text>
+<text x="1207" y="658" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="handler">识别外部中断 → PLIC claim</text>
+<text x="1207" y="688" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="handler">读取设备数据 / 清事件</text>
+<text x="1207" y="718" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="handler">PLIC complete → mret</text>
+<text x="400" y="650" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start">处理并清设备源，再 complete；避免中断立即重入</text>
+<rect id="note-4" x="55" y="855" width="795" height="150" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="855" width="5" height="150" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="887" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-4">PLIC 的 claim / complete</text>
+<text x="72" y="923" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-4">claim 确认待服务来源；complete 结束服务状态</text>
+<text x="72" y="953" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-4">设备电平仍有效时，后续可能再次 pending</text>
+<rect id="note-5" x="950" y="855" width="795" height="150" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="950" y="855" width="5" height="150" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="967" y="887" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-5">CLINT：独立的计时器入口</text>
+<text x="967" y="923" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">mtime ≥ mtimecmp → MTIP → CPU 定时器中断</text>
+<text x="967" y="953" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">处理后将比较值推迟到下一次到期时间</text>
+</svg>

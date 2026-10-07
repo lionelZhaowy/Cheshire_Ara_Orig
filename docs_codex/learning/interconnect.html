@@ -22,7 +22,7 @@
 <p>同一个输入的同方向、同 ID 请求还要保持顺序。假设先访问慢目标 A，再访问快目标 B，直接全放行可能使 B 先返回。本地 demux 用“ID 对应目标 + 在途计数”限制跨目标切换。减少用于跟踪的 ID 位会增加别名冲突；<code>UniqueIds</code> 是对发起行为的约束，本 SoC 配为 0。带 ATOP 的写请求还可能产生读返回，跟踪时需考虑这种跨通道关系。</p>
 <h3 id="two-by-two"><span class="section-number">9.2.6</span> 两发起端、两目标的事务推演</h3>
 <p>教学模型使用输入 I0（CPU）和 I1（DMA），目标 T0（较慢存储）和 T1（较快寄存器）。假定两位原始 ID、普通 AXI4、没有 ATOP，地址窗分别为 [0x1000,0x2000) 与 [0x2000,0x3000)。这些地址和延迟仅服务例子，不是 Cheshire 生产地址图。为突出内部状态，以下事件在 mux/demux 本地接口观察，端口 cut 会使外部握手晚于内部事件。</p>
-<figure><img src="assets/mechanism-xbar.svg" alt="I0 I1 各经过译码与 demux，到 T0 T1 各自的 mux，W 状态与 ID 返回路径分别标注"><figcaption>本地模块结构的 2×2 教学缩图；箭头表示连接，不表示固定周期或仿真波形。</figcaption></figure>
+<figure><img src="assets/figures-20261007/mechanism-xbar.svg" alt="I0 I1 各经过译码与 demux，到 T0 T1 各自的 mux，W 状态与 ID 返回路径分别标注"><figcaption>本地模块结构的 2×2 教学缩图；箭头表示连接，不表示固定周期或仿真波形。</figcaption></figure>
 <ol><li><strong>译码：</strong>I0 发 AW(addr=0x1100,id=01,len=1)，I1 发 AW(addr=0x1180,id=01,len=0)，两者都选 T0。输入 demux 各自检查目标和 ID 占用，再把请求送到 T0 mux；T1 的仲裁器仍可独立处理别的可放行请求。</li>
 <li><strong>仲裁与预留：</strong>T0 的 i_aw_arbiter 为轮转仲裁，假设这次选中 I0，不把该次胜者当成固定优先级。i_w_fifo 在有空间且产生有效仲裁决定时记录 I0 来源；即使 AW 尚未握手也可能已经入队。lock_aw_valid_q 与仲裁 LockIn 保持这一决定，后续背压周期不重复 push。输入 demux 同样以 w_cnt_up 预留目标/计数。地址握手表示相应接口接收了 AW，不等于刚刚才建立所有内部状态。</li>
 <li><strong>W 归属：</strong>I0 的两拍数据只能沿已选 T0 路由。T0 mux 用 w_fifo_data 选择输入；I1 的 W 即使先到也等待自己的 FIFO 位置。WREADY 为低时保留当前拍及 WLAST；在 mux 内 WLAST 与 VALID/READY 同时成立才 pop I0 来源。若启用 W spill，pop 表示末拍进入该缓冲，未必同周期到达外部存储。</li>
@@ -39,7 +39,7 @@
 <p>以上按本地 axi-ecdc900686449c15 实现推演；ATOP、ID 查找位减少和流水切分另有约束。修改后应在这些观察点记录真实握手与队列状态，再与本例因果关系对照。</p>
 <h3 id="cuts"><span class="section-number">9.2.8</span> 流水切分与在途容量</h3>
 <p>当前 Crossbar 使用 CUT_ALL_PORTS、FallThrough=0、PipelineStages=0，MaxMstTrans/MaxSlvTrans 均为 24。cut 保存协议拍和有效状态，以分割组合路径；这些深度分别控制不同资源。IP 暴露内部 PipelineStages 参数，同时本地设计说明记录了内部切分的写通道死锁风险；调整时应检查依赖关系并运行长背压场景。</p>
-<figure><img src="assets/depth-xbar-full.svg" alt="所有主动设备进入 AXI Crossbar 后分往 Debug、DMA、Link、Reg 和 LLC 路径"><figcaption>当前实现的层次图；每个适配器的在途容量是独立约束。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-xbar-full.svg" alt="所有主动设备进入 AXI Crossbar 后分往 Debug、DMA、Link、Reg 和 LLC 路径"><figcaption>当前实现的层次图；每个适配器的在途容量是独立约束。</figcaption></figure>
 <h2 id="validation"><span class="section-number">9.3</span> 由修改影响设计验证</h2>
 <p>新增发起端时，用两个发起者的相同 ID 同时访问，检查返回归属；修改路由时，检查窗口首尾和未映射地址；修改位宽时，覆盖 +0/+4、部分 WSTRB、长 burst 和错误响应；修改流水或 CDC 时，错开 AW/W 并持续背压 R/B，停止激励后检查排空。同 ID 先慢后快目标能检验顺序限制。</p>
 <p>排查时沿一笔事务记录输入握手、译码目标、下游握手、返回握手四个位置。VALID 长等可能来自目标未就绪、队列已满或 ID 冲突，应指出具体等待资源。独立教学 Reg 单元将在<a href="integration.html">第 27 章</a>验证副作用契约；生产 Crossbar 的动态回归仍需专门执行。</p>

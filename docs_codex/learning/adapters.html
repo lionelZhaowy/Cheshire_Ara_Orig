@@ -12,7 +12,7 @@ mmio_write32(base + INTR_STATE, clear_mask);
 <h2 id="adapters"><span class="section-number">10.2</span> 位宽、协议和 ID 转换</h2>
 <h3 id="byte-lanes"><span class="section-number">10.2.1</span> byte lane 与有效字节</h3>
 <p>64 位总线的一拍有 8 个字节位置，称为 byte lane。访问地址 +4 的对齐 32 位寄存器时，SIZE=2，有效数据位于高四个 lane，完整写使能通常为 0xf0。例如 0x11223344 在总线上可呈现为 0x1122334400000000。桥接到 32 位目标后，应得到数据 0x11223344、使能 0xf；单纯截低 32 位会丢失此次写入。</p>
-<figure><img src="assets/new-lanes.svg" alt="地址加四的32位写占64位数据高半，转换后搬到Reg32低半"><figcaption>适配同时处理地址低位、数据和字节使能；读响应需要对应的反向映射。</figcaption></figure>
+<figure><img src="assets/figures-20261007/new-lanes.svg" alt="地址加四的32位写占64位数据高半，转换后搬到Reg32低半"><figcaption>适配同时处理地址低位、数据和字节使能；读响应需要对应的反向映射。</figcaption></figure>
 <h3 id="width"><span class="section-number">10.2.2</span> 转换后的拍数与 LAST</h3>
 <p>宽转窄还可能把一个输入数据拍拆成多个输出拍，调整长度与 LAST，并重新组装读返回。对齐 INCR 的 4×64 位全宽数据是 32 字节，转成 32 位需要 8 拍；窄访问、部分写和非对齐请求按转换器支持范围分别验证。4 KiB 边界、错误响应、在途容量和原子扩展都属于转换契约。</p>
 <p>Regbus 把一次寄存器请求合成 valid/write/addr/wdata/wstrb，响应含 ready/rdata/error。普通 MMIO 使用 <code>i_reg_atomics → cut → axi_to_reg_v2(RegDataWidth=32) → reg_demux</code>。协议转换把分离的 AXI 通道恢复成一次寄存器访问，副作用在成交时触发。iDMA 控制口采用另一条旧桥，<a href="dma.html#lanes">iDMA 控制接口验收门槛</a>说明其宽度缺口。</p>

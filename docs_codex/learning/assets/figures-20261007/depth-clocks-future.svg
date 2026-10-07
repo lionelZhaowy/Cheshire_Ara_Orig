@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>未来 ASIC：时钟、复位、电源分别划分责任</title>
+<desc>下列域为候选边界；具体频率、电压、PLL 数量和电源意图尚未冻结。；依据：平台启动与配置约定；工艺/IP 交付待确认</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="530,400 600,400 600,330 680,330" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="680.00,330.00 668.00,325.00 668.00,335.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="530,300 575,300 575,180 1497,180 1497,220" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1497.00,220.00 1502.00,208.00 1492.00,208.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="530,600 600,600 600,720 680,720" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="680.00,720.00 668.00,715.00 668.00,725.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="530,750 575,750 575,875 1497,875 1497,830" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1497.00,830.00 1492.00,842.00 1502.00,842.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">未来 ASIC：时钟、复位、电源分别划分责任</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">下列域为候选边界；具体频率、电压、PLL 数量和电源意图尚未冻结。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：平台启动与配置约定；工艺/IP 交付待确认</text>
+<rect id="aon" x="55" y="220" width="475" height="615" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="220" width="5" height="615" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="252" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="aon">常开控制候选域</text>
+<text x="72" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="aon">参考时钟 / 安全启动源</text>
+<text x="72" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="aon">PLL lock 同步与切换策略</text>
+<text x="72" y="348" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="aon">复位原因 / 超时 / 故障回退</text>
+<text x="72" y="378" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="aon">门控、隔离与保持控制</text>
+<text x="72" y="408" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="aon">固件可重复访问的配置接口</text>
+<rect id="domain0" x="680" y="220" width="495" height="220" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="680" y="220" width="5" height="220" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="697" y="252" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="domain0">CPU / Ara / SRAM</text>
+<text x="697" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain0">同域或分域由时序与功耗决定</text>
+<text x="697" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain0">SRAM 宏与复位策略配套</text>
+<rect id="domain1" x="1250" y="220" width="495" height="220" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1250" y="220" width="5" height="220" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1267" y="252" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="domain1">DDR CTRL / PHY</text>
+<text x="1267" y="288" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain1">参考时钟与训练 / 校准</text>
+<text x="1267" y="318" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain1">init done 后允许新内存事务</text>
+<rect id="domain2" x="680" y="610" width="495" height="220" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="680" y="610" width="5" height="220" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="697" y="642" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="domain2">NPU / ISP 候选域</text>
+<text x="697" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain2">跨域 FIFO / AXI CDC</text>
+<text x="697" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain2">停发、排空、隔离与状态恢复</text>
+<rect id="domain3" x="1250" y="610" width="495" height="220" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1250" y="610" width="5" height="220" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1267" y="642" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="domain3">PAD / LVDS / 外部 IO</text>
+<text x="1267" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain3">电平与源同步采样</text>
+<text x="1267" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="domain3">CDC / RDC 与引脚约束</text>
+<rect id="note-5" x="55" y="915" width="1690" height="110" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="915" width="5" height="110" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="947" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-5">域边界交付需要成套证据</text>
+<text x="72" y="983" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-5">时钟约束 + 复位时序 + CDC/RDC + 电源意图/库单元 + 固件控制 + 故障恢复测试；图中候选域不是已实现电源域。</text>
+</svg>

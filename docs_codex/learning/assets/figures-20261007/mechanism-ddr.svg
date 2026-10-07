@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>一次 DDR 读：请求调度与返回数据分别穿过控制器</title>
+<desc>通用原理图；地址位分配、bank 策略、队列容量与训练寄存器由实际供应商确定。；依据：DDR 控制器/PHY 通用职责；不表示固定周期，也不代表已完成 DDR 验证</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="425,332.5 495,332.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="495.00,332.50 483.00,327.50 483.00,337.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="865,332.5 935,332.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="935.00,332.50 923.00,327.50 923.00,337.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1305,332.5 1375,332.5" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1375.00,332.50 1363.00,327.50 1363.00,337.50" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1560.0,420 1560.0,630" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1560.00,630.00 1565.00,618.00 1555.00,618.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1375,717.5 1305,717.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1305.00,717.50 1317.00,722.50 1317.00,712.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="935,717.5 865,717.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="865.00,717.50 877.00,722.50 877.00,712.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="495,717.5 425,717.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="425.00,717.50 437.00,722.50 437.00,712.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">一次 DDR 读：请求调度与返回数据分别穿过控制器</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">通用原理图；地址位分配、bank 策略、队列容量与训练寄存器由实际供应商确定。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：DDR 控制器/PHY 通用职责；不表示固定周期，也不代表已完成 DDR 验证</text>
+<rect id="q0" x="55" y="245" width="370" height="175" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="245" width="5" height="175" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="q0">AXI AR 队列</text>
+<text x="72" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q0">保存地址 / ID / burst</text>
+<text x="72" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q0">接受 AR 只表示收下请求</text>
+<rect id="q1" x="495" y="245" width="370" height="175" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="495" y="245" width="5" height="175" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="512" y="277" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="q1">映射 / 调度</text>
+<text x="512" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q1">bank / row / column</text>
+<text x="512" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q1">处理行命中、冲突、刷新</text>
+<rect id="q2" x="935" y="245" width="370" height="175" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="935" y="245" width="5" height="175" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="952" y="277" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="q2">PHY 命令接口</text>
+<text x="952" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q2">ACT / READ / PRE</text>
+<text x="952" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q2">满足器件命令时序</text>
+<rect id="q3" x="1375" y="245" width="370" height="175" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1375" y="245" width="5" height="175" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1392" y="277" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="q3">DRAM bank</text>
+<text x="1392" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q3">开行 / 列读 / 刷新</text>
+<text x="1392" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="q3">存储阵列输出数据</text>
+<rect id="r0" x="55" y="630" width="370" height="175" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="55" y="630" width="5" height="175" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="72" y="662" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r0">AXI R 通道</text>
+<text x="72" y="698" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r0">RID / RLAST / RESP</text>
+<text x="72" y="728" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r0">RREADY 背压时保持数据</text>
+<rect id="r1" x="495" y="630" width="370" height="175" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="495" y="630" width="5" height="175" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="512" y="662" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r1">返回缓冲</text>
+<text x="512" y="698" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r1">按 AXI beat 重组</text>
+<text x="512" y="728" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r1">与原事务 ID 对应</text>
+<rect id="r2" x="935" y="630" width="370" height="175" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="935" y="630" width="5" height="175" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="952" y="662" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r2">PHY 采样 / 对齐</text>
+<text x="952" y="698" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r2">训练确定采样关系</text>
+<text x="952" y="728" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r2">DQ / DQS 转为内部数据</text>
+<rect id="r3" x="1375" y="630" width="370" height="175" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="1375" y="630" width="5" height="175" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="1392" y="662" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="r3">DQ / DQS</text>
+<text x="1392" y="698" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r3">器件返回读数据</text>
+<text x="1392" y="728" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="r3">引脚电气时序</text>
+<rect id="note-8" x="55" y="900" width="1690" height="110" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="900" width="5" height="110" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="932" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">一次请求的延迟取决于多层状态</text>
+<text x="72" y="968" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">行命中可以省去换行操作；行冲突、刷新、仲裁、跨域队列和 R 背压都会改变 AXI 侧观察到的延迟。</text>
+</svg>

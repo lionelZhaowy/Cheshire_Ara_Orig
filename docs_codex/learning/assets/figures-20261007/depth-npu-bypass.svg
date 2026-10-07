@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>未来 DDR 旁路：数据汇合不等于一致性自动成立</title>
+<desc>CPU / Ara 保留 LLC 路径；NPU / ISP 数据绕过 LLC 是用户目标，尚未实现。；依据：当前 cheshire_soc.sv 主存路径与 M01 待定义接口契约</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="60" y="190" width="755" height="540" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="975" y="190" width="760" height="540" rx="12" fill="#F3EFF9" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="437.5,405 437.5,535" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="437.50,535.00 442.50,523.00 432.50,523.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1355.0,405 1355.0,535" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="1355.00,535.00 1360.00,523.00 1350.00,523.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="437.5,665 437,770 900,770 900.0,820" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="900.00,820.00 905.00,808.00 895.00,808.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1355.0,665 1355,770 900,770 900.0,820" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="900.00,820.00 905.00,808.00 895.00,808.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">未来 DDR 旁路：数据汇合不等于一致性自动成立</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">CPU / Ara 保留 LLC 路径；NPU / ISP 数据绕过 LLC 是用户目标，尚未实现。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：当前 cheshire_soc.sv 主存路径与 M01 待定义接口契约</text>
+<text x="78" y="225" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">现有 CPU / Ara 主存路径</text>
+<text x="993" y="225" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">未来 NPU / ISP 旁路</text>
+<rect id="cpu" x="105" y="270" width="665" height="135" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="105" y="270" width="5" height="135" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="122" y="302" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU / Ara / 当前互连</text>
+<text x="122" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">L1 cache 与 pending 协作</text>
+<text x="122" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">访问共享数据须遵循所有权协议</text>
+<rect id="llc" x="105" y="535" width="665" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="105" y="535" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="122" y="567" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="llc">现有原子处理 → LLC / SPM</text>
+<text x="122" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="llc">缓存维护与 AMO / LRSC 监视边界</text>
+<text x="122" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="llc">小块共享 SRAM / SPM 需另定义接入口</text>
+<rect id="npu" x="1020" y="270" width="670" height="135" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1020" y="270" width="5" height="135" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1037" y="302" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="npu">NPU / ISP 独立数据主端</text>
+<text x="1037" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="npu">普通读写绕过 LLC</text>
+<text x="1037" y="368" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="npu">控制寄存器与完成 IRQ 另走控制面</text>
+<rect id="bridge" x="1020" y="535" width="670" height="130" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1020" y="535" width="5" height="130" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1037" y="567" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="bridge">旁路适配：CDC / 限流 / ID</text>
+<text x="1037" y="603" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="bridge">宽度、突发、在途数与错误恢复</text>
+<text x="1037" y="633" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="bridge">旁路普通写也可能影响 reservation</text>
+<rect id="ddr" x="405" y="820" width="990" height="100" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="405" y="820" width="5" height="100" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="422" y="852" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ddr">新增仲裁 / ID 与顺序适配 → AXI4 DDR CTRL + PHY</text>
+<text x="422" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="ddr">共享地址布局、全路径可见性与原子协议需要联合验证</text>
+<text x="65" y="998" fill="#A43D42" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="start">契约选择：禁止设备进入共享原子区，或设计覆盖所有访问者的原子 / 一致性协议并验证。</text>
+</svg>

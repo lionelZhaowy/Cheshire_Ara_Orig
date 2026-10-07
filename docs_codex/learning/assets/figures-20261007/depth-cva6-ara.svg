@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>CVA6–Ara：控制协议与 AXI 数据通路分离</title>
+<desc>当前 CvxifEn=0；名为 cvxif 的连接承载本地专用接口，不等于通用 CORE-V XIF。；源码：acc_dispatcher.sv；ara/intf_typedef.svh；cheshire_soc.sv::gen_ara</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="50" y="185" width="440" height="650" rx="12" fill="#FFF3E7" stroke="#B9CAD6" stroke-width="1.5"/>
+<rect x="1300" y="185" width="450" height="650" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="270.0,400 270.0,555" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="270.00,555.00 275.00,543.00 265.00,543.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1525.0,400 1525.0,555" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1525.00,555.00 1530.00,543.00 1520.00,543.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="490,280 1300,280" fill="none" stroke="#B76315" stroke-width="3"/>
+<polygon points="1300.00,280.00 1288.00,275.00 1288.00,285.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<polyline points="1300,375 490,375" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="490.00,375.00 502.00,380.00 502.00,370.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1300,470 490,470" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="490.00,470.00 502.00,475.00 502.00,465.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1300,565 490,565" fill="none" stroke="#7555A3" stroke-width="3"/>
+<polygon points="490.00,565.00 502.00,570.00 502.00,560.00" fill="#7555A3" stroke="#7555A3" stroke-width="1"/>
+<polyline points="1525.0,750 1525,860 1000,860 1000.0,910" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1000.00,910.00 1005.00,898.00 995.00,898.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">CVA6–Ara：控制协议与 AXI 数据通路分离</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">当前 CvxifEn=0；名为 cvxif 的连接承载本地专用接口，不等于通用 CORE-V XIF。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">源码：acc_dispatcher.sv；ara/intf_typedef.svh；cheshire_soc.sv::gen_ara</text>
+<text x="68" y="220" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">CVA6 标量核</text>
+<text x="1318" y="220" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">Ara 向量单元</text>
+<rect id="decode" x="80" y="260" width="380" height="140" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="80" y="260" width="5" height="140" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="97" y="292" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="decode">译码 / scoreboard</text>
+<text x="97" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="decode">first-pass decoder</text>
+<text x="97" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="decode">trans_id 关联标量指令</text>
+<rect id="acc" x="80" y="555" width="380" height="195" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="80" y="555" width="5" height="195" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="97" y="587" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="acc">acc_dispatcher</text>
+<text x="97" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="acc">队列 / 非推测发出</text>
+<text x="97" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="acc">pending 与完成等待</text>
+<text x="97" y="683" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="acc">CPU resp_ready 固定为 1</text>
+<rect id="dispatch" x="1330" y="260" width="390" height="140" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1330" y="260" width="5" height="140" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1347" y="292" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="dispatch">dispatcher / sequencer</text>
+<text x="1347" y="328" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="dispatch">完整译码、vl / vtype</text>
+<text x="1347" y="358" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="dispatch">依赖与处理单元运行表</text>
+<rect id="vlsu" x="1330" y="555" width="390" height="195" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1330" y="555" width="5" height="195" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1347" y="587" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="vlsu">VRF / lanes / VLSU</text>
+<text x="1347" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vlsu">算术在分布式 VRF 上执行</text>
+<text x="1347" y="653" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vlsu">地址检查 / 可选 MMU 翻译</text>
+<text x="1347" y="683" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="vlsu">独立 AXI 读写数据</text>
+<text x="890" y="262" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="middle">req_valid / insn / rs1 / rs2 / frm / trans_id</text>
+<text x="890" y="357" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="middle">req_ready；resp_valid / result / exception / ID</text>
+<text x="890" y="452" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="middle">load/store_complete / store_pending / fflags</text>
+<text x="890" y="547" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="middle">MMU 请求与应答；L1 invalidate 协作</text>
+<rect id="note-4" x="535" y="670" width="715" height="132" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="535" y="670" width="5" height="132" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="552" y="702" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-4">接受、应答、数据完成分别观察</text>
+<text x="552" y="738" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-4">算术指令可能先应答，VRF 随后完成</text>
+<text x="552" y="768" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-4">load 地址应答不表示所有 AXI 数据已返回</text>
+<rect id="axi" x="400" y="910" width="1200" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="400" y="910" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="417" y="942" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="axi">Ara AXI → invalidation filter → 位宽适配 → Crossbar</text>
+<text x="417" y="978" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start" data-box="axi">与 CPU L1 数据口分开；B 错误处理的本地 TODO 仍需动态验证</text>
+</svg>

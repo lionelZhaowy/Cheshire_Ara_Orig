@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>未来异构任务：所有权状态与异常回收</title>
+<desc>硬件完成令牌须同时匹配 buffer、epoch 与状态；IRQ 仅触发软件查询。；依据：教材异构协议伪代码；NPU / ISP 尚未集成</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<polyline points="485,317.5 685,317.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="685.00,317.50 673.00,312.50 673.00,322.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1105,317.5 1305,317.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1305.00,317.50 1293.00,312.50 1293.00,322.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1515.0,395 1515.0,610" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1515.00,610.00 1520.00,598.00 1510.00,598.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="1305,687.5 1105,687.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="1105.00,687.50 1117.00,692.50 1117.00,682.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="685,687.5 485,687.5" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="485.00,687.50 497.00,692.50 497.00,682.50" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<polyline points="275.0,610 275.0,395" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="275.00,395.00 270.00,407.00 280.00,407.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">未来异构任务：所有权状态与异常回收</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">硬件完成令牌须同时匹配 buffer、epoch 与状态；IRQ 仅触发软件查询。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">未来方案 / 待实现与验证</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：教材异构协议伪代码；NPU / ISP 尚未集成</text>
+<rect id="free" x="65" y="240" width="420" height="155" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="65" y="240" width="5" height="155" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="82" y="272" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="free">FREE</text>
+<text x="82" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="free">分配 buffer</text>
+<text x="82" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="free">选择新 epoch</text>
+<rect id="prod" x="685" y="240" width="420" height="155" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="685" y="240" width="5" height="155" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="702" y="272" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="prod">PRODUCER</text>
+<text x="702" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="prod">独占写入</text>
+<text x="702" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="prod">禁止并发修改</text>
+<rect id="pub" x="1305" y="240" width="420" height="155" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1305" y="240" width="5" height="155" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1322" y="272" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="pub">PUBLISHED</text>
+<text x="1322" y="308" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="pub">排空结果写入</text>
+<text x="1322" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="pub">发布描述符</text>
+<rect id="rec" x="65" y="610" width="420" height="155" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="65" y="610" width="5" height="155" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="82" y="642" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="rec">RECLAIM</text>
+<text x="82" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="rec">确认消费者排空</text>
+<text x="82" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="rec">回收前验证状态</text>
+<rect id="cons" x="685" y="610" width="420" height="155" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="685" y="610" width="5" height="155" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="702" y="642" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cons">CONSUMER</text>
+<text x="702" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cons">读取 / 计算</text>
+<text x="702" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cons">可写自己的结果</text>
+<rect id="queue" x="1305" y="610" width="420" height="155" rx="7" fill="#F3EFF9" stroke="#7555A3" stroke-width="1.6"/>
+<rect x="1305" y="610" width="5" height="155" rx="0" fill="#7555A3" stroke="#7555A3" stroke-width="1.5"/>
+<text x="1322" y="642" fill="#7555A3" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="queue">QUEUED</text>
+<text x="1322" y="678" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="queue">通知消费者</text>
+<text x="1322" y="708" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="queue">转移所有权</text>
+<rect id="note-6" x="65" y="880" width="1660" height="120" rx="7" fill="#FBEFF0" stroke="#A43D42" stroke-width="1.6"/>
+<rect x="65" y="880" width="5" height="120" rx="0" fill="#A43D42" stroke="#A43D42" stroke-width="1.5"/>
+<text x="82" y="912" fill="#A43D42" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">任意在途状态发生超时 / 错误 → QUARANTINED</text>
+<text x="82" y="948" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">先隔离并确认设备停止，再决定恢复或回收；过期完成令牌不得释放新 epoch 的缓冲区。</text>
+<text x="620" y="505" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="start">正常转移形成闭环；异常路径进入隔离状态</text>
+</svg>

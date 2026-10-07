@@ -14,7 +14,7 @@
 | M01 DDR 旁路与存储一致性 | 未开始 | AXI4 接口契约、DMA 区/所有权方案、验证矩阵，再按授权实施 | 初期写专题/交接；涉及 top/config/address map 的改动与 E01 协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
 | P01 ASIC 工艺与实现准备 | 未开始 | SRAM/时钟/PAD/DDR PHY/DFT 适配表、约束缺口和实现验收项 | 初期可盘点；真实映射依赖工艺/IP 资料；不制造假通过报告 |
-| L01 学习与源码问答 | 完成（2026-09-29 机制复审定向收尾；目标 SoC 运行待验证） | [教材](learning/index.html)、[本次交接](handoffs/2026-09-29_L01_targeted_closeout.md)、[结构与迁移](learning/STRUCTURE_REVISION.md)、[旧站备份](learning_backup/index.html) | 七篇/30章、六实验及两参考；H2/H3 导航、机制图与分模式启动；维护检查采用新目录和临时生成。34主页面浏览器及历史保护检查通过；本次未软件构建/RTL运行。此前五个整数 ELF/FP32 构建证据保留，DMA/Ara 错误缺口交 S01/V01 |
+| L01 学习与源码问答 | 完成（2026-10-07 官方扩充、两项修正及37张结构图重绘、6张波形恢复WaveDrom；待独立复审，目标运行待验证） | [教材](learning/index.html)、[WaveDrom恢复交接](handoffs/2026-10-07_L01_restore_wavedrom.md)、[插图重绘交接](handoffs/2026-10-07_L01_research_figure_redraw.md)、[定向修正交接](handoffs/2026-10-07_L01_review_fixes.md)、[独立评审](handoffs/2026-10-07_L01_official_source_teaching_extension_review.md)、[旧站备份](learning_backup/index.html) | 保留七篇/30章；修正 Platform ROM 的内部 LLC/栈前提，拆分 AXI RT、CLIC、Router 配置/软件/验收案例。文档生成比较、链接及浏览器检查通过；未软件构建/RTL运行，已有生产缺口保留 |
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
 

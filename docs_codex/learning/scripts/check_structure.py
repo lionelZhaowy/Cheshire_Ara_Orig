@@ -13,8 +13,8 @@ sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 def snapshot(root):return {str(p.relative_to(root)):sha(p) for p in root.rglob('*') if p.is_file() and '__pycache__' not in p.parts and not p.is_relative_to(OUT)}
 before=snapshot(R)
 report=[META['started_at'],'HEAD: '+META['head'],'Output: '+str(OUT),'Mode: read-only working tree; reports only in new output directory.']
-def run(script,cwd=repo):
- x=subprocess.run([sys.executable,str(script)],cwd=cwd,capture_output=True,text=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+def run(script,cwd=repo,args=()):
+ x=subprocess.run([sys.executable,str(script),*map(str,args)],cwd=cwd,capture_output=True,text=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
  assert x.returncode==0,x.stdout+x.stderr
  return x.stdout.strip()
 try:
@@ -55,13 +55,17 @@ try:
  if args.check_generated:
   with tempfile.TemporaryDirectory(prefix='l01-regen-') as td:
    clone=Path(td)/'repo/docs_codex/learning';clone.mkdir(parents=True)
-   for folder in ['content','scripts','assets']:shutil.copytree(R/folder,clone/folder,ignore=shutil.ignore_patterns('__pycache__'))
+   for folder in ['content','scripts','assets','figure_archive']:shutil.copytree(R/folder,clone/folder,ignore=shutil.ignore_patterns('__pycache__'))
    for p in R.glob('*.html'):shutil.copy2(p,clone/p.name)
    # Register extraction reads a bounded set of headers, copied as ordinary files.
    from build_registers import GROUPS
    for _,_,name,_ in GROUPS:
     target=clone.parent.parent/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(repo/name,target)
    for name in ['build_registers.py','build_diagrams.py','build_depth_diagrams.py','build_mechanism_diagrams.py','build_waves.py','build_site.py']:run(clone/'scripts'/name,cwd=clone)
+   fresh=clone/'_research-figures'
+   run(clone/'scripts/build_research_figures.py',cwd=clone,args=['--out-dir',fresh])
+   for p in fresh.iterdir():assert sha(p)==sha(R/'assets/figures-20261007'/p.name),('research figure generation mismatch',p.name)
+   report.append('PASS 37 research SVG masters and manifest regenerated in a fresh temporary directory')
    products=list(clone.glob('*.html'))+list((clone/'assets').glob('*.svg'))+[clone/'content/registers.html']
    for p in products:assert sha(p)==sha(R/p.relative_to(clone)),('generated mismatch',str(p.relative_to(clone)))
    report.append(f'PASS temporary-copy generation matches {len(products)} products; no worktree regeneration')

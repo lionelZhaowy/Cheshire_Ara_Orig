@@ -1,0 +1,58 @@
+{
+  "signal": [
+    {
+      "name": "ROM fragment",
+      "wave": "3...x.........",
+      "data": [
+        "BIST / write SPM config"
+      ]
+    },
+    {
+      "name": "CFG_SPM_LOW.bit0",
+      "wave": "0...1........."
+    },
+    {
+      "name": "CPU halted",
+      "wave": "0....1....0..."
+    },
+    {
+      "name": "SBA transfers",
+      "wave": "x.....3..x....",
+      "data": [
+        "PT_LOAD + BSS policy"
+      ]
+    },
+    {
+      "name": "DPC write",
+      "wave": "x........4x...",
+      "data": [
+        "ELF entry"
+      ]
+    },
+    {
+      "name": "resume",
+      "wave": "0.........10.."
+    },
+    {
+      "name": "application",
+      "wave": "x..........5..",
+      "data": [
+        "crt0 → main"
+      ]
+    },
+    {
+      "name": "exit observed",
+      "wave": "0............1"
+    }
+  ],
+  "head": {
+    "text": "JTAG 装载：教学事件时序（不表示固定周期数）",
+    "tick": 0
+  },
+  "foot": {
+    "text": "教学示意，非实测：VIP 检查配置位，不等待 ROM C / 测频；halt 后独立核对 sp"
+  },
+  "config": {
+    "hscale": 2
+  }
+}

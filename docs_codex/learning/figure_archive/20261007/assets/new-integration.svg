@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 600" role="img" aria-labelledby="title desc"><title id="title">从寄存器计算单元到主动访存 IP</title><desc id="desc">接口契约逐层增加；先验证最小控制与结果闭环。</desc><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#357988"/></marker></defs><rect width="1060" height="600" fill="#fcfefe"/><style>text{font-family:system-ui,"Noto Sans CJK SC",sans-serif;fill:#17384a}.title{font-size:25px;font-weight:700}.small{font-size:15px;fill:#536b78}.box{font-size:18px}.label{font-size:16px;fill:#216c77}</style>
+<text x="32" y="42" class="title" text-anchor="start">从寄存器计算单元到主动访存 IP</text>
+<text x="32" y="74" class="small" text-anchor="start">接口契约逐层增加；先验证最小控制与结果闭环。</text>
+<rect x="35" y="120" width="310" height="105" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="152.5" class="box" text-anchor="middle">CPU / 驱动</text>
+<text x="190.0" y="178.5" class="box" text-anchor="middle">参数 → START</text>
+<text x="190.0" y="204.5" class="box" text-anchor="middle">STATUS → RESULT</text>
+<rect x="415" y="120" width="600" height="105" rx="9" fill="#ddf0e9" stroke="#a7c2cb"/>
+<text x="715.0" y="165.5" class="box" text-anchor="middle">Reg 控制面：START / BUSY / DONE / ERROR</text>
+<text x="715.0" y="191.5" class="box" text-anchor="middle">地址、字节写使能、副作用、忙时提交、复位值</text>
+<path d="M345,172 L415,172" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="415" y="305" width="265" height="120" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="547.5" y="345.0" class="box" text-anchor="middle">内部计算状态机</text>
+<text x="547.5" y="371.0" class="box" text-anchor="middle">接受一次 START</text>
+<text x="547.5" y="397.0" class="box" text-anchor="middle">完成后稳定结果</text>
+<rect x="750" y="305" width="265" height="120" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="882.5" y="345.0" class="box" text-anchor="middle">可选 AXI 数据面</text>
+<text x="882.5" y="371.0" class="box" text-anchor="middle">地址与长度约束</text>
+<text x="882.5" y="397.0" class="box" text-anchor="middle">在途请求 / 错误恢复</text>
+<path d="M550,225 L550,305" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M880,225 L880,305" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="35" y="305" width="310" height="120" rx="9" fill="#edf5f7" stroke="#a7c2cb"/>
+<text x="190.0" y="345.0" class="box" text-anchor="middle">可选 IRQ → PLIC</text>
+<text x="190.0" y="371.0" class="box" text-anchor="middle">设备状态清除</text>
+<text x="190.0" y="397.0" class="box" text-anchor="middle">claim / complete</text>
+<path d="M415,365 L345,365" fill="none" stroke="#357988" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="32" y="490" class="small" text-anchor="start">控制总线作为目标端；主动读写内存增加发起端口、ID、地址权限及缓冲区所有权要求。</text>
+<text x="32" y="535" class="small" text-anchor="start">任一时钟或复位域局部恢复，都要处理已经接受但尚未返回的事务。</text></svg>

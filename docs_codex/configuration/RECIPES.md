@@ -208,3 +208,22 @@ DDR AXI 契约；地址窗口与实际容量：
 输出一行配置记录至少包括：profile 路径及内容版本、宏、最终 Cfg、生成文件版本、工具链/ISA/ABI、链接模式、装载方式、初始化责任、验证平台与结果。当前教材表中的组合属于静态候选，已有实验记录仍按其原日期解释。
 
 官方概述的扩展端口“最多 16”与参数表的 0..15 存在措辞差异；本地字段为 4 bit，应按当前消费者审查。不要把概述数字直接写进 Cfg。更完整的约束表见[网页配置组合](../learning/configuration.html#legality-levels)。
+
+<a id="review-cases-20261007"></a>
+
+## AXI RT、CLIC 与 IRQ Router 的独立配置案例（2026-10-07 复审修正）
+
+三个案例共同采用单核标量 profile `cv64a6_imafdchsclic_sv39_wb`、Ara=0、Bootrom=1、PlatformRom=0、内部 LLC 保留；软件为原 `rv64gc_zifencei/lp64d`、`spm.ld`、`crt0.S`。装载沿现有 JTAG 流程，先核对 profile/decoder 和可用栈。以下均为源码静态确认及待验证场景，本轮未编译或运行。
+
+| 配置记录 | AXI RT 预算 | CLIC 门限/向量 | IRQ Router 目标屏蔽 |
+| --- | --- | --- | --- |
+| 相对 DefaultCfg | 仅 AxiRt=1，SELCFG=1 | 仅 Clic=1，SELCFG=2 | 仅 IrqRouter=1；须新建独立配置，现有 SELCFG 无此项 |
+| CPU 有效 RVSCLIC | 0 | 1，由 gen_cva6_cfg 覆盖 | 0；Router 不改变 CPU 中断模式 |
+| 尺寸与编号 | 6 manager、2 region；CPU=0、Debug=1、DMA=2；生成头与 RTL 一致 | N_SOURCE=16+58+0=74、INTCTLBITS=8；CPU 源数、向量表及 PLIC/CLINT 生成规模分别核对 | NumIntrSrc 取实际 packed 类型宽度，目标数为 2；bit0→PLIC、bit1→核0 CLIC 分支（本例关闭） |
+| 软件输入 | sw/tests/axirt_budget.spm.c；claim、region/预算/周期、enable 后启动 DMA | sw/tests/clic_basic.spm.S；mtvec 模式3、mtvt、mintthresh、源31属性/pending/enable | 待编写测试；UART源1对应 0x02080004 掩码，配置普通 PLIC handler，读UART清源再 complete |
+| 最小结果 | 128×8=1024字节逐项一致，读/写预算都减少1024且剩余相等，返回0 | 门限0xff期间不进入成功路径，降为0后进入源31向量路径并返回0；错误/未到返回1 | 清理旧事件后，掩码0阻止新事件到PLIC；清理后改1、再次注入应领取源1并服务；观察输入/输出与计数 |
+| 阻塞与范围 | 现有 iDMA 位宽/ID访问问题；加Ara后7 manager且DMA=3，原例不能直接复用 | 尚无本轮目标运行；本地开发版CLIC语义；原例不证明一般ISR现场恢复/mret/嵌套 | 缺专用配置入口、受控UART激励和完整测试；掩码复位1是源码事实，不是通过记录 |
+
+所有场景设置有界运行超时，保存配置、程序/ELF来源、关键状态、结果及退出码。AXI RT 例验证预算计账，不证明预算耗尽后的实时性；CLIC 的软件置 pending 验证不依赖 Router；Router 的掩码不能替代 PLIC 优先级和 claim/complete。
+
+源码入口：`target/sim/src/tb_cheshire_pkg.sv`、`hw/cheshire_pkg.sv::gen_cva6_cfg`、`hw/cheshire_soc.sv::gen_axi_rt/gen_clic/gen_irq_router`、`cheshire.mk::AXIRT_NUM_MGRS/AXIRT_NUM_SUBS`。Router 目标掩码定义/复位见 `.bender/git/checkouts/irq_router-376b3d113c15d0ef/rtl/irq_router{,_reg_top}.sv`。详细过程及来源链接分别见 [AXI RT](../learning/configuration.html#case-axi-rt)、[CLIC](../learning/configuration.html#case-clic)、[IRQ Router](../learning/configuration.html#case-irq-router)。

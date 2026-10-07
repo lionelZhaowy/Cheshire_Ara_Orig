@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>137 个 e32 元素：按实际 vl 分批执行</title>
+<desc>e32,m1；VLEN=2048 → VLMAX=64。示例 a[i]+b[i]→c[i]，尾部 9 个元素同样需要校验。；依据：教材 journey.c；RVV vsetvli 语义与当前 Ara 配置；非运行结果</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="55" y="500" width="1690" height="290" rx="12" fill="#F3F6F8" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="520,295.0 685,295.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="685.00,295.00 673.00,290.00 673.00,300.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1195,295.0 1360,295.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1360.00,295.00 1348.00,290.00 1348.00,300.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1550,375 1550,440 290,440 290,375" fill="none" stroke="#087E83" stroke-width="3"/>
+<polygon points="290.00,375.00 285.00,387.00 295.00,387.00" fill="#087E83" stroke="#087E83" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">137 个 e32 元素：按实际 vl 分批执行</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">e32,m1；VLEN=2048 → VLMAX=64。示例 a[i]+b[i]→c[i]，尾部 9 个元素同样需要校验。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：教材 journey.c；RVV vsetvli 语义与当前 Ara 配置；非运行结果</text>
+<rect id="cpu" x="55" y="215" width="465" height="160" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="55" y="215" width="5" height="160" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="72" y="247" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="cpu">CPU 维护循环状态</text>
+<text x="72" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">启用 VS；a0/a1/a2 = 数组地址</text>
+<text x="72" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">remaining 初值 137</text>
+<text x="72" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="cpu">调用 vsetvli 取得实际 vl</text>
+<rect id="ara" x="685" y="215" width="510" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="685" y="215" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="702" y="247" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="ara">Ara 执行一批</text>
+<text x="702" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">vle32 a、b → vadd → vse32 c</text>
+<text x="702" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">本轮只处理 vl 个有效元素</text>
+<text x="702" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="ara">地址增加 vl × 4 字节</text>
+<rect id="loop" x="1360" y="215" width="385" height="160" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1360" y="215" width="5" height="160" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1377" y="247" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="loop">循环继续条件</text>
+<text x="1377" y="283" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="loop">remaining -= vl</text>
+<text x="1377" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="loop">非零则再设定 vl</text>
+<text x="1377" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="loop">不能每轮固定加 64</text>
+<text x="73" y="535" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">内存中的逻辑序列（每格仅表示一段，不代表一个 lane）</text>
+<rect id="batch0" x="85" y="595" width="700" height="135" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="85" y="595" width="5" height="135" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="102" y="627" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="batch0">第 1 批 · vl=64</text>
+<text x="102" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch0">元素 0…63</text>
+<text x="102" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch0">256 B</text>
+<rect id="batch1" x="815" y="595" width="700" height="135" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="815" y="595" width="5" height="135" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="832" y="627" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="batch1">第 2 批 · vl=64</text>
+<text x="832" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch1">元素 64…127</text>
+<text x="832" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch1">256 B</text>
+<rect id="batch2" x="1545" y="595" width="150" height="135" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="1545" y="595" width="5" height="135" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="1562" y="627" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="batch2">尾批</text>
+<text x="1562" y="663" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch2">128…136</text>
+<text x="1562" y="693" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="batch2">9 / 36 B</text>
+<rect id="note-6" x="55" y="875" width="520" height="130" rx="7" fill="#F3F6F8" stroke="#536B7D" stroke-width="1.6"/>
+<rect x="55" y="875" width="5" height="130" rx="0" fill="#536B7D" stroke="#536B7D" stroke-width="1.5"/>
+<text x="72" y="907" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-6">静态指令证据</text>
+<text x="72" y="943" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">ELF 反汇编存在 V 指令</text>
+<text x="72" y="973" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-6">只能确认程序文件内容</text>
+<rect id="note-7" x="635" y="875" width="520" height="130" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="635" y="875" width="5" height="130" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="652" y="907" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-7">执行轨迹证据</text>
+<text x="652" y="943" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">目标确实执行向量路径</text>
+<text x="652" y="973" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-7">不能用构建成功代替</text>
+<rect id="note-8" x="1215" y="875" width="530" height="130" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1215" y="875" width="5" height="130" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1232" y="907" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">数值与边界证据</text>
+<text x="1232" y="943" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">137 项结果逐项相等</text>
+<text x="1232" y="973" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">尾部保护字保持预期</text>
+</svg>

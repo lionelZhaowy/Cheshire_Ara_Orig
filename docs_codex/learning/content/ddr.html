@@ -1,13 +1,13 @@
 <div class="goals"><strong>本章任务</strong><p>从平台初始化到软件可用建立交付条件。 前置：<a href="clocks.html">04 · 时钟系统与 PLL</a>、<a href="reset.html">05 · 复位体系与平台启动条件</a>、<a href="memory.html">11 · Cache、LLC/SPM 与存储路径</a>。</p></div>
 <h2 id="ddr-subsystem">DDR 子系统：控制器、PHY 与软件如何衔接</h2>
 <p>DDR DRAM 需要定时刷新、行列命令和训练后的高速数据采样。控制器把 AXI 读写调度成存储命令，PHY 实现时序、电气训练与引脚收发，DRAM 提供实际存储阵列。AXI 的地址范围不等于容量；行/列/bank 映射、颗粒数量、数据位宽与 ECC 都影响可用字节数。</p>
-<figure><img src="assets/depth-ddr.svg" alt="SoC AXI 经可选跨域适配接 DDR 控制器和 PHY，控制状态及就绪逻辑另列"><figcaption>当前 FPGA wrapper 提供边界参考；ASIC 控制器/PHY 寄存器尚无交付资料，不能编造偏移。</figcaption></figure>
+<figure><img src="assets/figures-20261007/depth-ddr.svg" alt="SoC AXI 经可选跨域适配接 DDR 控制器和 PHY，控制状态及就绪逻辑另列"><figcaption>当前 FPGA wrapper 提供边界参考；ASIC 控制器/PHY 寄存器尚无交付资料，不能编造偏移。</figcaption></figure>
 
 
 
 <h2 id="read-path">一次 AXI 读取的控制器、PHY 与 DRAM 路径</h2>
 <p>以 CPU 的一次缓存缺失读为例：请求先沿当前 LLC 下游到平台 DDR 接口。若上层缓存命中，则不会发生这次 DDR 访问。假定控制器接受一笔普通 INCR 读，把 AXI 的字节地址和 burst 信息保存进请求队列；AR 握手完成的是接收请求，数据还没有回来。</p>
-<figure><img src="assets/mechanism-ddr.svg" alt="AXI 请求队列经地址映射和命令调度到 PHY 与 DRAM，读取数据反向进入缓冲后返回 R 通道"><figcaption>通用 DDR 读路径教学图；不描述尚未采购的控制器内部 RTL 或固定时延。</figcaption></figure>
+<figure><img src="assets/figures-20261007/mechanism-ddr.svg" alt="AXI 请求队列经地址映射和命令调度到 PHY 与 DRAM，读取数据反向进入缓冲后返回 R 通道"><figcaption>通用 DDR 读路径教学图；不描述尚未采购的控制器内部 RTL 或固定时延。</figcaption></figure>
 <h3 id="row-state">地址映射、行命中与行切换</h3>
 <p>控制器按配置把字节地址拆为通道/片选、bank、row 和 column。bank 是可分别管理开行状态的一组存储阵列；ACT（激活）把指定行打开到行缓冲，READ 选择其中的列，PRE（预充电）关闭已打开的行并准备下次激活。地址相邻不一定映射到同一 bank，具体位分配取决于控制器配置。</p>
 <p>假设某 bank 已开行 A：请求 A 的另一列是行命中，可以在时序约束满足后发 READ；请求行 B 则先等前一访问允许关闭，再 PRE、等待 tRP、ACT B、等待 tRCD 后 READ。bank 原本关闭时可直接从 ACT 开始。tRP 表示预充电后到下一次激活的最小间隔，tRCD 表示激活后到读写命令的最小间隔；本章不填未确定器件的纳秒或周期数。</p>

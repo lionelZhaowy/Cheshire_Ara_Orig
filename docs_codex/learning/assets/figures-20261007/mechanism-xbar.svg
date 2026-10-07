@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1125" viewBox="0 0 1800 1125" role="img">
+<title>Crossbar 内部：选择目标、预留 W、归还 ID</title>
+<desc>2×2 教学模型：普通 AXI4；输入 ID 为 2 位；地址与延迟不使用生产地址图。；依据：axi_xbar_unmuxed、axi_mux、axi_demux_simple、axi_demux_id_counters（本地 axi 依赖）</desc>
+<rect x="0" y="0" width="1800" height="1125" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="40" y="40" width="8" height="62" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<line x1="40" y1="148" x2="1760" y2="148" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<line x1="40" y1="1045" x2="1760" y2="1045" stroke="#B9CAD6" stroke-width="1.5" fill="none"/>
+<rect x="325" y="182" width="1040" height="570" rx="12" fill="#EDF4FC" stroke="#B9CAD6" stroke-width="1.5"/>
+<polyline points="275,320.0 350,325.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="350.00,325.00 338.36,319.21 337.69,329.19" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1335,325.0 1430,320.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1430.00,320.00 1417.75,315.64 1418.28,325.62" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="275,570.0 350,575.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="350.00,575.00 338.36,569.21 337.69,579.19" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<polyline points="1335,575.0 1430,570.0" fill="none" stroke="#216BB1" stroke-width="3"/>
+<polygon points="1430.00,570.00 1417.75,565.64 1418.28,575.62" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<path d="M 705 325.0 C 852.5 325.0 852.5 325.0 1000 325.0" fill="none" stroke="#B9CAD6" stroke-width="2"/>
+<path d="M 705 325.0 C 852.5 325.0 852.5 575.0 1000 575.0" fill="none" stroke="#B9CAD6" stroke-width="2"/>
+<path d="M 705 575.0 C 852.5 575.0 852.5 325.0 1000 325.0" fill="none" stroke="#B9CAD6" stroke-width="2"/>
+<path d="M 705 575.0 C 852.5 575.0 852.5 575.0 1000 575.0" fill="none" stroke="#B9CAD6" stroke-width="2"/>
+<path d="M 705 325.0 C 852.5 325.0 852.5 325.0 1000 325.0" fill="none" stroke="#B76315" stroke-width="5"/>
+<polyline points="986,325.0 1000,325.0" fill="none" stroke="#B76315" stroke-width="5"/>
+<polygon points="1000.00,325.00 988.00,320.00 988.00,330.00" fill="#B76315" stroke="#B76315" stroke-width="1"/>
+<path d="M 705 575.0 C 852.5 575.0 852.5 325.0 1000 325.0" fill="none" stroke="#216BB1" stroke-width="5"/>
+<polyline points="986,325.0 1000,325.0" fill="none" stroke="#216BB1" stroke-width="5"/>
+<polygon points="1000.00,325.00 988.00,320.00 988.00,330.00" fill="#216BB1" stroke="#216BB1" stroke-width="1"/>
+<text x="68" y="77" fill="#19364B" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" text-anchor="start">Crossbar 内部：选择目标、预留 W、归还 ID</text>
+<text x="68" y="120" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" text-anchor="start">2×2 教学模型：普通 AXI4；输入 ID 为 2 位；地址与延迟不使用生产地址图。</text>
+<text x="48" y="1077" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="normal" text-anchor="start">当前源码结构 / 教学示意；非运行证据</text>
+<text x="48" y="1108" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="20" font-weight="normal" text-anchor="start">依据：axi_xbar_unmuxed、axi_mux、axi_demux_simple、axi_demux_id_counters（本地 axi 依赖）</text>
+<text x="343" y="217" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="bold" text-anchor="start">路由结构：两套输入状态 × 两套目标仲裁</text>
+<rect id="i0" x="50" y="270" width="225" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="50" y="270" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="67" y="302" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i0">I0 · CPU</text>
+<text x="67" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="i0">AW / W / AR</text>
+<rect id="d0" x="350" y="245" width="355" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="350" y="245" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="367" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="d0">DEMUX I0 · 地址分流</text>
+<text x="367" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d0">AW/AR ID → 目标 + 在途数</text>
+<text x="367" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d0">w_select_q：W 的目标</text>
+<text x="367" y="373" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d0">w_open：未结束 W 数</text>
+<rect id="m0" x="1000" y="245" width="335" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1000" y="245" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1017" y="277" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="m0">目标 0 · mux / 仲裁</text>
+<text x="1017" y="313" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m0">AW 轮转仲裁并预留来源</text>
+<text x="1017" y="343" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m0">i_w_fifo 保存来源顺序</text>
+<text x="1017" y="373" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m0">W 按队首来源前进</text>
+<rect id="t0" x="1430" y="270" width="300" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1430" y="270" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1447" y="302" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="t0">T0 · 慢存储</text>
+<text x="1447" y="338" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="t0">独立背压与响应</text>
+<rect id="i1" x="50" y="520" width="225" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="50" y="520" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="67" y="552" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="i1">I1 · DMA</text>
+<text x="67" y="588" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="i1">AW / W / AR</text>
+<rect id="d1" x="350" y="495" width="355" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="350" y="495" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="367" y="527" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="d1">DEMUX I1 · 地址分流</text>
+<text x="367" y="563" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d1">AW/AR ID → 目标 + 在途数</text>
+<text x="367" y="593" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d1">w_select_q：W 的目标</text>
+<text x="367" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="d1">w_open：未结束 W 数</text>
+<rect id="m1" x="1000" y="495" width="335" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1000" y="495" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1017" y="527" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="m1">目标 1 · mux / 仲裁</text>
+<text x="1017" y="563" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m1">AW 轮转仲裁并预留来源</text>
+<text x="1017" y="593" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m1">i_w_fifo 保存来源顺序</text>
+<text x="1017" y="623" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="m1">W 按队首来源前进</text>
+<rect id="t1" x="1430" y="520" width="300" height="100" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="1430" y="520" width="5" height="100" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="1447" y="552" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="t1">T1 · 快寄存器</text>
+<text x="1447" y="588" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" data-box="t1">独立背压与响应</text>
+<text x="740" y="715" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="middle">两笔请求竞争 T0；T1 仲裁器独立</text>
+<rect id="note-8" x="50" y="790" width="525" height="160" rx="7" fill="#FFF3E7" stroke="#B76315" stroke-width="1.6"/>
+<rect x="50" y="790" width="5" height="160" rx="0" fill="#B76315" stroke="#B76315" stroke-width="1.5"/>
+<text x="67" y="822" fill="#B76315" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-8">① W 路由先被预留</text>
+<text x="67" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">仲裁决定可能先于外部 AW 握手</text>
+<text x="67" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">背压期间保持决定，避免重复入队</text>
+<text x="67" y="918" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-8">内部 WLAST 握手后 FIFO 才推进</text>
+<rect id="note-9" x="615" y="790" width="525" height="160" rx="7" fill="#EDF4FC" stroke="#216BB1" stroke-width="1.6"/>
+<rect x="615" y="790" width="5" height="160" rx="0" fill="#216BB1" stroke="#216BB1" stroke-width="1.5"/>
+<text x="632" y="822" fill="#216BB1" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-9">② 最后 W ≠ 写响应完成</text>
+<text x="632" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">B 握手释放写 ID 计数</text>
+<text x="632" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">最后 R 握手释放读 ID 计数</text>
+<text x="632" y="918" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-9">同 ID 跨目标须等原事务释放</text>
+<rect id="note-10" x="1180" y="790" width="550" height="160" rx="7" fill="#EAF6F3" stroke="#087E83" stroke-width="1.6"/>
+<rect x="1180" y="790" width="5" height="160" rx="0" fill="#087E83" stroke="#087E83" stroke-width="1.5"/>
+<text x="1197" y="822" fill="#087E83" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" data-box="note-10">③ B / R 按 ID 来源前缀返回</text>
+<text x="1197" y="858" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-10">I0/id01 → 001；I1/id01 → 101</text>
+<text x="1197" y="888" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-10">返回时按前缀选来源，再去前缀</text>
+<text x="1197" y="918" fill="#536B7D" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" text-anchor="start" data-box="note-10">端口 cut 使内外握手不必同周期</text>
+</svg>
