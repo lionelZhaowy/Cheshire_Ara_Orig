@@ -1,0 +1,42 @@
+<div class="goals"><strong>本章任务</strong><p>正常过程见各外设正文；本章用于出现无响应、超时或错误结果后的定位，不改变生产实现。</p>
+</div>
+<h2 id="layers">从最后一个已确认的动作向下定位</h2>
+<p>先保存应用阶段、参数、返回值和首个错误字节；再看HAL/DIF等待在哪一个条件，接着看寄存器命令是否提交、FIFO/状态是否推进，最后看控制器状态机、引脚输入/输出使能和设备回应。软件返回、命令入队、控制器完成、器件内部完成和结果正确分开记录。总线响应正常不证明外部器件存在。</p>
+<p>不要边观察边反复读取会弹出FIFO、领取中断或提交DMA的寄存器。超时先停止新任务并保留仍被设备拥有的缓冲，记录证据后才按已实现的协议恢复；这里的建议不是已经实现的统一恢复API。</p>
+<h2 id="uart">UART：没有文本、文本不完整或乱码</h2>
+<p>无输出时先看程序是否到达 uart_write，再查 LSR.bit5/6 与THR写、DLAB是否回到0、TX和CTS输入。fixture流控输入绑0，FPGA wrapper仅显式接TX/RX，两者不能等同。末尾缺字符查flush是否执行及LSR发送器空；乱码查真实clk频率、除数、终端波特率和8N1。LSR读取可清部分线路错误，记录读取时序。</p>
+<p>已知边界：生产uart_write/flush无超时；DLL/DLM切换和FIFO重置需串行独占。重新初始化会丢弃排队字符，不能作为无条件“恢复”。依据uart.c及reg_uart_wrap/uart RTL，状态为源码确认，未进行本轮板测。</p>
+<h2 id="gpio">GPIO：输出已写却无电平变化</h2>
+<p>依次检查MASKED输出值与OE、SoC o/en、PAD三态和真实DATA_IN。fixture输入绑0不回环，当前FPGA没有接出该SoC端口；因此读0不能证明输出寄存器失败。事件未出现时检查触发条件/滤波，再查INTR_STATE和ENABLE；软件INTR_TEST只证明片内事件路径，不能证明外部接线。</p>
+<h2 id="interrupts">定时器/PLIC：不进处理函数或反复进入</h2>
+<p>先观察源事件，再查源使能、PLIC priority/enable/threshold，最后查CPU mie/mstatus和mtvec。handler先读claim保存源号，服务源、清W1C、排序、complete同号；只complete而源仍置位会重新触发。timer应把compare推到未来，读mtime用hi-low-hi避免跨低半溢出。advanced.c的正常条件是GPIO≥1、timer≥2，遗漏触发版本应rc14；这些是待目标运行判据。旧clint_get_mtime的读取方式应与本例ticks分开，不扩张成已经修复库。</p>
+<h2 id="i2c">I2C：没有应答、收不到指定字节或短读越界</h2>
+<p>线路不动先查host enable、FMT队列和实际输入高电平。SCL持续低需同时观察控制器输出使能与target拉伸；不能先盲目改分频。NAK查控制字、A0/A1/A2、器件上电及WP的职责，WP不是读寻址使能。RX不足查地址阶段、STOP/START和READ长度，再取INTR_STATE中的NAK/stretch/host timeout及FIFO深度。</p>
+
+<p>本地 HAL 的未对齐首块长度直接取 FIFO_DEPTH−addr_offs，未与请求长度取 min，可能对短读越界；写分支的末字节 STOP 与递归 buf/addr 偏移也存在静态疑点，高地址 chip 编码需要模型核对。本次保留证据而不修改生产库，只读实验选择对齐的 16 字节范围。后续修复应覆盖短未对齐、跨 FIFO/页/块、NAK、写结束及写周期。</p>
+<p>HAL若干地址命令允许NAK，FIFO等待无统一deadline；超时记录当前阶段和FMT/RX深度，确认是谁拉低线路后才考虑停止/重初始化。当前STOP后START与常见repeated START有差异，必须用本型号和模型验证；不能把通用I2C兼容直接当通过。只读addr0/len16避免已知短未对齐边界，仍未运行验收。</p>
+<h2 id="spi">SPI：全0xff、错位或等待不结束</h2>
+<p>先看CSID=1和CS/SCK实际活动，再看CPOL/CPHA、SD方向、opcode0x13及四字节地址是否在同一CS区间内。RX全0xff可能是未选中/线路释放，不能直接解释为介质内容。READY只表示可接命令，ACTIVE为控制器状态，写介质的WIP来自器件status0x05；ERROR_STATUS(+0x38)和EVENT_ENABLE(+0x3c)对应错误/队列事件。</p>
+<p>现有DIF/HAL等待没有统一deadline；恢复前先保存片选、队列和错误，确认器件不再执行写入后再重置。写介质需write-enable0x06、program/erase及WIP轮询；当前HAL涉及大扇区擦除，CR3V的0x71写配置segment方向为Rx的静态疑点尚未修复。它不等于只读init必经同一缺陷。本章不执行擦写。SD无本地等价模型，TB的SD启动fatal、VCU118未启用USE_SD；源码有协议不等于已验证卡型。</p>
+<h2 id="dma">iDMA：当前示例为何保持 BLOCKED</h2>
+
+<p><a href="adapters.html">第 11 章</a>的 +4 lane 例子在这里具有实际意义：cheshire_idma_wrap 的 Reg 类型继承 64 位 AxiDataWidth，旧 axi_to_reg/axi_lite_to_reg 保持该宽度；生成 idma_reg64_2d_reg_top 的内部 DW 却固定为 32，读写数据未显示按 addr[2] 做相应 lane 搬移。因此 +0x44/+0x84 的 32 位访问存在静态不匹配。</p>
+<p>旧 dif/dma.h 还以 uint64_t 指针读取这些 32 位 ID；历史 GCC 反汇编显示一次请求拆成相邻两次 32 位读。软件改为 32 位读取也不能修复硬件 lane 适配。保留的 advanced.c 默认输出 BLOCKED/rc16、不提交 DMA，这一门槛继续有效。旧 lesson.c 的 dma 分支仅留作历史代码，本轮正式实验不调用它。</p>
+<p>后续 S01/V01 应统一桥、生成寄存器和 HAL 宽度，再验证 +0/+4、WSTRB、地址高低半、单次 NEXT_ID 只提交一次、非零 ID、DONE 与错误返回。1D 分支还有 busy 信号命名待核对。上述结论来自静态源码和历史汇编记录，尚无本轮生产 DMA 波形复现。</p>
+<p>若后续修复授权执行，V01先验证单次NEXT_ID读取、+0/+4 lane、WSTRB、ID与长度高低半，再验证三行不同数据及守卫、背压/错误。超时隔离目标缓冲，避免CPU复用仍在写的区域；DONE匹配后仍需检查数据与错误。</p>
+<h2 id="bus-errors">BusErr 与 AXI RT：保留记录后再消费</h2>
+
+<p>BusErr 跟踪 CPU、DMA、VGA 的地址/ID 与响应，出错时保存记录并产生中断。基址从 0x03009000 起，每单元 0x40 字节，写子块 +0、读子块 +0x20；子块内 ERR_ADDR/ADDR_TOP/META 分别为 +0/+4/+0xc，最后读取 ERR_CODE(+8) 会弹出记录。诊断必须先取地址和元信息，最后消费错误码。</p>
+<p>失败报告至少保留任务 ID、源/目的地址、长度、首个错误元素与相应 R/B 响应。DONE 相等仍需检查结果和守卫；超时后先隔离缓冲区，直到确认排空或经过受控系统恢复。当前 VGA 最多 24 个读事务与其错误追踪 CoreMaxTxns=8 的尺寸差异也需专项压力检查。小量正确传输无法覆盖所有并发容量边界。</p>
+<p>AXI RT旧隔离轮询存在未掩码单bit及无超时问题；生成表6 managers×2 regions与含Ara的7发起者组合不自动兼容。axirt_budget.spm.c的DMA依赖当前门槛；已有dump只是静态产物，不是新的预算运行证据。</p>
+<h2 id="link">Serial Link：本地接受但没有远端结果</h2>
+<p>沿AXI接受→network/data_link队列→源同步时钟与接收数据→远端地址→返回响应观察；双方映射/复位一致后再测小写读。当前SoC隔离/门控/复位输出悬空，isolated_i=0；CTRL无法独立建立停止与排空。Cfg.SlinkMaxClkDiv仅10位，赋1024截断，实例消费另一个生成常量；只改这个字段不会改变实际链路。VCU118没有接出Link。上述均为静态证据，无板端恢复验收。</p>
+<h2 id="vga">VGA：无图、错色或欠载</h2>
+<p>按AR/R→fetcher队列/credit→像素valid→时序计数→RGB/HSYNC/VSYNC查找第一个停顿。先查帧地址、字节数、RGB565排列与CLK_DIV，再核对外接显示电路。当前fixture输出悬空、VCU118未启用VGA；MaxReadTxns=24与BusErr追踪CoreMaxTxns=8的差异需专项压力验证，不能由少量像素正确关闭。</p>
+<h2 id="usb">USB：寄存器可读但控制传输不完成</h2>
+<p>控制访问与PHY包传输分层：查usb_clk/reset、端口连接/VBUS，再查HCCA对齐、32位DMA可达性、ED/TD所有权、列表使能、WDH/RHSC/UE。读取Revision成功不能证明PHY活动。fixture的usb_clk=0、DP/DM绑0，板配置关闭USB，完整host栈和设备模型缺失。超时/断连后不能立即释放仍由控制器持有的描述符；需要软件栈实现有界取消/排空并独立验证。</p>
+<h2 id="known-issues">已知问题与证据状态</h2>
+<p>本章迁移的问题均未因文档改写被关闭。I2C短未对齐读/写边界、SPI写配置方向、DMA控制宽度/ID读取、Link隔离连接与未消费配置、VGA错误追踪容量、各轮询无界等待为源码/历史汇编确认的审查项；是否以及怎样在目标上触发，仍由S01/V01逐项复现。USB/SD/板端GPIO/I2C/Link/VGA主要是支持与连接缺口，不能混称已发生硬件故障。</p>
+<p>源码基准与本轮证据见<a href="evidence.html">验证记录</a>；外设正常章底部保留对应源码。Platform ROM与Ara不属于本章驱动缺陷，分别见<a href="boot.html#platform-rom">启动前提</a>和<a href="vector-debug.html">Ara/RVV诊断</a>。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/data/i2c.hjson">I2C 访问属性和复位字段</a>；<a href="../../sw/lib/hal/i2c_24fc1025.c">EEPROM 初始化及事务</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c">时序与格式命令</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv">FIFO 与状态机</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">模型与预填充</a></p></div><div class="source"><strong>源码与进一步阅读</strong><p><a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">一致性 CSR 复位与写入</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv">CPU/Ara pending 与 barrier</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv">写范围与 L1 失效握手</a>；<a href="../../hw/cheshire_pkg.sv">容量、别名与参数</a>；<a href="../../hw/cheshire_soc.sv">LLC、原子、错误与 RT 路径</a>；<a href="../../hw/cheshire_idma_wrap.sv">DMA 前后端与控制桥</a>；<a href="../../sw/include/dif/dma.h">原 ID 访问</a>；<a href="../../.bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv">固定 DW=32</a>；<a href="../../.bender/git/checkouts/unbent-a93c32aef5b319fd/src/bus_err_unit.sv">错误 FIFO pop</a>；<a href="../../sw/tests/axirt_budget.spm.c">预算测试源程序</a></p></div><details class="quiz"><summary>为什么超时后不能立即把同一缓冲交给下一项任务？</summary><p>软件停止等待不等于设备停止访存；在途写可能污染下一任务的数据。必须确认排空或经过受控恢复。</p>
+</details>

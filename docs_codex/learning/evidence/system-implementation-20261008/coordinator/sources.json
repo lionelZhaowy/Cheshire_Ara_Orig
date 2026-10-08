@@ -1,0 +1,26 @@
+{
+  "head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "files": {
+    "AGENTS.md": "87b2185e99927c51202035af31d7b987abcb678867c370063d3d9aa36d817ef7",
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    "target/xilinx/src/cheshire_top_xilinx.sv": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2",
+    "target/xilinx/src/dram_wrapper_xilinx.sv": "fa8a22e9a7e30885605cecacbc41459cf060828ffbc7995189ff80ba1c9adf6e",
+    "sw/include/util.h": "2f534f4f2ca6b4ca6990f7d03e477d2868576028d9fc292ac8332a9a80ed009e",
+    "sw/include/dif/clint.h": "81067da5fc8b4bdcf4862b1fea528b7c22f3ae5ba9c1d951775a1df8348ab344",
+    "sw/lib/dif/clint.c": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+    "docs_codex/learning/examples/journey.c": "07e6837765fe5388023d4dd2a89612d6563a22c04eb8138e7fdab185def18a42",
+    "docs_codex/learning/examples/hw/lesson_reg_adder.sv": "98804e74d0015b2c4ba7dbd6f011f21bae08092d2068af73a22e5b154e1e9c15"
+  },
+  "official_references": [
+    {
+      "url": "https://docs.riscv.org/reference/isa/v20260120/unpriv/counters.html",
+      "scope": "Zicntr/Zihpm2.0 counter distinctions only; local consumers determine current behavior"
+    },
+    {
+      "url": "https://pulp-platform.github.io/cheshire/tg/integr/",
+      "scope": "integration interface reference; local snapshot controls widths and routing"
+    }
+  ]
+}

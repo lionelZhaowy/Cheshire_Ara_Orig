@@ -1,0 +1,63 @@
+<div class="goals"><strong>本章任务</strong><p>用同一数组比较汇编、intrinsics 和自动向量化。 前置：<a href="ara.html">20 · Ara 结构与 CVA6 协处理器接口</a>、<a href="runtime.html">4 · 裸机 C 程序运行模型</a>、<a href="build.html">5 · 工具链、链接与 ELF</a>。</p></div>
+<h2 id="concepts">向量数组程序与校验任务</h2>
+<h3 id="work">数组计算的标量与向量表达</h3>
+<p>标量阶段逐元素计算 3*i+1。向量阶段准备 a[i]=i、b[i]=2*i+1，再执行 c=a+b，结果仍为 3*i+1。输入、长度和独立期望保持一致，便于把差异集中在执行与数据通路。主文件仍为 journey.c；先用 rvv_add.S，随后在同一调用边界增加归约和两种 C 编程入口。</p>
+<p>前章已按同一算法建立<a href="ara.html#integer-model">VLEN、vl与寄存器分组</a>及<a href="ara.html#walkthrough">CPU/Ara协作过程</a>。本章先完成一次实际调用与校验，再扩展mask、定点/浮点和C编程入口。</p>
+
+<h2 id="implementation">状态、循环和编程入口</h2>
+<h3 id="configuration">RVV 配置与运行前提</h3>
+<p>本例采用前章核实的2 lane/VLEN2048、向量CPU profile和真实Ara译码/实例；参照<a href="ara.html#capacity">配置推导</a>，不由编译选项反推硬件存在。执行前先预约<a href="sharing.html#ownership">独占非缓存SPM范围</a>，保证单核、全SPM、栈不重叠和CPU/Ara协作状态。</p>
+
+<p>初始汇编加法版本中，main/CRT/库按标量 ISA 编译并关闭自动向量化，rvv_add.S 使用 <code>rv64gcv_zifencei</code>。main 先以标量 CSR 指令使 mstatus.VS 非 Off，再调用 learn_vadd。这保证初始化前缀不会先遇到编译器生成的向量指令。当前整数向量例不需要向量浮点，原 crt0 仍负责 FS 初始化。</p>
+<h3 id="loop">实际 vl 与数组分块循环</h3>
+<p>SEW 是选择的元素位宽，LMUL 表示组合的向量寄存器组大小。e32,m1 在 VLEN=2048 时最多容纳 64 个元素，称为 VLMAX。vl 是本条指令实际处理的元素数；vsetvli 根据剩余元素数和硬件能力选择 vl，并将实际值返回给标量寄存器。</p>
+<pre><code>vsetvli t0, a3, e32, m1, ta, ma
+vle32.v v0, (a0)
+vle32.v v1, (a1)
+vadd.vv v2, v0, v1
+vse32.v v2, (a2)
+sub a3, a3, t0
+slli t1, t0, 2
+# a0/a1/a2 均增加 t1，剩余 a3 非零时继续</code></pre>
+<p>a3 是剩余元素，a0/a1/a2 是数组指针，t0 接住实际 vl。地址增加 vl×4 字节，避免把元素数错当字节数。ta/ma 允许尾部和掩码非活动元素不保留，本程序只检查有效元素。137 必须多轮执行，最后有尾部；当剩余长度落在 VLMAX 与 2×VLMAX 之间时，程序也不依赖某个唯一分块序列。</p>
+<figure><img src="assets/figures-20261007/new-vector.svg" alt="CPU设置状态后调用向量函数，Ara按实际vl分块访存和运算，CPU收回缓冲校验"><figcaption>处理一个非整倍长度数组，图中给出一种分块。当前 dispatcher 按剩余数与 vlmax 取小值；箭头表达依赖，不承诺固定拍数。</figcaption></figure>
+<p>完整操作依次是：标量crt0完成C环境，main准备a/b与c守卫、发布缓冲，开启VS后调用learn_vadd，按实际vl多轮load/add/store，返回并完成排序/存储交接，逐元素核对c[i]=3*i+1及守卫，输出errors并以返回码结束。汇编、intrinsics、自动向量化只替换同一内核边界，输入、共享区与独立标量校验不变。具体构建入口是scripts/build_journey.sh的rvv、rvv-intrinsics、rvv-auto模式，命令见<a href="labs.html#lab-e">实验E</a>；这些已有源码不是本轮新执行结果。</p>
+<h3 id="programming">三种编程入口与当前工具链</h3>
+<p>手写汇编最直接表达每条指令，本例 rvv_add.S 用标量 ABI 传指针/长度，在独立函数里设置 vl。内联汇编还必须正确声明输入输出、修改的寄存器和 memory clobber；遗漏声明会导致优化器跨越真实依赖。对初学者，本书保留独立汇编函数作为可逐条对照的基线。</p>
+<p>intrinsics 是编译器提供的带类型 C 接口，例如 vuint32m1_t 对应 e32/m1 的一组值，<code>__riscv_vle32_v_u32m1</code> 显式加载，<code>__riscv_vadd_vv_u32m1</code> 运算，<code>__riscv_vse32_v_u32m1</code> 存储。<a href="examples/rvv_intrinsics.c">完整可构建内核</a>每轮接收实际 vl，再推进三个指针；归约使用 __riscv_vredsum_vs_u32m1_u32m1 和标量取出函数。深度扩充时用实际 GCC 15.2.0 编译核对名称及反汇编，不把网上其他版本 API 直接当作本地事实。</p>
+<p>API版本与工具证据集中见<a href="#toolchain-contract">编译器入口约定</a>；intrinsic版本和硬件RVV规范版本是不同维度。</p>
+<p>自动向量化从普通 C 循环推导并行性。<a href="examples/rvv_auto.c">自动向量化内核</a>用 restrict 承诺三个数组不重叠，独立编译为 -O3 -ftree-vectorize，并保留向量化诊断。restrict 需要调用者实际保证；违反时是 C 语义错误。编译器可以因为依赖、成本或目标选项保留标量代码，实际 dump 才回答它选择了什么。此前构建用 -fno-vect-cost-model 做教学探针，不作为性能最优设置。</p>
+<p>main、crt0、库和参考校验保持标量编译，只有内核对象启用 V。这样第一条向量指令位于 VS 初始化之后，参考循环也不被自动变成同一套向量路径。FP32 intrinsic 另有只编译探针 <a href="examples/rvv_fp_probe.c">rvv_fp_probe.c</a>；其成功只说明工具可产生 vfadd，硬件 FPUSupport、VS/FS、数值与异常仍需目标验证。配置组合查<a href="configuration.html#combinations">第 3 章</a>，各入口精确命令集中在<a href="labs.html#rvv-depth">实验 E 扩展</a>。</p>
+
+<p>09-29 深度扩充的三种整数入口和 FP32 编译探针均通过；完整指令清单及本地宏记录见<a href="evidence/depth-20260929-builds.txt">构建报告</a>。这些产物还需要按<a href="labs.html#rvv-depth">实验 E 的扩展步骤</a>完成真实目标执行、数值与性能分层验收。术语与规范版本见<a href="OFFICIAL_SOURCES.md">官方来源说明</a>。</p>
+<h3 id="toolchain-contract">编译器入口与向量对象边界</h3>
+<p>09-29 深度扩充时实测 riscv64-unknown-elf-gcc 为 15.2.0。汇编、intrinsics 和自动向量化版本均生成了 vadd.vv、连续 load/store 及 vredsum.vs；自动向量化报告标记两个循环使用 variable length vectors。编译器诊断中的 missed 行可能描述变换后语句的再次分析，应结合函数级 optimized 行和反汇编判断，不能看到一个 missed 就断言整个函数没有向量化。</p>
+<p>包含 riscv_vector.h 的本地探针给出 __riscv_v_intrinsic=12000、__riscv_v=1000000、__riscv_v_elen=64、__riscv_v_min_vlen=128。最后一个值是该编译目标的最低保证，不是本工程 RTL 的 VLEN=2048；实际 vl 在运行时选择。<a href="https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/RISC-V-Vector-Intrinsics.html">固定版本GCC 15.2手册</a>仍写intrinsic 0.11，在线主版本曾标ratified 1.0（09-29核对记录）；实际工具的宏和可编译名字必须独立记录，不能将网站版本文字替代本地探针。</p>
+<pre><code>riscv64-unknown-elf-gcc -march=rv64gcv_zifencei -mabi=lp64d   -dM -E -x c -include riscv_vector.h /dev/null
+# 具体内核按 build_journey.sh 编译；逐个对象检查能力边界。
+riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
+riscv64-unknown-elf-objdump -d "$LEARN_RVV/journey.o"</code></pre>
+<p>本例 -fno-tree-vectorize 用于 main、独立参考和支持库，含 V 的代码集中在专用内核对象，确保启用 VS 之前不会因自动优化提前执行 V。所有对象仍使用一致的 lp64d ABI 与 medany 代码模型。链接器合并出的 ISA 属性是一种静态声明，不能证明实际调用顺序、VS 状态或平台支持。</p>
+<p>当前已有静态构建证据，目标运行仍待实验E条件；故障排查见<a href="vector-debug.html">Ara/RVV诊断</a>。</p>
+
+<h2 id="advanced-state">RVV 进阶状态与运算</h2>
+<h3 id="rvv-model">RVV 掩码、访存模式与数值规则</h3>
+
+
+<p>mask 是每个元素是否参与本次操作的布尔位，通常放在 v0；带 v0.t 的指令只处理允许的活动元素。tail 是 i≥vl 的位置。ta/ma 表示允许尾部/掩码关闭位置的目的内容变成规范允许的不确定值，tu/mu 要保留对应旧目的值，可能增加读旧值和重排成本。后续要使用的元素必须有定义，不能把 agnostic 元素读回当成算法结果。本例不使用 mask，并在内存有效区之后放守卫；守卫验证越界写，不能代替 mask 语义测试。</p>
+<table><tr><th>访问方式</th><th>数组直观模型</th><th>本地实现与适用边界</th></tr><tr><td>连续 vle/vse</td><td>base+i×元素字节数</td><td>主线采用；有机会合成 INCR burst，对齐和页边界仍需检查</td></tr><tr><td>跨步 vlse/vsse</td><td>base+i×stride，stride 单位是字节</td><td>FUNCTIONALITIES 与 addrgen 有实现；小步长/负步长/非连续地址要分别验证</td></tr><tr><td>索引 vluxei/vloxei、vsuxei/vsoxei</td><td>base+索引向量中的字节偏移</td><td>索引 EEW 与数据 SEW 可不同；有序/无序语义由编码区分，本地 vstart 限制仍需核对</td></tr><tr><td>segment / fault-only-first / whole-register</td><td>结构体字段拆分、容错扫描或整寄存器搬运</td><td>本地有相关实现与条件检查；不把功能清单当成所有组合动态通过</td></tr></table>
+<p>整数运算先明确位宽和溢出规则：本例 uint32_t 加法和归约按 2³² 取模。vredsum.vs 把一组元素与种子元素归约成目的寄存器的元素 0；跨多轮时需要把每轮部分和正确累计。浮点 vfadd/vfmacc 和 vfredosum/vfredusum 使用浮点状态、舍入与异常标志；顺序变化会改变舍入误差。浮点验收应使用独立较高精度参考、明确 abs/rel 容差、NaN/Inf 策略及输入范围，不照搬整数完全相等判据。</p>
+<p>进阶宽化/索引操作引入EMUL：每个操作数的有效寄存器组倍数通常按 EMUL=LMUL×EEW/SEW 推导，并受1/8..8、基号对齐/重叠和具体指令限制。例如e32,m1的64位宽化目的需m2容量；不得仍按一个v寄存器安排目的。</p>
+<p>vstart是异常恢复起始元素索引；普通新循环使用0，不能把非零恢复支持从架构规则直接推到本地所有指令。vxrm取0..3分别为rnu/rne/rdn/rod，即最近向上、最近偶数、向下截断、舍入到奇数，服务定点舍入；vxsat记录发生过饱和，软件可清除后观察，vcsr把vxrm和vxsat合在低3位。普通vadd无符号回绕不使用饱和标志。浮点frm合法基本编码0..4依次为RNE/RTZ/RDN/RUP/RMM，分别表示最近偶数、向零、向负无穷、向正无穷和最近最大幅度；fflags累计NV/DZ/OF/UF/NX，即无效、除零、溢出、下溢和不精确；与VS/FS的上下文状态不同，写这些CSR也不会清VRF数据。</p>
+<p>架构语义依据RVV 1.0及<a href="https://docs.riscv.org/reference/isa/unpriv/v-st-ext.html">RISC-V官方V扩展规范</a>；本地功能声明见FUNCTIONALITIES，实际合法组合须看dispatcher/addrgen。规范说明可实现语义，本轮不宣称全指令覆盖运行。</p>
+<h2 id="validation">RVV 正确性与性能验证</h2>
+<h3 id="proof">构建、执行与结果的三层证据</h3>
+<p>第一层是静态证据：rvv_add.o 的属性和最终 dump 中出现 vsetvli、vle32.v、vadd.vv、vse32.v。第二层是动态执行：PC/退休记录走到 learn_vadd，Ara 指令握手和访存与之对应，没有非法指令 trap。第三层是结果：137 项与独立期望一致、守卫未变、errors=0 且返回 0；注错版本必须失败。</p>
+<p>当前已有静态构建证据，目标运行仍待实验E条件；故障排查见<a href="vector-debug.html">Ara/RVV诊断</a>。</p>
+
+<h3 id="performance">数值校验与性能测量方法</h3>
+<p>实验 E 延续 137 元素任务，新增 0、1、63、64、65、137 六种长度，交替的大整数和无符号回绕输入，以及独立公式的归约参考。零长度必须不触碰内存；64/65 暴露边界处理；最后一个有效元素与尾部守卫共同发现漏算或越界。正常与注错版本分别保留日志，check_run 的 --depth 还要求归约结果和六组检查标记。</p>
+<p>性能分两层计时：内核区间从输入可见且状态就绪开始，到结果满足消费条件结束；端到端区间包括准备/布局转换、搬运、缓存维护、任务提交、等待与校验。用 mcycle 记录时要说明时钟配置、输入规模、冷热缓存、SPM/DDR 位置、其他 master 竞争和中断开销。先减小重复测量的噪声，再对比标量、汇编、intrinsic 和自动向量化；不能把省掉同步的短计时当作加速。</p>
+<p>实验结果分别填四栏：静态指令证据、动态 PC/Ara/AXI 证据、数值及故障检测、性能条件。此前深度扩充只填第一栏与软件构建，后两类运行结论留给目标环境。<a href="models.html#model-case">模型协作案例</a>用这套测量方法评估收益，先在<a href="sharing.html#sharing">共享数据章</a>建立数据交接契约。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../sw/sw.mk">原构建规则与 flags</a>；<a href="../../sw/link/spm.ld">SPM 布局</a>；<a href="../../sw/link/dram.ld">DRAM 布局</a>；<a href="../../sw/link/rom.ld">镜像装载布局</a>；<a href="../../sw/link/common.ldh">入口、基址和链接预算</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv">CPU 队列、非推测发射、pending 与 barrier</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/cva6_accel_first_pass_decoder.sv">初译码与 VS/FS</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara/intf_typedef.svh">专用接口字段</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv">内部运行表与地址应答</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/addrgen.sv">地址/翻译/对齐限制</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vldu.sv">load 完成</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv">store 完成和 B 错误缺口</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_store_unit.sv">MMU 与保护消费者</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/FUNCTIONALITIES.md">本地支持声明与 ELEN</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/rvv_pkg.sv">RVV 类型与编码</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/docs/source/lane.rst">随附官方 VRF/重排说明</a>；<a href="../../hw/cheshire_soc.sv">Ara 实例与失效通路</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">dispatcher / sequencer / lanes / VLSU</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_dispatcher.sv">csr_vl_d 分块选择</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv">Ara 写失效</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">VS 与 acc_cons 状态</a></p></div>
+<details class="quiz"><summary>为什么循环按 vsetvli 返回值前进，而不是固定每次加 64？</summary><p>vl 才是本轮实际生效的元素数。按实际值更新指针和剩余长度，才能正确处理尾部及实现允许的分块选择。</p></details>

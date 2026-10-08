@@ -1,5 +1,7 @@
 # Cheshire-Ara 工程学习手册
 
+> 2026-10-08 系统教材实施完成：[当前九篇42章](learning/index.html)，[软件/OS/ASIC与测量实施及验收](L01_System_Textbook_Implementation_2026-10-08.md)。全站正式标题按[既定规范专项修正](L01_Title_Style_Revision_2026-10-08.md)。原03–08主题通过教材、[IP/DDR接口契约](M01_IP_DDR_Interface_Contract.md)和[ASIC适配手册](P01_ASIC_Adaptation_and_Evidence.md)承载；生产工程和目标验证未实施。
+
 > 2026-09-29 教材扩充：新版 [HTML 教材](learning/index.html) 保持单线结构，增加 [CVA6–Ara/RVV](learning/vector.html)、[共享数据交接](learning/memory.html#sharing) 和 [ASIC/NPU 接口规划](learning/integration.html#npu-topology)。时序图统一采用 WaveDrom 源文件与离线 SVG；[本轮证据](learning/evidence.html#depth)区分软件构建、教学图与未执行的目标验证。
 
 > 2026-09-20 协作入口更新：新对话先读根 [AGENTS.md](../AGENTS.md)、[项目共享状态](PROJECT_STATE.md) 和 [任务分工](AGENT_TASKS.md)，无需默认通读全部教程。用户已确认 DDR 可采用 AXI4；当前近期目标是固定配置的独立 ASIC 源码提取，而不是长期维护 Bender。下文原始调查范围和路线保留为历史参考。
@@ -133,3 +135,9 @@ ASIC 约束应提前影响设计：阶段 1 就记录工具兼容性、接口和
 - 保持原始可运行基线；兼容性改写与功能开发分别提交。涉及依赖内部修改时，也必须纳入版本管理和回归。
 
 当前官方网页会继续变化。例如[官方 Getting Started](https://pulp-platform.github.io/cheshire/gs/)的工具安装方式已与本地版本存在差异。本手册不会把网页中的新依赖管理方式直接套到当前 checkout。
+
+## 2026-10-08 教学质量与专题规划复核
+
+上方03–08文件表保留为历史主题规划；当前覆盖、实施条件和建议载体见[逐篇评估](03-08_Topic_Readiness_2026-10-08.md)，不据历史规划重复创建正文。现有03_Platform_ROM_Clock_IP_Configuration.md保持原职责和文件名，与计划中的启动调试主题不同。
+
+[全书教学审查](L01_Teaching_Quality_Review_2026-10-08.md)包括全部30章及改进路线；[外设实际重组](L01_Peripherals_Revision_2026-10-08.md)、[Ara/RVV实际重组](L01_Ara_RVV_Revision_2026-10-08.md)和[后续复制Prompt](L01_Next_Tasks_Prompts_2026-10-08.md)区分已实施文档与待授权工程。

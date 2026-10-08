@@ -27,17 +27,27 @@ try:
  assert {str(p.relative_to(b)) for p in b.rglob('*') if p.is_file()}==set(m)
  for n,item in m.items():assert sha(b/n)==item['sha256'],n
  report.append(f'PASS backup unchanged: {len(m)} files')
- assert len(PARTS)==7 and len(ENTRIES)==34
- assert [p['number'] for p in ENTRIES if p['kind']=='chapter']==list(range(1,31))
+ assert list(PARTS)==['foundations','software','fabric','devices','vector','os','integration','platform','verification']
+ chapters=[p for p in ENTRIES if p['kind']=='chapter']
+ assert [p['number'] for p in chapters]==list(range(1,43))
+ assert len({p['slug'] for p in ENTRIES})==len(ENTRIES)
+ assert {p.stem for p in (R/'content').glob('*.html')}=={p['slug'] for p in ENTRIES}
+ positions={p['slug']:i for i,p in enumerate(chapters)}
+ for chain in [('runtime','build','boot','boot-debug'),('traps','interrupts','rtos'),('memory','virtual-memory','linux','os-devices'),('ara','vector','sharing'),('asic-memory','timing-physical','silicon-bringup'),('simulation','measurement')]:
+  assert [positions[s] for s in chain]==sorted(positions[s] for s in chain),('teaching prerequisite order',chain)
  bodies={p['slug']:(R/'content'/f'{p["slug"]}.html').read_text() for p in ENTRIES}
  for old,dest in MIGRATIONS.items():
   f,_,anchor=dest.partition('#');assert f[:-5] in bodies
   if anchor:assert f'id="{anchor}"' in bodies[f[:-5]],(old,dest)
- report.append(f'PASS seven parts / 30 chapters; {len(MIGRATIONS)} canonical migrations')
- assert sha(R/'content/registers.html')==baseline['files']['content/registers.html']
+ report.append(f'PASS nine parts / 42 chapters; {len(ENTRIES)} pages; prerequisite order; {len(MIGRATIONS)} canonical migrations')
+ # Only the approved formal heading changed; preserve the original register payload byte-for-byte.
+ register_text=(R/'content/registers.html').read_text().replace(
+  '<h2 id="group-11">BusErr 读写错误记录子块</h2>',
+  '<h2 id="group-11">Bus error 单元 · 见章节内各读/写子块</h2>')
+ assert hashlib.sha256(register_text.encode()).hexdigest()==baseline['files']['content/registers.html']
  sources=json.loads((R/'evidence/refinement-20260929/sources.json').read_text())['files']
  for n,h in sources.items():assert sha(repo/n)==h,n
- report.append(f'PASS register index unchanged and {len(sources)} targeted source hashes')
+ report.append(f'PASS register data unchanged (approved title normalization only) and {len(sources)} targeted source hashes')
  nums={p['slug']:p['number'] for p in ENTRIES if p['kind']=='chapter'}
  for slug,body in bodies.items():
   for target,number in re.findall(r'<a href="([a-z-]+)\.html[^\"]*">第\s*(\d+)\s*章</a>',body):assert nums[target]==int(number),(slug,target,number)

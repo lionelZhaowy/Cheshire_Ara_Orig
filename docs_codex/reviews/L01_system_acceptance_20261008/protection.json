@@ -1,0 +1,496 @@
+{
+  "head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "branch": "mp/ara-pulp-v2",
+  "input_files": 2824,
+  "preserved_files": 2744,
+  "changed_input_files": [
+    {
+      "path": "docs_codex/03-08_Topic_Readiness_2026-10-08.md",
+      "before": "2b68b5a5020e5642af500aee5414f43680083d2e79ac5e82a00fd5bc8f1e5da3",
+      "after": "7b953a078d940676b1d2d8afcd5a48eeb3eeda84fbf60b85d28441c917b7d4a0"
+    },
+    {
+      "path": "docs_codex/AGENT_TASKS.md",
+      "before": "fb754cc137943deac1a30ae2f848a030057ca5c201f0604c3b9b2a95448a9a23",
+      "after": "de6ccb7255bb4ddbe9dfbbd5eae545d6478bd5e1d28ffb451c4402274625f0f6"
+    },
+    {
+      "path": "docs_codex/PROJECT_STATE.md",
+      "before": "4f7ef22cab9bb6452aaad4731153f65c9c06692e7b0ce8d11b0649b3b58f77dd",
+      "after": "0071b3d32de922bc2a62cf7d1f9c76dfc516e78a08650865ae3de13007645591"
+    },
+    {
+      "path": "docs_codex/00_README.md",
+      "before": "160e927f0c5def85da85bbf80c2e3022812bdbbd1d1c4bf550fc3f64a7c0f261",
+      "after": "7d6f40d18a53b57ee1353b0042f66b9294b212b5f411530b7b19d203381bdec4"
+    },
+    {
+      "path": "docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md",
+      "before": "1a0fabb51cdb4ed0a3df9a5661dbea15b5fef62c7d3789ae9a02751fb43fa5ea",
+      "after": "559e4c5c87ada693700ea183b816ebb9f6fc856044f3903bcfc5f2746e0eac39"
+    },
+    {
+      "path": "docs_codex/L01_System_Textbook_Revision_Plan_2026-10-08.md",
+      "before": "2e320da23449ec2e6aaa7ed37925582c0723e868c99a0ce119dd66451325bfd2",
+      "after": "e1e6bbb4c8987eb2548654b5bd69b1d5868933affcf386e1024a8676db768c91"
+    },
+    {
+      "path": "docs_codex/learning/vector-debug.html",
+      "before": "ba01a4103093ebba52a5b5e65e5f7c45c728e106e46d1b4925cc4b4b6ca483a4",
+      "after": "cb98775e2f14fbe28139bf595474255d77bbb4a435f38207722ac84c138c2e27"
+    },
+    {
+      "path": "docs_codex/learning/simulation.html",
+      "before": "f064e22e18b15f52e07b71fd4aeccbded704af872a09a2d0e7ccbd152fb67cd4",
+      "after": "4352e3f4ddd15e0e90e7e5c955f1d2ac533b2845953644d7e8b2606ffc91e52f"
+    },
+    {
+      "path": "docs_codex/learning/interrupts.html",
+      "before": "2b27e7668040ee54b99237179654eb1ccbeba6b0504859ac188cc17f34bdbdeb",
+      "after": "37fb1ec7ae0306966b09f8b1109ebba5338e6d90074bc9a4daff5cc8556ace49"
+    },
+    {
+      "path": "docs_codex/learning/vector.html",
+      "before": "3cd4fb6ddb313612f97493af0c746c8122e74679ade3459c764d69688a9d107c",
+      "after": "2ad46dd8d0b84741d225dacac2110b61d9c120d909ad731a3ad6c334103a1e5f"
+    },
+    {
+      "path": "docs_codex/learning/memory.html",
+      "before": "d08dd988fda9eff12efe5fd8ff738d77b270fc1d0d1105716f11af1710fbe7fa",
+      "after": "61c294ec269cff68ff97a82504dbcfb82c84cf9e4c0ddfdb499c6229870f2042"
+    },
+    {
+      "path": "docs_codex/learning/uart-gpio.html",
+      "before": "ffb6fa96c59e99a033d73b6264e3b08b5ad795a39878e9477a695216f57d5787",
+      "after": "03640f26601b016f5c9fe5d3bb19b3a7ff3aa453e3fbd1d197b1cdd836d5fa17"
+    },
+    {
+      "path": "docs_codex/learning/boot-debug.html",
+      "before": "74e29241ab1aadb7a3d90d7b914846d9d0002132b99155870a081fb53ddca3a9",
+      "after": "c1334fbafbf611f5dd80ef51a7a7ab19364b6219de8eebb785bad402709357ac"
+    },
+    {
+      "path": "docs_codex/learning/address-map.html",
+      "before": "29e892faa3efcde21fa60ca5452ea1f17266c0980823d8ca66ce65848b4a8be6",
+      "after": "6734298ebbd7aac6f82588ba1f2252e2401180081a916bab278bb15063de6eaf"
+    },
+    {
+      "path": "docs_codex/learning/architecture.html",
+      "before": "b3afd12a91d5ee7ab04c4d4c2e8e37a8a200a1fc2b75a37ab2488afa2649d59d",
+      "after": "ac42f5482b8510fcf7e807d5d08ef9eeb0aa05e0b20b3116d1c8758f2d476375"
+    },
+    {
+      "path": "docs_codex/learning/ara.html",
+      "before": "4f286d458f1858035fbca8115a591a385ea264c4ffa48fd86820e8686ffaec6d",
+      "after": "ba4d7e354ae4c501a0cc4cfce5a4b227f5315c61a18597d7a1671b8abdf82cd2"
+    },
+    {
+      "path": "docs_codex/learning/adapters.html",
+      "before": "aad253dc55b53d65c18dd4f568d01a048641e495c7f2d9268fe204da7828b3e9",
+      "after": "ba3c55d665f8b85c454ef60d3a650be9f66457c39c212ca3ec90103cc917e3da"
+    },
+    {
+      "path": "docs_codex/learning/labs.html",
+      "before": "bf0d5b16b064c4bf61733aa656302ff6501b1c667d8727cd6d5502dc4fb63570",
+      "after": "eb6996dedc6f0e6a9402ce39595bdb602c32a6ddfea000141c7599fba5f7bdf5"
+    },
+    {
+      "path": "docs_codex/learning/future.html",
+      "before": "31eb88cc83d74ca31bbd21858b09c034903a786ec87877f15551b5b84b63396f",
+      "after": "d09045127508bfef3d1b0dd8cbc718672dd908c25b296185f4c6000a559b8872"
+    },
+    {
+      "path": "docs_codex/learning/integration.html",
+      "before": "ae85f9490dc9255cd46734bf46f6dae8ea60ca6212e24922bc5df526e0050ab9",
+      "after": "971fa627c84e97d7822c570fda05af6c44589d9b9191333be31c67a6761f12cf"
+    },
+    {
+      "path": "docs_codex/learning/boot.html",
+      "before": "a4427887c0686edc32af3788910852803b1a3b9ec7b559cd7acb599345fdb4c4",
+      "after": "7675847170b919dc1abe84b7f2c0f9a86c71501eee5530f444638779920d59c9"
+    },
+    {
+      "path": "docs_codex/learning/i2c.html",
+      "before": "3f0ffc126337763c09ba6a52529c91f222006013da89a89a94ede8ca749231b5",
+      "after": "d21642e96c9f6b083cb98c4aec2314e83d8d7f9aa879ddf8555dd15260cadf66"
+    },
+    {
+      "path": "docs_codex/learning/dma.html",
+      "before": "bbeac9cf2c41cf8c4ed392ee65f314dc6e12ac36db3b88ae45216a2b96638d3c",
+      "after": "875ff4468f4cec866afca7982b8dd5506156d28838b74aeeb4805e94b3d84284"
+    },
+    {
+      "path": "docs_codex/learning/configuration.html",
+      "before": "51c785d16f3bfdafdd8640c94ffe4a3f60be259810d0a175efd593903c769dc6",
+      "after": "9d3ed19e0e3eb2986a3557af1bb6e551760d53e2f650fbecb1ca72643320d2d9"
+    },
+    {
+      "path": "docs_codex/learning/cva6.html",
+      "before": "1e13f8347008de81e5655728d34292500f303dcf72448c132023b97fb29e0f6b",
+      "after": "ea4c9c4909c46d2ba883d530bbfa6f55feb7f68650971b6dcf9af800599aad63"
+    },
+    {
+      "path": "docs_codex/learning/sharing.html",
+      "before": "12eb70339161c41f88e9f4707bb96d5ddf5621bcea592efc4f509dceaf5b978a",
+      "after": "92b419cc9f56836e15620090b1d43f02dd7618f75278f6b4a3d45d165a473692"
+    },
+    {
+      "path": "docs_codex/learning/axi.html",
+      "before": "e0666aeb86444f6a873988dde33cf7e965f28472e4a4a81d83703065b0f6d4de",
+      "after": "0016c36abfbd4da9fce558b74ea6a01a430d5b6d830e24c33e27f24138ce4ca6"
+    },
+    {
+      "path": "docs_codex/learning/runtime.html",
+      "before": "dded15750184c31e487619d7c19c4a904e6f25423c85dc1d266acdef66daa2bf",
+      "after": "8b0721f64731ace8f26bbe8d47bfd7d7c3251764fa7f235fdb04f51ece00c5c9"
+    },
+    {
+      "path": "docs_codex/learning/power.html",
+      "before": "6e76009a30698dd6a1a734780f9c172730116a50f51d84e83f520a49657d9447",
+      "after": "e8ec19467d679c11f42be7d5ee761b2b56800dbc7da2fc88f3f58c92896052f8"
+    },
+    {
+      "path": "docs_codex/learning/index.html",
+      "before": "7964c0fd0c0f40491a3bae1fade248324299238f6bce8e0aa2496c8ba10810ee",
+      "after": "472fb9936348839be39ebbf8fa3821d7f39d58e1678135c2e5195b734ab1e849"
+    },
+    {
+      "path": "docs_codex/learning/spi.html",
+      "before": "b22fa267c6660387b25a6975475ee6f765f0fd135dd0508506699d76b3edbdfd",
+      "after": "80de450bd4c018a068a4001c5b598c019e934913719b35d712941cd96b461e09"
+    },
+    {
+      "path": "docs_codex/learning/OFFICIAL_SOURCES.md",
+      "before": "f8918bcaa3f991db5afb96d0b3fc212a63393c4bf38a91cd3e8c4679f8d95986",
+      "after": "3da220630993a833b2529d2de4c55218cf5ba9458fcf9790df00368ebbd700f1"
+    },
+    {
+      "path": "docs_codex/learning/reset.html",
+      "before": "a3885c0aee40406530d997a4c9af98b541d9ffca8b4a80c8cbf1c162c82bf49a",
+      "after": "404400366d2a48aa01cda58cf013f34859cfeefe802c567d03ec7eb2c64ea139"
+    },
+    {
+      "path": "docs_codex/learning/interconnect.html",
+      "before": "4c66e66ba56feb03aeb3243e636f6239e968655d698d5abb6a9ee910357e72ca",
+      "after": "2a0ea2ebafdea6b7fb27d8a73e24440ac80689fedd68b9979e41d3eb3bf989e8"
+    },
+    {
+      "path": "docs_codex/learning/build.html",
+      "before": "8cda6aaeb872e27e927933779dfd6403b1568c43796495433d8bb921afd33617",
+      "after": "4d3fb5f37ca061d4f8227e6b561e8e22ad62a8f2d0f68bc5de6b71f3a27aa5e5"
+    },
+    {
+      "path": "docs_codex/learning/clocks.html",
+      "before": "eaa050ad00f10d8283f0191a6d3d1dbdaa135003e13ce16e050aa6a6880b25e4",
+      "after": "43f4b40a55a0c4a0ff4568b706825814170d5f841ef9e003df9970c1bc151db2"
+    },
+    {
+      "path": "docs_codex/learning/ddr.html",
+      "before": "3c41eb4d2e3e509efc8371240ff6f96bcc14cdc64ac8c5f0e9a311d1f426ee60",
+      "after": "8d4cce4bea92f16f3aad694301bd643a10c2728441de458cc7dd66652ea76069"
+    },
+    {
+      "path": "docs_codex/learning/models.html",
+      "before": "5bdd340a8297fefa5c7a7254432b355341ea0a03fc894ff434255d44b6fabaa1",
+      "after": "2c293e1d783eccfa33287e43b3b9f1deccec0359422c20f92c7879d6f75e6614"
+    },
+    {
+      "path": "docs_codex/learning/stream-io.html",
+      "before": "f2724654e12ebf14d8aa2c3af176155cd3021341ec0981160be595d2a58ffac7",
+      "after": "7b0dfd87d334d041b84a1795ae4a825cecf03b90328c5a17997f3dcae3811c3f"
+    },
+    {
+      "path": "docs_codex/learning/README.md",
+      "before": "10368cf89dfd05653b2830c334e94dc8a1f336caac3ee376faa52e98f7320658",
+      "after": "8248404c372d1bed2470af35bc97319b60c5b0a85a9a16a65246330e33c1357f"
+    },
+    {
+      "path": "docs_codex/learning/evidence.html",
+      "before": "1ba8618a8b47b9aa6cd659b412bc519da0c13e23055834ab3f282a15a336d9f4",
+      "after": "c590c4738c8aff6bfbeb8dc6fa678d01dd107bdbd17d0155d261e5e052a797ff"
+    },
+    {
+      "path": "docs_codex/learning/accelerators.html",
+      "before": "014ef50a79b0ae7d5d09912acec7bd2502e27c876637b5e7eed4ec7f4bb3b1cb",
+      "after": "e4c290cf87595a46b505e1219118fad2bebe9592cc268e3050678da9e48ad24a"
+    },
+    {
+      "path": "docs_codex/learning/peripheral-debug.html",
+      "before": "5b9a3b7b9b4b13cf40235662eecec3ce2b7b191a4fcd8ba3ee5abe81ea82e050",
+      "after": "7671641886268869e6c70d0c02005b994443e2748e1d91f9c86740c6f711608a"
+    },
+    {
+      "path": "docs_codex/learning/registers.html",
+      "before": "cdb66464981542f6e11cc932d4a7df12b1fbe791872980f6af5fceb25cf62dfb",
+      "after": "dc72e0f32b4297cdd585bb1ba023154f7b2371b3030127b589c5b5253fa59d29"
+    },
+    {
+      "path": "docs_codex/software/README.md",
+      "before": "b28ee3aec1e09c8f6b6a21b690ecd540d34ad8a0a67cb1a0b93900c8e46cb626",
+      "after": "f698abff1892d41e1a56a5767de87693bfc3b10558e336b3806740a23eba2d15"
+    },
+    {
+      "path": "docs_codex/learning/scripts/pages.json",
+      "before": "79caaf2573fa1e48b199e9ef412b1841ec0e51173412fe4d07b76acb95aed686",
+      "after": "1d304f05cab5cfdacb432445311709c75590e56e90daf187a0d56bf363056e5a"
+    },
+    {
+      "path": "docs_codex/learning/scripts/build_research_figures.py",
+      "before": "1d208248b3ba0997aa70f1b6707632c4a1ad5cc28078a3032f10a31bcc809459",
+      "after": "8a4d6bf465877f622501a33d74e87fe6a1cca74a89e09aa0123b228bb9ff1395"
+    },
+    {
+      "path": "docs_codex/learning/scripts/preview_structure_site.py",
+      "before": "84e23e3a0e94bef638f75d051bc7b50116a22c0b13a2f7d34a2676c9dfa69288",
+      "after": "70155706537cf72add6b3b58bbb0499bec79597bb2f734353f182a4741e1ca77"
+    },
+    {
+      "path": "docs_codex/learning/scripts/build_site.py",
+      "before": "6dd903a4044eb48773e080cdd08cbc772aa5f719defb84de9b7728b62d64f82d",
+      "after": "2120f60f9a4adfc8f72203478d6140d9774a4966267036af08c9f01cfda1aac1"
+    },
+    {
+      "path": "docs_codex/learning/scripts/check_structure.py",
+      "before": "facdba16930c81d39b0c303b4d04c0ac7c7f3acd9fc159ad9f34759560947cfa",
+      "after": "c1765d021364952515a20155ce171d8f67d54c99e24ffbd77590569cd32afc70"
+    },
+    {
+      "path": "docs_codex/learning/content/simulation.html",
+      "before": "049e0084ddd374f78f91bbe3457e62ec9a1f7dbb6b924522cc25547dbfa3720c",
+      "after": "c096af4b94611e76727e56ff333e42fe73de5ac6c8c97229a659bde7c5be8584"
+    },
+    {
+      "path": "docs_codex/learning/content/interrupts.html",
+      "before": "086aed1abf5f7ce5b507a644637414422e6974048318dd1e2f9c7fe1d540045c",
+      "after": "d979bade5fc95b91d3e3e89de3a27e2542536b9d5e7ebe6f4e8d3784be813487"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "before": "a004fde5d3ae347a263432c8f92df14ad6f4dc07aca39f2f03e31440a9f94cd3",
+      "after": "824b774cc7e249e03c1401313bdf816457e90c8aceed24aafca81c5869a70afe"
+    },
+    {
+      "path": "docs_codex/learning/content/memory.html",
+      "before": "d0330de2525dad8709572914be9c4c03d7fcf87e19eb96692c7fa3d7bb029e70",
+      "after": "5b0ef1d4e703d5398e76c64c27d881486d41077cd2af6aa40ba3e9efaf4c534c"
+    },
+    {
+      "path": "docs_codex/learning/content/uart-gpio.html",
+      "before": "ae6d82401bd15c4d5b7efb4e9d8569550a84b33d78a1a40b8ae158f2aecbc402",
+      "after": "07c1b8b5346b01eb44489dd3e18df17de199a1048c331ea84859526a37e09565"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "before": "b5285f4eb0b1cdeed4a2fc9111d91aeca837dd7f4fde5c2769e747d5efe56a4e",
+      "after": "a79fb9b03b78bebd2c7fa2dea31560e64c35dd1e4b31d7498efa8ec124165898"
+    },
+    {
+      "path": "docs_codex/learning/content/address-map.html",
+      "before": "f21945d989b40208f0113761327b0630fe2ef05a3241b45feddc64561c549ff6",
+      "after": "a6943ef9941e4fcf27bb522e4e1c0a9c4195746795830dcaf0b25909292c3235"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "before": "cf48a695b73b2d5b28aeebb3eed0f6c9d3540a0cd61007469f5e747b19a935ac",
+      "after": "9bb7863e26a43511fecaf1b0a921418c0376471af91fe1bc9001c16a4b6350d7"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "before": "41922602362af81ce7c1e202d869b053972be53dcb8ec258659af9d0874438a8",
+      "after": "54dac36d19139d49169ffd60b5e5abb25588a9751ff578c8e245c8b330a27cfa"
+    },
+    {
+      "path": "docs_codex/learning/content/adapters.html",
+      "before": "f80e912cd0d186a8fc240d66854c958257ff21991b33f217998cc54da157b731",
+      "after": "077238b50051dec84ce6cc68a449c1fe761fb5dd1af3ba5735c551ba9adc028b"
+    },
+    {
+      "path": "docs_codex/learning/content/labs.html",
+      "before": "d7b7357cebf8de4de8c6f1888f2b9a75d3efbf2ee2e27672619e95dcc17eeef0",
+      "after": "64d03e136df2bff679e2b126937507a0983bc54555f642cfa475adb2afa3452f"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "before": "3bf895d0938ec97bce59c64580fd98794cc68190fa4fb825ba285aef3ea35b5d",
+      "after": "433c7c090da95a205a68bc02cfaad3b88d022c7586319f2874f981cc567a9c2f"
+    },
+    {
+      "path": "docs_codex/learning/content/integration.html",
+      "before": "f047feb80c1510691858d9d758c9aacc06b0417bc3cad8ff37ab72304471c606",
+      "after": "0a2f4787e107d5d5f3c66c357c36b66d18542758fa754fff7f3388765ee51c87"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "before": "c0b5f83979c439f2b8568d9942a72cb99aefe5a67e3ef3187e03a4aed7b96165",
+      "after": "74cd027d63f61feb8b173c4c6ec383f77b39baf1d6c6cff97111016cda726503"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "before": "b693c55a1033dc5164ad402340d63422f2e537159d82ed0d90e32ff9dc77c860",
+      "after": "87812b0b975ccdfcf143ed173505cc3458fa7c43e78fe3e70f4297c8f0d188c6"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "before": "60e3955af4a7111842ed2ded255c9fe5de113b409e5d1ea2f5b56c07cd56c861",
+      "after": "e8598b253923decaa95db4abe073287ce85dc77a483489f54250c57606c4a55b"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "before": "4ffe38ecad5d944b573fad34aec6504bc46016f69ad685705df652362ea5d918",
+      "after": "be6bd28a2fe60c842a66beb0b511928953f821a2711644180bc96e2067870c38"
+    },
+    {
+      "path": "docs_codex/learning/content/axi.html",
+      "before": "fa409a66306d027db74942a9062f4453a2bde3eaf56fa23b7e6fadc64ff37d3b",
+      "after": "fb7d9afb122d19ef24495c7554b37fc5eedff97baeb3be96e7c8b99129db01c2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "before": "aec1997966dcaa827e96d3ce2b485c771d8872999e870cb97ebba26149fdfef3",
+      "after": "f1e4f959d7ceb637099f65649bbe2b6d93a396c1972973707f0312a140adffba"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "before": "04f442af897576303ac7876af8f1e9121678e5bfb4290680c294e7a2788d0676",
+      "after": "6042daa08fba34dd7514ad42d5fee32530c179ecbd0b87f3c52a7bbc419897a0"
+    },
+    {
+      "path": "docs_codex/learning/content/index.html",
+      "before": "d1a986b86e05a9422544854be80f6451b2109f8b99587b5a3fc15ed1a471a7ff",
+      "after": "e260e56d12b48eb1db4f60a1adf04ccab75c14609a83d663f85345b695f06b5d"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "before": "cc76836539bb4ed6b69eb8361d27fd6c484c38a8cd281691d1e944885c73ad5f",
+      "after": "e7c0ccb079486e2a322a87baf5531ce156173cadafa37c4f1f5b1fd8e6a50b5e"
+    },
+    {
+      "path": "docs_codex/learning/content/interconnect.html",
+      "before": "b5cdddc3cff8a42abe9d277310451ff7c6fbeb2b45ac47e7dd67625586b0d5c0",
+      "after": "01e73c7b89d16230b6d978a564f41d7f7075f22f0c9d08e96073fa77ca306427"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "before": "bc796ff4579d424cfc42bd230ca36b37d82365e7c4eb3cf4b3c17a2ddc92e726",
+      "after": "2b46199f4018c66cb629ec951aa5730faabee62a1e6032a9f092b6bbbc019778"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "before": "2068dd13d9ef983b6f104547c982af2019bdb2eff6776e7239358b6e0db9e23a",
+      "after": "e4e9b58e2303a4259c848ae5d35a1318db2362f94dfc98415a9d3ce9daec1589"
+    },
+    {
+      "path": "docs_codex/learning/content/ddr.html",
+      "before": "6b775c603d9eb3874b55c9601fc57a59fe60237a960cb9c9c22763d7fdc55971",
+      "after": "dfe9f1a121c2611604556aea69c917f47b1defd3e92ad67a161e72e7ad9e2213"
+    },
+    {
+      "path": "docs_codex/learning/content/models.html",
+      "before": "5eb4a32af7b1c91210b5e059f24ea175b18dc230ac5298688dfa9c6340f1c848",
+      "after": "de6aff896380375301d727c10acfb745b2739ec925a3c80a55b1d424e483685c"
+    },
+    {
+      "path": "docs_codex/learning/content/evidence.html",
+      "before": "5e09a80953bc76d736f4792ec5758bfa5ad7f5c822e653343ca5000dd484938f",
+      "after": "9cd80502f789a190ba2b30d7733f22af2ff45df664f2eaa8034d17b2b8452bd8"
+    },
+    {
+      "path": "docs_codex/learning/content/accelerators.html",
+      "before": "a4e1f884cbe9c36f0d78bca2163fe8079a52cb52c09f5728a3cca019168ecb75",
+      "after": "32c37988fa299d0a626a4392970be483c53030e15777877d0472e3324a3bc551"
+    },
+    {
+      "path": "docs_codex/learning/content/peripheral-debug.html",
+      "before": "978ea8b92a9b788aac2771dc40e36e4eb983a3baecd4a50405fed974a6020872",
+      "after": "4e9de934c80f70015115413846c84ca3ede6444cee15478fd17ffaca8347ef20"
+    }
+  ],
+  "old_content_ids_preserved": 383,
+  "unchanged_targeted_sources": {
+    "AGENTS.md": "87b2185e99927c51202035af31d7b987abcb678867c370063d3d9aa36d817ef7",
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    "target/xilinx/src/cheshire_top_xilinx.sv": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2",
+    "target/xilinx/src/dram_wrapper_xilinx.sv": "fa8a22e9a7e30885605cecacbc41459cf060828ffbc7995189ff80ba1c9adf6e",
+    "sw/include/util.h": "2f534f4f2ca6b4ca6990f7d03e477d2868576028d9fc292ac8332a9a80ed009e",
+    "sw/include/dif/clint.h": "81067da5fc8b4bdcf4862b1fea528b7c22f3ae5ba9c1d951775a1df8348ab344",
+    "sw/lib/dif/clint.c": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+    "docs/um/sw.md": "3c42fb12a6b1b4de24098d838daa468ed53269469ef913d64509e301fd4d33a0",
+    "docs/um/arch.md": "736b2b0445c41d19d88725ff86888be83344650c270f31a320088d6536924cb6",
+    "docs/tg/integr.md": "9a705e7449fa6922917a0f9cf1cec8f7a6fb0dd91e99d36551ce888fc570e853",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/01_cva6_user/Traps_Interrupts_Exceptions.rst": "dbddac13177fdc017496980837f29bb105201439783b7f715c3598067f0726cf",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/01_cva6_user/Programmer_View.rst": "ac66207a903e24ab09329433d14e50a90c98c1322b7f55388f2be3ab81b39c9c",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdchsclic_sv39_wb_config_pkg.sv": "0132bb452aefcd9492cd80e40692138c34709d8518c0a68e54db1f972d59f994",
+    ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/README.md": "37b1643923fff605fe474c60aae52d9956ff100333541e016d3a39d55c9a9101",
+    "hw/bootrom/cheshire_bootrom.S": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+    "hw/bootrom/cheshire_bootrom.c": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae",
+    "sw/lib/crt0.S": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+    "sw/lib/dif/uart.c": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2",
+    "sw/include/dif/uart.h": "37afa3b555582e5b404044660cdae43d44d08a49586eac507646e23122a974f1",
+    "sw/deps/printf/printf.h": "d5e13c54dc707089a1fbeecc28c3f942e958e7f68f16493d11a3189ebbdd3c04",
+    "sw/deps/printf/printf.c": "d724a61385687a383c3d8b9cc56f314aa31a065375ad53242bfe398edbfeb1f5",
+    "sw/sw.mk": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7",
+    "sw/link/spm.ld": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106",
+    "sw/link/common.ldh": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620",
+    "sw/link/dram.ld": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2",
+    "sw/link/rom.ld": "b03af6a441bf8104a936490bfb5b9e95fada51f5aa629e13fcf2a144c585331a",
+    "sw/lib/gpt.c": "bf0e29f209c04ad6c55215c149dc3752b5699feb9bbf38c9c25acc077352713c",
+    "sw/lib/hal/uart_debug.c": "738b72a13f5497832258830b6da089a1137a5e572a8acfa265f1688533208696",
+    "sw/boot/zsl.c": "cf28b41042d30b64c7f749c01ca598ce4f3e77aa1c097ede4d2868da61812e48",
+    "sw/include/params.h": "1fda153d779c2b0cdf59369ffb82a08e2e662bea44e250b2d652c5507eda01ef",
+    "cheshire.mk": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063",
+    "target/sim/src/tb_cheshire_pkg.sv": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab",
+    "target/sim/src/elfloader.cpp": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6",
+    "target/sim/src/vip_cheshire_soc.sv": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+    "util/openocd.common.tcl": "5549afb4c7a8bf2769c62d99eb1df3b68e6c68b267b093fa26d2d51ab71e83d6",
+    "util/openocd.hs2.tcl": "83f344a2815877c8c5fed4a3eefcbc544c978695b6599deeb879a72c65d0ffbc",
+    "util/openocd.genesys2.tcl": "974b20f59ea2f813cb55487096c258260db28f30b95d1b265b5f39cc9f423ae4",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile": "9243115952194f8bba8eeeb747339c34020883ed93e8fe4dbf601cd1fa975569",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/.config": "c3c34377219da55342b428daf5715a6525dc6d5b55a6355cfd445cef13299587",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/Documentation/core-api/dma-api-howto.rst": "d2655c797b797a8b563b9877331e00076573428086844a4c54d765793de62e92",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/Documentation/devicetree/bindings/serial/8250.yaml": "40817708b6a297d761984ba4d21c53e4577444d49e561bfbf5ec428b410d0ec1",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/Documentation/filesystems/ramfs-rootfs-initramfs.rst": "6ed1c6762ad644aa5ecaf06376c2cee143308a68ded7265e3ec35e133f5a3525",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/Makefile": "48423aa9d0109ce36b2e58fe466a81737e83cfe1c2ee251c38d9ad911ec476ea",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/arch/riscv/include/asm/switch_to.h": "0edeea3c79de4be9f7372a55660b3323d84ad14b7fdc67c2b38ac0aa7c2bca1b",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/arch/riscv/include/asm/vector.h": "90c95e49c560872f88c0f4b99aa904ebc33918fd85dd8c4c580eb4f175057a3e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/arch/riscv/kernel/head.S": "7bc8b98b4b9f32c8255f32994033e6315d43ae9601bbf92c59ebb4b2432e409b",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/arch/riscv/kernel/vector.c": "b13b31364175c2f125db3880c6192af0765e0666fbb0966b6b39b631dd3e2eba",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/drivers/tty/n_tty.c": "cbc7b593693b589df07e4d3228c7e6ec29230ca34e79898fbc963763b209fbd8",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/drivers/tty/serial/8250/8250_port.c": "786c0c932f63a3c1e7d9973e0652d8063a7646f526f344af5163f70aa85c1c44",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/drivers/tty/serial/serial_core.c": "cd0eebd8cf70ccce9f11cc055cc9853bf4abff65e3b3ac7196e66514049cbda4",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/init/main.c": "db788458d0776ca0afe033d13f49e7c7740371320fb775dbfac69968962730c2",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/buildroot64_V_defconfig": "e57ee2ceb4ba22a9525ed2746dad6bee7d298c231cf5029aa3179827c3746678",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/buildroot64_defconfig": "d711006bf6ec9a13c4c3df5fbd9ae207173a013d1624f8119ec3a8dd9fb6838e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/linux64_V_defconfig": "691ce097a11ee0fa4f04bcd4e4363fdca2652de87b10f44b664c1cbe37e2b2b5",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/opensbi/include/sbi/sbi_version.h": "9495f764c848d84f234de56f805af6cb9913fe6d6a5bb724317aa2db2b2f58fa",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/riscv-isa/riscv-isa-manual/src/supervisor.adoc": "836c128c612a29e482601b0022ecad61cb4c2fe0c0ed6f9b6e5d277d8a655a2d",
+    "sw/boot/cheshire.dtsi": "1eb693216234d412109fc0c4eb1c8fe11c5902d29a0da2ccd6a29e5f634c9858",
+    "sw/tests/helloworld.c": "c3d20c9c06bf2259a898e53fb66fa6469d9b73d01388dbc99a6780b8daf6dd83",
+    "Bender.lock": "ecadfdff8d237a1abdbe75153ab77b17f874191bbfd5703f4fcc00c46105776c",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/docs/source/lane.rst": "38c87480ba8212e2b26508956a37f6ba26efa8e44b1255996bbc8b7dce1c9b08",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vector_regfile.sv": "8fdd2f54bb3675e90816b25931944bf45b13ca58e1efa44fd958b9b872433f9d",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane.sv": "cb0925360bae95db890e373e91c15aa46a11608194c90a35dc983cfc29375ffd",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/operand_requester.sv": "60ce9fbfa55069aa4f80d157599b6db37d2965f979bd469eb394c27d25152d95",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara_pkg.sv": "1db38551089ae654f7c0e20410ad05fc39a73a135d7d6d4344d7581ef14cff3d",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv": "5e35d557f5b213242cc2508cb70f50b1b88200c90762d9f63248cb6814a1643e",
+    ".bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/README.md": "e842e009547c9f8d71e96d9879cfacac66705c2c041058cb7ffbdb784a2283ae",
+    ".bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/src/rtl/tc_sram.sv": "11aa55a127c190f05381851392f8e51189ef291fe1e107c9f0f4a0d55123c0c3",
+    ".bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/src/rtl/tc_clk.sv": "7eb340f76c76d18f4ac3b6d1d61433c7372118d24f57f83a6ceae82cdbf51c2d",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/cdc_2phase.sv": "9a394e16a8c462ed5f4f352500db677481dccdb81781c25e2e5d6f5a812f3187",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/cdc_2phase_clearable.sv": "66be3fe91be079bc25805dab5804afef8dd7ee68151c57f515eb8aa303f374e9",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/cdc_fifo_gray.sv": "7b3c199abcba65c135f81d170d3823a14f06b5a173023abe524cdc3d4452423b",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/rstgen.sv": "83d9f70bab3b514062a7a79a581919afd5de466167dfcd08733c773f36ba094a",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/rstgen_bypass.sv": "07979859589da1471289a89c5bbe9bed5c67701bc117c0bc1c9ec673c6e21484",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/doc/axi_llc.md": "bcd976e8d8956dfe946f98a26efdfb183d1b070c898d9d819bb9e69544960e80"
+  },
+  "status": " M docs_codex/00_README.md\n M docs_codex/AGENT_TASKS.md\n M docs_codex/PROJECT_STATE.md\n M docs_codex/handoffs/README.md\n M docs_codex/learning/OFFICIAL_SOURCES.md\n M docs_codex/learning/README.md\n M docs_codex/learning/accelerators.html\n M docs_codex/learning/adapters.html\n M docs_codex/learning/address-map.html\n M docs_codex/learning/ara.html\n M docs_codex/learning/architecture.html\n M docs_codex/learning/axi.html\n M docs_codex/learning/boot-debug.html\n M docs_codex/learning/boot.html\n M docs_codex/learning/build.html\n M docs_codex/learning/clocks.html\n M docs_codex/learning/configuration.html\n M docs_codex/learning/content/accelerators.html\n M docs_codex/learning/content/adapters.html\n M docs_codex/learning/content/address-map.html\n M docs_codex/learning/content/ara.html\n M docs_codex/learning/content/architecture.html\n M docs_codex/learning/content/axi.html\n M docs_codex/learning/content/boot-debug.html\n M docs_codex/learning/content/boot.html\n M docs_codex/learning/content/build.html\n M docs_codex/learning/content/clocks.html\n M docs_codex/learning/content/configuration.html\n M docs_codex/learning/content/cva6.html\n M docs_codex/learning/content/ddr.html\n M docs_codex/learning/content/dma.html\n M docs_codex/learning/content/evidence.html\n M docs_codex/learning/content/future.html\n M docs_codex/learning/content/i2c.html\n M docs_codex/learning/content/index.html\n M docs_codex/learning/content/integration.html\n M docs_codex/learning/content/interconnect.html\n M docs_codex/learning/content/interrupts.html\n M docs_codex/learning/content/labs.html\n M docs_codex/learning/content/memory.html\n M docs_codex/learning/content/models.html\n M docs_codex/learning/content/power.html\n M docs_codex/learning/content/reset.html\n M docs_codex/learning/content/runtime.html\n M docs_codex/learning/content/sharing.html\n M docs_codex/learning/content/simulation.html\n M docs_codex/learning/content/spi.html\n M docs_codex/learning/content/stream-io.html\n M docs_codex/learning/content/uart-gpio.html\n M docs_codex/learning/content/vector.html\n M docs_codex/learning/cva6.html\n M docs_codex/learning/ddr.html\n M docs_codex/learning/dma.html\n M docs_codex/learning/evidence.html\n M docs_codex/learning/figures/20261007/editable/diagrams.pptx\n M docs_codex/learning/future.html\n M docs_codex/learning/i2c.html\n M docs_codex/learning/index.html\n M docs_codex/learning/integration.html\n M docs_codex/learning/interconnect.html\n M docs_codex/learning/interrupts.html\n M docs_codex/learning/labs.html\n M docs_codex/learning/memory.html\n M docs_codex/learning/models.html\n M docs_codex/learning/power.html\n M docs_codex/learning/registers.html\n M docs_codex/learning/reset.html\n M docs_codex/learning/runtime.html\n M docs_codex/learning/scripts/build_research_figures.py\n M docs_codex/learning/scripts/build_site.py\n M docs_codex/learning/scripts/check_structure.py\n M docs_codex/learning/scripts/pages.json\n M docs_codex/learning/scripts/preview_structure_site.py\n M docs_codex/learning/sharing.html\n M docs_codex/learning/simulation.html\n M docs_codex/learning/spi.html\n M docs_codex/learning/stream-io.html\n M docs_codex/learning/uart-gpio.html\n M docs_codex/learning/vector.html\n M docs_codex/software/README.md\n?? docs_codex/03-08_Topic_Readiness_2026-10-08.md\n?? docs_codex/L01_ASIC_Implementation_2026-10-08.md\n?? docs_codex/L01_Ara_RVV_Revision_2026-10-08.md\n?? docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md\n?? docs_codex/L01_OS_Implementation_2026-10-08.md\n?? docs_codex/L01_Peripherals_Revision_2026-10-08.md\n?? docs_codex/L01_Software_Implementation_2026-10-08.md\n?? docs_codex/L01_System_Textbook_Implementation_2026-10-08.md\n?? docs_codex/L01_System_Textbook_Revision_Plan_2026-10-08.md\n?? docs_codex/L01_Teaching_Quality_Review_2026-10-08.md\n?? docs_codex/M01_IP_DDR_Interface_Contract.md\n?? docs_codex/P01_ASIC_Adaptation_and_Evidence.md\n?? docs_codex/handoffs/2026-10-08_L01_OS_implementation.md\n?? docs_codex/handoffs/2026-10-08_L01_asic_mechanisms_implementation.md\n?? docs_codex/handoffs/2026-10-08_L01_software_implementation.md\n?? docs_codex/handoffs/2026-10-08_L01_system_curriculum_plan.md\n?? docs_codex/handoffs/2026-10-08_L01_teaching_review_peripherals_ara.md\n?? docs_codex/handoffs/2026-10-08_M01_interface_contract_document.md\n?? docs_codex/learning/asic-memory.html\n?? docs_codex/learning/cdc-rdc.html\n?? docs_codex/learning/content/asic-memory.html\n?? docs_codex/learning/content/cdc-rdc.html\n?? docs_codex/learning/content/linux.html\n?? docs_codex/learning/content/manufacturing-test.html\n?? docs_codex/learning/content/measurement.html\n?? docs_codex/learning/content/os-debug.html\n?? docs_codex/learning/content/os-devices.html\n?? docs_codex/learning/content/peripheral-debug.html\n?? docs_codex/learning/content/physical-interfaces.html\n?? docs_codex/learning/content/rtos.html\n?? docs_codex/learning/content/silicon-bringup.html\n?? docs_codex/learning/content/software-debug.html\n?? docs_codex/learning/content/system-debug.html\n?? docs_codex/learning/content/timing-physical.html\n?? docs_codex/learning/content/traps.html\n?? docs_codex/learning/content/vector-debug.html\n?? docs_codex/learning/content/virtual-memory.html\n?? docs_codex/learning/evidence/peripheral-20261008/\n?? docs_codex/learning/evidence/system-implementation-20261008/\n?? docs_codex/learning/linux.html\n?? docs_codex/learning/manufacturing-test.html\n?? docs_codex/learning/measurement.html\n?? docs_codex/learning/os-debug.html\n?? docs_codex/learning/os-devices.html\n?? docs_codex/learning/peripheral-debug.html\n?? docs_codex/learning/physical-interfaces.html\n?? docs_codex/learning/rtos.html\n?? docs_codex/learning/scripts/route_pages_20261007.json\n?? docs_codex/learning/silicon-bringup.html\n?? docs_codex/learning/software-debug.html\n?? docs_codex/learning/system-debug.html\n?? docs_codex/learning/timing-physical.html\n?? docs_codex/learning/traps.html\n?? docs_codex/learning/vector-debug.html\n?? docs_codex/learning/virtual-memory.html\n?? docs_codex/reviews/\n",
+  "diff_check_exit": 0,
+  "visual_samples": [
+    "preview-mobile-linux.png",
+    "preview-asic-memory.png",
+    "preview-runtime.png"
+  ],
+  "scope": "Documentation only; no target execution or human reader test."
+}

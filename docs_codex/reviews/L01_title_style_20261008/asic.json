@@ -1,0 +1,1254 @@
+{
+  "task": "L01 ASIC formal title style correction",
+  "input_head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "rule": "正式标题使用陈述性、名词性技术主题；问题保留在正文、自测与实验。",
+  "scope": [
+    "docs_codex/learning/content/clocks.html",
+    "docs_codex/learning/content/reset.html",
+    "docs_codex/learning/content/power.html",
+    "docs_codex/learning/content/future.html",
+    "docs_codex/learning/content/asic-memory.html",
+    "docs_codex/learning/content/cdc-rdc.html",
+    "docs_codex/learning/content/physical-interfaces.html",
+    "docs_codex/learning/content/timing-physical.html",
+    "docs_codex/learning/content/manufacturing-test.html",
+    "docs_codex/learning/content/silicon-bringup.html"
+  ],
+  "counts": {
+    "pages": 10,
+    "headings_reviewed": 69,
+    "headings_changed": 62,
+    "headings_retained": 7
+  },
+  "changes": [
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clocks",
+      "old": "先让 CPU 有时钟，才有软件配置时钟",
+      "new": "安全启动时钟与软件配置前提",
+      "reason": "以安全取指和软件配置的依赖关系替代先后授课句式",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-domains",
+      "old": "把时钟域、分频和同步器区分开",
+      "new": "时钟域、分频与同步结构",
+      "reason": "以技术对象概括正文的分类说明",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-inputs",
+      "old": "输入、消费者与观察点",
+      "new": "时钟与异步输入的使用条件",
+      "reason": "明确输入类型及表格的正常使用条件",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "pll-loop",
+      "old": "锁相反馈与两域教学例",
+      "new": "PLL 锁相反馈与候选双域时钟示例",
+      "reason": "明确PLL对象并保留候选双域示例限定",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-inventory",
+      "old": "先标真实采样时钟，再标派生关系",
+      "new": "采样时钟与派生关系",
+      "reason": "以实际记录对象替代先标再标的阅读指令",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "normal-frequency-change",
+      "old": "一次受控调频怎样完成",
+      "new": "受控调频流程示例",
+      "reason": "以流程主题替代疑问并保留教学示例身份",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "sources",
+      "old": "复位先建立控制状态，再由启动流程建立可用系统",
+      "new": "复位状态与启动就绪条件",
+      "reason": "概括复位状态和后续启动条件，移除先再句式",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "system-reset",
+      "old": "当前几个复位入口分别控制什么",
+      "new": "当前复位入口及作用范围",
+      "reason": "明确现有实现对象和范围",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "release",
+      "old": "为什么释放必须等本域时钟",
+      "new": "复位同步释放与时钟有效条件",
+      "reason": "直接陈述同步释放的时钟前提",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "readiness",
+      "old": "用可观察里程碑连接硬件和软件",
+      "new": "启动阶段及软硬件就绪条件",
+      "reason": "以实际阶段和就绪条件替代连接里程碑的教学动作",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "rom-ready",
+      "old": "从第一条指令到应用 main",
+      "new": "ROM 执行、片上存储与栈初始化",
+      "reason": "明确段落覆盖的启动对象",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "external-ready",
+      "old": "外存前提放在首次访问之前",
+      "new": "首次外存访问的初始化前提",
+      "reason": "以访问条件表达前置依赖",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "bringup-milestones",
+      "old": "每一步应该交出什么",
+      "new": "启动阶段的交付条件与观察依据",
+      "reason": "为目录列明阶段表格的对象与列义",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "transaction-reset",
+      "old": "一次正常重启，怎样把接口先停下来",
+      "new": "候选设备域的受控重启流程",
+      "reason": "移除疑问并保留独立设备域重启尚属候选的边界",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "drain",
+      "old": "停止新请求，再等待已接受事务",
+      "new": "新请求停止与在途事务排空",
+      "reason": "以两个协议动作命名正文内容",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "reset-validation",
+      "old": "验证正常重启及异常边界",
+      "new": "正常重启与异常边界的验证范围",
+      "reason": "使用名词性验证范围，不表示验证已经执行",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "asic-clock-power",
+      "old": "一帧结束后，哪些东西可以暂时不工作",
+      "new": "候选计算域的帧间关断",
+      "reason": "明确未来NPU示例对象与候选关电范围",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "current-boundary",
+      "old": "现有代码能证明什么",
+      "new": "当前 RTL 的电源控制边界",
+      "reason": "直接命名当前实现边界，避免提问",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "power-table",
+      "old": "未来域表需要哪些输入",
+      "new": "候选电源域的设计输入",
+      "reason": "将未来资料问句改为带候选限定的技术主题",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "sequence",
+      "old": "关断、保持和恢复",
+      "new": "候选电源域的关断、保持与恢复",
+      "reason": "补足独立目录所需对象并明确候选实现状态",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "shutdown",
+      "old": "关断前的所有权边界",
+      "new": "关断前的事务与缓冲区所有权",
+      "reason": "明确正文排空和帧缓冲交接两个对象",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "isolation-example",
+      "old": "从设备完成信号理解隔离和恢复",
+      "new": "设备完成信号的隔离与恢复示例",
+      "reason": "保留示例性质，以技术过程替代理解指令",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "wake",
+      "old": "恢复后先建立可用状态，再发布新任务",
+      "new": "电源域恢复与任务重新开放条件",
+      "reason": "以恢复过程和任务准入条件替代先再指令",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "extract",
+      "old": "先让另一台机器得到同一个系统",
+      "new": "独立工程的固定输入与可搬迁性",
+      "reason": "明确固定配置和跨目录交付主题",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "asic",
+      "old": "从数字接口走向工艺实现",
+      "new": "数字接口与工艺资源映射",
+      "reason": "将迁移口语改为接口与资源关系",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "resource-mapping",
+      "old": "顺着一个消费者找到平台责任",
+      "new": "数字系统消费者与平台实现职责",
+      "reason": "明确消费者和平台责任，不使用阅读路径指令",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "sram-example",
+      "old": "用 k+1/k+2 检查替换是否保持行为",
+      "new": "SRAM 读延迟对消费者时序的影响",
+      "reason": "准确概括k+1/k+2消费者错配关系",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "implementation-deliverables",
+      "old": "每种接口交出可以检查的条件",
+      "new": "平台接口的交付与验收条件",
+      "reason": "概括接口表的交付和验收职责",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "verification-layers",
+      "old": "对同一笔 SRAM 读，不同检查回答什么",
+      "new": "SRAM 读接口的分层验证与证据范围",
+      "reason": "以共同接口和方法范围替代疑问",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "acceptance-gates",
+      "old": "按依赖进入下一阶段",
+      "new": "ASIC 工程阶段与准入条件",
+      "reason": "以阶段依赖的正式技术主题替代推进指令",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "consumer-first",
+      "old": "先问谁在等这笔读数据",
+      "new": "VRF 读数据的消费者与传输路径",
+      "reason": "明确请求、bank和操作数队列的实际对象",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "bank-contract",
+      "old": "把当前实例换算成一个可核对的 bank",
+      "new": "当前 VRF bank 的容量与接口契约",
+      "reason": "以尺寸与接口内容替代换算教学指令",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "read-latency",
+      "old": "连续跟读一次读、一次局部写",
+      "new": "SRAM 读取与字节掩码写入时序",
+      "reason": "直接命名连续读与局部写过程",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "k-plus-two",
+      "old": "宏多一拍时，具体哪里不再成立",
+      "new": "SRAM 读延迟变化与响应时序适配",
+      "reason": "明确宏增延迟影响，不使用口语疑问",
+      "kind": "H3"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "macro-tiling",
+      "old": "容量匹配之后，才讨论拼接",
+      "new": "SRAM 宏拼接与写掩码适配",
+      "reason": "涵盖横纵拼接与整字写约束，去掉授课顺序",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "views-and-initialization",
+      "old": "一份宏需要几种视图",
+      "new": "存储宏视图、初始化与测试接口",
+      "reason": "涵盖本节实际资料与接口范围",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "sampling",
+      "old": "从一次必须被接收的命令开始",
+      "new": "异步采样与跨域命令传递",
+      "reason": "明确亚稳采样和事件/配置传输对象",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "handshake",
+      "old": "让配置保持到对方确认",
+      "new": "多位配置的保持与两相握手",
+      "reason": "准确命名完整快照保持与确认协议",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "choose-by-signal",
+      "old": "从控制扩展到连续数据",
+      "new": "不同信号类型的跨域传递方式",
+      "reason": "以信号分类和交接方式命名对比内容",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "local-ddr",
+      "old": "沿当前 DDR wrapper 找跨域边界",
+      "new": "当前 DDR wrapper 的 AXI 跨域路径",
+      "reason": "使用已核对接口路径替代源码查找指令",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "reset-domains",
+      "old": "为什么复位也要有两端协议",
+      "new": "跨域接口的复位协调机制",
+      "reason": "直接命名两端复位状态一致性要求",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "constraints-and-review",
+      "old": "交付时怎样证明选对了",
+      "new": "CDC/RDC 约束与验收范围",
+      "reason": "具体区分约束、检查和证据边界",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "ack-path",
+      "old": "一个 ACK 为什么需要同时看输出和输入",
+      "new": "I2C ACK 的输出控制与输入反馈",
+      "reason": "明确ACK位的双向逻辑通路",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "pad-package-board",
+      "old": "沿当前 FPGA 连接理解未来边界",
+      "new": "FPGA IO 与 ASIC PAD、封装及板级边界",
+      "reason": "概括现有参考与待实现物理边界",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "open-drain",
+      "old": "释放线路如何形成高电平",
+      "new": "I2C 开漏、上拉与高电平形成",
+      "reason": "将疑问改为电气原理主题",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "pinmux",
+      "old": "复用和上电状态也是正常操作的一部分",
+      "new": "候选引脚复用与上电状态管理",
+      "reason": "保留本节pinmux为未来契约而非当前能力",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "lvds-boundary",
+      "old": "差分图像输入要先确定物理接收职责",
+      "new": "候选 LVDS 图像接口的物理接收职责",
+      "reason": "明确未来图像接口及资料未定边界",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "real-path",
+      "old": "从一个真实起点和终点读时序",
+      "new": "VRF 地址与数据返回的时序路径",
+      "reason": "明确真实时序起终点对应的路径对象",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "setup-hold",
+      "old": "先理解建立与保持，再给时钟周期",
+      "new": "建立时间、保持时间与时钟周期约束",
+      "reason": "以技术量和关系替代先理解再给的指令",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "constraints",
+      "old": "约束描述外部条件和合法捕获关系",
+      "new": "时序约束的外部条件与捕获关系",
+      "reason": "保留原技术关系并采用统一名词性表达",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "physical-feedback",
+      "old": "把十六个 bank 放到版图后会发生什么",
+      "new": "VRF 宏布局的时序影响",
+      "reason": "准确概括摆放、线长和扇出反馈",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "evidence",
+      "old": "形成一份可复查的时序结论",
+      "new": "静态时序分析的输入与证据范围",
+      "reason": "明确分析资料和结论边界，避免要求读者形成结论",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "why-test",
+      "old": "相同程序为何不能覆盖所有制造缺陷",
+      "new": "功能回归与制造缺陷检测的职责",
+      "reason": "按正文区分两类验证目标",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "scan-process",
+      "old": "逻辑扫描怎样进入和观察一个内部状态",
+      "new": "逻辑扫描的移位、捕获与响应观察",
+      "reason": "直接列明scan正常流程",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "memory-test",
+      "old": "对一个 bank 逐地址写读",
+      "new": "SRAM bank 的 MBIST 流程示例",
+      "reason": "明确存储对象并保留教学算法不等于量产方案的限定",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "local-scope",
+      "old": "当前源码实际提供了哪些入口",
+      "new": "当前扫描与存储自测接口的实现边界",
+      "reason": "明确本地scan绑值和tag BIST覆盖范围",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "test-handoff",
+      "old": "从 RTL 接口走到可交给测试机的产物",
+      "new": "制造测试的网表、图样与 ATE 交付",
+      "reason": "以实际交付物概括测试流程",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "observable-first",
+      "old": "先让最小系统可观察",
+      "new": "最小启动系统的可观察性",
+      "reason": "直接表达正常启动所需观察条件",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "staged-run",
+      "old": "从安全取指走到独立结果校验",
+      "new": "候选首硅启动与结果校验流程",
+      "reason": "保留尚无样片、未运行的方案身份",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "normal-observability",
+      "old": "记录状态，是为了连接相邻阶段",
+      "new": "启动阶段标志与状态观察",
+      "reason": "命名版本/阶段/PC等实际观察对象",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "measure-next",
+      "old": "正确性闭环之后再问性能和功耗",
+      "new": "正确性、性能与功耗的测量边界",
+      "reason": "直接表达测量前提和范围",
+      "kind": "H2"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "records",
+      "old": "把一次运行留下的证据交给下一阶段",
+      "new": "启动验证证据与后续交付条件",
+      "reason": "概括证据等级和后续负责方输入",
+      "kind": "H2"
+    }
+  ],
+  "reviewed_headings": [
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clocks",
+      "old": "先让 CPU 有时钟，才有软件配置时钟",
+      "new": "安全启动时钟与软件配置前提",
+      "reason": "以安全取指和软件配置的依赖关系替代先后授课句式",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "platform-clocks",
+      "old": "系统时钟与平台 DDR 时钟",
+      "new": "系统时钟与平台 DDR 时钟",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-domains",
+      "old": "把时钟域、分频和同步器区分开",
+      "new": "时钟域、分频与同步结构",
+      "reason": "以技术对象概括正文的分类说明",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-inputs",
+      "old": "输入、消费者与观察点",
+      "new": "时钟与异步输入的使用条件",
+      "reason": "明确输入类型及表格的正常使用条件",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "pll",
+      "old": "PLL 与 ASIC 时钟规划",
+      "new": "PLL 与 ASIC 时钟规划",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "pll-loop",
+      "old": "锁相反馈与两域教学例",
+      "new": "PLL 锁相反馈与候选双域时钟示例",
+      "reason": "明确PLL对象并保留候选双域示例限定",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-contract",
+      "old": "时钟交付表与软件频率来源",
+      "new": "时钟交付表与软件频率来源",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "clock-inventory",
+      "old": "先标真实采样时钟，再标派生关系",
+      "new": "采样时钟与派生关系",
+      "reason": "以实际记录对象替代先标再标的阅读指令",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "boot-and-runtime-frequency",
+      "old": "启动安全频率与运行时调频",
+      "new": "启动安全频率与运行时调频",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "normal-frequency-change",
+      "old": "一次受控调频怎样完成",
+      "new": "受控调频流程示例",
+      "reason": "以流程主题替代疑问并保留教学示例身份",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "anchor": "pll-handoff",
+      "old": "PLL 与约束交付",
+      "new": "PLL 与约束交付",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "sources",
+      "old": "复位先建立控制状态，再由启动流程建立可用系统",
+      "new": "复位状态与启动就绪条件",
+      "reason": "概括复位状态和后续启动条件，移除先再句式",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "system-reset",
+      "old": "当前几个复位入口分别控制什么",
+      "new": "当前复位入口及作用范围",
+      "reason": "明确现有实现对象和范围",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "release",
+      "old": "为什么释放必须等本域时钟",
+      "new": "复位同步释放与时钟有效条件",
+      "reason": "直接陈述同步释放的时钟前提",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "readiness",
+      "old": "用可观察里程碑连接硬件和软件",
+      "new": "启动阶段及软硬件就绪条件",
+      "reason": "以实际阶段和就绪条件替代连接里程碑的教学动作",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "rom-ready",
+      "old": "从第一条指令到应用 main",
+      "new": "ROM 执行、片上存储与栈初始化",
+      "reason": "明确段落覆盖的启动对象",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "external-ready",
+      "old": "外存前提放在首次访问之前",
+      "new": "首次外存访问的初始化前提",
+      "reason": "以访问条件表达前置依赖",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "bringup-milestones",
+      "old": "每一步应该交出什么",
+      "new": "启动阶段的交付条件与观察依据",
+      "reason": "为目录列明阶段表格的对象与列义",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "transaction-reset",
+      "old": "一次正常重启，怎样把接口先停下来",
+      "new": "候选设备域的受控重启流程",
+      "reason": "移除疑问并保留独立设备域重启尚属候选的边界",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "drain",
+      "old": "停止新请求，再等待已接受事务",
+      "new": "新请求停止与在途事务排空",
+      "reason": "以两个协议动作命名正文内容",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "anchor": "reset-validation",
+      "old": "验证正常重启及异常边界",
+      "new": "正常重启与异常边界的验证范围",
+      "reason": "使用名词性验证范围，不表示验证已经执行",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "asic-clock-power",
+      "old": "一帧结束后，哪些东西可以暂时不工作",
+      "new": "候选计算域的帧间关断",
+      "reason": "明确未来NPU示例对象与候选关电范围",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "domains",
+      "old": "候选电源域的责任划分",
+      "new": "候选电源域的责任划分",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "current-boundary",
+      "old": "现有代码能证明什么",
+      "new": "当前 RTL 的电源控制边界",
+      "reason": "直接命名当前实现边界，避免提问",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "power-table",
+      "old": "未来域表需要哪些输入",
+      "new": "候选电源域的设计输入",
+      "reason": "将未来资料问句改为带候选限定的技术主题",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "domain-orthogonality",
+      "old": "时钟域、复位域与电源域的组合",
+      "new": "时钟域、复位域与电源域的组合",
+      "reason": "已为准确的名词性技术主题，范围与正文相符，保留",
+      "kind": "H3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "sequence",
+      "old": "关断、保持和恢复",
+      "new": "候选电源域的关断、保持与恢复",
+      "reason": "补足独立目录所需对象并明确候选实现状态",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "shutdown",
+      "old": "关断前的所有权边界",
+      "new": "关断前的事务与缓冲区所有权",
+      "reason": "明确正文排空和帧缓冲交接两个对象",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "isolation-example",
+      "old": "从设备完成信号理解隔离和恢复",
+      "new": "设备完成信号的隔离与恢复示例",
+      "reason": "保留示例性质，以技术过程替代理解指令",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "anchor": "wake",
+      "old": "恢复后先建立可用状态，再发布新任务",
+      "new": "电源域恢复与任务重新开放条件",
+      "reason": "以恢复过程和任务准入条件替代先再指令",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "extract",
+      "old": "先让另一台机器得到同一个系统",
+      "new": "独立工程的固定输入与可搬迁性",
+      "reason": "明确固定配置和跨目录交付主题",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "asic",
+      "old": "从数字接口走向工艺实现",
+      "new": "数字接口与工艺资源映射",
+      "reason": "将迁移口语改为接口与资源关系",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "resource-mapping",
+      "old": "顺着一个消费者找到平台责任",
+      "new": "数字系统消费者与平台实现职责",
+      "reason": "明确消费者和平台责任，不使用阅读路径指令",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "sram-example",
+      "old": "用 k+1/k+2 检查替换是否保持行为",
+      "new": "SRAM 读延迟对消费者时序的影响",
+      "reason": "准确概括k+1/k+2消费者错配关系",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "implementation-deliverables",
+      "old": "每种接口交出可以检查的条件",
+      "new": "平台接口的交付与验收条件",
+      "reason": "概括接口表的交付和验收职责",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "verification-layers",
+      "old": "对同一笔 SRAM 读，不同检查回答什么",
+      "new": "SRAM 读接口的分层验证与证据范围",
+      "reason": "以共同接口和方法范围替代疑问",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "anchor": "acceptance-gates",
+      "old": "按依赖进入下一阶段",
+      "new": "ASIC 工程阶段与准入条件",
+      "reason": "以阶段依赖的正式技术主题替代推进指令",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "consumer-first",
+      "old": "先问谁在等这笔读数据",
+      "new": "VRF 读数据的消费者与传输路径",
+      "reason": "明确请求、bank和操作数队列的实际对象",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "bank-contract",
+      "old": "把当前实例换算成一个可核对的 bank",
+      "new": "当前 VRF bank 的容量与接口契约",
+      "reason": "以尺寸与接口内容替代换算教学指令",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "read-latency",
+      "old": "连续跟读一次读、一次局部写",
+      "new": "SRAM 读取与字节掩码写入时序",
+      "reason": "直接命名连续读与局部写过程",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "k-plus-two",
+      "old": "宏多一拍时，具体哪里不再成立",
+      "new": "SRAM 读延迟变化与响应时序适配",
+      "reason": "明确宏增延迟影响，不使用口语疑问",
+      "kind": "H3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "macro-tiling",
+      "old": "容量匹配之后，才讨论拼接",
+      "new": "SRAM 宏拼接与写掩码适配",
+      "reason": "涵盖横纵拼接与整字写约束，去掉授课顺序",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "anchor": "views-and-initialization",
+      "old": "一份宏需要几种视图",
+      "new": "存储宏视图、初始化与测试接口",
+      "reason": "涵盖本节实际资料与接口范围",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "sampling",
+      "old": "从一次必须被接收的命令开始",
+      "new": "异步采样与跨域命令传递",
+      "reason": "明确亚稳采样和事件/配置传输对象",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "handshake",
+      "old": "让配置保持到对方确认",
+      "new": "多位配置的保持与两相握手",
+      "reason": "准确命名完整快照保持与确认协议",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "choose-by-signal",
+      "old": "从控制扩展到连续数据",
+      "new": "不同信号类型的跨域传递方式",
+      "reason": "以信号分类和交接方式命名对比内容",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "local-ddr",
+      "old": "沿当前 DDR wrapper 找跨域边界",
+      "new": "当前 DDR wrapper 的 AXI 跨域路径",
+      "reason": "使用已核对接口路径替代源码查找指令",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "reset-domains",
+      "old": "为什么复位也要有两端协议",
+      "new": "跨域接口的复位协调机制",
+      "reason": "直接命名两端复位状态一致性要求",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "anchor": "constraints-and-review",
+      "old": "交付时怎样证明选对了",
+      "new": "CDC/RDC 约束与验收范围",
+      "reason": "具体区分约束、检查和证据边界",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "ack-path",
+      "old": "一个 ACK 为什么需要同时看输出和输入",
+      "new": "I2C ACK 的输出控制与输入反馈",
+      "reason": "明确ACK位的双向逻辑通路",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "pad-package-board",
+      "old": "沿当前 FPGA 连接理解未来边界",
+      "new": "FPGA IO 与 ASIC PAD、封装及板级边界",
+      "reason": "概括现有参考与待实现物理边界",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "open-drain",
+      "old": "释放线路如何形成高电平",
+      "new": "I2C 开漏、上拉与高电平形成",
+      "reason": "将疑问改为电气原理主题",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "pinmux",
+      "old": "复用和上电状态也是正常操作的一部分",
+      "new": "候选引脚复用与上电状态管理",
+      "reason": "保留本节pinmux为未来契约而非当前能力",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "anchor": "lvds-boundary",
+      "old": "差分图像输入要先确定物理接收职责",
+      "new": "候选 LVDS 图像接口的物理接收职责",
+      "reason": "明确未来图像接口及资料未定边界",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "real-path",
+      "old": "从一个真实起点和终点读时序",
+      "new": "VRF 地址与数据返回的时序路径",
+      "reason": "明确真实时序起终点对应的路径对象",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "setup-hold",
+      "old": "先理解建立与保持，再给时钟周期",
+      "new": "建立时间、保持时间与时钟周期约束",
+      "reason": "以技术量和关系替代先理解再给的指令",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "constraints",
+      "old": "约束描述外部条件和合法捕获关系",
+      "new": "时序约束的外部条件与捕获关系",
+      "reason": "保留原技术关系并采用统一名词性表达",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "physical-feedback",
+      "old": "把十六个 bank 放到版图后会发生什么",
+      "new": "VRF 宏布局的时序影响",
+      "reason": "准确概括摆放、线长和扇出反馈",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "anchor": "evidence",
+      "old": "形成一份可复查的时序结论",
+      "new": "静态时序分析的输入与证据范围",
+      "reason": "明确分析资料和结论边界，避免要求读者形成结论",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "why-test",
+      "old": "相同程序为何不能覆盖所有制造缺陷",
+      "new": "功能回归与制造缺陷检测的职责",
+      "reason": "按正文区分两类验证目标",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "scan-process",
+      "old": "逻辑扫描怎样进入和观察一个内部状态",
+      "new": "逻辑扫描的移位、捕获与响应观察",
+      "reason": "直接列明scan正常流程",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "memory-test",
+      "old": "对一个 bank 逐地址写读",
+      "new": "SRAM bank 的 MBIST 流程示例",
+      "reason": "明确存储对象并保留教学算法不等于量产方案的限定",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "local-scope",
+      "old": "当前源码实际提供了哪些入口",
+      "new": "当前扫描与存储自测接口的实现边界",
+      "reason": "明确本地scan绑值和tag BIST覆盖范围",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "anchor": "test-handoff",
+      "old": "从 RTL 接口走到可交给测试机的产物",
+      "new": "制造测试的网表、图样与 ATE 交付",
+      "reason": "以实际交付物概括测试流程",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "observable-first",
+      "old": "先让最小系统可观察",
+      "new": "最小启动系统的可观察性",
+      "reason": "直接表达正常启动所需观察条件",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "staged-run",
+      "old": "从安全取指走到独立结果校验",
+      "new": "候选首硅启动与结果校验流程",
+      "reason": "保留尚无样片、未运行的方案身份",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "normal-observability",
+      "old": "记录状态，是为了连接相邻阶段",
+      "new": "启动阶段标志与状态观察",
+      "reason": "命名版本/阶段/PC等实际观察对象",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "measure-next",
+      "old": "正确性闭环之后再问性能和功耗",
+      "new": "正确性、性能与功耗的测量边界",
+      "reason": "直接表达测量前提和范围",
+      "kind": "H2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "anchor": "records",
+      "old": "把一次运行留下的证据交给下一阶段",
+      "new": "启动验证证据与后续交付条件",
+      "reason": "概括证据等级和后续负责方输入",
+      "kind": "H2",
+      "action": "changed"
+    }
+  ],
+  "formal_labels_reviewed": {
+    "本章任务": "保留：目标块的正式入口标签",
+    "实现状态": "保留：状态说明标签",
+    "源码与进一步阅读": "保留：参考块正式标签",
+    "源码与官方依据": "保留：来源块正式标签"
+  },
+  "visible_reference_changes": [],
+  "protection": [
+    {
+      "path": "docs_codex/learning/content/clocks.html",
+      "before_sha256": "e4e9b58e2303a4259c848ae5d35a1318db2362f94dfc98415a9d3ce9daec1589",
+      "after_sha256": "9a2b68a97f3807c1c11ab9fa895aea5d08289ec70cacf39a50c97f35b086a3fa",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 11,
+      "headings_changed": 6
+    },
+    {
+      "path": "docs_codex/learning/content/reset.html",
+      "before_sha256": "e7c0ccb079486e2a322a87baf5531ce156173cadafa37c4f1f5b1fd8e6a50b5e",
+      "after_sha256": "4b9e7f0e13f47cf7a5ab10e8fcb3cfbd42462a77c9763cfc8d72949d8b5ab598",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 10,
+      "headings_changed": 10
+    },
+    {
+      "path": "docs_codex/learning/content/power.html",
+      "before_sha256": "6042daa08fba34dd7514ad42d5fee32530c179ecbd0b87f3c52a7bbc419897a0",
+      "after_sha256": "348d7b188babcc839cbcf9294b24a06761eea902bd6c3f6d5e94dce2db16dfd8",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 9,
+      "headings_changed": 7
+    },
+    {
+      "path": "docs_codex/learning/content/future.html",
+      "before_sha256": "433c7c090da95a205a68bc02cfaad3b88d022c7586319f2874f981cc567a9c2f",
+      "after_sha256": "ad7dc011069f790b092e3ddbe1ed66f323dd90158f64ea292faade1092778946",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 7,
+      "headings_changed": 7
+    },
+    {
+      "path": "docs_codex/learning/content/asic-memory.html",
+      "before_sha256": "94df180de52d7086cdd43445ef6059efa8e98349eb5be728cb4e2fa21e18a76d",
+      "after_sha256": "4c7597719d9bee48d08fcbf26521be355f31ca9d68a9c44ac4f568ba7feb8969",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 6,
+      "headings_changed": 6
+    },
+    {
+      "path": "docs_codex/learning/content/cdc-rdc.html",
+      "before_sha256": "bd0acc2de299e403225891328959bb7c7ecd34cd2a62e797514266f7fd66673a",
+      "after_sha256": "d34916e72284a24b5ba003d5a43ff155b735e72b88e21077ad39e37c0d2f3363",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 6,
+      "headings_changed": 6
+    },
+    {
+      "path": "docs_codex/learning/content/physical-interfaces.html",
+      "before_sha256": "d218f9f70e19cd3edfacd58f4e5f5f5f33ef18b465381678b48e4748835fd326",
+      "after_sha256": "a85e995e1c745729b5af898fc4cae1242b241004b5c24c88d77c24f61ed19db7",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 5,
+      "headings_changed": 5
+    },
+    {
+      "path": "docs_codex/learning/content/timing-physical.html",
+      "before_sha256": "4339be2d699f0c711bbc9a41e4490e9c845bc71285b3530cad504972fca75cb0",
+      "after_sha256": "921b1138a25c7d4a21e5d79ad1b9852b0486ff090fa65b0c8185781f0925482b",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 5,
+      "headings_changed": 5
+    },
+    {
+      "path": "docs_codex/learning/content/manufacturing-test.html",
+      "before_sha256": "2dd87d5c0846dd00c9a77b4ec6151100d5cf05d60b121c12379c2e83e8cfa0ab",
+      "after_sha256": "e45b324030a8a2e8680fde2573849724c07fc7e5a477fed639eed104ae705702",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 5,
+      "headings_changed": 5
+    },
+    {
+      "path": "docs_codex/learning/content/silicon-bringup.html",
+      "before_sha256": "6c86b1722aa2829c0b55b8792ea36adeaa1603b6fe5de0855caf42cd7429b8c3",
+      "after_sha256": "d61bbb9f513470d86a132f2fae93f420047d18cee4578658439d3a4c92736ed8",
+      "nonheading_bytes_equal": true,
+      "all_id_order_equal": true,
+      "headings_reviewed": 5,
+      "headings_changed": 5
+    }
+  ],
+  "checks": {
+    "nonheading_bytes_equal": true,
+    "semantic_ids_and_order_unchanged": true,
+    "quiz_summary_and_code_tables_images_unchanged": true,
+    "git_diff_check_exit_code": 0,
+    "remaining_exact_old_heading_references_in_current_content": 0,
+    "all_69_final_headings_manually_reviewed": true,
+    "site_generation_and_browser": "主管统一执行，本子任务未运行"
+  },
+  "note": "只改H2/H3可见文本；未改H1/H4（正文源中无此类标题）、goal标签、正文引用、pages.json、生成页、历史报告或图稿。全站统一引用由主管负责。",
+  "frozen_at_utc": "2026-10-08T03:30:44.855496+00:00"
+}

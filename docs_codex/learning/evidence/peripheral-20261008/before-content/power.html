@@ -1,0 +1,30 @@
+<div class="goals"><strong>本章任务</strong><p>区分现有 RTL 边界和待实现的电源契约。 前置：<a href="reset.html">05 · 复位体系与平台启动条件</a>。</p></div>
+<h2 id="asic-clock-power">当前边界与候选电源域</h2>
+<p>电源域是一组由同一供电控制条件管理的逻辑。断电后普通寄存器状态会丢失，输出也不再是接收域可依赖的逻辑值。时钟门控减少翻转功耗；电源关断还需处理供电、状态与跨域信号。</p>
+<p>隔离（isolation）单元把掉电域输出钳到指定的已知值；状态保持（retention）使用仍供电的保持资源保存选定状态；电平转换（level shifter）在不同电压域间转换信号电平。它们分别解决输出有效性、状态保存和电压兼容，不能相互替代。</p>
+<p>UPF（统一功耗格式）描述供电、域、隔离及保持策略，实际电路由工艺库单元承接；PPA 表示功耗、性能、面积的联合取舍。CDC/RDC 分别检查跨时钟/复位域问题；DFT 是便于制造测试的设计，低功耗模式也需保留其测试通路。DDR self-refresh（自刷新）由存储器维持刷新以保留数据，进入和退出遵循控制器/PHY/器件要求。</p>
+<div class="goals"><strong>实现状态</strong><p>下述开关电源例子是候选方案。当前 SoC/FPGA 连接尚未构成已验证的多电源域实现；电压、域边界、库单元与恢复时序待工艺/IP 资料确定。</p></div>
+<figure><img src="assets/figures-20261007/depth-clocks-future.svg" alt="候选常开控制、计算、NPU ISP、DDR 和 PAD 域，分域仍需设计"><figcaption>未来方案；没有宣称已有这些电源域或经过低功耗签核。</figcaption></figure><p>本次审读顶层和平台连接未建立电源意图证明。未来电源表应逐域记录供电/开关、隔离位置与钳位值、保留寄存器、SRAM 保持方式、level shifter、上电顺序、复位来源及测试模式。电压、频率、关断收益都需工艺库和 PPA 数据；实现时再形成 UPF、CDC/RDC、低功耗仿真与物理验收。</p>
+<p class="source">隔离和电平转换的单元职责参照 <a href="https://www.synopsys.com/designware-ip/memories-logic-libraries/power-optimization-kit.html">Synopsys 低功耗库单元说明</a>；<a href="https://www.synopsys.com/content/dam/synopsys/solutions/documents/a-holistic-approach-to-energy-efficient-soc-design-wp.pdf">电源意图白皮书</a>说明 UPF 与实现/验证工具的关系。本工程未选定这些库产品。</p>
+<h2 id="domains">候选电源域的责任划分</h2>
+<h3 id="current-boundary">现有代码能证明什么</h3>
+<p>当前审读的 SoC 端口、Link 隔离连接和 FPGA wrapper 没有构成可签核的多电源域实现。时钟门控减少翻转，电源关断切断供电；关时钟也可能留下有效状态和在途事务，因此二者不能互相替代。</p>
+<h3 id="power-table">未来域表需要哪些输入</h3>
+<table><tr><th>候选域</th><th>必须确定的状态与接口</th><th>资料或验收</th></tr><tr><td>常开控制</td><td>唤醒/复位原因、任务超时、隔离控制</td><td>供电、复位、低频时钟与软件可访问性</td></tr><tr><td>CPU/Ara 与 SRAM</td><td>上下文、VRF、cache/写缓冲、SPM 中代码和栈</td><td>哪些保持、哪些丢弃并重建；SRAM retention 与启动恢复</td></tr><tr><td>NPU/ISP</td><td>描述符、完成令牌、在途 AXI、输入帧状态</td><td>停发/排空、隔离钳位、epoch 与错误完成</td></tr><tr><td>DDR/PHY/PAD</td><td>存储保留、self-refresh、训练状态、外部电平</td><td>供应商低功耗顺序、I/O 供电与唤醒时间</td></tr></table>
+<h3 id="domain-orthogonality">时钟域、复位域与电源域的组合</h3>
+<p>这三种“域”分别按采样时钟、复位控制和供电边界分组。同一电源域可以有多个时钟域；同一时钟来源可以送到可分别复位的模块；一个可关断电源域内也可能有保持供电的状态。画 ASIC 图时，应分别标出三种边界，再逐条检查跨边界接口，不能按一个 IP 一个电源域机械划分。</p>
+<p>例如把未来 NPU 放入可关断域，而控制器和中断逻辑保留在常开域：CPU 写任务前要等 NPU 恢复；关断前要停止新任务、处理 AXI 在途、保存所需状态，再隔离输出。保留一个 <code>done</code> 信号并不足以描述在途 DDR 写。共享缓冲区属于哪个存储域，也影响断电后是否仍保留结果。</p>
+<p>当前 Boot ROM 的调用栈可能在 LLC/SPM 中。若计划把这块 SRAM 随计算域一起断电，恢复代码就失去保存状态的空间；设计需另行分配常开存储或定义完整的冷启动恢复。电源域选择因此会反向约束链接布局、任务所有权和启动方式，而不只是 UPF 文件中的模块列表。</p>
+<p class="source">本地<a href="../../.bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/README.md">tech_cells_generic 说明</a>将技术映射视为平台责任；存在电源单元抽象不等于当前芯片已有低功耗意图。图中的候选域须由工艺库、供电规格和后续验证落实。</p>
+<h2 id="sequence">关断、保持和恢复</h2>
+<h3 id="shutdown">关断前的所有权边界</h3>
+<p>候选流程是停止调度→停止新访问→排空或受控终止→保存必要状态→隔离跨域输出→按 IP 规范关时钟/电源。生产者尚未排空的缓冲区保持隔离所有权，不能因为 CPU 停止等待就给下一帧复用。</p>
+<h3 id="isolation-example">从设备完成信号理解隔离和恢复</h3>
+<figure><img src="assets/figures-20261007/mechanism-power.svg" alt="可关断设备域的完成信号经过常开隔离单元到控制域，保存状态独立进入保持资源"><figcaption>候选控制信号路径；不是在 AXI 中间直接钳位就能安全掉电的实现方案。</figcaption></figure>
+<p>假定设备域向常开控制域输出 done。设备域掉电后，若直接连接，未知电平可能被当成完成事件。先停止新提交，等所有已接受的读写完成或按约定受控失败，再把尚未消费的完成状态转存到常开域；随后隔离单元将 done 钳为 0。钳位值来自接收方协议：有效高通知可选 0，而有效低控制线不能机械照搬。</p>
+<p>若需保留配置，关电前把指定寄存器保存到保持资源；队列、未确认响应和软件缓冲区所有权仍需单独处置。保持少量寄存器不等于保住全部 cache、VRF 或 SRAM。恢复时先供电、时钟及规定复位，再恢复可保留配置、重建被丢弃状态，确认输出有效后解除隔离。控制域用新的 epoch 区分恢复前后任务，旧完成不能归给新描述符。</p>
+<p>关断请求到达时若仍有 B 或最后 R 等待，控制器应等待排空或走已设计的错误恢复，不能直接钳低 VALID 抹掉已接受事务。隔离使信号电平确定，事务协议负责让未完成工作有明确结果。</p>
+<h3 id="wake">恢复与验收资料</h3>
+<p>恢复时先保证供电与时钟，再按各域要求释放复位、恢复或重建状态、确认接口就绪并解除隔离。UPF 定义电源意图，库单元实现 isolation/retention/level shifter；还需低功耗仿真、CDC/RDC、DFT 与物理检查。这里列出设计输入和验收责任，不给未经工艺资料支持的电压、频率或节电比例。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">顶层实例</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">平台连接</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">VIP 时钟与模型</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA shell</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 接口</a></p></div>
+<details class="quiz"><summary>done 已钳为 0，是否可以认为所有在途 AXI 都已取消？</summary><p>不能。隔离只约束信号电平；已接受的事务仍需要完成或经过定义的终止/恢复协议，软件还必须保留相关缓冲区所有权。</p></details>

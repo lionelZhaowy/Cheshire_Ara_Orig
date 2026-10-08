@@ -1,0 +1,26 @@
+2026-10-08T10:15:13.040835+08:00
+HEAD: 459f9d6f5748e39063f7bb67e959c2f27859915d
+Output: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/peripheral-20261008/generated-check
+Mode: read-only working tree; reports only in new output directory.
+PASS 875 prior evidence/example/asset files unchanged; review preserved
+PASS backup unchanged: 728 files
+PASS seven parts / 30 chapters; 373 canonical migrations
+PASS register index unchanged and 17 targeted source hashes
+PASS chapter-number targets, reviewed topic links, boot subdivisions and Debug definition order
+PASS: 56 HTML pages, 3146 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 696 Markdown links and fragments
+FAIL: Traceback (most recent call last):
+  File "/tmp/l01-regen-ubk6yc4c/repo/docs_codex/learning/scripts/build_waves.py", line 14, in <module>
+    c=http.client.HTTPConnection('127.0.0.1',int(f.read_text().splitlines()[0]));c.request('GET','/json')
+                                                 ~~~~~~~~~~~^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/l01-wavedrom-ne3pflza/DevToolsActivePort'
+

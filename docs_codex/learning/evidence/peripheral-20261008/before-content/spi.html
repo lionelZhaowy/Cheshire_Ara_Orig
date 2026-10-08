@@ -1,0 +1,26 @@
+<div class="goals"><strong>本章任务</strong><p>把控制器事务和外部设备协议分开。 前置：<a href="uart-gpio.html">18 · MMIO 驱动、UART 与 GPIO</a>、<a href="clocks.html">04 · 时钟系统与 PLL</a>。</p></div>
+<h2 id="controller">控制器结构、复位与事务</h2>
+<h3 id="host">SPI 控制器的资源与配置</h3>
+<p>SPI 由 host 驱动 SCK 和片选 CS，通过数据线移位。CPOL 选择空闲时钟电平，CPHA 选择采样相位；多数据线模式还改变每个时钟传多少位。<code>Cfg.SpiHost</code> 选择本地 OpenTitan spi_host，其寄存器、命令 FIFO、TX/RX FIFO、移位器和状态机构成传输通路。</p>
+<p>生成包 NumCS=3，最后一项为 dummy CS，对外有 2 个有效片选；当前 NOR 模型接 CS1。头文件对应 TX=72、RX=64 个 32 位字，命令队列深度为 4。扩大 FIFO 或片选需要同步生成配置与驱动，单次访问长度还受到 FIFO、命令字段和软件分块限制。</p>
+
+<h3 id="register-contract">SPI 控制器复位与设备复位分开</h3>
+<p>本地 CONTROL 中 SPIEN、SW_RST、OUTPUT_EN 的复位值为 0；软件设置 SW_RST 用于重置控制器内部状态，不表示外部 Flash 或 SD 已回到指定协议模式。RXDATA 读取消费队列，TXDATA 写入排队，COMMAND 提交事务；CSID/CONFIGOPTS 应在合适的空闲边界更新。STATUS 是状态机/FIFO 反馈，复位字段与设备工作中的值分别解释。</p>
+<p>有界事务流程为准备 TX→检查命令可接受→提交各 segment→回收 RX→等待内部非活动→查错误；NOR/SD 若有内部忙，还要执行器件状态轮询。保留错误源再清状态，必要时复位控制器并向上层报告本次传输未完成。对一次读取逐字节比对和片选边界检查可以区分数据错位与外部未应答。</p>
+<h3 id="init">控制寄存器与初始化</h3><p>基址 0x03004000 的 CONTROL(+0x10) 包含 SPIEN31、SW_RST30、OUTPUT_EN29。初始化先复位并配置每个 CS 的 CONFIGOPTS（+0x18/+0x1c/+0x20），设分频、CPOL/CPHA 和片选建立保持，再开放控制器与输出。STATUS(+0x14) 的 READY 表示控制器可接受命令，ACTIVE 表示内部活动；外部 Flash 忙需要器件状态命令查询。</p>
+<h3 id="segments">把一次设备操作分成事务段</h3>
+<p>TXDATA(+0x30) 将字节放进发送队列，COMMAND(+0x28) 决定怎样移出：LEN[8:0] 通常是字节数减一，CSAAT9 控制段结束后保持片选，SPEED[11:10] 与 DIRECTION[13:12] 选择线数和方向。dummy 段以时钟周期描述空转，不能把所有长度都当字节。RXDATA(+0x2c) 读出接收 FIFO。</p>
+<p>DIF 的 transaction 接口把 opcode、address、dummy、data 等 segment 排成命令。NOR 的单线读取使用 0x13、四字节器件内部地址、接收 len 字节，前三者需要在同一选中区间内按序完成。CSID(+0x24) 选器件，CSAAT 保持跨段片选，最后一段释放；提前释放会使器件把剩余字节解释成新命令。</p>
+<h2 id="devices">NOR 与 SD 的软件协议</h2>
+<h3 id="nor">NOR 驱动与只读结果</h3>
+<p>storage_read.c 设置 <code>spi_freq=1000000, csid=1</code>，调用 spi_s25fs512s_init 后从器件地址 0 读取 16 字节。HAL 按 RX 容量分块，软件取回数据再逐字节对比默认模型的 0x9a。这里 CPU 的控制器地址、接收数组地址和 Flash 内部地址是三套地址，排查时应分别标出。</p>
+<p>实验 D 的 NOR 分支预期 <code>STORAGE stage=5 bytes=16 errors=0</code> 与正常退出。读全 0xff 时先查 CSID 和数据线方向、opcode/地址长度及器件就绪，再看 FIFO 顺序。ERROR_STATUS(+0x38) 和 EVENT_ENABLE(+0x3c) 帮助区分控制器错误与队列事件，对应 PLIC 源 17/18；SCK 有活动只说明开始传输。</p>
+<p>写介质另需 write-enable 0x06、program/erase、status 0x05 的 WIP 等待及错误检查。当前 HAL 闪写涉及大扇区擦除，CR3V 的 0x71 写配置段还存在 Rx 方向静态疑点；本轮没有把写介质列为实验。只读通过后仍要独立验证镜像布局和 ROM 装载，才能讨论自主启动。</p>
+<h3 id="sd">同一个 SPI 上的 SD 协议</h3>
+<p>本地 SD 是 <code>spi_sdcard.c</code> 在 SPI host 上的软件协议，不是独立 SDIO 控制器。初始化先提供空时钟，经 CMD0 进入状态、CMD8 检查响应、CMD55+ACMD41 轮询激活，再用 CMD58 确认状态。块读写还涉及数据 token、命令 CRC7、数据 CRC16、忙等待、卡类型及块/字节寻址。</p>
+<p>驱动的 csaat 传输保持命令多段的片选，csfree 通过 dummy CS 额外提供 8 个时钟，让卡释放数据线。配置实际卡片时，CSID、频率和超时单位要与板级接线匹配。函数返回码要汇总响应、CRC 和数据结果，初始化结束只是后续块读的前提。</p>
+<h2 id="verification">模型条件与后续验证</h2>
+<p>当前 VIP 有 NOR 模型与默认预填充，没有同等的 SD 模型；TB 对 SD 启动直接 fatal，VCU118 当前未启用 USE_SD。已有 SD 源码可以用于协议阅读，端到端实验需先补卡模型或已确认的板端环境。最小验收应包含已知扇区 512 字节及 CRC 正确、缺卡/忙超时失败，两者分别记录。</p>
+<p>本章不再为“搜索一次命令名”单设实验。阅读时沿 init → transaction → FIFO → COMMAND → 引脚追踪一次 16 字节 NOR 读取，再回到实验 D 执行构建与条件运行。完整字段按需查<a href="registers.html#group-4">SPI 寄存器索引</a>。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/data/spi_host.hjson">SPI 访问、复位和字段</a>；<a href="../../sw/lib/hal/spi_s25fs512s.c">NOR 协议与分块</a>；<a href="../../sw/lib/hal/spi_sdcard.c">SD 初始化、CRC 和片选</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_spi_host.c">控制器事务 API</a>；<a href="../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host_core.sv">FIFO 与状态机</a>；<a href="../../hw/cheshire_pkg.sv">SpihNumCs</a></p></div>
+<details class="quiz"><summary>STATUS.READY=1 与 Flash 的 WIP=0 是同一件事吗？</summary><p>前者描述控制器命令接收资源，后者描述外部器件内部编程/擦除状态。二者跨越控制器与器件两层。</p></details>

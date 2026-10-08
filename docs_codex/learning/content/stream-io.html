@@ -1,36 +1,44 @@
-<div class="goals"><strong>本章任务</strong><p>按设备追踪控制、数据、时钟及验证条件。 前置：<a href="dma.html">22 · iDMA、流量管理与总线错误</a>、<a href="interrupts.html">19 · 定时器与中断系统</a>。</p></div>
-<h2 id="link">Serial Link 的远端 AXI 事务</h2>
+<div class="goals"><strong>本章任务</strong><p>分别追踪一次远端写读、一帧像素输出和一次 USB 控制传输。三者共享系统存储，但协议和完成条件各不相同。</p>
+</div>
+<h2 id="link">Serial Link 的远端访问</h2>
+<p>本章的链路是相同协议两端间的 AXI 延伸，可连接另一个集成兼容 Serial Link 的 SoC/验证对端；不是 UART、PCIe 或任意串口模块，当前没有经确认的外部商用器件型号。最小任务是在对端已预约 RAM 中写一个字，再读回同值。</p>
 <h3 id="link-structure">分层与远端 AXI</h3>
 <p>Serial Link 是把 AXI 通道封装到串行链路的模块，和 UART 的字节终端协议不同。network 层组织请求/响应，data_link 层处理流控，physical 层用源同步双沿数据传输。远端访问既有请求又有返回，链路内部要保存队列状态并处理背压。</p>
 <p>Cfg.SerialLink 控制实例。当前生成常量为 1 channel、NumBits=8，对应 4 个双沿 lane；地址窗口 0x1_00000000..0x1_ffffffff 按 mask=0xffffffff、domain=0 映射到对端低 32 位。接收侧又作为本地 AXI 发起者访问本地存储，因此配置口、远端目标口和本地发起口要分别理解。</p>
-<h3 id="link-registers">配置、复位与当前消费者限制</h3>
-<p>控制基址 0x03006000 的 CTRL(+0) 有 clock enable/reset/isolate 字段，ISOLATED(+4) 读隔离状态，TX_PHY_CLK_DIV/START/END 在 +8/+0xc/+0x10，默认 8/2/6 决定转发时钟。RAW_MODE 及收发 FIFO 供专门的原始模式测试，正常 AXI 业务要保持一致的链路状态。当前 SoC 将门控/复位/隔离输出悬空、isolated_i 绑 0，故这些控制字段尚未形成系统隔离闭环。</p>
-<p>另一个消费者差异是 Cfg.SlinkMaxClkDiv 字段仅 10 位，赋 1024 会截断；实例实际使用生成包派生的独立 SlinkMaxClkDiv 常量。更改链路时序应跟到实例参数和两端时钟，不能只修改这个未消费字段。</p>
-<h3 id="link-validation">加载与验证条件</h3>
-<p>当前 VIP 有 Link 对端，PRELMODE=1 的 ELF 加载路径会写 scratch 入口并等 [SLINK] 结束；<a href="boot.html#serial-link">Serial Link 被动加载</a>解释其 ROM 协议。若日后以同一数组 ELF 比较 JTAG/Link，应同时检查相同计算结果和 [SLINK] 结束；现有 check_run 仅接受 JTAG，不直接沿用。该对照从正式实验中取消，避免在基本启动未验证前增加另一加载路径。VCU118 当前 Link 输入绑常量、输出未接，板端需要先落实真实链路。</p>
-<h2 id="vga">VGA 从帧缓冲到像素时序</h2>
+<p>SoC 的 slink_rcv_clk_i 和 slink_i 接收对端发送时钟/数据，slink_rcv_clk_o 和 slink_o 输出本端源同步时钟/数据；本地生成配置是一组4位双沿 lane。两端收发交叉相接，电平/PAD/走线由平台落实。这里是 Link 的专用数据线，不能因为名称 serial 推出 LVDS 电气规范。当前 clk_i、clk_sl_i、clk_reg_i 都接系统 clk_i，复位都接低有效 rst_ni，不额外虚构异步域。</p>
+<h3 id="link-registers">Serial Link 的发送时序配置</h3>
+<p>控制基址 0x03006000，Reg32；CTRL(+0) 含 enable/reset/isolate 控制意图，ISOLATED(+4) 为状态，TX_PHY_CLK_DIV/START/END(+8/+c/+10) 默认8/2/6用于转发时钟。CTRL寄存器字段复位值为clk_ena=0、reset_n=1、两isolate=1，RAW_MODE=0；这描述寄存器意图，当前实例未接出的控制不能据此解释成真实隔离。RAW_MODE 和收发 FIFO 用于原始模式专门测试，正常 AXI 保持正常模式。当前系统未接成隔离闭环，不能用 CTRL 完成安全停止；<a href="peripheral-debug.html#link">具体连接限制</a>。</p>
+<h3 id="link-validation">Serial Link 写读流程与加载实例</h3>
+<p>这是机制步骤例：先确认双端复位释放、相同链路时序及远端 RAM 预约，再在本地远端窗口写入一字。AXI AW/W 经链路送达远端，远端存储接收后 B 返回；接着发 AR，R 把同地址内容带回，比较字值。结束前双方停止新请求并排空已发事务。地址窗口会去掉高位域映射到对端，不能把同一数值随意当作本地 RAM。没有在此捏造控制器 C HAL。</p>
+<p>现有可追踪实例是 VIP 的 PRELMODE=1 ELF 加载、scratch 入口通知及 [SLINK] 结束，见<a href="boot.html#serial-link">被动加载协议</a>；这是主机/VIP 访问流程而非目标应用库。fixture 有兼容 Link 对端，VCU118 当前输入绑常量、输出未接；板端步骤待真实链路。check_run 目前只接受 JTAG，Link 结果需独立验收，不能套用其成功判据。</p>
+<h2 id="vga">VGA 帧缓冲与像素输出</h2>
+<p>VGA 面向按同步节拍取像素的显示端。本工程数字输出是 RGB565 与同步信号，接传统 VGA 模拟显示器还需适当 DAC/电阻网络和匹配电平；未确认板载显示器或转换器型号。本章用已知彩条帧解释取数和显示，不提供虚构的现成显示驱动。</p>
 <h3 id="vga-structure">取帧、队列与像素输出</h3>
 <p>VGA 控制器的 fetcher 通过只读 AXI 发起口从帧缓冲取数据，队列和 credit 协调取数，timing FSM 生成可见区和消隐同步。显示消费像素有固定节奏，存储服务停顿过久会造成欠载，因而平均带宽和最长等待都影响输出。</p>
-<h3 id="vga-registers">参数和关键寄存器</h3>
+<h3 id="vga-registers">VGA 参数与关键寄存器</h3>
 <p>Cfg.Vga 选择实例；当前 RGB 位宽为 5/6/5，共 16 位，横纵计数宽为 24，BufferDepth=16、MaxReadTxns=24。寄存器基址为 0x03007000：CONTROL(+0) 启用及同步极性，CLK_DIV(+4) 生成状态机使能（0 按 1 处理），水平/垂直时序在 +8..+0x24，START_ADDR(+0x28/+0x2c) 是帧起点，FRAME_SIZE(+0x30) 是字节数，BURST_LEN(+0x34) 直接进入 ARLEN。</p>
+<p>本地VGA HJSON规定enable复位0、CLK_DIV复位1、帧起点和FRAME_SIZE复位0；所以复位后还没有可显示的帧。系统 clk_i/rst_ni 驱动控制器，复位低有效；CLK_DIV 产生内部像素使能，不是独立 PLL。RGB 输出5/6/5位，HSYNC/VSYNC为输出，同步极性按模式配置，无像 I2C 那样的双向数据使能。帧缓冲必须经当前 AXI 路径可达；新画面发布前完成可见性交接。</p>
 <h3 id="vga-init">初始化与帧缓冲预算</h3>
 <p>软件先 disable，准备设备可见的帧缓冲，写时序、分频、起点、字节数和 burst，排序后 enable。16 拍 burst 编码为 15。640×480 RGB565 一帧需要 614400 字节，超过默认 SPM；60 帧/秒仅可见像素读取就约 36.864 MB/s。消隐、突发效率和内存延迟还要另留余量。</p>
-<h3 id="vga-validation">完成现象与错误观察</h3>
-<p>正确结果是行列周期、HSYNC/VSYNC、颜色顺序、地址回卷以及回压下的欠载行为符合配置。当前 fixture 的 VGA 输出悬空，VCU118 未启用 USE_VGA，也没有本教材现成帧校验器。后续独立 TB 应接出同步/RGB，至少观测两帧已知彩条。排查顺序为 AR/R → 队列/credit → 像素 valid → timing 计数；VGA bus-error 的 write/read IRQ 是错误观察，不是帧完成事件。</p>
-<h2 id="usb">USB OHCI 的描述符与 PHY</h2>
+<h3 id="vga-validation">VGA 输出与结果观察</h3>
+<p>条件步骤例：禁用取数，准备彩条 RAM，写时序/分频/起点/字节数和 ARLEN=15，排序后使能；fetcher 持续读帧，FIFO供给像素，计数器到行末进入消隐、到帧末回卷。检查至少两帧的 HSYNC/VSYNC 周期、RGB 顺序和地址回卷，再停止新取数并等待在途读取排空后复用 RAM。FRAME_SIZE 是字节数，不是像素数；控制写返回不是一帧完成。</p>
+<p>当前没有本教材现成帧校验器或完整 C HAL；fixture 输出悬空，VCU118 未启用 USE_VGA。这里只能按 RTL/寄存器理解流程，显示运行待模型或板级条件。中断中的 VGA BusErr 是错误提示，不是帧完成 IRQ；尺寸限制见<a href="peripheral-debug.html#vga">诊断入口</a>。</p>
+<h2 id="usb">USB OHCI 控制器与传输任务</h2>
+<p>USB host 管理连接的设备，OHCI 定义软件怎样描述工作。可以用“读取设备描述符”理解最小控制传输：向端点0发送 SETUP 请求，接收描述符字节，再完成状态阶段。本工程没有经过验证的 USB 设备型号、设备模型或完整枚举栈，下面是依赖 PHY/软件栈补齐的机制例。</p>
 <h3 id="usb-structure">描述符和 DMA</h3>
 <p>OHCI 是主机控制器的软件接口，软件在 RAM 中建立 HCCA（主机通信区）、ED（端点描述符）和 TD（传输描述符）。控制器经 DMA 读取任务，用 PHY（物理收发接口）传包，更新完成描述符并发中断。枚举设备还需要端口复位、控制传输、地址分配和描述符解析的软件流程。</p>
 <p>Cfg.Usb 选择实例，UsbDmaMaxReads 默认 16，生成包 NumPhyPorts=4。spinal_usb_ohci 将 Reg32 转控制 AXI32，再把 32 位 DMA 数据口转换到 SoC 位宽；DMA 原生地址 32 位，按 UsbAddrMask/Domain 扩展，默认 domain=0。系统域与 PHY 域有独立时钟复位，描述符应放在实际可达且满足对齐的范围。</p>
 <h3 id="usb-registers">寄存器、状态和对齐</h3>
 <p>控制基址 0x03008000：HcRevision(+0) 返回版本，HcControl(+4) 管列表使能和 HCFS 状态，HcCommandStatus(+8) 提交复位/新任务提示。InterruptStatus/Enable/Disable 在 +0xc/+0x10/+0x14，WDH、UE、RHSC 分别表示完成链、不可恢复错误和根集线器变化。HCCA(+0x18) 保存 256 字节对齐基址，Control/Bulk ED 与 DoneHead 在 +0x20..+0x30。</p>
-<h3 id="usb-init">初始化、完成与回收</h3>
-<p>初始化应先保证 PHY 时钟、复位及端口条件，完成软复位，再准备对齐且 DMA 可见的 HCCA/ED/TD，设置帧调度和根集线器，按端口连接状态发起控制传输。CPU 填好描述符交所有权，完成后按缓存协议取回，检查 TD 状态与实际长度，然后服务 WDH/RHSC/UE。每个等待都应有 deadline，超时要保留设备可能还在访问的描述符。</p>
-<h3 id="usb-validation">当前环境缺口与最小验收</h3>
-<p>当前 fixture 的 usb_clk_i=0、DP/DM 输入绑零，VCU118 关闭 USB；仓库没有可直接复用的完整裸机枚举栈和设备模型。因此这里交付可追踪的实现流程，不给一条虚构的“枚举通过”命令。下一步最小验证是有设备模型的控制传输成功、TD 内容/长度校验及断连超时失败；读取 Revision 只覆盖寄存器通路。</p>
+<p>以 SoC 为参照，usb_dp_i/dm_i 为各端口实际输入，usb_dp_o/dm_o 与 usb_dp_oe_o/usb_dm_oe_o 为输出及使能，端口数4；最终 D+/D− 双向连接需要相应 PHY/PAD、电气终端和 host VBUS 供电管理，不能把逻辑端口直接当成完成的板级 USB。系统 clk_i/rst_ni 与 usb_clk_i/usb_rst_ni 分别服务控制和 USB 域，低有效复位。当前 fixture 后一时钟为0、复位输入为1；这不是可运行收发环境。</p>
+<h3 id="usb-init">USB 描述符准备与数据接收</h3>
+<p>先保证 PHY、端口电源和时钟有效，控制器软复位后读 Revision 确认控制通路；软件在32位DMA可达区准备256字节对齐 HCCA、对齐ED和TD，设置帧调度与根集线器。端口连接并复位到可通信状态后，排入 SETUP/DATA/STATUS 的控制列表并开放调度。DMA读描述符、PHY传包，控制器把状态及实际长度写回完成链；CPU收到WDH提示后按所有权协议取回TD，检查条件码、长度和描述符内容，才算读取成功。</p>
+<p>这里没有真实 API 名可供调用：仓库有硬件 wrapper/寄存器实现，但无完整裸机枚举库。本地OHCI软复位路径清列表使能、MIE及HCCA/列表头等状态，软件显式初始化后才能开放调度。HcControl/列表基址是配置，HcCommandStatus写入有动作语义，InterruptStatus按实现清状态；使用32位控制访问，寄存器与设备返回的USB描述符属于不同空间。重复初始化会影响全部端口与列表，必须由统一host管理者调度；回收前停止新列表工作并确认设备不再访问这些描述符。</p>
+<h3 id="usb-validation">USB 示例的执行条件</h3>
+<p>控制域寄存器可读只证明一个层次。本例需USB时钟、PHY、设备模型或板级设备及host软件；目标验收为描述符内容/长度正确和正常任务回收。当前VCU118关闭USB；详细未决和症状见<a href="peripheral-debug.html#usb">USB诊断</a>。</p>
 <h2 id="compare">三类设备的验证重心</h2>
 <p>Link 应观察远端请求与响应的归属及链路流控；VGA 应观察有期限的像素消费和帧内容；USB 应观察描述符生命周期、包协议和端口状态。它们都复用<a href="sharing.html#ownership">共享数据章的所有权原则</a>，但完成事件来自各自协议。把寄存器读写、主动访存和外部行为分别验收，才能确认缺的是哪一层。</p>
-<h2 id="device-contracts">各设备的最小软件步骤与停止条件</h2>
-<table><tr><th>设备</th><th>可实施的调用顺序</th><th>复位/错误与验收边界</th></tr><tr><td>Serial Link</td><td>确认双方时钟/映射→配置分频→小范围远端写读→读回匹配→再提交启动通知</td><td>CTRL 字段不能替代未接出的隔离逻辑；停止时需排空双方事务，验证远端无响应恢复</td></tr><tr><td>VGA</td><td>disable→准备 RGB565 frame→配置尺寸/时序/起点→publish→enable→观察连续帧</td><td>停止取数与仍在途的 R 分开处理；复位/欠载不能只看寄存器值，需要像素/同步输出</td></tr><tr><td>USB OHCI</td><td>提供 PHY→软复位→对齐 HCCA/ED/TD→列表与中断→端口/控制传输→回收 TD</td><td>软件不得回收仍由控制器拥有的描述符；检查条件码、实际长度、断连和 UE，不把 WDH 单独当成功</td></tr></table>
-<p>这里使用步骤表表达驱动契约，没有伪造设备可运行 C 驱动。Link 的默认分频 8/2/6 来自生成寄存器；VGA/USB 的具体 reset 状态应在本次有效 RTL 初始化后读回，并与生成寄存器和状态机 reset 分支逐项对应。当前模型/引脚缺口见各节，新增 NPU 前也应达到同等级的接口资料完整度。</p>
-<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Link / VGA / USB 集成</a>；<a href="../../hw/serial_link.hjson">Link 控制字段</a>；<a href="../../.bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv">链路分层</a>；<a href="../../.bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv">像素读取</a>；<a href="../../hw/future/spinal_usb_ohci.sv">OHCI wrapper</a>；<a href="../../hw/future/UsbOhciAxi4.v">OHCI 寄存器及调度</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">当前平台缺口</a></p></div>
-<details class="quiz"><summary>USB 寄存器可读，而 PHY 时钟为零，会有什么结果？</summary><p>控制域仍可能响应访问，但包收发无法正常推进。需要先补齐 PHY 时钟、复位和设备模型，才有端到端传输条件。</p></details>
+<h2 id="device-contracts">链路、显示与 USB 的完成语义</h2>
+<p>Link 以远端响应和读回内容结束一项操作；VGA 正常运行连续消费帧，没有一次提交对应一次通用 done；USB 以完成链中的条件码和长度回收描述符。三者的寄存器均通过Reg32控制，Link字段见<a href="registers.html#group-8">group-8</a>，VGA见<a href="registers.html#group-9">group-9</a>；当前索引未生成OHCI组，USB字段回到<a href="../../hw/future/UsbOhciAxi4.v">实际RTL寄存器译码</a>。新增设备应先补实际连接和任务接口，再声称支持某型号；调试统一从<a href="peripheral-debug.html">诊断章</a>进入。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Link / VGA / USB 集成</a>；<a href="../../hw/serial_link.hjson">Link 控制字段</a>；<a href="../../.bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv">链路分层</a>；<a href="../../.bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv">像素读取</a>；<a href="../../hw/future/spinal_usb_ohci.sv">OHCI wrapper</a>；<a href="../../hw/future/UsbOhciAxi4.v">OHCI 寄存器及调度</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">当前平台缺口</a></p></div><details class="quiz"><summary>USB 的 WDH 为什么不足以证明读到了设备描述符？</summary><p>它提示完成链可处理；仍要检查对应TD身份、条件码、实际长度及返回内容。</p>
+</details>

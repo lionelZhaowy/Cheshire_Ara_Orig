@@ -1,0 +1,183 @@
+{
+  "root": "/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara",
+  "old_anchors_preserved": 84,
+  "local_links_checked": 189,
+  "pages": {
+    "architecture": {
+      "sha256": "46aca2401b1ad417d4405dd79a305b5c37ab16d2f3b7393ac5f684f2f0258ad6",
+      "heading_ids": [
+        "system",
+        "paths",
+        "requests",
+        "four-views",
+        "port-roles",
+        "storage",
+        "layers",
+        "integration-boundary",
+        "implementation-layers"
+      ],
+      "image_count": 2
+    },
+    "cva6": {
+      "sha256": "16d88050f33f1c1311f9f8609a11d72b117491aac1d69a04ca4db45dc1512400",
+      "heading_ids": [
+        "isa",
+        "functional-units",
+        "programmer-state",
+        "privilege",
+        "functional-overview",
+        "csr-trap",
+        "memory-protection",
+        "compute-state",
+        "implementation-reference",
+        "configuration-families",
+        "profile-effective-values",
+        "resource-consequences"
+      ],
+      "image_count": 1
+    },
+    "configuration": {
+      "sha256": "534fdbc03067e2bc4a1b54079e95a9c4bc2e6c57b148e4954965fe2e53b946fd",
+      "heading_ids": [
+        "first-program-contract",
+        "inputs",
+        "configuration-contract",
+        "elaboration",
+        "software-contract",
+        "advanced-configurations",
+        "ara",
+        "fields",
+        "soc-fields",
+        "profile-software-fields",
+        "consequences",
+        "topology",
+        "platform",
+        "combinations",
+        "legality-levels",
+        "configuration-candidates",
+        "case-baseline",
+        "case-axi-rt",
+        "case-clic",
+        "case-irq-router"
+      ],
+      "image_count": 2
+    },
+    "runtime": {
+      "sha256": "f1e4f959d7ceb637099f65649bbe2b6d93a396c1972973707f0312a140adffba",
+      "heading_ids": [
+        "program",
+        "program-storage",
+        "software-stack",
+        "stack",
+        "abi",
+        "initialization",
+        "sections",
+        "section-purpose",
+        "section-local-mapping",
+        "heap",
+        "runtime-call",
+        "beyond-baremetal",
+        "object-lifetime"
+      ],
+      "image_count": 1
+    },
+    "build": {
+      "sha256": "a590ad39d54f98a745b710c15682b9f39ec52d3e7c4cd6ad5c5ce99f2f7f9db6",
+      "heading_ids": [
+        "tools",
+        "stages",
+        "translation-units",
+        "elf",
+        "layout",
+        "options-reference",
+        "software-options",
+        "practice",
+        "source-to-hardware",
+        "build-practice"
+      ],
+      "image_count": 2
+    },
+    "boot": {
+      "sha256": "a56bb3b52719b8de43e7663ef82ab346a0a579cdf46a33228b89efe6aabcedc3",
+      "heading_ids": [
+        "default-path",
+        "rom",
+        "rom-and-media",
+        "rom-initial-state",
+        "default-load",
+        "application",
+        "crt",
+        "regs",
+        "normal-result",
+        "boot-compare",
+        "platform-rom",
+        "load-path-overview",
+        "other-loaders",
+        "serial-link",
+        "uart-passive",
+        "media-boot",
+        "gpt-raw",
+        "sd-boot",
+        "nor-boot",
+        "eeprom-boot",
+        "boot-growth",
+        "later-stages"
+      ],
+      "image_count": 0
+    },
+    "boot-debug": {
+      "sha256": "75634a58c2d7cc6511aaece4bb25d5bb1dc63b3ecb489f4ba332bad350c09cd3",
+      "heading_ids": [
+        "debug-workflow",
+        "transport",
+        "timelines",
+        "takeover",
+        "vip-ready",
+        "stack-handoff",
+        "debug",
+        "elf-load",
+        "entry-resume",
+        "loader-limits",
+        "observe-program",
+        "halt-boundary",
+        "debug-contract",
+        "dmi-registers"
+      ],
+      "image_count": 2
+    },
+    "traps": {
+      "sha256": "619de23492b8ba509c22b16fa1a8ee477fa07589a585b4fd8396e1f5c5be8031",
+      "heading_ids": [
+        "call-versus-trap",
+        "trap-entry",
+        "software-context",
+        "normal-service",
+        "trap-return",
+        "syscall-scheduling",
+        "local-handler"
+      ],
+      "image_count": 0
+    },
+    "software-debug": {
+      "sha256": "25893dcc89858bbb657724a02523e0a267334dcd49ec529abe755fbebec40cd9",
+      "heading_ids": [
+        "locate-stage",
+        "build-errors",
+        "load-stop",
+        "stack-handoff",
+        "loader-tail",
+        "trap-stop",
+        "no-output",
+        "wrong-result",
+        "alternate-loaders",
+        "platform-rom-return",
+        "media-start",
+        "known-issues"
+      ],
+      "image_count": 0
+    }
+  },
+  "failures": [],
+  "sum137": 28085,
+  "scope": "HTML source/link/order and formula only; no generation/browser/target execution"
+}

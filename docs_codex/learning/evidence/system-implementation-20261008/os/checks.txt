@@ -1,0 +1,15 @@
+COMMAND python3 docs_codex/learning/evidence/system-implementation-20261008/os/check_os.py
+EXIT 0
+rtos bytes 15684 headings 8 ids 8
+virtual-memory bytes 11742 headings 7 ids 7
+linux bytes 13838 headings 7 ids 7
+os-devices bytes 14076 headings 9 ids 9
+os-debug bytes 6710 headings 6 ids 6
+local links checked 72
+sum 28085
+Sv39 indices [1, 0, 1] offset 0x8 physical 0x80021008
+PASS: five source pages structure/links and teaching arithmetic; no OS target execution
+
+COMMAND git diff --check
+EXIT 0
+

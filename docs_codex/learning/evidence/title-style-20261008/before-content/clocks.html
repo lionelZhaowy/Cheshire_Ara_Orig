@@ -1,0 +1,43 @@
+<div class="goals"><strong>本章任务</strong><p>沿“安全时钟下取指 → 配置 PLL → 正常切换 → 恢复设备事务”理解时钟管理。前置：<a href="architecture.html">系统边界</a>、<a href="configuration.html">配置</a>与<a href="axi.html">AXI 事务</a>。</p></div>
+<h2 id="clocks">先让 CPU 有时钟，才有软件配置时钟</h2>
+<p>设未来芯片上电后要执行一段 Platform ROM 来配置 PLL。第一条配置指令也要由 CPU 取出和执行，因此取指、互连、ROM 以及早期可写存储必须先得到可用时钟。平台硬件先提供安全参考/旁路时钟并满足复位条件，CPU 才能建立最小环境，再通过可访问的控制口配置 PLL。这把硬件上电初值和软件选择工作点连接成了一个过程。</p>
+<p>配置写被接收以后，PLL 按自身协议稳定；平台满足锁定和切换条件后，让相应消费者采用目标时钟。PLL lock、CPU 可执行、DDR ready 是分别产生的条件：PLL 不负责训练 DDR，CPU 能取指也不意味着所有外设都初始化完毕。当前没有选定 ASIC PLL，下面以本地接口解释责任，不给供应商寄存器或频率猜测值。</p>
+<p>通用 SoC 的 CPU、Ara、互连和 LLC 主要使用 <code>clk_i/rst_ni</code>。RTC 是实时时间参考输入，经同步后驱动计时器计数。仿真默认系统周期 5 ns、RTC 周期约 30518 ns；VCU118 shell 连接 50 MHz 系统时钟并声明 1 MHz RTC。软件必须使用所在平台的实际频率来配置 UART 和串行设备。</p>
+<h3 id="platform-clocks">系统时钟与平台 DDR 时钟</h3>
+<p>DDR 的控制器侧时钟来自 MIG 的 UI 接口，通过跨时钟桥连接系统；USB PHY 另有时钟，Serial Link 接收侧有源同步时钟。VGA 的分频寄存器形成状态机使能，本地顶层没有因此新增一根独立像素时钟输入。跨域传输和事务恢复将在互连及系统接入章继续解释。</p>
+<p>当前 FPGA 的 PLL/DDR 就绪放行仍有未验证边界，见<a href="system-debug.html#platform-readiness">系统诊断与实现状态</a>；本章正常序列不表示该闭环已实现。</p>
+<h2 id="clock-domains">把时钟域、分频和同步器区分开</h2>
+<p>时钟域由真正采样寄存器的时钟决定。UART 的波特率计数、SPI/I2C 的串行节拍和 VGA 的像素使能都可在系统时钟内实现；有一个分频寄存器，不等于已经建立独立时钟域。当前 CPU、Ara、AXI Crossbar、LLC 及 Reg 主通路采用同一 clk_i/rst_ni。SoC 暴露的 LLC 下游 AXI 也在该域，跨 DDR UI 时钟的桥放在平台 wrapper。</p>
+<figure><img src="assets/figures-20261007/depth-clocks-current.svg" alt="列出系统、RTC、JTAG、Link、USB 与 FPGA DDR 跨域边界"><figcaption>当前源码核对图；异步事件同步不等于完整 AXI CDC。</figcaption></figure>
+<h3 id="clock-inputs">输入、消费者与观察点</h3>
+<table><tr><th>入口</th><th>消费者与边界</th><th>正常使用所需条件</th></tr><tr><td>rtc_i</td><td>CLINT 内同步、形成时间计数</td><td>参考持续有效，软件 RTC_FREQ 与实际频率匹配。</td></tr><tr><td>JTAG TCK / TRST</td><td>DTM 串行协议，DMI 跨到系统侧</td><td>系统与调试复位关系满足 DMI 两端交接契约。</td></tr><tr><td>Link 接收时钟</td><td>源同步采样与内部 FIFO</td><td>两端先建立复位、时钟及训练，再允许数据传输。</td></tr><tr><td>USB PHY 时钟/复位</td><td>独立 PHY 接口，系统端仍连接 AXI</td><td>当前 fixture 没有有效 PHY 激励；正常 USB 使用仍需相应平台输入。</td></tr><tr><td>GPIO / IRQ</td><td>按参数使用同步器；PLIC/CLIC 接收事件</td><td>电平保持与事件传递分别选同步/握手机制，见 CDC 专章。</td></tr></table>
+<h2 id="pll">PLL 与 ASIC 时钟规划</h2>
+<p>PLL 把参考时钟合成为所需工作时钟，其 lock 是平台就绪条件之一。当前通用 SoC 没有厂商 PLL 控制寄存器；FPGA MMCM/MIG 的寄存器和复位信号不能当作 ASIC 交付。未来应先列出每个时钟的来源、范围、生成关系、门控条件与约束，再决定是否把 NPU、ISP、DDR 与 CPU 分域。</p>
+<h3 id="pll-loop">锁相反馈与两域教学例</h3>
+<p>锁相环（PLL）比较参考时钟与反馈时钟的相位/频率误差，调节内部振荡源；反馈分频和输出分频决定频率关系。用简化整数模型表示为 f_out=f_ref×M/(N×C)，M/N/C 的可用范围由 IP 决定。lock 表示锁定检测满足容差，不代表 DDR 已训练或设备事务已排空。</p>
+<figure><img src="assets/figures-20261007/mechanism-clocks.svg" alt="参考时钟进入 PLL，分成系统和外设教学域，外设域有门控与复位同步，域间经握手桥连接"><figcaption>候选两域机制示例；倍频数、频率、电压以及最终域划分尚未确定。</figcaption></figure>
+<p>设系统域取一个 PLL 输出，外设域取另一个分频输出。分频改变采样节拍，门控单元只在安全相位允许或停止时钟脉冲；寄存器 clock-enable 则让状态停止更新，但时钟仍然到达寄存器。外设域复位释放要在自身有效时钟下同步；如果先把时钟关掉，依赖该域时钟的恢复握手就无法前进。</p>
+<p>图中的系统域和外设域共用 PLL，分别由 C0、C1 输出。调频前先确定改动哪个参数；仅停止外设不足以覆盖共享反馈环的重配置。</p>
+<table><tr><th>操作</th><th>影响范围与必要条件</th><th>切换与恢复责任</th></tr><tr><td>只调整外设输出分频 C1</td><td>在 IP 明确支持独立调整且保证 C0 持续有效的前提下，可将影响限定为外设支路；否则仍须按全部受影响输出处理。</td><td>禁止外设新任务，排空串行帧及跨域队列，按 IP 规定切换时钟、处理复位和锁定条件，更新外设频率换算及派生时钟约束后恢复任务。</td></tr><tr><td>修改共享 M/N 或参考源</td><td>系统 C0、外设 C1 及其他相关输出均纳入影响范围；即使同步调整分频以维持名义频率，也不能假设切换期间相位、脉冲和锁定状态连续有效。</td><td>协调所有受影响域停止接收并排空事务，按规范使用安全时钟或复位；控制代码或常开控制器必须有有效时钟和可访问的控制路径。重配、等待规定的稳定/锁定条件后，逐域恢复时钟、同步复位、接口及软件计时。</td></tr></table>
+<p>具体切换与锁定控制必须按实际 IP 验收，不能假设修改 C1 一定无需重新锁定；普通组合逻辑与门直接截断时钟会产生毛刺风险。本地 tc_clk_mux2 的注释也明确指出，普通时钟 mux 单元不保证运行中无毛刺切换；应采用实际 IP 规定的安全切换协议。来自共同 PLL 且相位关系有保证的分频时钟，可按相关派生时钟分析；关系无法保证或动态切换期间，应按接口协议处理跨域风险。跨域连接并不一律需要相同的异步 FIFO，但每条路径都须有时序或同步依据。</p>
+<p>generated clock（派生时钟）是时序约束中由已知源经分频等形成的时钟，工具据此计算相关边沿。false path（不作常规时序分析的路径）是需要设计依据的约束例外；它本身不提供同步器或握手。CDC 是跨时钟域检查，RDC 是跨复位域检查，用于检查状态在不同采样/复位条件下的传播。</p>
+<p class="source">PLL 锁定概念参考 <a href="https://www.intel.com/programmable/technical-pdfs/683047.pdf">Intel MAX 10 Clocking and PLL User Guide</a> 的锁定定义；此处仅借助公开原理说明，当前 Xilinx wrapper 及未来 ASIC PLL 的具体行为分别按各自实现验收。</p>
+<h2 id="clock-contract">时钟交付表与软件频率来源</h2>
+<h3 id="clock-inventory">先标真实采样时钟，再标派生关系</h3>
+<p>一份可实施的时钟表逐项记录源端口、消费者、目标频率范围、相位关系、门控点、测试旁路和失锁处理。共享来源不代表跨域信号可直接采样；不同频率也不必然意味着每个寄存器都用了新时钟，要沿 RTL 的 always_ff 事件控制核对。</p>
+<h3 id="boot-and-runtime-frequency">启动安全频率与运行时调频</h3>
+<p>ROM 固定的是指令字节。若指令向可编程 PLL 寄存器写入初值，改变的是 PLL 的运行状态；以后其他代码仍可在 IP 允许的条件下重写这些寄存器。因此，“ROM 不可改”不等于“时钟频率永远不可改”。初值应选择芯片已验证的安全工作点，性能档位则由后续软件按功耗、温度和任务需求管理。</p>
+<p>本项目已确认采用官方 Platform ROM 钩子完成平台早期初始化的方向，保留运行时配置入口。调用钩子的是 CVA6 自己：CPU 与 ROM 取指路径首先需要可用时钟。对于当前保留内部 LLC 的启动基线，ROM 在调用前还要完成 LLC/SPM 初始化及栈调整；对于无内部 LLC 的合法配置，ROM 跳过该初始化，平台须在首次栈访问前提供替代可写存储和有效 sp，或先用不依赖栈的早期汇编建立这些条件。ASIC 必须先由上电硬件提供足以取指的安全时钟/复位条件；这部分不能依赖尚未开始执行的软件。</p>
+<p>外部存储中的配置表适合在读取介质已可工作的阶段加载。举例说，先在安全时钟下配置 SPI 并读取一份带版本、长度和完整性检查的频率表，校验其取值处于 IP 允许范围，再执行切换。若读 SPI 又要求先切换同一个 PLL，必须先提供一个能读介质的保守初始配置，否则形成相互等待。配置格式、校验策略和故障回退属于未来平台方案，当前仓库没有对应实现。</p>
+<p>动态调频的关键还在执行路径：修改共享 PLL 会影响正在运行控制代码的 CPU；需要按真实 IP 保证安全时钟切换，或由不受影响的控制域执行。若同时调整电压，则还要满足每个工作点的电压/频率限制以及升降次序。当前 SoC 没有已交付的电压调节器驱动和已验证 DVFS 表，课程只在<a href="power.html#domain-orthogonality">电源边界</a>中定义这些交付条件。</p>
+<p class="source">依据：<a href="https://pulp-platform.github.io/cheshire/tg/integr/#platform-rom">官方 Platform ROM 集成契约</a>；<a href="../../hw/bootrom/cheshire_bootrom.S">_prom_check_run 的实际调用位置</a>；<a href="../03_Platform_ROM_Clock_IP_Configuration.md">本项目 Platform ROM/时钟决策专题</a>。本地正常返回路径缺口见<a href="boot.html#platform-rom">启动章</a>。</p>
+<h3 id="normal-frequency-change">一次受控调频怎样完成</h3>
+<p>以“串口一段文本发送结束后，调整它所在支路的频率”为教学任务。调度者先阻止该支路开始新传输，等待软件队列、控制器 FIFO 及移位器完成；只看到 FIFO 空还可能有最后一个字符正在引脚上发送。若支路也承载 AXI，需要等待已接受事务的响应，或事先定义允许继续运行的独立路径。</p>
+<p>随后配置拥有者按实际 PLL/分频器协议发出切换请求。请求写入、IP 接收、频率稳定和消费者重新可用是不同状态；控制者必须仍有时钟、可访问配置寄存器和时间基准。若改共享 M/N，CPU、Ara 和互连等所有受影响者都要纳入停止/安全切钟条件，不能只等待 UART。</p>
+<p>新时钟稳定后，按接口要求建立复位/使能状态，使用新实际频率重算 UART 波特率、SPI/I2C 分频及相关超时。若 RTC 从同一系统时钟派生，它也会受影响，软件不能把它当独立不变参考。最后发布新的频率状态并允许下一段文本开始；预期仍得到相同文本与目标波特率，而不是把调频过程中的旧分频值继续使用。</p>
+<p>这是一条候选正常流程，当前无对应 PLL 驱动或已验证调频入口。运行中的多个调用者还需唯一配置拥有者或串行化，避免两个软件上下文交错改写同一组寄存器。跨域配置怎样传递见<a href="cdc-rdc.html#handshake">握手实例</a>；超时/失锁的定位和恢复属于<a href="system-debug.html#platform-readiness">系统诊断</a>。</p>
+<h3 id="pll-handoff">PLL 与约束交付</h3>
+<p>PLL 规格、抖动预算、参考源、切换流程与最小锁定时间由工艺/IP 资料提供；本工程尚未冻结 ASIC 频率。软件配置 UART/SPI/I2C 时用实际工作频率，改变 PLL 后必须协调已有传输、计时换算和超时。时序约束须描述主时钟与 generated clock，CDC 检查须覆盖域间控制及数据，不能用统一 false path 掩盖协议问题。</p>
+<p>本章输出是一张可追溯的时钟表。复位何时释放由<a href="reset.html#readiness">平台就绪条件</a>继续约束；独立关电还需<a href="power.html#sequence">隔离和保持协议</a>。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">顶层实例</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">平台连接</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">VIP 时钟与模型</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA shell</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 接口</a></p></div>
+<details class="quiz"><summary>外设停钟后，为什么不能只撤销复位并立即发任务？</summary><p>复位同步释放和跨域就绪应答需要该域有效时钟；先建立时钟、完成规定的复位释放与接口就绪，再发任务。</p></details>

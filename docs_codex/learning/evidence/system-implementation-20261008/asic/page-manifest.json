@@ -1,0 +1,141 @@
+[
+  {
+    "slug": "clocks",
+    "ids": [
+      "clocks",
+      "platform-clocks",
+      "clock-domains",
+      "clock-inputs",
+      "pll",
+      "pll-loop",
+      "clock-contract",
+      "clock-inventory",
+      "boot-and-runtime-frequency",
+      "normal-frequency-change",
+      "pll-handoff"
+    ],
+    "bytes": 13755,
+    "sha256": "e4e9b58e2303a4259c848ae5d35a1318db2362f94dfc98415a9d3ce9daec1589"
+  },
+  {
+    "slug": "reset",
+    "ids": [
+      "sources",
+      "system-reset",
+      "release",
+      "readiness",
+      "rom-ready",
+      "external-ready",
+      "bringup-milestones",
+      "transaction-reset",
+      "drain",
+      "reset-validation"
+    ],
+    "bytes": 7627,
+    "sha256": "e7c0ccb079486e2a322a87baf5531ce156173cadafa37c4f1f5b1fd8e6a50b5e"
+  },
+  {
+    "slug": "power",
+    "ids": [
+      "asic-clock-power",
+      "domains",
+      "current-boundary",
+      "power-table",
+      "domain-orthogonality",
+      "sequence",
+      "shutdown",
+      "isolation-example",
+      "wake"
+    ],
+    "bytes": 10590,
+    "sha256": "6042daa08fba34dd7514ad42d5fee32530c179ecbd0b87f3c52a7bbc419897a0"
+  },
+  {
+    "slug": "future",
+    "ids": [
+      "extract",
+      "asic",
+      "resource-mapping",
+      "sram-example",
+      "implementation-deliverables",
+      "verification-layers",
+      "acceptance-gates"
+    ],
+    "bytes": 8815,
+    "sha256": "433c7c090da95a205a68bc02cfaad3b88d022c7586319f2874f981cc567a9c2f"
+  },
+  {
+    "slug": "asic-memory",
+    "ids": [
+      "consumer-first",
+      "bank-contract",
+      "read-latency",
+      "k-plus-two",
+      "macro-tiling",
+      "views-and-initialization"
+    ],
+    "bytes": 9040,
+    "sha256": "94df180de52d7086cdd43445ef6059efa8e98349eb5be728cb4e2fa21e18a76d"
+  },
+  {
+    "slug": "cdc-rdc",
+    "ids": [
+      "sampling",
+      "handshake",
+      "choose-by-signal",
+      "local-ddr",
+      "reset-domains",
+      "constraints-and-review"
+    ],
+    "bytes": 7869,
+    "sha256": "bd0acc2de299e403225891328959bb7c7ecd34cd2a62e797514266f7fd66673a"
+  },
+  {
+    "slug": "physical-interfaces",
+    "ids": [
+      "ack-path",
+      "pad-package-board",
+      "open-drain",
+      "pinmux",
+      "lvds-boundary"
+    ],
+    "bytes": 6606,
+    "sha256": "d218f9f70e19cd3edfacd58f4e5f5f5f33ef18b465381678b48e4748835fd326"
+  },
+  {
+    "slug": "timing-physical",
+    "ids": [
+      "real-path",
+      "setup-hold",
+      "constraints",
+      "physical-feedback",
+      "evidence"
+    ],
+    "bytes": 6632,
+    "sha256": "4339be2d699f0c711bbc9a41e4490e9c845bc71285b3530cad504972fca75cb0"
+  },
+  {
+    "slug": "manufacturing-test",
+    "ids": [
+      "why-test",
+      "scan-process",
+      "memory-test",
+      "local-scope",
+      "test-handoff"
+    ],
+    "bytes": 6975,
+    "sha256": "2dd87d5c0846dd00c9a77b4ec6151100d5cf05d60b121c12379c2e83e8cfa0ab"
+  },
+  {
+    "slug": "silicon-bringup",
+    "ids": [
+      "observable-first",
+      "staged-run",
+      "normal-observability",
+      "measure-next",
+      "records"
+    ],
+    "bytes": 6882,
+    "sha256": "6c86b1722aa2829c0b55b8792ea36adeaa1603b6fe5de0855caf42cd7429b8c3"
+  }
+]

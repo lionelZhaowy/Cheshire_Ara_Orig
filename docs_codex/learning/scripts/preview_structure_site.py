@@ -93,8 +93,8 @@ try:
     assert cdp.js('(()=>{const a=document.querySelector(".toc ol ol a");a.click();return location.hash===a.hash})()')
     assert cdp.js('(()=>{const e=document.getElementById(decodeURIComponent(location.hash.slice(1)));const y=e.getBoundingClientRect().top;return y>=0&&y<innerHeight})()')
     if not mobile:cdp.shot('preview-ara-section.png')
-   if not mobile and slug in ('index','ddr','vector','interconnect','clocks','power','boot','cva6'):cdp.shot('preview-'+slug+'.png')
-   if mobile and slug in ('index','vector'):cdp.shot('preview-mobile-'+slug+'.png')
+   if not mobile and slug in ('index','ddr','vector','interconnect','clocks','power','boot','cva6','uart-gpio','interrupts','i2c','spi','dma','stream-io','peripheral-debug','vector-debug','runtime','traps','rtos','virtual-memory','linux','os-devices','asic-memory','cdc-rdc','physical-interfaces','timing-physical','manufacturing-test','silicon-bringup','measurement','software-debug','system-debug'):cdp.shot('preview-'+slug+'.png')
+   if mobile and slug in ('index','vector','ara','i2c','spi','peripheral-debug','vector-debug','runtime','traps','rtos','virtual-memory','linux','os-devices','asic-memory','cdc-rdc','physical-interfaces','timing-physical','manufacturing-test','silicon-bringup','measurement','software-debug','system-debug'):cdp.shot('preview-mobile-'+slug+'.png')
    if not mobile and slug=='interconnect':
     assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-fit]").click();return f.querySelector("img").clientWidth<=f.clientWidth})()')
     assert cdp.js('(()=>{const f=document.querySelector("figure");f.querySelector("[data-figure-full]").click();return f.querySelector("img").clientWidth>=f.querySelector("img").naturalWidth})()')
@@ -118,7 +118,7 @@ try:
    assert cdp.js('(()=>{const e=document.getElementById('+json.dumps(anchor)+');e.scrollIntoView();return !!e&&document.documentElement.scrollWidth<=innerWidth+1})()')
    cdp.shot('teaching-'+str(width)+'-'+slug+'-'+anchor+'.png')
    report.append(f'PASS teaching section at {width}: {slug}#{anchor}; target visible, no page overflow')
- # The comparison gallery is a standalone artifact, outside the 34-page course.
+ # The comparison gallery is a standalone artifact, outside the generated course.
  for width,height,mobile in [(1440,1100,False),(390,844,True)]:
   cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
   go('figures/20261007/index.html')
@@ -136,7 +136,8 @@ try:
   cdp.shot('course-crossbar-'+str(width)+'.png')
   report.append(f'PASS gallery {width}: 43 comparisons / 86 loaded SVGs / local links / no page overflow; course Crossbar preview')
  cdp.call('Emulation.setScriptExecutionDisabled',{'value':True})
- for slug in ['index','ara','vector','ddr','sharing','boot-debug','registers']:
+ no_script_pages=['index','ara','vector','ddr','sharing','boot-debug','registers','traps','rtos','linux','asic-memory','measurement']
+ for slug in no_script_pages:
   go(slug+'.html');r=inspect();assert r['images'] and not r['overflow'],(slug,r)
   assert cdp.js('document.querySelector(".site-menu").open')
   assert cdp.js('document.querySelector(".toc").querySelectorAll("a").length')>0
@@ -173,7 +174,7 @@ try:
  report.append('PASS tested HTML hashes unchanged: '+str(len(META['tested_html'])))
  report.append('PASS existing evidence and content/script/asset hashes unchanged during browser check')
  (OUT/'browser.txt').write_text(META['started_at']+'; '+subprocess.check_output(['google-chrome','--version'],text=True).strip()+'; file:// offline\n'+'\n'.join(report)+'\n')
- print(f'PASS {len(PAGES)} pages at desktop/mobile, 7 no-script pages, {len(moved)} cross-page bookmark redirects, interactions and edited SVGs')
+ print(f'PASS {len(PAGES)} pages at desktop/mobile, {len(no_script_pages)} no-script pages, {len(moved)} cross-page bookmark redirects, interactions and edited SVGs')
 except BaseException as error:
  (OUT/'browser.txt').write_text(META['started_at']+'\n'+'\n'.join(report)+'\nFAIL: '+str(error)+'\n')
  raise

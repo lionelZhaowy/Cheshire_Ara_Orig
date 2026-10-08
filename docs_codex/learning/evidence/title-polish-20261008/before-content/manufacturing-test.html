@@ -1,0 +1,20 @@
+<div class="goals"><strong>本章任务</strong><p>用一段 VRF 控制逻辑和一个 SRAM bank，区分功能回归、逻辑扫描与存储制造测试，并解释测试结束后怎样交还系统。前置：<a href="asic-memory.html">SRAM 接口</a>、<a href="clocks.html">时钟</a>和<a href="reset.html">复位</a>。</p></div>
+<h2 id="why-test">功能回归与制造缺陷检测的职责</h2>
+<p>数组程序算对，说明在给定输入和执行条件下，功能路径得到正确结果。制造测试面对另一件事：晶圆和封装过程产生的缺陷，可能落在程序很少到达的状态或数据位上。设计可测试性（DFT）为内部节点提供可控输入和可观察输出，让专门图样检测选定的故障模型；它与 RTL 功能验证互相补充。</p>
+<p>以 VRF 为例，地址仲裁、有效位和队列选择属于逻辑状态，64×64-bit bank 属于密集存储阵列。把两者都称作“运行 BIST”会隐藏不同的接管方式、算法、时钟和结果含义。先分别走完一次逻辑测试和存储测试，再组合成芯片测试流程。</p>
+<h2 id="scan-process">逻辑扫描的移位、捕获与响应观察</h2>
+<p>扫描设计把被选触发器连接成可移位的链。在 shift 阶段，用测试时钟把已知状态移入；在 capture 阶段，用规定的功能/测试捕获脉冲让组合逻辑计算并被寄存器采样；再移出响应并与期望图样比较。ATPG（自动测试图样生成）根据网表、故障模型和测试约束产生图样，覆盖率说明的是该模型下可检测故障的范围，不是软件功能覆盖率。</p>
+<p>若地址选择寄存器进入 scan，测试者可以建立正常程序难以快速到达的输入组合，再观察仲裁后的状态。但测试期间时钟门控必须允许测试脉冲到达，复位不能随意把刚移入的值清掉，未知 SRAM 输出不能污染全部可观察结果。多时钟链如何串接、捕获速率和功耗限制如何满足，都依实际工具与库制定，不能从端口名推断。</p>
+<h2 id="memory-test">SRAM bank 的 MBIST 流程示例</h2>
+<p>存储内建自测（MBIST）由测试控制器在约定模式下接管 SRAM 的地址、读写和数据口。例如教学序列先向所有地址写 0，再按顺序读出比较并写 1，最后读 1 比较；地址顺序和读写组合让某些单元、译码和相互影响的缺陷可被观察。这个例子仅说明遍历和比较，不是一份满足目标故障覆盖的量产算法。</p>
+<p>正常交接应从功能端停止访问并排空开始，然后切换存储控制权，按真实宏延迟比较每次读结果。失败信息可以包含 bank、地址或压缩签名，具体能力取决于测试方案。若宏带冗余行/列，修复分析、配置存储及修复后重测属于另一组步骤；存在备用资源不等于已经完成修复流程。</p>
+<p>这类测试通常会改写被测内容。因此启动时做完测试后，软件仍要按使用模型初始化向量数据；若在运行中测试，必须事先转移数据或采用经验证的保留方案。测试退出后恢复功能模式、规定的复位/初始化和所有权，再允许新请求；不能让 CPU 继续使用被测试图样覆盖的栈或帧缓冲。</p>
+<h2 id="local-scope">当前扫描与存储自测接口的实现边界</h2>
+<table><tr><th>本地对象</th><th>源码确认的边界</th><th>尚不能推出什么</th></tr><tr><td>SoC 的 Ara scan_enable_i、scan_data_i、scan_data_o</td><td>当前实例输入绑 0，输出未使用；Ara 内部 lane 的 scan data 也没有组成此处可验证的全片链</td><td>不能据端口存在认定 scan 插入、链路接通或 ATPG 完成</td></tr><tr><td>VRF bank 时钟门控</td><td>vector_regfile 中 tc_clk_gating 的 test_en_i 绑 0</td><td>未来测试模式如何打开时钟尚需实际 DFT 策略；本轮不改绑值</td></tr><tr><td>LLC 上电 BIST</td><td>随附文档定义 tag-store 的 March X 自测/初始化，完成后再配置缓存/SPM</td><td>它不覆盖 CPU cache、VRF 或所有 LLC 数据存储，不等于整芯片 MBIST</td></tr><tr><td>test_mode_i、JTAG</td><td>部分逻辑已有测试输入或调试访问</td><td>调试 DTM/TAP 不自动就是量产测试访问架构；测试模式、指令和 PAD 需要单独集成</td></tr></table>
+<p>这些是待接入测试流程的真实边界，不在教材任务中修复或宣布完成。软件启动必须遵守已有 LLC BIST 完成语义，见<a href="memory.html">LLC/SPM</a>；新增制造测试如何覆盖数据阵列，交 P01/DFT 负责人。</p>
+<h2 id="test-handoff">制造测试的网表、图样与 ATE 交付</h2>
+<p>先确定测试目标、故障模型、测试时钟/复位与 PAD 访问，再形成插入后的网表和链/存储清单。工具检查可控性、链规则与未测对象，生成并验证测试图样，物理实现还要保证测试模式的时序、布线和功耗。最后交付给 ATE（自动测试设备）的向量、时序、电气条件和期望结果要匹配实际封装及硅版本。</p>
+<p>一次“通过”报告应写明被测对象、模式、图样、故障集合和排除原因；不能只填写覆盖率数字。测试结构插入还需功能模式等价/回归，使不测试时仍保持原 SoC 行为。供应商宏的测试与修复说明、库单元、DFT 工具和目标测试平台均未确定，本轮只完成机制教学及接口缺口。</p>
+<p class="source">本地依据：<a href="../../hw/cheshire_soc.sv">Ara 扫描端口绑值</a>、<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">Ara lane 扫描连接</a>、<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vector_regfile.sv">VRF 门控</a>、<a href="../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/doc/axi_llc.md">LLC BIST Initialization Sequence</a>。制造测试流程参考 <a href="https://training.plm.automation.siemens.com/ilt/iltdescription.cfm?pID=276866-US_____EDA__2024.1_1199">Siemens Tessent 2024.1 方法课程的 scan/ATPG/ATE 范围</a>及<a href="https://www.siemens.com/en-gb/products/ic/tessent/test/memorybist/">官方 MemoryBIST 测试与修复说明</a>（2026-10-08 查阅），只用于概念边界，不代表选择该工具或 IP。</p>
+<details class="quiz"><summary>LLC BIST 通过后，为什么仍不能删掉所有 SRAM 制造测试？</summary><p>已有 BIST 针对 tag-store，覆盖对象与算法有范围；其他阵列、故障模型、测试频率及访问路径仍需明确。覆盖一个对象的结果不能扩展到整个芯片。</p></details>
+<details class="quiz"><summary>运行中用 MBIST 检查 SPM，CPU 的栈仍留在其中是否合理？</summary><p>通常不成立。测试可能改写阵列，先要停止访问并转移所需数据或使用已验证的非破坏方案；结束后重新建立有效状态。这里没有实现这样的运行时方案。</p></details>

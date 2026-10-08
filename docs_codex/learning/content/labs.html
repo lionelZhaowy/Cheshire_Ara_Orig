@@ -16,7 +16,7 @@ sha256sum "$LEARN_OUT/journey.spm.elf"</code></pre>
 <p><strong>失败首查：</strong>缺工具查前缀；undefined reference 查对象及库；找不到符号查 stage、优化和实际输出路径；布局异常查链接脚本。此次结果属于主机软件构建，未执行 CPU。</p>
 <h2 id="lab-b">实验 B · 装载执行与错误传播</h2>
 <p><strong>目的与前置：</strong>承接实验 A，按启动、调试与仿真章节完成自洽清单导出、RTL 编译及展开。使用 A 的正常 ELF。先在<a href="simulation.html#prepare">准备节</a>设置 LEARN_SIM/LEARN_REPO/LEARN_ELF，再按所选工具的精确<a href="simulation.html#questa">Questa 命令</a>或<a href="simulation.html#vcs">VCS 命令</a>运行；产物为 compile、elaborate（VCS）、simulate 日志。</p>
-<pre><code># RTL 已按第 17 章编译；这里给出完整的 Questa 运行动作
+<pre><code># RTL 已按仿真章编译；这里给出完整的 Questa 运行动作
 LEARN_ELF="$LEARN_OUT/journey.spm.elf"
 (
   cd "$LEARN_SIM/vsim" || exit 1
@@ -58,7 +58,7 @@ riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
 python3 docs_codex/learning/scripts/check_run.py "$LEARN_SIM/vsim/rvv.log" --stage rvv</code></pre>
 <p><strong>产物与判据：</strong>ELF/dump/对象属性确认 RVV；目标 PC/退休和 Ara 握手确认实际走到 learn_vadd；日志 RVV checked=137、sum=28085/errors=0、守卫未改变、正常退出确认结果。设置 INJECT_ERROR=1 在新的输出目录构建可复用 B 的错误传播对照，不需要再设计一个独立小实验。</p>
 <p><strong>失败首查：</strong>首条非法指令的 mepc → profile/decoder/VS → Ara 指令握手 → 向量地址和 R/B → 数据可见性。该例验证当前 SPM 小任务，不估算 DDR 大模型吞吐。向量阶段拒绝 dram 构建，因为预约缓冲与启动栈契约专用于 SPM。</p>
-<h3 id="rvv-depth">递进：尾部、归约与三种编程入口</h3>
+<h3 id="rvv-depth">RVV 尾部、归约与三种编程入口</h3>
 <p>继续使用 journey.c 和同一预约 SPM 区，不增加孤立硬件测试。JOURNEY_DEPTH=1 先检查原 137 项与归约 28085，再测试长度 0、1、63、64、65、137；输入包含不同斜率和 uint32 环绕值，参考结果由标量公式独立计算，逐项验证输出、输入保持、归约与尾后守卫。长度 63/64/65 对当前 e32,m1 的边界有意义，但算法按返回 vl 推进。</p>
 <pre><code># 每次自动创建新的 evidence 输出目录；先记下 Output 行。
 JOURNEY_DEPTH=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv spm
@@ -78,3 +78,10 @@ JOURNEY_DEPTH=1 INJECT_ERROR=1 timeout 60 bash docs_codex/learning/scripts/build
 <h2 id="selection">旧实验的取舍与证据分类</h2>
 <p>原环境检查并入共同前提，Hello 与数组构建、ELF 观察合并为 A；数组正常/注错与仿真合为 B；scratch 回读和 timer 轮询改为正文机制说明，GPIO 与 timer 中断合为 C；EEPROM/NOR 合为 D；RVV 与同一数组闭环合为 E；硬件模型零散练习改为正文推导，保留独立 SV 单元为 F。DMA/capstone 保留源码和阻塞说明，退出当前运行路线；Link 加载对照、VGA/USB/SD 环境不齐的项目改为明确的后续验收条件。</p>
 <p>源码阅读说明连接与语义，主机构建说明产物形成，独立单元说明局部 RTL 行为，完整 SoC 仿真才覆盖加载执行及设备协同。六项实验各自记录证据层次，不以其中一个层次的 PASS 替代另一个。</p>
+<h2 id="system-exercises">OS、ASIC 与测量的机制推演</h2>
+<p>以下是新增正文配套的纸面/源码阅读练习，当前即可完成，不需要修改生产工程。它们不是新增目标运行通过记录，也不把本地尚未确认的OS镜像或工艺适配写成可执行实验。</p>
+<ol><li><strong>两个任务的连续运行：</strong>读<a href="traps.html">trap</a>与<a href="rtos.html">RTOS</a>后，画出A运行→等待设备→B运行→中断使A就绪→调度恢复A。标每个任务的栈、保存的PC/寄存器和就绪/阻塞状态，说明一次普通函数调用与抢占保存范围为何不同。答案须能对应正常上下文交接，不能只写“调度器自动处理”。</li>
+<li><strong>Linux的一次启动和设备操作：</strong>读<a href="linux.html">系统启动</a>与<a href="os-devices.html">设备使用</a>，从镜像/固件输入画到用户程序输出；列出谁提供内存、控制台、定时器和设备描述。对同一buffer分别标用户虚拟地址、内核访问和设备DMA地址，说明实际port/BSP仍缺什么输入。不能用裸机物理指针替代用户程序接口。</li>
+<li><strong>宏接口与消费者：</strong>读<a href="asic-memory.html">VRF到SRAM</a>和<a href="timing-physical.html">时序路径</a>，按所给真实实例算容量，画出请求、读数据与目标队列的对应。假设宏延迟改变，指出要保持哪些关系和需什么模型，禁止把假设宏直接写进生产RTL。</li>
+<li><strong>一份可比较的测量计划：</strong>按<a href="measurement.html#record">记录模板</a>给137项数组定义正确性基准、内核和端到端窗口、输入/缓存/中断条件、重复次数与原始样本保存方式。现在只交方法，待目标正确性验收后填数据。</li></ol>
+<p>每题保存自己的状态图/推演和对应源码版本。实际OS实验需要匹配的固件/内核/根文件系统、平台描述和运行环境；宏/CDC/时序实验需要模型及工具；向量计时需要完成条件与数据正确性证据。获得相应工程授权后才执行，不由本章的阅读练习顺带启动。</p>

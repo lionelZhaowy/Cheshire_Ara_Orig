@@ -1,0 +1,44 @@
+<div class="goals"><strong>本章任务</strong><p>追踪译码、仲裁、W 路由、ID 与响应。 前置：<a href="axi.html">08 · AXI 通道、突发与握手</a>。</p></div>
+<h2 id="decode">两级地址译码</h2>
+<p>Crossbar 是多发起者到多目标的交叉互连。各输入先根据 AW/AR 地址选择目标，目标端再仲裁不同输入。CPU 访问 UART、DMA 访问主存可以走不同目标；二者访问主存时需要竞争目标资源。返回方向根据保存的归属和 ID 回到发起者。</p>
+<p>当前第一层把 <code>[0x02000000,0x0c000000)</code> 路由到寄存器桥。桥转换协议和位宽后，第二层再次译码，选出 UART 的 <code>[0x03002000,0x03003000)</code> 等窗口。区间含起点、不含终点。关闭 UART 后，该地址仍可到第一层桥，随后在第二层进入错误目标。</p>
+<p>本地译码对重叠规则采用高下标优先，新增窗口应消除意外重叠。第一层不匹配通过 AXI 错误目标返回 DECERR；Reg 层不匹配经 <code>i_reg_err_slv</code> 返回 error 和错误数据 0xBADCAB1E。错误也需要完整应答：写事务仍要接受规定的数据，读 burst 仍需完成相应返回拍。</p>
+<h2 id="crossbar">Crossbar 内部保存的事务状态</h2>
+<h3 id="configuration-versus-registers">结构配置与运行时控制的区别</h3>
+<p>当前 Crossbar 的端口数、ID 宽、连接矩阵和地址规则来自常量配置；<code>i_axi_xbar.addr_map_i</code> 接的是 <code>AxiMap</code>。它没有一套供 C 程序重新规划路由的 MMIO 配置寄存器。通用 AXI IP 把地址表做成输入，允许满足特定空闲条件的外部更新；当前 Cheshire 的连接选择了静态表。阅读 IP 文档时，要继续检查上层究竟把输入接到了常量还是寄存器。</p>
+<p>与此不同，AXI RT 的带宽预算/时间窗口、UNBENT 的错误记录、LLC 的 SPM way 选择有运行时寄存器。它们分别影响流量放行、错误观测和存储用途，并不更改主 Crossbar 的目标窗口。软件配置表应当只列真正可写的控制项，把其余选项放入硬件配置表。</p>
+<h3 id="address-rule-worked-example">外部设备与地址规则的展开</h3>
+<p>设一个未来平台需要两个 AXI 发起者 NPU、ISP 和一个 NPU 控制口。<code>AxiExtNumMst=2</code> 增加接收这两个设备请求的端口，但不为设备分配“内存地址”；发起者使用系统已有目标地址。控制口才是可寻址目标，需要 <code>RegExtNumSlv</code>、规则数和窗口/目标索引。<code>gen_axi_out</code> 将外部 Reg 窗口先指向公共寄存器桥，<code>gen_reg_out</code> 再将其指向对应外部 Reg 口。</p>
+<p>端口数与地址规则数由此可以不同：同一目标可以有多个窗口；同一发起者可以访问多个目标。按当前单核默认配置，加入 Ara 后为 7 个内部来源，再加两个外部来源成为 9 个，Crossbar 需要 4 位来源前缀。系统输入 ID 为 2 位时，Crossbar 目标侧 ID 是 6 位。后续原子适配/LLC 还可能改变 ID 宽度，芯片 wrapper 应使用 typedef 宏计算类型，不能把这 6 位直接套给所有接口。</p>
+<p class="source">源码静态确认：<a href="../../hw/cheshire_soc.sv">AxiMap、i_axi_xbar、gen_ext_axi_mst、gen_ext_reg_slv</a>；<a href="../../hw/cheshire_pkg.sv">gen_axi_in、gen_axi_out、gen_reg_out</a>。IP 能力与顺序条件见本地<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">axi_xbar 设计说明</a>；新增 NPU/ISP 为未来方案。</p>
+<h3 id="transaction-storage">路由信息与在途事务</h3>
+<p><code>axi_xbar_unmuxed</code> 为输入配置译码和 demux（分流器），<code>axi_xbar</code> 在每个目标配置 mux（汇聚仲裁器）。mux 给请求 ID 添加来源编号。例如原 ID 两位、两个来源时，来源 0 的 ID=01 变为 001，来源 1 的同号 ID 变为 101；响应按前缀分送，再恢复原 ID。</p>
+<h3 id="write-route">W 来源与目标的保存</h3>
+<p>AXI4 的 W 没有 WID，所以 mux 需要预留写地址仲裁所选来源，demux 需要记住目标。若 CPU 的 AW 已选中，后续这个 burst 的 W 都应来自 CPU。W 来源 FIFO 直到 mux 内部 WLAST 真正握手才推进，写响应跟踪继续等待 B。W 可以早于 AW 提出，本地互连会在路由条件未建立时对其背压。</p>
+<h3 id="ordering">同 ID 顺序与跨目标限制</h3>
+<p>同一个输入的同方向、同 ID 请求还要保持顺序。假设先访问慢目标 A，再访问快目标 B，直接全放行可能使 B 先返回。本地 demux 用“ID 对应目标 + 在途计数”限制跨目标切换。减少用于跟踪的 ID 位会增加别名冲突；<code>UniqueIds</code> 是对发起行为的约束，本 SoC 配为 0。带 ATOP 的写请求还可能产生读返回，跟踪时需考虑这种跨通道关系。</p>
+<h3 id="two-by-two">两发起端、两目标的事务推演</h3>
+<p>教学模型使用输入 I0（CPU）和 I1（DMA），目标 T0（较慢存储）和 T1（较快寄存器）。假定两位原始 ID、普通 AXI4、没有 ATOP，地址窗分别为 [0x1000,0x2000) 与 [0x2000,0x3000)。这些地址和延迟仅服务例子，不是 Cheshire 生产地址图。为突出内部状态，以下事件在 mux/demux 本地接口观察，端口 cut 会使外部握手晚于内部事件。</p>
+<figure><img src="assets/figures-20261007/mechanism-xbar.svg" alt="I0 I1 各经过译码与 demux，到 T0 T1 各自的 mux，W 状态与 ID 返回路径分别标注"><figcaption>本地模块结构的 2×2 教学缩图；箭头表示连接，不表示固定周期或仿真波形。</figcaption></figure>
+<ol><li><strong>译码：</strong>I0 发 AW(addr=0x1100,id=01,len=1)，I1 发 AW(addr=0x1180,id=01,len=0)，两者都选 T0。输入 demux 各自检查目标和 ID 占用，再把请求送到 T0 mux；T1 的仲裁器仍可独立处理别的可放行请求。</li>
+<li><strong>仲裁与预留：</strong>T0 的 i_aw_arbiter 为轮转仲裁，假设这次选中 I0，不把该次胜者当成固定优先级。i_w_fifo 在有空间且产生有效仲裁决定时记录 I0 来源；即使 AW 尚未握手也可能已经入队。lock_aw_valid_q 与仲裁 LockIn 保持这一决定，后续背压周期不重复 push。输入 demux 同样以 w_cnt_up 预留目标/计数。地址握手表示相应接口接收了 AW，不等于刚刚才建立所有内部状态。</li>
+<li><strong>W 归属：</strong>I0 的两拍数据只能沿已选 T0 路由。T0 mux 用 w_fifo_data 选择输入；I1 的 W 即使先到也等待自己的 FIFO 位置。WREADY 为低时保留当前拍及 WLAST；在 mux 内 WLAST 与 VALID/READY 同时成立才 pop I0 来源。若启用 W spill，pop 表示末拍进入该缓冲，未必同周期到达外部存储。</li>
+<li><strong>W 结束与 B 未结束：</strong>demux 的 w_open 递减；该输入尚有 W 未结束时不能切去另一个写目标。I0 的最后 W 结束后可解除这层阻塞，但 AW 的 ID 计数仍等 B 握手才释放。I1 随后按仲裁/FIFO 顺序完成自己的写，两个事务都不能只凭 WLAST 就向软件报告写成功。</li>
+<li><strong>响应归还：</strong>T0 看见 I0/id01 编为 001，I1/id01 编为 101。B 的来源前缀选择对应输入，去掉前缀恢复原 id01；目标响应、mux、demux 和端口 cut 的握手逐级推进。I0 的 BREADY 低时，该 B 及负载必须保留，不能误交 I1。</li></ol>
+<h3 id="slow-fast">同 ID 先慢后快与读返回</h3>
+<p>再看 I0 连续提出 AR(T0,id=10)，随后 AR(T1,id=10)。第一次被接受后，i_ar_id_counter 保存 id10→T0 和在途数；T0 最后一拍 R 未在 demux 输出完成握手前，第二次跨目标请求被阻止，因此 T1 的低延迟不能使同 ID 越序。若仍访问 T0，可在容量允许时继续发出，由目标保持该 ID 的顺序；换成另一个未占用 ID 可以并行，但仍受队列容量和仲裁约束。</p>
+<p>R 的来源前缀经目标 mux 返回 I0，再由输入 demux 在多个目标返回中仲裁。RLAST 仅在 RVALID/RREADY 握手时结束该读；B 使用独立的写计数。同 ID 只指同一发起端的同方向顺序，I1 的 id10 与 I0 的 id10 在加来源前缀后是不同事务流。</p>
+<table><tr><th>状态职责</th><th>本地符号</th><th>释放或保持条件</th></tr>
+<tr><td>地址选择</td><td>axi_xbar_unmuxed::i_axi_aw_decode / i_axi_ar_decode / i_axi_demux</td><td>AW/AR 的选择随有效地址保持，未映射走错误目标</td></tr>
+<tr><td>目标仲裁及 W 来源</td><td>axi_mux::i_aw_arbiter、lock_aw_valid_q、i_w_fifo、w_fifo_data</td><td>决定预留，锁定避免重复 push；内部最后 W 握手 pop</td></tr>
+<tr><td>输入 W 目标</td><td>axi_demux_simple::w_select_q、w_open、i_counter_open_w</td><td>w_cnt_up 预留，最后 W 握手减少；未清空时限制跨写目标</td></tr>
+<tr><td>同 ID 与响应</td><td>i_aw_id_counter / i_ar_id_counter；axi_demux_id_counters::mst_select_q、in_flight；mux::switch_b_id / switch_r_id</td><td>B 握手或最后 R 握手归还计数；ID 前缀负责来源路由</td></tr></table>
+<p>以上按本地 axi-ecdc900686449c15 实现推演；ATOP、ID 查找位减少和流水切分另有约束。修改后应在这些观察点记录真实握手与队列状态，再与本例因果关系对照。</p>
+<h3 id="cuts">流水切分与在途容量</h3>
+<p>当前 Crossbar 使用 CUT_ALL_PORTS、FallThrough=0、PipelineStages=0，MaxMstTrans/MaxSlvTrans 均为 24。cut 保存协议拍和有效状态，以分割组合路径；这些深度分别控制不同资源。IP 暴露内部 PipelineStages 参数，同时本地设计说明记录了内部切分的写通道死锁风险；调整时应检查依赖关系并运行长背压场景。</p>
+<figure><img src="assets/figures-20261007/depth-xbar-full.svg" alt="所有主动设备进入 AXI Crossbar 后分往 Debug、DMA、Link、Reg 和 LLC 路径"><figcaption>当前实现的层次图；每个适配器的在途容量是独立约束。</figcaption></figure>
+<h2 id="validation">由修改影响设计验证</h2>
+<p>新增发起端时，用两个发起者的相同 ID 同时访问，检查返回归属；修改路由时，检查窗口首尾和未映射地址；修改位宽时，覆盖 +0/+4、部分 WSTRB、长 burst 和错误响应；修改流水或 CDC 时，错开 AW/W 并持续背压 R/B，停止激励后检查排空。同 ID 先慢后快目标能检验顺序限制。</p>
+<p>排查时沿一笔事务记录输入握手、译码目标、下游握手、返回握手四个位置。VALID 长等可能来自目标未就绪、队列已满或 ID 冲突，应指出具体等待资源。独立教学 Reg 单元将在<a href="integration.html">第 27 章</a>验证副作用契约；生产 Crossbar 的动态回归仍需专门执行。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Crossbar 与 Reg 桥</a>；<a href="../../hw/cheshire_pkg.sv">两级地址规则</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv">译码与分流</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv">来源 ID 与 W FIFO</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv">ID 跟踪</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">顺序及切分说明</a></p></div>
+<details class="quiz"><summary>WLAST 被接收后，可以立刻复位存储目标吗？</summary><p>还可能有 B 响应、其他读写和跨域队列未完成。复位放行应基于全路径排空或已定义的错误恢复协议。</p></details>

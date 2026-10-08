@@ -1,0 +1,24 @@
+<div class="goals"><strong>本页用途</strong><p>这是 RTOS/Linux 教学的证据与适用性入口。先按<a href="rtos.html">调度</a>、<a href="linux.html">启动</a>、<a href="os-devices.html">设备正常使用</a>理解过程，再到这里检查本工程尚缺哪一层。以下是源码差异和待验证条件，没有把未发生的运行故障写成已观测现象。</p></div>
+<h2 id="locate-stage">先定位停在哪个交接边界</h2>
+<p>已有裸机问题先回到<a href="software-debug.html">软件构建与启动诊断</a>、<a href="peripheral-debug.html">外设诊断</a>或<a href="vector-debug.html">Ara 诊断</a>。OS 场景再增加三个边界：所用固件/DTB/内核是否属于同一输入组合；内核是否已经进入用户空间；用户请求是否已到达对应驱动。先保存版本、最后一项实际观察和相关参数，再检查下一阶段的输入，不由“没有输出”直接推断 CPU 或 Ara 出错。</p>
+<p>固件日志、内核日志、shell、应用校验各自证明走到了对应位置。JTAG 暂停 CVA6 也不保证外部设备、timer 或 Ara 同时停止；调试动作改变时间关系，不能把断点期间的时间差当成正常调度延迟。软件/硬件观察方法分别回到<a href="boot-debug.html">调试</a>和<a href="measurement.html#observation">观测能力</a>。</p>
+<h2 id="boot-inputs">启动输入及镜像溯源尚未闭合</h2>
+<p><strong>证据：</strong>本地 sw.mk 包含 Linux GPT 规则；Ara SDK 的普通 RV64 配置请求 v5.10.7，V 配置请求 v6.5，展开内核树的 Makefile 声明 6.5.0；OpenSBI 版本头声明 0.9。根 install64 存在部分镜像。本轮没有执行 SDK 构建、镜像哈希来源匹配或目标启动。</p>
+<p><strong>影响：</strong>文件存在可以支持阅读打包关系，不能支持“当前固件+DTB+内核+bitstream 组合已经可启动”。真实环境应由 S01 提供镜像生成记录、DTB 内容、入口/装载区/保留区和启动参数，再由 V01 记录各阶段实际输出。不要为补齐材料直接运行会覆盖 install64 或介质的旧脚本。</p>
+<p>若启用 Platform ROM，还受 S01-B01 的现有返回路径门槛约束；该问题并未因 OS 教材完成而修复。它与默认关闭该钩子的路径分开判断，详细见<a href="boot.html#platform-rom">Platform ROM 适用条件</a>及<a href="../handoffs/2026-10-06_L01_platform_rom_boot_review.md">原证据</a>。</p>
+<h2 id="description">设备树描述与当前硬件需要逐项对齐</h2>
+<p><strong>已确认的文件差异：</strong>cheshire.dtsi 的 ISA 字符串未含 V；CPU/UART 频率与时间基准写有示例常量；RAM 节点声明 1 GiB；UART 节点设置 reg-io-width=4，而裸机 DIF 使用 reg8。最后一项并不直接证明任一侧实现错误，但注释“only 32-bit access”不能代替硬件事实。</p>
+<p><strong>定位方法：</strong>以实际运行的 DTB 为对象，按所用内核的 binding 解释 compatible、地址、IRQ、reg-shift 和 reg-io-width；再对照当前 SoC/profile、UART 适配器、板级时钟与可用 RAM。要验证“Linux 串口可用”，需说明选中了哪个驱动、它使用何种宽度及端口配置，并比对实际字节结果。仅查看 DTS 源文件不能证明最终 DTB 一致，更不能证明所有板型共用同一数值。</p>
+<p>另一个需分层记录的源码注记是 uart_write_flush 中关于读写顺序的 TODO：本轮确认该注记仍在，但没有证明某次 UART 事务确实违反顺序。它影响能否把 flush 宣称为已经动态验收的完成屏障；后续需结合 CPU 顺序、实际寄存器读取及线路完成观察核查，不能由一个注记直接宣布 RTL 缺陷已复现。</p>
+<p><strong>状态：</strong>本轮只记录并讲解，未修改 DTS、地址图、内核配置或 UART 驱动。S01 与 E01/M01 提供最终平台描述，V01 验证。读者在这些条件满足前只能把 Linux UART 例看作条件例；裸机现有 UART 教学的事实不因此被删除。</p>
+<h2 id="vector-context">向量上下文代码存在，当前组合安全抢占仍待验证</h2>
+<p><strong>源码事实：</strong>官方 FreeRTOS V11.1.0 通用 RISC-V port 默认保存基本整数上下文，额外状态留给 chip-specific 宏，本轮没有确认本项目对应的 FP/RVV RTOS port。本地 Linux v6.5 的 switch_to.h/vector.h/vector.c 则包含 FP/RVV 状态管理。两者能力边界不同，不能统一称为“都支持”或“都没有”。</p>
+<p>配置证据也应逐层保存：linux64_V_defconfig 含 CONFIG_RISCV_ISA_V=y，但用户态默认开启那一行写为 RISCV_ISA_V_DEFAULT_ENABLE=y，缺少 CONFIG_ 前缀；本地已有展开 .config 则含 CONFIG_RISCV_ISA_V_DEFAULT_ENABLE=y。因此可以确认这份 .config 的值，不能据此认定模板拼写正确，或确认某个旧镜像就是按该配置构建。这里仅记录输入溯源差异，不修改配置。</p>
+<p><strong>影响：</strong>裸机 crt0 开启 FS/VS、Linux 配置声明 V、存在保存函数，都不足以验收 CVA6–Ara 解耦执行下的完整交接。后续 S01/V01 需要追踪实际启用配置和代码路径，并测试两个不同向量状态的任务反复切换，校验 v0–v31、vl/vtype/vstart/vcsr、相关 FP 状态及输入输出结果，覆盖 timer/设备事件和访存条件。保存区及访问完成必须满足内存契约，不能用固定延迟或 CPU 应答作为唯一完成依据。</p>
+<p><strong>状态：</strong>未运行 OS/向量切换，未关闭 Ara 已有错误响应与运行验证缺口。诊断时保留任务标识、切换前后状态、指令位置和数据证据；硬件侧问题继续记录在<a href="vector-debug.html">Ara 专项诊断</a>，不在本页新增猜测的 RTL 修复方案。</p>
+<h2 id="dma-boundary">OS 不会自动补齐 DMA 一致性</h2>
+<p>用户 buffer 的正确映射、设备可寻址范围、CPU/LLC 缓存属性与所有权是不同条件。Linux DMA API 提供软件契约，仍依赖平台实现；本地 iDMA 控制宽度门槛也不会因内核驱动存在而消失。涉及本地 iDMA 的运行例继续受<a href="peripheral-debug.html#dma">原诊断</a>限制，未来 ISP/NPU 旁路 DDR 则交 M01/I01。不要在尚未满足这些条件时用真实帧写入试探未知地址。</p>
+<h2 id="evidence-levels">后续记录须写清证据级别</h2>
+<p>本页各项目前属于“本地源码确认”或“本轮文档检查”，不是目标实测。后续应依次记录构建输入与 ELF/镜像、实际启动阶段、用户程序结果、抢占与设备交接，最后独立记录性能条件；不得用后一级的计划覆盖前一级的缺口。没有某个运行环境不阻止完成正常机制教学，只限制哪些实验可以执行。</p>
+
+<details><summary>内核配置含V，为什么仍需检查任务切换？</summary><p>配置、实际镜像、执行路径及状态恢复是四层证据。先对齐输入，再在明确平台上用两个不同向量状态的任务校验切换前后数据和CSR；不能以配置项代替动态结果。</p></details>

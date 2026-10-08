@@ -1,0 +1,984 @@
+{
+  "task": "L01 formal title style / OS + Ara-RVV + shared memory",
+  "date": "2026-10-08",
+  "branch": "mp/ara-pulp-v2",
+  "head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "scope": "H1–H4 inner text and formal goals strong only; full heading inventory includes retained entries. Self-test summary and all other body bytes are unchanged.",
+  "baseline": "docs_codex/learning/evidence/title-style-20261008/before-content",
+  "guidance": [
+    "/home/zhaowenyao/.codex/attachments/9134fcad-53f4-41eb-947b-2d87011ff41d/已粘贴的文本.txt",
+    "docs_codex/handoffs/2026-09-23_L01_editorial_revision.md"
+  ],
+  "summary": {
+    "docs_codex/learning/content/rtos.html": {
+      "reviewed": 9,
+      "changed": 9,
+      "retained": 0
+    },
+    "docs_codex/learning/content/virtual-memory.html": {
+      "reviewed": 8,
+      "changed": 8,
+      "retained": 0
+    },
+    "docs_codex/learning/content/linux.html": {
+      "reviewed": 8,
+      "changed": 8,
+      "retained": 0
+    },
+    "docs_codex/learning/content/os-devices.html": {
+      "reviewed": 10,
+      "changed": 10,
+      "retained": 0
+    },
+    "docs_codex/learning/content/os-debug.html": {
+      "reviewed": 7,
+      "changed": 6,
+      "retained": 1
+    },
+    "docs_codex/learning/content/ara.html": {
+      "reviewed": 21,
+      "changed": 8,
+      "retained": 13
+    },
+    "docs_codex/learning/content/vector.html": {
+      "reviewed": 13,
+      "changed": 8,
+      "retained": 5
+    },
+    "docs_codex/learning/content/sharing.html": {
+      "reviewed": 11,
+      "changed": 2,
+      "retained": 9
+    },
+    "docs_codex/learning/content/vector-debug.html": {
+      "reviewed": 5,
+      "changed": 2,
+      "retained": 3
+    }
+  },
+  "entries": [
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "@goal",
+      "old": "让两个任务各自继续执行",
+      "new": "RTOS 任务调度与上下文管理",
+      "reason": "将教学动作概括为本章实际讨论的调度与上下文主题。",
+      "kind": "goal-strong",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "two-tasks",
+      "old": "为什么不把所有工作写进一个循环",
+      "new": "RTOS 任务划分与实时性要求",
+      "reason": "以任务划分和截止期要求概括循环例，不保留疑问句。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "state-and-stack",
+      "old": "暂停一个任务，要把什么留在原处",
+      "new": "任务上下文的组成与保存",
+      "reason": "明确暂停任务所需保存对象与机制。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "switch-walk",
+      "old": "沿 A→B→A 走一遍",
+      "new": "任务切换与上下文恢复流程",
+      "reason": "以 A→B→A 展示的切换和恢复流程命名，删除走读指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "tick-and-event",
+      "old": "时间到、主动让出与设备到达是三种触发",
+      "new": "时钟节拍、主动让出与设备事件",
+      "reason": "并列列出正文三类调度触发，不用口语描述。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "queue-example",
+      "old": "把 137 个元素交给计算任务",
+      "new": "基于消息队列的数组计算示例",
+      "reason": "明确示例的通信机制与计算对象。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "synchronization",
+      "old": "从一份共享计数理解同步",
+      "new": "共享数据同步与优先级反转",
+      "reason": "覆盖正文临界区、互斥和优先级继承相关内容。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "fp-vector-context",
+      "old": "整数切换成立后，再增加 FP 与 RVV 状态",
+      "new": "FP 与 RVV 上下文管理及支持范围",
+      "reason": "以扩展上下文及本地支持边界命名，删除学习次序指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "anchor": "local-boundary",
+      "old": "把教学闭环交给本平台",
+      "new": "本平台 RTOS 适配条件与验证边界",
+      "reason": "突出尚待适配和验证的条件，不将教学闭环写成本地完成状态。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "@goal",
+      "old": "解释同一个指针为何能指向不同的数据",
+      "new": "进程地址空间与地址翻译",
+      "reason": "以主题代替解释指令和疑问。",
+      "kind": "goal-strong",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "from-physical",
+      "old": "裸机数组先占用一块真实存储",
+      "new": "裸机数组的物理存储与访问条件",
+      "reason": "明确裸机数组作为地址空间教学起点的技术内容。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "protection",
+      "old": "PMA、PMP 与页权限各回答一类问题",
+      "new": "PMA、PMP 与页权限的职责",
+      "reason": "以各保护机制职责概括段落。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "translation-walk",
+      "old": "一次 4 KiB 页内访问如何落到 RAM",
+      "new": "Sv39 的 4 KiB 页地址翻译示例",
+      "reason": "保留 4 KiB 限定并明确正文使用的 Sv39 教学推演。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "two-spaces",
+      "old": "进程切换时，地址解释也要切换",
+      "new": "进程地址空间与页表切换",
+      "reason": "命名地址空间切换机制，去除依赖上下文的口语表达。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "normal-page-fault",
+      "old": "页异常也可能是正常的按需建立过程",
+      "new": "按需分页与页异常处理",
+      "reason": "明确正常按需建立映射的技术主题。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "device-addresses",
+      "old": "为什么一个用户 buffer 不能直接变成 DMA 地址",
+      "new": "用户虚拟地址与设备 DMA 地址",
+      "reason": "并列地址类型，保留正文映射契约而不在标题提问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "anchor": "address-exercise",
+      "old": "完成一次纸面推演，再设计目标验证",
+      "new": "地址空间切换的推演与验证条件",
+      "reason": "区分纸面推演和有前提的目标验证，不再指挥读者操作。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "@goal",
+      "old": "从平台固件走到第一个用户程序",
+      "new": "Linux 启动与用户程序运行",
+      "reason": "用章节技术主题代替行进式教学口吻。",
+      "kind": "goal-strong",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "why-linux",
+      "old": "数组程序需要的环境发生了什么变化",
+      "new": "裸机与 Linux 用户程序的运行环境",
+      "reason": "明确正文对比对象与内容。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "software-products",
+      "old": "先把主机生成的文件与目标运行的软件分开",
+      "new": "Linux 软件组成与构建产物",
+      "reason": "覆盖运行软件和主机产物分类，删除先后指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "firmware-to-kernel",
+      "old": "沿一条有本地依据的候选链交接",
+      "new": "本地固件与内核的候选启动链",
+      "reason": "保留候选限定；当前只有源码关联，不是已跑通启动链。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "kernel-to-init",
+      "old": "内核怎样走到第一个用户进程",
+      "new": "Linux 内核初始化与首个用户进程启动",
+      "reason": "以具体启动过程取代疑问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "dts-is-contract",
+      "old": "设备树把硬件事实交给软件",
+      "new": "设备树的硬件描述与适用条件",
+      "reason": "明确设备树内容及与当前硬件一致的条件。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "user-program",
+      "old": "让同一个数组算法成为用户程序",
+      "new": "Linux 用户态数组计算示例",
+      "reason": "用技术示例名称代替教学指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "anchor": "version-evidence",
+      "old": "本地版本能证明什么",
+      "new": "本地软件版本与验证边界",
+      "reason": "以版本和证据范围命名，删除提问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "@goal",
+      "old": "同样发出一行文本，软件责任怎样改变",
+      "new": "裸机、RTOS 与 Linux 的 UART 软件职责",
+      "reason": "明确跨运行环境的设备软件职责比较。",
+      "kind": "goal-strong",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "same-uart",
+      "old": "外部设备没有因为换 OS 而改变",
+      "new": "UART 连接、配置与资源所有权",
+      "reason": "概括本节接线、配置和所有权内容，删除口语对比。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "baremetal-uart",
+      "old": "裸机：应用自己承担等待",
+      "new": "裸机 UART 轮询发送流程",
+      "reason": "以软件行为和流程命名。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "rtos-uart",
+      "old": "RTOS：先由一个服务任务独占 UART",
+      "new": "RTOS UART 独占服务任务方案",
+      "reason": "保留方案性质，不将条件化 RTOS 教学写成本地实现。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "rtos-irq",
+      "old": "正常进阶：发送中断推进缓冲",
+      "new": "UART 发送中断与缓冲管理",
+      "reason": "保留正常进阶机制，删除教学层级前缀。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "linux-uart",
+      "old": "Linux：应用提交字节，内核管理设备",
+      "new": "Linux TTY 与串口驱动调用链",
+      "reason": "准确命名应用到串口驱动的数据路径。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "linux-lifecycle",
+      "old": "打开、配置、写入、排空、关闭",
+      "new": "Linux 串口操作流程与完成条件",
+      "reason": "为打开至关闭的一组动作补充对象和完成语义。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "driver-and-description",
+      "old": "设备描述如何让驱动找到控制器",
+      "new": "设备树与 UART 驱动绑定",
+      "reason": "以设备描述匹配机制代替疑问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "buffer-ownership",
+      "old": "大数据设备多了一层缓冲所有权",
+      "new": "设备缓冲区的地址与所有权管理",
+      "reason": "明确虚拟地址、DMA 地址及生命周期主题。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "anchor": "completion-check",
+      "old": "用五个完成点复述整条链",
+      "new": "UART 数据交接的分层完成条件",
+      "reason": "以正文五种完成语义命名，删除复述指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "@goal",
+      "old": "本页用途",
+      "new": "本页用途",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "goal-strong",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "locate-stage",
+      "old": "先定位停在哪个交接边界",
+      "new": "OS 启动与设备服务的分阶段定位",
+      "reason": "以诊断对象及方法命名，删除先后指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "boot-inputs",
+      "old": "启动输入及镜像溯源尚未闭合",
+      "new": "启动输入与镜像溯源的验证缺口",
+      "reason": "保留未验证状态，使用明确的缺口主题。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "description",
+      "old": "设备树描述与当前硬件需要逐项对齐",
+      "new": "设备树与硬件配置的一致性核对",
+      "reason": "以所需核对对象命名，不在标题部署任务。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "vector-context",
+      "old": "向量上下文代码存在，当前组合安全抢占仍待验证",
+      "new": "向量上下文实现与安全抢占验证缺口",
+      "reason": "同时保留代码存在与安全抢占尚未验证的边界。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "dma-boundary",
+      "old": "OS 不会自动补齐 DMA 一致性",
+      "new": "DMA 映射与平台一致性限制",
+      "reason": "以正常 API 契约和本地限制命名，删除拟人化表述。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "anchor": "evidence-levels",
+      "old": "后续记录须写清证据级别",
+      "new": "OS 验证记录的证据等级",
+      "reason": "明确证据主题，删除写作指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "@goal",
+      "old": "本章任务",
+      "new": "本章任务",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "goal-strong",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "array-task",
+      "old": "同一数组，标量与向量怎样分工",
+      "new": "数组计算中的标量与向量分工",
+      "reason": "明确运算对象与软硬件分工，删除提问和同一泛指。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "integer-model",
+      "old": "先定义装多少、做多少和怎样解释元素",
+      "new": "向量寄存器容量、执行长度与元素类型",
+      "reason": "以 VLEN、vl、SEW 等对应的技术概念代替装多少、做多少。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "external-ports",
+      "old": "Ara真实顶层接口与当前接线",
+      "new": "Ara 顶层接口与本地连接",
+      "reason": "保持当前实现范围，统一规范术语与空格。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "capacity",
+      "old": "用当前配置算容量，再讨论并行",
+      "new": "Ara 存储容量与并行执行资源",
+      "reason": "以计算容量和资源比较的技术内容命名。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "internals",
+      "old": "加载—计算—存储在 Ara 内部怎样流动",
+      "new": "Ara 加载、计算与存储的数据流",
+      "reason": "概括本节内部模块沿操作的数据流，删除疑问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "dispatch-sequence",
+      "old": "Dispatcher、Sequencer 与执行单元",
+      "new": "Dispatcher、Sequencer 与执行单元",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "lane-layout",
+      "old": "Lane、VRF 与加载—计算—存储",
+      "new": "Lane、VRF 与加载—计算—存储",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "interface",
+      "old": "从 CPU 译码到 Ara 请求",
+      "new": "CVA6 译码与 Ara 请求分派",
+      "reason": "以本地协作主体和请求机制命名。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "first-pass",
+      "old": "初译码、标量操作数与非推测发出",
+      "new": "初译码、标量操作数与非推测发出",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "handshake-fields",
+      "old": "请求字段、握手与标量返回值",
+      "new": "请求字段、握手与标量返回值",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "interface-boundary",
+      "old": "专用接口与通用扩展接口的边界",
+      "new": "专用接口与通用扩展接口的边界",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "completion",
+      "old": "接受、应答、提交与运算完成",
+      "new": "接受、应答、提交与运算完成",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "early-response",
+      "old": "CPU 提交与 Ara 实际完成",
+      "new": "CPU 提交与 Ara 实际完成",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "response-types",
+      "old": "标量返回、地址应答与访存完成",
+      "new": "标量返回、地址应答与访存完成",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "stalls-errors",
+      "old": "正常依赖等待与异常边界",
+      "new": "正常依赖等待与异常边界",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "walkthrough",
+      "old": "把同一轮五种动作连起来",
+      "new": "向量数组循环的 CVA6–Ara 协作流程",
+      "reason": "明确五种动作所属程序和协作对象，删除教学动作。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "vector-memory",
+      "old": "向量地址与独立数据通路",
+      "new": "向量地址与独立数据通路",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "address-translation",
+      "old": "地址生成、翻译和权限",
+      "new": "地址生成、翻译和权限",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "data-completion",
+      "old": "独立 AXI 数据通路与实现限制",
+      "new": "独立 AXI 数据通路与实现限制",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "anchor": "buffer-handoff",
+      "old": "在CPU观察c之前完成结果交接",
+      "new": "Ara 结果写入与 CPU 数据交接",
+      "reason": "以结果可见性与交接主题命名，消除变量泛指和操作指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "@goal",
+      "old": "本章任务",
+      "new": "本章任务",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "goal-strong",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "concepts",
+      "old": "从同一数组继续到可校验程序",
+      "new": "向量数组程序与校验任务",
+      "reason": "明确数组程序及可校验目标，删除依赖前文的同一。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "work",
+      "old": "同一任务的两种表达",
+      "new": "数组计算的标量与向量表达",
+      "reason": "给出两种表达的具体名称。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "implementation",
+      "old": "状态、循环和编程入口",
+      "new": "状态、循环和编程入口",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "configuration",
+      "old": "配置到运行许可",
+      "new": "RVV 配置与运行前提",
+      "reason": "明确有效配置与启动许可条件的技术对象。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "loop",
+      "old": "vl 决定每轮处理多少元素",
+      "new": "实际 vl 与数组分块循环",
+      "reason": "以运行时 vl 和分块循环关系命名。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "programming",
+      "old": "三种编程入口与当前工具链",
+      "new": "三种编程入口与当前工具链",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "toolchain-contract",
+      "old": "编译器入口与向量对象边界",
+      "new": "编译器入口与向量对象边界",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "advanced-state",
+      "old": "基本整数循环之后再扩展状态与操作",
+      "new": "RVV 进阶状态与运算",
+      "reason": "保留进阶层次，删除先后教学指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "rvv-model",
+      "old": "从数组位置理解 vtype、寄存器分组与 mask",
+      "new": "RVV 掩码、访存模式与数值规则",
+      "reason": "覆盖所属段落的掩码、地址模式、整数及浮点数值规则。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "validation",
+      "old": "分层建立正确性与性能证据",
+      "new": "RVV 正确性与性能验证",
+      "reason": "以验证对象命名，删除建立证据的教学动作。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "proof",
+      "old": "构建、执行与结果的三层证据",
+      "new": "构建、执行与结果的三层证据",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "anchor": "performance",
+      "old": "结果与性能分别建立证据",
+      "new": "数值校验与性能测量方法",
+      "reason": "区分结果正确性和实际性能测量两个技术主题。",
+      "kind": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "@goal",
+      "old": "本章任务",
+      "new": "本章任务",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "goal-strong",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "ownership",
+      "old": "缓冲区所有权与可见性",
+      "new": "缓冲区所有权与可见性",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "sharing",
+      "old": "当前 CPU/Ara 协作覆盖到哪里",
+      "new": "当前 CPU/Ara 协作机制的适用范围",
+      "reason": "保留当前实现范围，以主题代替提问。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "cpu-ara-mechanism",
+      "old": "当前 CPU/Ara：WT、pending 与失效通知",
+      "new": "当前 CPU/Ara：WT、pending 与失效通知",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "vrf-versus-shared-memory",
+      "old": "Ara VRF、缓存与 NPU 共享张量",
+      "new": "Ara VRF、缓存与 NPU 共享张量",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "storage-options",
+      "old": "共享存储方案的选择条件",
+      "new": "共享存储方案的选择条件",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "data",
+      "old": "Ara 写入与 CPU 观察",
+      "new": "Ara 写入与 CPU 观察",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "handoff",
+      "old": "从取得缓冲区到交还缓冲区",
+      "new": "候选缓冲区所有权与交接协议",
+      "reason": "正文包含未来 NPU/DDR 旁路的候选协议，保留方案限定。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "descriptor-contract",
+      "old": "地址、布局、所有权与完成元数据",
+      "new": "地址、布局、所有权与完成元数据",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "bypass-copies",
+      "old": "旁路写与缓存副本",
+      "new": "旁路写与缓存副本",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "anchor": "atomics",
+      "old": "AMO 与 LR/SC 的观察边界",
+      "new": "AMO 与 LR/SC 的观察边界",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h3",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "anchor": "@goal",
+      "old": "本章任务",
+      "new": "本章任务",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "goal-strong",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "anchor": "layers",
+      "old": "先定位失败阶段，再看对应证据",
+      "new": "向量程序的分阶段诊断与证据",
+      "reason": "明确诊断对象和分层方法，删除先后指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "anchor": "configuration",
+      "old": "首条向量指令陷入：先核对有效组合",
+      "new": "首条向量指令陷入的配置核对",
+      "reason": "保留具体症状与诊断范围，删除先核对指令。",
+      "kind": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "anchor": "memory",
+      "old": "访存不结束或数组错误",
+      "new": "访存不结束或数组错误",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "anchor": "local-limits",
+      "old": "本地限制与未完成验收",
+      "new": "本地限制与未完成验收",
+      "reason": "现有标题为明确的技术主题或规范入口标签，保留。",
+      "kind": "h2",
+      "action": "retained"
+    }
+  ],
+  "visible_title_references_changed": [],
+  "checks": [
+    {
+      "path": "docs_codex/learning/content/rtos.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "d943f8a94d06b33715277d8aab53d9f2c0a9bb53383323dac4233ee6bd69dfaa",
+      "sha256_after": "6c557c7cbcefd4c54308b895375550c487f264661cd47b06ec12eb3f9eff8f30",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/virtual-memory.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "c12e6111fea3f166fdb54d54ea500f7f57c0f1f23173c73281ad124f04de9c92",
+      "sha256_after": "89973eb4cbee8203cbf7b6deef9a7904372e996b412040e24bec2d8f644a52c0",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/linux.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "56a188cd8ecdc331dcc037c5184de35897d7d8638513f3f81eeefb2c6fd2b67b",
+      "sha256_after": "e0182c2859c2a64a934c45b56bc5861a4334fdd54f36200ec808bcd1c850a3b4",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/os-devices.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "a3781e525dbe1b0003990a444229f44a301e80200bbc31c5adc70166eeae2a9f",
+      "sha256_after": "78484098db357997630b33ebdf23c332e2b88b3556ce2301edb38f49929ed8bc",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/os-debug.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "90b93f15e8fb25e597d1b521f0874c4d939bb01468154b00be3db8fddc6b4a58",
+      "sha256_after": "64a4fba2c6e916cd88925c3bb981fa2e6758ff50f90bd635c413904b5c310980",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/ara.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "54dac36d19139d49169ffd60b5e5abb25588a9751ff578c8e245c8b330a27cfa",
+      "sha256_after": "826a4336428930f042e9ab0ebfeadf2fc34f141cd49375e74382cf6cb2db5f8e",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/vector.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "824b774cc7e249e03c1401313bdf816457e90c8aceed24aafca81c5869a70afe",
+      "sha256_after": "2c12de33fa7fd09c83e31943fa2fbab7384430a724ee488af79950a311a2687f",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/sharing.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "be6bd28a2fe60c842a66beb0b511928953f821a2711644180bc96e2067870c38",
+      "sha256_after": "40c6b29287f2d9dd5b8eccff5bfc5001327ddce954505bcd287771b048143541",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    },
+    {
+      "path": "docs_codex/learning/content/vector-debug.html",
+      "snapshot_matches_before": true,
+      "non_title_bytes_identical": true,
+      "heading_order_and_anchors_identical": true,
+      "sha256_before": "244c371773e030d28918a0398b4844091d5ddc3d44c15dd284268710b03f0319",
+      "sha256_after": "58597436f42e1573ae6862095881ee54fbaf0990ef20a079266deabde456911f",
+      "all_ids_and_link_targets_identical": true,
+      "self_test_summary_bytes_identical": true
+    }
+  ],
+  "remaining_exact_old_title_references": [],
+  "scope_diff_check": "PASS: git diff --check for scoped tracked content; scoped untracked content checked for trailing whitespace; ID/link/summary inventories equal baseline."
+}

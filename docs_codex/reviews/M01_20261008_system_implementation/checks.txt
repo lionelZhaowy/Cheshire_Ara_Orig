@@ -1,0 +1,18 @@
+COMMAND python3 docs_codex/reviews/M01_20261008_system_implementation/check_contract.py
+EXIT 0
+links 22 missing []
+frame 4147200 two_buffers 8294400 B/s 248832000 write_read_B/s 497664000 100us_lower_bound 24884
+source files 11
+PASS; no target validation
+
+COMMAND git diff --check
+EXIT 0
+
+COMMAND git branch --show-current
+EXIT 0
+mp/ara-pulp-v2
+
+COMMAND git rev-parse HEAD
+EXIT 0
+459f9d6f5748e39063f7bb67e959c2f27859915d
+

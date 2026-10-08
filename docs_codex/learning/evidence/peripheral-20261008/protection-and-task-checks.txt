@@ -1,0 +1,7 @@
+PASS 162 input assets/figures unchanged (including pre-existing modified diagrams.pptx)
+PASS 34 original content snapshots unchanged; all original semantic IDs retained
+PASS 58 targeted source references captured
+PASS git tracked diff restricted to docs_codex; no production changes
+PASS VLEN2048: register256B, VRF8192B, two lanes4096B; VLMAX e32/m1=64, e32/m2=128, e64/m1=32, e16/mf2=64
+PASS 137=min(137,64)+min(73,64)+9; pointer increments256,256,36 bytes
+NOT RUN software/RTL/board/performance/ASIC tests; no learner study

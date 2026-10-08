@@ -1,0 +1,5978 @@
+[
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "image",
+    "kind": "H2",
+    "old": "LVDS、ISP 与 NPU 的接口约定",
+    "new": "LVDS、ISP 与 NPU 的接口约定",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "frame-walkthrough",
+    "kind": "H3",
+    "old": "图像进入模型的一次系统协作",
+    "new": "图像采集与模型计算的系统协作流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "ddr",
+    "kind": "H2",
+    "old": "AXI4 DDR 与设备旁路",
+    "new": "AXI4 DDR 与设备旁路",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "npu-topology",
+    "kind": "H2",
+    "old": "NPU / ISP 旁路 LLC 的系统接入规划",
+    "new": "NPU / ISP 旁路 LLC 的系统接入规划",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "ip-contracts",
+    "kind": "H3",
+    "old": "逐 IP 的数据与控制交付",
+    "new": "各类 IP 的数据与控制接口交付",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "staged-checks",
+    "kind": "H3",
+    "old": "分阶段验收",
+    "new": "分阶段验收",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "delivery-contracts",
+    "kind": "H2",
+    "old": "每个 IP 共同需要的集成交付",
+    "new": "IP 集成交付的共通要求",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "control-registers",
+    "kind": "H3",
+    "old": "寄存器与软件",
+    "new": "寄存器与软件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "lifecycle-contracts",
+    "kind": "H3",
+    "old": "时钟、复位、中断与带宽",
+    "new": "时钟、复位、中断与带宽",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "stream-budget",
+    "kind": "H2",
+    "old": "用数据率反推 FIFO 与 DDR 压力",
+    "new": "数据率与 FIFO、DDR 带宽需求",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "buffer-lifetime",
+    "kind": "H3",
+    "old": "同一预算分别约束流量、停顿和容量",
+    "new": "帧流量、服务间隔与缓冲容量预算",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/accelerators.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "reg-contract",
+    "kind": "H2",
+    "old": "Regbus 的最小设备契约",
+    "new": "Regbus 的最小设备契约",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "adapters",
+    "kind": "H2",
+    "old": "位宽、协议和 ID 转换",
+    "new": "位宽、协议和 ID 转换",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "byte-lanes",
+    "kind": "H3",
+    "old": "byte lane 与有效字节",
+    "new": "byte lane 与有效字节",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "width",
+    "kind": "H3",
+    "old": "转换后的拍数与 LAST",
+    "new": "转换后的拍数与 LAST",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "ids",
+    "kind": "H3",
+    "old": "ID 收缩与原子扩展边界",
+    "new": "ID 收缩与原子扩展边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "cdc",
+    "kind": "H2",
+    "old": "跨时钟与复位边界",
+    "new": "跨时钟与复位边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/adapters.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "spaces",
+    "kind": "H2",
+    "old": "三种“地址正确”需要分别核对",
+    "new": "地址路由、资源容量与访问属性",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "routing",
+    "kind": "H3",
+    "old": "路由、物理存储和 CPU 属性",
+    "new": "路由、物理存储和 CPU 属性",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "address-translation-example",
+    "kind": "H3",
+    "old": "一次地址访问的逐层解释",
+    "new": "地址访问与路径解析示例",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "allocation",
+    "kind": "H3",
+    "old": "外部窗口的分配流程",
+    "new": "外部窗口的分配流程",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "address-map",
+    "kind": "H2",
+    "old": "默认地址范围、真实容量与访问属性",
+    "new": "默认地址范围、真实容量与访问属性",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "windows",
+    "kind": "H3",
+    "old": "AXI 与 Reg 的实际默认窗口",
+    "new": "AXI 与 Reg 的实际默认窗口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "attributes",
+    "kind": "H3",
+    "old": "缓存、执行和非幂等属性",
+    "new": "缓存、执行和非幂等属性",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/address-map.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "array-task",
+    "kind": "H2",
+    "old": "同一数组，标量与向量怎样分工",
+    "new": "数组计算中的标量与向量分工",
+    "changed": true,
+    "reason": "明确运算对象与软硬件分工，删除提问和同一泛指。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "integer-model",
+    "kind": "H2",
+    "old": "先定义装多少、做多少和怎样解释元素",
+    "new": "向量寄存器容量、执行长度与元素类型",
+    "changed": true,
+    "reason": "以 VLEN、vl、SEW 等对应的技术概念代替装多少、做多少。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "external-ports",
+    "kind": "H2",
+    "old": "Ara真实顶层接口与当前接线",
+    "new": "Ara 顶层接口与本地连接",
+    "changed": true,
+    "reason": "保持当前实现范围，统一规范术语与空格。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "capacity",
+    "kind": "H2",
+    "old": "用当前配置算容量，再讨论并行",
+    "new": "Ara 存储容量与并行执行资源",
+    "changed": true,
+    "reason": "以计算容量和资源比较的技术内容命名。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "internals",
+    "kind": "H2",
+    "old": "加载—计算—存储在 Ara 内部怎样流动",
+    "new": "Ara 加载、计算与存储的数据流",
+    "changed": true,
+    "reason": "概括本节内部模块沿操作的数据流，删除疑问。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "dispatch-sequence",
+    "kind": "H3",
+    "old": "Dispatcher、Sequencer 与执行单元",
+    "new": "Dispatcher、Sequencer 与执行单元",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "lane-layout",
+    "kind": "H3",
+    "old": "Lane、VRF 与加载—计算—存储",
+    "new": "Lane、VRF 与加载—计算—存储",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "interface",
+    "kind": "H2",
+    "old": "从 CPU 译码到 Ara 请求",
+    "new": "CVA6 译码与 Ara 请求分派",
+    "changed": true,
+    "reason": "以本地协作主体和请求机制命名。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "first-pass",
+    "kind": "H3",
+    "old": "初译码、标量操作数与非推测发出",
+    "new": "初译码、标量操作数与非推测发出",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "handshake-fields",
+    "kind": "H3",
+    "old": "请求字段、握手与标量返回值",
+    "new": "请求字段、握手与标量返回值",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "interface-boundary",
+    "kind": "H3",
+    "old": "专用接口与通用扩展接口的边界",
+    "new": "专用接口与通用扩展接口的边界",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "completion",
+    "kind": "H2",
+    "old": "接受、应答、提交与运算完成",
+    "new": "接受、应答、提交与运算完成",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "early-response",
+    "kind": "H3",
+    "old": "CPU 提交与 Ara 实际完成",
+    "new": "CPU 提交与 Ara 实际完成",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "response-types",
+    "kind": "H3",
+    "old": "标量返回、地址应答与访存完成",
+    "new": "标量返回、地址应答与访存完成",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "stalls-errors",
+    "kind": "H3",
+    "old": "正常依赖等待与异常边界",
+    "new": "正常依赖等待与异常边界",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "walkthrough",
+    "kind": "H2",
+    "old": "把同一轮五种动作连起来",
+    "new": "向量数组循环的 CVA6–Ara 协作流程",
+    "changed": true,
+    "reason": "明确五种动作所属程序和协作对象，删除教学动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "vector-memory",
+    "kind": "H2",
+    "old": "向量地址与独立数据通路",
+    "new": "向量地址与独立数据通路",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "address-translation",
+    "kind": "H3",
+    "old": "地址生成、翻译和权限",
+    "new": "地址生成、翻译和权限",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "data-completion",
+    "kind": "H3",
+    "old": "独立 AXI 数据通路与实现限制",
+    "new": "独立 AXI 数据通路与实现限制",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "buffer-handoff",
+    "kind": "H2",
+    "old": "在CPU观察c之前完成结果交接",
+    "new": "Ara 结果写入与 CPU 数据交接",
+    "changed": true,
+    "reason": "以结果可见性与交接主题命名，消除变量泛指和操作指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/ara.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "system",
+    "kind": "H2",
+    "old": "从计算单元到可运行系统",
+    "new": "计算单元与片上系统的组成",
+    "changed": true,
+    "reason": "以计算、存储和设备的具体组成替代泛化的过渡表述。"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "paths",
+    "kind": "H2",
+    "old": "先跟随一个程序，再读完整互连",
+    "new": "程序执行与 SoC 模块协作",
+    "changed": true,
+    "reason": "删除跟随程序、阅读互连的授课指令，概括数组、UART和事件路径。"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "requests",
+    "kind": "H3",
+    "old": "数组计算、字符输出与设备事件",
+    "new": "数组计算、字符输出与设备事件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "four-views",
+    "kind": "H3",
+    "old": "同一系统的四种视角",
+    "new": "SoC 的功能、事务、地址与实现视角",
+    "changed": true,
+    "reason": "明确四种视角的技术内容，避免目录依赖前文指代。"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "port-roles",
+    "kind": "H3",
+    "old": "模块职责与接口方向",
+    "new": "模块职责与接口方向",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "storage",
+    "kind": "H3",
+    "old": "片上存储与外部存储",
+    "new": "片上存储与外部存储",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "layers",
+    "kind": "H2",
+    "old": "RTL、SoC 顶层与运行平台",
+    "new": "RTL、SoC 顶层与运行平台",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "integration-boundary",
+    "kind": "H3",
+    "old": "SoC IP 与完整芯片的责任边界",
+    "new": "SoC IP 与完整芯片的责任边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "implementation-layers",
+    "kind": "H3",
+    "old": "硬件描述与运行环境",
+    "new": "硬件描述与运行环境",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/architecture.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "consumer-first",
+    "kind": "H2",
+    "old": "先问谁在等这笔读数据",
+    "new": "VRF 读数据的消费者与传输路径",
+    "changed": true,
+    "reason": "明确请求、bank和操作数队列的实际对象"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "bank-contract",
+    "kind": "H2",
+    "old": "把当前实例换算成一个可核对的 bank",
+    "new": "当前 VRF bank 的容量与接口契约",
+    "changed": true,
+    "reason": "以尺寸与接口内容替代换算教学指令"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "read-latency",
+    "kind": "H2",
+    "old": "连续跟读一次读、一次局部写",
+    "new": "SRAM 读取与字节掩码写入时序",
+    "changed": true,
+    "reason": "直接命名连续读与局部写过程"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "k-plus-two",
+    "kind": "H3",
+    "old": "宏多一拍时，具体哪里不再成立",
+    "new": "SRAM 读延迟变化与响应时序适配",
+    "changed": true,
+    "reason": "明确宏增延迟影响，不使用口语疑问"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "macro-tiling",
+    "kind": "H2",
+    "old": "容量匹配之后，才讨论拼接",
+    "new": "SRAM 宏拼接与写掩码适配",
+    "changed": true,
+    "reason": "涵盖横纵拼接与整字写约束，去掉授课顺序"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "views-and-initialization",
+    "kind": "H2",
+    "old": "一份宏需要几种视图",
+    "new": "存储宏视图、初始化与测试接口",
+    "changed": true,
+    "reason": "涵盖本节实际资料与接口范围"
+  },
+  {
+    "path": "docs_codex/learning/content/asic-memory.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "handshake",
+    "kind": "H2",
+    "old": "五条通道与一次传输",
+    "new": "五条通道与一次传输",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "burst",
+    "kind": "H3",
+    "old": "拍数、字节使能和事务标识",
+    "new": "拍数、字节使能和事务标识",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "write-lifecycle",
+    "kind": "H3",
+    "old": "写地址、写数据与响应分别完成",
+    "new": "写地址、写数据与响应分别完成",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "timing",
+    "kind": "H3",
+    "old": "用 WaveDrom 检查背压",
+    "new": "AXI 背压的 WaveDrom 时序示例",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "read-write-evidence",
+    "kind": "H2",
+    "old": "从协议语义形成检查点",
+    "new": "AXI 协议语义与验证观察点",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "read-lifecycle",
+    "kind": "H3",
+    "old": "读事务的接受与返回",
+    "new": "读事务的接受与返回",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "transaction-error",
+    "kind": "H3",
+    "old": "在途量和错误响应",
+    "new": "在途量和错误响应",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/axi.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "debug-workflow",
+    "kind": "H2",
+    "old": "调试同时需要程序描述与目标连接",
+    "new": "程序描述与目标调试连接",
+    "changed": true,
+    "reason": "直接命名符号文件与目标连接两个调试条件。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "transport",
+    "kind": "H2",
+    "old": "调试传输与模块职责",
+    "new": "调试传输与模块职责",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "timelines",
+    "kind": "H2",
+    "old": "主机与目标的两条时间线",
+    "new": "主机与目标的两条时间线",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "takeover",
+    "kind": "H2",
+    "old": "JTAG 装载前置条件",
+    "new": "JTAG 装载前置条件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "vip-ready",
+    "kind": "H3",
+    "old": "CFG_SPM_LOW.bit0 与暂停应答",
+    "new": "CFG_SPM_LOW.bit0 与暂停应答",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "stack-handoff",
+    "kind": "H3",
+    "old": "装载条件与应用入口条件",
+    "new": "装载条件与应用入口条件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "debug",
+    "kind": "H2",
+    "old": "JTAG、Debug Module 与实际装载",
+    "new": "JTAG、Debug Module 与实际装载",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "elf-load",
+    "kind": "H3",
+    "old": "ELF 段怎样通过 SBA 到达内存",
+    "new": "基于 SBA 的 ELF 段装载",
+    "changed": true,
+    "reason": "将疑问式标题改为实际装载路径。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "entry-resume",
+    "kind": "H3",
+    "old": "设置 DPC 与恢复执行",
+    "new": "设置 DPC 与恢复执行",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "loader-limits",
+    "kind": "H3",
+    "old": "段内字节与 BSS 各有责任",
+    "new": "ELF 段装载与 BSS 清零的责任划分",
+    "changed": true,
+    "reason": "明确段字节与BSS对应的操作，删除各有责任的口语。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "observe-program",
+    "kind": "H2",
+    "old": "在已确认入口和存储条件后观察同一程序",
+    "new": "数组程序的断点、寄存器与内存观察",
+    "changed": true,
+    "reason": "准确概括GDB步骤，条件仍留在正文，不把先确认后观察写进标题。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "halt-boundary",
+    "kind": "H3",
+    "old": "暂停 CPU 时，系统中还有什么在前进",
+    "new": "CPU 暂停期间的系统运行状态",
+    "changed": true,
+    "reason": "去掉疑问和模糊动作，直接表达halt边界。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "debug-contract",
+    "kind": "H2",
+    "old": "Debug 的寄存器地址空间与复位责任",
+    "new": "Debug 的寄存器地址空间与复位责任",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "dmi-registers",
+    "kind": "H3",
+    "old": "DMI 地址、字段和副作用",
+    "new": "DMI 地址、字段和副作用",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "default-path",
+    "kind": "H2",
+    "old": "先固定一次启动的输入和目标",
+    "new": "默认 ROM/JTAG 启动的输入与目标",
+    "changed": true,
+    "reason": "保留默认配置和应用输入的限定，去掉先固定的授课指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "rom",
+    "kind": "H2",
+    "old": "ROM 先建立可用的片上环境",
+    "new": "Boot ROM 的片上环境初始化",
+    "changed": true,
+    "reason": "用初始化主题替代先建立可用环境的叙事。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "rom-and-media",
+    "kind": "H3",
+    "old": "固化启动代码、外部镜像与执行存储",
+    "new": "固化启动代码、外部镜像与执行存储",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "rom-initial-state",
+    "kind": "H3",
+    "old": "Boot ROM 的早期存储与栈",
+    "new": "Boot ROM 的早期存储与栈",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "default-load",
+    "kind": "H3",
+    "old": "存储准备好后，由装载者交接应用",
+    "new": "JTAG 装载与应用入口交接",
+    "changed": true,
+    "reason": "明确本地默认装载主体与交接目标。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "application",
+    "kind": "H2",
+    "old": "应用入口与运行交接",
+    "new": "应用入口与运行交接",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "crt",
+    "kind": "H3",
+    "old": "应用启动代码建立 C 环境",
+    "new": "应用启动代码建立 C 环境",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "regs",
+    "kind": "H3",
+    "old": "系统寄存器参与初始化与结束",
+    "new": "系统寄存器参与初始化与结束",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "normal-result",
+    "kind": "H3",
+    "old": "把程序结果与运行结束一起核对",
+    "new": "程序结果校验与运行结束判据",
+    "changed": true,
+    "reason": "用校验对象及判据命名，不指示读者把两者一起核对。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "boot-compare",
+    "kind": "H2",
+    "old": "默认过程之后，再扩展平台与装载来源",
+    "new": "平台初始化扩展与程序装载方式",
+    "changed": true,
+    "reason": "按正文平台钩子及路径比较命名，去掉默认之后再扩展的阅读顺序指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "platform-rom",
+    "kind": "H3",
+    "old": "Platform ROM 与 Boot ROM 的调用关系",
+    "new": "Platform ROM 与 Boot ROM 的调用关系",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "load-path-overview",
+    "kind": "H3",
+    "old": "装载路径比较",
+    "new": "装载路径比较",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "other-loaders",
+    "kind": "H2",
+    "old": "被动加载服务",
+    "new": "被动加载服务",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "serial-link",
+    "kind": "H3",
+    "old": "Serial Link：远端写入与 scratch 交接",
+    "new": "Serial Link：远端写入与 scratch 交接",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "uart-passive",
+    "kind": "H3",
+    "old": "UART：二进制读写与调用协议",
+    "new": "UART：二进制读写与调用协议",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "media-boot",
+    "kind": "H2",
+    "old": "自主介质启动",
+    "new": "自主介质启动",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "gpt-raw",
+    "kind": "H3",
+    "old": "共同镜像格式与 SPM 装载",
+    "new": "GPT/raw 镜像格式与 SPM 装载",
+    "changed": true,
+    "reason": "用实际镜像格式替代依赖相邻小节的共同指代。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "sd-boot",
+    "kind": "H3",
+    "old": "SPI SD：块读取与 CRC",
+    "new": "SPI SD：块读取与 CRC",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "nor-boot",
+    "kind": "H3",
+    "old": "SPI NOR：地址读取与器件配置",
+    "new": "SPI NOR：地址读取与器件配置",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "eeprom-boot",
+    "kind": "H3",
+    "old": "I2C EEPROM：器件地址与内部地址",
+    "new": "I2C EEPROM：器件地址与内部地址",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "boot-growth",
+    "kind": "H2",
+    "old": "程序变大后，由下一阶段继续组织启动",
+    "new": "多阶段启动与大型镜像装载",
+    "changed": true,
+    "reason": "明确ZSL继续装载的技术用途，替代程序变大后的口语叙述。"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "later-stages",
+    "kind": "H3",
+    "old": "ZSL、OpenSBI 与操作系统启动的分层",
+    "new": "ZSL、OpenSBI 与操作系统启动的分层",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/boot.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "tools",
+    "kind": "H2",
+    "old": "主机工具与目标程序",
+    "new": "主机工具与目标程序",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "stages",
+    "kind": "H2",
+    "old": "预处理、编译、汇编与链接",
+    "new": "预处理、编译、汇编与链接",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "translation-units",
+    "kind": "H3",
+    "old": "从翻译单元到最终映像",
+    "new": "翻译单元、对象文件与最终映像",
+    "changed": true,
+    "reason": "明确构建过程的产物层次。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "elf",
+    "kind": "H2",
+    "old": "ELF 把机器码和装载信息放在一起",
+    "new": "ELF 的代码数据与装载信息",
+    "changed": true,
+    "reason": "以ELF内容命名，避免放在一起的口语说明。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "layout",
+    "kind": "H2",
+    "old": "从 C 对象追到输出地址",
+    "new": "C 对象与链接地址布局",
+    "changed": true,
+    "reason": "以对象和链接布局的对应关系命名，删除追到的阅读动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "options-reference",
+    "kind": "H2",
+    "old": "已有产物可以解释后，再选择工程选项",
+    "new": "软件构建选项及其作用",
+    "changed": true,
+    "reason": "删除先解释产物再选择的教学指令，保留选项实际作用范围。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "software-options",
+    "kind": "H3",
+    "old": "原 Make 入口的配置选项",
+    "new": "原 Make 入口的配置选项",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "practice",
+    "kind": "H2",
+    "old": "完成一次可解释的构建",
+    "new": "隔离构建与产物验证",
+    "changed": true,
+    "reason": "明确本节实践范围，删除可解释的教学评价。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "source-to-hardware",
+    "kind": "H3",
+    "old": "从源文件到执行结果的责任交接",
+    "new": "软件构建、装载与执行的责任交接",
+    "changed": true,
+    "reason": "直接列出责任交接涉及的三个阶段。"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "build-practice",
+    "kind": "H3",
+    "old": "隔离输出与产物检查",
+    "new": "隔离输出与产物检查",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/build.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "sampling",
+    "kind": "H2",
+    "old": "从一次必须被接收的命令开始",
+    "new": "异步采样与跨域命令传递",
+    "changed": true,
+    "reason": "明确亚稳采样和事件/配置传输对象"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "handshake",
+    "kind": "H2",
+    "old": "让配置保持到对方确认",
+    "new": "多位配置的保持与两相握手",
+    "changed": true,
+    "reason": "准确命名完整快照保持与确认协议"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "choose-by-signal",
+    "kind": "H2",
+    "old": "从控制扩展到连续数据",
+    "new": "不同信号类型的跨域传递方式",
+    "changed": true,
+    "reason": "以信号分类和交接方式命名对比内容"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "local-ddr",
+    "kind": "H2",
+    "old": "沿当前 DDR wrapper 找跨域边界",
+    "new": "当前 DDR wrapper 的 AXI 跨域路径",
+    "changed": true,
+    "reason": "使用已核对接口路径替代源码查找指令"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "reset-domains",
+    "kind": "H2",
+    "old": "为什么复位也要有两端协议",
+    "new": "跨域接口的复位协调机制",
+    "changed": true,
+    "reason": "直接命名两端复位状态一致性要求"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "constraints-and-review",
+    "kind": "H2",
+    "old": "交付时怎样证明选对了",
+    "new": "CDC/RDC 约束与验收范围",
+    "changed": true,
+    "reason": "具体区分约束、检查和证据边界"
+  },
+  {
+    "path": "docs_codex/learning/content/cdc-rdc.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "clocks",
+    "kind": "H2",
+    "old": "先让 CPU 有时钟，才有软件配置时钟",
+    "new": "安全启动时钟与软件配置前提",
+    "changed": true,
+    "reason": "以安全取指和软件配置的依赖关系替代先后授课句式"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "platform-clocks",
+    "kind": "H3",
+    "old": "系统时钟与平台 DDR 时钟",
+    "new": "系统时钟与平台 DDR 时钟",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "clock-domains",
+    "kind": "H2",
+    "old": "把时钟域、分频和同步器区分开",
+    "new": "时钟域、分频与同步结构",
+    "changed": true,
+    "reason": "以技术对象概括正文的分类说明"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "clock-inputs",
+    "kind": "H3",
+    "old": "输入、消费者与观察点",
+    "new": "时钟与异步输入的使用条件",
+    "changed": true,
+    "reason": "明确输入类型及表格的正常使用条件"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "pll",
+    "kind": "H2",
+    "old": "PLL 与 ASIC 时钟规划",
+    "new": "PLL 与 ASIC 时钟规划",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "pll-loop",
+    "kind": "H3",
+    "old": "锁相反馈与两域教学例",
+    "new": "PLL 锁相反馈与候选双域时钟示例",
+    "changed": true,
+    "reason": "明确PLL对象并保留候选双域示例限定"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "clock-contract",
+    "kind": "H2",
+    "old": "时钟交付表与软件频率来源",
+    "new": "时钟交付表与软件频率来源",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "clock-inventory",
+    "kind": "H3",
+    "old": "先标真实采样时钟，再标派生关系",
+    "new": "采样时钟与派生关系",
+    "changed": true,
+    "reason": "以实际记录对象替代先标再标的阅读指令"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "boot-and-runtime-frequency",
+    "kind": "H3",
+    "old": "启动安全频率与运行时调频",
+    "new": "启动安全频率与运行时调频",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "normal-frequency-change",
+    "kind": "H3",
+    "old": "一次受控调频怎样完成",
+    "new": "受控调频流程示例",
+    "changed": true,
+    "reason": "以流程主题替代疑问并保留教学示例身份"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "pll-handoff",
+    "kind": "H3",
+    "old": "PLL 与约束交付",
+    "new": "PLL 与约束交付",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/clocks.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "first-program-contract",
+    "kind": "H2",
+    "old": "先为同一个标量程序配齐运行条件",
+    "new": "标量数组程序的运行配置",
+    "changed": true,
+    "reason": "保留本节标量SPM/UART实例范围，去掉先配齐的教学指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "inputs",
+    "kind": "H2",
+    "old": "配置入口与生效阶段",
+    "new": "配置入口与生效阶段",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "configuration-contract",
+    "kind": "H3",
+    "old": "三个入口与一份系统契约",
+    "new": "CPU、SoC 与软件配置的系统契约",
+    "changed": true,
+    "reason": "把三个入口替换为实际配置对象，目录可独立理解。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "elaboration",
+    "kind": "H3",
+    "old": "从常量配置到硬件实例",
+    "new": "常量配置与硬件实例生成",
+    "changed": true,
+    "reason": "用展开过程的技术主题替代叙事过渡。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "software-contract",
+    "kind": "H2",
+    "old": "软件选项与运行时配置的联动",
+    "new": "软件选项与运行时配置的联动",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "advanced-configurations",
+    "kind": "H2",
+    "old": "学完相关设备后的组合回查",
+    "new": "进阶配置组合参考",
+    "changed": true,
+    "reason": "保留进阶定位，将学习后回查的指令移交既有正文。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "ara",
+    "kind": "H3",
+    "old": "向量组合的配置推导",
+    "new": "向量组合的配置推导",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "fields",
+    "kind": "H2",
+    "old": "按字段、消费者和约束核对配置",
+    "new": "配置字段、消费者与取值约束",
+    "changed": true,
+    "reason": "以核对对象命名，不向读者下达操作指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "soc-fields",
+    "kind": "H3",
+    "old": "SoC 与 Ara 实例参数",
+    "new": "SoC 与 Ara 实例参数",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "profile-software-fields",
+    "kind": "H3",
+    "old": "CPU 选源与软件选项",
+    "new": "CPU 选源与软件选项",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "consequences",
+    "kind": "H2",
+    "old": "跨模块的结构影响",
+    "new": "跨模块的结构影响",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "topology",
+    "kind": "H3",
+    "old": "端口、规则与 ID 的全局依赖",
+    "new": "端口、规则与 ID 的全局依赖",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "platform",
+    "kind": "H3",
+    "old": "生成尺寸与平台条件",
+    "new": "生成尺寸与平台条件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "combinations",
+    "kind": "H2",
+    "old": "配置组合与验证条件",
+    "new": "配置组合与验证条件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "legality-levels",
+    "kind": "H3",
+    "old": "取值范围、结构约束与已验证组合",
+    "new": "取值范围、结构约束与已验证组合",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "configuration-candidates",
+    "kind": "H3",
+    "old": "按用途选择配置候选",
+    "new": "不同用途的配置候选",
+    "changed": true,
+    "reason": "保留候选限定，删除选择动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "case-baseline",
+    "kind": "H3",
+    "old": "三个独立案例的共同基线",
+    "new": "扩展配置案例的共同基线",
+    "changed": true,
+    "reason": "说明AXI RT、CLIC和Router所属扩展案例范围，不以三个指代内容。"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "case-axi-rt",
+    "kind": "H3",
+    "old": "AXI RT：DMA 搬运的预算核对",
+    "new": "AXI RT：DMA 搬运的预算核对",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "case-clic",
+    "kind": "H3",
+    "old": "CLIC：中断门限与向量入口",
+    "new": "CLIC：中断门限与向量入口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "case-irq-router",
+    "kind": "H3",
+    "old": "IRQ Router：UART 中断的目标屏蔽",
+    "new": "IRQ Router：UART 中断的目标屏蔽",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/configuration.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "isa",
+    "kind": "H2",
+    "old": "指令能力与 CPU profile",
+    "new": "指令能力与 CPU profile",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "functional-units",
+    "kind": "H2",
+    "old": "以软件可见状态解释执行",
+    "new": "程序执行与软件可见状态",
+    "changed": true,
+    "reason": "直接陈述技术对象，去掉解释执行的教学动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "programmer-state",
+    "kind": "H3",
+    "old": "从一条数组赋值认识寄存器与 PC",
+    "new": "数组赋值中的通用寄存器与 PC",
+    "changed": true,
+    "reason": "以实例中的程序状态命名，删除认识寄存器的教学动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "privilege",
+    "kind": "H3",
+    "old": "M、S、U 是执行权限，不是三颗 CPU",
+    "new": "M、S、U 特权级与执行权限",
+    "changed": true,
+    "reason": "保留特权级主题，将口语化纠误留在正文。"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "functional-overview",
+    "kind": "H3",
+    "old": "执行资源与系统行为",
+    "new": "执行资源与系统行为",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "csr-trap",
+    "kind": "H3",
+    "old": "CSR、异常和中断",
+    "new": "CSR、异常和中断",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "memory-protection",
+    "kind": "H3",
+    "old": "访存、MMU 与 PMP",
+    "new": "访存、MMU 与 PMP",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "compute-state",
+    "kind": "H3",
+    "old": "整数、FPU 与协处理器",
+    "new": "整数、FPU 与协处理器",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "implementation-reference",
+    "kind": "H2",
+    "old": "可选回查：profile 与实现资源",
+    "new": "CPU profile 与实现资源参考",
+    "changed": true,
+    "reason": "将可选回查的阅读安排转为参考内容名称。"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "configuration-families",
+    "kind": "H3",
+    "old": "可选配置的类别与适用范围",
+    "new": "可选配置的类别与适用范围",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "profile-effective-values",
+    "kind": "H3",
+    "old": "两组 profile 与最终有效配置",
+    "new": "两组 profile 与最终有效配置",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "resource-consequences",
+    "kind": "H3",
+    "old": "CVA6 资源配置的结构影响",
+    "new": "CVA6 资源配置的结构影响",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/cva6.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "ddr-subsystem",
+    "kind": "H2",
+    "old": "DDR 子系统：控制器、PHY 与软件如何衔接",
+    "new": "DDR 控制器、PHY 与软件的职责划分",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "initialization",
+    "kind": "H2",
+    "old": "DDR 初始化与访问放行",
+    "new": "DDR 初始化与访问放行",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "spm-diagnostics",
+    "kind": "H3",
+    "old": "先建立独立于DDR的启动环境",
+    "new": "独立于 DDR 的早期启动环境",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "training",
+    "kind": "H3",
+    "old": "时钟、复位与训练的前后依赖",
+    "new": "时钟、复位与训练的前后依赖",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "software-init",
+    "kind": "H3",
+    "old": "从初始化到第一个可用缓冲区",
+    "new": "DDR 初始化与缓冲区可用条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "read-path",
+    "kind": "H2",
+    "old": "一次 AXI 读取的控制器、PHY 与 DRAM 路径",
+    "new": "一次 AXI 读取的控制器、PHY 与 DRAM 路径",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "row-state",
+    "kind": "H3",
+    "old": "地址映射、行命中与行切换",
+    "new": "地址映射、行命中与行切换",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "phy-return",
+    "kind": "H3",
+    "old": "物理收发、数据返回与可见延迟",
+    "new": "物理收发、数据返回与可见延迟",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "axi-contract",
+    "kind": "H2",
+    "old": "AXI4 接入与接口交付",
+    "new": "AXI4 接入与接口交付",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "platform-contract",
+    "kind": "H3",
+    "old": "当前 LLC 出口与 ASIC DDR 的职责划分",
+    "new": "当前 LLC 出口与 ASIC DDR 的职责划分",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "vendor-inputs",
+    "kind": "H3",
+    "old": "控制器和 PHY 的逐项资料",
+    "new": "DDR 控制器与 PHY 的接口资料",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "verification",
+    "kind": "H2",
+    "old": "就绪后的最小访存验证",
+    "new": "就绪后的最小访存验证",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "acceptance",
+    "kind": "H3",
+    "old": "从数据正确到并发和错误",
+    "new": "DDR 数据、并发与错误处理验收",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/ddr.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "copy-task",
+    "kind": "H2",
+    "old": "为什么不让 CPU 逐字节复制",
+    "new": "DMA 内存搬运与 CPU 控制职责",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "dma",
+    "kind": "H2",
+    "old": "iDMA 的任务与数据通路",
+    "new": "iDMA 的任务与数据通路",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "resources",
+    "kind": "H3",
+    "old": "队列资源和当前错误能力",
+    "new": "队列资源和当前错误能力",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "registers",
+    "kind": "H3",
+    "old": "寄存器提交与任务 ID",
+    "new": "寄存器提交与任务 ID",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "two-dimensional",
+    "kind": "H3",
+    "old": "二维搬运的地址与完成语义",
+    "new": "二维搬运的地址与完成语义",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "normal-copy",
+    "kind": "H3",
+    "old": "完整任务的正常交接",
+    "new": "DMA 拷贝任务与缓冲区交接",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "lanes",
+    "kind": "H2",
+    "old": "本工程执行条件",
+    "new": "本地 iDMA 示例的执行条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "axirt",
+    "kind": "H2",
+    "old": "AXI RT 的预算与发起者规模",
+    "new": "AXI RT 的预算与发起者规模",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "errors",
+    "kind": "H2",
+    "old": "总线错误记录的查阅入口",
+    "new": "总线错误记录的查阅入口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/dma.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "system-20261008",
+    "kind": "H2",
+    "old": "2026-10-08 系统教材实施与文档验收",
+    "new": "2026-10-08 系统教材实施与文档验收",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "figures-20261007",
+    "kind": "H2",
+    "old": "2026-10-07：现用插图重绘与可编辑导出",
+    "new": "2026-10-07：现用插图重绘与可编辑导出",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "teaching-20261007",
+    "kind": "H2",
+    "old": "2026-10-07：官方资料与本地实现的教学解读",
+    "new": "2026-10-07：官方资料与本地实现的教学解读",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "review-fixes-20261007",
+    "kind": "H3",
+    "old": "独立评审 R1/R2 的定向修正",
+    "new": "独立评审 R1/R2 的定向修正",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "refinement",
+    "kind": "H2",
+    "old": "2026-09-29：机制讲解与维护完善",
+    "new": "2026-09-29：机制讲解与维护完善",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "structure",
+    "kind": "H2",
+    "old": "2026-09-29：篇章结构修订",
+    "new": "2026-09-29：篇章结构修订",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "depth",
+    "kind": "H2",
+    "old": "2026-09-29：此前深度扩充证据",
+    "new": "2026-09-29：此前深度扩充证据",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "baseline",
+    "kind": "H2",
+    "old": "2026-09-28 重构的输入版本与来源",
+    "new": "2026-09-28 重构的输入版本与来源",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "current",
+    "kind": "H2",
+    "old": "2026-09-28 重构的实际检查",
+    "new": "2026-09-28 重构的实际检查",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "history",
+    "kind": "H2",
+    "old": "按日期保留的历史证据",
+    "new": "按日期保留的历史证据",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "gaps",
+    "kind": "H2",
+    "old": "待目标环境验证的具体事项",
+    "new": "待目标环境验证的具体事项",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "differences",
+    "kind": "H2",
+    "old": "历史文档与当前依据的差异",
+    "new": "历史文档与当前依据的差异",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/evidence.html",
+    "anchor": "review-20261008",
+    "kind": "H2",
+    "old": "2026-10-08 教学审查与局部实施",
+    "new": "2026-10-08 教学审查与局部实施",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "extract",
+    "kind": "H2",
+    "old": "先让另一台机器得到同一个系统",
+    "new": "独立工程的固定输入与可搬迁性",
+    "changed": true,
+    "reason": "明确固定配置和跨目录交付主题"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "asic",
+    "kind": "H2",
+    "old": "从数字接口走向工艺实现",
+    "new": "数字接口与工艺资源映射",
+    "changed": true,
+    "reason": "将迁移口语改为接口与资源关系"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "resource-mapping",
+    "kind": "H3",
+    "old": "顺着一个消费者找到平台责任",
+    "new": "数字系统消费者与平台实现职责",
+    "changed": true,
+    "reason": "明确消费者和平台责任，不使用阅读路径指令"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "sram-example",
+    "kind": "H3",
+    "old": "用 k+1/k+2 检查替换是否保持行为",
+    "new": "SRAM 读延迟对消费者时序的影响",
+    "changed": true,
+    "reason": "准确概括k+1/k+2消费者错配关系"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "implementation-deliverables",
+    "kind": "H3",
+    "old": "每种接口交出可以检查的条件",
+    "new": "平台接口的交付与验收条件",
+    "changed": true,
+    "reason": "概括接口表的交付和验收职责"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "verification-layers",
+    "kind": "H2",
+    "old": "对同一笔 SRAM 读，不同检查回答什么",
+    "new": "SRAM 读接口的分层验证与证据范围",
+    "changed": true,
+    "reason": "以共同接口和方法范围替代疑问"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "acceptance-gates",
+    "kind": "H2",
+    "old": "按依赖进入下一阶段",
+    "new": "ASIC 工程阶段与准入条件",
+    "changed": true,
+    "reason": "以阶段依赖的正式技术主题替代推进指令"
+  },
+  {
+    "path": "docs_codex/learning/content/future.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "purpose",
+    "kind": "H2",
+    "old": "为什么要读一片 EEPROM",
+    "new": "EEPROM 用途与读取任务",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "lines",
+    "kind": "H2",
+    "old": "开漏线路与字节应答",
+    "new": "开漏线路与字节应答",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "device",
+    "kind": "H2",
+    "old": "先把一次读取讲完整",
+    "new": "EEPROM 读取流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "transaction",
+    "kind": "H3",
+    "old": "EEPROM 地址如何变成总线事务",
+    "new": "EEPROM 地址与 I2C 总线事务",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "controller",
+    "kind": "H2",
+    "old": "让控制器代替 CPU 逐位操作",
+    "new": "I2C 控制器的字节传输",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "structure",
+    "kind": "H3",
+    "old": "从寄存器到命令状态机",
+    "new": "寄存器接口与命令状态机",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "register-contract",
+    "kind": "H3",
+    "old": "关键访问的意义",
+    "new": "关键寄存器的访问语义",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "init",
+    "kind": "H3",
+    "old": "初始化与频率换算",
+    "new": "初始化与频率换算",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "software",
+    "kind": "H3",
+    "old": "从应用参数走到引脚",
+    "new": "EEPROM 读取的软件调用链",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "limits",
+    "kind": "H3",
+    "old": "本只读例的范围",
+    "new": "EEPROM 只读示例的适用范围",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "result",
+    "kind": "H2",
+    "old": "完整操作与预期结果",
+    "new": "完整操作与预期结果",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "target-mode",
+    "kind": "H2",
+    "old": "进阶：让 SoC 成为被访问的设备",
+    "new": "I2C Target 模式与 SoC 访问接口",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/i2c.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "route",
+    "kind": "H2",
+    "old": "先把一个程序运行过程讲完整",
+    "new": "程序构建、启动与运行流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "example",
+    "kind": "H2",
+    "old": "用同一任务连接各层",
+    "new": "贯穿示例与系统层次",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-foundations",
+    "kind": "H2",
+    "old": "第一篇 · 系统与CPU使用模型",
+    "new": "第一篇 · 系统与CPU使用模型",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-software",
+    "kind": "H2",
+    "old": "第二篇 · 从C程序到可观察结果",
+    "new": "第二篇 · 裸机软件构建、启动与运行",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-fabric",
+    "kind": "H2",
+    "old": "第三篇 · 地址、互连与物理存储",
+    "new": "第三篇 · 地址、互连与物理存储",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-devices",
+    "kind": "H2",
+    "old": "第四篇 · 异常、外设与数据搬运",
+    "new": "第四篇 · 异常、外设与数据搬运",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-vector",
+    "kind": "H2",
+    "old": "第五篇 · Ara向量执行与数据交接",
+    "new": "第五篇 · Ara向量执行与数据交接",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-os",
+    "kind": "H2",
+    "old": "第六篇 · RTOS与嵌入式Linux",
+    "new": "第六篇 · RTOS与嵌入式Linux",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-integration",
+    "kind": "H2",
+    "old": "第七篇 · IP、DDR与系统协作",
+    "new": "第七篇 · IP、DDR与系统协作",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-platform",
+    "kind": "H2",
+    "old": "第八篇 · ASIC平台与物理实现",
+    "new": "第八篇 · ASIC平台与物理实现",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "part-verification",
+    "kind": "H2",
+    "old": "第九篇 · 验证、测量与实验记录",
+    "new": "第九篇 · 验证、测量与实验记录",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "scope",
+    "kind": "H2",
+    "old": "覆盖范围与证据边界",
+    "new": "覆盖范围与证据边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "reference",
+    "kind": "H2",
+    "old": "实验、查询与维护",
+    "new": "实验、查询与维护",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/index.html",
+    "anchor": "diagnostics",
+    "kind": "H2",
+    "old": "独立的症状与问题入口",
+    "new": "故障诊断与已知问题索引",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "control-path",
+    "kind": "H2",
+    "old": "一个设备操作的控制闭环",
+    "new": "Reg 设备的控制流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "unit",
+    "kind": "H3",
+    "old": "先定义一个完整的设备操作",
+    "new": "寄存器加法设备的操作示例",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "official-instantiation",
+    "kind": "H3",
+    "old": "官方集成入口与本地接口类型",
+    "new": "官方集成入口与本地接口类型",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "control",
+    "kind": "H3",
+    "old": "接入 Reg 扩展端口",
+    "new": "Reg 扩展端口接入",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "irq",
+    "kind": "H3",
+    "old": "接入中断并验证完成协议",
+    "new": "中断接入与完成协议验证",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "system-path",
+    "kind": "H2",
+    "old": "主动访存与生命周期",
+    "new": "主动访存与生命周期",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "master",
+    "kind": "H3",
+    "old": "加入主动 AXI 数据口",
+    "new": "AXI 主接口接入",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "reset",
+    "kind": "H3",
+    "old": "时钟、复位与停止过程",
+    "new": "时钟、复位与停止过程",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "verification",
+    "kind": "H2",
+    "old": "从单元到系统的验证递进",
+    "new": "单元与系统集成的验证层次",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/integration.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "decode",
+    "kind": "H2",
+    "old": "两级地址译码",
+    "new": "两级地址译码",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "crossbar",
+    "kind": "H2",
+    "old": "Crossbar 内部保存的事务状态",
+    "new": "Crossbar 内部保存的事务状态",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "configuration-versus-registers",
+    "kind": "H3",
+    "old": "结构配置与运行时控制的区别",
+    "new": "结构配置与运行时控制的区别",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "address-rule-worked-example",
+    "kind": "H3",
+    "old": "外部设备与地址规则的展开",
+    "new": "外部设备与地址规则的展开",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "transaction-storage",
+    "kind": "H3",
+    "old": "路由信息与在途事务",
+    "new": "路由信息与在途事务",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "write-route",
+    "kind": "H3",
+    "old": "W 来源与目标的保存",
+    "new": "W 来源与目标的保存",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "ordering",
+    "kind": "H3",
+    "old": "同 ID 顺序与跨目标限制",
+    "new": "同 ID 顺序与跨目标限制",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "two-by-two",
+    "kind": "H3",
+    "old": "两发起端、两目标的事务推演",
+    "new": "两发起端、两目标的事务推演",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "slow-fast",
+    "kind": "H3",
+    "old": "同 ID 先慢后快与读返回",
+    "new": "同 ID 事务的目标延迟与返回顺序",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "cuts",
+    "kind": "H3",
+    "old": "流水切分与在途容量",
+    "new": "流水切分与在途容量",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "validation",
+    "kind": "H2",
+    "old": "由修改影响设计验证",
+    "new": "结构变更与验证范围",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interconnect.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "event-task",
+    "kind": "H2",
+    "old": "让 CPU 同时观察 GPIO 事件与时间经过",
+    "new": "GPIO 事件与定时器的协同使用",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "trap",
+    "kind": "H2",
+    "old": "从异步事件到处理程序",
+    "new": "异步事件与中断处理入口",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "timer",
+    "kind": "H2",
+    "old": "CLINT 定时与软件中断",
+    "new": "CLINT 定时与软件中断",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "clint",
+    "kind": "H3",
+    "old": "CLINT 的计数与比较",
+    "new": "CLINT 的计数与比较",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "timer-registers",
+    "kind": "H3",
+    "old": "CLINT 的 64 位状态与复位后的门控",
+    "new": "CLINT 的 64 位状态与复位后的门控",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "controllers",
+    "kind": "H2",
+    "old": "外部中断控制器",
+    "new": "外部中断控制器",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "plic",
+    "kind": "H3",
+    "old": "PLIC 领取、清源与完成",
+    "new": "PLIC 领取、清源与完成",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "sequence",
+    "kind": "H2",
+    "old": "软件初始化与结果判断",
+    "new": "软件初始化与结果判断",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "extensions",
+    "kind": "H2",
+    "old": "完成基本事件后再选择其他中断路径",
+    "new": "可选中断路径的适用条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "clic",
+    "kind": "H3",
+    "old": "可选 IRQ Router 与 CLIC",
+    "new": "可选 IRQ Router 与 CLIC",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/interrupts.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "contract",
+    "kind": "H2",
+    "old": "共同环境与记录约定",
+    "new": "共同环境与记录约定",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-a",
+    "kind": "H2",
+    "old": "实验 A · 同一程序的构建与存储布局",
+    "new": "实验 A · 同一程序的构建与存储布局",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-b",
+    "kind": "H2",
+    "old": "实验 B · 装载执行与错误传播",
+    "new": "实验 B · 装载执行与错误传播",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-c",
+    "kind": "H2",
+    "old": "实验 C · GPIO 事件与定时器协同",
+    "new": "实验 C · GPIO 事件与定时器协同",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-d",
+    "kind": "H2",
+    "old": "实验 D · 两种串行存储的只读对照",
+    "new": "实验 D · 两种串行存储的只读对照",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-e",
+    "kind": "H2",
+    "old": "实验 E · 同一数组的 RVV 对照",
+    "new": "实验 E · 同一数组的 RVV 对照",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "rvv-depth",
+    "kind": "H3",
+    "old": "递进：尾部、归约与三种编程入口",
+    "new": "RVV 尾部、归约与三种编程入口",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "lab-f",
+    "kind": "H2",
+    "old": "实验 F · 独立寄存器设备契约",
+    "new": "实验 F · 独立寄存器设备契约",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "selection",
+    "kind": "H2",
+    "old": "旧实验的取舍与证据分类",
+    "new": "旧实验的取舍与证据分类",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "system-exercises",
+    "kind": "H2",
+    "old": "OS、ASIC与测量的机制推演",
+    "new": "OS、ASIC与测量的机制推演",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/labs.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "why-linux",
+    "kind": "H2",
+    "old": "数组程序需要的环境发生了什么变化",
+    "new": "裸机与 Linux 用户程序的运行环境",
+    "changed": true,
+    "reason": "明确正文对比对象与内容。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "software-products",
+    "kind": "H2",
+    "old": "先把主机生成的文件与目标运行的软件分开",
+    "new": "Linux 软件组成与构建产物",
+    "changed": true,
+    "reason": "覆盖运行软件和主机产物分类，删除先后指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "firmware-to-kernel",
+    "kind": "H2",
+    "old": "沿一条有本地依据的候选链交接",
+    "new": "本地固件与内核的候选启动链",
+    "changed": true,
+    "reason": "保留候选限定；当前只有源码关联，不是已跑通启动链。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "kernel-to-init",
+    "kind": "H2",
+    "old": "内核怎样走到第一个用户进程",
+    "new": "Linux 内核初始化与首个用户进程启动",
+    "changed": true,
+    "reason": "以具体启动过程取代疑问。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "dts-is-contract",
+    "kind": "H2",
+    "old": "设备树把硬件事实交给软件",
+    "new": "设备树的硬件描述与适用条件",
+    "changed": true,
+    "reason": "明确设备树内容及与当前硬件一致的条件。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "user-program",
+    "kind": "H2",
+    "old": "让同一个数组算法成为用户程序",
+    "new": "Linux 用户态数组计算示例",
+    "changed": true,
+    "reason": "用技术示例名称代替教学指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "version-evidence",
+    "kind": "H2",
+    "old": "本地版本能证明什么",
+    "new": "本地软件版本与验证边界",
+    "changed": true,
+    "reason": "以版本和证据范围命名，删除提问。"
+  },
+  {
+    "path": "docs_codex/learning/content/linux.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "从平台固件走到第一个用户程序",
+    "new": "Linux 启动与用户程序运行",
+    "changed": true,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "why-test",
+    "kind": "H2",
+    "old": "相同程序为何不能覆盖所有制造缺陷",
+    "new": "功能回归与制造缺陷检测的职责",
+    "changed": true,
+    "reason": "按正文区分两类验证目标"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "scan-process",
+    "kind": "H2",
+    "old": "逻辑扫描怎样进入和观察一个内部状态",
+    "new": "逻辑扫描的移位、捕获与响应观察",
+    "changed": true,
+    "reason": "直接列明scan正常流程"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "memory-test",
+    "kind": "H2",
+    "old": "对一个 bank 逐地址写读",
+    "new": "SRAM bank 的 MBIST 流程示例",
+    "changed": true,
+    "reason": "明确存储对象并保留教学算法不等于量产方案的限定"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "local-scope",
+    "kind": "H2",
+    "old": "当前源码实际提供了哪些入口",
+    "new": "当前扫描与存储自测接口的实现边界",
+    "changed": true,
+    "reason": "明确本地scan绑值和tag BIST覆盖范围"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "test-handoff",
+    "kind": "H2",
+    "old": "从 RTL 接口走到可交给测试机的产物",
+    "new": "制造测试的网表、图样与 ATE 交付",
+    "changed": true,
+    "reason": "以实际交付物概括测试流程"
+  },
+  {
+    "path": "docs_codex/learning/content/manufacturing-test.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "question",
+    "kind": "H2",
+    "old": "先固定“完成了同一个什么任务”",
+    "new": "计算任务定义与结果正确性",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "boundaries",
+    "kind": "H2",
+    "old": "在一次正常操作上放三个计时窗口",
+    "new": "算法内核、设备服务与端到端计时边界",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "observation",
+    "kind": "H2",
+    "old": "当前工程已经有什么观测入口",
+    "new": "本地计数器、日志与事务观测接口",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "units",
+    "kind": "H2",
+    "old": "周期、时间、吞吐和延迟怎样换算",
+    "new": "周期数、执行时间、吞吐率与延迟的换算",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "repeat",
+    "kind": "H2",
+    "old": "把一次结果变成可复查的实验",
+    "new": "性能实验的可重复性条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "record",
+    "kind": "H2",
+    "old": "一份可以交给另一位工程师的记录",
+    "new": "实验输入、结果与测量记录",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/measurement.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "cache",
+    "kind": "H2",
+    "old": "地址、缓存副本与物理存储",
+    "new": "地址、缓存副本与物理存储",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "array",
+    "kind": "H3",
+    "old": "同一阵列的缓存与 SPM 用途",
+    "new": "同一阵列的缓存与 SPM 用途",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "llc",
+    "kind": "H2",
+    "old": "LLC/SPM 的配置和访问路径",
+    "new": "LLC/SPM 的配置和访问路径",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "llc-transaction",
+    "kind": "H3",
+    "old": "一次缓存缺失与一次 SPM 访问",
+    "new": "一次缓存缺失与一次 SPM 访问",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "llc-config",
+    "kind": "H3",
+    "old": "容量参数与出口组合",
+    "new": "容量参数与出口组合",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "llc-registers",
+    "kind": "H3",
+    "old": "寄存器提交与 way 切换",
+    "new": "寄存器提交与 way 切换",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "usage-contract",
+    "kind": "H2",
+    "old": "从启动 SPM 到共享缓冲区",
+    "new": "启动 SPM 与共享缓冲区的使用条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "way-transition-example",
+    "kind": "H3",
+    "old": "回收一个 SPM way 的软件前置条件",
+    "new": "回收一个 SPM way 的软件前置条件",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/memory.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "model-case",
+    "kind": "H2",
+    "old": "一个完整的 Ara→NPU→Ara 候选片段",
+    "new": "Ara–NPU–Ara 协作的候选流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "partition",
+    "kind": "H3",
+    "old": "候选分工与交接次数",
+    "new": "候选分工与交接次数",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "cost",
+    "kind": "H3",
+    "old": "数据规模、数值与搬运成本",
+    "new": "数据规模、数值与搬运成本",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "cooperation",
+    "kind": "H3",
+    "old": "完整协作流程及未实现接口",
+    "new": "完整协作流程及未实现接口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "budget",
+    "kind": "H2",
+    "old": "先估容量与数据量，再讨论性能",
+    "new": "存储容量、数据流量与性能预算",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "calculator",
+    "kind": "H2",
+    "old": "带明确假设的容量估算",
+    "new": "带明确假设的容量估算",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/models.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "locate-stage",
+    "kind": "H2",
+    "old": "先定位停在哪个交接边界",
+    "new": "OS 启动与设备服务的分阶段定位",
+    "changed": true,
+    "reason": "以诊断对象及方法命名，删除先后指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "boot-inputs",
+    "kind": "H2",
+    "old": "启动输入及镜像溯源尚未闭合",
+    "new": "启动输入与镜像溯源的验证缺口",
+    "changed": true,
+    "reason": "保留未验证状态，使用明确的缺口主题。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "description",
+    "kind": "H2",
+    "old": "设备树描述与当前硬件需要逐项对齐",
+    "new": "设备树与硬件配置的一致性核对",
+    "changed": true,
+    "reason": "以所需核对对象命名，不在标题部署任务。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "vector-context",
+    "kind": "H2",
+    "old": "向量上下文代码存在，当前组合安全抢占仍待验证",
+    "new": "向量上下文实现与安全抢占验证缺口",
+    "changed": true,
+    "reason": "同时保留代码存在与安全抢占尚未验证的边界。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "dma-boundary",
+    "kind": "H2",
+    "old": "OS 不会自动补齐 DMA 一致性",
+    "new": "DMA 映射与平台一致性限制",
+    "changed": true,
+    "reason": "以正常 API 契约和本地限制命名，删除拟人化表述。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "evidence-levels",
+    "kind": "H2",
+    "old": "后续记录须写清证据级别",
+    "new": "OS 验证记录的证据等级",
+    "changed": true,
+    "reason": "明确证据主题，删除写作指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本页用途",
+    "new": "本页用途",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "same-uart",
+    "kind": "H2",
+    "old": "外部设备没有因为换 OS 而改变",
+    "new": "UART 连接、配置与资源所有权",
+    "changed": true,
+    "reason": "概括本节接线、配置和所有权内容，删除口语对比。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "baremetal-uart",
+    "kind": "H2",
+    "old": "裸机：应用自己承担等待",
+    "new": "裸机 UART 轮询发送流程",
+    "changed": true,
+    "reason": "以软件行为和流程命名。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "rtos-uart",
+    "kind": "H2",
+    "old": "RTOS：先由一个服务任务独占 UART",
+    "new": "RTOS UART 独占服务任务方案",
+    "changed": true,
+    "reason": "保留方案性质，不将条件化 RTOS 教学写成本地实现。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "rtos-irq",
+    "kind": "H3",
+    "old": "正常进阶：发送中断推进缓冲",
+    "new": "UART 发送中断与缓冲管理",
+    "changed": true,
+    "reason": "保留正常进阶机制，删除教学层级前缀。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "linux-uart",
+    "kind": "H2",
+    "old": "Linux：应用提交字节，内核管理设备",
+    "new": "Linux TTY 与串口驱动调用链",
+    "changed": true,
+    "reason": "准确命名应用到串口驱动的数据路径。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "linux-lifecycle",
+    "kind": "H3",
+    "old": "打开、配置、写入、排空、关闭",
+    "new": "Linux 串口操作流程与完成条件",
+    "changed": true,
+    "reason": "为打开至关闭的一组动作补充对象和完成语义。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "driver-and-description",
+    "kind": "H2",
+    "old": "设备描述如何让驱动找到控制器",
+    "new": "设备树与 UART 驱动绑定",
+    "changed": true,
+    "reason": "以设备描述匹配机制代替疑问。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "buffer-ownership",
+    "kind": "H2",
+    "old": "大数据设备多了一层缓冲所有权",
+    "new": "设备缓冲区的地址与所有权管理",
+    "changed": true,
+    "reason": "明确虚拟地址、DMA 地址及生命周期主题。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "completion-check",
+    "kind": "H2",
+    "old": "用五个完成点复述整条链",
+    "new": "UART 数据交接的分层完成条件",
+    "changed": true,
+    "reason": "以正文五种完成语义命名，删除复述指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/os-devices.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "同样发出一行文本，软件责任怎样改变",
+    "new": "裸机、RTOS 与 Linux 的 UART 软件职责",
+    "changed": true,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "layers",
+    "kind": "H2",
+    "old": "从最后一个已确认的动作向下定位",
+    "new": "外设故障的分层定位方法",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "uart",
+    "kind": "H2",
+    "old": "UART：没有文本、文本不完整或乱码",
+    "new": "UART 无输出、文本截断与乱码诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "gpio",
+    "kind": "H2",
+    "old": "GPIO：输出已写却无电平变化",
+    "new": "GPIO 输出与引脚状态不一致诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "interrupts",
+    "kind": "H2",
+    "old": "定时器/PLIC：不进处理函数或反复进入",
+    "new": "定时器与 PLIC 中断缺失、重复响应诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "i2c",
+    "kind": "H2",
+    "old": "I2C：没有应答、收不到指定字节或短读越界",
+    "new": "I2C 无应答、数据缺失与短读越界诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "spi",
+    "kind": "H2",
+    "old": "SPI：全0xff、错位或等待不结束",
+    "new": "SPI 全 0xff 数据、字节错位与等待停滞诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "dma",
+    "kind": "H2",
+    "old": "iDMA：当前示例为何保持 BLOCKED",
+    "new": "本地 iDMA 示例的执行限制",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "bus-errors",
+    "kind": "H2",
+    "old": "BusErr 与 AXI RT：保留记录后再消费",
+    "new": "BusErr 与 AXI RT 的状态读取及副作用",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "link",
+    "kind": "H2",
+    "old": "Serial Link：本地接受但没有远端结果",
+    "new": "Serial Link 远端访问未完成诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "vga",
+    "kind": "H2",
+    "old": "VGA：无图、错色或欠载",
+    "new": "VGA 无显示、颜色错误与欠载诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "usb",
+    "kind": "H2",
+    "old": "USB：寄存器可读但控制传输不完成",
+    "new": "USB 控制传输未完成诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "known-issues",
+    "kind": "H2",
+    "old": "已知问题与证据状态",
+    "new": "已知问题与证据状态",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/peripheral-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "ack-path",
+    "kind": "H2",
+    "old": "一个 ACK 为什么需要同时看输出和输入",
+    "new": "I2C ACK 的输出控制与输入反馈",
+    "changed": true,
+    "reason": "明确ACK位的双向逻辑通路"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "pad-package-board",
+    "kind": "H2",
+    "old": "沿当前 FPGA 连接理解未来边界",
+    "new": "FPGA IO 与 ASIC PAD、封装及板级边界",
+    "changed": true,
+    "reason": "概括现有参考与待实现物理边界"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "open-drain",
+    "kind": "H2",
+    "old": "释放线路如何形成高电平",
+    "new": "I2C 开漏、上拉与高电平形成",
+    "changed": true,
+    "reason": "将疑问改为电气原理主题"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "pinmux",
+    "kind": "H2",
+    "old": "复用和上电状态也是正常操作的一部分",
+    "new": "候选引脚复用与上电状态管理",
+    "changed": true,
+    "reason": "保留本节pinmux为未来契约而非当前能力"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "lvds-boundary",
+    "kind": "H2",
+    "old": "差分图像输入要先确定物理接收职责",
+    "new": "候选 LVDS 图像接口的物理接收职责",
+    "changed": true,
+    "reason": "明确未来图像接口及资料未定边界"
+  },
+  {
+    "path": "docs_codex/learning/content/physical-interfaces.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "asic-clock-power",
+    "kind": "H2",
+    "old": "一帧结束后，哪些东西可以暂时不工作",
+    "new": "候选计算域的帧间关断",
+    "changed": true,
+    "reason": "明确未来NPU示例对象与候选关电范围"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "domains",
+    "kind": "H2",
+    "old": "候选电源域的责任划分",
+    "new": "候选电源域的责任划分",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "current-boundary",
+    "kind": "H3",
+    "old": "现有代码能证明什么",
+    "new": "当前 RTL 的电源控制边界",
+    "changed": true,
+    "reason": "直接命名当前实现边界，避免提问"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "power-table",
+    "kind": "H3",
+    "old": "未来域表需要哪些输入",
+    "new": "候选电源域的设计输入",
+    "changed": true,
+    "reason": "将未来资料问句改为带候选限定的技术主题"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "domain-orthogonality",
+    "kind": "H3",
+    "old": "时钟域、复位域与电源域的组合",
+    "new": "时钟域、复位域与电源域的组合",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "sequence",
+    "kind": "H2",
+    "old": "关断、保持和恢复",
+    "new": "候选电源域的关断、保持与恢复",
+    "changed": true,
+    "reason": "补足独立目录所需对象并明确候选实现状态"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "shutdown",
+    "kind": "H3",
+    "old": "关断前的所有权边界",
+    "new": "关断前的事务与缓冲区所有权",
+    "changed": true,
+    "reason": "明确正文排空和帧缓冲交接两个对象"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "isolation-example",
+    "kind": "H3",
+    "old": "从设备完成信号理解隔离和恢复",
+    "new": "设备完成信号的隔离与恢复示例",
+    "changed": true,
+    "reason": "保留示例性质，以技术过程替代理解指令"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "wake",
+    "kind": "H3",
+    "old": "恢复后先建立可用状态，再发布新任务",
+    "new": "电源域恢复与任务重新开放条件",
+    "changed": true,
+    "reason": "以恢复过程和任务准入条件替代先再指令"
+  },
+  {
+    "path": "docs_codex/learning/content/power.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-0",
+    "kind": "H2",
+    "old": "SoC · 0x03000000",
+    "new": "SoC · 0x03000000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-1",
+    "kind": "H2",
+    "old": "LLC · 0x03001000",
+    "new": "LLC · 0x03001000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-2",
+    "kind": "H2",
+    "old": "GPIO · 0x03005000",
+    "new": "GPIO · 0x03005000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-3",
+    "kind": "H2",
+    "old": "I2C · 0x03003000",
+    "new": "I2C · 0x03003000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-4",
+    "kind": "H2",
+    "old": "SPI host · 0x03004000",
+    "new": "SPI host · 0x03004000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-5",
+    "kind": "H2",
+    "old": "CLINT · 0x02040000",
+    "new": "CLINT · 0x02040000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-6",
+    "kind": "H2",
+    "old": "PLIC · 0x04000000",
+    "new": "PLIC · 0x04000000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-7",
+    "kind": "H2",
+    "old": "iDMA 2D · 0x01000000",
+    "new": "iDMA 2D · 0x01000000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-8",
+    "kind": "H2",
+    "old": "Serial Link · 0x03006000",
+    "new": "Serial Link · 0x03006000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-9",
+    "kind": "H2",
+    "old": "VGA · 0x03007000",
+    "new": "VGA · 0x03007000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-10",
+    "kind": "H2",
+    "old": "AXI RT（可选） · 0x020c0000",
+    "new": "AXI RT（可选） · 0x020c0000",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "group-11",
+    "kind": "H2",
+    "old": "Bus error 单元 · 见章节内各读/写子块",
+    "new": "BusErr 读写错误记录子块",
+    "changed": true,
+    "reason": "正式技术主题；范围与正文一致"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "quiz",
+    "kind": "H2",
+    "old": "本章自测",
+    "new": "本章自测",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/registers.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "用途与前置",
+    "new": "用途与前置",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "sources",
+    "kind": "H2",
+    "old": "复位先建立控制状态，再由启动流程建立可用系统",
+    "new": "复位状态与启动就绪条件",
+    "changed": true,
+    "reason": "概括复位状态和后续启动条件，移除先再句式"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "system-reset",
+    "kind": "H3",
+    "old": "当前几个复位入口分别控制什么",
+    "new": "当前复位入口及作用范围",
+    "changed": true,
+    "reason": "明确现有实现对象和范围"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "release",
+    "kind": "H2",
+    "old": "为什么释放必须等本域时钟",
+    "new": "复位同步释放与时钟有效条件",
+    "changed": true,
+    "reason": "直接陈述同步释放的时钟前提"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "readiness",
+    "kind": "H2",
+    "old": "用可观察里程碑连接硬件和软件",
+    "new": "启动阶段及软硬件就绪条件",
+    "changed": true,
+    "reason": "以实际阶段和就绪条件替代连接里程碑的教学动作"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "rom-ready",
+    "kind": "H3",
+    "old": "从第一条指令到应用 main",
+    "new": "ROM 执行、片上存储与栈初始化",
+    "changed": true,
+    "reason": "明确段落覆盖的启动对象"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "external-ready",
+    "kind": "H3",
+    "old": "外存前提放在首次访问之前",
+    "new": "首次外存访问的初始化前提",
+    "changed": true,
+    "reason": "以访问条件表达前置依赖"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "bringup-milestones",
+    "kind": "H3",
+    "old": "每一步应该交出什么",
+    "new": "启动阶段的交付条件与观察依据",
+    "changed": true,
+    "reason": "为目录列明阶段表格的对象与列义"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "transaction-reset",
+    "kind": "H2",
+    "old": "一次正常重启，怎样把接口先停下来",
+    "new": "候选设备域的受控重启流程",
+    "changed": true,
+    "reason": "移除疑问并保留独立设备域重启尚属候选的边界"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "drain",
+    "kind": "H3",
+    "old": "停止新请求，再等待已接受事务",
+    "new": "新请求停止与在途事务排空",
+    "changed": true,
+    "reason": "以两个协议动作命名正文内容"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "reset-validation",
+    "kind": "H3",
+    "old": "验证正常重启及异常边界",
+    "new": "正常重启与异常边界的验证范围",
+    "changed": true,
+    "reason": "使用名词性验证范围，不表示验证已经执行"
+  },
+  {
+    "path": "docs_codex/learning/content/reset.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "two-tasks",
+    "kind": "H2",
+    "old": "为什么不把所有工作写进一个循环",
+    "new": "RTOS 任务划分与实时性要求",
+    "changed": true,
+    "reason": "以任务划分和截止期要求概括循环例，不保留疑问句。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "state-and-stack",
+    "kind": "H2",
+    "old": "暂停一个任务，要把什么留在原处",
+    "new": "任务上下文的组成与保存",
+    "changed": true,
+    "reason": "明确暂停任务所需保存对象与机制。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "switch-walk",
+    "kind": "H2",
+    "old": "沿 A→B→A 走一遍",
+    "new": "任务切换与上下文恢复流程",
+    "changed": true,
+    "reason": "以 A→B→A 展示的切换和恢复流程命名，删除走读指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "tick-and-event",
+    "kind": "H2",
+    "old": "时间到、主动让出与设备到达是三种触发",
+    "new": "时钟节拍、主动让出与设备事件",
+    "changed": true,
+    "reason": "并列列出正文三类调度触发，不用口语描述。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "queue-example",
+    "kind": "H2",
+    "old": "把 137 个元素交给计算任务",
+    "new": "基于消息队列的数组计算示例",
+    "changed": true,
+    "reason": "明确示例的通信机制与计算对象。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "synchronization",
+    "kind": "H2",
+    "old": "从一份共享计数理解同步",
+    "new": "共享数据同步与优先级反转",
+    "changed": true,
+    "reason": "覆盖正文临界区、互斥和优先级继承相关内容。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "fp-vector-context",
+    "kind": "H2",
+    "old": "整数切换成立后，再增加 FP 与 RVV 状态",
+    "new": "FP 与 RVV 上下文管理及支持范围",
+    "changed": true,
+    "reason": "以扩展上下文及本地支持边界命名，删除学习次序指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "local-boundary",
+    "kind": "H2",
+    "old": "把教学闭环交给本平台",
+    "new": "本平台 RTOS 适配条件与验证边界",
+    "changed": true,
+    "reason": "突出尚待适配和验证的条件，不将教学闭环写成本地完成状态。"
+  },
+  {
+    "path": "docs_codex/learning/content/rtos.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "让两个任务各自继续执行",
+    "new": "RTOS 任务调度与上下文管理",
+    "changed": true,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "program",
+    "kind": "H2",
+    "old": "指令与数据的存储需求",
+    "new": "指令与数据的存储需求",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "program-storage",
+    "kind": "H3",
+    "old": "贯穿示例的指令与对象",
+    "new": "贯穿示例的指令与对象",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "software-stack",
+    "kind": "H3",
+    "old": "同一个程序有四种关系",
+    "new": "程序的组成、构建、启动与运行关系",
+    "changed": true,
+    "reason": "把四种关系的具体内容写入标题，避免模糊计数与同一程序指代。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "stack",
+    "kind": "H2",
+    "old": "函数调用与栈帧",
+    "new": "函数调用与栈帧",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "abi",
+    "kind": "H2",
+    "old": "ABI 约定软件之间的边界",
+    "new": "ABI 与软件调用边界",
+    "changed": true,
+    "reason": "以二进制调用约定的实际范围命名。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "initialization",
+    "kind": "H2",
+    "old": "有初值与零初始化的不同责任",
+    "new": "数据初值装载与零初始化的责任划分",
+    "changed": true,
+    "reason": "明确文件初值装载与BSS清零的责任，消除有初值的口语表达。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "sections",
+    "kind": "H2",
+    "old": "用节名表达存储用途",
+    "new": "存储用途与节的划分",
+    "changed": true,
+    "reason": "用存储组织主题替代用节名表达的教学动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "section-purpose",
+    "kind": "H3",
+    "old": "按初始化和访问方式分组",
+    "new": "节的初始化属性与访问方式",
+    "changed": true,
+    "reason": "明确分组对象和依据，避免指令式标题。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "section-local-mapping",
+    "kind": "H3",
+    "old": "常见节名与本地合并规则",
+    "new": "常见节名与本地合并规则",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "heap",
+    "kind": "H2",
+    "old": "容量与堆的边界",
+    "new": "容量与堆的边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "runtime-call",
+    "kind": "H2",
+    "old": "从 main 的第一项检查连续走到 UART 输出",
+    "new": "数组程序的初始化、计算与 UART 输出",
+    "changed": true,
+    "reason": "覆盖正文从初态校验、测频、计算到输出的完整范围，删除连续走到的授课动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "beyond-baremetal",
+    "kind": "H2",
+    "old": "沿相同职责进入操作系统",
+    "new": "裸机与操作系统的软件职责",
+    "changed": true,
+    "reason": "直接命名两类环境的职责，删除沿相同职责进入的阅读安排。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "object-lifetime",
+    "kind": "H2",
+    "old": "进阶回查：数组、栈与共享缓冲的边界",
+    "new": "数组、栈与共享缓冲区的使用边界",
+    "changed": true,
+    "reason": "保留对象边界主题，去掉进阶回查的教学指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/runtime.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "ownership",
+    "kind": "H2",
+    "old": "缓冲区所有权与可见性",
+    "new": "缓冲区所有权与可见性",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "sharing",
+    "kind": "H2",
+    "old": "当前 CPU/Ara 协作覆盖到哪里",
+    "new": "当前 CPU/Ara 协作机制的适用范围",
+    "changed": true,
+    "reason": "保留当前实现范围，以主题代替提问。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "cpu-ara-mechanism",
+    "kind": "H3",
+    "old": "当前 CPU/Ara：WT、pending 与失效通知",
+    "new": "当前 CPU/Ara：WT、pending 与失效通知",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "vrf-versus-shared-memory",
+    "kind": "H3",
+    "old": "Ara VRF、缓存与 NPU 共享张量",
+    "new": "Ara VRF、缓存与 NPU 共享张量",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "storage-options",
+    "kind": "H3",
+    "old": "共享存储方案的选择条件",
+    "new": "共享存储方案的选择条件",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "data",
+    "kind": "H3",
+    "old": "Ara 写入与 CPU 观察",
+    "new": "Ara 写入与 CPU 观察",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "handoff",
+    "kind": "H2",
+    "old": "从取得缓冲区到交还缓冲区",
+    "new": "候选缓冲区所有权与交接协议",
+    "changed": true,
+    "reason": "正文包含未来 NPU/DDR 旁路的候选协议，保留方案限定。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "descriptor-contract",
+    "kind": "H3",
+    "old": "地址、布局、所有权与完成元数据",
+    "new": "地址、布局、所有权与完成元数据",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "bypass-copies",
+    "kind": "H3",
+    "old": "旁路写与缓存副本",
+    "new": "旁路写与缓存副本",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "atomics",
+    "kind": "H3",
+    "old": "AMO 与 LR/SC 的观察边界",
+    "new": "AMO 与 LR/SC 的观察边界",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/sharing.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "observable-first",
+    "kind": "H2",
+    "old": "先让最小系统可观察",
+    "new": "最小启动系统的可观察性",
+    "changed": true,
+    "reason": "直接表达正常启动所需观察条件"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "staged-run",
+    "kind": "H2",
+    "old": "从安全取指走到独立结果校验",
+    "new": "候选首硅启动与结果校验流程",
+    "changed": true,
+    "reason": "保留尚无样片、未运行的方案身份"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "normal-observability",
+    "kind": "H2",
+    "old": "记录状态，是为了连接相邻阶段",
+    "new": "启动阶段标志与状态观察",
+    "changed": true,
+    "reason": "命名版本/阶段/PC等实际观察对象"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "measure-next",
+    "kind": "H2",
+    "old": "正确性闭环之后再问性能和功耗",
+    "new": "正确性、性能与功耗的测量边界",
+    "changed": true,
+    "reason": "直接表达测量前提和范围"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "records",
+    "kind": "H2",
+    "old": "把一次运行留下的证据交给下一阶段",
+    "new": "启动验证证据与后续交付条件",
+    "changed": true,
+    "reason": "概括证据等级和后续负责方输入"
+  },
+  {
+    "path": "docs_codex/learning/content/silicon-bringup.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "flow",
+    "kind": "H2",
+    "old": "一次运行所需的四类输入",
+    "new": "仿真运行的输入组成",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "prepare",
+    "kind": "H2",
+    "old": "独立清单与工作目录",
+    "new": "独立清单与工作目录",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "questa",
+    "kind": "H2",
+    "old": "QuestaSim / ModelSim 的入口",
+    "new": "QuestaSim / ModelSim 的入口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "vcs",
+    "kind": "H2",
+    "old": "VCS 的入口差异",
+    "new": "VCS 的入口差异",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "judgement",
+    "kind": "H2",
+    "old": "输出、退出与独立结果校验",
+    "new": "输出、退出与独立结果校验",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "debug",
+    "kind": "H2",
+    "old": "执行条件与独立诊断入口",
+    "new": "执行条件与独立诊断入口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "vector-trace",
+    "kind": "H2",
+    "old": "为向量实验建立最小动态证据链",
+    "new": "向量实验的动态验证证据",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/simulation.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "locate-stage",
+    "kind": "H2",
+    "old": "先确定停止在哪一次责任交接",
+    "new": "软件构建、装载与运行的分层诊断",
+    "changed": true,
+    "reason": "将定位指令变为完整的软件责任层次范围。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "build-errors",
+    "kind": "H2",
+    "old": "构建错误与告警",
+    "new": "构建错误与告警",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "load-stop",
+    "kind": "H2",
+    "old": "装载没有继续：分开观察三个完成条件",
+    "new": "JTAG 装载停顿与阶段完成条件",
+    "changed": true,
+    "reason": "保留装载停顿症状，明确SPM、halt与SBA完成条件的范围。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "stack-handoff",
+    "kind": "H3",
+    "old": "装载成功后，应用仍需要有效 sp",
+    "new": "应用入口的栈有效性与对齐条件",
+    "changed": true,
+    "reason": "准确概括继承栈、暂停位置和ABI对齐的诊断内容。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "loader-tail",
+    "kind": "H3",
+    "old": "本地 ELF/JTAG 段尾与补零责任",
+    "new": "本地 ELF/JTAG 段尾与补零责任",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "trap-stop",
+    "kind": "H2",
+    "old": "停在 trap：先保存原因，再解释恢复条件",
+    "new": "trap 停顿的原因记录与恢复条件",
+    "changed": true,
+    "reason": "保留诊断对象与条件，删除先再指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "no-output",
+    "kind": "H2",
+    "old": "main 已进入，但没有正确字符",
+    "new": "main 运行期间的 UART 无输出与乱码诊断",
+    "changed": true,
+    "reason": "用具体症状替代没有正确字符，限定main运行期间，避免误指函数返回以后。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "wrong-result",
+    "kind": "H2",
+    "old": "有日志仍要检查同一次执行的数据",
+    "new": "应用数据、日志与退出码的一致性检查",
+    "changed": true,
+    "reason": "明确结果检查对象，删除有日志仍要的口语提醒。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "alternate-loaders",
+    "kind": "H2",
+    "old": "替代装载路径的协议与观察边界",
+    "new": "替代装载路径的协议与观察边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "platform-rom-return",
+    "kind": "H2",
+    "old": "Platform ROM 的正常返回缺口",
+    "new": "Platform ROM 的正常返回缺口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "media-start",
+    "kind": "H2",
+    "old": "介质启动的已有局限",
+    "new": "介质启动的已有局限",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "known-issues",
+    "kind": "H2",
+    "old": "证据与尚未关闭的事项",
+    "new": "已知软件问题的证据与验证状态",
+    "changed": true,
+    "reason": "明确事项所属软件问题及状态，不暗示已修复。"
+  },
+  {
+    "path": "docs_codex/learning/content/software-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "诊断入口",
+    "new": "诊断入口",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "read-task",
+    "kind": "H2",
+    "old": "从保存程序的 Flash 读出已知字节",
+    "new": "NOR Flash 的已知数据读取",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "transaction",
+    "kind": "H2",
+    "old": "一段命令为什么不能分成三次片选",
+    "new": "SPI 命令、地址与数据的片选连续性",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "segments",
+    "kind": "H3",
+    "old": "把一次设备操作分成事务段",
+    "new": "SPI 设备操作与事务分段",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "controller",
+    "kind": "H2",
+    "old": "控制器怎样执行这条读取",
+    "new": "SPI 控制器的读取流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "host",
+    "kind": "H3",
+    "old": "SPI 控制器的资源与配置",
+    "new": "SPI 控制器的资源与配置",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "register-contract",
+    "kind": "H3",
+    "old": "配置、命令和数据寄存器",
+    "new": "配置、命令和数据寄存器",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "init",
+    "kind": "H3",
+    "old": "控制寄存器与初始化",
+    "new": "控制寄存器与初始化",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "devices",
+    "kind": "H2",
+    "old": "应用如何调用 NOR 驱动",
+    "new": "NOR Flash 的软件调用链",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "nor",
+    "kind": "H3",
+    "old": "初始化、读取、校验和结束",
+    "new": "初始化、读取、校验和结束",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "sd",
+    "kind": "H3",
+    "old": "同一个 SPI 上的 SD 协议",
+    "new": "SPI 总线上的 SD 协议",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "verification",
+    "kind": "H2",
+    "old": "模型条件与后续验证",
+    "new": "模型条件与后续验证",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/spi.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "link",
+    "kind": "H2",
+    "old": "Serial Link：把本地写变成远端写",
+    "new": "Serial Link 的远端访问",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "link-structure",
+    "kind": "H3",
+    "old": "分层与远端 AXI",
+    "new": "分层与远端 AXI",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "link-registers",
+    "kind": "H3",
+    "old": "先配置发送节拍，再开始事务",
+    "new": "Serial Link 的发送时序配置",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "link-validation",
+    "kind": "H3",
+    "old": "一次写读的全过程与现有加载实例",
+    "new": "Serial Link 写读流程与加载实例",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "vga",
+    "kind": "H2",
+    "old": "VGA：把 RAM 的彩条变成连续像素",
+    "new": "VGA 帧缓冲与像素输出",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "vga-structure",
+    "kind": "H3",
+    "old": "取帧、队列与像素输出",
+    "new": "取帧、队列与像素输出",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "vga-registers",
+    "kind": "H3",
+    "old": "参数和关键寄存器",
+    "new": "参数和关键寄存器",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "vga-init",
+    "kind": "H3",
+    "old": "初始化与帧缓冲预算",
+    "new": "初始化与帧缓冲预算",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "vga-validation",
+    "kind": "H3",
+    "old": "正常输出的连续观察",
+    "new": "VGA 输出与结果观察",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "usb",
+    "kind": "H2",
+    "old": "USB OHCI：让控制器读取一条传输任务",
+    "new": "USB OHCI 控制器与传输任务",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "usb-structure",
+    "kind": "H3",
+    "old": "描述符和 DMA",
+    "new": "描述符和 DMA",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "usb-registers",
+    "kind": "H3",
+    "old": "寄存器、状态和对齐",
+    "new": "寄存器、状态和对齐",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "usb-init",
+    "kind": "H3",
+    "old": "从描述符准备到接收数据",
+    "new": "USB 描述符准备与数据接收",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "usb-validation",
+    "kind": "H3",
+    "old": "该例还需要什么",
+    "new": "USB 示例的执行条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "compare",
+    "kind": "H2",
+    "old": "三类设备的验证重心",
+    "new": "三类设备的验证重心",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "device-contracts",
+    "kind": "H2",
+    "old": "三种完成条件不能互换",
+    "new": "链路、显示与 USB 的完成语义",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/stream-io.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "locate",
+    "kind": "H2",
+    "old": "先找到最早没有完成的责任交接",
+    "new": "系统故障的责任边界与定位顺序",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "ddr",
+    "kind": "H2",
+    "old": "DDR没有响应、数据不一致或初始化停滞",
+    "new": "DDR 无响应、数据不一致与初始化停滞诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "platform-readiness",
+    "kind": "H2",
+    "old": "平台就绪与调试复位的本地边界",
+    "new": "平台就绪与调试复位的本地边界",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "simulation",
+    "kind": "H2",
+    "old": "从目标运行最早失败的阶段定位",
+    "new": "目标运行失败的阶段定位",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "integration",
+    "kind": "H2",
+    "old": "控制寄存器正确，系统任务却没有完成",
+    "new": "设备控制访问与系统任务完成状态诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "frames",
+    "kind": "H2",
+    "old": "丢帧、半帧或吞吐不足",
+    "new": "帧丢失、数据不完整与吞吐不足诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "measurement",
+    "kind": "H2",
+    "old": "计时跳变、零耗时或“加速”不可复现",
+    "new": "计时异常与性能结果复现诊断",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "known",
+    "kind": "H2",
+    "old": "当前已知问题与证据状态",
+    "new": "当前已知问题与证据状态",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/system-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本页用途",
+    "new": "本页用途",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "real-path",
+    "kind": "H2",
+    "old": "从一个真实起点和终点读时序",
+    "new": "VRF 地址与数据返回的时序路径",
+    "changed": true,
+    "reason": "明确真实时序起终点对应的路径对象"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "setup-hold",
+    "kind": "H2",
+    "old": "先理解建立与保持，再给时钟周期",
+    "new": "建立时间、保持时间与时钟周期约束",
+    "changed": true,
+    "reason": "以技术量和关系替代先理解再给的指令"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "constraints",
+    "kind": "H2",
+    "old": "约束描述外部条件和合法捕获关系",
+    "new": "约束描述外部条件和合法捕获关系",
+    "changed": false,
+    "reason": "保留原技术关系并采用统一名词性表达"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "physical-feedback",
+    "kind": "H2",
+    "old": "把十六个 bank 放到版图后会发生什么",
+    "new": "VRF 宏布局的时序影响",
+    "changed": true,
+    "reason": "准确概括摆放、线长和扇出反馈"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "evidence",
+    "kind": "H2",
+    "old": "形成一份可复查的时序结论",
+    "new": "静态时序分析的输入与证据范围",
+    "changed": true,
+    "reason": "明确分析资料和结论边界，避免要求读者形成结论"
+  },
+  {
+    "path": "docs_codex/learning/content/timing-physical.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "call-versus-trap",
+    "kind": "H2",
+    "old": "从普通函数调用走向异常和中断",
+    "new": "函数调用、异常与中断的控制流",
+    "changed": true,
+    "reason": "将走向的授课过渡改为三种控制转移的技术范围。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "trap-entry",
+    "kind": "H2",
+    "old": "硬件先留下最小的返回线索",
+    "new": "异常与中断入口的硬件状态更新",
+    "changed": true,
+    "reason": "用CSR/PC状态更新替代返回线索比喻。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "software-context",
+    "kind": "H2",
+    "old": "入口汇编为什么还要保存整数状态",
+    "new": "异常入口的整数寄存器保存与恢复",
+    "changed": true,
+    "reason": "依据当前整数包装范围命名，删除为什么还要的疑问口语。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "normal-service",
+    "kind": "H2",
+    "old": "连续追踪一次定时服务",
+    "new": "机器态定时器中断处理流程",
+    "changed": true,
+    "reason": "明确机器态timer服务范围，不扩成调度实现。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "trap-return",
+    "kind": "H2",
+    "old": "返回地址、特权返回与委托",
+    "new": "返回地址、特权返回与委托",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "syscall-scheduling",
+    "kind": "H2",
+    "old": "由 trap 连接到任务和系统调用",
+    "new": "trap、任务切换与系统调用的关系",
+    "changed": true,
+    "reason": "陈述技术关系，去掉连接到的阅读过渡。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "local-handler",
+    "kind": "H2",
+    "old": "当前实现的适用范围",
+    "new": "本地 trap handler 的适用范围",
+    "changed": true,
+    "reason": "明确当前实现所指对象，保留适用范围限定。"
+  },
+  {
+    "path": "docs_codex/learning/content/traps.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "use-and-connection",
+    "kind": "H2",
+    "old": "从终端上的 ready 到一根发送线",
+    "new": "UART 用途与设备连接",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "registers",
+    "kind": "H2",
+    "old": "CPU 怎样把字符交给设备",
+    "new": "MMIO 字符输出与寄存器访问语义",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart-device",
+    "kind": "H2",
+    "old": "把 ready 连续发送出去",
+    "new": "UART 文本发送流程",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart",
+    "kind": "H3",
+    "old": "结构与寄存器窗口",
+    "new": "结构与寄存器窗口",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "reset-access",
+    "kind": "H3",
+    "old": "复位、字段与访问宽度",
+    "new": "复位、字段与访问宽度",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart-init",
+    "kind": "H3",
+    "old": "初始化与 C 调用",
+    "new": "初始化与 C 调用",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart-check",
+    "kind": "H3",
+    "old": "支持层次与结果判断",
+    "new": "支持层次与结果判断",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart-sharing",
+    "kind": "H3",
+    "old": "共用 UART 与重复初始化",
+    "new": "共用 UART 与重复初始化",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "uart-recovery",
+    "kind": "H3",
+    "old": "本例执行条件",
+    "new": "UART 示例的执行条件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "gpio-device",
+    "kind": "H2",
+    "old": "从一个输出位到一个输入事件",
+    "new": "GPIO 输出控制与输入事件",
+    "changed": true,
+    "reason": "以具体技术对象、过程或适用条件替代口语、教学动作或模糊指代；正文范围不变"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "gpio",
+    "kind": "H3",
+    "old": "GPIO 的输入、输出和方向",
+    "new": "GPIO 的输入、输出和方向",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "gpio-reset",
+    "kind": "H3",
+    "old": "输入与输出的复位语义",
+    "new": "输入与输出的复位语义",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "gpio-init",
+    "kind": "H3",
+    "old": "初始化与输出操作",
+    "new": "初始化与输出操作",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "events",
+    "kind": "H3",
+    "old": "GPIO 事件到中断的交接",
+    "new": "GPIO 事件到中断的交接",
+    "changed": false,
+    "reason": "原有技术主题符合规范，保留"
+  },
+  {
+    "path": "docs_codex/learning/content/uart-gpio.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/vector-debug.html",
+    "anchor": "layers",
+    "kind": "H2",
+    "old": "先定位失败阶段，再看对应证据",
+    "new": "向量程序的分阶段诊断与证据",
+    "changed": true,
+    "reason": "明确诊断对象和分层方法，删除先后指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector-debug.html",
+    "anchor": "configuration",
+    "kind": "H2",
+    "old": "首条向量指令陷入：先核对有效组合",
+    "new": "首条向量指令陷入的配置核对",
+    "changed": true,
+    "reason": "保留具体症状与诊断范围，删除先核对指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector-debug.html",
+    "anchor": "memory",
+    "kind": "H2",
+    "old": "访存不结束或数组错误",
+    "new": "访存不结束或数组错误",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector-debug.html",
+    "anchor": "local-limits",
+    "kind": "H2",
+    "old": "本地限制与未完成验收",
+    "new": "本地限制与未完成验收",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector-debug.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "concepts",
+    "kind": "H2",
+    "old": "从同一数组继续到可校验程序",
+    "new": "向量数组程序与校验任务",
+    "changed": true,
+    "reason": "明确数组程序及可校验目标，删除依赖前文的同一。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "work",
+    "kind": "H3",
+    "old": "同一任务的两种表达",
+    "new": "数组计算的标量与向量表达",
+    "changed": true,
+    "reason": "给出两种表达的具体名称。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "implementation",
+    "kind": "H2",
+    "old": "状态、循环和编程入口",
+    "new": "状态、循环和编程入口",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "configuration",
+    "kind": "H3",
+    "old": "配置到运行许可",
+    "new": "RVV 配置与运行前提",
+    "changed": true,
+    "reason": "明确有效配置与启动许可条件的技术对象。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "loop",
+    "kind": "H3",
+    "old": "vl 决定每轮处理多少元素",
+    "new": "实际 vl 与数组分块循环",
+    "changed": true,
+    "reason": "以运行时 vl 和分块循环关系命名。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "programming",
+    "kind": "H3",
+    "old": "三种编程入口与当前工具链",
+    "new": "三种编程入口与当前工具链",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "toolchain-contract",
+    "kind": "H3",
+    "old": "编译器入口与向量对象边界",
+    "new": "编译器入口与向量对象边界",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "advanced-state",
+    "kind": "H2",
+    "old": "基本整数循环之后再扩展状态与操作",
+    "new": "RVV 进阶状态与运算",
+    "changed": true,
+    "reason": "保留进阶层次，删除先后教学指令。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "rvv-model",
+    "kind": "H3",
+    "old": "从数组位置理解 vtype、寄存器分组与 mask",
+    "new": "RVV 掩码、访存模式与数值规则",
+    "changed": true,
+    "reason": "覆盖所属段落的掩码、地址模式、整数及浮点数值规则。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "validation",
+    "kind": "H2",
+    "old": "分层建立正确性与性能证据",
+    "new": "RVV 正确性与性能验证",
+    "changed": true,
+    "reason": "以验证对象命名，删除建立证据的教学动作。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "proof",
+    "kind": "H3",
+    "old": "构建、执行与结果的三层证据",
+    "new": "构建、执行与结果的三层证据",
+    "changed": false,
+    "reason": "现有标题为明确的技术主题或规范入口标签，保留。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "performance",
+    "kind": "H3",
+    "old": "结果与性能分别建立证据",
+    "new": "数值校验与性能测量方法",
+    "changed": true,
+    "reason": "区分结果正确性和实际性能测量两个技术主题。"
+  },
+  {
+    "path": "docs_codex/learning/content/vector.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "本章任务",
+    "new": "本章任务",
+    "changed": false,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "from-physical",
+    "kind": "H2",
+    "old": "裸机数组先占用一块真实存储",
+    "new": "裸机数组的物理存储与访问条件",
+    "changed": true,
+    "reason": "明确裸机数组作为地址空间教学起点的技术内容。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "protection",
+    "kind": "H2",
+    "old": "PMA、PMP 与页权限各回答一类问题",
+    "new": "PMA、PMP 与页权限的职责",
+    "changed": true,
+    "reason": "以各保护机制职责概括段落。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "translation-walk",
+    "kind": "H2",
+    "old": "一次 4 KiB 页内访问如何落到 RAM",
+    "new": "Sv39 的 4 KiB 页地址翻译示例",
+    "changed": true,
+    "reason": "保留 4 KiB 限定并明确正文使用的 Sv39 教学推演。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "two-spaces",
+    "kind": "H2",
+    "old": "进程切换时，地址解释也要切换",
+    "new": "进程地址空间与页表切换",
+    "changed": true,
+    "reason": "命名地址空间切换机制，去除依赖上下文的口语表达。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "normal-page-fault",
+    "kind": "H2",
+    "old": "页异常也可能是正常的按需建立过程",
+    "new": "按需分页与页异常处理",
+    "changed": true,
+    "reason": "明确正常按需建立映射的技术主题。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "device-addresses",
+    "kind": "H2",
+    "old": "为什么一个用户 buffer 不能直接变成 DMA 地址",
+    "new": "用户虚拟地址与设备 DMA 地址",
+    "changed": true,
+    "reason": "并列地址类型，保留正文映射契约而不在标题提问。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "address-exercise",
+    "kind": "H2",
+    "old": "完成一次纸面推演，再设计目标验证",
+    "new": "地址空间切换的推演与验证条件",
+    "changed": true,
+    "reason": "区分纸面推演和有前提的目标验证，不再指挥读者操作。"
+  },
+  {
+    "path": "docs_codex/learning/content/virtual-memory.html",
+    "anchor": "goals/strong",
+    "kind": "entry-label",
+    "old": "解释同一个指针为何能指向不同的数据",
+    "new": "进程地址空间与地址翻译",
+    "changed": true,
+    "reason": "正式入口标签；保留或改为技术主题，任务正文不变"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/foundations/title",
+    "kind": "part-title",
+    "old": "系统与CPU使用模型",
+    "new": "系统与CPU使用模型",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/software/title",
+    "kind": "part-title",
+    "old": "从C程序到可观察结果",
+    "new": "裸机软件构建、启动与运行",
+    "changed": true,
+    "reason": "以软件阶段概括知识领域，去除阅读过程表达"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/fabric/title",
+    "kind": "part-title",
+    "old": "地址、互连与物理存储",
+    "new": "地址、互连与物理存储",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/devices/title",
+    "kind": "part-title",
+    "old": "异常、外设与数据搬运",
+    "new": "异常、外设与数据搬运",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/vector/title",
+    "kind": "part-title",
+    "old": "Ara向量执行与数据交接",
+    "new": "Ara向量执行与数据交接",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/os/title",
+    "kind": "part-title",
+    "old": "RTOS与嵌入式Linux",
+    "new": "RTOS与嵌入式Linux",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/integration/title",
+    "kind": "part-title",
+    "old": "IP、DDR与系统协作",
+    "new": "IP、DDR与系统协作",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/platform/title",
+    "kind": "part-title",
+    "old": "ASIC平台与物理实现",
+    "new": "ASIC平台与物理实现",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "parts/verification/title",
+    "kind": "part-title",
+    "old": "验证、测量与实验记录",
+    "new": "验证、测量与实验记录",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/index/title",
+    "kind": "page-title",
+    "old": "阅读路线",
+    "new": "阅读路线",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/index/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿同一程序建立系统理解，按明确任务深入OS与ASIC。",
+    "new": "程序执行、系统接口、操作系统与 ASIC 实现的学习路线。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/architecture/title",
+    "kind": "page-title",
+    "old": "整体架构与平台边界",
+    "new": "整体架构与平台边界",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/architecture/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿取指、数组与字符输出辨认模块职责。",
+    "new": "取指、数组计算与字符输出中的 SoC 模块协作。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/cva6/title",
+    "kind": "page-title",
+    "old": "CVA6与RISC-V程序使用模型",
+    "new": "CVA6与RISC-V程序使用模型",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/cva6/subtitle",
+    "kind": "page-subtitle",
+    "old": "先掌握指令、状态、特权与存储接口。",
+    "new": "指令集、处理器状态、特权级与存储接口。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/configuration/title",
+    "kind": "page-title",
+    "old": "Cheshire、CVA6、Ara 与软件配置",
+    "new": "Cheshire、CVA6、Ara 与软件配置",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/configuration/subtitle",
+    "kind": "page-subtitle",
+    "old": "按真实字段及消费者建立自洽组合。",
+    "new": "硬件字段、参数消费者与软件配置的一致性。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/runtime/title",
+    "kind": "page-title",
+    "old": "裸机 C 程序运行模型",
+    "new": "裸机 C 程序运行模型",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/runtime/subtitle",
+    "kind": "page-subtitle",
+    "old": "从对象、调用和初始化理解存储布局。",
+    "new": "C 对象、函数调用、初始化与存储布局。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/build/title",
+    "kind": "page-title",
+    "old": "工具链、链接与 ELF",
+    "new": "工具链、链接与 ELF",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/build/subtitle",
+    "kind": "page-subtitle",
+    "old": "让同一数组程序形成可解释的装载产物。",
+    "new": "源文件、对象文件、链接布局与 ELF 装载产物。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/boot/title",
+    "kind": "page-title",
+    "old": "Boot ROM、启动模式与应用初始化",
+    "new": "Boot ROM、启动模式与应用初始化",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/boot/subtitle",
+    "kind": "page-subtitle",
+    "old": "分别追踪 ROM 服务、自主加载和应用入口。",
+    "new": "ROM 服务、程序装载与应用入口的执行关系。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/boot-debug/title",
+    "kind": "page-title",
+    "old": "JTAG 与程序加载调试",
+    "new": "JTAG 与程序加载调试",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/boot-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "核实外部调试接管的真实等待条件。",
+    "new": "外部调试、程序装载与执行接管条件。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/address-map/title",
+    "kind": "page-title",
+    "old": "地址空间与访问属性",
+    "new": "地址空间与访问属性",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/address-map/subtitle",
+    "kind": "page-subtitle",
+    "old": "分别核对路由窗口、实际容量和 CPU 属性。",
+    "new": "地址路由窗口、实际资源容量与 CPU 访问属性。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/axi/title",
+    "kind": "page-title",
+    "old": "AXI 通道、突发与握手",
+    "new": "AXI 通道、突发与握手",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/axi/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿真实握手语义理解一笔读写事务。",
+    "new": "AXI 读写事务的通道握手与完成语义。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/interconnect/title",
+    "kind": "page-title",
+    "old": "AXI Crossbar 结构与事务路由",
+    "new": "AXI Crossbar 结构与事务路由",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/interconnect/subtitle",
+    "kind": "page-subtitle",
+    "old": "追踪译码、仲裁、W 路由、ID 与响应。",
+    "new": "地址译码、仲裁、写数据路由与 ID 响应关系。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/adapters/title",
+    "kind": "page-title",
+    "old": "接口适配与 RegBus",
+    "new": "接口适配与 RegBus",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/adapters/subtitle",
+    "kind": "page-subtitle",
+    "old": "解释位宽、协议、ID 转换及跨域边界。",
+    "new": "位宽、协议、ID 转换与跨时钟域接口。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/memory/title",
+    "kind": "page-title",
+    "old": "Cache、LLC/SPM 与存储路径",
+    "new": "Cache、LLC/SPM 与存储路径",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/memory/subtitle",
+    "kind": "page-subtitle",
+    "old": "区分缓存副本、地址别名与共享物理阵列。",
+    "new": "缓存副本、地址别名与共享物理阵列。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/traps/title",
+    "kind": "page-title",
+    "old": "异常、中断与上下文",
+    "new": "异常、中断与上下文",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/traps/subtitle",
+    "kind": "page-subtitle",
+    "old": "从函数调用到trap和任务切换，区分硬件与软件责任。",
+    "new": "函数调用、异常中断与任务上下文的保存责任。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/uart-gpio/title",
+    "kind": "page-title",
+    "old": "MMIO 驱动、UART 与 GPIO",
+    "new": "MMIO 驱动、UART 与 GPIO",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/uart-gpio/subtitle",
+    "kind": "page-subtitle",
+    "old": "从寄存器语义推进到初始化与引脚行为。",
+    "new": "寄存器访问、设备初始化与引脚行为。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/interrupts/title",
+    "kind": "page-title",
+    "old": "定时器与中断系统",
+    "new": "定时器与中断系统",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/interrupts/subtitle",
+    "kind": "page-subtitle",
+    "old": "建立计时、使能、服务、清源与返回闭环。",
+    "new": "计时、中断使能、服务、清源与返回流程。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/i2c/title",
+    "kind": "page-title",
+    "old": "I2C 与 EEPROM",
+    "new": "I2C 与 EEPROM",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/i2c/subtitle",
+    "kind": "page-subtitle",
+    "old": "从线路、FIFO 和控制寄存器到器件读取。",
+    "new": "I2C 线路、FIFO、控制寄存器与 EEPROM 读取。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/spi/title",
+    "kind": "page-title",
+    "old": "SPI、NOR 与 SD",
+    "new": "SPI、NOR 与 SD",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/spi/subtitle",
+    "kind": "page-subtitle",
+    "old": "把控制器事务和外部设备协议分开。",
+    "new": "SPI 控制器事务与 NOR、SD 设备协议。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/dma/title",
+    "kind": "page-title",
+    "old": "iDMA、流量管理与总线错误",
+    "new": "iDMA、流量管理与总线错误",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/dma/subtitle",
+    "kind": "page-subtitle",
+    "old": "理解搬运提交、完成、限流与故障门槛。",
+    "new": "数据搬运提交、完成、流量管理与本地执行条件。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/stream-io/title",
+    "kind": "page-title",
+    "old": "Serial Link、VGA 与 USB",
+    "new": "Serial Link、VGA 与 USB",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/stream-io/subtitle",
+    "kind": "page-subtitle",
+    "old": "按设备追踪控制、数据、时钟及验证条件。",
+    "new": "串行链路、显示与 USB 的控制、数据和验证条件。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/ara/title",
+    "kind": "page-title",
+    "old": "Ara 结构与 CVA6 协处理器接口",
+    "new": "Ara 结构与 CVA6 协处理器接口",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/ara/subtitle",
+    "kind": "page-subtitle",
+    "old": "分清请求、应答、CPU 提交和实际完成。",
+    "new": "向量请求、应答、CPU 提交与执行完成的协作关系。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/vector/title",
+    "kind": "page-title",
+    "old": "RVV 编程与结果验证",
+    "new": "RVV 编程与结果验证",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/vector/subtitle",
+    "kind": "page-subtitle",
+    "old": "用同一数组比较汇编、intrinsics 和自动向量化。",
+    "new": "数组运算的汇编、intrinsics 与自动向量化实现。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/sharing/title",
+    "kind": "page-title",
+    "old": "CPU、Ara、DMA 与 NPU 的共享数据",
+    "new": "CPU、Ara、DMA 与 NPU 的共享数据",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/sharing/subtitle",
+    "kind": "page-subtitle",
+    "old": "建立可见性、所有权和有界恢复协议。",
+    "new": "共享数据的可见性、所有权与交接协议。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/rtos/title",
+    "kind": "page-title",
+    "old": "RTOS任务、调度与同步",
+    "new": "RTOS任务、调度与同步",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/rtos/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿两个任务的运行、阻塞和唤醒理解实时系统。",
+    "new": "任务运行、阻塞、唤醒与同步的状态转换。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/virtual-memory/title",
+    "kind": "page-title",
+    "old": "保护、页表与进程地址空间",
+    "new": "保护、页表与进程地址空间",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/virtual-memory/subtitle",
+    "kind": "page-subtitle",
+    "old": "从物理布局走到虚拟地址，再辨认设备地址。",
+    "new": "物理布局、虚拟地址翻译与设备地址语义。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/linux/title",
+    "kind": "page-title",
+    "old": "嵌入式Linux启动与用户程序",
+    "new": "嵌入式Linux启动与用户程序",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/linux/subtitle",
+    "kind": "page-subtitle",
+    "old": "从平台固件到第一个用户进程，解释每次交接。",
+    "new": "平台固件、内核与首个用户进程的启动关系。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/os-devices/title",
+    "kind": "page-title",
+    "old": "操作系统中的设备与缓冲区",
+    "new": "操作系统中的设备与缓冲区",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/os-devices/subtitle",
+    "kind": "page-subtitle",
+    "old": "比较裸机、RTOS和Linux的同一次设备使用。",
+    "new": "裸机、RTOS 与 Linux 的设备调用和缓冲区管理。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/integration/title",
+    "kind": "page-title",
+    "old": "自定义 IP 的控制、数据和中断接入",
+    "new": "自定义 IP 的控制、数据和中断接入",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/integration/subtitle",
+    "kind": "page-subtitle",
+    "old": "从独立 Reg 单元逐步进入系统。",
+    "new": "独立 Reg 设备与系统控制、数据及中断接口。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/ddr/title",
+    "kind": "page-title",
+    "old": "DDR 控制器、PHY 与 AXI4 接入",
+    "new": "DDR 控制器、PHY 与 AXI4 接入",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/ddr/subtitle",
+    "kind": "page-subtitle",
+    "old": "从平台初始化到软件可用建立交付条件。",
+    "new": "DDR 平台初始化、访问放行与接口交付条件。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/accelerators/title",
+    "kind": "page-title",
+    "old": "LVDS、ISP、NPU 与外部 DDR 集成",
+    "new": "LVDS、ISP、NPU 与外部 DDR 集成",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/accelerators/subtitle",
+    "kind": "page-subtitle",
+    "old": "逐 IP 明确接口、缓冲、跨域和验收交付。",
+    "new": "图像处理 IP 的接口、缓冲、跨域与集成条件。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/models/title",
+    "kind": "page-title",
+    "old": "模型任务划分与容量带宽预算",
+    "new": "模型任务划分与容量带宽预算",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/models/subtitle",
+    "kind": "page-subtitle",
+    "old": "用透明假设衡量 Ara/NPU 协作成本。",
+    "new": "明确假设下的 Ara/NPU 协作与数据搬运成本。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/clocks/title",
+    "kind": "page-title",
+    "old": "时钟系统与 PLL",
+    "new": "时钟系统与 PLL",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/clocks/subtitle",
+    "kind": "page-subtitle",
+    "old": "区分时钟域、使能、同步器和平台时钟源。",
+    "new": "时钟域、使能、同步器与平台时钟源。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/reset/title",
+    "kind": "page-title",
+    "old": "复位体系与平台启动条件",
+    "new": "复位体系与平台启动条件",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/reset/subtitle",
+    "kind": "page-subtitle",
+    "old": "从请求生命周期定义复位、就绪与恢复。",
+    "new": "复位、平台就绪与在途事务的生命周期。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/power/title",
+    "kind": "page-title",
+    "old": "电源域与低功耗规划",
+    "new": "电源域与低功耗规划",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/power/subtitle",
+    "kind": "page-subtitle",
+    "old": "区分现有 RTL 边界和待实现的电源契约。",
+    "new": "现有 RTL 的电源边界与候选低功耗契约。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/asic-memory/title",
+    "kind": "page-title",
+    "old": "从VRF实例到SRAM宏接口",
+    "new": "Ara VRF 与 SRAM 宏接口",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/asic-memory/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿真实消费者推演容量、时序与技术映射。",
+    "new": "VRF 消费者的容量、时序与候选技术映射。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/cdc-rdc/title",
+    "kind": "page-title",
+    "old": "跨时钟与复位域的事务交接",
+    "new": "跨时钟与复位域的事务交接",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/cdc-rdc/subtitle",
+    "kind": "page-subtitle",
+    "old": "按信号和协议选择同步机制，保持任务生命周期。",
+    "new": "跨域信号同步、事务传输与生命周期协调。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/physical-interfaces/title",
+    "kind": "page-title",
+    "old": "从逻辑信号到PAD、封装与设备",
+    "new": "外设逻辑接口、PAD 与封装连接",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/physical-interfaces/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿I2C连接解释方向、电气和板级责任。",
+    "new": "I2C 连接的信号方向、电气条件与板级职责。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/timing-physical/title",
+    "kind": "page-title",
+    "old": "时序约束与物理实现反馈",
+    "new": "时序约束与物理实现反馈",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/timing-physical/subtitle",
+    "kind": "page-subtitle",
+    "old": "沿存储接口路径理解约束、分析和布局影响。",
+    "new": "存储接口路径的时序约束、分析与布局影响。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/manufacturing-test/title",
+    "kind": "page-title",
+    "old": "Scan、MBIST与制造测试",
+    "new": "Scan、MBIST与制造测试",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/manufacturing-test/subtitle",
+    "kind": "page-subtitle",
+    "old": "区分功能行为与可制造测试的交付。",
+    "new": "Scan、存储测试与功能验证的交付范围。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/silicon-bringup/title",
+    "kind": "page-title",
+    "old": "首硅启动与系统可观测性",
+    "new": "首硅启动与系统可观测性",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/silicon-bringup/subtitle",
+    "kind": "page-subtitle",
+    "old": "从早期可见状态逐步建立存储和计算证据。",
+    "new": "首硅早期状态观测与存储、计算能力的分阶段验证。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/future/title",
+    "kind": "page-title",
+    "old": "固定配置工程与 ASIC 集成验收",
+    "new": "固定配置工程与 ASIC 集成验收",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/future/subtitle",
+    "kind": "page-subtitle",
+    "old": "冻结可搬迁输入并形成分阶段实现证据。",
+    "new": "固定配置、可搬迁输入与 ASIC 分阶段验收。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/simulation/title",
+    "kind": "page-title",
+    "old": "Questa/VCS 仿真与结果验证",
+    "new": "Questa/VCS 仿真与结果验证",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/simulation/subtitle",
+    "kind": "page-subtitle",
+    "old": "按阶段检查输入、运行、数值和退出。",
+    "new": "仿真输入、目标运行、结果数据与退出判据。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/measurement/title",
+    "kind": "page-title",
+    "old": "正确性、性能与论文实验记录",
+    "new": "正确性、性能与论文实验记录",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/measurement/subtitle",
+    "kind": "page-subtitle",
+    "old": "明确计时边界、数据条件和可重复的比较。",
+    "new": "计时边界、数据条件与可重复的性能比较。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/labs/title",
+    "kind": "page-title",
+    "old": "实验手册",
+    "new": "实验手册",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/labs/subtitle",
+    "kind": "page-subtitle",
+    "old": "六项有明确输入、产物和判据的连续实践。",
+    "new": "六项连续实验与系统推演的输入、步骤和判据。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/registers/title",
+    "kind": "page-title",
+    "old": "参考 · 寄存器索引",
+    "new": "参考 · 寄存器索引",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/registers/subtitle",
+    "kind": "page-subtitle",
+    "old": "本地头文件中的偏移和字段；访问语义回到对应设备章。",
+    "new": "本地寄存器偏移、字段与对应设备访问语义。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/evidence/title",
+    "kind": "page-title",
+    "old": "参考 · 来源与验证记录",
+    "new": "参考 · 来源与验证记录",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/evidence/subtitle",
+    "kind": "page-subtitle",
+    "old": "当前源码基准、历史证据、实际检查和待验证事项。",
+    "new": "当前源码基准、历史证据、实际检查和待验证事项。",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/software-debug/title",
+    "kind": "page-title",
+    "old": "启动与软件故障诊断",
+    "new": "启动与软件故障诊断",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/software-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "按最早未完成阶段定位装载、初始化和运行问题。",
+    "new": "装载、初始化与软件运行问题的阶段定位。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/peripheral-debug/title",
+    "kind": "page-title",
+    "old": "外设调试与故障诊断",
+    "new": "外设调试与故障诊断",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/peripheral-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "按应用、寄存器和线路定位症状，保留已知问题证据。",
+    "new": "外设应用、寄存器与线路症状的分层诊断。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/vector-debug/title",
+    "kind": "page-title",
+    "old": "Ara/RVV 调试与故障诊断",
+    "new": "Ara/RVV 调试与故障诊断",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/vector-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "分开构建、执行、访存和结果证据。",
+    "new": "Ara/RVV 构建、执行、访存与结果的诊断证据。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/system-debug/title",
+    "kind": "page-title",
+    "old": "平台、集成与测量诊断",
+    "new": "平台、集成与测量诊断",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/system-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "按症状追踪就绪、事务、数据与证据边界。",
+    "new": "平台就绪、事务执行、数据与测量问题的定位。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/os-debug/title",
+    "kind": "page-title",
+    "old": "操作系统启动与状态诊断",
+    "new": "操作系统启动与状态诊断",
+    "changed": false,
+    "reason": "规范技术标题/副标题保留"
+  },
+  {
+    "path": "docs_codex/learning/scripts/pages.json",
+    "anchor": "pages/os-debug/subtitle",
+    "kind": "page-subtitle",
+    "old": "核对镜像、平台描述和上下文支持的真实边界。",
+    "new": "OS 镜像、平台描述与上下文支持的适用边界。",
+    "changed": true,
+    "reason": "以对应技术对象及关系概括本页范围，取消口语或授课指令；不扩大实现状态"
+  }
+]

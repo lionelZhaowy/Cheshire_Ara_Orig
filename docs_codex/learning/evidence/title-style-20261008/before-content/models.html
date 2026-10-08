@@ -1,0 +1,44 @@
+<div class="goals"><strong>本章任务</strong><p>用透明假设衡量 Ara/NPU 协作成本。 前置：<a href="vector.html">21 · RVV 编程与结果验证</a>、<a href="sharing.html">22 · CPU、Ara、DMA 与 NPU 的共享数据</a>、<a href="accelerators.html">29 · LVDS、ISP、NPU 与外部 DDR 集成</a>。</p></div>
+<p>本章是应用规划选读：已理解数组与共享数据后，用一个小模型估算协作成本；它不是学习OS或ASIC平台的先决条件。故障后的隔离和缓冲回收见<a href="system-debug.html#frames">系统诊断</a>，正常计时方法见<a href="measurement.html">测量章</a>。</p>
+<h2 id="model-case">一个完整的 Ara→NPU→Ara 候选片段</h2>
+<p>取一条小型全连接片段作为规划例：输入 X 为 1×137 的 int8，权重 W 为 137×64 的 int8，零点暂取 0，乘加输出 Y 为 1×64 的 int32；随后求 Y 的最大值或总和并按已约定的定点乘数、舍入和饱和规则产生 int8 输出。137 与<a href="vector.html#loop">RVV 分块与尾部处理</a>使用同一数组长度。这里只固定教学算例，不冻结产品量化格式。</p>
+<h3 id="partition">候选分工与交接次数</h3>
+<p>一种候选划分是 CPU 分配描述符并校验边界，Ara 将输入从应用布局整理/量化成 NPU 约定布局，NPU 做矩阵乘加，Ara 对 64 项 int32 做归约、激活或再量化，CPU 检查并交还缓冲。另一种是 Ara 独自完成整个小矩阵；第三种让 NPU 融合后处理减少一次交接。单个 137×64 小任务可能被提交/同步成本主导，无法仅凭峰值 MAC 数选择。</p>
+<h3 id="cost">数据规模、数值与搬运成本</h3>
+<table><tr><th>数据与工作</th><th>本教学例的规模</th><th>交接与测量关注点</th></tr><tr><td>X / W</td><td>137 B / 8768 B</td><td>原始大小未含对齐、padding 与 NPU tile 布局；权重能否复用决定实际 DDR 流量</td></tr><tr><td>Y / 输出</td><td>256 B / 64 B</td><td>两次生产者切换：Ara→NPU，NPU→Ara；另有 CPU 完成回收</td></tr><tr><td>未融合最低数据读写示例</td><td>中间输入写读 274 B、权重读 8768 B、Y 写读 512 B、最终输出写 64 B，共 9618 B</td><td>未含原始输入读取、描述符、对齐放大、cache line 与重复权重加载，不能当总线实测带宽</td></tr><tr><td>数值验证</td><td>独立 int64 累加参考再检查 int32 范围</td><td>最坏 137×16384=2244608 在 int32 内；量化舍入、饱和与 scale 另核对</td></tr></table>
+<h3 id="cooperation">完整协作流程及未实现接口</h3>
+<pre><code>/* 未来接口伪代码：尚无 NPU 驱动或寄存器地址 */
+lease = acquire_buffer(layout, sizes, alignment);
+ara_prepare_input(lease.input);          /* 此前仅数组/归约内核通过构建 */
+publish_visible(lease.input, NPU);       /* 按实际缓存/拓扑契约实现 */
+ticket = npu_submit(lease, shape, quant);
+status = wait_bounded(ticket, deadline);
+/* 仅成功分支可继续；失败/隔离契约见独立系统诊断。 */
+if (status.success) {
+    acquire_visible(lease.output, ARA);
+    ara_postprocess(lease.output);
+    publish_visible(lease.output, CPU);
+    verify_and_release(lease);
+}</code></pre>
+<p>此前通过构建的部分是<a href="labs.html#rvv-depth">实验 E 的数组运算、尾部与整数归约</a>，并非本页完整模型流程；它们尚未完成当前 SoC 动态回归。伪代码中的 npu_submit、可见性及失败恢复没有现成实现，未来规格必须定义 tensor layout、量化规则、完成码、epoch 和复位语义。完整所有权/交接时序见<a href="sharing.html#handoff">第 22 章</a>，控制/数据拓扑实施计划见<a href="accelerators.html#npu-topology">第 29 章</a>。</p>
+<p>判断此划分是否值得采用，应对相同数值标准测量 Ara-only、NPU+Ara、NPU 融合三个端到端方案，改变 batch、权重复用次数和布局转换量，记录内核/搬运/同步时间以及 DDR 实际字节。当前没有 NPU IP、驱动和性能记录，案例用于设计实验，不承诺目标模型的吞吐、容量或生态支持。</p>
+<h2 id="budget">先估容量与数据量，再讨论性能</h2>
+<p>模型权重的理想容量是参数量 P×每参数位数/8，实际还要加量化元数据、激活、工作区和对齐。例如 2B 参数 INT4 权重约 1 GB。KV cache 保存历史 token 的键和值，是软件模型数据，不是硬件 LLC；同构解码器的估算为 <code>2×层数×KV头数×每头维度×上下文×并发数×每元素字节</code>。</p>
+<p>假设 24 层、8 个 KV 头、每头 128 维、上下文 4096、并发 1、KV 每元素 2 字节，则 KV 为 384 MiB。再假设工作区 256 MiB、总容量余量 20%，约需 1.87 GiB。这是透明的教学假设，实际算子调度和内核支持决定工作区；默认外存路由窗口 2 GiB 也不等于已经提供同容量的物理 DDR。</p>
+<p>单请求逐 token 生成、每步从 DDR 读取全部权重与该请求 KV 且无权重复用时，10 token/s 的示例仅这两部分就约需 14 GB/s 有效读取。理想耗时下界可用 <code>max(运算量/有效算力, 数据量/有效带宽)</code>，再加入调度、同步、格式转换及其他流量。Ara 或未来 NPU 的精度内核、频率和有效利用率必须实测后才能评价最终应用。</p>
+<h2 id="calculator">带明确假设的容量估算</h2>
+<p>下面保留公式交互，用于把上下文从 4096 改为 8192 后观察 KV 翻倍。并发数影响容量，带宽按单请求估算，不自动假定批处理共享权重。关闭脚本仍可用上文公式计算。</p>
+<div class="card"><form id="ai-calc" class="calculator">
+<label>参数量（B）<input name="params" type="number" value="2" min="0.1" step="0.1"></label>
+<label>权重位数<input name="bits" type="number" value="4" min="1"></label>
+<label>层数<input name="layers" type="number" value="24" min="1"></label>
+<label>KV 头数<input name="heads" type="number" value="8" min="1"></label>
+<label>每头维度<input name="dim" type="number" value="128" min="1"></label>
+<label>上下文 token<input name="context" type="number" value="4096" min="1"></label>
+<label>并发数<input name="batch" type="number" value="1" min="1"></label>
+<label>KV 元素字节<input name="kvbytes" type="number" value="2" min="0.125" step="0.125"></label>
+<label>工作区 MiB<input name="activation" type="number" value="256" min="1"></label>
+<label>容量余量 %<input name="reserve" type="number" value="20" min="1"></label>
+<label>单请求 token/s<input name="tps" type="number" value="10" min="1"></label>
+</form><div id="calc-result" class="calc-result" aria-live="polite">默认假设：权重 0.93 GiB，KV 0.375 GiB，含工作区与余量约 1.87 GiB；读取约 14 GB/s。</div></div>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">当前平台适配参考</a>；<a href="../../hw/cheshire_soc.sv">Ara 实例与失效通路</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv">CPU 队列、非推测发射、pending 与 barrier</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/cva6_accel_first_pass_decoder.sv">初译码与 VS/FS</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara/intf_typedef.svh">专用接口字段</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv">内部运行表与地址应答</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/addrgen.sv">地址/翻译/对齐限制</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vldu.sv">load 完成</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv">store 完成和 B 错误缺口</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_store_unit.sv">MMU 与保护消费者</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/FUNCTIONALITIES.md">本地支持声明与 ELEN</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/rvv_pkg.sv">RVV 类型与编码</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/docs/source/lane.rst">随附官方 VRF/重排说明</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">dispatcher / sequencer / lanes / VLSU</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_dispatcher.sv">csr_vl_d 分块选择</a>；<a href="../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv">Ara 写失效</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">VS 与 acc_cons 状态</a></p></div>

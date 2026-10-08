@@ -1,0 +1,27 @@
+<div class="goals"><strong>本章任务</strong><p>沿“上电 → 有效时钟 → 释放复位 → 存储和软件就绪”理解正常启动，再解释一次受控域重启怎样交还事务。前置：<a href="clocks.html">时钟与 PLL</a>。</p></div>
+<h2 id="sources">复位先建立控制状态，再由启动流程建立可用系统</h2>
+<p>复位给状态机、有效位和控制寄存器规定起点。它不自动完成 SRAM 初始化、DDR 训练、软件栈建立或外部器件上电。设 CPU 复位 PC 指向 Boot ROM，平台先保证时钟与取指路径有效，再允许 CPU 开始执行；ROM 随后准备启动所需存储，应用启动代码最终建立 C 环境。每一步的输出成为下一步的前提。</p>
+<h3 id="system-reset">当前几个复位入口分别控制什么</h3>
+<table><tr><th>入口</th><th>本地连接与正常职责</th><th>使用边界</th></tr><tr><td>rst_ni</td><td>主要低有效复位，送 CPU、Ara、互连、LLC 等系统逻辑</td><td>释放后仍要等各项初始化完成；VRF 控制复位不清零全部数据</td></tr><tr><td>JTAG TRST/TCK</td><td>调试传输侧复位/时钟，DMI 与系统域交互</td><td>不能视为所有设备的统一重启</td></tr><tr><td>DM ndmreset_o</td><td>当前 SoC 输出未使用</td><td>不能按调试规范的端口名假定本地已有全芯片复位</td></tr><tr><td>USB/Serial Link 的接口状态</td><td>接口有各自时钟/局部控制，按实际连接建立就绪</td><td>局部复位与系统在途事务须遵守接口协议，未形成独立关电闭环</td></tr></table>
+<p>本地 FPGA wrapper 先将外部/VIO 复位请求组合后送 <code>rstgen</code>，它在系统时钟下产生 <code>rst_n</code>。复位域由真实连线和寄存器敏感列表决定，不能按 IP 名字想象已经具备可独立重启能力。</p>
+<h2 id="release">为什么释放必须等本域时钟</h2>
+<p>本地 <code>rstgen_bypass</code> 默认有四级同步寄存器。普通模式下异步断言把链清零；外部复位撤销后，常数 1 随本域时钟逐级前进，最终输出解除复位。如果时钟没有运行，这条链不会前进。它把释放动作收敛到本域边沿；级数、库单元和测试模式仍需按目标条件验收，不能用“四级”替代可靠性分析。</p>
+<figure><img src="assets/depth-reset-release.svg" alt="电源稳定、时钟建立、逐域释放与DDR就绪之间的先后关系"><figcaption>未来平台协议的 WaveDrom 教学示意，不是实测波形。图中先后关系依真实 IP 细化；同步级数和等待时间不是固定芯片参数。 · <a href="assets/waves/reset-release.json">可编辑源</a></figcaption></figure>
+<p>先沿图读出供电与时钟条件，再看系统域复位释放；DDR 初始化和接口开放位于它们各自前提之后。PLL lock 不直接等于 DDR ready，系统域 released 也不能替 DDR 域完成同步。不同域共同参与一条事务时，还须重新建立握手和 FIFO 状态，详见<a href="cdc-rdc.html#reset-domains">复位域交接</a>。</p>
+<h2 id="readiness">用可观察里程碑连接硬件和软件</h2>
+<h3 id="rom-ready">从第一条指令到应用 main</h3>
+<p>本地保留内部 LLC 的启动路径会先等待 tag BIST、配置 SPM 并调整栈，然后才调用 Platform ROM 钩子和继续 ROM 服务。无内部 LLC 的配置跳过该初始化，平台必须在首次栈访问前提供替代可写存储与有效 sp，或用不依赖栈的早期汇编建立它们。因此复位释放和“可以安全调用 C 函数”之间有具体存储步骤。</p>
+<p>JTAG VIP 在 <code>LlcNotBypass</code> 时轮询 <code>CFG_SPM_LOW.bit0</code> 后发 halt；这一位不是 ROM C 已执行完或测频完成的标志，也不能独自证明随后的栈调整已执行。正常接管要按<a href="boot-debug.html#takeover">JTAG 装载章</a>的实际流程判断。</p>
+<h3 id="external-ready">外存前提放在首次访问之前</h3>
+<p>DDR 的控制器、PHY 和存储器按供应商协议完成初始化/训练，平台才应允许依赖 DDR 的取指、栈与数据访问。可先把早期初始化代码和栈放在已知可用的片上存储，再做外存校验。外设也按自己的上电、引脚与时钟条件初始化；MMIO 寄存器可读只证明控制路径，不代表器件已经完成操作。</p>
+<h3 id="bringup-milestones">每一步应该交出什么</h3>
+<table><tr><th>正常阶段</th><th>交给下一步的条件</th><th>可观察依据</th></tr><tr><td>安全时钟、逐域释放</td><td>可进行合法取指和控制访问</td><td>时钟/复位状态与取指接口</td></tr><tr><td>ROM 首段</td><td>内部 SPM 或替代存储可用，栈正确</td><td>BIST/配置状态及实际存储访问、PC</td></tr><tr><td>平台钩子</td><td>后续介质/必要 IP 的前提已建立</td><td>入口与正常返回，平台状态</td></tr><tr><td>应用启动</td><td>栈、初值、零初始化与所需架构状态成立</td><td>main 的已知数据检查</td></tr><tr><td>外存与计算</td><td>任务结果可按各自完成语义消费</td><td>响应、完整结果和独立比对</td></tr></table>
+<p>当前非零平台钩子普通返回仍受 S01-B01 阻塞；FPGA locked/calibration 放行也未形成完整已验证闭环。适用边界与定位见<a href="system-debug.html#platform-readiness">系统诊断</a>，不把这张正常阶段表当作已运行证据。</p>
+<h2 id="transaction-reset">一次正常重启，怎样把接口先停下来</h2>
+<h3 id="drain">停止新请求，再等待已接受事务</h3>
+<p>设软件已决定暂时重启一个未来设备域。先关任务入口，让已提交工作继续推进。AXI 写若已接收 AW，仍可能等待 W 和 B；读若已接收 AR，仍可能有多拍 R。只有设备、桥和相关队列共同满足定义的 idle/drained 条件，控制者才能按契约断言复位。停止 CPU 轮询或看见一个 FIFO 空，并不具有这种含义。</p>
+<p>复位期间保留访问隔离；重新提供时钟并同步释放后，重建配置、描述符和握手状态，再允许新任务。若完成编号会重复，还要定义恢复前后任务的区分。正常重启的预期是旧任务已经得到明确结果，新任务不会收到旧响应。该域独立复位能力是待设计契约，当前通用 SoC 并未提供任意 IP 的统一重启 API。</p>
+<h3 id="reset-validation">验证正常重启及异常边界</h3>
+<p>未来验证首先检查空闲重启与排空后重启，再在地址、数据或响应等待时安排重启请求，确认按协议等待。未能排空、突然断电和强制复位的终止/恢复属于<a href="system-debug.html">独立诊断与验证场景</a>；不能靠直接掉时钟让已接受事务无声消失。验证记录须明确范围，本轮没有实现或运行这些目标场景。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/rstgen_bypass.sv">本地复位同步器</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA 复位连接</a>；<a href="../../hw/cheshire_soc.sv">SoC 调试及域接口</a>；<a href="../../hw/bootrom/cheshire_bootrom.S">真实启动顺序</a>；<a href="silicon-bringup.html">首硅分阶段观测</a>。</p></div>
+<details class="quiz"><summary>撤销 rst_ni 后，为什么还不能马上把 DDR 当栈？</summary><p>同步释放只建立相关控制状态；DDR 初始化/训练、地址与访问路径可用仍需独立建立。早期栈先在已经可写的存储中。</p></details>

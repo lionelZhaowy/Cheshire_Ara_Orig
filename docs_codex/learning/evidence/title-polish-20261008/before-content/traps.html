@@ -1,0 +1,43 @@
+<div class="goals"><strong>本章任务</strong><p>解释一段正在计算的程序怎样进入事件处理，再恢复原执行；为外设中断与 OS 调度建立共同前置。前置：<a href="runtime.html#abi">函数调用、ABI 与栈</a>、<a href="cva6.html#privilege">M/S/U 权限</a>。先按当前默认机器态、单核、非 CLIC 路径说明。</p></div>
+<h2 id="call-versus-trap">函数调用、异常与中断的控制流</h2>
+<p>journey 的 main 调用 make_value 时，编译器知道调用发生在哪里。它把参数放入约定寄存器，保存调用后仍需要的 caller-save 值；call 设置返回地址 ra，被调用函数完成后用 ret 回来。两段代码按同一 ABI 主动合作，没有改变运行权限，也没有访问 mtvec。</p>
+<p>现在设想数组循环运行到一半，定时器达到截止时间。当前指令没有主动 call 一个 handler，编译器也无法预先在这一位置插入保存动作。CPU 必须先记下原执行位置与状态，再转入软件入口；入口必须保护被打断代码仍需使用的寄存器。设备或计时产生的这种异步事件称中断。若当前指令执行 ECALL 请求环境服务，或无法按其语义执行，则产生同步异常。两者通称 trap，即控制流按架构规定转交处理程序。</p>
+<p>trap 不是错误的同义词。定时器唤醒任务、UART 数据到达、用户程序用 ECALL 请求内核服务都是正常机制。本章讲控制转移与上下文；具体 UART/PLIC/CLINT 服务见<a href="interrupts.html">事件章</a>，非法指令或无法返回等症状才进入<a href="software-debug.html#trap-stop">软件诊断</a>。</p>
+<h2 id="trap-entry">异常与中断入口的硬件状态更新</h2>
+<p>以默认机器态定时中断为例：CLINT 提供到期条件，CPU 的 mie.MTIE 和 mstatus.MIE 允许响应，CPU 在可接受的位置进入 trap。当前任务的整数寄存器并未自动搬进 RAM。硬件更新 mepc、mcause 和相关 mstatus 字段，再把 PC 指向 mtvec 指定的入口。本地 crt0 把 mtvec 设为对齐的 _trap_handler_wrap，使用直接入口模式。</p>
+<table><tr><th>状态</th><th>本例进入机器态 trap 时的作用</th><th>软件据此完成什么</th></tr>
+<tr><td>mepc</td><td>保存被中断处/引发异常的指令位置</td><td>决定返回地址；不能对所有原因都统一加 4</td></tr>
+<tr><td>mcause</td><td>RV64 最高位区分中断，其余为原因编号</td><td>区分 timer、外部事件、ECALL 等服务</td></tr>
+<tr><td>mtval</td><td>原因相关的辅助信息，是否有值受实现/配置及原因影响</td><td>需要时解释地址或指令信息，不能假设每次都保存完整故障指令</td></tr>
+<tr><td>mstatus.MPIE / MPP</td><td>保存进入前的中断许可与权限，进入时清 MIE</td><td>给后续 MRET 提供恢复依据</td></tr>
+<tr><td>mtvec</td><td>软件预先配置的入口地址和模式</td><td>将 trap 导向能够保存现场的有效代码</td></tr></table>
+<p>本例机器定时中断 cause 是 7，外部中断是 11。这里的 cause 表达 CPU 接收的类别；外部中断来自哪个设备，还要由 PLIC claim 返回源号。例如 GPIO0 的 PLIC 源号 20 不会变成 mcause=20。MIE 也不是所有权限情形下唯一的总开关；以上描述限定在当前 M 态程序，委托到 S 态的情况在后文区分。</p>
+<h2 id="software-context">异常入口的整数寄存器保存与恢复</h2>
+<p>假设循环里的 i 和 sum 当前在 a0、t0。处理程序也可能使用这两个寄存器；仅保存 mepc 并不能恢复它们。当前 <a href="../../sw/lib/crt0.S">crt0.S</a> 的 _trap_handler_wrap 在原栈上减去 128 字节，保存 ra、t0…t6、a0…a7 共 16 个整数寄存器，再调用普通 C 函数 trap_vector。C 编译器按 ABI 保存它实际使用的 s0…s11，因而在这个受限模型中，两部分配合保护被打断的整数程序。</p>
+<pre><code>/* 源码动作摘要；中间 save/restore 表示原文件中的逐项 sd/ld */
+_trap_handler_wrap:
+    sp -= 128
+    save ra, t0..t6, a0..a7
+    call trap_vector
+    restore ra, t0..t6, a0..a7
+    sp += 128
+    mret</code></pre>
+<p>这段摘要不是可汇编的新实现。它强调三件事：栈在进入前就须有效且有余量；C handler 的 ret 只回到包装汇编；包装汇编最后还必须执行 mret。它没有自动切换到一个独立的中断栈，没有保存完整 FP/RVV 上下文，也没有通用嵌套策略。handler 若要使用浮点、向量或重新开放嵌套，需要另行设计对应保存协议；本书当前实例只用整数 handler。</p>
+<p>再与普通函数比较：自愿调用前，调用者可以处理 caller-save；异步 trap 前，原程序没有这个机会，所以包装入口替它保存。与任务切换比较：只处理一个事件并回到原任务，可以恢复原栈上的保存值；若改去任务 B，调度器必须让 B 的整套上下文成为新的返回对象。原裸机包装并不具备这个任务所有权机制。</p>
+<h2 id="normal-service">机器态定时器中断处理流程</h2>
+<p>复用 <a href="examples/advanced.c">advanced.c</a> 的 timer 教学变体：启动先建立 trap 入口，关闭相关中断门，把 CLINT compare 设置到未来，然后再打开 MTIE/MIE。前台代码等待事件计数。当 mtime 达到 compare，CPU 按前述规则转入包装，包装在当前栈保存整数状态并调用程序覆盖的 trap_vector。</p>
+<p>handler 读 mcause，识别机器定时中断后递增 adv_timer_count，再用稳定的 mtime 读取结果把 compare 推到未来，消除“已到期”条件并安排下一次事件。它把打印留在前台，避免每次事件服务承担格式化和串口轮询。handler 返回后，包装恢复整数寄存器，mret 恢复原权限/中断许可和执行位置。前台继续等待，直到至少两次 timer 事件及本例的 GPIO 条件满足，才关闭本例打开的中断门、检查计数并输出结果。</p>
+<p>本例真实的寄存器访问与初始化顺序在<a href="interrupts.html#sequence">中断章</a>连续给出。这里描述的是现有源文件的预期过程和历史构建材料，本轮未执行 timer 场景。即使成功响应一次中断，也只证明一次服务，不证明固定周期调度、嵌套或多任务上下文切换。</p>
+<h2 id="trap-return">返回地址、特权返回与委托</h2>
+<p>普通 ret 根据 ra 回到调用者；mret 根据 mepc 和 mstatus 中保存的权限/中断状态返回，两者承担不同责任。定时中断处理完通常沿保存位置继续；同步 ECALL 的 mepc 指向 ECALL 自身，已完成服务的系统调用入口要安排继续到后续指令。不能将“所有 trap 都把 mepc 加 4”当模板：外部中断不应跳过程序指令，可重试异常也有自己的恢复策略，压缩指令还使一般指令长度不恒为 4 字节。</p>
+<p>具有 S 态的系统可以由机器态通过 medeleg/mideleg 将允许委托的异常/中断交给 S 态处理。对应入口和返回状态使用 stvec、sepc、scause、stval 与 SRET。不是写了委托位就把正在 M 态执行的代码变成普通用户进程，也不是所有异常都能任意委托。默认裸机路径继续由 M 态承担，OS 所需的具体入口、权限和页表在后续 OS 章说明。</p>
+<p>CLIC 的向量入口和门限属于另一种正常中断接口，本地有独立开发版本与示例。应先掌握本章的现场和返回责任，再看<a href="interrupts.html#clic">CLIC</a>；不能把 mtvec 模式 3 的本地例子套成上述直接入口。</p>
+<h2 id="syscall-scheduling">trap、任务切换与系统调用的关系</h2>
+<p>任务 A 因定时或事件进入处理程序时，处理程序可以只服务事件，然后返回 A。调度器也可以决定让 B 先运行：先保存 A 的继续位置、栈和必要寄存器，记录 A 的状态；选择 B，换成 B 保存的栈和状态，再沿其入口恢复。稍后 B 让出执行，调度器才能按同一契约重新恢复 A。这就是<a href="rtos.html">RTOS 章</a>的 A→B→A 过程；每次中断并不必然切换任务。</p>
+<p>系统调用是另一种主动交接：用户程序通过规定 ABI 提交请求，ECALL 进入权限更高的软件，后者验证参数并提供服务。系统调用处理期间可以立即返回，也可能使当前任务阻塞并触发调度；同步入口与是否调度是两项不同判断。Linux 的用户缓冲区、驱动与地址空间还需各自处理，见<a href="os-devices.html">OS 设备操作</a>。</p>
+<p>FP/RVV 任务还拥有标量浮点寄存器、向量寄存器、相关 CSR，以及必须完成或妥善交接的在途工作。硬件能够执行 V 不等于某个 OS port 已安全保存这些状态。当前裸机整数包装不能替代该 port；对应支持必须按选定 OS 版本和本地接口核实。</p>
+<h2 id="local-handler">本地 trap handler 的适用范围</h2>
+<p>应用 crt0 提供弱符号 trap_vector，默认内容为自循环。advanced.c 用同名普通 C 函数覆盖它，借用已有整数包装；journey 没有覆盖它。因此 journey 的正常数组/UART过程可连续说明，但遇到 trap 后不具备已实现的恢复程序。这个可执行边界必须保留，具体停顿诊断见<a href="software-debug.html#trap-stop">软件诊断</a>。</p>
+<p class="source">官方随附资料：<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/01_cva6_user/Traps_Interrupts_Exceptions.rst">CVA6 trap 手册</a>。本地实现核对：<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">csr_regfile 的 trap/返回状态更新</a>、<a href="../../sw/lib/crt0.S">整数包装与弱 handler</a>、<a href="examples/advanced.c">现有整数 handler</a>。依赖快照为 cva6-20c9d7cbe0dd6995；随附手册的全家族支持描述不覆盖本地每组 profile，本文只使用已由当前实现核对的基本机制。</p>
+<details class="quiz"><summary>只保存 mepc 并执行 mret，能否恢复被打断的数组循环？</summary><p>不能保证。handler 若改写循环仍需使用的寄存器，返回 PC 正确也会得到错误数据。要把硬件 CSR 保存、入口软件保存、C ABI 和设备清源一起解释。</p></details>
+<details class="quiz"><summary>PLIC complete、C handler 的 ret 和 mret 各完成什么？</summary><p>complete 结束控制器的一次领取服务；ret 回到入口包装；mret 恢复 CPU 执行状态和位置。三者都不自动保证外设事件原因已清除。</p></details>

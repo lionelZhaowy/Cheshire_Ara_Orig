@@ -1,0 +1,23 @@
+<div class="goals"><strong>本章任务</strong><p>把已经学过的程序、总线和平台契约整理成独立工程的分阶段交付，知道每种证据能证明什么。前置：<a href="asic-memory.html">存储适配</a>、<a href="cdc-rdc.html">跨域</a>、<a href="timing-physical.html">时序/物理</a>、<a href="manufacturing-test.html">制造测试</a>。本轮是教材实施，工程提取尚未执行。</p></div>
+<h2 id="extract">先让另一台机器得到同一个系统</h2>
+<p>第一次提取的任务是把当前可解释的 CPU/Ara 组合变成唯一配置、来源明确且能独立搬迁的输入。计划中的 <code>cheshire_ara_asic/</code> 集中必要源码、平台边界、启动软件与最小回归；当前建议采用单核、<code>cv64a6_imafdcv_sv39</code>、Ara 2 lanes/VLEN 2048。它是待实施基线，不是已冻结的产品架构。</p>
+<p>接收者需要在另一目录按相同编译顺序、include、宏和编译单元分组得到同一展开结构，所以静态 filelist 也属于受版本管理的输入。Bender 至多用于一次性离线解析；本地 <code>.bender</code> 包含版本管理的源码与本地差异，不能当缓存删除。许可证、源路径/版本及本地修改随提取保留，后续维护才知道哪个行为来自哪里。</p>
+<p>先固定再裁切的理由是保持比较基准：如果同时替换 SRAM、改变地址图、修改启动和删除设备，一个启动失败就有多个可能来源。按<a href="../02_Cheshire_Ara_ASIC_Extraction_Handoff.md">02 提取交接书</a>逐步交付，可以让每个变更对应明确输入、产物和回归范围。RTOS/Linux 的选择不阻止裸机基线提取。</p>
+<h2 id="asic">从数字接口走向工艺实现</h2>
+<h3 id="resource-mapping">顺着一个消费者找到平台责任</h3>
+<figure><img src="assets/figures-20261007/teaching-asic-responsibilities.svg" alt="数字系统通过存储、时钟复位、IO与DDR接口连接工艺资源，平台固件和验证横跨边界"><figcaption>职责图：数字系统的协议与工艺/IP 的时序、电气和测试交付共同组成芯片；候选资源尚未选型。</figcaption></figure>
+<p>先看图上层的消费者：CPU 和 Ara 需要在正确周期得到存储数据，外设需要在正确引脚产生电平，DDR 出口需要得到有定义的响应。再沿接口向下看，工艺 SRAM、PLL、PAD 和 DDR 子系统分别实现这些条件。图的横向固件/验证层让它们按启动与运行顺序协作，不能只交几份“同名模块”就算完成迁移。</p>
+<p>本地 <code>tech_cells_generic</code> 明确把自身定位为薄的技术抽象，随附行为/FPGA 实现并不是最终 ASIC 宏。通用 SoC 的扩展接口也不等于芯片顶层：PAD、PLL、PHY、供电复位和测试边界需要 P01/M01 的实际交付。VCU118 的 MMCM/MIG/IOBUF 仅是对应 FPGA 平台参考。</p>
+<h3 id="sram-example">用 k+1/k+2 检查替换是否保持行为</h3>
+<p>当前 VRF 在周期 k 发起 bank 读请求，数据、读有效位和队列选择约定在 k+1 对应。如果候选宏直到 k+2 才给数据，而有效位仍在 k+1，操作数队列会接到错拍数据。容量和位宽相同没有解决这个问题。完整的真实实例、字节写和宏拼接推演见<a href="asic-memory.html#k-plus-two">SRAM 教学章</a>，这里保留旧入口用于连接工程验收。</p>
+<h3 id="implementation-deliverables">每种接口交出可以检查的条件</h3>
+<table><tr><th>交付任务</th><th>正常行为与验收对象</th><th>完整机制入口</th></tr><tr><td>存储映射</td><td>消费者、端口、深宽、延迟、掩码、初始化与各宏视图一致</td><td><a href="asic-memory.html#bank-contract">VRF bank</a></td></tr><tr><td>时钟/复位/电源</td><td>安全取指、配置、排空、切换、逐域释放与状态交还</td><td><a href="clocks.html#normal-frequency-change">正常调频</a>、<a href="power.html#sequence">关断和恢复</a></td></tr><tr><td>跨域与物理 IO</td><td>控制/数据/复位的交接；PAD、封装与板级接口匹配</td><td><a href="cdc-rdc.html#handshake">配置握手</a>、<a href="physical-interfaces.html#ack-path">I2C ACK 路径</a></td></tr><tr><td>DDR 与多主</td><td>初始化前存储位置、CPU/Ara 与未来旁路路径、所有权及带宽</td><td><a href="ddr.html">DDR</a>、<a href="accelerators.html">图像系统</a>、<a href="sharing.html">共享存储</a></td></tr><tr><td>时序、物理与制造测试</td><td>合法模式/工作角、真实路径、布局反馈、测试接管与覆盖</td><td><a href="timing-physical.html">STA/物理</a>、<a href="manufacturing-test.html">scan/MBIST</a></td></tr><tr><td>首硅与软件</td><td>版本、可观察里程碑、实际结果与后续测量边界</td><td><a href="silicon-bringup.html#staged-run">正常启动路线</a>、<a href="measurement.html">测量</a></td></tr></table>
+<h2 id="verification-layers">对同一笔 SRAM 读，不同检查回答什么</h2>
+<p>继续使用 VRF 一拍读作为同一契约。编译/展开先确认 bank 数量、端口宽度和实现选择唯一；功能仿真或断言核对请求身份、读数据和 valid 在期望周期相遇；宏替换前后等价或针对接口的比较，则检查变更是否保持定义的行为。如果读序列数值正确，还要问实际物理路径能否在工作频率下完成，以及制造测试能否覆盖阵列和相关逻辑。</p>
+<table><tr><th>方法</th><th>输入与本例产物</th><th>不能代替的证据</th></tr><tr><td>编译/展开、Lint</td><td>固定清单/配置和 RTL；语法、连接、宽度、未驱动或可疑结构报告</td><td>没有证明实际请求结果正确</td></tr><tr><td>仿真/断言</td><td>本例请求序列、真实或明确标注的宏模型；数据/身份/掩码/时序检查</td><td>有限场景不覆盖全部状态，也不证明物理时序</td></tr><tr><td>CDC/RDC</td><td>域、同步结构、复位关系及约束；结构与协议相关检查</td><td>不能只凭规则通过推导缓存一致性或整笔 AXI 完成</td></tr><tr><td>等价检查</td><td>明确的前后设计、映射和约束；所比较范围的行为关系</td><td>不证明未建模模拟 IP、电气特性或软件结果</td></tr><tr><td>STA 与物理检查</td><td>网表、库/宏、模式/角、寄生和物理规则；建立/保持、布线/供电等报告</td><td>不证明程序算式正确或全部制造缺陷可检出</td></tr><tr><td>DFT/MBIST 与系统回归</td><td>测试图样/故障模型，或实际软件/平台输入；分别得到制造覆盖与运行结果</td><td>二者不互相替代；每项均有对象和条件范围</td></tr></table>
+<p>验证计划可以安排故意改变延迟、施加背压或复位以检查断言是否能发现违约；这些属于 V01 的验证设计，不在正常教材操作里伪装为现有驱动行为。当前只完成定向源码阅读和文档检查，没有运行上述生产目标验证。</p>
+<h2 id="acceptance-gates">按依赖进入下一阶段</h2>
+<p>第一阶段 E01 固定唯一输入，V01/S01 建立标量及 RVV 最小结果回归，保存可重现环境。第二阶段 P01 为实际 SRAM、PLL、PAD 交付模型与约束，M01 接入真实 DDR 契约，逐边界验证启动和正常事务。I01 的新设备先独立证明控制与数值，再进入共享缓冲与并发。综合、时序、CDC/RDC、低功耗、DFT 和物理实现各有输入及报告，最终由芯片级集成把它们对齐。</p>
+<p>当前工艺、宏、PLL/PAD、DDR/PHY 及工具环境不足以实施具体映射或签核；这不阻止学习接口和准备验收。候选频率、域划分、NPU/ISP 旁路拓扑仍须按项目已确认需求与实际 IP 细化，不能由教材示例冻结。已有 Platform ROM、iDMA 和 Ara 缺口继续在<a href="system-debug.html">系统诊断</a>及各专题记录，文档完成不关闭它们。</p>
+<div class="source"><strong>源码与官方依据</strong><p><a href="../../.bender/git/checkouts/tech_cells_generic-223c43ccbeb688f9/README.md">随附技术单元说明</a>；<a href="https://pulp-platform.github.io/cheshire/tg/integr/">Cheshire 官方集成边界</a>（2026-10-08 查阅，通用职责与本地源码对照）；<a href="../../hw/cheshire_soc.sv">当前 SoC 连接</a>。具体实例与各方法的版本依据分别留在上表链接的正文中。</p></div>
+<details class="quiz"><summary>编译、向量结果、STA 三项都通过，能否直接宣称可流片？</summary><p>仍需确认它们是否针对同一版本和实际工艺/IP，且 CDC/RDC、电气、复位启动、测试、低功耗、物理规则及芯片交付等范围是否完成。三个局部结果不能覆盖所有系统条件。</p></details>

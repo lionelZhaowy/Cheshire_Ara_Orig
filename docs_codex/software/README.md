@@ -8,7 +8,7 @@
 
 基准日期：2026-09-20；输入提交：`379ae4544bc62e05a2736b11b33a3244181bba38`。依据当前本地源码和工具查询整理；**本轮未编译应用、未运行仿真、未连接板卡、未烧写存储器**。命令标为使用示例，不代表已经跑通。硬件配置另见 [配置手册](../configuration/README.md)。
 
-连续入门请从新版教材的[裸机运行模型](../learning/runtime.html)开始，接着读[程序构建](../learning/build.html)、[加载与启动](../learning/boot-debug.html)、[仿真运行](../learning/simulation.html)。本手册保留为细节参考；以下 2026-09-20 记录保持其历史验证范围。
+连续入门请从新版教材的[裸机运行模型](../learning/runtime.html)开始，接着读[程序构建](../learning/build.html)、[默认启动完整过程](../learning/boot.html#default-path)、[装载与调试](../learning/boot-debug.html)、[异常与上下文](../learning/traps.html)。症状与本地实现缺口集中在[软件诊断](../learning/software-debug.html)，目标仿真条件见[运行验证](../learning/simulation.html)。本手册保留为细节参考；以下 2026-09-20 记录保持其历史验证范围。
 
 ## 1. 阅读路线
 
@@ -18,6 +18,8 @@
 | 2 | [链接、启动、加载与调试](RUNTIME_AND_DEBUG.md) | 追踪 reset→Boot ROM→应用 _start→main→退出码；会查链接地址与异常 |
 | 3 | [嵌入式库原理与 API](LIBRARIES.md) | 理解 MMIO、UART/printf、CLINT、DMA、LLC、AXI RT、HAL 与 GPT |
 | 4 | [示例程序逐项导读](EXAMPLES.md) | 当前 9 个主测试源码逐项流程、前置配置、预期结果和局限；Ara 源码索引 |
+
+> 2026-10-08审查：下述历史路线中的dma_2d受当前控制接口宽度门槛限制，不是可立即运行的第二步。先按[实验A/B](../learning/labs.html#lab-a)建立ELF/启动证据；DMA见[机制](../learning/dma.html)与[诊断](../learning/peripheral-debug.html#dma)。HelloWorld报告不扩大为DMA/DDR/RVV通过。
 
 第一次动手按 `helloworld → ELF/链接布局 → dma_2d → DRAM 程序 → 正确向量组合` 的顺序。AXI RT、CLIC、MMU stub 测试各有专门硬件条件，不应一开始执行全目录。
 

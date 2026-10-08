@@ -35,3 +35,18 @@
 - [2026-10-07 L01：43张现用插图重绘、旧图归档与可编辑PPTX](2026-10-07_L01_research_figure_redraw.md)：SVG/网页与PPTX结构检查通过，Office实测未完成，待独立评审。
 
 - [2026-10-07 L01：波形恢复WaveDrom](2026-10-07_L01_restore_wavedrom.md)：按用户最新要求恢复6张原WaveDrom图，37张结构图不变，PPTX更新为37页。
+
+- [2026-10-08 L01：全书审查、03–08条件、外设/Ara正文重组及独立诊断](2026-10-08_L01_teaching_review_peripherals_ara.md)：30章完整审读，实际局部教学优化和后续Prompt；生产验证缺口保留。
+
+- [2026-10-08 L01：评审对话汇总与系统教材深化规划](2026-10-08_L01_system_curriculum_plan.md)：明确OS教学立即开展、CVA6使用深度和ASIC实例教学；交付迁移/分期/所有权及新Prompt，本轮未改教材正文。
+
+- [2026-10-08 L01-S：软件主线与异常上下文](2026-10-08_L01_software_implementation.md)：7页重组、2页新增，作者检查与适用条件。
+- [2026-10-08 L01-OS：RTOS/Linux系统教学](2026-10-08_L01_OS_implementation.md)：四章与独立诊断，版本/源码/运行证据分层。
+- [2026-10-08 L01-ASIC：机制与P01适配手册](2026-10-08_L01_asic_mechanisms_implementation.md)：真实VRF、跨域、物理、制造与首硅教学；未工程实施。
+- [2026-10-08 M01-D：IP/DDR接口契约](2026-10-08_M01_interface_contract_document.md)：原05/06限定范围合并交付，输入与验收责任明确。
+- [2026-10-08 L01：17页独立复审](2026-10-08_L01_independent_system_review.md)：5项问题修正复核，未把作者自查称独立通过。
+- [2026-10-08 L01：系统教材实施与主管集成](2026-10-08_L01_system_implementation_acceptance.md)：九篇42章、文档与浏览器检查；标题风格遗漏后续单独修正。
+- [2026-10-08 L01：全站标题规范修正](2026-10-08_L01_title_style_revision.md)：保持正文与课程结构，正式技术标题、副标题和可见引用同步，重新生成验收。
+
+- [2026-10-08 L01：标题独立复审](2026-10-08_L01_title_style_independent_review.md)：接受标题修正，提出三类非阻断润色建议。
+- [2026-10-08 L01：标题评审建议收尾](2026-10-08_L01_title_polish.md)：对象补全、术语显示与间距统一；技术正文和课程结构保持。

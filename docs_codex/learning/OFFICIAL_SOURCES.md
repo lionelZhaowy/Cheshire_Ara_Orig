@@ -57,3 +57,11 @@
 | ASIC 资料 | Cheshire 提供系统数字接口与平台钩子；未提供本项目选定工艺的完整 PLL/DDR/低功耗交付 | 按职责、依赖和验收解释未来方案，不编造寄存器及频率 |
 
 源文件哈希见 [sources.json](evidence/teaching-20261007/sources.json)。HTML 与 Markdown 采用相同概念和当前源码结论，原有表格、命令、实验和动态验证记录保留。
+
+## 2026-10-08 系统教材实施的来源与版本
+
+本轮来源以任务负责者的可追溯快照为准，未升级依赖。软件全链核本地 ROM/crt0/链接/驱动/装载器；[软件实施报告](../L01_Software_Implementation_2026-10-08.md)记录官方路径、本地差异和作者检查。[OS实施报告](../L01_OS_Implementation_2026-10-08.md)区分 FreeRTOS Kernel V11.1.0 教学参考、本地 SDK 的 Linux v5.10.7/v6.5 配方、展开 Linux 6.5.0 源码与 OpenSBI 0.9；已有源码/配置不等于镜像溯源或目标运行成立。
+
+[ASIC实施报告](../L01_ASIC_Implementation_2026-10-08.md)记录随附 tech_cells_generic/common_cells/Ara/LLC 文档、消费者以及 NXP UM10204 Rev.7.0、OpenSTA/OpenROAD 和制造测试官方资料的用途。在线 latest 只支持所述机制，不冻结 EDA、工艺、宏或板级值。[M01手册](../M01_IP_DDR_Interface_Contract.md)保留随附 LLC 通用旁路描述与本地地址/flushed选择的差异。
+
+测量章参考 [RISC-V Zicntr/Zihpm 2.0](https://docs.riscv.org/reference/isa/v20260120/unpriv/counters.html) 的计数语义，对照本地 CVA6 csr_regfile、util.h 与 CLINT；该在线规范合集版本不表示本地实现支持其余新增扩展。源码哈希分别在本轮 evidence/system-implementation-20261008 的 software/os/asic/coordinator 目录；目标动态能力仍需独立验证。

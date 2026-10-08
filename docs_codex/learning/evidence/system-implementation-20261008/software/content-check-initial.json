@@ -1,0 +1,202 @@
+{
+  "pages": {
+    "architecture": {
+      "ids": [
+        "system",
+        "paths",
+        "requests",
+        "four-views",
+        "port-roles",
+        "storage",
+        "layers",
+        "integration-boundary",
+        "implementation-layers"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/new-system.svg",
+        "assets/figures-20261007/depth-system-full.svg"
+      ],
+      "chars": 5727
+    },
+    "cva6": {
+      "ids": [
+        "isa",
+        "functional-units",
+        "programmer-state",
+        "privilege",
+        "functional-overview",
+        "csr-trap",
+        "memory-protection",
+        "compute-state",
+        "implementation-reference",
+        "configuration-families",
+        "profile-effective-values",
+        "resource-consequences"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/mechanism-cva6.svg"
+      ],
+      "chars": 7996
+    },
+    "configuration": {
+      "ids": [
+        "first-program-contract",
+        "inputs",
+        "configuration-contract",
+        "elaboration",
+        "ara",
+        "fields",
+        "soc-fields",
+        "profile-software-fields",
+        "consequences",
+        "topology",
+        "platform",
+        "combinations",
+        "legality-levels",
+        "configuration-candidates",
+        "case-baseline",
+        "case-axi-rt",
+        "case-clic",
+        "case-irq-router",
+        "software-contract"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/teaching-config-contract.svg",
+        "assets/figures-20261007/new-configuration.svg"
+      ],
+      "chars": 15009
+    },
+    "runtime": {
+      "ids": [
+        "program",
+        "program-storage",
+        "software-stack",
+        "stack",
+        "abi",
+        "initialization",
+        "sections",
+        "section-purpose",
+        "section-local-mapping",
+        "heap",
+        "object-lifetime",
+        "runtime-call",
+        "beyond-baremetal"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/new-runtime.svg"
+      ],
+      "chars": 7416
+    },
+    "build": {
+      "ids": [
+        "tools",
+        "stages",
+        "translation-units",
+        "elf",
+        "layout",
+        "options-reference",
+        "software-options",
+        "practice",
+        "source-to-hardware",
+        "build-practice"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/new-build.svg",
+        "assets/figures-20261007/teaching-code-to-execution.svg"
+      ],
+      "chars": 6242
+    },
+    "boot": {
+      "ids": [
+        "default-path",
+        "rom",
+        "rom-and-media",
+        "rom-initial-state",
+        "default-load",
+        "application",
+        "crt",
+        "regs",
+        "normal-result",
+        "boot-compare",
+        "platform-rom",
+        "load-path-overview",
+        "other-loaders",
+        "serial-link",
+        "uart-passive",
+        "media-boot",
+        "gpt-raw",
+        "sd-boot",
+        "nor-boot",
+        "eeprom-boot",
+        "boot-growth",
+        "later-stages"
+      ],
+      "old_ids_removed": [],
+      "images": [],
+      "chars": 13109
+    },
+    "boot-debug": {
+      "ids": [
+        "debug-workflow",
+        "transport",
+        "timelines",
+        "takeover",
+        "vip-ready",
+        "stack-handoff",
+        "debug",
+        "elf-load",
+        "entry-resume",
+        "loader-limits",
+        "observe-program",
+        "halt-boundary",
+        "debug-contract",
+        "dmi-registers"
+      ],
+      "old_ids_removed": [],
+      "images": [
+        "assets/figures-20261007/new-boot.svg",
+        "assets/depth-boot-phases.svg"
+      ],
+      "chars": 5922
+    },
+    "traps": {
+      "ids": [
+        "call-versus-trap",
+        "trap-entry",
+        "software-context",
+        "normal-service",
+        "trap-return",
+        "syscall-scheduling",
+        "local-handler"
+      ],
+      "old_ids_removed": [],
+      "images": [],
+      "chars": 5416
+    },
+    "software-debug": {
+      "ids": [
+        "locate-stage",
+        "build-errors",
+        "load-stop",
+        "stack-handoff",
+        "loader-tail",
+        "trap-stop",
+        "no-output",
+        "wrong-result",
+        "alternate-loaders",
+        "platform-rom-return",
+        "media-start",
+        "known-issues"
+      ],
+      "old_ids_removed": [],
+      "images": [],
+      "chars": 7629
+    }
+  },
+  "failures": []
+}

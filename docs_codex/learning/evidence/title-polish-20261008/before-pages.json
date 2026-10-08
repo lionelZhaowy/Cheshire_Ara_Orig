@@ -1,0 +1,441 @@
+{
+  "parts": [
+    {
+      "id": "foundations",
+      "label": "第一篇",
+      "title": "系统与CPU使用模型"
+    },
+    {
+      "id": "software",
+      "label": "第二篇",
+      "title": "裸机软件构建、启动与运行"
+    },
+    {
+      "id": "fabric",
+      "label": "第三篇",
+      "title": "地址、互连与物理存储"
+    },
+    {
+      "id": "devices",
+      "label": "第四篇",
+      "title": "异常、外设与数据搬运"
+    },
+    {
+      "id": "vector",
+      "label": "第五篇",
+      "title": "Ara向量执行与数据交接"
+    },
+    {
+      "id": "os",
+      "label": "第六篇",
+      "title": "RTOS与嵌入式Linux"
+    },
+    {
+      "id": "integration",
+      "label": "第七篇",
+      "title": "IP、DDR与系统协作"
+    },
+    {
+      "id": "platform",
+      "label": "第八篇",
+      "title": "ASIC平台与物理实现"
+    },
+    {
+      "id": "verification",
+      "label": "第九篇",
+      "title": "验证、测量与实验记录"
+    }
+  ],
+  "pages": [
+    {
+      "slug": "index",
+      "title": "阅读路线",
+      "subtitle": "程序执行、系统接口、操作系统与 ASIC 实现的学习路线。",
+      "kind": "home"
+    },
+    {
+      "slug": "architecture",
+      "title": "整体架构与平台边界",
+      "subtitle": "取指、数组计算与字符输出中的 SoC 模块协作。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 1
+    },
+    {
+      "slug": "cva6",
+      "title": "CVA6与RISC-V程序使用模型",
+      "subtitle": "指令集、处理器状态、特权级与存储接口。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 2
+    },
+    {
+      "slug": "configuration",
+      "title": "Cheshire、CVA6、Ara 与软件配置",
+      "subtitle": "硬件字段、参数消费者与软件配置的一致性。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 3
+    },
+    {
+      "slug": "runtime",
+      "title": "裸机 C 程序运行模型",
+      "subtitle": "C 对象、函数调用、初始化与存储布局。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 4
+    },
+    {
+      "slug": "build",
+      "title": "工具链、链接与 ELF",
+      "subtitle": "源文件、对象文件、链接布局与 ELF 装载产物。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 5
+    },
+    {
+      "slug": "boot",
+      "title": "Boot ROM、启动模式与应用初始化",
+      "subtitle": "ROM 服务、程序装载与应用入口的执行关系。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 6
+    },
+    {
+      "slug": "boot-debug",
+      "title": "JTAG 与程序加载调试",
+      "subtitle": "外部调试、程序装载与执行接管条件。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 7
+    },
+    {
+      "slug": "address-map",
+      "title": "地址空间与访问属性",
+      "subtitle": "地址路由窗口、实际资源容量与 CPU 访问属性。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 8
+    },
+    {
+      "slug": "axi",
+      "title": "AXI 通道、突发与握手",
+      "subtitle": "AXI 读写事务的通道握手与完成语义。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 9
+    },
+    {
+      "slug": "interconnect",
+      "title": "AXI Crossbar 结构与事务路由",
+      "subtitle": "地址译码、仲裁、写数据路由与 ID 响应关系。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 10
+    },
+    {
+      "slug": "adapters",
+      "title": "接口适配与 RegBus",
+      "subtitle": "位宽、协议、ID 转换与跨时钟域接口。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 11
+    },
+    {
+      "slug": "memory",
+      "title": "Cache、LLC/SPM 与存储路径",
+      "subtitle": "缓存副本、地址别名与共享物理阵列。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 12
+    },
+    {
+      "slug": "traps",
+      "title": "异常、中断与上下文",
+      "subtitle": "函数调用、异常中断与任务上下文的保存责任。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 13
+    },
+    {
+      "slug": "uart-gpio",
+      "title": "MMIO 驱动、UART 与 GPIO",
+      "subtitle": "寄存器访问、设备初始化与引脚行为。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 14
+    },
+    {
+      "slug": "interrupts",
+      "title": "定时器与中断系统",
+      "subtitle": "计时、中断使能、服务、清源与返回流程。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 15
+    },
+    {
+      "slug": "i2c",
+      "title": "I2C 与 EEPROM",
+      "subtitle": "I2C 线路、FIFO、控制寄存器与 EEPROM 读取。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 16
+    },
+    {
+      "slug": "spi",
+      "title": "SPI、NOR 与 SD",
+      "subtitle": "SPI 控制器事务与 NOR、SD 设备协议。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 17
+    },
+    {
+      "slug": "dma",
+      "title": "iDMA、流量管理与总线错误",
+      "subtitle": "数据搬运提交、完成、流量管理与本地执行条件。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 18
+    },
+    {
+      "slug": "stream-io",
+      "title": "Serial Link、VGA 与 USB",
+      "subtitle": "串行链路、显示与 USB 的控制、数据和验证条件。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 19
+    },
+    {
+      "slug": "ara",
+      "title": "Ara 结构与 CVA6 协处理器接口",
+      "subtitle": "向量请求、应答、CPU 提交与执行完成的协作关系。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 20
+    },
+    {
+      "slug": "vector",
+      "title": "RVV 编程与结果验证",
+      "subtitle": "数组运算的汇编、intrinsics 与自动向量化实现。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 21
+    },
+    {
+      "slug": "sharing",
+      "title": "CPU、Ara、DMA 与 NPU 的共享数据",
+      "subtitle": "共享数据的可见性、所有权与交接协议。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 22
+    },
+    {
+      "slug": "rtos",
+      "title": "RTOS任务、调度与同步",
+      "subtitle": "任务运行、阻塞、唤醒与同步的状态转换。",
+      "kind": "chapter",
+      "part": "os",
+      "number": 23
+    },
+    {
+      "slug": "virtual-memory",
+      "title": "保护、页表与进程地址空间",
+      "subtitle": "物理布局、虚拟地址翻译与设备地址语义。",
+      "kind": "chapter",
+      "part": "os",
+      "number": 24
+    },
+    {
+      "slug": "linux",
+      "title": "嵌入式Linux启动与用户程序",
+      "subtitle": "平台固件、内核与首个用户进程的启动关系。",
+      "kind": "chapter",
+      "part": "os",
+      "number": 25
+    },
+    {
+      "slug": "os-devices",
+      "title": "操作系统中的设备与缓冲区",
+      "subtitle": "裸机、RTOS 与 Linux 的设备调用和缓冲区管理。",
+      "kind": "chapter",
+      "part": "os",
+      "number": 26
+    },
+    {
+      "slug": "integration",
+      "title": "自定义 IP 的控制、数据和中断接入",
+      "subtitle": "独立 Reg 设备与系统控制、数据及中断接口。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 27
+    },
+    {
+      "slug": "ddr",
+      "title": "DDR 控制器、PHY 与 AXI4 接入",
+      "subtitle": "DDR 平台初始化、访问放行与接口交付条件。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 28
+    },
+    {
+      "slug": "accelerators",
+      "title": "LVDS、ISP、NPU 与外部 DDR 集成",
+      "subtitle": "图像处理 IP 的接口、缓冲、跨域与集成条件。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 29
+    },
+    {
+      "slug": "models",
+      "title": "模型任务划分与容量带宽预算",
+      "subtitle": "明确假设下的 Ara/NPU 协作与数据搬运成本。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 30
+    },
+    {
+      "slug": "clocks",
+      "title": "时钟系统与 PLL",
+      "subtitle": "时钟域、使能、同步器与平台时钟源。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 31
+    },
+    {
+      "slug": "reset",
+      "title": "复位体系与平台启动条件",
+      "subtitle": "复位、平台就绪与在途事务的生命周期。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 32
+    },
+    {
+      "slug": "power",
+      "title": "电源域与低功耗规划",
+      "subtitle": "现有 RTL 的电源边界与候选低功耗契约。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 33
+    },
+    {
+      "slug": "asic-memory",
+      "title": "Ara VRF 与 SRAM 宏接口",
+      "subtitle": "VRF 消费者的容量、时序与候选技术映射。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 34
+    },
+    {
+      "slug": "cdc-rdc",
+      "title": "跨时钟与复位域的事务交接",
+      "subtitle": "跨域信号同步、事务传输与生命周期协调。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 35
+    },
+    {
+      "slug": "physical-interfaces",
+      "title": "外设逻辑接口、PAD 与封装连接",
+      "subtitle": "I2C 连接的信号方向、电气条件与板级职责。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 36
+    },
+    {
+      "slug": "timing-physical",
+      "title": "时序约束与物理实现反馈",
+      "subtitle": "存储接口路径的时序约束、分析与布局影响。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 37
+    },
+    {
+      "slug": "manufacturing-test",
+      "title": "Scan、MBIST与制造测试",
+      "subtitle": "Scan、存储测试与功能验证的交付范围。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 38
+    },
+    {
+      "slug": "silicon-bringup",
+      "title": "首硅启动与系统可观测性",
+      "subtitle": "首硅早期状态观测与存储、计算能力的分阶段验证。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 39
+    },
+    {
+      "slug": "future",
+      "title": "固定配置工程与 ASIC 集成验收",
+      "subtitle": "固定配置、可搬迁输入与 ASIC 分阶段验收。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 40
+    },
+    {
+      "slug": "simulation",
+      "title": "Questa/VCS 仿真与结果验证",
+      "subtitle": "仿真输入、目标运行、结果数据与退出判据。",
+      "kind": "chapter",
+      "part": "verification",
+      "number": 41
+    },
+    {
+      "slug": "measurement",
+      "title": "正确性、性能与论文实验记录",
+      "subtitle": "计时边界、数据条件与可重复的性能比较。",
+      "kind": "chapter",
+      "part": "verification",
+      "number": 42
+    },
+    {
+      "slug": "labs",
+      "title": "实验手册",
+      "subtitle": "六项连续实验与系统推演的输入、步骤和判据。",
+      "kind": "reference"
+    },
+    {
+      "slug": "registers",
+      "title": "参考 · 寄存器索引",
+      "subtitle": "本地寄存器偏移、字段与对应设备访问语义。",
+      "kind": "reference"
+    },
+    {
+      "slug": "evidence",
+      "title": "参考 · 来源与验证记录",
+      "subtitle": "当前源码基准、历史证据、实际检查和待验证事项。",
+      "kind": "reference"
+    },
+    {
+      "slug": "software-debug",
+      "title": "启动与软件故障诊断",
+      "subtitle": "装载、初始化与软件运行问题的阶段定位。",
+      "kind": "reference"
+    },
+    {
+      "slug": "peripheral-debug",
+      "title": "外设调试与故障诊断",
+      "subtitle": "外设应用、寄存器与线路症状的分层诊断。",
+      "kind": "reference"
+    },
+    {
+      "slug": "vector-debug",
+      "title": "Ara/RVV 调试与故障诊断",
+      "subtitle": "Ara/RVV 构建、执行、访存与结果的诊断证据。",
+      "kind": "reference"
+    },
+    {
+      "slug": "system-debug",
+      "title": "平台、集成与测量诊断",
+      "subtitle": "平台就绪、事务执行、数据与测量问题的定位。",
+      "kind": "reference"
+    },
+    {
+      "slug": "os-debug",
+      "title": "操作系统启动与状态诊断",
+      "subtitle": "OS 镜像、平台描述与上下文支持的适用边界。",
+      "kind": "reference"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<div class="goals"><strong>本章任务</strong><p>从请求生命周期定义复位、就绪与恢复。 前置：<a href="clocks.html">04 · 时钟系统与 PLL</a>。</p></div>
+<h2 id="sources">当前复位入口与作用域</h2>
+<h3 id="system-reset">系统复位、调试复位和局部接口复位</h3>
+<p>rst_ni 是 SoC 的主要低有效复位，test_mode_i 属于测试控制；JTAG 的 TRST/TCK 管理调试传输，USB PHY 有自己的时钟/复位接口。复位域按真正接到的寄存器及同步逻辑划分，不能仅凭模块名推断独立复位能力。</p>
+<table><tr><th>入口或状态</th><th>当前连接边界</th><th>不应扩大的结论</th></tr><tr><td>rst_ni</td><td>CPU、Ara、互连、LLC 与大多数系统逻辑</td><td>释放不代表外部 DDR 训练已完成</td></tr><tr><td>JTAG TRST</td><td>调试传输入口；与系统时钟域有 DMI 交互</td><td>不等于重启所有系统设备</td></tr><tr><td>DM ndmreset_o</td><td>cheshire_soc 中输出未使用</td><td>写调试复位请求不证明存在芯片级复位控制</td></tr><tr><td>USB / Link</td><td>有各自接口域与局部控制；Link 隔离输出未接成系统闭环</td><td>局部寄存器复位不自动清除所有下游在途事务</td></tr></table>
+<h2 id="readiness">把复位释放和工作就绪分开</h2>
+<h3 id="rom-ready">ROM 可执行、SPM 可装载与应用可运行</h3>
+<p>CPU 取到 ROM 指令只证明复位取指路径开始工作。LLC BIST、SPM 配置、栈建立、平台 ROM、ROM C 服务各是后续状态。JTAG VIP 在 LlcNotBypass 时只轮询 CFG_SPM_LOW.bit0 后发 halt；这不是 ROM C 测频完成标志，也不能凭该位单独证明 ROM 已执行完扩展栈步骤。具体接管流程见<a href="boot-debug.html#takeover">调试章</a>。</p>
+<h3 id="external-ready">DDR 与外部设备的就绪</h3>
+<p>外部 DDR 需要时钟/复位、控制器初始化、PHY 训练以及平台允许发请求；接口能返回某个控制寄存器，不证明数据阵列可用。先让诊断程序及栈留在已验证的 SPM，再逐级开放外存。未来平台应给每个就绪等待定义截止时间、错误原因及回退路径。</p>
+<h2 id="release">复位释放与平台就绪</h2>
+<figure><img src="assets/depth-reset-release.svg" alt="电源稳定、PLL锁定、系统复位释放、DDR初始化与隔离解除的顺序"><figcaption>未来协议的 WaveDrom 教学时序。真正的同步级数、超时和故障回退由平台实现确定。 · <a href="assets/waves/reset-release.json">WaveDrom 源文件</a></figcaption></figure><p>复位通常要求异步进入安全状态、在每个工作域同步释放；此原则需要与库单元、DFT 和 IP 的要求一起验证。DM 的 ndmreset_o 在当前 SoC 中未使用，不能当作现成的全芯片复位源。Link 的隔离相关端口也不能证明已实现可独立掉电的域。</p>
+<h3 id="bringup-milestones">ASIC 上电过程的可观察里程碑</h3>
+<p>把“启动成功”拆成几个因果相连的里程碑，可以避免把所有无输出都归因于 UART。电源稳定只是允许时钟和复位电路工作；CPU 复位释放只是允许取指；ROM 的第一条指令执行并不证明栈已可写；进入 main 也不证明外部 DDR 可用。</p>
+<table><tr><th>阶段</th><th>需要已经成立的条件</th><th>适合观测的证据</th></tr><tr><td>安全时钟与复位</td><td>供电、参考源、按域同步的复位释放条件</td><td>平台时钟/复位状态；复位期间没有非法发起事务</td></tr><tr><td>首条 ROM 指令</td><td>复位 PC、ROM 译码和返回路径可用</td><td>CPU 取指地址及返回内容，调试 PC</td></tr><tr><td>SPM 与早期栈</td><td>保留内部 LLC 时完成自测及 SPM 配置；无内部 LLC 时由平台提供替代可写存储和有效 sp</td><td>配置状态和实际存储访问；仅见一个配置位不足以证明后续汇编已执行</td></tr><tr><td>平台初始化</td><td>Platform ROM 代码与其全部依赖可访问</td><td>入口/返回 PC、PLL/设备状态、失败路径</td></tr><tr><td>应用 C 环境</td><td>代码初值装载、栈/gp/BSS/FS 等初始化</td><td>到达 main，初值与零初始化符合预期</td></tr><tr><td>外存与加速器工作</td><td>DDR ready、接口和缓冲区契约成立</td><td>读写结果、响应错误、超时和任务完成状态</td></tr></table>
+<p>这是 ASIC 调试的阶段划分建议，前四步必须结合实际平台时钟方案安排。当前 testbench 提供时钟和存储模型，可验证相应数字行为；它没有证明模拟电源爬升、PLL 锁定或板级 DDR 训练。</p>
+<h2 id="transaction-reset">事务中途复位与恢复</h2>
+<h3 id="drain">停止新请求，再处理已接受事务</h3>
+<p>已经接收 AW 而没有收完 W 或返回 B 的目标，不能直接掉时钟；未返回的读 burst 也不能静默丢弃。正常停止应停发新请求，等各层队列和返回排空，必要时由经过设计的隔离/终止机制向上游报告错误，再执行复位。超时意味着需要恢复策略，不意味着硬件自动停止写内存。</p>
+<h3 id="reset-validation">最小验证场景</h3>
+<p>分别在地址等待、数据背压、响应等待和 CPU 轮询时请求停止，检查完成或错误都能有界结束；复位后不应把旧事务的完成归给新任务。异步进入、同步释放、跨域握手和复位原因寄存器要落实到平台 RTL 后再验证，本轮没有实现这些新机制。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">顶层实例</a>；<a href="../../target/sim/src/fixture_cheshire_soc.sv">平台连接</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">VIP 时钟与模型</a>；<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA shell</a>；<a href="../../target/xilinx/src/dram_wrapper_xilinx.sv">DDR 接口</a></p></div>

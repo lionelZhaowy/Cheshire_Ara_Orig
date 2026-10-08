@@ -1,0 +1,11 @@
+2026-10-08，HEAD 459f9d6f5748e39063f7bb67e959c2f27859915d，分支mp/ara-pulp-v2。
+全部命令在仓库根执行。
+python3 docs_codex/learning/scripts/build_registers.py -> exit 0，12组429项。
+python3 docs_codex/learning/scripts/build_site.py -> exit 0，51主页面，20旧入口。
+python3 docs_codex/learning/scripts/check_structure.py --check-generated --out-dir docs_codex/learning/evidence/title-style-20261008/release-generated -> exit 0，143产物一致，37结构图和manifest一致。
+python3 docs_codex/learning/scripts/preview_structure_site.py --out-dir docs_codex/learning/evidence/title-style-20261008/release-browser -> exit 0，51页桌面/手机、12无脚本页、199跨页书签。
+python3 docs_codex/reviews/L01_title_style_20261008/check_titles.py --out-dir docs_codex/reviews/L01_title_style_20261008/final-protection -> exit 0，664项，319改名；非标题内容/ID/顺序及历史保护通过。
+主管检查所有504个H1–H4标签均进入清单；当前关联Markdown无两个改名章标题的残留名称；四张截图视觉抽查通过。
+文档收尾后的check_site.py -> exit 0，71 HTML，5068本地链接/资源，108 SVG，933 Markdown链接/锚点。
+git diff --check -> exit 0。
+没有目标软件构建、RTL仿真、综合、板测、OS移植、新技术审计或性能测量。

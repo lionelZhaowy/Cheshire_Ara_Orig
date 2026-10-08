@@ -1,0 +1,49 @@
+$ python3 docs_codex/learning/scripts/check_site.py
+exit_code=0
+PASS: 56 HTML pages, 3137 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 740 Markdown links and fragments
+
+$ git diff --check
+exit_code=0
+
+$ python3 docs_codex/reviews/L01_system_plan_20261008/check_protection.py
+exit_code=0
+Baseline files: 439
+Unchanged input files: 434
+Changed within explicit scope:
+  docs_codex/03-08_Topic_Readiness_2026-10-08.md
+  docs_codex/AGENT_TASKS.md
+  docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md
+  docs_codex/PROJECT_STATE.md
+  docs_codex/handoffs/README.md
+PASS: incoming textbook, figures, historical evidence and other protected files unchanged
+
+PASS: new file scope restricted to plan, independent handoff and new evidence directory.
+New files at scope check:
+docs_codex/L01_System_Textbook_Revision_Plan_2026-10-08.md
+docs_codex/handoffs/2026-10-08_L01_system_curriculum_plan.md
+docs_codex/reviews/L01_system_plan_20261008/README.md
+docs_codex/reviews/L01_system_plan_20261008/check_protection.py
+docs_codex/reviews/L01_system_plan_20261008/checks.txt
+docs_codex/reviews/L01_system_plan_20261008/input.json
+PASS: no tracked production delta under hw/sw/.bender/target.
+
+Final $ python3 docs_codex/learning/scripts/check_site.py
+exit_code=0
+PASS: 56 HTML pages, 3137 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 740 Markdown links and fragments
+
+Final $ git diff --check
+exit_code=0
+
+Final $ python3 docs_codex/reviews/L01_system_plan_20261008/check_protection.py
+exit_code=0
+Baseline files: 439
+Unchanged input files: 434
+Changed within explicit scope:
+  docs_codex/03-08_Topic_Readiness_2026-10-08.md
+  docs_codex/AGENT_TASKS.md
+  docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md
+  docs_codex/PROJECT_STATE.md
+  docs_codex/handoffs/README.md
+PASS: incoming textbook, figures, historical evidence and other protected files unchanged

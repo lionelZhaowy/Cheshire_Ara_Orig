@@ -1,0 +1,1889 @@
+{
+  "task": "L01 title style / software",
+  "date": "2026-10-08",
+  "branch": "mp/ara-pulp-v2",
+  "head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "scope": {
+    "owned_pages": [
+      "architecture",
+      "cva6",
+      "configuration",
+      "runtime",
+      "build",
+      "boot",
+      "boot-debug",
+      "traps",
+      "software-debug"
+    ],
+    "full_heading_inventory": true,
+    "section_body_semantics_reviewed": true,
+    "source_h1_h4_only": true,
+    "entry_strong_reviewed": true,
+    "self_test_summary_unchanged": true,
+    "generated_pages_and_shared_metadata": "supervisor owned; not edited",
+    "reference_changes": 0,
+    "reference_reason": "No exact changed heading literal occurred outside headings in the nine owned pages; descriptive links retained. Supervisor handles other pages and shared navigation."
+  },
+  "rules": [
+    "正式标题直接陈述技术主题，优先名词性表达。",
+    "保留规范标题、现有ID/slug/次序及全部非标题正文。",
+    "按所属正文范围命名，不扩大实现或验证能力。"
+  ],
+  "counts": {
+    "pages": 9,
+    "heading_changes": 53,
+    "entry_changes": 0,
+    "visible_reference_changes": 0,
+    "inventory": 128,
+    "headings_reviewed": 119,
+    "entries_reviewed": 9
+  },
+  "changes": [
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "system",
+      "old": "从计算单元到可运行系统",
+      "new": "计算单元与片上系统的组成",
+      "reason": "以计算、存储和设备的具体组成替代泛化的过渡表述。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "paths",
+      "old": "先跟随一个程序，再读完整互连",
+      "new": "程序执行与 SoC 模块协作",
+      "reason": "删除跟随程序、阅读互连的授课指令，概括数组、UART和事件路径。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "four-views",
+      "old": "同一系统的四种视角",
+      "new": "SoC 的功能、事务、地址与实现视角",
+      "reason": "明确四种视角的技术内容，避免目录依赖前文指代。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "functional-units",
+      "old": "以软件可见状态解释执行",
+      "new": "程序执行与软件可见状态",
+      "reason": "直接陈述技术对象，去掉解释执行的教学动作。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "programmer-state",
+      "old": "从一条数组赋值认识寄存器与 PC",
+      "new": "数组赋值中的通用寄存器与 PC",
+      "reason": "以实例中的程序状态命名，删除认识寄存器的教学动作。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "privilege",
+      "old": "M、S、U 是执行权限，不是三颗 CPU",
+      "new": "M、S、U 特权级与执行权限",
+      "reason": "保留特权级主题，将口语化纠误留在正文。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "implementation-reference",
+      "old": "可选回查：profile 与实现资源",
+      "new": "CPU profile 与实现资源参考",
+      "reason": "将可选回查的阅读安排转为参考内容名称。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "first-program-contract",
+      "old": "先为同一个标量程序配齐运行条件",
+      "new": "标量数组程序的运行配置",
+      "reason": "保留本节标量SPM/UART实例范围，去掉先配齐的教学指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "configuration-contract",
+      "old": "三个入口与一份系统契约",
+      "new": "CPU、SoC 与软件配置的系统契约",
+      "reason": "把三个入口替换为实际配置对象，目录可独立理解。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "elaboration",
+      "old": "从常量配置到硬件实例",
+      "new": "常量配置与硬件实例生成",
+      "reason": "用展开过程的技术主题替代叙事过渡。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "advanced-configurations",
+      "old": "学完相关设备后的组合回查",
+      "new": "进阶配置组合参考",
+      "reason": "保留进阶定位，将学习后回查的指令移交既有正文。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "fields",
+      "old": "按字段、消费者和约束核对配置",
+      "new": "配置字段、消费者与取值约束",
+      "reason": "以核对对象命名，不向读者下达操作指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "configuration-candidates",
+      "old": "按用途选择配置候选",
+      "new": "不同用途的配置候选",
+      "reason": "保留候选限定，删除选择动作。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "case-baseline",
+      "old": "三个独立案例的共同基线",
+      "new": "扩展配置案例的共同基线",
+      "reason": "说明AXI RT、CLIC和Router所属扩展案例范围，不以三个指代内容。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "software-stack",
+      "old": "同一个程序有四种关系",
+      "new": "程序的组成、构建、启动与运行关系",
+      "reason": "把四种关系的具体内容写入标题，避免模糊计数与同一程序指代。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "abi",
+      "old": "ABI 约定软件之间的边界",
+      "new": "ABI 与软件调用边界",
+      "reason": "以二进制调用约定的实际范围命名。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "initialization",
+      "old": "有初值与零初始化的不同责任",
+      "new": "数据初值装载与零初始化的责任划分",
+      "reason": "明确文件初值装载与BSS清零的责任，消除有初值的口语表达。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "sections",
+      "old": "用节名表达存储用途",
+      "new": "存储用途与节的划分",
+      "reason": "用存储组织主题替代用节名表达的教学动作。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "section-purpose",
+      "old": "按初始化和访问方式分组",
+      "new": "节的初始化属性与访问方式",
+      "reason": "明确分组对象和依据，避免指令式标题。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "runtime-call",
+      "old": "从 main 的第一项检查连续走到 UART 输出",
+      "new": "数组程序的初始化、计算与 UART 输出",
+      "reason": "覆盖正文从初态校验、测频、计算到输出的完整范围，删除连续走到的授课动作。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "beyond-baremetal",
+      "old": "沿相同职责进入操作系统",
+      "new": "裸机与操作系统的软件职责",
+      "reason": "直接命名两类环境的职责，删除沿相同职责进入的阅读安排。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "object-lifetime",
+      "old": "进阶回查：数组、栈与共享缓冲的边界",
+      "new": "数组、栈与共享缓冲区的使用边界",
+      "reason": "保留对象边界主题，去掉进阶回查的教学指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "translation-units",
+      "old": "从翻译单元到最终映像",
+      "new": "翻译单元、对象文件与最终映像",
+      "reason": "明确构建过程的产物层次。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "elf",
+      "old": "ELF 把机器码和装载信息放在一起",
+      "new": "ELF 的代码数据与装载信息",
+      "reason": "以ELF内容命名，避免放在一起的口语说明。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "layout",
+      "old": "从 C 对象追到输出地址",
+      "new": "C 对象与链接地址布局",
+      "reason": "以对象和链接布局的对应关系命名，删除追到的阅读动作。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "options-reference",
+      "old": "已有产物可以解释后，再选择工程选项",
+      "new": "软件构建选项及其作用",
+      "reason": "删除先解释产物再选择的教学指令，保留选项实际作用范围。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "practice",
+      "old": "完成一次可解释的构建",
+      "new": "隔离构建与产物验证",
+      "reason": "明确本节实践范围，删除可解释的教学评价。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "source-to-hardware",
+      "old": "从源文件到执行结果的责任交接",
+      "new": "软件构建、装载与执行的责任交接",
+      "reason": "直接列出责任交接涉及的三个阶段。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "default-path",
+      "old": "先固定一次启动的输入和目标",
+      "new": "默认 ROM/JTAG 启动的输入与目标",
+      "reason": "保留默认配置和应用输入的限定，去掉先固定的授课指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "rom",
+      "old": "ROM 先建立可用的片上环境",
+      "new": "Boot ROM 的片上环境初始化",
+      "reason": "用初始化主题替代先建立可用环境的叙事。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "default-load",
+      "old": "存储准备好后，由装载者交接应用",
+      "new": "JTAG 装载与应用入口交接",
+      "reason": "明确本地默认装载主体与交接目标。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "normal-result",
+      "old": "把程序结果与运行结束一起核对",
+      "new": "程序结果校验与运行结束判据",
+      "reason": "用校验对象及判据命名，不指示读者把两者一起核对。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "boot-compare",
+      "old": "默认过程之后，再扩展平台与装载来源",
+      "new": "平台初始化扩展与程序装载方式",
+      "reason": "按正文平台钩子及路径比较命名，去掉默认之后再扩展的阅读顺序指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "gpt-raw",
+      "old": "共同镜像格式与 SPM 装载",
+      "new": "GPT/raw 镜像格式与 SPM 装载",
+      "reason": "用实际镜像格式替代依赖相邻小节的共同指代。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "boot-growth",
+      "old": "程序变大后，由下一阶段继续组织启动",
+      "new": "多阶段启动与大型镜像装载",
+      "reason": "明确ZSL继续装载的技术用途，替代程序变大后的口语叙述。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "debug-workflow",
+      "old": "调试同时需要程序描述与目标连接",
+      "new": "程序描述与目标调试连接",
+      "reason": "直接命名符号文件与目标连接两个调试条件。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "elf-load",
+      "old": "ELF 段怎样通过 SBA 到达内存",
+      "new": "基于 SBA 的 ELF 段装载",
+      "reason": "将疑问式标题改为实际装载路径。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "loader-limits",
+      "old": "段内字节与 BSS 各有责任",
+      "new": "ELF 段装载与 BSS 清零的责任划分",
+      "reason": "明确段字节与BSS对应的操作，删除各有责任的口语。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "observe-program",
+      "old": "在已确认入口和存储条件后观察同一程序",
+      "new": "数组程序的断点、寄存器与内存观察",
+      "reason": "准确概括GDB步骤，条件仍留在正文，不把先确认后观察写进标题。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "halt-boundary",
+      "old": "暂停 CPU 时，系统中还有什么在前进",
+      "new": "CPU 暂停期间的系统运行状态",
+      "reason": "去掉疑问和模糊动作，直接表达halt边界。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "call-versus-trap",
+      "old": "从普通函数调用走向异常和中断",
+      "new": "函数调用、异常与中断的控制流",
+      "reason": "将走向的授课过渡改为三种控制转移的技术范围。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "trap-entry",
+      "old": "硬件先留下最小的返回线索",
+      "new": "异常与中断入口的硬件状态更新",
+      "reason": "用CSR/PC状态更新替代返回线索比喻。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "software-context",
+      "old": "入口汇编为什么还要保存整数状态",
+      "new": "异常入口的整数寄存器保存与恢复",
+      "reason": "依据当前整数包装范围命名，删除为什么还要的疑问口语。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "normal-service",
+      "old": "连续追踪一次定时服务",
+      "new": "机器态定时器中断处理流程",
+      "reason": "明确机器态timer服务范围，不扩成调度实现。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "syscall-scheduling",
+      "old": "由 trap 连接到任务和系统调用",
+      "new": "trap、任务切换与系统调用的关系",
+      "reason": "陈述技术关系，去掉连接到的阅读过渡。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "local-handler",
+      "old": "当前实现的适用范围",
+      "new": "本地 trap handler 的适用范围",
+      "reason": "明确当前实现所指对象，保留适用范围限定。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "locate-stage",
+      "old": "先确定停止在哪一次责任交接",
+      "new": "软件构建、装载与运行的分层诊断",
+      "reason": "将定位指令变为完整的软件责任层次范围。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "load-stop",
+      "old": "装载没有继续：分开观察三个完成条件",
+      "new": "JTAG 装载停顿与阶段完成条件",
+      "reason": "保留装载停顿症状，明确SPM、halt与SBA完成条件的范围。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "stack-handoff",
+      "old": "装载成功后，应用仍需要有效 sp",
+      "new": "应用入口的栈有效性与对齐条件",
+      "reason": "准确概括继承栈、暂停位置和ABI对齐的诊断内容。",
+      "kind": "heading",
+      "level": "h3"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "trap-stop",
+      "old": "停在 trap：先保存原因，再解释恢复条件",
+      "new": "trap 停顿的原因记录与恢复条件",
+      "reason": "保留诊断对象与条件，删除先再指令。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "no-output",
+      "old": "main 已进入，但没有正确字符",
+      "new": "main 运行期间的 UART 无输出与乱码诊断",
+      "reason": "用具体症状替代没有正确字符，限定main运行期间，避免误指函数返回以后。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "wrong-result",
+      "old": "有日志仍要检查同一次执行的数据",
+      "new": "应用数据、日志与退出码的一致性检查",
+      "reason": "明确结果检查对象，删除有日志仍要的口语提醒。",
+      "kind": "heading",
+      "level": "h2"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "known-issues",
+      "old": "证据与尚未关闭的事项",
+      "new": "已知软件问题的证据与验证状态",
+      "reason": "明确事项所属软件问题及状态，不暗示已修复。",
+      "kind": "heading",
+      "level": "h2"
+    }
+  ],
+  "inventory": [
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "system",
+      "old": "从计算单元到可运行系统",
+      "new": "计算单元与片上系统的组成",
+      "reason": "以计算、存储和设备的具体组成替代泛化的过渡表述。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "paths",
+      "old": "先跟随一个程序，再读完整互连",
+      "new": "程序执行与 SoC 模块协作",
+      "reason": "删除跟随程序、阅读互连的授课指令，概括数组、UART和事件路径。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "requests",
+      "level": "h3",
+      "old": "数组计算、字符输出与设备事件",
+      "new": "数组计算、字符输出与设备事件",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "four-views",
+      "old": "同一系统的四种视角",
+      "new": "SoC 的功能、事务、地址与实现视角",
+      "reason": "明确四种视角的技术内容，避免目录依赖前文指代。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "port-roles",
+      "level": "h3",
+      "old": "模块职责与接口方向",
+      "new": "模块职责与接口方向",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "storage",
+      "level": "h3",
+      "old": "片上存储与外部存储",
+      "new": "片上存储与外部存储",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "layers",
+      "level": "h2",
+      "old": "RTL、SoC 顶层与运行平台",
+      "new": "RTL、SoC 顶层与运行平台",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "integration-boundary",
+      "level": "h3",
+      "old": "SoC IP 与完整芯片的责任边界",
+      "new": "SoC IP 与完整芯片的责任边界",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "implementation-layers",
+      "level": "h3",
+      "old": "硬件描述与运行环境",
+      "new": "硬件描述与运行环境",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "isa",
+      "level": "h2",
+      "old": "指令能力与 CPU profile",
+      "new": "指令能力与 CPU profile",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "functional-units",
+      "old": "以软件可见状态解释执行",
+      "new": "程序执行与软件可见状态",
+      "reason": "直接陈述技术对象，去掉解释执行的教学动作。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "programmer-state",
+      "old": "从一条数组赋值认识寄存器与 PC",
+      "new": "数组赋值中的通用寄存器与 PC",
+      "reason": "以实例中的程序状态命名，删除认识寄存器的教学动作。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "privilege",
+      "old": "M、S、U 是执行权限，不是三颗 CPU",
+      "new": "M、S、U 特权级与执行权限",
+      "reason": "保留特权级主题，将口语化纠误留在正文。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "functional-overview",
+      "level": "h3",
+      "old": "执行资源与系统行为",
+      "new": "执行资源与系统行为",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "csr-trap",
+      "level": "h3",
+      "old": "CSR、异常和中断",
+      "new": "CSR、异常和中断",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "memory-protection",
+      "level": "h3",
+      "old": "访存、MMU 与 PMP",
+      "new": "访存、MMU 与 PMP",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "compute-state",
+      "level": "h3",
+      "old": "整数、FPU 与协处理器",
+      "new": "整数、FPU 与协处理器",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "implementation-reference",
+      "old": "可选回查：profile 与实现资源",
+      "new": "CPU profile 与实现资源参考",
+      "reason": "将可选回查的阅读安排转为参考内容名称。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "configuration-families",
+      "level": "h3",
+      "old": "可选配置的类别与适用范围",
+      "new": "可选配置的类别与适用范围",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "profile-effective-values",
+      "level": "h3",
+      "old": "两组 profile 与最终有效配置",
+      "new": "两组 profile 与最终有效配置",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "resource-consequences",
+      "level": "h3",
+      "old": "CVA6 资源配置的结构影响",
+      "new": "CVA6 资源配置的结构影响",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "first-program-contract",
+      "old": "先为同一个标量程序配齐运行条件",
+      "new": "标量数组程序的运行配置",
+      "reason": "保留本节标量SPM/UART实例范围，去掉先配齐的教学指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "inputs",
+      "level": "h2",
+      "old": "配置入口与生效阶段",
+      "new": "配置入口与生效阶段",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "configuration-contract",
+      "old": "三个入口与一份系统契约",
+      "new": "CPU、SoC 与软件配置的系统契约",
+      "reason": "把三个入口替换为实际配置对象，目录可独立理解。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "elaboration",
+      "old": "从常量配置到硬件实例",
+      "new": "常量配置与硬件实例生成",
+      "reason": "用展开过程的技术主题替代叙事过渡。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "software-contract",
+      "level": "h2",
+      "old": "软件选项与运行时配置的联动",
+      "new": "软件选项与运行时配置的联动",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "advanced-configurations",
+      "old": "学完相关设备后的组合回查",
+      "new": "进阶配置组合参考",
+      "reason": "保留进阶定位，将学习后回查的指令移交既有正文。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "ara",
+      "level": "h3",
+      "old": "向量组合的配置推导",
+      "new": "向量组合的配置推导",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "fields",
+      "old": "按字段、消费者和约束核对配置",
+      "new": "配置字段、消费者与取值约束",
+      "reason": "以核对对象命名，不向读者下达操作指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "soc-fields",
+      "level": "h3",
+      "old": "SoC 与 Ara 实例参数",
+      "new": "SoC 与 Ara 实例参数",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "profile-software-fields",
+      "level": "h3",
+      "old": "CPU 选源与软件选项",
+      "new": "CPU 选源与软件选项",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "consequences",
+      "level": "h2",
+      "old": "跨模块的结构影响",
+      "new": "跨模块的结构影响",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "topology",
+      "level": "h3",
+      "old": "端口、规则与 ID 的全局依赖",
+      "new": "端口、规则与 ID 的全局依赖",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "platform",
+      "level": "h3",
+      "old": "生成尺寸与平台条件",
+      "new": "生成尺寸与平台条件",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "combinations",
+      "level": "h2",
+      "old": "配置组合与验证条件",
+      "new": "配置组合与验证条件",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "legality-levels",
+      "level": "h3",
+      "old": "取值范围、结构约束与已验证组合",
+      "new": "取值范围、结构约束与已验证组合",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "configuration-candidates",
+      "old": "按用途选择配置候选",
+      "new": "不同用途的配置候选",
+      "reason": "保留候选限定，删除选择动作。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "case-baseline",
+      "old": "三个独立案例的共同基线",
+      "new": "扩展配置案例的共同基线",
+      "reason": "说明AXI RT、CLIC和Router所属扩展案例范围，不以三个指代内容。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "case-axi-rt",
+      "level": "h3",
+      "old": "AXI RT：DMA 搬运的预算核对",
+      "new": "AXI RT：DMA 搬运的预算核对",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "case-clic",
+      "level": "h3",
+      "old": "CLIC：中断门限与向量入口",
+      "new": "CLIC：中断门限与向量入口",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "case-irq-router",
+      "level": "h3",
+      "old": "IRQ Router：UART 中断的目标屏蔽",
+      "new": "IRQ Router：UART 中断的目标屏蔽",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "program",
+      "level": "h2",
+      "old": "指令与数据的存储需求",
+      "new": "指令与数据的存储需求",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "program-storage",
+      "level": "h3",
+      "old": "贯穿示例的指令与对象",
+      "new": "贯穿示例的指令与对象",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "software-stack",
+      "old": "同一个程序有四种关系",
+      "new": "程序的组成、构建、启动与运行关系",
+      "reason": "把四种关系的具体内容写入标题，避免模糊计数与同一程序指代。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "stack",
+      "level": "h2",
+      "old": "函数调用与栈帧",
+      "new": "函数调用与栈帧",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "abi",
+      "old": "ABI 约定软件之间的边界",
+      "new": "ABI 与软件调用边界",
+      "reason": "以二进制调用约定的实际范围命名。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "initialization",
+      "old": "有初值与零初始化的不同责任",
+      "new": "数据初值装载与零初始化的责任划分",
+      "reason": "明确文件初值装载与BSS清零的责任，消除有初值的口语表达。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "sections",
+      "old": "用节名表达存储用途",
+      "new": "存储用途与节的划分",
+      "reason": "用存储组织主题替代用节名表达的教学动作。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "section-purpose",
+      "old": "按初始化和访问方式分组",
+      "new": "节的初始化属性与访问方式",
+      "reason": "明确分组对象和依据，避免指令式标题。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "section-local-mapping",
+      "level": "h3",
+      "old": "常见节名与本地合并规则",
+      "new": "常见节名与本地合并规则",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "heap",
+      "level": "h2",
+      "old": "容量与堆的边界",
+      "new": "容量与堆的边界",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "runtime-call",
+      "old": "从 main 的第一项检查连续走到 UART 输出",
+      "new": "数组程序的初始化、计算与 UART 输出",
+      "reason": "覆盖正文从初态校验、测频、计算到输出的完整范围，删除连续走到的授课动作。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "beyond-baremetal",
+      "old": "沿相同职责进入操作系统",
+      "new": "裸机与操作系统的软件职责",
+      "reason": "直接命名两类环境的职责，删除沿相同职责进入的阅读安排。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "object-lifetime",
+      "old": "进阶回查：数组、栈与共享缓冲的边界",
+      "new": "数组、栈与共享缓冲区的使用边界",
+      "reason": "保留对象边界主题，去掉进阶回查的教学指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "tools",
+      "level": "h2",
+      "old": "主机工具与目标程序",
+      "new": "主机工具与目标程序",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "stages",
+      "level": "h2",
+      "old": "预处理、编译、汇编与链接",
+      "new": "预处理、编译、汇编与链接",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "translation-units",
+      "old": "从翻译单元到最终映像",
+      "new": "翻译单元、对象文件与最终映像",
+      "reason": "明确构建过程的产物层次。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "elf",
+      "old": "ELF 把机器码和装载信息放在一起",
+      "new": "ELF 的代码数据与装载信息",
+      "reason": "以ELF内容命名，避免放在一起的口语说明。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "layout",
+      "old": "从 C 对象追到输出地址",
+      "new": "C 对象与链接地址布局",
+      "reason": "以对象和链接布局的对应关系命名，删除追到的阅读动作。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "options-reference",
+      "old": "已有产物可以解释后，再选择工程选项",
+      "new": "软件构建选项及其作用",
+      "reason": "删除先解释产物再选择的教学指令，保留选项实际作用范围。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "software-options",
+      "level": "h3",
+      "old": "原 Make 入口的配置选项",
+      "new": "原 Make 入口的配置选项",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "practice",
+      "old": "完成一次可解释的构建",
+      "new": "隔离构建与产物验证",
+      "reason": "明确本节实践范围，删除可解释的教学评价。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "source-to-hardware",
+      "old": "从源文件到执行结果的责任交接",
+      "new": "软件构建、装载与执行的责任交接",
+      "reason": "直接列出责任交接涉及的三个阶段。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "build-practice",
+      "level": "h3",
+      "old": "隔离输出与产物检查",
+      "new": "隔离输出与产物检查",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "default-path",
+      "old": "先固定一次启动的输入和目标",
+      "new": "默认 ROM/JTAG 启动的输入与目标",
+      "reason": "保留默认配置和应用输入的限定，去掉先固定的授课指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "rom",
+      "old": "ROM 先建立可用的片上环境",
+      "new": "Boot ROM 的片上环境初始化",
+      "reason": "用初始化主题替代先建立可用环境的叙事。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "rom-and-media",
+      "level": "h3",
+      "old": "固化启动代码、外部镜像与执行存储",
+      "new": "固化启动代码、外部镜像与执行存储",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "rom-initial-state",
+      "level": "h3",
+      "old": "Boot ROM 的早期存储与栈",
+      "new": "Boot ROM 的早期存储与栈",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "default-load",
+      "old": "存储准备好后，由装载者交接应用",
+      "new": "JTAG 装载与应用入口交接",
+      "reason": "明确本地默认装载主体与交接目标。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "application",
+      "level": "h2",
+      "old": "应用入口与运行交接",
+      "new": "应用入口与运行交接",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "crt",
+      "level": "h3",
+      "old": "应用启动代码建立 C 环境",
+      "new": "应用启动代码建立 C 环境",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "regs",
+      "level": "h3",
+      "old": "系统寄存器参与初始化与结束",
+      "new": "系统寄存器参与初始化与结束",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "normal-result",
+      "old": "把程序结果与运行结束一起核对",
+      "new": "程序结果校验与运行结束判据",
+      "reason": "用校验对象及判据命名，不指示读者把两者一起核对。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "boot-compare",
+      "old": "默认过程之后，再扩展平台与装载来源",
+      "new": "平台初始化扩展与程序装载方式",
+      "reason": "按正文平台钩子及路径比较命名，去掉默认之后再扩展的阅读顺序指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "platform-rom",
+      "level": "h3",
+      "old": "Platform ROM 与 Boot ROM 的调用关系",
+      "new": "Platform ROM 与 Boot ROM 的调用关系",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "load-path-overview",
+      "level": "h3",
+      "old": "装载路径比较",
+      "new": "装载路径比较",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "other-loaders",
+      "level": "h2",
+      "old": "被动加载服务",
+      "new": "被动加载服务",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "serial-link",
+      "level": "h3",
+      "old": "Serial Link：远端写入与 scratch 交接",
+      "new": "Serial Link：远端写入与 scratch 交接",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "uart-passive",
+      "level": "h3",
+      "old": "UART：二进制读写与调用协议",
+      "new": "UART：二进制读写与调用协议",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "media-boot",
+      "level": "h2",
+      "old": "自主介质启动",
+      "new": "自主介质启动",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "gpt-raw",
+      "old": "共同镜像格式与 SPM 装载",
+      "new": "GPT/raw 镜像格式与 SPM 装载",
+      "reason": "用实际镜像格式替代依赖相邻小节的共同指代。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "sd-boot",
+      "level": "h3",
+      "old": "SPI SD：块读取与 CRC",
+      "new": "SPI SD：块读取与 CRC",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "nor-boot",
+      "level": "h3",
+      "old": "SPI NOR：地址读取与器件配置",
+      "new": "SPI NOR：地址读取与器件配置",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "eeprom-boot",
+      "level": "h3",
+      "old": "I2C EEPROM：器件地址与内部地址",
+      "new": "I2C EEPROM：器件地址与内部地址",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "boot-growth",
+      "old": "程序变大后，由下一阶段继续组织启动",
+      "new": "多阶段启动与大型镜像装载",
+      "reason": "明确ZSL继续装载的技术用途，替代程序变大后的口语叙述。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "later-stages",
+      "level": "h3",
+      "old": "ZSL、OpenSBI 与操作系统启动的分层",
+      "new": "ZSL、OpenSBI 与操作系统启动的分层",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "debug-workflow",
+      "old": "调试同时需要程序描述与目标连接",
+      "new": "程序描述与目标调试连接",
+      "reason": "直接命名符号文件与目标连接两个调试条件。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "transport",
+      "level": "h2",
+      "old": "调试传输与模块职责",
+      "new": "调试传输与模块职责",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "timelines",
+      "level": "h2",
+      "old": "主机与目标的两条时间线",
+      "new": "主机与目标的两条时间线",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "takeover",
+      "level": "h2",
+      "old": "JTAG 装载前置条件",
+      "new": "JTAG 装载前置条件",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "vip-ready",
+      "level": "h3",
+      "old": "CFG_SPM_LOW.bit0 与暂停应答",
+      "new": "CFG_SPM_LOW.bit0 与暂停应答",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "stack-handoff",
+      "level": "h3",
+      "old": "装载条件与应用入口条件",
+      "new": "装载条件与应用入口条件",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "debug",
+      "level": "h2",
+      "old": "JTAG、Debug Module 与实际装载",
+      "new": "JTAG、Debug Module 与实际装载",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "elf-load",
+      "old": "ELF 段怎样通过 SBA 到达内存",
+      "new": "基于 SBA 的 ELF 段装载",
+      "reason": "将疑问式标题改为实际装载路径。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "entry-resume",
+      "level": "h3",
+      "old": "设置 DPC 与恢复执行",
+      "new": "设置 DPC 与恢复执行",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "loader-limits",
+      "old": "段内字节与 BSS 各有责任",
+      "new": "ELF 段装载与 BSS 清零的责任划分",
+      "reason": "明确段字节与BSS对应的操作，删除各有责任的口语。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "observe-program",
+      "old": "在已确认入口和存储条件后观察同一程序",
+      "new": "数组程序的断点、寄存器与内存观察",
+      "reason": "准确概括GDB步骤，条件仍留在正文，不把先确认后观察写进标题。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "halt-boundary",
+      "old": "暂停 CPU 时，系统中还有什么在前进",
+      "new": "CPU 暂停期间的系统运行状态",
+      "reason": "去掉疑问和模糊动作，直接表达halt边界。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "debug-contract",
+      "level": "h2",
+      "old": "Debug 的寄存器地址空间与复位责任",
+      "new": "Debug 的寄存器地址空间与复位责任",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "dmi-registers",
+      "level": "h3",
+      "old": "DMI 地址、字段和副作用",
+      "new": "DMI 地址、字段和副作用",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "call-versus-trap",
+      "old": "从普通函数调用走向异常和中断",
+      "new": "函数调用、异常与中断的控制流",
+      "reason": "将走向的授课过渡改为三种控制转移的技术范围。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "trap-entry",
+      "old": "硬件先留下最小的返回线索",
+      "new": "异常与中断入口的硬件状态更新",
+      "reason": "用CSR/PC状态更新替代返回线索比喻。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "software-context",
+      "old": "入口汇编为什么还要保存整数状态",
+      "new": "异常入口的整数寄存器保存与恢复",
+      "reason": "依据当前整数包装范围命名，删除为什么还要的疑问口语。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "normal-service",
+      "old": "连续追踪一次定时服务",
+      "new": "机器态定时器中断处理流程",
+      "reason": "明确机器态timer服务范围，不扩成调度实现。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "trap-return",
+      "level": "h2",
+      "old": "返回地址、特权返回与委托",
+      "new": "返回地址、特权返回与委托",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "syscall-scheduling",
+      "old": "由 trap 连接到任务和系统调用",
+      "new": "trap、任务切换与系统调用的关系",
+      "reason": "陈述技术关系，去掉连接到的阅读过渡。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "local-handler",
+      "old": "当前实现的适用范围",
+      "new": "本地 trap handler 的适用范围",
+      "reason": "明确当前实现所指对象，保留适用范围限定。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "本章任务",
+      "new": "本章任务",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "locate-stage",
+      "old": "先确定停止在哪一次责任交接",
+      "new": "软件构建、装载与运行的分层诊断",
+      "reason": "将定位指令变为完整的软件责任层次范围。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "build-errors",
+      "level": "h2",
+      "old": "构建错误与告警",
+      "new": "构建错误与告警",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "load-stop",
+      "old": "装载没有继续：分开观察三个完成条件",
+      "new": "JTAG 装载停顿与阶段完成条件",
+      "reason": "保留装载停顿症状，明确SPM、halt与SBA完成条件的范围。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "stack-handoff",
+      "old": "装载成功后，应用仍需要有效 sp",
+      "new": "应用入口的栈有效性与对齐条件",
+      "reason": "准确概括继承栈、暂停位置和ABI对齐的诊断内容。",
+      "kind": "heading",
+      "level": "h3",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "loader-tail",
+      "level": "h3",
+      "old": "本地 ELF/JTAG 段尾与补零责任",
+      "new": "本地 ELF/JTAG 段尾与补零责任",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "trap-stop",
+      "old": "停在 trap：先保存原因，再解释恢复条件",
+      "new": "trap 停顿的原因记录与恢复条件",
+      "reason": "保留诊断对象与条件，删除先再指令。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "no-output",
+      "old": "main 已进入，但没有正确字符",
+      "new": "main 运行期间的 UART 无输出与乱码诊断",
+      "reason": "用具体症状替代没有正确字符，限定main运行期间，避免误指函数返回以后。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "wrong-result",
+      "old": "有日志仍要检查同一次执行的数据",
+      "new": "应用数据、日志与退出码的一致性检查",
+      "reason": "明确结果检查对象，删除有日志仍要的口语提醒。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "alternate-loaders",
+      "level": "h2",
+      "old": "替代装载路径的协议与观察边界",
+      "new": "替代装载路径的协议与观察边界",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "platform-rom-return",
+      "level": "h2",
+      "old": "Platform ROM 的正常返回缺口",
+      "new": "Platform ROM 的正常返回缺口",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "media-start",
+      "level": "h2",
+      "old": "介质启动的已有局限",
+      "new": "介质启动的已有局限",
+      "action": "retained",
+      "reason": "既有名词性主题或客观技术陈述与正文范围一致。",
+      "kind": "heading"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "known-issues",
+      "old": "证据与尚未关闭的事项",
+      "new": "已知软件问题的证据与验证状态",
+      "reason": "明确事项所属软件问题及状态，不暗示已修复。",
+      "kind": "heading",
+      "level": "h2",
+      "action": "changed"
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "anchor": "goals",
+      "level": "strong",
+      "old": "诊断入口",
+      "new": "诊断入口",
+      "action": "retained",
+      "reason": "正式入口标签，无口语或授课指令。",
+      "kind": "entry"
+    }
+  ],
+  "checks": [
+    {
+      "path": "docs_codex/learning/content/architecture.html",
+      "before_sha256": "9bb7863e26a43511fecaf1b0a921418c0376471af91fe1bc9001c16a4b6350d7",
+      "after_sha256": "d08f2e8faab4599d01f3afa0113a75a08cada5b0ad9e7fcf189ef3cbc38d2b67",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/cva6.html",
+      "before_sha256": "e8598b253923decaa95db4abe073287ce85dc77a483489f54250c57606c4a55b",
+      "after_sha256": "9f3f2f55a641384c2598542f2347e37bfdaa69269aa441d4f3d0d588e860588e",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/configuration.html",
+      "before_sha256": "87812b0b975ccdfcf143ed173505cc3458fa7c43e78fe3e70f4297c8f0d188c6",
+      "after_sha256": "2e34cb49c7dd3fedff16a10c883d652e6740c7440fdd84da8674b553dedec8dd",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/runtime.html",
+      "before_sha256": "f1e4f959d7ceb637099f65649bbe2b6d93a396c1972973707f0312a140adffba",
+      "after_sha256": "57151f0027e48033e5dd3f4e3856a7b8e842d9e615fe4a8b74a44a6a385beb3b",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/build.html",
+      "before_sha256": "2b46199f4018c66cb629ec951aa5730faabee62a1e6032a9f092b6bbbc019778",
+      "after_sha256": "3c54e80e4c2b8287f4c221e9faeec74e1b7743f9ba73dc0c2a291bd0585363aa",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/boot.html",
+      "before_sha256": "74cd027d63f61feb8b173c4c6ec383f77b39baf1d6c6cff97111016cda726503",
+      "after_sha256": "2721d5eb9b8322968d47aae8470f637e172b75d50e94f8e2fe63c30995a03bb0",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/boot-debug.html",
+      "before_sha256": "a79fb9b03b78bebd2c7fa2dea31560e64c35dd1e4b31d7498efa8ec124165898",
+      "after_sha256": "787f6d180f984cad72c9741537e0d4106ed6b8e5946bdf65a2a5e8f22a735068",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/traps.html",
+      "before_sha256": "619de23492b8ba509c22b16fa1a8ee477fa07589a585b4fd8396e1f5c5be8031",
+      "after_sha256": "57534607d1169247f2b1c9fb909b6f895c70ea130bad9115ce6cd3e9a535c7ff",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    },
+    {
+      "path": "docs_codex/learning/content/software-debug.html",
+      "before_sha256": "25893dcc89858bbb657724a02523e0a267334dcd49ec529abe755fbebec40cd9",
+      "after_sha256": "b4ccf62a047ed4b83519fafefc19cbfabf6b18d70c083cae3c262175ca2af898",
+      "non_heading_bytes_unchanged": true,
+      "all_ids_and_order_unchanged": true,
+      "old_title_literal_outside_headings": []
+    }
+  ],
+  "validation": {
+    "all_pages_match_supervisor_before_snapshot": true,
+    "non_heading_bytes_equal": true,
+    "ids_and_order_equal": true,
+    "target_build_or_simulation": false,
+    "browser_or_generation": "not run by sub-agent; supervisor integration pending",
+    "final_exact_reconstruction_from_changes": true,
+    "full_title_manual_review": true,
+    "style_keyword_candidates": [],
+    "old_title_literals_outside_owned_headings": [],
+    "git_diff_check_exit": 0,
+    "sub_agent_state": "frozen; supervisor may integrate"
+  }
+}

@@ -1,0 +1,9 @@
+$ git diff --check
+exit=0
+
+
+$ python3 docs_codex/learning/scripts/check_site.py
+exit=0
+PASS: 56 HTML pages, 3137 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 705 Markdown links and fragments
+

@@ -1,0 +1,317 @@
+{
+  "parts": [
+    {
+      "id": "foundations",
+      "label": "第一篇",
+      "title": "系统基础与配置"
+    },
+    {
+      "id": "platform",
+      "label": "第二篇",
+      "title": "ASIC 时钟、复位与电源"
+    },
+    {
+      "id": "fabric",
+      "label": "第三篇",
+      "title": "互连与存储系统"
+    },
+    {
+      "id": "software",
+      "label": "第四篇",
+      "title": "裸机软件、启动与验证"
+    },
+    {
+      "id": "devices",
+      "label": "第五篇",
+      "title": "外设、事件与数据搬运"
+    },
+    {
+      "id": "vector",
+      "label": "第六篇",
+      "title": "Ara 向量执行与异构协作"
+    },
+    {
+      "id": "integration",
+      "label": "第七篇",
+      "title": "IP 集成与 ASIC 工程规划"
+    }
+  ],
+  "pages": [
+    {
+      "slug": "index",
+      "title": "阅读路线",
+      "subtitle": "按知识体系查阅，沿短路线开始实践。",
+      "kind": "home"
+    },
+    {
+      "slug": "architecture",
+      "title": "整体架构与平台边界",
+      "subtitle": "沿取指、数组与字符输出辨认模块职责。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 1
+    },
+    {
+      "slug": "cva6",
+      "title": "CVA6 功能与 RISC-V 系统基础",
+      "subtitle": "把 ISA、CSR、访存与实现资源联系起来。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 2
+    },
+    {
+      "slug": "configuration",
+      "title": "Cheshire、CVA6、Ara 与软件配置",
+      "subtitle": "按真实字段及消费者建立自洽组合。",
+      "kind": "chapter",
+      "part": "foundations",
+      "number": 3
+    },
+    {
+      "slug": "clocks",
+      "title": "时钟系统与 PLL",
+      "subtitle": "区分时钟域、使能、同步器和平台时钟源。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 4
+    },
+    {
+      "slug": "reset",
+      "title": "复位体系与平台启动条件",
+      "subtitle": "从请求生命周期定义复位、就绪与恢复。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 5
+    },
+    {
+      "slug": "power",
+      "title": "电源域与低功耗规划",
+      "subtitle": "区分现有 RTL 边界和待实现的电源契约。",
+      "kind": "chapter",
+      "part": "platform",
+      "number": 6
+    },
+    {
+      "slug": "address-map",
+      "title": "地址空间与访问属性",
+      "subtitle": "分别核对路由窗口、实际容量和 CPU 属性。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 7
+    },
+    {
+      "slug": "axi",
+      "title": "AXI 通道、突发与握手",
+      "subtitle": "沿真实握手语义理解一笔读写事务。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 8
+    },
+    {
+      "slug": "interconnect",
+      "title": "AXI Crossbar 结构与事务路由",
+      "subtitle": "追踪译码、仲裁、W 路由、ID 与响应。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 9
+    },
+    {
+      "slug": "adapters",
+      "title": "接口适配与 RegBus",
+      "subtitle": "解释位宽、协议、ID 转换及跨域边界。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 10
+    },
+    {
+      "slug": "memory",
+      "title": "Cache、LLC/SPM 与存储路径",
+      "subtitle": "区分缓存副本、地址别名与共享物理阵列。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 11
+    },
+    {
+      "slug": "ddr",
+      "title": "DDR 控制器、PHY 与 AXI4 接入",
+      "subtitle": "从平台初始化到软件可用建立交付条件。",
+      "kind": "chapter",
+      "part": "fabric",
+      "number": 12
+    },
+    {
+      "slug": "runtime",
+      "title": "裸机 C 程序运行模型",
+      "subtitle": "从对象、调用和初始化理解存储布局。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 13
+    },
+    {
+      "slug": "build",
+      "title": "工具链、链接与 ELF",
+      "subtitle": "让同一数组程序形成可解释的装载产物。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 14
+    },
+    {
+      "slug": "boot",
+      "title": "Boot ROM、启动模式与应用初始化",
+      "subtitle": "分别追踪 ROM 服务、自主加载和应用入口。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 15
+    },
+    {
+      "slug": "boot-debug",
+      "title": "JTAG 与程序加载调试",
+      "subtitle": "核实外部调试接管的真实等待条件。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 16
+    },
+    {
+      "slug": "simulation",
+      "title": "Questa/VCS 仿真与结果验证",
+      "subtitle": "按阶段检查输入、运行、数值和退出。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 17
+    },
+    {
+      "slug": "uart-gpio",
+      "title": "MMIO 驱动、UART 与 GPIO",
+      "subtitle": "从寄存器语义推进到初始化与引脚行为。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 18
+    },
+    {
+      "slug": "interrupts",
+      "title": "定时器与中断系统",
+      "subtitle": "建立计时、使能、服务、清源与返回闭环。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 19
+    },
+    {
+      "slug": "i2c",
+      "title": "I2C 与 EEPROM",
+      "subtitle": "从线路、FIFO 和控制寄存器到器件读取。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 20
+    },
+    {
+      "slug": "spi",
+      "title": "SPI、NOR 与 SD",
+      "subtitle": "把控制器事务和外部设备协议分开。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 21
+    },
+    {
+      "slug": "dma",
+      "title": "iDMA、流量管理与总线错误",
+      "subtitle": "理解搬运提交、完成、限流与故障门槛。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 22
+    },
+    {
+      "slug": "stream-io",
+      "title": "Serial Link、VGA 与 USB",
+      "subtitle": "按设备追踪控制、数据、时钟及验证条件。",
+      "kind": "chapter",
+      "part": "devices",
+      "number": 23
+    },
+    {
+      "slug": "ara",
+      "title": "Ara 结构与 CVA6 协处理器接口",
+      "subtitle": "分清请求、应答、CPU 提交和实际完成。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 24
+    },
+    {
+      "slug": "vector",
+      "title": "RVV 编程与结果验证",
+      "subtitle": "用同一数组比较汇编、intrinsics 和自动向量化。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 25
+    },
+    {
+      "slug": "sharing",
+      "title": "CPU、Ara、DMA 与 NPU 的共享数据",
+      "subtitle": "建立可见性、所有权和有界恢复协议。",
+      "kind": "chapter",
+      "part": "vector",
+      "number": 26
+    },
+    {
+      "slug": "integration",
+      "title": "自定义 IP 的控制、数据和中断接入",
+      "subtitle": "从独立 Reg 单元逐步进入系统。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 27
+    },
+    {
+      "slug": "accelerators",
+      "title": "LVDS、ISP、NPU 与外部 DDR 集成",
+      "subtitle": "逐 IP 明确接口、缓冲、跨域和验收交付。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 28
+    },
+    {
+      "slug": "models",
+      "title": "模型任务划分与容量带宽预算",
+      "subtitle": "用透明假设衡量 Ara/NPU 协作成本。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 29
+    },
+    {
+      "slug": "future",
+      "title": "固定配置工程与 ASIC 集成验收",
+      "subtitle": "冻结可搬迁输入并形成分阶段实现证据。",
+      "kind": "chapter",
+      "part": "integration",
+      "number": 30
+    },
+    {
+      "slug": "labs",
+      "title": "实验手册",
+      "subtitle": "六项有明确输入、产物和判据的连续实践。",
+      "kind": "reference"
+    },
+    {
+      "slug": "peripheral-debug",
+      "title": "外设调试与故障诊断",
+      "subtitle": "按应用、寄存器和线路定位症状，保留已知问题证据。",
+      "kind": "reference"
+    },
+    {
+      "slug": "vector-debug",
+      "title": "Ara/RVV 调试与故障诊断",
+      "subtitle": "分开构建、执行、访存和结果证据。",
+      "kind": "reference"
+    },
+    {
+      "slug": "registers",
+      "title": "参考 · 寄存器索引",
+      "subtitle": "本地头文件中的偏移和字段；访问语义回到对应设备章。",
+      "kind": "reference"
+    },
+    {
+      "slug": "evidence",
+      "title": "参考 · 来源与验证记录",
+      "subtitle": "当前源码基准、历史证据、实际检查和待验证事项。",
+      "kind": "reference"
+    }
+  ]
+}

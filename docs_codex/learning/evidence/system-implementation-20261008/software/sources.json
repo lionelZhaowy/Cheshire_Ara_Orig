@@ -1,0 +1,172 @@
+{
+  "head": "459f9d6f5748e39063f7bb67e959c2f27859915d",
+  "scope": "定向符号/片段核对与已有技术事实复核；未进行全部依赖或生产源码审计",
+  "files": {
+    "docs/um/sw.md": {
+      "sha256": "3c42fb12a6b1b4de24098d838daa468ed53269469ef913d64509e301fd4d33a0",
+      "focus": "官方随附软件职责、Boot/被动/自主/ZSL；记录与当前表达式的差异"
+    },
+    "docs/um/arch.md": {
+      "sha256": "736b2b0445c41d19d88725ff86888be83344650c270f31a320088d6536924cb6",
+      "focus": "官方随附系统组件与接口背景"
+    },
+    "docs/tg/integr.md": {
+      "sha256": "9a705e7449fa6922917a0f9cf1cec8f7a6fb0dd91e99d36551ce888fc570e853",
+      "focus": "Platform ROM职责与平台就绪条件"
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/01_cva6_user/Traps_Interrupts_Exceptions.rst": {
+      "sha256": "dbddac13177fdc017496980837f29bb105201439783b7f715c3598067f0726cf",
+      "focus": "trap/返回/CSR官方随附说明"
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/docs/01_cva6_user/Programmer_View.rst": {
+      "sha256": "ac66207a903e24ab09329433d14e50a90c98c1322b7f55388f2be3ab81b39c9c",
+      "focus": "软件可见状态/特权/地址翻译；不将全家族功能当本地profile"
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": {
+      "sha256": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+      "focus": "trap进入及MRET对应状态更新定向阅读"
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv": {
+      "sha256": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba",
+      "focus": "后置资源表的配置原值"
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdchsclic_sv39_wb_config_pkg.sv": {
+      "sha256": "0132bb452aefcd9492cd80e40692138c34709d8518c0a68e54db1f972d59f994",
+      "focus": "默认profile配置原值"
+    },
+    ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/README.md": {
+      "sha256": "37b1643923fff605fe474c60aae52d9956ff100333541e016d3a39d55c9a9101",
+      "focus": "本地Debug 0.13.1版本及功能边界"
+    },
+    "hw/cheshire_pkg.sv": {
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+      "focus": "gen_cva6_cfg有效覆盖，DefaultCfg，地址与消费者"
+    },
+    "hw/cheshire_soc.sv": {
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+      "focus": "BootAddr/Debug ndmreset连接/Ara宽度及实例接口"
+    },
+    "hw/bootrom/cheshire_bootrom.S": {
+      "sha256": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+      "focus": "早期SPM/栈/Platform ROM/下一阶段控制流"
+    },
+    "hw/bootrom/cheshire_bootrom.c": {
+      "sha256": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae",
+      "focus": "被动/介质启动当前流程"
+    },
+    "sw/lib/crt0.S": {
+      "sha256": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+      "focus": "应用BSS/FS/退出及128字节整数trap包装"
+    },
+    "sw/lib/dif/uart.c": {
+      "sha256": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2",
+      "focus": "初始化/printf出口/字节宽度/发送与flush语义"
+    },
+    "sw/include/dif/uart.h": {
+      "sha256": "37afa3b555582e5b404044660cdae43d44d08a49586eac507646e23122a974f1",
+      "focus": "真实API声明"
+    },
+    "sw/lib/dif/clint.c": {
+      "sha256": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+      "focus": "测频/绝对与相对等待"
+    },
+    "sw/deps/printf/printf.h": {
+      "sha256": "d5e13c54dc707089a1fbeecc28c3f942e958e7f68f16493d11a3189ebbdd3c04",
+      "focus": "printf映射与API"
+    },
+    "sw/deps/printf/printf.c": {
+      "sha256": "d724a61385687a383c3d8b9cc56f314aa31a065375ad53242bfe398edbfeb1f5",
+      "focus": "printf_/_putchar调用"
+    },
+    "sw/sw.mk": {
+      "sha256": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7",
+      "focus": "构建与库/链接参数"
+    },
+    "sw/link/spm.ld": {
+      "sha256": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106",
+      "focus": "SPM输入输出节映射"
+    },
+    "sw/link/common.ldh": {
+      "sha256": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620",
+      "focus": "地址/容量/继承栈符号"
+    },
+    "sw/link/dram.ld": {
+      "sha256": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2",
+      "focus": "DRAM地址与栈"
+    },
+    "sw/link/rom.ld": {
+      "sha256": "b03af6a441bf8104a936490bfb5b9e95fada51f5aa629e13fcf2a144c585331a",
+      "focus": "运行与镜像布局"
+    },
+    "sw/lib/gpt.c": {
+      "sha256": "bf0e29f209c04ad6c55215c149dc3752b5699feb9bbf38c9c25acc077352713c",
+      "focus": "GPT/raw与SPM载荷契约"
+    },
+    "sw/lib/hal/uart_debug.c": {
+      "sha256": "738b72a13f5497832258830b6da089a1137a5e572a8acfa265f1688533208696",
+      "focus": "READ/WRITE/EXEC协议及完成语义"
+    },
+    "sw/boot/zsl.c": {
+      "sha256": "cf28b41042d30b64c7f749c01ca598ce4f3e77aa1c097ede4d2868da61812e48",
+      "focus": "本地后续载荷桥接；保留已确认事实"
+    },
+    "sw/include/params.h": {
+      "sha256": "1fda153d779c2b0cdf59369ffb82a08e2e662bea44e250b2d652c5507eda01ef",
+      "focus": "DTB/FW位置和波特率参数"
+    },
+    "cheshire.mk": {
+      "sha256": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063",
+      "focus": "当前默认CPU profile"
+    },
+    "target/sim/src/tb_cheshire_pkg.sv": {
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab",
+      "focus": "已有配置案例选项"
+    },
+    "target/sim/src/elfloader.cpp": {
+      "sha256": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6",
+      "focus": "PT_LOAD/p_paddr/p_memsz/p_filesz"
+    },
+    "target/sim/src/vip_cheshire_soc.sv": {
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+      "focus": "JTAG等待/装载/恢复/退出及其他loader边界"
+    },
+    "util/openocd.common.tcl": {
+      "sha256": "5549afb4c7a8bf2769c62d99eb1df3b68e6c68b267b093fa26d2d51ab71e83d6",
+      "focus": "无系统reset/prefer_sba off/目标连接"
+    },
+    "util/openocd.hs2.tcl": {
+      "sha256": "83f344a2815877c8c5fed4a3eefcbc544c978695b6599deeb879a72c65d0ffbc",
+      "focus": "探针适配入口"
+    },
+    "util/openocd.genesys2.tcl": {
+      "sha256": "974b20f59ea2f813cb55487096c258260db28f30b95d1b265b5f39cc9f423ae4",
+      "focus": "板级配置入口"
+    },
+    "docs_codex/learning/examples/journey.c": {
+      "sha256": "07e6837765fe5388023d4dd2a89612d6563a22c04eb8138e7fdab185def18a42",
+      "focus": "同一贯穿算法、初始化与结果"
+    },
+    "docs_codex/learning/examples/advanced.c": {
+      "sha256": "049dad4ce6e1492ae8232604cb67afcdf3e4d93dfe99cb3ef44266c030b6606a",
+      "focus": "正常timer/GPIO整数handler示例"
+    }
+  },
+  "online": [
+    {
+      "url": "https://riscv-non-isa.github.io/riscv-elf-psabi-doc/",
+      "queried": "2026-10-08",
+      "observed_version": "1.1, September 24, 2026 pre-release",
+      "used": "既有整数/LP64D寄存器角色和128bit栈对齐；未用新增向量ABI"
+    },
+    {
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Files.html",
+      "queried": "2026-10-08",
+      "used": "主机file/symbol与目标load区别；不推断本地服务器能力"
+    }
+  ],
+  "unavailable_online": [
+    "https://docs.riscv.org/reference/isa/v20260120/priv/machine.html (fetch error)",
+    "https://riscv.github.io/riscv-isa-manual/snapshot/privileged/ (404)"
+  ],
+  "fallback": "trap语义采用随附CVA6官方文档并核对本地csr_regfile/crt0，不以在线失败内容为依据"
+}

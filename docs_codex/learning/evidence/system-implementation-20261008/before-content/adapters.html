@@ -1,0 +1,21 @@
+<div class="goals"><strong>本章任务</strong><p>解释位宽、协议、ID 转换及跨域边界。 前置：<a href="axi.html">08 · AXI 通道、突发与握手</a>、<a href="interconnect.html">09 · AXI Crossbar 结构与事务路由</a>。</p></div>
+<h2 id="reg-contract">Regbus 的最小设备契约</h2>
+<p>Regbus 在 valid 与 ready 同时成立的边沿完成一次访问。等待期间 addr/write/wdata/wstrb 保持；读数据和 error 与该成交关联。没有独立地址/数据队列时，设备不得把持续多周期 valid 当成多次写。W1C 只清被选中字节中的 1 位，命令寄存器每次成交只触发一次，读弹出只能在读成交时发生。</p>
+<pre><code>/* 教学契约：clear_mask 由本次处理的事件产生，不把整个旧状态写回。 */
+mmio_write32(base + INTR_STATE, clear_mask);
+/* start() 先验证 idle 和参数，再写 START；写响应仅代表寄存器成交。 */
+/* 等待 COMPLETE/ERROR + 有界计时，读取结果，最后归还 buffer。 */</code></pre>
+<p>这个小接口仍需验证 byte-enable、RO/WO/W1C、非法偏移、背压、复位中断及请求稳定性。<a href="integration.html#unit">独立教学设备</a>展示可执行契约，DDR/NPU 的控制寄存器则必须来自实际 IP 规范。</p>
+<h2 id="adapters">位宽、协议和 ID 转换</h2>
+<h3 id="byte-lanes">byte lane 与有效字节</h3>
+<p>64 位总线的一拍有 8 个字节位置，称为 byte lane。访问地址 +4 的对齐 32 位寄存器时，SIZE=2，有效数据位于高四个 lane，完整写使能通常为 0xf0。例如 0x11223344 在总线上可呈现为 0x1122334400000000。桥接到 32 位目标后，应得到数据 0x11223344、使能 0xf；单纯截低 32 位会丢失此次写入。</p>
+<figure><img src="assets/figures-20261007/new-lanes.svg" alt="地址加四的32位写占64位数据高半，转换后搬到Reg32低半"><figcaption>适配同时处理地址低位、数据和字节使能；读响应需要对应的反向映射。</figcaption></figure>
+<h3 id="width">转换后的拍数与 LAST</h3>
+<p>宽转窄还可能把一个输入数据拍拆成多个输出拍，调整长度与 LAST，并重新组装读返回。对齐 INCR 的 4×64 位全宽数据是 32 字节，转成 32 位需要 8 拍；窄访问、部分写和非对齐请求按转换器支持范围分别验证。4 KiB 边界、错误响应、在途容量和原子扩展都属于转换契约。</p>
+<p>Regbus 把一次寄存器请求合成 valid/write/addr/wdata/wstrb，响应含 ready/rdata/error。普通 MMIO 使用 <code>i_reg_atomics → cut → axi_to_reg_v2(RegDataWidth=32) → reg_demux</code>。协议转换把分离的 AXI 通道恢复成一次寄存器访问，副作用在成交时触发。iDMA 控制口采用另一条旧桥，<a href="dma.html#lanes">iDMA 控制接口验收门槛</a>说明其宽度缺口。</p>
+<h3 id="ids">ID 收缩与原子扩展边界</h3>
+<p>CPU 原始 ID 为 4 位，经 <code>axi_id_serialize</code> 适配成系统输入的 2 位，再由 Crossbar 扩展来源位。缩窄需要映射、队列和并发约束，直接丢高位会混淆返回。ATOP 是 AXI4 之外、来自 AXI5 的原子操作扩展，当前主存原子单元在 LLC 上游处理相应语义，下游普通 AXI4 DDR 按这个接口边界接入。</p>
+<h2 id="cdc">跨时钟与复位边界</h2>
+<p>跨时钟域传输（CDC）面临两端采样时刻不同的问题。单比特状态可采用适当同步结构；整组地址或数据若逐位同步，可能把不同时刻的位拼在一起。AXI CDC 通常用异步 FIFO 保存数据，通过同步后的指针表达队列占用，并维持各通道关联。FPGA DDR wrapper 使用实际的 <code>axi_cdc</code> 实例。</p>
+<p>复位跨域（RDC）还涉及事务生命周期。目标已接受 AW、尚未返回 B 时，单独复位目标会让上游永久等待。系统需约定停止新请求、排空或隔离、复位、重新初始化和恢复服务；对端不再响应时还需定义有界恢复。这也是未来 DDR 就绪与设备时钟门控要共同设计的部分。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Crossbar 与 Reg 桥</a>；<a href="../../hw/cheshire_pkg.sv">两级地址规则</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv">译码与分流</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv">来源 ID 与 W FIFO</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv">ID 跟踪</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">顺序及切分说明</a></p></div>

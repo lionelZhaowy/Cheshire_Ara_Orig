@@ -1,0 +1,11 @@
+Command: python3 docs_codex/learning/evidence/system-implementation-20261008/asic/check_asic_docs.py
+Exit code: 0 (captured in tool execution immediately before this record)
+PASS: 10 pages, unique semantic IDs, all prior IDs retained; 111 local HTML links/resources
+PASS: 3 Markdown deliverables, 37 local links, no trailing whitespace
+PASS: 21 protected source hashes unchanged
+VRF arithmetic: VLEN=2048 bit, total=8192 byte, lane=4096 byte, bank=512 byte (64 x 64 bit)
+VRF arithmetic: VLEN=4096 bit, total=16384 byte, lane=8192 byte, bank=1024 byte (128 x 64 bit)
+git diff --check: rc=0
+Not run: generation/browser (coordinator), target build/simulation/synthesis/CDC/RDC/STA/DFT/board/silicon tests.
+Prior IDs retained: 35
+Frozen at: 2026-10-08T03:17:52.255310+00:00

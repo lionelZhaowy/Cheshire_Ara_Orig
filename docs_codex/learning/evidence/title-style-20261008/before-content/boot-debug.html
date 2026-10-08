@@ -1,0 +1,48 @@
+<div class="goals"><strong>本章任务</strong><p>用同一 ELF 解释装载、控制执行和观察状态，再核对本地调试接管条件。 前置：<a href="boot.html">6 · Boot ROM、启动模式与应用初始化</a>。</p></div>
+<h2 id="debug-workflow">调试同时需要程序描述与目标连接</h2>
+<p>我们要在 journey 的 main 处停住，检查 seed 与 result，再让计算完成。GDB 在主机上读取 ELF 的符号和调试信息，把 <code>main</code>、源行和目标地址联系起来；调试服务器把它的请求转换为目标调试操作；探针/传输把请求送到芯片。只打开 ELF 时，GDB 知道变量“应在哪里”，还没有读取或写入这块目标 RAM。</p>
+<p>板上常见的路径为 <code>GDB → OpenOCD → JTAG 探针 → DTM → DMI → Debug Module → CVA6/系统存储</code>。仿真 VIP 则直接驱动 JTAG 任务，无需把 GDB/OpenOCD 插进当前测试。两者使用相同目标调试概念，但当前 VIP 的 SBA 装载流程不能直接当成 OpenOCD 的访问配置。</p>
+<h2 id="transport">调试传输与模块职责</h2>
+<p>JTAG 是调试传输链路。调试传输模块（DTM）在 JTAG TCK 域接收调试操作，再通过 调试模块接口（DMI）访问系统域的 Debug Module（DM）。DM 可以停止/恢复 hart（一个硬件执行线程），执行寄存器访问命令，还能通过 SBA，即系统总线访问，主动读写目标内存。DMI 地址属于调试协议空间，不是 CPU 的 MMIO 地址。</p>
+<h2 id="timelines">主机与目标的两条时间线</h2>
+<p>主机可以在启动模拟器之前完成软件构建。目标 CPU 的复位逻辑只知道 BootAddr，默认指向 0x02000000 的 Boot ROM；它不会自行读取主机路径里的 ELF。仿真启动后，VIP 先提供时钟和复位，ROM 开始执行，另一边的加载任务等待目标存储达到可装载状态。两条时间线在装载和入口交接处汇合。</p>
+<figure><img src="assets/figures-20261007/new-boot.svg" alt="主机与目标的依赖流程；VIP 检查 SPM 配置位，再 halt、SBA 装载与 DPC 恢复，ROM C 和栈须另查"><figcaption>对应 BOOTMODE=0、PRELMODE=0 的当前 JTAG 路径。ROM 的 C main 与应用 main 分属不同程序。</figcaption></figure>
+<h2 id="takeover">JTAG 装载前置条件</h2>
+<h3 id="vip-ready">CFG_SPM_LOW.bit0 与暂停应答</h3>
+<p>jtag_elf_halt_load 在 DutCfg.LlcNotBypass 为真时轮询 LLC CFG_SPM_LOW.bit0，然后写 DMCONTROL.haltreq，并轮询 DMSTATUS.allhalted。它既不等待 ROM C main，也不等待 clint_get_core_freq 返回。该位来自软件写配置，不能单独扩大成所有初始化完成标志。</p>
+<h3 id="stack-handoff">装载条件与应用入口条件</h3>
+<p>Boot ROM 在写 SPM 配置/COMMIT 后还有扩展 sp 的指令。实际 halt 落在哪条指令要看目标 PC，尤其当应用 spm.ld 通过零栈符号继承进入时栈时，应检查 DPC、sp 和可用栈范围。VIP 没有显式等待这些后续步骤，因此“能开始 SBA 装载”和“应用已有正确栈”应分别验收。</p>
+<p class="source">本节依据：<a href="../../target/sim/src/vip_cheshire_soc.sv">jtag_elf_halt_load / jtag_elf_run</a>。</p><p class="source">本节依据：<a href="../../hw/bootrom/cheshire_bootrom.S">SPM 配置后扩展栈的实际顺序</a>。</p>
+<h2 id="debug">JTAG、Debug Module 与实际装载</h2>
+
+<h3 id="elf-load">ELF 段怎样通过 SBA 到达内存</h3>
+<p>TB 从 <code>+BINARY</code> 取得主机 ELF 路径。C++ 的 elfloader 通过 DPI（SystemVerilog 与 C/C++ 互操作接口）向 VIP 提供 entry 和装载段：用 p_paddr 作为地址，从文件取 p_filesz 字节。VIP 请求 hart0 停止，写 SBADDRESS/SBDATA，DM 便发出 AXI 事务，经过互连写入 SPM。这条路径可以检查真实总线应答。</p>
+<h3 id="entry-resume">设置 DPC 与恢复执行</h3>
+<p>装载后，VIP 通过 DATA 和 COMMAND 写 DPC（调试状态中的恢复执行地址）为 ELF entry，再发 resumereq。应用开始从 _start 执行。对应字段见<a href="#dmi-registers">DMI 寄存器表述</a>；每一步检查 busy、错误与完成应答。</p>
+<h3 id="loader-limits">段内字节与 BSS 各有责任</h3>
+<p>ELF 文件提供 p_filesz 字节，目标段需要 p_memsz 字节；当前应用的 BSS 初值由 crt0 清零，不应依赖调试器碰巧写了零。当前 VIP 按 8 字节写段的循环还存在段尾越界风险，未修复或动态复现；它影响把任意 ELF 视为安全装载输入，完整证据与专项判据见<a href="software-debug.html#loader-tail">软件诊断</a>。</p>
+<figure><img src="assets/depth-boot-phases.svg" alt="VIP 检查 CFG_SPM_LOW.bit0 后暂停、装载、写 DPC 和恢复的教学事件时序"><figcaption>教学事件时序，时间不按比例。真实仿真需另保存 TCK/DMI/SBA、CPU PC 和 UART 波形。 · <a href="assets/waves/boot-phases.json">WaveDrom 源文件</a></figcaption></figure>
+<h2 id="observe-program">在已确认入口和存储条件后观察同一程序</h2>
+<p>先使用团队已确认的板级下载/接管流程，或仿真相应的暂停控制。本地 <code>util/openocd.hs2.tcl</code> 对应 HS2 探针；Genesys2 脚本使用另一组 FTDI 配置，文件存在不代表适用于当前 VCU118 接线。公共配置为 <code>reset_config none</code>、<code>riscv set_prefer_sba off</code>，因此连接 OpenOCD 不会自动复位全部系统，也不能承诺访存必经 SBA。板级调用协议见<a href="../software/RUNTIME_AND_DEBUG.md#61-优先沿用-boot-rom-的调用协议">现有操作参考</a>。</p>
+<p>下面是一组 GDB 观察步骤，前提是符号来自目标将执行的同一 ELF，目标连接、装载和 Boot ROM 交接条件已经成立，CPU 暂停在应用 _start 或 main 之前，main 断点由该目标支持。此处不重复发起下载，不保证任意调试服务器导出全部 CSR；未在本轮连接目标运行。</p>
+<pre><code>info files
+break main
+continue
+info registers pc sp ra
+print seed
+x/8uw result
+disassemble /r make_value
+stepi
+info registers pc</code></pre>
+<p>停在 main 入口时，seed 应为 1，result 的初始字节应为 0；此时应用循环还没有覆盖数组，所以这次检查有确定含义。<code>disassemble /r</code> 将函数地址与机器指令关联，<code>stepi</code> 按机器指令推进，和按源行 step 不同。优化器可能让一行对应多条指令、让局部变量暂存在寄存器或不可直接显示；不能因看不到一个 C 变量的固定 RAM 地址就推断硬件丢数据。</p>
+<p>继续到计算完成但返回之前的已确认位置，result[0] 应为 1、result[136] 应为 409，全部 137 项求和为 28085。再让程序执行 printf、flush 和返回，检查 UART 文本与 SCRATCH2 的退出码。断点或单步改变执行时序，测性能时应移除这类干预；Linux 用户程序调试还涉及进程地址空间，见<a href="linux.html">Linux 章</a>。</p>
+<h3 id="halt-boundary">暂停 CPU 时，系统中还有什么在前进</h3>
+<p>halt 请求使选定 hart 进入调试状态，并不意味着 SoC 时钟停止。本地 SoC 没有由 Debug Module halt 状态统一冻结 UART、CLINT、DMA 或 Ara 的全局接口；RTC 可继续推进，已提交设备工作也可能继续完成。读取设备寄存器时仍需遵守读取副作用和访问宽度；软件断点还可能修改指令字节。观察数组 RAM 与观察 FIFO 读取口不是同一种操作。</p>
+<h2 id="debug-contract">Debug 的寄存器地址空间与复位责任</h2>
+<h3 id="dmi-registers">DMI 地址、字段和副作用</h3>
+<p>本地 riscv-dbg 的 README 声明 Debug 0.13.1；JTAG DTM 承载 DMI，DM 支持 abstract register、program buffer 与 SBA。DMI 地址是调试寄存器编号，不是 CPU MMIO 的字节偏移。DMCONTROL(0x10) 控制 dmactive/haltreq/resumereq，DMSTATUS(0x11) 查询 halted/running 等；ABSTRACTCS(0x16)/COMMAND(0x17) 管理抽象命令，SBCS(0x38)/SBADDRESS0(0x39)/SBDATA0(0x3c) 管理系统总线访问。</p>
+<p>调试程序应先激活 DM、轮询目标状态，再执行命令；busy 时不重发，cmderr/sberror 应按字段语义清除并记录。读取 SBDATA 若启用 read-on-data 会触发后续读，不能把调试窗口自动刷新当成无副作用。复位时 DM 状态、hart reset 和系统 rst_ni 是不同边界；本地 ndmreset 未接入系统复位，需未来 wrapper 明确实现。</p>
+<p>SoC 的 16 个 scratch 是普通 RW、复位为 0；BOOT_MODE/RTC_FREQ/HW_FEATURES 等由硬件输入和参数提供，是 RO，不应把 RO 的初始显示值当成可编程时钟控制。应用退出的 scratch2 编码是软件/VIP 约定，不是调试规范。可用 scratch6/7 做隔离的教学写读验证，但应先确认没有与当前固件约定冲突。</p>
+<p class="source">工具概念参照 <a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Files.html">GDB 官方文件与符号说明</a>；本文只使用通用 file/symbol/load 的职责区分，不据在线版本假定本地调试服务器能力。当前目标实现声明 Debug 0.13.1，端口连接和脚本按本地版本核对。</p>
+<div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/bootrom/cheshire_bootrom.c">启动选择与 scratch 协议</a>；<a href="../../sw/lib/gpt.c">GPT/raw 读取</a>；<a href="../../.bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_pkg.sv">DMI 寄存器及字段</a>；<a href="../../hw/regs/cheshire_regs.hjson">SoC 寄存器属性</a>；<a href="../../hw/bootrom/cheshire_bootrom.S">ROM 初始化</a>；<a href="../../target/sim/src/elfloader.cpp">ELF 解析</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">JTAG / UART / Link 加载</a>；<a href="../../sw/lib/crt0.S">应用入口和退出</a></p></div>
+<details class="quiz"><summary>主机生成 ELF 时，CPU 已经执行了 _start 吗？</summary><p>尚未发生目标执行。ELF 只是主机文件；只有目标完成复位准备、程序字节装载和入口交接后，CPU 才能执行其中的 _start。</p></details>

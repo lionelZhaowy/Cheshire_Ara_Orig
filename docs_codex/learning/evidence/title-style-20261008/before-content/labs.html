@@ -1,0 +1,87 @@
+<div class="goals"><strong>本章任务</strong><p>六项实验服务于主线中的六种能力：解释程序布局、验证执行与失败传播、服务异步事件、分层验证串行存储、证明向量计算、检查设备接口契约。简单源码搜索和环境查询留在正文，不另设实验。</p></div>
+<h2 id="contract">共同环境与记录约定</h2>
+<p>全部构建命令使用 Bash，工作目录为仓库根。需要 Python 3、交叉 GCC/binutils；目标运行另需匹配的 RTL 清单、模拟器许可、DPI 和设备模型。先执行 <code>command -v riscv64-unknown-elf-gcc python3 g++ vsim vcs vlogan bender</code> 记录可用工具。自选工具链用 CROSS_COMPILE 设置带末尾连字符的前缀。</p>
+<p>每份 ELF 使用独立空输出目录，记录 HEAD、完整构建日志、ELF 哈希、map/dump 和运行参数。主线目标配置为单核、向量 profile/真实 decoder、SelectedCfg=3、BOOTMODE=0/PRELMODE=0，默认 LLC 全 128 KiB SPM，CLIC/Router/RT 关闭。标量示例也因原 crt0 而需要 F/D。</p>
+<p>软件构建预算 60 秒；SoC 单阶段起始墙钟预算 300 秒，Questa 目标运行 100 ms。预算是终止条件，不是保证耗时。旧测频和串行驱动有无界轮询，因此保留独立的墙钟限制。所有下述运行现象均为<strong>目标环境验收预期</strong>，原始构建记录见<a href="evidence.html#current">09-28 记录</a>，扩充构建见<a href="evidence.html#depth">09-29 深度记录</a>，本次组织与导航检查见<a href="evidence.html#structure">结构修订记录</a>。</p>
+<h2 id="lab-a">实验 A · 同一程序的构建与存储布局</h2>
+<p><strong>目的与前置：</strong>完成运行模型与工具链两章，区分文件字节、运行空间和初始化责任。输入是 journey.c、原 crt0/UART/CLINT/printf、spm.ld/common.ldh；只需主机交叉工具链。</p>
+<pre><code>LEARN_OUT=$(mktemp -d "$PWD/docs_codex/learning/evidence/journey.XXXXXX")
+JOURNEY_OUT="$LEARN_OUT" timeout 60 bash docs_codex/learning/scripts/build_journey.sh scalar spm
+cat "$LEARN_OUT/readelf.txt"
+rg -n '(_start|main|make_value|seed|result|greeting|__bss|__stack_pointer)' "$LEARN_OUT/symbols.txt"
+rg -n '\.misc|\.bss|greeting|seed' "$LEARN_OUT/journey.map"
+sha256sum "$LEARN_OUT/journey.spm.elf"</code></pre>
+<p><strong>产物与判据：</strong>输出目录有 journey.i/.s/.o、crt0.o、libsupport.a、journey.spm.elf、journey.map/dump、symbols.txt/readelf.txt/build.log。入口应为 0x10000000；result 大小 548 字节，位于 BSS；seed 和 greeting 进入 .misc；栈符号为 0，表示继承 ROM 栈。应能从 map 对上每个对象的输入与输出节，并从 dump 找到 main 和 make_value 调用。</p>
+<p><strong>有价值的对照：</strong>用新目录以 <code>bash docs_codex/learning/scripts/build_journey.sh scalar dram</code> 只构建另一个布局，检查入口 0x80000000、栈符号 0x807ffff8。该对照只解释链接，DRAM 运行需要模型/控制器覆盖段和栈。</p>
+<p><strong>失败首查：</strong>缺工具查前缀；undefined reference 查对象及库；找不到符号查 stage、优化和实际输出路径；布局异常查链接脚本。此次结果属于主机软件构建，未执行 CPU。</p>
+<h2 id="lab-b">实验 B · 装载执行与错误传播</h2>
+<p><strong>目的与前置：</strong>承接实验 A，按启动、调试与仿真章节完成自洽清单导出、RTL 编译及展开。使用 A 的正常 ELF。先在<a href="simulation.html#prepare">准备节</a>设置 LEARN_SIM/LEARN_REPO/LEARN_ELF，再按所选工具的精确<a href="simulation.html#questa">Questa 命令</a>或<a href="simulation.html#vcs">VCS 命令</a>运行；产物为 compile、elaborate（VCS）、simulate 日志。</p>
+<pre><code># RTL 已按仿真章编译；这里给出完整的 Questa 运行动作
+LEARN_ELF="$LEARN_OUT/journey.spm.elf"
+(
+  cd "$LEARN_SIM/vsim" || exit 1
+  timeout 300 vsim -c -do "onerror {quit -code 2 -f}; set SELCFG 3; set BOOTMODE 0; set PRELMODE 0; set BINARY {$LEARN_ELF}; source start.cheshire_soc.tcl; run 100 ms; quit -f" &gt; journey-normal.log 2&gt;&amp;1
+)
+python3 docs_codex/learning/scripts/check_run.py "$LEARN_SIM/vsim/journey-normal.log" --stage array
+LEARN_BAD=$(mktemp -d "$PWD/docs_codex/learning/evidence/journey-bad.XXXXXX")
+JOURNEY_OUT="$LEARN_BAD" INJECT_ERROR=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh scalar spm</code></pre>
+<p>把 LEARN_ELF 改为 <code>$LEARN_BAD/journey.spm.elf</code>，重复同一运行命令，但日志名改为 journey-injected.log，检查命令改读这个文件。VCS 同样只换 BINARY 并另存日志。</p>
+<p><strong>结果与原因：</strong>正常初态检查通过、sum=28085/errors=0、[JTAG] SUCCESS，且无模拟器错误。注错使 result[5] 从 16 变 17，应 sum=28086/errors=1、VIP FAILED、check_run 返回 1。一次正常通过与一次预期失败，才证明返回码和外部判据能发现数据错误。</p>
+<p><strong>失败首查：</strong>先看首个未完成阶段：RTL 编译 → DPI/展开 → ROM/SPM → halt/load/resume → main → 测频/UART → 校验/结束。回传 PC/CSR、入口/段范围、scratch2 及首错。JTAG 段尾风险仍需独立边界用例；本实验不是 loader 全边界验收。</p>
+<h2 id="lab-c">实验 C · GPIO 事件与定时器协同</h2>
+<p><strong>目的与前置：</strong>完成UART/GPIO 与中断两章，观察清源与 complete 的不同职责。输入保留的 advanced.c，ADV_STAGE=2；要求单 hart、PLIC/GPIO/RTC 正常、CLIC/Router 关闭，handler 只使用整数。</p>
+<pre><code>timeout 60 bash docs_codex/learning/scripts/build_advanced.sh timer
+# 按输出行选择本次 advanced.spm.elf；沿实验 B 的同一运行命令
+# 改 LEARN_ELF，日志另存 timer.log，再检查：
+python3 docs_codex/learning/scripts/check_advanced_run.py "$LEARN_SIM/vsim/timer.log" --stage timer
+# 可选反例：同一 timer 程序省略 GPIO 触发，预期超时失败
+OMIT_GPIO_TRIGGER=1 timeout 60 bash docs_codex/learning/scripts/build_advanced.sh timer</code></pre>
+<p><strong>产物：</strong>新的 evidence/adv-timer-spm.* 内有 ELF/map/dump、symbols/readelf/build.log。运行日志应有 ADV stage=2、gpio≥1、timer≥2、errors=0 及 JTAG SUCCESS；handler 推进 compare，前台计数满足后结束。反例应返回 14，主机检查器拒绝；程序等待预算 10000000 mcycle，外围仍有 300 秒限制。</p>
+<p><strong>失败首查：</strong>GPIO 先从 INTR_STATE 跟到 PLIC source20 和 mie；timer 从 RTC/mtime 跟到 compare/MTIE。异常查 adv_mcause/mepc/mtval。该实验只软注入 GPIO，不覆盖绑零 fixture 中的引脚同步和滤波。</p>
+<h2 id="lab-d">实验 D · 两种串行存储的只读对照</h2>
+<p><strong>目的与前置：</strong>完成I2C 与 SPI 两章，用相同“16 字节独立内容校验”比较不同器件协议。输入 storage_read.c 的 stage4/5；默认 VIP 模型已编译并预填 0x9a，未传自定义镜像，I2C/SPI 开启。EEPROM 固定 addr=0、len=16；NOR 为 CS1、1 MHz。</p>
+<pre><code>timeout 60 bash docs_codex/learning/scripts/build_advanced.sh eeprom
+# 选本次 ELF，沿实验 B 运行，另存 eeprom.log
+python3 docs_codex/learning/scripts/check_advanced_run.py "$LEARN_SIM/vsim/eeprom.log" --stage eeprom
+# 独立构建和运行另一器件：
+timeout 60 bash docs_codex/learning/scripts/build_advanced.sh flash
+python3 docs_codex/learning/scripts/check_advanced_run.py "$LEARN_SIM/vsim/flash.log" --stage flash</code></pre>
+<p><strong>产物与判据：</strong>各自新的 adv-eeprom/adv-flash 目录包含 advanced.spm.elf/map/dump 和构建日志。预期 STORAGE stage=4/5 bytes=16 errors=0 及 JTAG SUCCESS；同时确认 EEPROM 地址/ACK 与 NOR 片选/opcode/地址段。数据不是 0x9a 时应失败，不能修改期望以掩盖错误。</p>
+<p><strong>失败首查：</strong>I2C 查上拉/释放、ACK、FMT/RX；SPI 查 CS1、0x13/四字节地址、方向与 RX FIFO。HAL 等待无统一 deadline，保留 100 ms 目标/300 秒墙钟限制。本实验只读模型；未对齐 EEPROM 边界、NOR 写/擦除和 SD 模型均另行验证。</p>
+<h2 id="lab-e">实验 E · 同一数组的 RVV 对照</h2>
+<p><strong>目的与前置：</strong>先通过标量运行，再完成LLC/SPM、Ara、RVV 与共享数据章节。输入同一 journey.c 加 rvv_add.S；完整向量配置、VS 初始化、单核和全 128 KiB SPM；物理 [0x10010000,0x10011000) 独占，栈在其上，仅用高别名触碰 a/b/c。</p>
+<pre><code>LEARN_RVV=$(mktemp -d "$PWD/docs_codex/learning/evidence/journey-rvv.XXXXXX")
+JOURNEY_OUT="$LEARN_RVV" timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv spm
+rg -n 'learn_vadd|vsetvli|vle32.v|vadd.vv|vse32.v' "$LEARN_RVV/journey.dump"
+riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
+# LEARN_ELF 指向本次 journey.spm.elf，沿实验 B 运行另存 rvv.log
+python3 docs_codex/learning/scripts/check_run.py "$LEARN_SIM/vsim/rvv.log" --stage rvv</code></pre>
+<p><strong>产物与判据：</strong>ELF/dump/对象属性确认 RVV；目标 PC/退休和 Ara 握手确认实际走到 learn_vadd；日志 RVV checked=137、sum=28085/errors=0、守卫未改变、正常退出确认结果。设置 INJECT_ERROR=1 在新的输出目录构建可复用 B 的错误传播对照，不需要再设计一个独立小实验。</p>
+<p><strong>失败首查：</strong>首条非法指令的 mepc → profile/decoder/VS → Ara 指令握手 → 向量地址和 R/B → 数据可见性。该例验证当前 SPM 小任务，不估算 DDR 大模型吞吐。向量阶段拒绝 dram 构建，因为预约缓冲与启动栈契约专用于 SPM。</p>
+<h3 id="rvv-depth">递进：尾部、归约与三种编程入口</h3>
+<p>继续使用 journey.c 和同一预约 SPM 区，不增加孤立硬件测试。JOURNEY_DEPTH=1 先检查原 137 项与归约 28085，再测试长度 0、1、63、64、65、137；输入包含不同斜率和 uint32 环绕值，参考结果由标量公式独立计算，逐项验证输出、输入保持、归约与尾后守卫。长度 63/64/65 对当前 e32,m1 的边界有意义，但算法按返回 vl 推进。</p>
+<pre><code># 每次自动创建新的 evidence 输出目录；先记下 Output 行。
+JOURNEY_DEPTH=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv spm
+JOURNEY_DEPTH=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv-intrinsics spm
+JOURNEY_DEPTH=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv-auto spm
+# 每个 ELF 分别按实验 B 装载，保留配置/波形/日志，不能沿用旧 rvv.log。
+python3 docs_codex/learning/scripts/check_run.py "$LEARN_SIM/vsim/rvv-depth.log" --stage rvv --depth
+# 错误传播对照：另建产物并运行，检查器必须拒绝。
+JOURNEY_DEPTH=1 INJECT_ERROR=1 timeout 60 bash docs_codex/learning/scripts/build_journey.sh rvv spm</code></pre>
+<p>编译阶段检查对应内核中的 vset、load/add/store 与 vredsum，自动向量化另读 vectorization.txt；CRT、主程序、参考循环和支持库保持标量。目标阶段对 PC/CPU trans_id、Ara req_valid/ready、VRF/VLSU 活动和内存地址建立关联。结果阶段要求 RVV checked=137、RVV_REDUCE n=137 sum=28085、RVV_DEPTH cases=6 errors=0、LEARN errors=0 和正常完成，同时保留首错诊断。</p>
+<p>日志检查器只能验证日志契约。独立数值校验能发现重复元素、少算尾部、错误步长和归约累计等问题，但 UART PASS 仍不证明目标配置或时序路径正确。性能另按<a href="vector.html#performance">计时条件</a>建立实验；本轮没有目标运行或周期成绩。</p>
+<h2 id="lab-f">实验 F · 独立寄存器设备契约</h2>
+<p><strong>目的与前置：</strong>完成<a href="integration.html">第 27 章</a>，检验字节写、启动/完成和 W1C/IRQ。输入 lesson_reg_adder.sv 与 tb_lesson_reg_adder.sv；只需 vlib/vmap/vlog/vsim，无生产 SoC、DPI 或 ELF。</p>
+<pre><code>bash docs_codex/learning/scripts/run_hw_unit.sh</code></pre>
+<p><strong>产物与判据：</strong>脚本在新 /tmp/cheshire-hw-unit.* 建 work 库，打印 setup/compile/run/injected 日志路径，建库各步骤 30 秒，编译与每次运行各 60 秒预算。正常应出现 HW_UNIT_PASS 并通过 35 项检查，注入 +INJECT_FAIL 后检查器必须拒绝。工具进程码与日志判据共同判断，历史 Questa 在 fatal 后仍可能返回 0。</p>
+<p><strong>失败首查：</strong>工具/许可 → 编译首错 → 首个断言时间点及寄存器事务。历史 2026-09-23 运行记录保留；本轮是否重跑以证据页为准。该两文件单元没有接入 Cheshire，系统地址、中断 handler、AXI 桥和 DDR 仍需集成验证。</p>
+<h2 id="selection">旧实验的取舍与证据分类</h2>
+<p>原环境检查并入共同前提，Hello 与数组构建、ELF 观察合并为 A；数组正常/注错与仿真合为 B；scratch 回读和 timer 轮询改为正文机制说明，GPIO 与 timer 中断合为 C；EEPROM/NOR 合为 D；RVV 与同一数组闭环合为 E；硬件模型零散练习改为正文推导，保留独立 SV 单元为 F。DMA/capstone 保留源码和阻塞说明，退出当前运行路线；Link 加载对照、VGA/USB/SD 环境不齐的项目改为明确的后续验收条件。</p>
+<p>源码阅读说明连接与语义，主机构建说明产物形成，独立单元说明局部 RTL 行为，完整 SoC 仿真才覆盖加载执行及设备协同。六项实验各自记录证据层次，不以其中一个层次的 PASS 替代另一个。</p>
+<h2 id="system-exercises">OS、ASIC与测量的机制推演</h2>
+<p>以下是新增正文配套的纸面/源码阅读练习，当前即可完成，不需要修改生产工程。它们不是新增目标运行通过记录，也不把本地尚未确认的OS镜像或工艺适配写成可执行实验。</p>
+<ol><li><strong>两个任务的连续运行：</strong>读<a href="traps.html">trap</a>与<a href="rtos.html">RTOS</a>后，画出A运行→等待设备→B运行→中断使A就绪→调度恢复A。标每个任务的栈、保存的PC/寄存器和就绪/阻塞状态，说明一次普通函数调用与抢占保存范围为何不同。答案须能对应正常上下文交接，不能只写“调度器自动处理”。</li>
+<li><strong>Linux的一次启动和设备操作：</strong>读<a href="linux.html">系统启动</a>与<a href="os-devices.html">设备使用</a>，从镜像/固件输入画到用户程序输出；列出谁提供内存、控制台、定时器和设备描述。对同一buffer分别标用户虚拟地址、内核访问和设备DMA地址，说明实际port/BSP仍缺什么输入。不能用裸机物理指针替代用户程序接口。</li>
+<li><strong>宏接口与消费者：</strong>读<a href="asic-memory.html">VRF到SRAM</a>和<a href="timing-physical.html">时序路径</a>，按所给真实实例算容量，画出请求、读数据与目标队列的对应。假设宏延迟改变，指出要保持哪些关系和需什么模型，禁止把假设宏直接写进生产RTL。</li>
+<li><strong>一份可比较的测量计划：</strong>按<a href="measurement.html#record">记录模板</a>给137项数组定义正确性基准、内核和端到端窗口、输入/缓存/中断条件、重复次数与原始样本保存方式。现在只交方法，待目标正确性验收后填数据。</li></ol>
+<p>每题保存自己的状态图/推演和对应源码版本。实际OS实验需要匹配的固件/内核/根文件系统、平台描述和运行环境；宏/CDC/时序实验需要模型及工具；向量计时需要完成条件与数据正确性证据。获得相应工程授权后才执行，不由本章的阅读练习顺带启动。</p>

@@ -531,7 +531,9 @@ def asic():
 @register('new-route')
 def route():
     d=F('七篇、30 章：由系统概念进入实现与验证','每一篇给出后续会消费的知识；章节编号从当前 pages.json 生成，避免沿用旧目录。','维护依据：scripts/pages.json；离线教材当前目录')
-    meta=json.loads((ROOT/'scripts/pages.json').read_text())
+    # This preserved 2026-10-07 figure uses its historical course input.
+    # The current reading order is rendered from pages.json by build_site.py.
+    meta=json.loads((ROOT/'scripts/route_pages_20261007.json').read_text())
     colors=['blue','purple','teal','orange','blue','purple','teal']
     desc=['辨认硬件职责、CPU 能力与配置约束','理解域边界、启动条件与安全恢复','跟踪地址、协议、存储和 DDR 事务','从源程序、ELF、启动到可观察执行','由 MMIO、驱动和外部事件解释设备','追踪向量指令、共享数据与异构交接','定义新 IP 契约与工艺平台交付']
     for i,(part,c,explain) in enumerate(zip(meta['parts'],colors,desc)):
