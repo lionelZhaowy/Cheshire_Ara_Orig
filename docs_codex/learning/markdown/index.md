@@ -140,7 +140,7 @@
 
 ## 当前实现、项目目标与验证边界
 
-CVA6 承担控制与通用计算；Ara 承担向量计算，包括 NPU 不适合的部分浮点向量运算。目标是加入自研 ISP、NPU、LVDS 与外购 AXI4 DDR。当前源码中有 CPU/Ara、互连、LLC/SPM 和 FPGA DDR 集成参考，新 IP、独立片上 Global Buffer、Ara 分流及 DDR 旁路还没有实现。近期主 Xbar 保持 64-bit 的需求与 GB 讨论以[M01 接口契约](../../M01_IP_DDR_Interface_Contract.md)为准，不能据示意图认定已连接。
+CVA6 承担控制与通用计算；Ara 承担向量计算，包括 NPU 不适合的部分浮点向量运算。目标是加入自研 ISP、NPU、LVDS 与外购 AXI4 DDR。当前源码中有 CPU/Ara、互连、LLC/SPM 和 FPGA DDR 集成参考，新 IP、独立片上 Global Buffer、Ara 分流及 DDR 旁路还没有实现。近期主 Xbar 保持 64-bit 的需求与 GB 讨论以[M01 接口契约](../../engineering/IP_DDR_Interface_Contract.md)为准，不能据示意图认定已连接。
 
 用户报告的 VCU118 HelloWorld 不等于本轮重新板测，也不能扩展为 Ara、DDR 全功能或 ASIC 就绪。Platform ROM 返回路径、iDMA 控制通路及目标运行缺口保持开放。RTOS/Linux 的教程和上游支持不等于当前镜像已经启动；OS 移植也不是裸机 ASIC 提取的前置条件。当前结果见[本轮文档检查](evidence.md#review-20261011)，历史实验保留原日期和输入。
 
@@ -152,7 +152,7 @@ CVA6 承担控制与通用计算；Ara 承担向量计算，包括 NPU 不适合
 
 **历史路线与既有成果**
 
-[最初源码调查](../../01_Cheshire_Ara_Quick_Start.md)保留旧版本和独有案例，[旧站备份](../../learning_backup/index.html)供追溯。下面七篇/30 章图是历史资料，现行阅读顺序由本页目录定义。
+[最初源码调查](../../01_Cheshire_Ara_Quick_Start.md)保留旧版本和独有案例，旧站备份已于 2026-10-11 按用户要求移除，历史过程见[维护资料](../../maintenance/L01/README.md)。下面七篇/30 章图是历史资料，现行阅读顺序由本页目录定义。
 
 ![历史七篇30章路线图，当前章节按本页九篇目录阅读](../assets/figures-20261007/new-route.svg)
 

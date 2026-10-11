@@ -79,7 +79,7 @@ assert [(r['path'],r['anchor'],r['new']) for r in candidates] == [
 allowed_files = {'docs_codex/learning/scripts/pages.json', 'docs_codex/learning/README.md',
                  'docs_codex/learning/scripts/build_registers.py', 'docs_codex/learning/scripts/check_structure.py',
                  'docs_codex/PROJECT_STATE.md', 'docs_codex/AGENT_TASKS.md', 'docs_codex/00_README.md',
-                 'docs_codex/handoffs/README.md', 'docs_codex/L01_System_Textbook_Implementation_2026-10-08.md'}
+                 'docs_codex/handoffs/README.md', 'docs_codex/maintenance/L01/reports/system_acceptance.md'}
 preserved, changed = [], []
 for name, digest in baseline['files'].items():
     p = repo/name

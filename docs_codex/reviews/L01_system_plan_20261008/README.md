@@ -16,4 +16,4 @@ git diff --check
 python3 docs_codex/reviews/L01_system_plan_20261008/check_protection.py
 ~~~
 
-规划与结果见 [修改规划](../../L01_System_Textbook_Revision_Plan_2026-10-08.md) 和 [独立交接](../../handoffs/2026-10-08_L01_system_curriculum_plan.md)。
+规划与结果见 [修改规划](../../maintenance/L01/planning/system_revision_plan.md) 和 [独立交接](../../handoffs/L01_system_curriculum_plan.md)。

@@ -5,7 +5,7 @@
 <h2 id="boot-inputs">启动输入与镜像溯源的验证缺口</h2>
 <p><strong>证据：</strong>本地 sw.mk 包含 Linux GPT 规则；Ara SDK 的普通 RV64 配置请求 v5.10.7，V 配置请求 v6.5，展开内核树的 Makefile 声明 6.5.0；OpenSBI 版本头声明 0.9。根 install64 存在部分镜像。本轮没有执行 SDK 构建、镜像哈希来源匹配或目标启动。</p>
 <p><strong>影响：</strong>文件存在可以支持阅读打包关系，不能支持“当前固件+DTB+内核+bitstream 组合已经可启动”。真实环境应由 S01 提供镜像生成记录、DTB 内容、入口/装载区/保留区和启动参数，再由 V01 记录各阶段实际输出。不要为补齐材料直接运行会覆盖 install64 或介质的旧脚本。</p>
-<p>若启用 Platform ROM，还受 S01-B01 的现有返回路径门槛约束；该问题并未因 OS 教材完成而修复。它与默认关闭该钩子的路径分开判断，详细见<a href="boot.html#platform-rom">Platform ROM 适用条件</a>及<a href="../handoffs/2026-10-06_L01_platform_rom_boot_review.md">原证据</a>。</p>
+<p>若启用 Platform ROM，还受 S01-B01 的现有返回路径门槛约束；该问题并未因 OS 教材完成而修复。它与默认关闭该钩子的路径分开判断，详细见<a href="boot.html#platform-rom">Platform ROM 适用条件</a>及<a href="../handoffs/L01_platform_rom_boot_review.md">原证据</a>。</p>
 <h2 id="description">设备树与硬件配置的一致性核对</h2>
 <p><strong>已确认的文件差异：</strong>cheshire.dtsi 的 ISA 字符串未含 V；CPU/UART 频率与时间基准写有示例常量；RAM 节点声明 1 GiB；UART 节点设置 reg-io-width=4，而裸机 DIF 使用 reg8。最后一项并不直接证明任一侧实现错误，但注释“only 32-bit access”不能代替硬件事实。</p>
 <p><strong>定位方法：</strong>以实际运行的 DTB 为对象，按所用内核的 binding 解释 compatible、地址、IRQ、reg-shift 和 reg-io-width；再对照当前 SoC/profile、UART 适配器、板级时钟与可用 RAM。要验证“Linux 串口可用”，需说明选中了哪个驱动、它使用何种宽度及端口配置，并比对实际字节结果。仅查看 DTS 源文件不能证明最终 DTB 一致，更不能证明所有板型共用同一数值。</p>

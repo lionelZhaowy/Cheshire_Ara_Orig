@@ -17,16 +17,21 @@
 
 ## 文档职责与查询入口
 
+新 Agent 的最短接手路线、历史检索方法和旧路径映射见[文档定位指南](AGENT_DOCUMENTATION_GUIDE.md)。现行接口契约与 ASIC 适配见[工程参考索引](engineering/README.md)。
+
 | 职责 | 入口 | 使用方式 |
 | --- | --- | --- |
 | 主教程 | [HTML](learning/index.html) / [Markdown](learning/markdown/index.md) | 连续理解原理、过程和本地源码，二者由同一正文源生成 |
 | 配置参考 | [configuration/README.md](configuration/README.md) | 按 Cheshire/CVA6/Ara/外设查参数，结合目标覆盖和修改验证 |
 | 软件操作参考 | [software/README.md](software/README.md) / [实验手册](learning/labs.html) | 工具链、构建、装载、库/驱动和排错；预期结果与已执行证据分开 |
+| 分层与工具查询 | [软硬件层次与工具索引](software/LAYERS_AND_TOOLS.md) | 对照结构图定位各层源码、脚本、主机工具及流程产物 |
+| 器件与接口查询 | [片外器件与接口实现参考](EXTERNAL_DEVICES_AND_INTERFACES.md) | 型号、RTL、仿真对端、软件入口、FPGA/ASIC 支持边界 |
 | 地址与寄存器 | [地址空间](learning/address-map.html) / [寄存器索引](learning/registers.html) | 区分默认路由窗口、资源容量与真实寄存器偏移 |
 | 固定配置提取 | [02 提取交接书](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 独立目录、静态清单与最小验收规格；工程尚未提取 |
 | 平台启动 | [03 平台配置约定](03_Platform_ROM_Clock_IP_Configuration.md) | 已确认的启动方向、Platform ROM 修复依赖与未冻结 IP 参数 |
-| 扩展契约 | [M01 IP/DDR](M01_IP_DDR_Interface_Contract.md) / [P01 ASIC](P01_ASIC_Adaptation_and_Evidence.md) | 接口、所有权、责任和验收条件，不表示 IP 已接入 |
+| 扩展契约 | [M01 IP/DDR](engineering/IP_DDR_Interface_Contract.md) / [P01 ASIC](engineering/ASIC_Adaptation_and_Evidence.md) | 接口、所有权、责任和验收条件，不表示 IP 已接入 |
 | 协作与证据 | [项目状态](PROJECT_STATE.md)、[任务表](AGENT_TASKS.md)、[交接索引](handoffs/README.md) | Agent 先定任务和边界，再读对应章节与源码 |
+| 教材维护资料 | [L01 规划、评审与实施报告](maintenance/L01/README.md) | 按需追溯教材维护；不属于用户学习主线，历史 Prompt 不作为新任务指令 |
 
 旧规划中的 03/04 启动与处理器主题现由主教程和软件/配置参考承担；05/06 由 IP/DDR 章节与 M01 承担；07 由 OS 四章承担；08 由 ASIC 篇与 P01 承担。无需重复创建旧计划中的六个文件。
 
@@ -40,7 +45,7 @@ CVA6 同时承担控制和通用计算；Ara 承担向量计算，尤其是 NPU 
 
 主教程在 `learning/content/*.html` 修改，通过既有 [build_site.py](learning/scripts/build_site.py) 同步生成 HTML 和 Markdown 阅读版。配置/软件 Markdown 保留参考和操作职责；不要把历史问答逐条追加成新的主线。生成、链接、内容保护与浏览器检查见 [教材维护说明](learning/README.md)。
 
-本轮问题、内容迁移、事实修正及验证结果见 [2026-10-11 重构记录](learning/STRUCTURE_REVISION.md#review-20261011)和 [独立交接](handoffs/2026-10-11_L01_documentation_restructure.md)。旧入口、语义锚点、图源、PPTX 和历史证据保留。
+本轮问题、内容迁移、事实修正及验证结果见 [2026-10-11 重构记录](learning/STRUCTURE_REVISION.md#review-20261011)和 [独立交接](handoffs/L01_documentation_restructure.md)。旧入口、语义锚点、图源、PPTX 和历史证据保留。
 
 ## 历史调查与早期规划
 
@@ -51,7 +56,7 @@ CVA6 同时承担控制和通用计算；Ara 承担向量计算，尤其是 NPU 
 
 # Cheshire-Ara 工程学习手册
 
-> 2026-10-08 系统教材实施完成：[当前九篇42章](learning/index.html)，[软件/OS/ASIC与测量实施及验收](L01_System_Textbook_Implementation_2026-10-08.md)。全站正式标题按[既定规范专项修正](L01_Title_Style_Revision_2026-10-08.md)。原03–08主题通过教材、[IP/DDR接口契约](M01_IP_DDR_Interface_Contract.md)和[ASIC适配手册](P01_ASIC_Adaptation_and_Evidence.md)承载；生产工程和目标验证未实施。
+> 2026-10-08 系统教材实施完成：[当前九篇42章](learning/index.html)，[软件/OS/ASIC与测量实施及验收](maintenance/L01/reports/system_acceptance.md)。全站正式标题按[既定规范专项修正](maintenance/L01/reports/title_style.md)。原03–08主题通过教材、[IP/DDR接口契约](engineering/IP_DDR_Interface_Contract.md)和[ASIC适配手册](engineering/ASIC_Adaptation_and_Evidence.md)承载；生产工程和目标验证未实施。
 
 > 2026-09-29 教材扩充：新版 [HTML 教材](learning/index.html) 保持单线结构，增加 [CVA6–Ara/RVV](learning/vector.html)、[共享数据交接](learning/memory.html#sharing) 和 [ASIC/NPU 接口规划](learning/integration.html#npu-topology)。时序图统一采用 WaveDrom 源文件与离线 SVG；[本轮证据](learning/evidence.html#depth)区分软件构建、教学图与未执行的目标验证。
 
@@ -126,7 +131,7 @@ CVA6 不只是 NPU 的控制 MCU：它承担操作系统、运行时、通用控
 | 已创建 | [02_Cheshire_Ara_ASIC_Extraction_Handoff.md](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 固定 Ara 配置、静态 filelist、独立目录提取及 DDR 旁路契约；替代原“02 配置管理专题”的近期优先安排 |
 | 已创建 | [PROJECT_STATE.md](PROJECT_STATE.md) / [AGENT_TASKS.md](AGENT_TASKS.md) | 当前目标、证据边界、待办、不同对话分工和启动提示词 |
 | 已创建 | [HANDOFF_TEMPLATE.md](HANDOFF_TEMPLATE.md) / [交接索引](handoffs/README.md) | 各任务的独立结果记录与跨对话交接 |
-| 已创建 | [单线离线教材](learning/index.html) / [实验手册](learning/labs.html) / [旧版备份](learning_backup/index.html) | 2026-09-29 完善为七篇/30 章，另有六项实验和两页参考；分层目录与首次 C 程序短路线，补重点机制图和分模式启动；429 项寄存器索引，历史构建与本次网页检查分开记录 |
+| 已创建 | [单线离线教材](learning/index.html) / [实验手册](learning/labs.html) / 旧版备份（旧站已于 2026-10-11 移除） | 2026-09-29 完善为七篇/30 章，另有六项实验和两页参考；分层目录与首次 C 程序短路线，补重点机制图和分模式启动；429 项寄存器索引，历史构建与本次网页检查分开记录 |
 | 计划 | `03_Boot_and_Baremetal_Debugging.md` | ELF、链接、启动、异常、中断、定时器、DMA、UART/JTAG 调试的可执行实验 |
 | 计划 | `04_CVA6_Ara_and_Memory_System.md` | CVA6/Ara 调度、向量编程、MMU、各级缓存、数据一致性和性能定位 |
 | 计划 | `05_AXI_Address_Map_and_Custom_IP.md` | 地址设计、AXI、寄存器、中断、NPU/ISP 接入及数据所有权协议 |
@@ -189,8 +194,6 @@ ASIC 约束应提前影响设计：阶段 1 就记录工具兼容性、接口和
 
 ## 2026-10-08 教学质量与专题规划复核
 
-上方03–08文件表保留为历史主题规划；当前覆盖、实施条件和建议载体见[逐篇评估](03-08_Topic_Readiness_2026-10-08.md)，不据历史规划重复创建正文。现有03_Platform_ROM_Clock_IP_Configuration.md保持原职责和文件名，与计划中的启动调试主题不同。
-
-[全书教学审查](L01_Teaching_Quality_Review_2026-10-08.md)包括全部30章及改进路线；[外设实际重组](L01_Peripherals_Revision_2026-10-08.md)、[Ara/RVV实际重组](L01_Ara_RVV_Revision_2026-10-08.md)和[后续复制Prompt](L01_Next_Tasks_Prompts_2026-10-08.md)区分已实施文档与待授权工程。
+上方03–08文件表保留为历史主题规划；相关评估、旧 Prompt、作者报告和验收现统一收录于[教材维护资料](maintenance/L01/README.md)，不作为新的学习章节或执行待办。现有03平台配置文件保持原职责。
 
 </details>

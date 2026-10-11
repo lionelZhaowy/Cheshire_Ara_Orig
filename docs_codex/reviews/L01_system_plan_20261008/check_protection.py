@@ -6,8 +6,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 ALLOWED = {
-    "docs_codex/03-08_Topic_Readiness_2026-10-08.md",
-    "docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md",
+    "docs_codex/maintenance/L01/planning/topic_readiness.md",
+    "docs_codex/maintenance/L01/planning/historical_prompts.md",
     "docs_codex/PROJECT_STATE.md",
     "docs_codex/AGENT_TASKS.md",
     "docs_codex/handoffs/README.md",

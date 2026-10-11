@@ -23,7 +23,7 @@
 <p>检查串口是否在窗口中、缓存和数据位置是否一致、是否计入格式转换/驱动/唤醒、是否有后台负载；保留全部样本并对照事件时间线。标量与向量返回相同总和仍可能有抵消错误，应逐元素比对。Ara store完成信号的已知错误处理限制仍见<a href="vector-debug.html">向量诊断</a>，计时记录不能因此宣称总线操作都成功。</p>
 <h2 id="known">当前已知问题与证据状态</h2>
 <table><tr><th>问题/限制</th><th>影响与依据</th><th>当前状态</th></tr>
-<tr><td>Platform ROM普通返回布局</td><td>启用非零平台钩子的默认继续启动路径；<a href="../handoffs/2026-10-06_L01_platform_rom_boot_review.md">源码和已有ROM指令记录</a></td><td>S01-B01未实施，不因迁移诊断关闭</td></tr>
+<tr><td>Platform ROM普通返回布局</td><td>启用非零平台钩子的默认继续启动路径；<a href="../handoffs/L01_platform_rom_boot_review.md">源码和已有ROM指令记录</a></td><td>S01-B01未实施，不因迁移诊断关闭</td></tr>
 <tr><td>iDMA控制桥/寄存器/HAL位宽不一致</td><td>已有控制访问不能作成功DMA例；<a href="peripheral-debug.html#dma">集中说明</a></td><td>待S01/V01修复授权与动态验收</td></tr>
 <tr><td>Ara写响应错误处理缺口</td><td>内部store完成不能单独证明写成功；<a href="vector-debug.html">本地实现与验证边界</a></td><td>目标执行/错误注入未新增</td></tr>
 <tr><td>未知DDR/工艺/新IP参数</td><td>缺少真实寄存器、时序、电气和模型输入</td><td>待用户/供应商/I01/M01/P01；这是输入缺口，不是已证实实现缺陷</td></tr></table>

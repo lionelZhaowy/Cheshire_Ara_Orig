@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import re,math,hashlib,json,subprocess
 root=Path(__file__).resolve().parents[3]
-p=root/'docs_codex/M01_IP_DDR_Interface_Contract.md'
+p=root/'docs_codex/engineering/IP_DDR_Interface_Contract.md'
 class P(HTMLParser):
  def __init__(self,t):super().__init__();self.ids=set();self.feed(t)
  def handle_starttag(self,t,a):

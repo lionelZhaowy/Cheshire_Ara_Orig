@@ -31,7 +31,7 @@ OS 镜像、平台描述与上下文支持的适用边界。
 
 **影响：**文件存在可以支持阅读打包关系，不能支持“当前固件+DTB+内核+bitstream 组合已经可启动”。真实环境应由 S01 提供镜像生成记录、DTB 内容、入口/装载区/保留区和启动参数，再由 V01 记录各阶段实际输出。不要为补齐材料直接运行会覆盖 install64 或介质的旧脚本。
 
-若启用 Platform ROM，还受 S01-B01 的现有返回路径门槛约束；该问题并未因 OS 教材完成而修复。它与默认关闭该钩子的路径分开判断，详细见[Platform ROM 适用条件](boot.md#platform-rom)及[原证据](../../handoffs/2026-10-06_L01_platform_rom_boot_review.md)。
+若启用 Platform ROM，还受 S01-B01 的现有返回路径门槛约束；该问题并未因 OS 教材完成而修复。它与默认关闭该钩子的路径分开判断，详细见[Platform ROM 适用条件](boot.md#platform-rom)及[原证据](../../handoffs/L01_platform_rom_boot_review.md)。
 
 <a id="description"></a>
 

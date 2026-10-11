@@ -94,7 +94,7 @@ flowchart TD
 
 本轮发现的消费者差异与待核查项集中在 [修改流程的已知缺口](RECIPES.md#6-本轮静态发现与待验证项)，包括仿真 profile/decoder、Serial Link 分频字段、SPM 执行属性、DMA 1D busy、VGA 错误追踪容量。没有顺手修改 RTL。
 
-项目目标与边界见 [PROJECT_STATE](../PROJECT_STATE.md)、[AGENT_TASKS](../AGENT_TASKS.md) 和 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。本轮验证与交接见 [L01 记录](../handoffs/2026-09-20_L01_configuration_reference.md)。
+项目目标与边界见 [PROJECT_STATE](../PROJECT_STATE.md)、[AGENT_TASKS](../AGENT_TASKS.md) 和 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。本轮验证与交接见 [L01 记录](../handoffs/L01_configuration_reference.md)。
 
 <a id="teaching-20261007"></a>
 

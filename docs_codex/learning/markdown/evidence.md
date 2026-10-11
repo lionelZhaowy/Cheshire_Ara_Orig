@@ -33,7 +33,7 @@
 
 本轮以 HEAD `459f9d6f5748e39063f7bb67e959c2f27859915d`及已有未提交教材为输入。用户授权多个子Agent分担软件、OS和ASIC正文，由主管串行整合为九篇42章、51个主页面。补齐正常软件过程、通用trap、OS、真实存储消费者与测量任务；外设/Ara保留已有成果并独立复审。详细诊断集中到各自参考页，正常使用前提和完成条件仍在正文。
 
-[实施与主管验收报告](../../L01_System_Textbook_Implementation_2026-10-08.md)记录修改对照、审读覆盖、问题闭环与实际检查；[本轮独立证据目录](../evidence/system-implementation-20261008/)保存编辑前输入、来源、作者检查及发布结果。构建/浏览器检查的实际通过项以报告为准；教学验收为作者自查与交叉审读，没有真人试读记录。
+[实施与主管验收报告](../../maintenance/L01/reports/system_acceptance.md)记录修改对照、审读覆盖、问题闭环与实际检查；[本轮独立证据目录](../evidence/system-implementation-20261008/)保存编辑前输入、来源、作者检查及发布结果。构建/浏览器检查的实际通过项以报告为准；教学验收为作者自查与交叉审读，没有真人试读记录。
 
 本轮未改生产RTL、sw、依赖或工程配置，未执行目标软件构建、RTL仿真、综合、板测、OS移植或工艺签核。Platform ROM、iDMA和Ara已有缺口仍开放。37张结构图、6张WaveDrom、可编辑PPTX、旧站及历史证据保持输入状态；下列日期记录仍表示对应历史工作。
 
@@ -101,7 +101,7 @@
 
 任务 L01，日期 2026-09-28，输入 HEAD `4f240258ca683913b7e17949aff23139bff981f1`。工作区开始时仅有一份与本任务无关的未跟踪 ENV01 交接，保持原样。范围限于教材、独立示例与辅助脚本、旧站备份和必要共享索引。
 
-旧站在改写前逐文件复制至 docs\_codex/learning\_backup，共 728 个文件、66754766 字节。[备份清单](../evidence/restructure-backup.json)记录相对路径、大小和 SHA-256；各轮检查分别与备份核对。新站保留 evidence 中的历史原件，日期及内容未重新命名为新运行结果。
+旧站在改写前曾逐文件备份，共 728 个文件、66754766 字节；该目录已于 2026-10-11 按用户要求移除。[备份清单](../evidence/restructure-backup.json)记录相对路径、大小和 SHA-256；各轮检查分别与备份核对。新站保留 evidence 中的历史原件，日期及内容未重新命名为新运行结果。
 
 <a id="current"></a>
 
@@ -122,7 +122,7 @@
 | 2026-09-23 硬件扩充 | [模型记录](../evidence/hardware-checks.txt)、[独立单元](../evidence/hardware-unit.txt)、[浏览器](../evidence/hardware-browser.txt) | 18 项教学模型、35 项独立 Reg 单元及注错；无生产 SoC |
 | 2026-09-23 编排 | [保留检查](../evidence/editorial-checks.txt)、[浏览器](../evidence/editorial-browser.txt) | 旧站编排和显示，不新增软件或硬件运行 |
 
-完整旧站包含各轮 HTML、图、脚本和示例，入口在[旧版备份](../../learning_backup/index.html)。新教材无需读取这些旧页才能理解主线，它们用于追溯历史命令与结果。历史源码快照和 2026-09-28 的[来源清单](../evidence/restructure-sources.json)用于定位版本，不替代动态回归。
+旧站的 HTML、图、脚本和示例副本已移除；当前教材、独立证据和正式文档保留。新教材无需读取旧页才能理解主线，历史过程可从[维护索引](../../maintenance/L01/README.md)追溯。历史源码快照和 2026-09-28 的[来源清单](../evidence/restructure-sources.json)用于定位版本，不替代动态回归。
 
 <a id="gaps"></a>
 
@@ -146,7 +146,7 @@ DMA 先由 S01/V01 统一 64/32 位控制桥、生成寄存器和 HAL 访问，�
 
 ## 2026-10-08 教学审查与局部实施
 
-输入HEAD为459f9d6f5748e39063f7bb67e959c2f27859915d。本轮完整审读30章，实施外设与Ara/RVV正常主线重组、诊断分离；未改生产代码、未重新构建软件或运行RTL/板测。记录见[全书审查](../../L01_Teaching_Quality_Review_2026-10-08.md)及[输入快照](../evidence/peripheral-20261008/input.json)。历史目标验证缺口保持开放。
+输入HEAD为459f9d6f5748e39063f7bb67e959c2f27859915d。本轮完整审读30章，实施外设与Ara/RVV正常主线重组、诊断分离；未改生产代码、未重新构建软件或运行RTL/板测。记录见[全书审查](../../maintenance/L01/reviews/teaching_quality.md)及[输入快照](../evidence/peripheral-20261008/input.json)。历史目标验证缺口保持开放。
 
 ---
 

@@ -4,6 +4,14 @@
 
 本文件是新对话的简短上下文，不是测试报告。需求变化看用户确认，源码变化看当前工作区，详细进展看 [交接目录](handoffs/README.md)。
 
+2026-10-11 用户明确要求移除 `learning_backup/`；目录内旧站及其图片/示例副本共 728 文件已清出仓库。下方历史条目的“备份保留”描述其当时状态，现以本条为准；当前教材、共享图片、独立证据及其他文档保留。恢复位置和检查见[目录整理交接](handoffs/L01_documentation_organization.md)。
+
+文档位置：M01/P01 现行参考已归入 [engineering](engineering/README.md)，不是历史归档；新 Agent 按[定位指南](AGENT_DOCUMENTATION_GUIDE.md)查正式资料、任务交接、维护报告和路径迁移。工程实现及验证状态未因此改变。
+
+2026-10-11 顶层教材维护资料已分类迁入 [maintenance/L01](maintenance/L01/README.md)：13 份规划/评审/实施报告保留原证据，用户入口不再混列过程文件。现行工程契约和学习资料保留原职责；见[整理交接](handoffs/L01_documentation_organization.md)。
+
+2026-10-11 新增[片外器件与接口实现参考](EXTERNAL_DEVICES_AND_INTERFACES.md)，汇总存储器/其他接口的 RTL、仿真与软件对应。用户要求交接按任务主题命名、同主题更新，普通答疑不另建日志；已更新 AGENTS/模板并迁移历史文件名，见 [L01 交接](handoffs/L01_interface_reference.md)。本轮仅文档整理，无新增目标运行证据。
+
 ## 1. 最终目标与近期目标
 
 最终目标：以 Cheshire + CVA6 + Ara 为起点，集成 LVDS 图像输入、ISP、脉动阵列/NPU、采购的 DDR 控制器及相关 IP，裁切无用模块，迁移到团队 EDA 服务器，完成 IC 设计、验证、DFT 与物理实现并流片。
@@ -47,27 +55,27 @@
 | 本地向量软件产物检查 | `fmatmul_test_4x4.spm.elf` 反汇编可见 RVV 指令；不代表当前板上执行该产物或结果已通过 |
 | ASIC 固定配置提取方案 | 02 文档已创建；**源码提取、编译、仿真尚未完成** |
 | 多对话协作入口 | 根 `AGENTS.md`、本状态页、任务表和交接模板已创建；未自动启动其他任务 |
-| L01 配置参考手册（2026-09-20） | [六篇配置文档](configuration/README.md)，覆盖 Cheshire 113 个字段、CVA6 88 个用户字段及 Ara/外设/常用配置；本轮仅源码与文档静态核对，未编译/仿真/板测；[交接](handoffs/2026-09-20_L01_configuration_reference.md)记录参数消费者差异与待验证项 |
-| L01 软件学习手册（2026-09-20） | [五篇软件文档](software/README.md)：SDK/工具链、编译链接、启动调试、库API和示例流程；覆盖根tests 9个主源及Ara 18个应用/测试源，命令仅静态/语法检查；[交接](handoffs/2026-09-20_L01_software_guide.md)记录环境与待核查项 |
-| L01 离线入门教材（2026-09-22） | [网站入口](learning/index.html)：10 页、10 张 SVG、8 个递进实验；教材内 8 次轻量软件构建及网页/浏览器检查通过，独立导出向量仿真清单；**未 RTL 编译展开/仿真/板测**。工具查询为 GCC 15.2.0、Questa 2024.1，VCS/vlogan 不在 PATH；[交接](handoffs/2026-09-22_L01_learning_site.md)记录告警与缺口 |
-| L01 进阶扩充（2026-09-22） | [原进阶入口](learning_backup/advanced.html)：新增14页/8图，全站24页/18图，覆盖全部顶层外设、寄存器/驱动/RTL、时钟复位、电源边界、CVA6/Ara内部与综合案例；429项离线寄存器索引。8个新软件版本构建、12个人工日志检查、浏览器桌面/手机预览通过；**未运行RTL**。[独立交接](handoffs/2026-09-22_L01_advanced_peripherals.md)记录iDMA位宽缺口、HAL审读问题和各外设验证条件 |
-| L01 硬件主线（2026-09-23） | [原硬件入口](learning_backup/hardware.html)：新增11页/10图，全站35页/28图；配置→结构、Crossbar/适配、存储/外设/平台和IP接入。18项教学模型检查、Questa 2024.1独立Reg单元35项检查及注错、Chrome预览通过；**未编译运行生产SoC**。[交接](handoffs/2026-09-23_L01_hardware_track.md)记录证据与范围 |
-| L01 教材编排（2026-09-23） | 统一35页网站与15篇Markdown的标题、章内结构、导航和写作风格；保留页面顺序、技术内容及既有证据。链接/锚点/导航检查、全站Chrome离线预览及内容保留比较通过；**本次未构建软件或运行RTL**。[交接](handoffs/2026-09-23_L01_editorial_revision.md) |
-| L01 单线教材重构（2026-09-28） | [新入口](learning/index.html)：16 章连续课程、6 项实验、2 页参考及 16 张新 SVG；[旧站备份](learning_backup/index.html) 保留 728 文件与历史证据。四种新贯穿示例构建、链接/生成一致性及 20 页桌面/手机浏览器检查通过；**未运行生产 RTL 或重跑历史独立单元**。[独立交接](handoffs/2026-09-28_L01_single_path_textbook.md)记录完整范围与目标环境验收。 |
+| L01 配置参考手册（2026-09-20） | [六篇配置文档](configuration/README.md)，覆盖 Cheshire 113 个字段、CVA6 88 个用户字段及 Ara/外设/常用配置；本轮仅源码与文档静态核对，未编译/仿真/板测；[交接](handoffs/L01_configuration_reference.md)记录参数消费者差异与待验证项 |
+| L01 软件学习手册（2026-09-20） | [五篇软件文档](software/README.md)：SDK/工具链、编译链接、启动调试、库API和示例流程；覆盖根tests 9个主源及Ara 18个应用/测试源，命令仅静态/语法检查；[交接](handoffs/L01_software_guide.md)记录环境与待核查项 |
+| L01 离线入门教材（2026-09-22） | [网站入口](learning/index.html)：10 页、10 张 SVG、8 个递进实验；教材内 8 次轻量软件构建及网页/浏览器检查通过，独立导出向量仿真清单；**未 RTL 编译展开/仿真/板测**。工具查询为 GCC 15.2.0、Questa 2024.1，VCS/vlogan 不在 PATH；[交接](handoffs/L01_learning_site.md)记录告警与缺口 |
+| L01 进阶扩充（2026-09-22） | 原进阶入口（旧站已于 2026-10-11 移除）：新增14页/8图，全站24页/18图，覆盖全部顶层外设、寄存器/驱动/RTL、时钟复位、电源边界、CVA6/Ara内部与综合案例；429项离线寄存器索引。8个新软件版本构建、12个人工日志检查、浏览器桌面/手机预览通过；**未运行RTL**。[独立交接](handoffs/L01_advanced_peripherals.md)记录iDMA位宽缺口、HAL审读问题和各外设验证条件 |
+| L01 硬件主线（2026-09-23） | 原硬件入口（旧站已于 2026-10-11 移除）：新增11页/10图，全站35页/28图；配置→结构、Crossbar/适配、存储/外设/平台和IP接入。18项教学模型检查、Questa 2024.1独立Reg单元35项检查及注错、Chrome预览通过；**未编译运行生产SoC**。[交接](handoffs/L01_hardware_track.md)记录证据与范围 |
+| L01 教材编排（2026-09-23） | 统一35页网站与15篇Markdown的标题、章内结构、导航和写作风格；保留页面顺序、技术内容及既有证据。链接/锚点/导航检查、全站Chrome离线预览及内容保留比较通过；**本次未构建软件或运行RTL**。[交接](handoffs/L01_editorial_revision.md) |
+| L01 单线教材重构（2026-09-28） | [新入口](learning/index.html)：16 章连续课程、6 项实验、2 页参考及 16 张新 SVG；旧站备份（旧站已于 2026-10-11 移除） 保留 728 文件与历史证据。四种新贯穿示例构建、链接/生成一致性及 20 页桌面/手机浏览器检查通过；**未运行生产 RTL 或重跑历史独立单元**。[独立交接](handoffs/L01_single_path_textbook.md)记录完整范围与目标环境验收。 |
 
-2026-09-29 L01 已在原 16 章上完成深度扩充：CVA6–Ara 专用接口/执行/访存、RVV 三种入口、共享存储与未来 NPU 协作、地址/时钟复位/DDR/ASIC 边界。新增 13 张结构图和 6 张 WaveDrom 教学时序；五个整数 ELF、FP32 编译探针及离线网页检查通过，未运行生产 SoC。[独立交接](handoffs/2026-09-29_L01_depth_asic_vector.md)。本地 Ara 写 B 错误处理仍有 TODO，load/store 完成不能单独证明数据传输成功，此项交后续 V01/S01 动态验证。旧站及既有证据原样保留。
+2026-09-29 L01 已在原 16 章上完成深度扩充：CVA6–Ara 专用接口/执行/访存、RVV 三种入口、共享存储与未来 NPU 协作、地址/时钟复位/DDR/ASIC 边界。新增 13 张结构图和 6 张 WaveDrom 教学时序；五个整数 ELF、FP32 编译探针及离线网页检查通过，未运行生产 SoC。[独立交接](handoffs/L01_depth_asic_vector.md)。本地 Ara 写 B 错误处理仍有 TODO，load/store 完成不能单独证明数据传输成功，此项交后续 V01/S01 动态验证。旧站及既有证据原样保留。
 
-2026-09-29 L01 根据结构审查改为七篇/30章，独立 CVA6、时钟/复位/电源、DDR、Ara/RVV/共享数据与模型章节；H2/H3 导航、短路线和旧锚点迁移已落实。34 主页面桌面/手机、373 项迁移及历史保护检查通过，未重新构建软件或运行 RTL。修正 Cfg.Ara 名称、JTAG 仅检查配置位且不等待 ROM C 的边界、UART reg8 访问说明。[独立交接](handoffs/2026-09-29_L01_structure_revision.md)；既有动态验证缺口不变。
+2026-09-29 L01 根据结构审查改为七篇/30章，独立 CVA6、时钟/复位/电源、DDR、Ara/RVV/共享数据与模型章节；H2/H3 导航、短路线和旧锚点迁移已落实。34 主页面桌面/手机、373 项迁移及历史保护检查通过，未重新构建软件或运行 RTL。修正 Cfg.Ara 名称、JTAG 仅检查配置位且不等待 ROM C 的边界、UART reg8 访问说明。[独立交接](handoffs/L01_structure_revision.md)；既有动态验证缺口不变。
 
-2026-09-29 L01 复审后继续完善 Crossbar/DDR/PLL/电源/CVA6 的机制例子与五张结构图，Boot 各模式独立成节，修正主题引用。检查改为新目录输出、默认拒绝覆盖；生成比较使用临时副本，旧证据保留。范围仍为文档与网页验证，目标运行未新增。[本轮交接](handoffs/2026-09-29_L01_mechanism_refinement.md)。
+2026-09-29 L01 复审后继续完善 Crossbar/DDR/PLL/电源/CVA6 的机制例子与五张结构图，Boot 各模式独立成节，修正主题引用。检查改为新目录输出、默认拒绝覆盖；生成比较使用临时副本，旧证据保留。范围仍为文档与网页验证，目标运行未新增。[本轮交接](handoffs/L01_mechanism_refinement.md)。
 
-2026-09-29 L01 定向收尾已修正启动绝对等待阈值和共享 PLL 调频影响范围，浏览器报告新增被测 HTML 哈希及结束时一致性核对；未修改生产代码、未新增目标运行证据。[交接](handoffs/2026-09-29_L01_targeted_closeout.md)。
+2026-09-29 L01 定向收尾已修正启动绝对等待阈值和共享 PLL 调频影响范围，浏览器报告新增被测 HTML 哈希及结束时一致性核对；未修改生产代码、未新增目标运行证据。[交接](handoffs/L01_targeted_closeout.md)。
 
 2026-09-28 教材重构核对：分支 `mp/ara-pulp-v2`，HEAD `4f240258ca683913b7e17949aff23139bff981f1`；开始时仅有未跟踪 ENV01 交接，原样保留。此前各记录中的 HEAD、01 所记 `e040b7bbc` 和“10 个未提交修改”均是历史快照。执行任务前仍须重新核对工作区。
 
-2026-10-07 L01 已完成官方资料/源码教学扩充，并按独立评审修正 Platform ROM 的内部 LLC/栈前提，补齐 AXI RT、CLIC、IRQ Router 独立配置与验收案例。文档链接、54 HTML 临时生成比较及桌面/手机浏览器检查通过；三个配置案例仍待目标运行，S01-B01 等生产缺口未关闭。[定向修正交接](handoffs/2026-10-07_L01_review_fixes.md)。
+2026-10-07 L01 已完成官方资料/源码教学扩充，并按独立评审修正 Platform ROM 的内部 LLC/栈前提，补齐 AXI RT、CLIC、IRQ Router 独立配置与验收案例。文档链接、54 HTML 临时生成比较及桌面/手机浏览器检查通过；三个配置案例仍待目标运行，S01-B01 等生产缺口未关闭。[定向修正交接](handoffs/L01_review_fixes.md)。
 
-2026-10-07 L01 当前交付37张重绘结构图与37页原生可编辑PPTX；按用户最新要求，6张教学时序已恢复为既有WaveDrom绘制，手工波形撤回归档。提供[新旧对照页](learning/figures/20261007/index.html)。SVG/离线网页与PPTX结构检查通过；Office实际验证被本机脚本签名策略阻止，未完成。生产源码与目标运行证据不变，待独立评审。[重绘交接](handoffs/2026-10-07_L01_research_figure_redraw.md)、[WaveDrom恢复交接](handoffs/2026-10-07_L01_restore_wavedrom.md)。
+2026-10-07 L01 当前交付37张重绘结构图与37页原生可编辑PPTX；按用户最新要求，6张教学时序已恢复为既有WaveDrom绘制，手工波形撤回归档。提供[新旧对照页](learning/figures/20261007/index.html)。SVG/离线网页与PPTX结构检查通过；Office实际验证被本机脚本签名策略阻止，未完成。生产源码与目标运行证据不变，待独立评审。[重绘交接](handoffs/L01_research_figure_redraw.md)、[WaveDrom恢复交接](handoffs/L01_restore_wavedrom.md)。
 
 ## 4. 必须共享的技术事实
 
@@ -82,7 +90,7 @@
 9. **依赖快照不是完整 SDK 离线镜像。** 可选 benchmark、未初始化子仓库等排除项见 `.bender/README.md`；不要声称所有软件环境都完整。
 10. **iDMA控制接口增加运行门槛（L01进阶静态复核）。** `cheshire_idma_wrap`使用64-bit Regbus，`idma_reg64_2d_reg_top`固定DW=32，旧桥未显示lane搬移；原HAL对+0x44/+0x84的32位ID用64位指针，GCC实测拆成两次32位读。需S01/V01独立统一并验收；教材capstone默认BLOCKED/rc16，不表示DMA通过，未改RTL/sw。该wrapper没有DMA完成IRQ。
 11. **外设RTL存在不等于当前平台可验证。** fixture的GPIO输入绑零、VGA输出悬空、USB PHY时钟绑零；VCU118未启用I2C/SD/VGA/USB引脚功能，Serial Link未接出。Link隔离/门控输出在SoC悬空，不能据寄存器名推断实际隔离或电源域。详见进阶支持矩阵和时钟图。
-12. **Platform ROM 普通返回路径有待修复缺陷（2026-10-06）。** 输入 HEAD `5ddec4fb4` 的 `cheshire_bootrom.S` 在 `jalr t0` 后紧接 `boot_next_stage`，普通返回不会进入内置介质启动入口；当前生成的 ROM 指令也保留该布局。已有官方修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（#187），本地尚未应用。默认 `PlatformRom=0` 绕过该路径。已登记 S01-B01，启用钩子前须修复、重新生成 ROM 并验收；[证据](handoffs/2026-10-06_L01_platform_rom_boot_review.md)为源码及现有指令核对，不是目标仿真通过。
+12. **Platform ROM 普通返回路径有待修复缺陷（2026-10-06）。** 输入 HEAD `5ddec4fb4` 的 `cheshire_bootrom.S` 在 `jalr t0` 后紧接 `boot_next_stage`，普通返回不会进入内置介质启动入口；当前生成的 ROM 指令也保留该布局。已有官方修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（#187），本地尚未应用。默认 `PlatformRom=0` 绕过该路径。已登记 S01-B01，启用钩子前须修复、重新生成 ROM 并验收；[证据](handoffs/L01_platform_rom_boot_review.md)为源码及现有指令核对，不是目标仿真通过。
 
 ## 5. 近期待办及依赖关系
 
@@ -104,6 +112,7 @@
 - [离线学习教材](learning/index.html)：L01 中文教学主线、独立 C/RVV 示例、仿真实验命令和证据；维护见 [README](learning/README.md)。
 - [配置参数手册](configuration/README.md)：L01 当前源码配置字典、实际覆盖关系、常用配置与修改检查。
 - [软件学习手册](software/README.md)：SDK/工具链、编译链接、启动调试、嵌入式库与示例流程。
+- [软硬件层次与工具索引](software/LAYERS_AND_TOOLS.md)：2026-10-11 L01 新增的用户参考页，按分层图查源码、工具、脚本与产物；不新增目标运行证据。
 - [平台启动与配置约定](03_Platform_ROM_Clock_IP_Configuration.md)：2026-10-06 用户确认的安全 PLL 启动方向、运行软件配置入口与 S01-B01 修复验收要求。
 - [交接模板](HANDOFF_TEMPLATE.md) 与 [交接索引](handoffs/README.md)：保存每次实际结果。
 
@@ -111,26 +120,26 @@
 
 ## 2026-10-08 L01教学审查与局部实施
 
-完整审读30章，已重组外设与Ara/RVV正常教学，新增独立外设/Ara诊断页，保持七篇/30章与旧锚点。全书剩余软件/平台顺序调整为后续方案。交付与检查见[独立交接](handoffs/2026-10-08_L01_teaching_review_peripherals_ara.md)、[全书审查](L01_Teaching_Quality_Review_2026-10-08.md)、[实施条件](03-08_Topic_Readiness_2026-10-08.md)。本轮不改生产源码，不运行目标构建/仿真/板测；Platform ROM、iDMA、Ara已有验证缺口保持开放。
+完整审读30章，已重组外设与Ara/RVV正常教学，新增独立外设/Ara诊断页，保持七篇/30章与旧锚点。全书剩余软件/平台顺序调整为后续方案。交付与检查见[独立交接](handoffs/L01_teaching_review_peripherals_ara.md)、[全书审查](maintenance/L01/reviews/teaching_quality.md)、[实施条件](maintenance/L01/planning/topic_readiness.md)。本轮不改生产源码，不运行目标构建/仿真/板测；Platform ROM、iDMA、Ara已有验证缺口保持开放。
 
-随后汇总用户与评审Agent的补充对话，完成[系统教材深化规划](L01_System_Textbook_Revision_Plan_2026-10-08.md)：先软件完整链，再trap/上下文与OS，ASIC以实例深化；外设/Ara保留复审。03/04建议整合，05/06/07/08可立即编写限定范围；07由“整体暂缓”改为“教学立即开展、工程待输入”。仅完成规划与Prompt，尚未实施本轮新增系统正文。[规划交接](handoffs/2026-10-08_L01_system_curriculum_plan.md)记录范围和检查。
+随后汇总用户与评审Agent的补充对话，完成[系统教材深化规划](maintenance/L01/planning/system_revision_plan.md)：先软件完整链，再trap/上下文与OS，ASIC以实例深化；外设/Ara保留复审。03/04建议整合，05/06/07/08可立即编写限定范围；07由“整体暂缓”改为“教学立即开展、工程待输入”。仅完成规划与Prompt，尚未实施本轮新增系统正文。[规划交接](handoffs/L01_system_curriculum_plan.md)记录范围和检查。
 
 ## 2026-10-08 系统教材实施与文档交付
 
-用户明确授权多个子Agent实施，主管串行集成。当前教材为九篇42章、51主页面：软件全链与通用trap、RTOS/Linux四章、ASIC六个机制任务、系统测量均已落入正文；外设/Ara经独立全章复审并修正具体问题。正常过程与软件/外设/向量/OS/系统诊断分开。结果、各章覆盖、实际网页检查与未验证项见[主管报告](L01_System_Textbook_Implementation_2026-10-08.md)及[交接](handoffs/2026-10-08_L01_system_implementation_acceptance.md)。旧图源/PPTX、旧站及历史证据保留；没有生产工程修改或目标构建/运行。
+用户明确授权多个子Agent实施，主管串行集成。当前教材为九篇42章、51主页面：软件全链与通用trap、RTOS/Linux四章、ASIC六个机制任务、系统测量均已落入正文；外设/Ara经独立全章复审并修正具体问题。正常过程与软件/外设/向量/OS/系统诊断分开。结果、各章覆盖、实际网页检查与未验证项见[主管报告](maintenance/L01/reports/system_acceptance.md)及[交接](handoffs/L01_system_implementation_acceptance.md)。旧图源/PPTX、旧站及历史证据保留；没有生产工程修改或目标构建/运行。
 
-[M01-D手册](M01_IP_DDR_Interface_Contract.md)整合原05/06的IP/DDR接口、缓存/原子观察域、帧预算和验收责任；[P01手册](P01_ASIC_Adaptation_and_Evidence.md)记录技术替换语义与工艺输入。二者属于文档交付，E01提取、S01-B01修复、真实旁路/宏映射和V01动态验证尚未实施。OS不是ASIC提取前置。
+[M01-D手册](engineering/IP_DDR_Interface_Contract.md)整合原05/06的IP/DDR接口、缓存/原子观察域、帧预算和验收责任；[P01手册](engineering/ASIC_Adaptation_and_Evidence.md)记录技术替换语义与工艺输入。二者属于文档交付，E01提取、S01-B01修复、真实旁路/宏映射和V01动态验证尚未实施。OS不是ASIC提取前置。
 
 本地存在Linux 6.5源码和FP/RVV上下文实现；普通SDK配方请求v5.10.7、V配方请求v6.5，OpenSBI头声明0.9。它们不能证明当前镜像溯源、系统启动或向量抢占通过。FreeRTOS V11.1.0仅作官方教学参考；产品OS/工作负载/论文指标、DDR/工艺/IP参数仍待相应责任方确定。
 
-用户随后指出正式标题风格违例：本轮按2026-09-23规范单独修正全站正式标题与副标题，技术正文/课程顺序不变；过程、对照与最终检查见[标题修正报告](L01_Title_Style_Revision_2026-10-08.md)及[最新交接](handoffs/2026-10-08_L01_title_style_revision.md)。软件、OS、ASIC内容结果保留，标题检查不新增技术审计或目标证据。
+用户随后指出正式标题风格违例：本轮按2026-09-23规范单独修正全站正式标题与副标题，技术正文/课程顺序不变；过程、对照与最终检查见[标题修正报告](maintenance/L01/reports/title_style.md)及[最新交接](handoffs/L01_title_style_revision.md)。软件、OS、ASIC内容结果保留，标题检查不新增技术审计或目标证据。
 
-标题独立复审通过后，已落实五处对象/术语润色与中英文间距统一；正文与教学顺序保持，详见[定向收尾](handoffs/2026-10-08_L01_title_polish.md)。该项仅更新文档状态，原生产验证缺口不变。
+标题独立复审通过后，已落实五处对象/术语润色与中英文间距统一；正文与教学顺序保持，详见[定向收尾](handoffs/L01_title_polish.md)。该项仅更新文档状态，原生产验证缺口不变。
 
 ## 2026-10-11 L01 文档审查与双格式重构
 
-沿用51页/42章成果，阅读顺序调整为系统/程序概览→地址与存储→DMA/Ara协作→详细启动/外设→时钟复位配置→OS/扩展ASIC/验证。教程HTML源统一生成HTML和Markdown阅读版，配置/软件参考按职责归并；入口为[00](00_README.md)、[HTML](learning/index.html)和[Markdown](learning/markdown/index.md)。问题、迁移和实际检查见[维护记录](learning/STRUCTURE_REVISION.md#review-20261011)及[交接](handoffs/2026-10-11_L01_documentation_restructure.md)。本轮仅修改文档及文档脚本，无生产构建/运行。
+沿用51页/42章成果，阅读顺序调整为系统/程序概览→地址与存储→DMA/Ara协作→详细启动/外设→时钟复位配置→OS/扩展ASIC/验证。教程HTML源统一生成HTML和Markdown阅读版，配置/软件参考按职责归并；入口为[00](00_README.md)、[HTML](learning/index.html)和[Markdown](learning/markdown/index.md)。问题、迁移和实际检查见[维护记录](learning/STRUCTURE_REVISION.md#review-20261011)及[交接](handoffs/L01_documentation_restructure.md)。本轮仅修改文档及文档脚本，无生产构建/运行。
 
 静态纠错包括SlinkMaxClkDiv为16位shrt_bt（1024未截断，真正问题为实例消费包常量）、ROM与crt0栈责任、VS由应用开启及VCU118共源RTC测频限制。新增需S01/V01复核项：当前Boot ROM默认SPM顶端−8后直接调用ROM C main，sp模16为8；非零平台钩子也须核对该调用边界。源码确认不等于已复现目标异常，实际ROM指令/影响/修复尚未验收；原S01-B01返回缺口保持。
 
-近期已有需求以[M01第12节](M01_IP_DDR_Interface_Contract.md)为准：主Xbar保持64-bit，新增GB为供NPU/Ara共享的独立片上SRAM，DDR与GB显式搬运；普通主存路径与拟议GB支路分别解释。M01原未提交内容本轮未改，4-lane、GB参数/连接和目标工程均未因此实现或冻结。
+近期已有需求以[M01第12节](engineering/IP_DDR_Interface_Contract.md)为准：主Xbar保持64-bit，新增GB为供NPU/Ara共享的独立片上SRAM，DDR与GB显式搬运；普通主存路径与拟议GB支路分别解释。M01原未提交内容本轮未改，4-lane、GB参数/连接和目标工程均未因此实现或冻结。

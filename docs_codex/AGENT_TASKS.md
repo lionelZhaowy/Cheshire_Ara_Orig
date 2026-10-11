@@ -11,12 +11,18 @@
 | V01 仿真与验收 | 未开始 | 回归用例、编译/展开/运行结果、可重现日志 | 计划可先做；新目录验证依赖 E01；与 E01 协调 TB、filelist 编辑权 |
 | S01 裸机软件与启动 | 未开始 | 启动/链接/软件构建、向量结果验证、启动路径分析 | 与 E01 确认目录及地址布局后管理新目录软件；原 `sw/` 默认只读 |
 | S01-B01 Platform ROM 返回路径修复 | 未开始（2026-10-06 已登记，尚未授权实施） | 对照官方 #187 最小修复、同步生成 ROM、验收正常返回及默认启动；[规格](03_Platform_ROM_Clock_IP_Configuration.md#s01-b01) | S01 主责，V01 验收、E01 同步提取；旧启动源码/生成 RTL 修改需另行明确授权，禁止为修复升级全工程依赖 |
-| M01 DDR 旁路与存储一致性 | M01-D文档完成；工程未实施 | [IP/DDR接口契约](M01_IP_DDR_Interface_Contract.md)、输入责任与验证矩阵 | 待供应商/I01真实接口及E01基线；top/config/address map修改须另行授权并协调 |
+| M01 DDR 旁路与存储一致性 | M01-D文档完成；工程未实施 | [IP/DDR接口契约](engineering/IP_DDR_Interface_Contract.md)、输入责任与验证矩阵 | 待供应商/I01真实接口及E01基线；top/config/address map修改须另行授权并协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
-| P01 ASIC 工艺与实现准备 | P01文档盘点完成；工艺适配未实施 | [ASIC适配与证据手册](P01_ASIC_Adaptation_and_Evidence.md)、资源语义与资料责任 | 实际宏/PLL/PAD/DFT/时序签核等待工艺/IP输入和工程授权 |
-| L01 学习与源码问答 | 既有文档审查、知识顺序重构与双格式验收完成（2026-10-11） | [九篇42章](learning/index.html)、[主管验收](L01_System_Textbook_Implementation_2026-10-08.md)、[HTML/Markdown同步交接](handoffs/2026-10-11_L01_documentation_restructure.md) | 软件全链、trap/OS、ASIC机制与测量已落地；外设/Ara复审修正。无真人试读/本轮目标运行；生产缺口保留 |
+| P01 ASIC 工艺与实现准备 | P01文档盘点完成；工艺适配未实施 | [ASIC适配与证据手册](engineering/ASIC_Adaptation_and_Evidence.md)、资源语义与资料责任 | 实际宏/PLL/PAD/DFT/时序签核等待工艺/IP输入和工程授权 |
+| L01 学习与源码问答 | 既有文档审查、知识顺序重构与双格式验收完成；新增分层工具参考（2026-10-11） | [九篇42章](learning/index.html)、[分层与工具索引](software/LAYERS_AND_TOOLS.md)、[主管验收](maintenance/L01/reports/system_acceptance.md)、[HTML/Markdown同步交接](handoffs/L01_documentation_restructure.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
+
+2026-10-11 文档清理：用户已授权删除 learning_backup，728 文件移出仓库，现行教材入口及检查规则同步；其他备份/图稿/独立证据不在此次删除范围，勿据旧“保留旧站”描述重新生成该目录。
+
+教材编写的历史规划、Prompt、审查和实施报告已统一归入 [maintenance/L01](maintenance/L01/README.md)，不再作为顶层学习文件；新对话按该索引按需追溯，不机械重跑旧 Prompt。
+
+2026-10-11 L01 补充交付：[片外器件与接口参考](EXTERNAL_DEVICES_AND_INTERFACES.md)、[主题交接](handoffs/L01_interface_reference.md)。交接规则已改为任务主题文件持续更新，普通答疑不单独建日志；历史命名迁移不代表重新实施或验证历史任务。
 
 ## 2. 每个对话只带必要上下文
 
@@ -26,7 +32,7 @@
 | --- | --- | --- |
 | E01 | 02 全文 | `Bender.local`、Ara 集成 Makefile、SoC/配置和技术单元；01 第 3、10 节 |
 | V01 | 02 第 3、7、9 节及 E01 最新交接 | `target/sim/src/`、DPI、01 第 6 节 |
-| S01 / S01-B01 | 02 第 7 节及 E01 配置/地址交接；[Platform ROM 规格](03_Platform_ROM_Clock_IP_Configuration.md)及[缺陷证据](handoffs/2026-10-06_L01_platform_rom_boot_review.md) | Boot ROM、`crt0.S`、`common.ldh`、01 第 5、7、9 节；官方修复 #187 |
+| S01 / S01-B01 | 02 第 7 节及 E01 配置/地址交接；[Platform ROM 规格](03_Platform_ROM_Clock_IP_Configuration.md)及[缺陷证据](handoffs/L01_platform_rom_boot_review.md) | Boot ROM、`crt0.S`、`common.ldh`、01 第 5、7、9 节；官方修复 #187 |
 | M01 | 02 第 8 节 | `cheshire_soc.sv` 的 atomics/LLC、LLC/AXI 实现、01 第 8、9 节 |
 | I01 | M01 已确认接口契约 | 自有 IP 资料、SoC 控制/中断扩展边界 |
 | P01 | 02 第 6、9 节；[Platform ROM 决策与接口边界](03_Platform_ROM_Clock_IP_Configuration.md) | `tech_cells_generic`、CVA6/Ara/LLC 存储实例、PLL/PHY 授权资料、01 第 10 节 |
@@ -73,7 +79,7 @@
 3. 同目录环境中的 Git 状态属于所有对话共享状态；不要擅自 checkout、stash、reset、提交他人的变更或清理输出。
 4. 每个任务使用独立构建输出目录/日志名，避免共用 `work`、`simv`、Vivado 工程缓存。大型仿真/综合的机器资源与许可证应先协调。
 5. 地址、配置和接口变更必须交接给依赖任务；不能只改 RTL 不同步软件/测试，也不能只更新文档就声称集成完成。
-6. 完成后写 `handoffs/<日期>_<任务ID>_<简短主题>.md`；同日重名加序号。发现更新冲突时不覆盖，交给 C00 或用户。
+6. 实质变更更新 `handoffs/<任务ID>_<主题>.md`，在文件头追加日期、输入版本和修改/验证记录；同主题不逐日新建，普通答疑不单独建日志。独立评审保留角色后缀。发现更新冲突时不覆盖，交给 C00 或用户。
 
 ## 5. 状态和完成定义
 

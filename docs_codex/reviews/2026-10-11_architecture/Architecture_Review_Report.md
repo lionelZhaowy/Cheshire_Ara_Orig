@@ -47,7 +47,7 @@
 
 定向查找 `hw/cheshire_soc.sv`、`hw/cheshire_pkg.sv`、`Bender.yml`、`target/xilinx/src/cheshire_top_xilinx.sv` 及工程非依赖文件名，没有发现已集成的 NPU/Dremi/LVDS/ISP/GB 定义。此结论只覆盖当前可见集成入口，**不表示用户在其他工程没有自研 IP**。图中只画一个“NPU 计算模块”，不凭名字新增 Dremi 子层级。
 
-近期输入 `docs_codex/handoffs/2026-10-09_M01_DDR_GB_requirements_update.md` 和 `2026-10-10_L01_lvds_isp_gb_soc_topology.md` 记录了独立 GB、主 Xbar64、NPU256 及图像路径意向；既有 `ddr_interconnect.svg` 属候选架构图。本轮用它们定位待审查设计，所有实现事实重新追踪源码。当前请求重新开放“全部旁路/共享 GB”的合理性审查，旧状态中的“用户要求旁路”不替代此次比较。
+近期输入 `docs_codex/handoffs/M01_DDR_GB_requirements_update.md` 和 `L01_lvds_isp_gb_soc_topology.md` 记录了独立 GB、主 Xbar64、NPU256 及图像路径意向；既有 `ddr_interconnect.svg` 属候选架构图。本轮用它们定位待审查设计，所有实现事实重新追踪源码。当前请求重新开放“全部旁路/共享 GB”的合理性审查，旧状态中的“用户要求旁路”不替代此次比较。
 
 ![当前实现](figures/current_implementation.png)
 

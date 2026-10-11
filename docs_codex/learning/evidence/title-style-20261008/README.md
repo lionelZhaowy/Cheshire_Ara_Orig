@@ -7,4 +7,4 @@
 - release-browser/browser.txt / run.json / PNG：实际退出0，51页桌面/手机、无脚本、旧书签、输入/被测HTML哈希。
 - ../../../reviews/L01_title_style_20261008：作者清单、主管664项总表、319改名、45引用、非标题内容保护与重验脚本；准确相对引用见下方。
 
-[主管报告](../../../L01_Title_Style_Revision_2026-10-08.md)；[独立交接](../../../handoffs/2026-10-08_L01_title_style_revision.md)；[完整清单](../../../reviews/L01_title_style_20261008/inventory.json)。命令见交接，重复运行须使用新输出目录。本次没有目标编译/仿真/综合/板测或新的技术功能审计。
+[主管报告](../../../maintenance/L01/reports/title_style.md)；[独立交接](../../../handoffs/2026-10-08_L01_title_style_revision.md)；[完整清单](../../../reviews/L01_title_style_20261008/inventory.json)。命令见交接，重复运行须使用新输出目录。本次没有目标编译/仿真/综合/板测或新的技术功能审计。

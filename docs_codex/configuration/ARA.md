@@ -91,7 +91,7 @@ Ara 顶层明确检查：`NrLanes>0`、lane 数为 2 的幂且不超过 `MaxNrLa
 | 增系统 AxiDataWidth | gen_cva6_cfg 同步 CPU AXI；主 Xbar、LLC、DMA、Debug 等共同受影响 | 全端点兼容性、窄访问/byte lane/ID、LLC/SPM 容量和启动布局；不是 Ara 的局部改动 |
 | 改 FPUSupport 等功能 | lane 功能单元及 dispatcher 合法性改变；当前 SoC 未暴露这些字段 | 指令接受/非法路径、FS/VS、浮点数值/舍入/异常；源码有参数不等于组合通过 |
 
-在默认 LLC geometry 不变时，`get_llc_size()` 包含 `AxiDataWidth/8`，所以系统数据口从 64 增至 128 位会使阵列计算容量由 128 KiB 变为 256 KiB。只把 Ara 从 2 改为 4 lanes 则得到局部 128→系统 64 位适配，主 Xbar 和 LLC 容量不随之扩大。近期主 Xbar 保持 64 位的需求及独立 GB 讨论见 [M01 当前接口契约](../M01_IP_DDR_Interface_Contract.md)；不由此宣称 Ara 4 lanes 已实施。
+在默认 LLC geometry 不变时，`get_llc_size()` 包含 `AxiDataWidth/8`，所以系统数据口从 64 增至 128 位会使阵列计算容量由 128 KiB 变为 256 KiB。只把 Ara 从 2 改为 4 lanes 则得到局部 128→系统 64 位适配，主 Xbar 和 LLC 容量不随之扩大。近期主 Xbar 保持 64 位的需求及独立 GB 讨论见 [M01 当前接口契约](../engineering/IP_DDR_Interface_Contract.md)；不由此宣称 Ara 4 lanes 已实施。
 
 <a id="5-包内常量属于微架构不建议初学者随意改"></a>
 

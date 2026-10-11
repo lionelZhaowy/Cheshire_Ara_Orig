@@ -11,9 +11,9 @@ baseline = json.loads((evidence / 'input.json').read_text())
 allowed = {
     'docs_codex/00_README.md', 'docs_codex/PROJECT_STATE.md',
     'docs_codex/AGENT_TASKS.md', 'docs_codex/handoffs/README.md',
-    'docs_codex/03-08_Topic_Readiness_2026-10-08.md',
-    'docs_codex/L01_System_Textbook_Revision_Plan_2026-10-08.md',
-    'docs_codex/L01_Next_Tasks_Prompts_2026-10-08.md',
+    'docs_codex/maintenance/L01/planning/topic_readiness.md',
+    'docs_codex/maintenance/L01/planning/system_revision_plan.md',
+    'docs_codex/maintenance/L01/planning/historical_prompts.md',
     'docs_codex/software/README.md', 'docs_codex/learning/README.md',
     'docs_codex/learning/OFFICIAL_SOURCES.md',
 }

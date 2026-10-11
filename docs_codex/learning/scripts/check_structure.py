@@ -23,12 +23,12 @@ try:
  # figures, vendor assets, examples and dated evidence remain immutable.
  protected={n:h for n,h in baseline['files'].items() if n.startswith(('evidence/','examples/','assets/')) and n not in ('assets/site.css','assets/site.js')}
  for n,h in protected.items():assert sha(R/n)==h,('historical asset modified',n)
- assert sha(R.parent/'handoffs/2026-09-29_L01_structure_revision_review.md')==baseline['review_sha256']
+ assert sha(R.parent/'handoffs/L01_structure_revision_review.md')==baseline['review_sha256']
  report.append(f'PASS {len(protected)} prior evidence/example/asset files unchanged; review preserved')
- b=R.parent/'learning_backup';m=json.loads((R/'evidence/restructure-backup.json').read_text())['files']
- assert {str(p.relative_to(b)) for p in b.rglob('*') if p.is_file()}==set(m)
- for n,item in m.items():assert sha(b/n)==item['sha256'],n
- report.append(f'PASS backup unchanged: {len(m)} files')
+ # 2026-10-11: user retired the legacy site. Preserve its historical manifest,
+ # but do not assert that the deliberately removed directory still exists.
+ assert not (R.parent/'learning_backup').exists(), 'retired legacy site reintroduced'
+ report.append('PASS retired learning_backup absent; historical manifest retained')
  assert list(PARTS)==['foundations','fabric','vector','software','management','os','integration','platform','verification']
  chapters=[p for p in ENTRIES if p['kind']=='chapter']
  assert [p['number'] for p in chapters]==list(range(1,43))

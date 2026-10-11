@@ -71,7 +71,7 @@ DDR 合流拓扑候选，尚未修改 RTL；本图不包含后续讨论的独立
 
 ### 31.3.1 独立 Global Buffer 与 Ara 共享数据
 
-2026-10-09 的项目需求记录已将 Global Buffer（GB）明确为独立片上 SRAM，供 NPU 与 Ara 共享中间结果；近期主 AXI Crossbar 保持 64 位。GB 不是 DDR 中划出的一个地址区，也不是自动缓存 DDR 的透明 cache。DDR 与 GB 之间需要搬运引擎显式读写，GB 的容量、bank、端口、时钟和 CPU 是否直访仍待确认。需求与候选范围见[M01 接口契约第 12 节](../../M01_IP_DDR_Interface_Contract.md)。
+2026-10-09 的项目需求记录已将 Global Buffer（GB）明确为独立片上 SRAM，供 NPU 与 Ara 共享中间结果；近期主 AXI Crossbar 保持 64 位。GB 不是 DDR 中划出的一个地址区，也不是自动缓存 DDR 的透明 cache。DDR 与 GB 之间需要搬运引擎显式读写，GB 的容量、bank、端口、时钟和 CPU 是否直访仍待确认。需求与候选范围见[M01 接口契约第 12 节](../../engineering/IP_DDR_Interface_Contract.md)。
 
 当前 Ara 只有一套 VLSU/AXI 出口。若以后采用 4 lanes，该局部口按现有公式变成 128 位；候选做法是在已有失效过滤器之后、128→64 转换之前按物理地址分流。普通地址继续走主 Crossbar/LLC，GB 地址走新端口到 SRAM 适配与仲裁。此连接尚未实施，4 lanes 与 VLEN 也未冻结；分流并不会增加第二个独立向量访存引擎。
 

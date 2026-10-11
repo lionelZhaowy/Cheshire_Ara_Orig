@@ -73,7 +73,7 @@ RVV 小实验在调用内核之前独占物理 SPM \[0x10010000,0x10011000)，CP
 
 ## 13.3 共享存储方案的选择条件
 
-当前项目已确认 Global Buffer（GB）是供 NPU 与 Ara 共享的独立片上 SRAM，连接尚未实现。要让 Ara 的向量 load/store 访问它，需要可达的物理地址窗口、SRAM 适配和端口仲裁；地址布局、所有权与完成可见性仍须约定。GB 与 LLC 的 SPM 是不同物理资源，不能把新增 GB 的容量计入现有 128 KiB。作为概念对照，只有 NPU 内部可访问的私有 SRAM 不能直接接受 CPU/Ara/iDMA 的地址请求，必须通过搬运器或增加映射；这不是本项目已确认共享 GB 的替代方案。具体支路见[独立 GB 集成](accelerators.md#global-buffer)与[M01 需求](../../M01_IP_DDR_Interface_Contract.md)。
+当前项目已确认 Global Buffer（GB）是供 NPU 与 Ara 共享的独立片上 SRAM，连接尚未实现。要让 Ara 的向量 load/store 访问它，需要可达的物理地址窗口、SRAM 适配和端口仲裁；地址布局、所有权与完成可见性仍须约定。GB 与 LLC 的 SPM 是不同物理资源，不能把新增 GB 的容量计入现有 128 KiB。作为概念对照，只有 NPU 内部可访问的私有 SRAM 不能直接接受 CPU/Ara/iDMA 的地址请求，必须通过搬运器或增加映射；这不是本项目已确认共享 GB 的替代方案。具体支路见[独立 GB 集成](accelerators.md#global-buffer)与[M01 需求](../../engineering/IP_DDR_Interface_Contract.md)。
 
 | 候选交接方式 | 适用范围与收益 | 必须建立的条件 |
 | --- | --- | --- |

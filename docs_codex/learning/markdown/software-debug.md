@@ -110,7 +110,7 @@ UART 服务需 ACK=0x06 握手，READ/WRITE/EXEC 命令携带小端 addr64/len64
 
 ## Platform ROM 的正常返回缺口
 
-官方 Platform ROM 契约允许初始化后返回通用启动；本地 `_prom_check_run` 的 `jalr t0` 后紧邻 `boot_next_stage`，普通 ret 返回会落入下一阶段跳转逻辑，而非 \_boot。已有审查同时检查了源汇编与已生成 ROM 指令；上游修复提交 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）未纳入当前 HEAD。详细证据见[独立核查](../../handoffs/2026-10-06_L01_platform_rom_boot_review.md)与[平台决策专题](../../03_Platform_ROM_Clock_IP_Configuration.md)。
+官方 Platform ROM 契约允许初始化后返回通用启动；本地 `_prom_check_run` 的 `jalr t0` 后紧邻 `boot_next_stage`，普通 ret 返回会落入下一阶段跳转逻辑，而非 \_boot。已有审查同时检查了源汇编与已生成 ROM 指令；上游修复提交 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）未纳入当前 HEAD。详细证据见[独立核查](../../handoffs/L01_platform_rom_boot_review.md)与[平台决策专题](../../03_Platform_ROM_Clock_IP_Configuration.md)。
 
 影响范围是启用非零 PlatformRom 并期望正常返回的路径；默认 0 绕过该调用，不据此判定全部既有启动失败。修复与重新生成 ROM 属于 S01-B01 工程任务，本轮未实施。后续须同时验收空钩子返回、实际初始化及默认启动；只更新源 S、保留旧 ROM RTL 不能完成修复。
 

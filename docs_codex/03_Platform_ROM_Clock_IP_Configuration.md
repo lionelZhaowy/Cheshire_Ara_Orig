@@ -96,7 +96,7 @@ POR / 有效参考时钟 / 硬件安全初值
 - 内置 `_boot` 地址：`0x02000154`，默认入口为 0 时通过分支到达。
 - 影响范围：启用非零 PlatformRom 且预期正常返回继续内置启动的路径；不能据此声称默认启动或已有 HelloWorld 都失败。
 - 官方修复：`9b4c222df72f74f90ab9f36d80ba7b527f92e62b`，`hw/bootrom: Fix platform ROM fallthrough to boot (#187)`。补丁把 `_boot/_exit` 放到平台调用之后，将 `boot_next_stage` 移到后面。本地当前尚未包含该修复。
-- 详细命令、源码及 ROM 哈希、反汇编见 [发现记录](handoffs/2026-10-06_L01_platform_rom_boot_review.md)。证据为静态核查，不是目标运行。
+- 详细命令、源码及 ROM 哈希、反汇编见 [发现记录](handoffs/L01_platform_rom_boot_review.md)。证据为静态核查，不是目标运行。
 
 ### 5.2 后续修复范围
 

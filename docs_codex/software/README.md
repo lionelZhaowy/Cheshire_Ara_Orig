@@ -18,10 +18,12 @@
 
 | 索引 | 文档 | 参考职责 |
 | --- | --- | --- |
-| 1 | [工具链、SDK 与编译](BUILD_AND_SDK.md) | 分清裸机/Linux 软件；理解 gcc、ar、链接器、ELF，选择单个构建目标 |
-| 2 | [链接、启动、加载与调试](RUNTIME_AND_DEBUG.md) | 追踪 reset→Boot ROM→应用 _start→main→退出码；会查链接地址与异常 |
-| 3 | [嵌入式库原理与 API](LIBRARIES.md) | 理解 MMIO、UART/printf、CLINT、DMA、LLC、AXI RT、HAL 与 GPT |
-| 4 | [示例程序逐项导读](EXAMPLES.md) | 当前 9 个主测试源码逐项流程、前置配置、预期结果和局限；Ara 源码索引 |
+| 1 | [软硬件层次与工具索引](LAYERS_AND_TOOLS.md) | 对照分层图查源码、脚本、主机工具、目标代码及各流程产物 |
+| 2 | [工具链、SDK 与编译](BUILD_AND_SDK.md) | 分清裸机/Linux 软件；理解 gcc、ar、链接器、ELF，选择单个构建目标 |
+| 3 | [链接、启动、加载与调试](RUNTIME_AND_DEBUG.md) | 追踪 reset→Boot ROM→应用 _start→main→退出码；会查链接地址与异常 |
+| 4 | [嵌入式库原理与 API](LIBRARIES.md) | 理解 MMIO、UART/printf、CLINT、DMA、LLC、AXI RT、HAL 与 GPT |
+| 5 | [示例程序逐项导读](EXAMPLES.md) | 当前 9 个主测试源码逐项流程、前置配置、预期结果和局限；Ara 源码索引 |
+| 6 | [片外器件与接口实现参考](../EXTERNAL_DEVICES_AND_INTERFACES.md) | 存储器和其他接口的型号、控制器、仿真模型与软件支持对照 |
 
 第一次动手先完成 `HelloWorld/数组例 → ELF 与链接布局 → 匹配配置的装载与结果检查`。扩大到 DRAM 或 RVV 时，分别验证外存、向量硬件和软件状态。`dma_2d` 及依赖 DMA 的 AXI RT 测试须先解决[控制接口宽度门槛](../learning/peripheral-debug.html#dma)，不能作为默认可直接运行的第二步；CLIC、MMU stub 也有独立硬件要求。
 
@@ -74,4 +76,4 @@
 
 ## 5. 与工程任务的关系
 
-本轮是 L01 文档审查，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。最新状态与交接入口见[PROJECT_STATE](../PROJECT_STATE.md)，初始软件手册检查保留在 [2026-09-20 交接](../handoffs/2026-09-20_L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。
+本轮是 L01 文档审查，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。最新状态与交接入口见[PROJECT_STATE](../PROJECT_STATE.md)，初始软件手册检查保留在 [2026-09-20 交接](../handoffs/L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。

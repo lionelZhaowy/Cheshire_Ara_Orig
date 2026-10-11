@@ -51,7 +51,7 @@ status = subprocess.check_output(['git','status','--porcelain'],cwd=REPO,text=Tr
 unexpected = []
 initial_status = set((BASE/'evidence/initial_git_status.txt').read_text().splitlines())
 allowed = ('docs_codex/reviews/2026-10-11_architecture/', 'docs_codex/PROJECT_STATE.md',
-           'docs_codex/AGENT_TASKS.md', 'docs_codex/handoffs/2026-10-11_AR_architecture_review.md')
+           'docs_codex/AGENT_TASKS.md', 'docs_codex/handoffs/AR_architecture_review.md')
 for line in status.splitlines():
     if line not in initial_status and not line[3:].startswith(allowed): unexpected.append(line)
 outside_docs = [x for x in unexpected if not x[3:].startswith('docs_codex/')]

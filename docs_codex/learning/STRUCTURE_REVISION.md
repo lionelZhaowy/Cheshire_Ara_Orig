@@ -4,7 +4,7 @@
 
 ## 2026-10-11 既有文档审查与重构
 
-输入：`mp/ara-pulp-v2 / 2784340240915fe4338ec54bfd613723b127d62e`。范围限根/本地文档入口、现用教程及配置/软件参考、样式、文档生成/检查脚本。未修改生产代码、构建入口或依赖；既有 M01 未提交差异及未跟踪图稿/交接按输入哈希保护。完整输入见 [input.json](evidence/review-20261011/input.json)，简短交付见 [本轮交接](../handoffs/2026-10-11_L01_documentation_restructure.md)。
+输入：`mp/ara-pulp-v2 / 2784340240915fe4338ec54bfd613723b127d62e`。范围限根/本地文档入口、现用教程及配置/软件参考、样式、文档生成/检查脚本。未修改生产代码、构建入口或依赖；既有 M01 未提交差异及未跟踪图稿/交接按输入哈希保护。完整输入见 [input.json](evidence/review-20261011/input.json)，简短交付见 [本轮交接](../handoffs/L01_documentation_restructure.md)。
 
 ### 盘点与内容职责
 
@@ -75,7 +75,7 @@ git diff --check
 
 # L01 篇章结构修订 · 2026-09-29
 
-输入为 `69fabdd227e225bf9f5f0b9ec5fe9d056999fea6` 的深度扩充版本。依据[结构审查](../handoffs/2026-09-29_L01_structure_review.md)修订；该审查原文及索引记录保留。本次授权是教材、配图与必要维护工具，不涉及生产 RTL、软件、平台或依赖修改。
+输入为 `69fabdd227e225bf9f5f0b9ec5fe9d056999fea6` 的深度扩充版本。依据[结构审查](../handoffs/L01_structure_review.md)修订；该审查原文及索引记录保留。本次授权是教材、配图与必要维护工具，不涉及生产 RTL、软件、平台或依赖修改。
 
 ## 对上一轮问题的反思
 

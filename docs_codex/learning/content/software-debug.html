@@ -36,7 +36,7 @@
 <p>Serial Link 先把数据写完并满足可见性约定，再写 scratch0/1 的 64 位入口，最后以 scratch2 掩码 2 通知 ROM。当前源码按 bit1 判断，旧注释/随附软件文档有 bit0/bit2 表述差异；应以表达式和阶段协议为准。应用退出则改用同一 scratch2 的 bit0 与返回码。当前日志检查器主要识别 JTAG，不能把它原样用于 [SLINK] 成功判定；VCU118 Link 尚无已建立的板端闭环。</p>
 <p>UART 服务需 ACK=0x06 握手，READ/WRITE/EXEC 命令携带小端 addr64/len64 字段；终端直接发送 ELF 字节不构成该协议。WRITE 首次 ACK 不是数据写完，EOT 才是该传输阶段结束，EXEC 返回 EOC=0x14 及 32 位返回码。服务对输入目标地址没有完整白名单，也不验证 ELF；主机须限定合法 RAM 范围、长度和超时，不能对未知地址试探写入。</p>
 <h2 id="platform-rom-return">Platform ROM 的正常返回缺口</h2>
-<p>官方 Platform ROM 契约允许初始化后返回通用启动；本地 <code>_prom_check_run</code> 的 <code>jalr t0</code> 后紧邻 <code>boot_next_stage</code>，普通 ret 返回会落入下一阶段跳转逻辑，而非 _boot。已有审查同时检查了源汇编与已生成 ROM 指令；上游修复提交 <code>9b4c222df72f74f90ab9f36d80ba7b527f92e62b</code>（PR #187）未纳入当前 HEAD。详细证据见<a href="../handoffs/2026-10-06_L01_platform_rom_boot_review.md">独立核查</a>与<a href="../03_Platform_ROM_Clock_IP_Configuration.md">平台决策专题</a>。</p>
+<p>官方 Platform ROM 契约允许初始化后返回通用启动；本地 <code>_prom_check_run</code> 的 <code>jalr t0</code> 后紧邻 <code>boot_next_stage</code>，普通 ret 返回会落入下一阶段跳转逻辑，而非 _boot。已有审查同时检查了源汇编与已生成 ROM 指令；上游修复提交 <code>9b4c222df72f74f90ab9f36d80ba7b527f92e62b</code>（PR #187）未纳入当前 HEAD。详细证据见<a href="../handoffs/L01_platform_rom_boot_review.md">独立核查</a>与<a href="../03_Platform_ROM_Clock_IP_Configuration.md">平台决策专题</a>。</p>
 <p>影响范围是启用非零 PlatformRom 并期望正常返回的路径；默认 0 绕过该调用，不据此判定全部既有启动失败。修复与重新生成 ROM 属于 S01-B01 工程任务，本轮未实施。后续须同时验收空钩子返回、实际初始化及默认启动；只更新源 S、保留旧 ROM RTL 不能完成修复。</p>
 <h2 id="media-start">介质启动的已有局限</h2>
 <p>先确定镜像含的是符合本地 raw/GPT 契约的连续载荷，而非误把 ELF header 放到 SPM 执行入口。默认最多 96 个 512 字节 LBA，即 48 KiB；GPT 简化回退不等于完整分区校验或认证。ROM 从 code_buf 起点调用，因此 entry 的布置与 JTAG 直接取 e_entry 的规则不同。</p>

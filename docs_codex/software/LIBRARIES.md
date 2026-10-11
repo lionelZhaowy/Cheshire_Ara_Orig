@@ -8,6 +8,8 @@
 
 ## 1. 软件接口的职责与组合
 
+整体分层图、对应源码及开发工具见[软硬件层次与工具索引](LAYERS_AND_TOOLS.md)。下文聚焦各接口的用法与限制。
+
 ```text
 UART 输出：main → printf → _putchar → UART DIF → MMIO
 介质读取：Boot ROM / 应用 → 器件 HAL → SPI/I2C DIF → MMIO
