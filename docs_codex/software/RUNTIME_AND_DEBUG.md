@@ -1,6 +1,6 @@
 # 链接、启动、程序加载与调试
 
-返回 [软件导航](README.md)。来源：[链接目录](../../sw/link)、[应用 crt0](../../sw/lib/crt0.S)、[Boot ROM 汇编](../../hw/bootrom/cheshire_bootrom.S)、[Boot ROM C](../../hw/bootrom/cheshire_bootrom.c)。
+返回[软件导航](README.md)。本页用于查链接布局、启动条件和调试操作；连续机制见[启动主章](../learning/boot.html)与[调试主章](../learning/boot-debug.html)。来源：[链接目录](../../sw/link)、[应用 crt0](../../sw/lib/crt0.S)、[Boot ROM 汇编](../../hw/bootrom/cheshire_bootrom.S)、[Boot ROM C](../../hw/bootrom/cheshire_bootrom.c)。
 
 ## 1. 程序产物的用途
 
@@ -65,21 +65,30 @@ riscv64-unknown-elf-nm -n sw/tests/helloworld.spm.elf
 
 ## 3. Boot ROM 与应用的两级初始化
 
+下图限定在 `Bootrom=1、PlatformRom=0` 且保留内部 LLC 的配置。JTAG 的外部接管与 ROM C 的介质服务是两条路径，不能串成同一个初始化完成序列。
+
 ```mermaid
 flowchart TD
   R[硬件复位 BootAddr] --> ROM[Boot ROM _start]
-  ROM --> MEM[等待 LLC BIST / 配为 SPM / 建栈]
-  MEM --> MODE[Boot ROM main 选择启动模式]
-  MODE --> PASS[被动 JTAG / Serial Link / UART 加载]
+  ROM --> MEM[等待 LLC BIST / 写 SPM 配置]
+  MEM --> STACK[ROM 继续设置早期 sp]
+  STACK --> MODE[Boot ROM main 选择启动模式]
+  MEM -. VIP 检查配置位后请求 halt .-> DBG[JTAG halt / SBA 装载 / 写 DPC / resume]
+  MODE --> PASS[Serial Link / UART 被动加载服务]
   MODE --> DISK[SD / Flash / EEPROM 读取 payload]
-  PASS --> APP[应用 _start: crt0.S]
+  DBG --> APP[应用 _start: crt0.S]
+  PASS --> APP
   DISK --> APP
   APP --> INIT[hart 选择 / sp gp / mtvec / BSS / FS]
   INIT --> MAIN[应用 main]
   MAIN --> EXIT[_exit 写 SCRATCH2 并 ret]
 ```
 
-Boot ROM 首先建立片上存储和调用环境。被动模式等待 loader；自主模式通过 HAL 读介质，可按 GPT 找 payload，也可读 raw 内容。启动模式 0/1/2/3 分别为被动/SPI SD/SPI Flash/I2C EEPROM。
+VIP 的 `jtag_elf_halt_load` 只等待 `CFG_SPM_LOW.bit0`，未等待 ROM C 或后续栈设置；图中的虚线表示接管条件，不保证暂停时 ROM 正好处于该位置。SPM 链接程序继承进入时的 sp，故须记录实际暂停 PC、sp 与可写栈区，再确认装载及入口条件。默认栈初始化和 C 调用对齐仍有独立核查要求，见[栈交接诊断](../learning/software-debug.html#stack-handoff)。
+
+ROM C 的模式 0 提供 Serial Link/UART 被动服务，模式 1/2/3 分别读取 SPI SD、SPI NOR、I2C EEPROM。自主模式读取的是 GPT/raw 载荷，搬到 SPM 后执行；外部介质中的载荷不是片上 Boot ROM 本身。镜像更新改变后续程序，固定 ROM 继续承担原有读取流程。
+
+### 3.1 应用 crt0 的责任
 
 应用 crt0 的实际顺序：
 
@@ -93,7 +102,19 @@ Boot ROM 首先建立片上存储和调用环境。被动模式等待 loader；�
 
 因此现有 crt0 **本身执行 D 扩展指令**；即便 C 程序只做整数加法，也不能原样拿它配无浮点 CPU。crt0 没有统一设置 VS，RVV 应用在第一条向量指令前单独设置。
 
-当前不是通用 libc/RTOS 启动框架：未见 C++ 全局构造调用、完整线程调度、浮点/向量任务上下文切换或 heap 系统调用适配。需要这些功能时应另建运行时契约。
+以上限定在 `sw/lib/crt0.S` 的裸机运行时，不能据此推断 SDK 中的 Linux 源码也没有上下文实现。该裸机入口不是通用 libc/RTOS 启动框架：未见 C++ 全局构造调用、完整线程调度、浮点/向量任务上下文切换或 heap 系统调用适配。需要这些功能时应另建运行时契约。
+
+<a id="rom运行环境与平台初始化补充2026-10-07"></a>
+
+<a id="teaching-20261007"></a>
+
+### 3.2 Platform ROM 与可编程 IP 的初始化
+
+Platform ROM 是平台提供的早期代码入口。`Cfg.PlatformRom` 决定地址，SoC 将其报告到只读 `PLATFORM_ROM` 寄存器；wrapper 还要提供对应存储、映射和代码。内置 Boot ROM 开启且内部 LLC 保留时，平台调用位于 SPM 初始化及栈调整之后、通用启动之前。若 `HW_FEATURES.llc=0`，ROM 直接跳到 `_prom_check_run`，没有建立内部 SPM；先前加载的链接栈值不保证对应地址可写。平台需提前提供覆盖该地址的可写存储，或先以不依赖栈的早期汇编建立替代存储并设置符合 ABI 的 sp，再调用需要栈的 C 代码。这也适用于 Bootrom=1 的 LLC 旁路组合。关闭 Bootrom 时 CPU 直接从 PlatformRom 地址开始，平台必须自行承担第一阶段职责。
+
+本地 `_prom_check_run` 的 `jalr t0` 正常返回会落入紧邻的 `boot_next_stage`，与官方允许正常返回继续通用启动的契约不符。已有核查记录指出官方修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）尚未应用；本轮输入 `278434024` 的源汇编仍保留上述布局。源码及生成 ROM 的核对见 [Platform ROM 专题](../03_Platform_ROM_Clock_IP_Configuration.md)；本轮没有修改生产 ROM，非零钩子的正常返回需要独立修复与回归。
+
+ROM 指令固定，不妨碍其向可编程 PLL 写安全初值，也不妨碍后续软件按 IP 契约调频。约束来自执行依赖：CVA6 在调用 Platform ROM 前需要有效时钟和取指路径；保留 LLC 时还经过内部 SPM/栈初始化，无 LLC 时首次栈访问的安全条件由平台保证；修改当前 CPU 的时钟源时也要保证控制路径持续可运行。外部配置表只能在读取介质已可用后加载和校验。详细推演见[启动安全频率与运行时调频](../learning/clocks.html#boot-and-runtime-frequency)。
 
 <a id="4-退出码异常和卡住"></a>
 
@@ -108,7 +129,7 @@ Boot ROM 首先建立片上存储和调用环境。被动模式等待 loader；�
 | 没串口、PC 在 trap_vector | mcause、mepc、mtval；反汇编出错指令、ISA/FS/VS |
 | 卡在 clint_get_core_freq | RTC 是否在跳变，参考频率配置是否正确 |
 | 卡在 uart_write/flush | UART 使能、时钟、引脚与状态寄存器 |
-| 卡在 DMA DONE_ID | 硬件 DMA、地址可达、任务是否提交、AXI RT 隔离/错误响应 |
+| 卡在 DMA DONE_ID | 先查[控制接口宽度门槛](../learning/peripheral-debug.html#dma)，再查任务提交、地址可达与 AXI RT 隔离/错误响应 |
 | main 返回但 GDB 不停止 | 没有 OS exit；观察 _exit/SCRATCH2 或设明确断点 |
 | 软件输出 PASS，但不能回归确认 | 检查是否所有失败分支均返回非零；见矩阵乘测试 |
 
@@ -120,7 +141,7 @@ Boot ROM 首先建立片上存储和调用环境。被动模式等待 loader；�
 
 | 参数 | 用法 |
 | --- | --- |
-| SELCFG=0 | DefaultCfg，适合普通标量/默认 DMA |
+| SELCFG=0 | DefaultCfg；标量用例仍需匹配 profile，DMA 另有控制接口验收门槛 |
 | SELCFG=1 | AXI RT 配置，Ara 仍关闭 |
 | SELCFG=2 | CLIC 配置，CPU profile/生成包要匹配 |
 | SELCFG=3 | Ara 2 lanes/2048 配置；还须向量 CPU profile 和正确 decoder 清单 |
@@ -196,17 +217,3 @@ UART debug 是二进制协议，不是把 ELF 文件直接发给终端：ACK=0x0
 新增 `name.spm.c` 适合小型 MMIO/库学习；新增 `name.dram.c` 用于已可用 DDR 上的大数据。原构建规则会自动收集它们。以已有 HelloWorld 的 UART 初始化为起点，先检查需要的硬件 feature，再执行算法并返回明确错误码，返回前 flush UART。
 
 需要异常处理时提供自定义 `trap_vector`，先用整数代码保存/报告 CSR，不在未建立上下文保护时调用向量/浮点处理。需要 RTOS、malloc、文件 IO 或 C++ 时，先设计运行时适配，不能仅因为工具链带 libc/libstdc++ 就认为这些功能已经接好。
-
-<a id="teaching-20261007"></a>
-
-## ROM、运行环境与平台初始化补充（2026-10-07）
-
-Boot ROM、外部镜像和执行存储承担不同职责。NOR 启动时，CPU 先执行片上 ROM 中的 SPI 驱动，把外部 NOR 载荷读到 SPM，再跳到 SPM。四种 boot mode 是固定 ROM 中的策略分支；选择不同介质并不改变 ROM 本身。
-
-Platform ROM 是平台提供的早期代码入口。`Cfg.PlatformRom` 决定地址，SoC 将其报告到只读 `PLATFORM_ROM` 寄存器；wrapper 还要提供对应存储、映射和代码。内置 Boot ROM 开启且内部 LLC 保留时，平台调用位于 SPM 初始化及栈调整之后、通用启动之前。若 `HW_FEATURES.llc=0`，ROM 直接跳到 `_prom_check_run`，没有建立内部 SPM；先前加载的链接栈值不保证对应地址可写。平台需提前提供覆盖该地址的可写存储，或先以不依赖栈的早期汇编建立替代存储并设置符合 ABI 的 sp，再调用需要栈的 C 代码。这也适用于 Bootrom=1 的 LLC 旁路组合。关闭 Bootrom 时 CPU 直接从 PlatformRom 地址开始，平台必须自行承担第一阶段职责。
-
-本地 `_prom_check_run` 的 `jalr t0` 正常返回会落入紧邻的 `boot_next_stage`，与官方允许正常返回继续通用启动的契约不符。上游修复 `9b4c222df72f74f90ab9f36d80ba7b527f92e62b`（PR #187）不在当前 HEAD 祖先链中。源码及生成 ROM 的核对见 [Platform ROM 专题](../03_Platform_ROM_Clock_IP_Configuration.md)；本轮没有修改生产 ROM，非零钩子的正常返回需要独立修复与回归。
-
-ROM 指令固定，不妨碍其向可编程 PLL 写安全初值，也不妨碍后续软件按 IP 契约调频。约束来自执行依赖：CVA6 在调用 Platform ROM 前需要有效时钟和取指路径；保留 LLC 时还经过内部 SPM/栈初始化，无 LLC 时首次栈访问的安全条件由平台保证；修改当前 CPU 的时钟源时也要保证控制路径持续可运行。外部配置表只能在读取介质已可用后加载和校验。详细推演见[启动安全频率与运行时调频](../learning/clocks.html#boot-and-runtime-frequency)。
-
-C 环境的责任继续由各层分担：链接器为 `.text` 代码、`.rodata` 常量、`.data` 初值和 `.bss` 零初始化对象安排空间；加载器放置有字节载荷的内容；本地 crt0 清 BSS、建立 gp/栈条件和 FS 后调用 main。本地链接脚本把部分输入节合并为 `.misc`，所以 ELF 节名不一定逐项等于 C 存储类别。分组有利于分配权限和减少镜像零字节，但节名本身不产生硬件保护。

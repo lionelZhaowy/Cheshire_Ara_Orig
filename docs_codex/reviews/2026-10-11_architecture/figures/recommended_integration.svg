@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+<defs>
+<marker id="data" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#3574A8"/></marker>
+<marker id="control" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#7955A0"/></marker>
+<marker id="new" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BE7127"/></marker>
+</defs>
+<rect x="0" y="0" width="1500" height="1000" fill="#FFFFFF"/>
+<text x="40" y="45" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" fill="#20334A">推荐首版集成关系：保留系统路径，限定共享存储与搬运职责</text>
+<rect x="45" y="115" width="175" height="90" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="132.5" y="160.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">CVA6 / Ara</text>
+<text x="132.5" y="188.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">保留向量基线</text>
+<rect x="280" y="115" width="205" height="90" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="382.5" y="160.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">系统 AXI 互连</text>
+<text x="382.5" y="188.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">控制 / 普通内存 / 外部窗口</text>
+<polyline points="220,160 280,160" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)"/>
+<rect x="550" y="115" width="215" height="90" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="657.5" y="160.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">原子适配 + LLC</text>
+<text x="657.5" y="188.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">普通 CPU / Ara 内存</text>
+<polyline points="485,160 550,160" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)"/>
+<rect x="1030" y="115" width="200" height="345" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="1130.0" y="287.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">DDR 合流 / 适配</text>
+<text x="1130.0" y="315.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">按交付端口组织</text>
+<polyline points="765,160 1030,160" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="1280" y="210" width="180" height="150" rx="8" fill="#E5F3EF" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="1370.0" y="285.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">DDR3 子系统</text>
+<text x="1370.0" y="313.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">Controller + PHY</text>
+<polyline points="1230,285 1280,285" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="550" y="270" width="215" height="90" rx="8" fill="#E8F1F8" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="657.5" y="315.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">静态不缓存共享区</text>
+<text x="657.5" y="343.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">同一 PA / 独立外部路由</text>
+<polyline points="485,180 510,180 510,315 550,315" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<polyline points="765,315 1030,315" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="280" y="490" width="235" height="110" rx="8" fill="#E5F3EF" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="397.5" y="545.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">GB 访问与 bank 仲裁</text>
+<text x="397.5" y="573.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">首版系统侧用外部 AXI 从口</text>
+<polyline points="383,205 383,490" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<text x="145" y="450" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="start" fill="#20334A">CPU / Ara / iDMA 可达</text>
+<rect x="45" y="490" width="180" height="110" rx="8" fill="#E5F3EF" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="135.0" y="545.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">独立 GB SRAM</text>
+<text x="135.0" y="573.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">容量 / 宏组织待定</text>
+<polyline points="225,545 280,545" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="595" y="490" width="210" height="110" rx="8" fill="#E5F3EF" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="700.0" y="545.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">NPU 计算模块</text>
+<text x="700.0" y="573.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">Dremi 包含关系待确认</text>
+<polyline points="515,545 595,545" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="595" y="365" width="285" height="80" rx="8" fill="#E5F3EF" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="737.5" y="405.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">NPU 数据搬运器</text>
+<text x="737.5" y="433.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">DDR ↔ GB；一个所有者</text>
+<polyline points="595,405 545,405 545,515 515,515" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<polyline points="880,405 1030,405" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)" stroke-dasharray="9 5"/>
+<rect x="45" y="780" width="180" height="85" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="135.0" y="822.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">LVDS 接收</text>
+<text x="135.0" y="850.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">解析 / CDC / FIFO</text>
+<rect x="285" y="780" width="180" height="85" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="375.0" y="822.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">ISP</text>
+<text x="375.0" y="850.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">私有行缓冲优先</text>
+<polyline points="225,822 285,822" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" stroke-dasharray="9 5"/>
+<rect x="545" y="780" width="195" height="85" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="642.5" y="822.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">帧边界选择</text>
+<text x="642.5" y="850.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">RAW / ISP 二选一</text>
+<polyline points="465,822 545,822" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" stroke-dasharray="9 5"/>
+<polyline points="245,822 245,720 643,720 643,780" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" stroke-dasharray="9 5"/>
+<text x="325" y="706" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="start" fill="#20334A">RAW 支路</text>
+<rect x="820" y="780" width="220" height="85" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="930.0" y="822.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">图像写入器</text>
+<text x="930.0" y="850.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">打包 / stride / AXI 响应</text>
+<polyline points="740,822 820,822" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" stroke-dasharray="9 5"/>
+<polyline points="1040,822 1130,822 1130,460" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" stroke-dasharray="9 5"/>
+<rect x="45" y="270" width="225" height="105" rx="8" fill="#F1EBF6" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="157.5" y="322.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">新增 IP 控制 / 状态</text>
+<text x="157.5" y="350.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">外部 Regbus + PLIC IRQ</text>
+<polyline points="330,205 330,325 270,325" fill="none" stroke="#7955A0" stroke-width="3" marker-end="url(#control)" marker-start="url(#control)" stroke-dasharray="9 5"/>
+<text x="45" y="930" font-family="WenQuanYi Zen Hei" font-size="18" font-weight="normal" text-anchor="start" fill="#20334A">实线：复用当前路径    虚线：本轮建议、尚未实现    双向箭头：读写访问能力</text>
+<text x="45" y="963" font-family="WenQuanYi Zen Hei" font-size="18" font-weight="normal" text-anchor="start" fill="#20334A">CPU 调度；控制/完成通知覆盖新增 IP。后续再评估 Ara 宽口直达 GB、ISP 共享 GB 和直接流式交接。</text>
+</svg>

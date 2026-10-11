@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>从独立 Reg 单元逐步进入系统。 前置：<a href="adapters.html">11 · 接口适配与 RegBus</a>、<a href="interrupts.html">15 · 定时器与中断系统</a>。主动访存扩展部分再结合<a href="dma.html">DMA机制</a>，独立Reg例不依赖本地iDMA运行通过。</p></div>
+<div class="goals"><strong>本章任务</strong><p>从独立 Reg 单元逐步进入系统。 前置：<a href="adapters.html">08 · 接口适配与 RegBus</a>、<a href="interrupts.html">18 · 定时器与中断系统</a>。主动访存扩展部分再结合<a href="dma.html">DMA机制</a>，独立Reg例不依赖本地iDMA运行通过。</p></div>
 <h2 id="control-path">Reg 设备的控制流程</h2>
 <h3 id="unit">寄存器加法设备的操作示例</h3>
 <p><a href="examples/hw/lesson_reg_adder.sv">lesson_reg_adder.sv</a> 是教材独立的 32 位 Reg 单元。软件写 A/B，发 START，硬件计算模 2³² 加法，置 DONE 并按 IRQ_EN 输出电平中断。它没有 AXI burst 或 ID，接入系统时需要已有 AXI→Reg 桥和地址适配。该单元未接入生产 SoC。</p>

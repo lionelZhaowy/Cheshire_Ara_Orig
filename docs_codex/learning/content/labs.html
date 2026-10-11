@@ -71,7 +71,7 @@ JOURNEY_DEPTH=1 INJECT_ERROR=1 timeout 60 bash docs_codex/learning/scripts/build
 <p>编译阶段检查对应内核中的 vset、load/add/store 与 vredsum，自动向量化另读 vectorization.txt；CRT、主程序、参考循环和支持库保持标量。目标阶段对 PC/CPU trans_id、Ara req_valid/ready、VRF/VLSU 活动和内存地址建立关联。结果阶段要求 RVV checked=137、RVV_REDUCE n=137 sum=28085、RVV_DEPTH cases=6 errors=0、LEARN errors=0 和正常完成，同时保留首错诊断。</p>
 <p>日志检查器只能验证日志契约。独立数值校验能发现重复元素、少算尾部、错误步长和归约累计等问题，但 UART PASS 仍不证明目标配置或时序路径正确。性能另按<a href="vector.html#performance">计时条件</a>建立实验；本轮没有目标运行或周期成绩。</p>
 <h2 id="lab-f">实验 F · 独立寄存器设备契约</h2>
-<p><strong>目的与前置：</strong>完成<a href="integration.html">第 27 章</a>，检验字节写、启动/完成和 W1C/IRQ。输入 lesson_reg_adder.sv 与 tb_lesson_reg_adder.sv；只需 vlib/vmap/vlog/vsim，无生产 SoC、DPI 或 ELF。</p>
+<p><strong>目的与前置：</strong>完成<a href="integration.html">第 29 章</a>，检验字节写、启动/完成和 W1C/IRQ。输入 lesson_reg_adder.sv 与 tb_lesson_reg_adder.sv；只需 vlib/vmap/vlog/vsim，无生产 SoC、DPI 或 ELF。</p>
 <pre><code>bash docs_codex/learning/scripts/run_hw_unit.sh</code></pre>
 <p><strong>产物与判据：</strong>脚本在新 /tmp/cheshire-hw-unit.* 建 work 库，打印 setup/compile/run/injected 日志路径，建库各步骤 30 秒，编译与每次运行各 60 秒预算。正常应出现 HW_UNIT_PASS 并通过 35 项检查，注入 +INJECT_FAIL 后检查器必须拒绝。工具进程码与日志判据共同判断，历史 Questa 在 fatal 后仍可能返回 0。</p>
 <p><strong>失败首查：</strong>工具/许可 → 编译首错 → 首个断言时间点及寄存器事务。历史 2026-09-23 运行记录保留；本轮是否重跑以证据页为准。该两文件单元没有接入 Cheshire，系统地址、中断 handler、AXI 桥和 DDR 仍需集成验证。</p>

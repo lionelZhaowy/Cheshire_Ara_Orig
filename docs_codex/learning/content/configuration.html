@@ -7,18 +7,22 @@
 <h3 id="configuration-contract">CPU、SoC 与软件配置的系统契约</h3>
 <p>CPU 配置回答“能执行哪些指令、有哪些缓存和保护资源”；SoC 配置回答“这些核连到哪些设备、以什么位宽和地址访问”；软件配置回答“编译出什么指令、遵守什么调用约定、放在哪块存储”。最后，运行时初始化使已经存在的硬件进入可用状态。它们共同描述一台机器，只靠任意一层都不足以定义可运行系统。</p>
 <figure><img src="assets/figures-20261007/teaching-config-contract.svg" alt="CVA6 profile与Cheshire配置经覆盖和派生生成硬件，软件ISA、ABI和链接布局与其核对，运行时初始化使用这些资源"><figcaption>教学示意：实线表示配置消费，虚线表示需要工程师核对的软硬件约束；不是运行中的信号波形。</figcaption></figure>
-<p>以向量数组加法为例：<code>-march</code> 带 V 只允许编译器输出向量指令；CPU 的 RVV 和真实 decoder 负责识别指令；Cfg.Ara 产生实际执行硬件；VS 打开状态许可；向量地址还必须能到达已就绪的存储。指令被识别、请求被接受、数据访问完成、结果正确是连续但不同的条件；向量章会沿一个数组逐项解释。</p>
+<p>以向量数组加法为例：<code>-march</code> 带 V 只允许编译器输出向量指令；CPU 的 RVV 和真实 decoder 负责识别指令；Cfg.Ara 产生实际执行硬件；VS 打开状态许可；向量地址还必须能到达已就绪的存储。指令被识别、请求被接受、数据访问完成、结果正确是连续但不同的条件；<a href="ara.html#walkthrough">Ara 章</a>已沿一个数组解释这些条件；这里把它们落实为配置选择。</p>
 <h3 id="elaboration">常量配置与硬件实例生成</h3>
 <p><code>cheshire_cfg_t</code> 是打包的配置结构，<code>DefaultCfg</code> 提供起点。平台函数复制它并修改字段，再以 parameter 传入 SoC。编译器读取包、类型和模块定义；展开器确定参数、计算常量函数、展开 generate 分支和实例数组；综合器随后优化逻辑并映射实现单元。软件写寄存器时，这些实例和位宽已经确定。</p>
 <figure><img src="assets/figures-20261007/new-configuration.svg" alt="profile 与 SoC 配置经覆盖和派生生成 CPU、Ara 和互连，软件配置另行匹配"><figcaption>箭头表示实际消费者关系；运行时寄存器使用已展开的资源。</figcaption></figure>
 <p>CPU 实际配置经历 <code>profile::cva6_cfg → gen_cva6_cfg(Cfg) → build_config → cva6</code>。第一步给出原值，第二步覆盖地址属性、总线、PMP 和 CLIC 等平台字段，第三步派生内部能力，例如由 RVV 得到 EnableAccelerator。SoC 默认把 PMP 条目数覆盖为 0，且设置 CvxifEn=0；本地 Ara 组合采用专用加速器及地址翻译协作接口。</p>
 <p><code>generate if</code> 选择实例，<code>generate for</code> 复制实例；普通 <code>always_comb</code> 中的地址判断则在运行中对每笔请求求值。<code>parameter type</code> 携带请求结构类型，其地址、数据、ID 和字节使能宽度必须与数值参数匹配。<code>$clog2(N)</code> 用于来源编码，单端口时还需留意防零宽的辅助函数。</p>
+<h3 id="effective-values">默认值、目标覆盖与构建最终值</h3>
+<p>参数声明、配置函数和已构建目标是三份不同证据。<code>ara.sv</code> 声明 NrLanes/VLEN 默认 0，但当前 SoC 实例显式传入 Cfg 字段；<code>DefaultCfg.Ara=0</code> 也不能据此判断 FPGA 没有 Ara，因为 wrapper 会再处理宏。先确定一个目标，再沿覆盖链计算。</p>
+<table><tr><th>取值层</th><th>具体来源与例子</th><th>能够证明的范围</th></tr><tr><td>声明及公共默认</td><td>cheshire_pkg::DefaultCfg：Ara=0、AraNrLanes=2、AraVLEN=2048、AxiDataWidth=64</td><td>函数未覆盖字段时的起点；Ara=0 时并未因 lane/VLEN 非零而实例化 Ara</td></tr><tr><td>仿真目标覆盖</td><td>tb_cheshire_pkg::gen_cheshire_ara_cfg：Ara=1、2/2048；fixture 按 SelectedCfg 取 DutCfg</td><td>SelectedCfg=3 的静态取值；CPU profile 仍由该次编译清单决定</td></tr><tr><td>FPGA 目标覆盖</td><td>gen_cheshire_xilinx_cfg：RTC=1 MHz、SerialLink=0，Usb 看 USE_USB；Ara/lane/VLEN 看宏</td><td>须再对照选中板卡的加源脚本；不能把 TB 的 2/2048 当成所有 FPGA 目标值</td></tr><tr><td>派生与消费</td><td>gen_cva6_cfg/build_config、gen_axi_in/out、get_llc_size 和 SoC 各实例</td><td>CPU 最终字段、端口/ID、容量和位宽的源码推导</td></tr><tr><td>特定构建的最终值</td><td>该次清单/宏、展开日志或层级参数、产物来源</td><td>必须有该次证据才可关联某个 work 库或 bitstream；本轮没有重新展开目标</td></tr></table>
+<p>实例声明为 <code>Cfg='0</code> 常是要求上层显式供参的占位，并不是另一个默认平台。本章数值来自当前 checkout 的配置与消费者；无法关联到具体产物时，称“静态推导”，不称“板上最终生效”。</p>
 <h2 id="software-contract">软件选项与运行时配置的联动</h2>
 <p>编译和运行时设置也各有职责：<code>-march</code> 决定允许生成的指令，<code>-mabi</code> 决定函数之间如何传值，链接脚本安排地址；<code>crt0</code> 建立栈和 C 初始状态，驱动写设备寄存器，CSR 设置处理器运行状态。编译参数不向硬件写入任何寄存器，寄存器操作也不能补出综合时未实例化的单元。</p>
 <p>本地原软件默认 <code>rv64gc_zifencei/lp64d</code>；教材将向量内核单独以带 V 的选项编译，保持公共初始化代码可在开启 VS 前执行。仅仅把 C 中的浮点表达式删掉，仍会留下 crt0 的双精度浮点初始化指令。若要构造无 F/D 的精简系统，必须把启动代码、库和 ABI 一同纳入另一项实现任务。</p>
 <p>建议为每组候选保留一行配置记录：CPU profile 与宏、最终 Cfg、生成文件版本、编译器与 ISA/ABI、链接模式、装载路径、初始化责任及实际验证环境。<a href="../configuration/RECIPES.md">配置流程</a>提供详细入口；<a href="build.html#software-options">软件选项表</a>解释 Make 变量的实际消费者。本章的组合为源码静态审查，动态通过状态沿用各实验的独立记录。</p>
 <h2 id="advanced-configurations">进阶配置组合参考</h2>
-<p>第一次建立标量程序可以在此转入运行模型。以下保留 Ara、拓扑变化、AXI RT、CLIC 和 Router 的原有配置事实及案例，分别在理解对应机制后返回使用；它们不作为本书第一个数组/UART程序的实施前置。</p>
+<p>掌握覆盖关系后，可按本次任务选择以下参考。以下保留 Ara、拓扑变化、AXI RT、CLIC 和 Router 的原有配置事实及案例，分别在理解对应机制后返回使用；它们不作为本书第一个数组/UART程序的实施前置。</p>
 <h3 id="ara">向量组合的配置推导</h3>
 <p>当前 TB 的 <code>SelectedCfg=3</code> 从四项数组中选取 <code>gen_cheshire_ara_cfg()</code>：在默认值上设置 Ara=1、AraNrLanes=2、AraVLEN=2048。它在展开阶段生效，CPU profile 早在编译时已经选定。因此真实向量 decoder、向量 profile 和 SoC Ara 实例必须在同一组输入中匹配。</p>
 <p>lane 数决定向量寄存器分片和执行并行规模；Ara VLEN 是每个架构向量寄存器的位数。32 个寄存器在 VLEN=2048 时共保存 8 KiB 有效数据。CPU profile 中同名 VLEN=64 表示地址容器宽度。当前 Ara 本地 AXI 数据宽度为 <code>32×AraNrLanes</code>，增加 lane 会影响位宽转换及存储压力。</p>

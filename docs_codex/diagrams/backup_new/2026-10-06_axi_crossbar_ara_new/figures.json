@@ -1,0 +1,22 @@
+[
+  {
+    "name": "crossbar_ara",
+    "height": 480,
+    "width_mm": 182,
+    "caption": "仿真 Ara 配置的 7×5 全连接 AXI Crossbar。每个输入按 AR/AW 地址译码；每个输出独立仲裁。矩阵实心点表示可达连接，蓝色折线是 Ara→主存端口的请求示例；不同输出可并行，同一输出在该处竞争。S 为 Crossbar 从端口，接发起者；M 为主端口，接目标。箭头是逻辑请求方向，R/B 返回通道省略。",
+    "source": "2026-10-06_axi_crossbar_ara/ppt_editable_final/crossbar_ara_ppt.svg",
+    "mapping": "7个输入、5个输出、每输入DEMUX/每输出MUX、全连接→本图；配置、地址窗口、RT与FPGA差异→图注补充。",
+    "text_count": 45,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "ddr_qos_proposal",
+    "height": 300,
+    "width_mm": 182,
+    "caption": "2026-10-06 三端口接入建议的重绘：SoC 经现有原子适配和 LLC 接 S0，ISP 与 NPU 数据分别旁路至 S1/S2。虚线轮廓表示候选控制器边界，内部逻辑为接入抽象；多端口共享同一 DDR 带宽。该历史方案与 2026-10-10 的 GB/统一搬运器方案并列保留，不把两个版本拼成已经实现的架构。",
+    "source": "2026-10-06_axi_crossbar_ara/ppt_editable_final/ddr_qos_proposal_ppt.svg",
+    "mapping": "三个请求源、LLC旁路、端口仲裁与命令调度→本图；供应商约束和一致性边界→图注。",
+    "text_count": 14,
+    "text_bbox_overlaps": []
+  }
+]

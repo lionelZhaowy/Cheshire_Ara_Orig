@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <title>启动初始化的软硬件对应关系</title>
+  <desc>当前 Cheshire 的主时钟、CPU、Boot ROM、LLC tag BIST、配置寄存器与 SPM，及 ROM 汇编、ROM C、载荷 CRT0 的对应关系。未表示已实现 ASIC PLL。</desc>
+  <rect x="0" y="0" width="1600" height="900" fill="#FFFFFF"/>
+  <g font-family="Microsoft YaHei" fill="#172B4D">
+    <text x="40" y="64" font-size="42" font-weight="bold">启动初始化的软硬件对应关系</text>
+    <text x="40" y="105" font-size="22" fill="#526477">当前源码：Bootrom=1、PlatformRom=0、内部 LLC 启用；载荷沿用根 SDK 启动入口</text>
+
+    <rect x="40" y="140" width="650" height="650" rx="14" fill="#F5F7FA" stroke="#B8C6D4" stroke-width="2"/>
+    <rect x="940" y="140" width="620" height="650" rx="14" fill="#F5F7FA" stroke="#B8C6D4" stroke-width="2"/>
+    <text x="70" y="184" font-size="29" font-weight="bold">硬件：存储、总线与自主状态机</text>
+    <text x="970" y="184" font-size="29" font-weight="bold">软件：由同一个 CVA6 执行</text>
+
+    <rect x="70" y="205" width="580" height="48" rx="8" fill="#E6EDF4" stroke="#9BAEBF" stroke-width="2"/>
+    <text x="360" y="237" text-anchor="middle" font-size="22">有效 clk_i / rst_ni：由外围平台提供</text>
+    <path d="M 180 253 L 180 280" fill="none" stroke="#526477" stroke-width="3"/>
+    <polygon points="180,290 173,277 187,277" fill="#526477"/>
+    <path d="M 515 253 L 515 280" fill="none" stroke="#526477" stroke-width="3"/>
+    <polygon points="515,290 508,277 522,277" fill="#526477"/>
+
+    <rect x="70" y="290" width="235" height="82" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="187" y="325" text-anchor="middle" font-size="27" font-weight="bold">CVA6</text>
+    <text x="187" y="355" text-anchor="middle" font-size="21">取指并执行机器指令</text>
+    <rect x="380" y="290" width="270" height="82" rx="10" fill="#FFF3D9" stroke="#B68A2F" stroke-width="2"/>
+    <text x="515" y="325" text-anchor="middle" font-size="25" font-weight="bold">LLC tag BIST</text>
+    <text x="515" y="355" text-anchor="middle" font-size="21">复位后自动发起读写测试</text>
+    <line x1="187" y1="372" x2="187" y2="405" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="187,415 180,402 194,402" fill="#4478AA"/>
+    <line x1="515" y1="372" x2="515" y2="405" stroke="#B68A2F" stroke-width="3"/>
+    <polygon points="515,415 508,402 522,402" fill="#B68A2F"/>
+
+    <rect x="70" y="415" width="235" height="125" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="90" y="448" font-size="22" font-weight="bold">Boot ROM ① / ②</text>
+    <text x="90" y="477" font-size="20">地址：0x02000000</text>
+    <text x="90" y="506" font-size="20">cheshire_bootrom.sv</text>
+    <text x="90" y="529" font-size="18" fill="#526477">S / C 预先编译为 ROM 内容</text>
+    <rect x="380" y="415" width="270" height="125" rx="10" fill="#FFF3D9" stroke="#B68A2F" stroke-width="2"/>
+    <text x="400" y="448" font-size="25" font-weight="bold">LLC 配置寄存器</text>
+    <text x="400" y="478" font-size="21">DONE：自测完成</text>
+    <text x="400" y="507" font-size="21">BIST_OUT：错误位</text>
+    <text x="400" y="530" font-size="19">CFG_SPM / COMMIT</text>
+
+    <line x1="187" y1="540" x2="187" y2="600" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="187,610 180,597 194,597" fill="#4478AA"/>
+    <text x="187" y="574" text-anchor="middle" font-size="19" fill="#4478AA">ROM 中的设备驱动</text>
+    <line x1="515" y1="540" x2="515" y2="600" stroke="#B68A2F" stroke-width="3"/>
+    <polygon points="515,610 508,597 522,597" fill="#B68A2F"/>
+    <text x="515" y="574" text-anchor="middle" font-size="19" fill="#82601B">CPU 提交 SPM 配置</text>
+
+    <rect x="70" y="610" width="235" height="125" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="90" y="644" font-size="24" font-weight="bold">装载设备与通路</text>
+    <text x="90" y="674" font-size="19">SPI NOR / SD / EEPROM</text>
+    <text x="90" y="704" font-size="20">或 UART / JTAG / Link</text>
+    <text x="90" y="726" font-size="18" fill="#526477">不同装载路径分别验收</text>
+    <rect x="380" y="610" width="270" height="125" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="400" y="644" font-size="24" font-weight="bold">LLC 数据 / SPM</text>
+    <text x="400" y="674" font-size="21">保存载荷代码、数据和栈</text>
+    <text x="400" y="704" font-size="21">tag BIST 不测试数据阵列</text>
+    <text x="400" y="726" font-size="18" fill="#526477">应用 .bss 由 CRT0 清零</text>
+    <line x1="305" y1="680" x2="367" y2="680" stroke="#34816B" stroke-width="3"/>
+    <polygon points="380,680 367,673 367,687" fill="#34816B"/>
+    <text x="342" y="646" text-anchor="middle" font-size="17" fill="#34816B">搬运</text>
+    <text x="342" y="665" text-anchor="middle" font-size="17" fill="#34816B">字节</text>
+
+    <rect x="980" y="215" width="540" height="140" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="1000" y="250" font-size="27" font-weight="bold">① Boot ROM 汇编</text>
+    <text x="1000" y="280" font-size="22">cheshire_bootrom.S</text>
+    <text x="1000" y="310" font-size="22">整数环境、sp / gp；等待 LLC DONE</text>
+    <text x="1000" y="339" font-size="22">全 way 配置 SPM；建立早期栈</text>
+    <line x1="1250" y1="355" x2="1250" y2="397" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="1250,410 1243,397 1257,397" fill="#4478AA"/>
+    <text x="1270" y="387" font-size="20" fill="#4478AA">call ROM main</text>
+    <rect x="980" y="410" width="540" height="140" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="1000" y="445" font-size="27" font-weight="bold">② Boot ROM 的 C 代码</text>
+    <text x="1000" y="475" font-size="22">cheshire_bootrom.c</text>
+    <text x="1000" y="505" font-size="22">测频、选择 boot_mode、调用装载驱动</text>
+    <text x="1000" y="534" font-size="22">把载荷装入内存，再交接执行入口</text>
+    <line x1="1250" y1="550" x2="1250" y2="597" stroke="#34816B" stroke-width="3"/>
+    <polygon points="1250,610 1243,597 1257,597" fill="#34816B"/>
+    <text x="1270" y="583" font-size="20" fill="#34816B">调用载荷入口</text>
+    <rect x="980" y="610" width="540" height="150" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="1000" y="645" font-size="27" font-weight="bold">③ 应用 / ZSL 的启动代码</text>
+    <text x="1000" y="675" font-size="22">sw/lib/crt0.S → 该载荷自己的 main</text>
+    <text x="1000" y="705" font-size="22">sp / gp、mtvec、.bss、FP 初始化</text>
+    <text x="1000" y="735" font-size="22">main 返回：发布 scratch2，然后 ret</text>
+
+    <path d="M 980 295 L 875 295 L 875 462 L 663 462" fill="none" stroke="#B68A2F" stroke-width="3"/>
+    <polygon points="650,462 663,455 663,469" fill="#B68A2F"/>
+    <text x="713" y="403" font-size="20" fill="#82601B">① 轮询 DONE</text>
+    <text x="713" y="431" font-size="20" fill="#82601B">写 SPM 配置与提交</text>
+    <line x1="650" y1="690" x2="967" y2="690" stroke="#34816B" stroke-width="3"/>
+    <polygon points="980,690 967,683 967,697" fill="#34816B"/>
+    <text x="704" y="646" font-size="20" fill="#34816B">镜像入口 _start</text>
+    <text x="704" y="674" font-size="20" fill="#34816B">对应 CRT0 机器指令</text>
+
+    <text x="40" y="826" font-size="20" fill="#526477">边界：DONE ≠ 自测无错误；数据 SRAM 制造测试另行设计。Platform ROM 非零返回路径待 S01-B01 修复。</text>
+    <text x="40" y="859" font-size="18" fill="#526477">依据：hw/cheshire_soc.sv；hw/bootrom/；sw/lib/crt0.S；axi_llc_hit_miss / tag_store / tag_pattern_gen</text>
+    <text x="40" y="885" font-size="17" fill="#526477">输入 HEAD 278434024 · 2026-10-08 · 源码对应图，未新增目标仿真 / 板测证据</text>
+  </g>
+</svg>

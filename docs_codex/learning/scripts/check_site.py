@@ -6,9 +6,10 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import xml.etree.ElementTree as ET
-import re,subprocess,unicodedata
+import re,subprocess,unicodedata,json
 from html import unescape
-from build_site import PAGES,ENTRIES,PARTS
+from build_site import PAGES,ENTRIES,PARTS,MIGRATIONS,content_bodies,headings
+from markdown_export import render_markdown
 ROOT=Path(__file__).resolve().parent.parent
 class Page(HTMLParser):
     def __init__(self,s):
@@ -21,7 +22,26 @@ class Page(HTMLParser):
         if tag=='link' and d.get('rel')=='stylesheet':self.assets.append(d.get('href',''))
         if tag=='img':self.imgs.append(d)
 pages={p:Page(p.read_text()) for p in ROOT.glob('*.html')}
-errors=[];links=0
+errors=[];links=0;archive_gaps=[]
+known_gaps=json.loads((ROOT/'scripts/known_link_gaps.json').read_text())
+known_pairs={(x['file'],x['link']) for x in known_gaps['links']}
+bodies=content_bodies()
+# Verify generated Markdown without writing; rendering also rejects unknown source tags.
+for entry in ENTRIES:
+    body,_=headings(bodies[entry['slug']],entry)
+    # Same-page legacy aliases are injected by build_site; canonical content is compared
+    # after stripping these empty alias spans, which carry no teaching text.
+    generated=ROOT/'markdown'/f'{entry["slug"]}.md'
+    expected=render_markdown(entry,body,ENTRIES,MIGRATIONS)
+    if not generated.exists():
+        errors.append(f'missing Markdown: {generated}');continue
+    actual=generated.read_text()
+    content_ids=set(Page(bodies[entry['slug']]).ids)
+    for old,dest in MIGRATIONS.items():
+        file,sep,anchor=old.partition('#')
+        if sep and file==entry['slug']+'.html' and dest.split('#')[0]==file and anchor not in content_ids:
+            actual=actual.replace(f'<a id="{anchor}"></a>\n\n','')
+    if actual!=expected:errors.append(f'HTML/Markdown source drift: {entry["slug"]}')
 # Markdown headings retain compatibility aliases when renamed.
 def markdown_ids(text):
     text=re.sub(r"```.*?```", "", text, flags=re.S)
@@ -37,7 +57,11 @@ def check_local_link(p,link):
     u=urlsplit(link)
     if u.scheme or link.startswith('//'):return
     target=(p.parent/unquote(u.path)).resolve() if u.path else p
-    if not target.exists():errors.append(f'missing {p}: {link}');return
+    if not target.exists():
+        item=(str(p.relative_to(ROOT.parent)),link)
+        if item in known_pairs:archive_gaps.append(f'{item[0]}: {link}')
+        else:errors.append(f'missing {p}: {link}')
+        return
     if u.fragment:
         if target.suffix=='.md':ids=markdown_ids(target.read_text())
         elif target.suffix=='.html':ids=(pages.get(target) or Page(target.read_text())).ids
@@ -90,9 +114,13 @@ for p,page in pages.items():
 markdown_links=0
 for p in ROOT.parent.rglob('*.md'):
     if 'evidence' in p.parts or 'learning_backup' in p.parts:continue
-    text=re.sub(r"```.*?```", "", p.read_text(), flags=re.S)
+    text=re.sub(r"(`{3,})[^\n]*\n.*?\n\1", "", p.read_text(), flags=re.S)
     for link in re.findall(r'\[[^]\n]*\]\(([^)]+)\)',text):
         check_local_link(p.resolve(),link);markdown_links+=1
+    # Merged-cell tables are kept as HTML in Markdown; their links need checking too.
+    if p.parent==ROOT/'markdown':
+        for link in Page(text).links:
+            check_local_link(p.resolve(),link);markdown_links+=1
 for p in (ROOT/'assets').rglob('*.svg'):ET.parse(p)
 for p in ROOT.rglob('*'):
     if p.is_file() and p.suffix in ['.html','.css','.js','.py','.sh','.md'] and 'evidence' not in p.parts and 'vendor' not in p.parts:
@@ -105,3 +133,7 @@ if errors:
     print('\n'.join(errors));raise SystemExit(1)
 print(f'PASS: {len(pages)} HTML pages, {links} local links/resources, anchors, {len(list((ROOT/"assets").rglob("*.svg")))} SVG XML, alt text, offline assets, shell syntax, whitespace')
 print(f'PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; {markdown_links} Markdown links and fragments')
+print(f'PASS: {len(ENTRIES)} Markdown documents match canonical HTML content and page metadata')
+if archive_gaps:
+    print(f'WARN: {len(archive_gaps)} pre-existing archive links remain broken; exact paths and reasons: scripts/known_link_gaps.json')
+    print('\n'.join('  '+x for x in archive_gaps))

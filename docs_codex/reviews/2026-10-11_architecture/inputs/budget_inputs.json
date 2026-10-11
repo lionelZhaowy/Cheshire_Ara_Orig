@@ -1,0 +1,914 @@
+{
+  "input_version": "architecture-review-2026-10-11-v1",
+  "scope": "Analytic sensitivity only; no physical implementation/performance evidence. Every numerical input is classified.",
+  "sources": {
+    "local_bus": {
+      "kind": "local_source",
+      "locator": "hw/cheshire_pkg.sv:560 DefaultCfg.AxiDataWidth; hw/cheshire_soc.sv:518 i_llc AxiDataWidth; :606 AraDataWideWidth; :862 i_ara_axi_dw_converter",
+      "input_commit": "2784340240915fe4338ec54bfd613723b127d62e",
+      "note": "64-bit is current RTL default; tested target effective values require configuration and run evidence."
+    },
+    "scenario": {
+      "kind": "analyst_assumption",
+      "note": "Only sensitivity/examples. No measured throughput, SRAM macro timing, DDR contract or workload requirement is inferred. Replace with measured/approved values."
+    },
+    "image_pressure": {
+      "kind": "user_candidate_plus_interpretation",
+      "locator": "User attachment 2026-10-11; 12K x 12K, 30 Hz is candidate pressure case, hard requirement unconfirmed.",
+      "note": "12K interpreted as 12000; 12288 is explicit dimension sensitivity. No LVDS lane-rate or blanking specification supplied."
+    },
+    "DDR_candidates": {
+      "kind": "historical_candidate_not_frozen",
+      "locator": "docs_codex/handoffs/2026-10-09_M01_DDR_requirements_recommendation.md; docs_codex/handoffs/2026-10-09_M01_DDR2133_SoC_bandwidth_review.md",
+      "note": "x16 and 1333 are historical candidates; x32/x64 and 2133 are sensitivity cases, not verified supplier deliverables."
+    },
+    "synthetic_model": {
+      "kind": "analyst_assumption",
+      "note": "0.5B/1.5B/3B weight counts and the common 24-layer/8-KV-head/64-head-dim geometry are independent synthetic sweep axes; no named deployable model or ISA/datatype support is asserted."
+    },
+    "KV_semantics": {
+      "kind": "official_external_reference",
+      "url": "https://huggingface.co/docs/transformers/en/cache_explanation",
+      "access_date": "2026-10-11",
+      "note": "Cache storage implementation: per-layer K and V tensors; use actual KV heads for GQA. Formula is a dimensional derivation, not the project runtime implementation."
+    },
+    "reuse_semantics": {
+      "kind": "official_external_reference",
+      "url": "https://nvdla.org/hw/v1/hwarch.html",
+      "access_date": "2026-10-11",
+      "note": "Functional Description fused operation / Convolution Buffer explain memory round-trip avoidance and SRAM reuse; no adoption of NVDLA is implied."
+    }
+  },
+  "parameters": {
+    "ddr": {
+      "dq_bits": [
+        {
+          "value": 16,
+          "classification": "assumption",
+          "source": "DDR_candidates"
+        },
+        {
+          "value": 32,
+          "classification": "assumption",
+          "source": "DDR_candidates"
+        },
+        {
+          "value": 64,
+          "classification": "assumption",
+          "source": "DDR_candidates"
+        }
+      ],
+      "rates_mt_s": [
+        {
+          "value": 1333,
+          "classification": "assumption",
+          "source": "DDR_candidates"
+        },
+        {
+          "value": 2133,
+          "classification": "assumption",
+          "source": "DDR_candidates"
+        }
+      ],
+      "efficiencies": [
+        {
+          "value": 0.5,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 0.65,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 0.8,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ]
+    },
+    "axi": {
+      "widths_bits": [
+        {
+          "value": 64,
+          "classification": "source",
+          "source": "local_bus"
+        },
+        {
+          "value": 128,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "clocks_mhz": [
+        {
+          "value": 150,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 250,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 333.3,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 533.25,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "efficiency": {
+        "value": 0.9,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "hardware_cases": [
+      {
+        "id": "x16_1333_ctrl64",
+        "dq_bits": {
+          "value": 16,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "mt_s": {
+          "value": 1333,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "ddr_efficiency": {
+          "value": 0.65,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_bits": {
+          "value": 64,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_mhz": {
+          "value": 333.3,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_bits": {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_mhz": {
+          "value": 250,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "axi_efficiency": {
+          "value": 0.9,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      },
+      {
+        "id": "x64_1333_ctrl256",
+        "dq_bits": {
+          "value": 64,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "mt_s": {
+          "value": 1333,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "ddr_efficiency": {
+          "value": 0.65,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_bits": {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_mhz": {
+          "value": 333.3,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_bits": {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_mhz": {
+          "value": 250,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "axi_efficiency": {
+          "value": 0.9,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      },
+      {
+        "id": "x64_2133_ctrl256",
+        "dq_bits": {
+          "value": 64,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "mt_s": {
+          "value": 2133,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "ddr_efficiency": {
+          "value": 0.65,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_bits": {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "controller_mhz": {
+          "value": 533.25,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_bits": {
+          "value": 256,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "image_mhz": {
+          "value": 250,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        "axi_efficiency": {
+          "value": 0.9,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      }
+    ],
+    "image": {
+      "shapes": [
+        {
+          "id": "12000x12000",
+          "width": {
+            "value": 12000,
+            "classification": "assumption",
+            "source": "image_pressure"
+          },
+          "height": {
+            "value": 12000,
+            "classification": "assumption",
+            "source": "image_pressure"
+          }
+        },
+        {
+          "id": "12288x12288",
+          "width": {
+            "value": 12288,
+            "classification": "assumption",
+            "source": "image_pressure"
+          },
+          "height": {
+            "value": 12288,
+            "classification": "assumption",
+            "source": "image_pressure"
+          }
+        }
+      ],
+      "fps": {
+        "value": 30,
+        "classification": "assumption",
+        "source": "image_pressure"
+      },
+      "stride_alignment_bytes": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "capacity_storage_bits": {
+        "value": 16,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "active_peak_multiplier": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "formats": [
+        {
+          "id": "raw8_packed",
+          "sensor_bits": {
+            "value": 8,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 8,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw12_packed",
+          "sensor_bits": {
+            "value": 12,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 12,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw14_packed",
+          "sensor_bits": {
+            "value": 14,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 14,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw16_packed",
+          "sensor_bits": {
+            "value": 16,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 16,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw8_in16",
+          "sensor_bits": {
+            "value": 8,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 16,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw12_in16",
+          "sensor_bits": {
+            "value": 12,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 16,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw14_in16",
+          "sensor_bits": {
+            "value": 14,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "storage_bits": {
+            "value": 16,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        }
+      ],
+      "pipelines": [
+        {
+          "id": "stream_ISP_then_write",
+          "reads": {
+            "value": 0,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "writes": {
+            "value": 1,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "write_then_NPU_read",
+          "reads": {
+            "value": 1,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "writes": {
+            "value": 1,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "raw_write_ISP_read_write_NPU_read",
+          "reads": {
+            "value": 2,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "writes": {
+            "value": 2,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "direct_ISP_to_NPU_no_frame_spill",
+          "reads": {
+            "value": 0,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "writes": {
+            "value": 0,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        }
+      ]
+    },
+    "concurrency": {
+      "read_GB_s": {
+        "value": 0.6,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "write_GB_s": {
+        "value": 0.15,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "fifo": {
+      "capacity_bytes": {
+        "value": 1048576,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "block_us": [
+        {
+          "value": 10,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 100,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 1000,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ]
+    },
+    "llm": {
+      "parameter_counts": [
+        {
+          "value": 500000000,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        },
+        {
+          "value": 1500000000,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        },
+        {
+          "value": 3000000000,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        }
+      ],
+      "weight_bits": [
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        },
+        {
+          "value": 8,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        },
+        {
+          "value": 16,
+          "classification": "assumption",
+          "source": "synthetic_model"
+        }
+      ],
+      "weight_metadata_fraction": {
+        "value": 0.05,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "weight_external_fraction": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "decode_weight_reloads": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "layers": {
+        "value": 24,
+        "classification": "assumption",
+        "source": "synthetic_model"
+      },
+      "batch": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "synthetic_model"
+      },
+      "context": {
+        "value": 4096,
+        "classification": "assumption",
+        "source": "synthetic_model"
+      },
+      "kv_heads": {
+        "value": 8,
+        "classification": "assumption",
+        "source": "synthetic_model"
+      },
+      "head_dim": {
+        "value": 64,
+        "classification": "assumption",
+        "source": "synthetic_model"
+      },
+      "kv_bits": {
+        "value": 16,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "decode_kv_read_multiplier": {
+        "value": 1,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "prefill_weight_reloads": [
+        {
+          "value": 1,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "npu_bits": {
+        "value": 256,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "npu_mhz": {
+        "value": 250,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "decode_activation_read_bytes": {
+        "value": 524288,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "decode_activation_write_bytes": {
+        "value": 524288,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "prefill_activation_read_bytes": {
+        "value": 134217728,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "prefill_activation_write_bytes": {
+        "value": 134217728,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "capacity": {
+      "DDR_GiB": [
+        {
+          "value": 2,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "image_frame_counts": [
+        {
+          "value": 2,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "OS_bytes": {
+        "value": 268435456,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "reserved_bytes": {
+        "value": 134217728,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "activation_bytes": {
+        "value": 134217728,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "cnn": {
+      "weights_bytes": {
+        "value": 8388608,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "input_bytes": {
+        "value": 4194304,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "activation_traffic_bytes": {
+        "value": 33554432,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "fps": {
+        "value": 30,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "weight_reload_counts": [
+        {
+          "value": 1,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 2,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "activation_read_fraction": {
+        "value": 0.5,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "gemm": {
+      "M": {
+        "value": 512,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "N": {
+        "value": 512,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "K": {
+        "value": 512,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "tile_M": {
+        "value": 64,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "tile_N": {
+        "value": 64,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "tile_K": {
+        "value": 128,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "input_bits": {
+        "value": 8,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "output_bits": {
+        "value": 32,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "gb": {
+      "banks": {
+        "value": 8,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "hot_banks": {
+        "value": 2,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "bank_bits": {
+        "value": 64,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "clock_mhz": {
+        "value": 200,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "efficiency": {
+        "value": 0.8,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "capacity_MiB": [
+        {
+          "value": 1,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 2,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 4,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "input_tile_bytes": {
+        "value": 262144,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "weight_tile_bytes": {
+        "value": 262144,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "output_tile_bytes": {
+        "value": 524288,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "accumulator_bytes": {
+        "value": 262144,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "Ara_reserve_bytes": {
+        "value": 262144,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "ISP_line_count": {
+        "value": 4,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "clients": [
+        {
+          "id": "NPU",
+          "read_GB_s": {
+            "value": 5,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "write_GB_s": {
+            "value": 1,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "DMA",
+          "read_GB_s": {
+            "value": 0.75,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "write_GB_s": {
+            "value": 0.75,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "Ara",
+          "read_GB_s": {
+            "value": 0.5,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "write_GB_s": {
+            "value": 0.5,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        },
+        {
+          "id": "ISP",
+          "read_GB_s": {
+            "value": 0.48,
+            "classification": "assumption",
+            "source": "scenario"
+          },
+          "write_GB_s": {
+            "value": 0.48,
+            "classification": "assumption",
+            "source": "scenario"
+          }
+        }
+      ],
+      "DMA_allocated_GB_s": {
+        "value": 1.5,
+        "classification": "assumption",
+        "source": "scenario"
+      },
+      "compute_tile_us": {
+        "value": 250,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    },
+    "combined": {
+      "image_fps": [
+        {
+          "value": 10,
+          "classification": "assumption",
+          "source": "scenario"
+        },
+        {
+          "value": 30,
+          "classification": "assumption",
+          "source": "scenario"
+        }
+      ],
+      "decode_batch_steps_s": {
+        "value": 10,
+        "classification": "assumption",
+        "source": "scenario"
+      }
+    }
+  }
+}

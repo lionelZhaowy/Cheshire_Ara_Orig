@@ -3,11 +3,20 @@
 用浏览器打开 [index.html](index.html)：**九篇、42章，另有首页及8页实验/参考，共51个主页面**。正文、导航和静态 SVG 可用 `file://` 离线阅读，无服务器或 CDN。当前篇默认展开；H2/H3 页内目录可折叠；手机可收起全书目录。关闭 JavaScript 仍能阅读并使用原生目录。
 
 - [此前机制与维护完善](REFINEMENT.md)：重点章节、启动模式与独立证据输出。
-- [此前结构修订](STRUCTURE_REVISION.md)：审查回应、当前职责、旧页迁移和内容保护。
+- [本轮结构审查](STRUCTURE_REVISION.md#review-20261011)：问题、迁移、格式同步和检查结果；原 09-29 记录保留。
 - [实验手册](labs.html)：命令、输入、产物、结果判据和失败首查；贯穿同一个数组示例。
-- [来源与验证](evidence.html#teaching-20261007)：结构检查、此前软件构建和目标环境缺口分开。
+- [来源与验证](evidence.html#review-20261011)：结构检查、此前软件构建和目标环境缺口分开。
 - [旧站备份](../learning_backup/index.html)：728 文件原样保留；[哈希清单](evidence/restructure-backup.json)。
 - [此前深度扩充](DEPTH_EXTENSION.md)、[09-28 编排设计](CONTENT_REDESIGN.md)为历史范围说明；其中 16 章编号不再定义当前目录。[官方来源](OFFICIAL_SOURCES.md)保留原查阅日期。
+
+## 正文来源与格式同步
+
+- **主教程**：`content/*.html` 是沿用的唯一正文源；`pages.json` 是篇/章顺序与标题源。`build_site.py` 同时输出根目录 HTML 和 [markdown/*.md](markdown/index.md)。修改生成 Markdown 会在下次构建被覆盖，`check_site.py` 会报告漂移。
+- **Markdown 参考/操作手册**：`../configuration/` 负责字段字典和修改检查，`../software/` 负责构建/库/调试操作，主教程仅保留理解机制所需说明。原理变化先改主要解释位置，再定向核对相关参考摘要；不要求把参考手册逐字复制回正文。
+- **HTML 特有交互**：寄存器搜索、容量计算器、折叠和图缩放只在 HTML 中运行。Markdown 保留全部正文、表、示例代码、图注、输入默认值及返回 HTML 的入口；自测答案展开。合并单元格表保留原生 HTML，不丢列语义。
+- **转换与保护**：导出器仅用 Python 标准库，不引入前端或构建依赖；新标签不支持时直接失败。语义 ID 保留，课程链接转为 `.md`，源码/图路径按输出目录重新定位。旧网页地址仍由迁移表兼容，日期证据、图源与 PPTX 不随目录更新覆盖。
+
+推荐阅读顺序是系统/程序概览 → 地址与存储 → DMA/Ara 共享 → 详细启动/外设 → 时钟复位配置 → OS → IP/DDR → ASIC → 验证。现有 42 章不增加空白章节；章号变化以后 `pages.json` 为准，正文编号引用也应同步检查。
 
 ## 当前维护入口
 
@@ -26,13 +35,13 @@ python3 docs_codex/learning/scripts/preview_structure_site.py
 python3 docs_codex/learning/scripts/check_structure.py --check-generated
 ```
 
-它在临时副本运行生成器，并比较 HTML、SVG、寄存器索引；工作区不会被重新生成。仅当实际修改正文/导航后，才执行下面的**写入操作**更新网页：
+它在临时副本运行生成器，并比较 HTML、Markdown、SVG、寄存器索引；工作区不会被重新生成。仅当实际修改正文/导航后，才执行下面的**写入操作**更新网页：
 
 ```bash
 python3 docs_codex/learning/scripts/build_site.py
 ```
 
-正文编辑 `content/*.html`。`scripts/pages.json` 显式定义 `parts` 和 `pages`：页包含 slug、title、subtitle、kind；正文另含 part 与连续 number。目录、面包屑、节号和上下章均由同一清单生成。H2/H3 必须带唯一语义 id，章号不要写死在标题里；完整层次见生成后的页内目录。
+正文编辑 `content/*.html`。`scripts/pages.json` 显式定义 `parts` 和 `pages`：页包含 slug、title、subtitle、kind；正文另含 part 与连续 number。首页正文目录（`<!-- COURSE_CONTENTS -->` 插槽）、侧栏、面包屑、节号和上下章均由同一清单生成。H2/H3 必须带唯一语义 id，章号不要写死在标题里；完整层次见生成后的页内目录。
 
 移动旧节时更新 `scripts/anchor_migrations.json`，旧 URL 指向真实新正文锚点。跨页迁移具有脚本跳转和禁用脚本静态链接两种形式；同页别名直接落在对应内容前。`legacy_links.json` 留作历史输入，新生成器使用新迁移表。修改后同时检查目的语义和链接是否有效。
 
@@ -47,6 +56,8 @@ python3 docs_codex/learning/scripts/build_registers.py
 ```
 
 前两个脚本分别维护 16 张原重构结构图与 13 张深度扩充结构/状态图。新增五张机制结构图由 `build_mechanism_diagrams.py` 维护。6 张时序图编辑 `assets/waves/*.json`，使用本地保留许可证的 WaveDrom 3.5.0 导出 SVG；阅读网页不用加载 WaveDrom。时序图必须标明教学示意或真实运行依据。寄存器索引仍为 12 组/429 项，各组直达关键语义与初始化节；宏不代表读写属性或实际实例数量。
+
+`check_site.py` 检查全部 51 对 HTML/Markdown 是否与源一致，检查课程/参考的链接、锚点和图片。`scripts/known_link_gaps.json` 仅登记 2026-10-11 开始时已有图稿备份/交接的 15 个独立失效相对链接（含重复引用会多于 15 次）；每次仍打印警告，不能据此声称历史归档全部链接正常。新增断链不在名单内即失败。
 
 `check_structure.py` 核对备份与历史证据/示例/资产哈希、当前九篇/42章、前置顺序、正文清单一致、旧锚点、章号与目标、启动目录、导航/链接；`--check-generated` 另查临时生成一致性。`preview_structure_site.py` 检查桌面/手机、无脚本、迁移与交互。过去 `structure-20260929-*`、`depth-*`、`restructure-*` 保持原样；09-29 发布证据见 `evidence/refinement-20260929/`，日后检查须使用另一个新目录。
 

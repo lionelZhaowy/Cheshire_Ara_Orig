@@ -2,26 +2,28 @@
 
 # Cheshire/CVA6/Ara 软件参考手册
 
-2026-09-29 新教材补充了[RVV 三种编程入口](../learning/vector.html#programming)和[同一数组的尾部/归约实验](../learning/labs.html#rvv-depth)，附本地 GCC 构建证据；未执行目标 SoC 回归。
+本目录是原工程的软件参考与操作手册：保留 `sw/` 规则、工具选项、库 API、示例限制和调试命令。连续原理只在[主教材](../learning/index.html)展开，本站不再维护另一条独立入门课程。
 
-本手册说明 `sw/` 软件目录、工具链、链接布局、程序启动、库接口及示例执行流程。
+初始基准：2026-09-20，提交 `379ae4544bc62e05a2736b11b33a3244181bba38`；本轮于 2026-10-11 按 `2784340240915fe4338ec54bfd613723b127d62e` 定向复核启动、链接和装载源码。历史工具查询与构建结果保留原日期；**本轮仅改文档，未编译应用、仿真、板测或烧写介质**。命令示例不代表已执行，硬件配置另见[配置手册](../configuration/README.md)。
 
-基准日期：2026-09-20；输入提交：`379ae4544bc62e05a2736b11b33a3244181bba38`。依据当前本地源码和工具查询整理；**本轮未编译应用、未运行仿真、未连接板卡、未烧写存储器**。命令标为使用示例，不代表已经跑通。硬件配置另见 [配置手册](../configuration/README.md)。
+连续入门先读[程序执行全流程与 C 环境](../learning/runtime.html#execution-chain)、[编译链接与 ELF](../learning/build.html)，再按主教材学习地址、互连、存储与数据搬运；具备这些前置后读[启动机制](../learning/boot.html#default-path)、[装载与调试](../learning/boot-debug.html)和[异常与上下文](../learning/traps.html)。已有 [RVV 编程入口](../learning/vector.html#programming)及[尾部/归约实验](../learning/labs.html#rvv-depth)继续复用其历史构建证据。症状集中到[软件诊断](../learning/software-debug.html)，目标操作及验收见[运行验证](../learning/simulation.html)。
 
-连续入门请从新版教材的[裸机运行模型](../learning/runtime.html)开始，接着读[程序构建](../learning/build.html)、[默认启动完整过程](../learning/boot.html#default-path)、[装载与调试](../learning/boot-debug.html)、[异常与上下文](../learning/traps.html)。症状与本地实现缺口集中在[软件诊断](../learning/software-debug.html)，目标仿真条件见[运行验证](../learning/simulation.html)。本手册保留为细节参考；以下 2026-09-20 记录保持其历史验证范围。
+<a id="软件栈与硬件前提的连贯阅读2026-10-07"></a>
+
+<a id="teaching-20261007"></a>
 
 ## 1. 阅读路线
 
-| 顺序 | 文档 | 学习目标 |
+先沿上述主教材建立原理，执行具体任务时再按下表查阅。驱动、库和 HAL 的关系主要解释在[软件组成](../learning/runtime.html#software-stack)，这里保留原工程的接口和使用条件。
+
+| 索引 | 文档 | 参考职责 |
 | --- | --- | --- |
 | 1 | [工具链、SDK 与编译](BUILD_AND_SDK.md) | 分清裸机/Linux 软件；理解 gcc、ar、链接器、ELF，选择单个构建目标 |
 | 2 | [链接、启动、加载与调试](RUNTIME_AND_DEBUG.md) | 追踪 reset→Boot ROM→应用 _start→main→退出码；会查链接地址与异常 |
 | 3 | [嵌入式库原理与 API](LIBRARIES.md) | 理解 MMIO、UART/printf、CLINT、DMA、LLC、AXI RT、HAL 与 GPT |
 | 4 | [示例程序逐项导读](EXAMPLES.md) | 当前 9 个主测试源码逐项流程、前置配置、预期结果和局限；Ara 源码索引 |
 
-> 2026-10-08审查：下述历史路线中的dma_2d受当前控制接口宽度门槛限制，不是可立即运行的第二步。先按[实验A/B](../learning/labs.html#lab-a)建立ELF/启动证据；DMA见[机制](../learning/dma.html)与[诊断](../learning/peripheral-debug.html#dma)。HelloWorld报告不扩大为DMA/DDR/RVV通过。
-
-第一次动手按 `helloworld → ELF/链接布局 → dma_2d → DRAM 程序 → 正确向量组合` 的顺序。AXI RT、CLIC、MMU stub 测试各有专门硬件条件，不应一开始执行全目录。
+第一次动手先完成 `HelloWorld/数组例 → ELF 与链接布局 → 匹配配置的装载与结果检查`。扩大到 DRAM 或 RVV 时，分别验证外存、向量硬件和软件状态。`dma_2d` 及依赖 DMA 的 AXI RT 测试须先解决[控制接口宽度门槛](../learning/peripheral-debug.html#dma)，不能作为默认可直接运行的第二步；CLIC、MMU stub 也有独立硬件要求。
 
 <a id="2-当前目录的职责"></a>
 
@@ -72,14 +74,4 @@
 
 ## 5. 与工程任务的关系
 
-本轮是 L01 软件学习文档，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。项目状态见 [PROJECT_STATE](../PROJECT_STATE.md)，本轮检查与源码缺口见 [交接记录](../handoffs/2026-09-20_L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。
-
-<a id="teaching-20261007"></a>
-
-## 软件栈与硬件前提的连贯阅读（2026-10-07）
-
-首次阅读按“[软件分层](../learning/runtime.html#software-stack) → [对象与初始化](../learning/runtime.html#section-purpose) → [工具选项与 ELF](../learning/build.html#software-options) → [ROM/Platform ROM](../learning/boot.html#platform-rom) → [实际加载与仿真](../learning/simulation.html)”推进。每个阶段回答谁负责下一步，以及下一步需要什么已成立的条件。
-
-驱动不是一串孤立寄存器写：以 UART 为例，应用选择输出内容，printf 转成字符，DIF 根据实际时钟配置 UART 并操作状态/数据寄存器，RTL 驱动引脚，测试端采样并报告输出。初始化失败、链接缺函数和物理链路不可用分别属于不同层。DIF/HAL 函数和源码索引保留在 [LIBRARIES.md](LIBRARIES.md)。
-
-官方软件文档在此与硬件架构共同解释。时钟/复位决定 CPU 能否执行 ROM，LLC/SPM 决定早期栈与装载空间，DDR ready 决定 ZSL 或应用能否访问主存。更换芯片平台时，应先确定这些契约再调整链接脚本或驱动。静态原理、原有构建结果与未来 ASIC 方案继续分别标注。
+本轮是 L01 文档审查，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。最新状态与交接入口见[PROJECT_STATE](../PROJECT_STATE.md)，初始软件手册检查保留在 [2026-09-20 交接](../handoffs/2026-09-20_L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。

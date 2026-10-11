@@ -19,9 +19,9 @@ verify_against_independent_reference();  // 保留独立正确性记录</code></
 <h2 id="observation">本地计数器、日志与事务观测接口</h2>
 <table><tr><th>入口与本地依据</th><th>可以观察什么</th><th>使用时必须明确的条件</th></tr>
 <tr><td><a href="../../sw/include/util.h">get_mcycle()</a>；<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">cycle_q / CSR_MCYCLE</a></td><td>CPU周期计数差</td><td>权限、计数禁止位、时钟及Debug状态；不是Ara周期或设备独占时间。需检查读计数指令与被测工作的编译和硬件顺序</td></tr>
-<tr><td><a href="../../sw/lib/dif/clint.c">clint_get_mtime / clint_get_core_freq</a>；<a href="../../sw/include/dif/clint.h">接口单位</a></td><td>参考时钟tick与CPU计数的比值；原例据此初始化UART</td><td>测频假定时钟稳定，RTC参数有效且计数推进。当前分高低读取限制见<a href="peripheral-debug.html#interrupts">事件/定时器诊断</a>，不能据函数存在宣布连续时间读可靠</td></tr>
+<tr><td><a href="../../sw/lib/dif/clint.c">clint_get_mtime / clint_get_core_freq</a>；<a href="../../sw/include/dif/clint.h">接口单位</a></td><td>参考时钟tick与CPU计数的比值；原例据此初始化UART</td><td>测频假定时钟稳定，RTC参数有效且计数推进。VCU118 的 RTC 与 CPU 同源，该比值不能独立验证绝对频率（见<a href="clocks.html#platform-clocks">时钟来源</a>）。当前分高低读取限制见<a href="peripheral-debug.html#interrupts">事件/定时器诊断</a>，不能据函数存在宣布连续时间读可靠</td></tr>
 <tr><td><a href="simulation.html#vector-trace">目标仿真观测点</a></td><td>请求、应答、CPU提交、内部在途、AXI握手与响应</td><td>需真实层次、时钟尺度、数据库和输入版本；教材WaveDrom是示意</td></tr>
-<tr><td>UART、scratch结束协议、数组比对</td><td>进度、正常退出、数值正确</td><td>串口发送会增加时间，放在窗口外；退出码不自动证明所有数值正确</td></tr></table>
+<tr><td>UART、SoC SCRATCH2 结束协议、数组比对</td><td>进度、正常退出、数值正确</td><td>串口发送会增加时间，放在窗口外；退出码不自动证明所有数值正确</td></tr></table>
 <p>计数器规范区分周期、时间和退休指令；执行环境可以限制访问，计数速率也与实现和运行条件有关。这里参考<a href="https://docs.riscv.org/reference/isa/v20260120/unpriv/counters.html">RISC-V Zicntr/Zihpm 2.0（20260120汇编版）</a>，不把新版扩展自动视为本地已启用。本地CSR消费者显示 cycle/instret 在Debug模式下暂停更新，cycle可受计数禁止控制；因此带断点的计数不能直接用于连续运行比较。</p>
 <p>没有核实的PMU事件、AXI字节计数器、能耗采样和片上trace不填成现成功能。需要新增观测时先提出信号、采样边界和开销，由后续工程任务实现。CPU被调试暂停时，其他模块是否停止需分别核对；主机仿真耗时也不是目标执行时间。</p>
 <h2 id="units">周期数、执行时间、吞吐率与延迟的换算</h2>

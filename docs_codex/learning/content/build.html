@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>让同一数组程序形成可解释的装载产物。 前置：<a href="configuration.html">3 · Cheshire、CVA6、Ara 与软件配置</a>、<a href="runtime.html">4 · 裸机 C 程序运行模型</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>让同一数组程序形成可解释的装载产物。前置：<a href="runtime.html">裸机 C 程序运行模型</a>。本章先说明编译所需的 ISA/ABI 条件，完整硬件配置关系在后续<a href="configuration.html">配置章</a>查阅。</p></div>
 <h2 id="tools">主机工具与目标程序</h2>
 <p>我们在开发主机上运行交叉编译器，生成供 RISC-V CPU 执行的机器码。工具名字 <code>riscv64-unknown-elf-gcc</code> 描述目标体系；它本身运行在主机。<code>g++</code> 则用于编译仿真器调用的主机 C++ 加载器，两者的输出用途不同。</p>
 <p>教材构建脚本 <a href="scripts/build_journey.sh">build_journey.sh</a> 只取本地 crt0、UART、CLINT 和 printf 的必要源文件，在新输出目录生成产物。它采用原软件入口的基本 ISA/ABI 与链接约定，关闭自动向量化并省略 LTO（链接期优化），以保留容易观察的编译单元边界。生产入口仍在 <code>sw/sw.mk</code>；原 Make 规则会在 sw 和部分依赖目录旁写产物，主线实验采用隔离输出。</p>
@@ -33,6 +33,6 @@ JOURNEY_OUT="$LEARN_OUT" timeout 60 bash docs_codex/learning/scripts/build_journ
 cat "$LEARN_OUT/readelf.txt"
 rg -n '(_start|main|make_value|seed|result|greeting|__bss|__stack_pointer)' "$LEARN_OUT/symbols.txt"
 rg -n '\.misc|\.bss|greeting|seed' "$LEARN_OUT/journey.map"</code></pre>
-<p>期望得到 .i/.s/.o、支持库、journey.spm.elf、map、dump 和检查文本。<a href="boot-debug.html">第 7 章</a>把这份 ELF 装到目标，而不是重新寻找某个旧文件。把同一目录的 ELF、map、dump、工具版本和命令一起保存。产物检查应能指出 result 位于哪段 RAM、seed 初值由哪些文件字节提供、入口为什么是 _start。构建错误与已有告警的定位见<a href="software-debug.html#build-errors">软件诊断</a>；这里的命令是实验入口，本轮文档修改没有执行它。</p>
+<p>期望得到 .i/.s/.o、支持库、journey.spm.elf、map、dump 和检查文本。<a href="boot-debug.html">第 15 章</a>把这份 ELF 装到目标，而不是重新寻找某个旧文件。把同一目录的 ELF、map、dump、工具版本和命令一起保存。产物检查应能指出 result 位于哪段 RAM、seed 初值由哪些文件字节提供、入口为什么是 _start。构建错误与已有告警的定位见<a href="software-debug.html#build-errors">软件诊断</a>；这里的命令是实验入口，本轮文档修改没有执行它。</p>
 <div class="source"><strong>源码与进一步阅读</strong><p><a href="../../sw/sw.mk">原构建规则与 flags</a>；<a href="../../sw/link/spm.ld">SPM 布局</a>；<a href="../../sw/link/dram.ld">DRAM 布局</a>；<a href="../../sw/link/rom.ld">镜像装载布局</a>；<a href="../../sw/link/common.ldh">入口、基址和链接预算</a></p></div>
 <details class="quiz"><summary>readelf 看不到独立 .data，seed=1 去哪里了？</summary><p>先在 map 中查看输入节到输出节的合并。本地脚本把初始化数据收进 .misc，加载责任没有因此消失。</p></details>

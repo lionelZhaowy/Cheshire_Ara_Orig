@@ -45,7 +45,7 @@ uart_write_flush(&amp;__base_uart);</code></pre>
 <p>gpio_i/o/en_o 都是 32 位；en_o 的 1 表示允许输出，PAD 三态控制若是低有效需反相适配。当前 GPIO 用 clk_i/rst_ni，GpioInputSyncs 决定输入同步，滤波不形成新时钟域；它没有数据 FIFO 或独立 AXI DMA 发起口。fixture 把输入绑 0 且输出未接，当前 FPGA wrapper 也未显式接出这组 SoC GPIO，所以 GPIO3 代码是连接机制例，不是本板 LED 驱动。</p>
 <h3 id="events">GPIO 事件到中断的交接</h3>
 <p>GPIO 的 INTR_STATE/ENABLE/TEST 位于 +0/+4/+8。可分别选择上升沿、下降沿、高电平或低电平触发；事件锁存后，经使能形成 IRQ。INTR_TEST 软件写入可生成事件，适合先检查控制器与 CPU 服务链；真实引脚激励另外验证同步器、滤波和边沿检测。</p>
-<p>当前 GPIO0 对应 PLIC 源 20，后续引脚依次增加，依据是 SoC 的 packed 中断向量。清 INTR_STATE 中的 bit0 只需写 1；若选择低电平触发而输入长期为 0，清除后会再次置位。<a href="interrupts.html">第 15 章</a>把这一点与 PLIC 的领取/完成协议结合，并在实验 C 中保留软注入与定时器的组合验证。</p>
+<p>当前 GPIO0 对应 PLIC 源 20，后续引脚依次增加，依据是 SoC 的 packed 中断向量。清 INTR_STATE 中的 bit0 只需写 1；若选择低电平触发而输入长期为 0，清除后会再次置位。<a href="interrupts.html">第 18 章</a>把这一点与 PLIC 的领取/完成协议结合，并在实验 C 中保留软注入与定时器的组合验证。</p>
 
 
 <p>连续跟读 GPIO3 例：在确认独占 bit3 后，以掩码 0x0008 将输出数据设 1；同一掩码将 OE 设 1；外部观测值才应为高。结束写 OE 掩码值 0x00080000，交还引脚。读取 DATA_IN 检查的是真实输入；现有 fixture 中结果仍为 0。GPIO0 的可复用例是 advanced.c 的 INTR_TEST 软件注入，完整“初始化→事件→服务→计数”在<a href="interrupts.html#sequence">中断章</a>，它不证明外部按钮已连接。</p>

@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>解释位宽、协议、ID 转换及跨域边界。 前置：<a href="axi.html">9 · AXI 通道、突发与握手</a>、<a href="interconnect.html">10 · AXI Crossbar 结构与事务路由</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>解释位宽、协议、ID 转换及跨域边界。 前置：<a href="axi.html">06 · AXI 通道、突发与握手</a>、<a href="interconnect.html">07 · AXI Crossbar 结构与事务路由</a>。</p></div>
 <h2 id="reg-contract">Regbus 的最小设备契约</h2>
 <p>先想象CPU写一个START位，随后轮询DONE并读结果：控制器把这次访问解释成动作，而不是在RAM里保存一个普通整数。MMIO（内存映射输入输出）用CPU地址选中设备，合法访问宽度由该寄存器定义；<code>volatile</code>要求编译器保留相应访问，但不能替代硬件排序、缓存属性或设备完成条件。读FIFO数据可能弹出一项，写1清除（W1C）状态则只清本次写入的1位；这就是为什么不能把所有寄存器当成可随意读改写的普通变量。各设备章会按一次正常操作说明实际副作用。</p>
 <p>Regbus 在 valid 与 ready 同时成立的边沿完成一次访问。等待期间 addr/write/wdata/wstrb 保持；读数据和 error 与该成交关联。ready为低的等待周期不能重复触发；若valid与ready连续多个边沿同时为1，则每个边沿都是一笔访问，软件/主端必须按握手推进。W1C 只清被选中字节中的 1 位，命令寄存器每次成交只触发一次，读弹出只能在读成交时发生。</p>

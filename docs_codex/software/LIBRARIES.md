@@ -2,21 +2,19 @@
 
 # 嵌入式库原理与接口参考
 
-返回 [软件导航](README.md)。库源码由 [sw.mk](../../sw/sw.mk) 归档进 `libcheshire.a`；头文件中的 inline/宏则可能直接进入应用对象。以下按调用层次解释，API 以当前本地版本为准。
+返回[软件导航](README.md)。本页按接口查 API、访问单位与限制；连续调用关系见[程序组成](../learning/runtime.html#software-stack)，设备机制见主教材各外设章。库源码由 [sw.mk](../../sw/sw.mk) 归档进 `libcheshire.a`；头文件中的 inline/宏则可能直接进入应用对象。以下按调用层次解释，API 以当前本地版本为准。
 
-## 1. 四层软件接口
+<a id="1-四层软件接口"></a>
+
+## 1. 软件接口的职责与组合
 
 ```text
-应用：main / 算法 / 测试判据
-  ↓
-HAL：SD、SPI Flash、I2C EEPROM、UART debug 等设备/协议
-  ↓
-DIF：UART、CLINT、DMA 或 OpenTitan I2C/SPI/GPIO 等 IP 接口
-  ↓
-MMIO：地址符号 + 寄存器 offset + volatile load/store
+UART 输出：main → printf → _putchar → UART DIF → MMIO
+介质读取：Boot ROM / 应用 → 器件 HAL → SPI/I2C DIF → MMIO
+设备服务：应用 → CLINT / iDMA 等 DIF → MMIO
 ```
 
-HAL 负责“向某种器件发什么协议”，DIF 负责“怎样操作这个控制器”，`regs/*.h` 只定义寄存器位置与位字段，本身不会初始化设备。UART/CLINT 是本项目本地驱动，I2C/SPI 等依赖 OpenTitan DIF；不要按同名函数推断来自同一 IP。
+库是代码打包与复用形式，驱动是控制设备的职责；驱动本身也可归档进库。并非每条调用都经过 HAL，普通 UART 输出就没有额外的器件 HAL。HAL 负责“向某种器件发什么协议”，DIF 负责“怎样操作这个控制器”，`regs/*.h` 只定义寄存器位置与位字段，本身不会初始化设备。UART/CLINT 是本项目本地驱动，I2C/SPI 等依赖 OpenTitan DIF；不要按同名函数推断来自同一 IP。
 
 ## 2. 基础工具与地址
 
@@ -82,7 +80,9 @@ printf 的编译宏可裁掉浮点、指数、long long、ptrdiff 支持：`PRIN
 
 ## 5. iDMA 任务提交与完成查询
 
-来源：[dif/dma.h](../../sw/include/dif/dma.h)，硬件配置说明见 [DMA 参数](../configuration/PERIPHERALS.md)。头文件用宏 `X(sys,&__base_dma)` 展开 `sys_dma_*` 函数。
+来源：[dif/dma.h](../../sw/include/dif/dma.h)，硬件配置说明见[DMA 参数](../configuration/PERIPHERALS.md)。头文件用宏 `X(sys,&__base_dma)` 展开 `sys_dma_*` 函数。
+
+**运行前置：**当前 wrapper 的 64 位 Regbus、生成寄存器块的 32 位数据接口及 NEXT_ID/DONE_ID 的 64 位指针访问有待统一验收。下表描述现有 API 的设计行为，不证明一次调用已经成功提交或完成；源码与历史指令证据见[iDMA 诊断](../learning/peripheral-debug.html#dma)。该门槛同样适用于使用本库的 AXI RT 数据传输测试。
 
 | API | 行为 |
 | --- | --- |

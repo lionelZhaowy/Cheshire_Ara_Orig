@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1500" viewBox="0 0 2000 1500">
+  <rect x="0" y="0" width="2000" height="1500" rx="0" fill="#FFFFFF" stroke="none" stroke-width="1.5" />
+  <text x="40" y="65" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="46" font-weight="bold" text-anchor="start">Cheshire SoC 软硬件分层结构</text>
+  <text x="42" y="107" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="normal" text-anchor="start">以当前裸机工程为主线 · 通用功能、设备控制与指令执行各有明确边界</text>
+  <text x="1960" y="65" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="end">工程结构 / 规划扩展</text>
+  <text x="1960" y="101" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="end">mp/ara-pulp-v2 · 278434024</text>
+  <rect x="40" y="150" width="1500" height="140" rx="12" fill="#F0EAF8" stroke="none" stroke-width="1.5" />
+  <rect x="40" y="150" width="8" height="140" rx="0" fill="#705293" stroke="none" stroke-width="1.5" />
+  <text x="68" y="190" fill="#705293" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">01</text>
+  <text x="68" y="232" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="29" font-weight="bold" text-anchor="start">应用软件</text>
+  <text x="68" y="264" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">表达计算与任务</text>
+  <line x1="214" y1="174" x2="214" y2="266" stroke="#CFD9E2" stroke-width="1.5" />
+  <rect x="240" y="176" width="300" height="88" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="390.0" y="213" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">裸机应用与测试</text>
+  <text x="390.0" y="246" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">HelloWorld · 结果校验</text>
+  <rect x="558" y="176" width="300" height="88" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="708.0" y="213" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">向量算法</text>
+  <text x="708.0" y="246" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">RVV · 矩阵计算</text>
+  <rect x="876" y="176" width="302" height="88" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1027.0" y="213" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">系统工具</text>
+  <text x="1027.0" y="246" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">介质烧写 · 下载执行</text>
+  <rect x="1196" y="176" width="320" height="88" rx="0" fill="#FFF9EF" stroke="none" stroke-width="1.5" />
+  <line x1="1196.0" y1="176.0" x2="1207.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1216.0" y1="176.0" x2="1227.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1236.0" y1="176.0" x2="1247.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1256.0" y1="176.0" x2="1267.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1276.0" y1="176.0" x2="1287.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1296.0" y1="176.0" x2="1307.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1316.0" y1="176.0" x2="1327.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1336.0" y1="176.0" x2="1347.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1356.0" y1="176.0" x2="1367.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1376.0" y1="176.0" x2="1387.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1396.0" y1="176.0" x2="1407.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1416.0" y1="176.0" x2="1427.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1436.0" y1="176.0" x2="1447.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1456.0" y1="176.0" x2="1467.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1476.0" y1="176.0" x2="1487.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1496.0" y1="176.0" x2="1507.0" y2="176.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="264.0" x2="1207.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1216.0" y1="264.0" x2="1227.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1236.0" y1="264.0" x2="1247.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1256.0" y1="264.0" x2="1267.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1276.0" y1="264.0" x2="1287.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1296.0" y1="264.0" x2="1307.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1316.0" y1="264.0" x2="1327.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1336.0" y1="264.0" x2="1347.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1356.0" y1="264.0" x2="1367.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1376.0" y1="264.0" x2="1387.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1396.0" y1="264.0" x2="1407.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1416.0" y1="264.0" x2="1427.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1436.0" y1="264.0" x2="1447.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1456.0" y1="264.0" x2="1467.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1476.0" y1="264.0" x2="1487.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1496.0" y1="264.0" x2="1507.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="176.0" x2="1196.0" y2="187.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="196.0" x2="1196.0" y2="207.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="216.0" x2="1196.0" y2="227.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="236.0" x2="1196.0" y2="247.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="256.0" x2="1196.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="176.0" x2="1516.0" y2="187.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="196.0" x2="1516.0" y2="207.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="216.0" x2="1516.0" y2="227.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="236.0" x2="1516.0" y2="247.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="256.0" x2="1516.0" y2="264.0" stroke="#AD6631" stroke-width="1.8" />
+  <text x="1356.0" y="213" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">图像处理与推理</text>
+  <text x="1356.0" y="246" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">ISP / NPU 工作负载〔规划〕</text>
+  <rect x="40" y="310" width="1500" height="460" rx="12" fill="#EAF3FC" stroke="none" stroke-width="1.5" />
+  <rect x="40" y="310" width="8" height="460" rx="0" fill="#28619B" stroke="none" stroke-width="1.5" />
+  <text x="68" y="350" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">02</text>
+  <text x="68" y="392" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="29" font-weight="bold" text-anchor="start">基础软件</text>
+  <text x="68" y="424" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">功能与设备控制</text>
+  <line x1="214" y1="334" x2="214" y2="746" stroke="#CFD9E2" stroke-width="1.5" />
+  <text x="240" y="344" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">通用功能与器件协议</text>
+  <text x="1516" y="344" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="end">应用可直接调用所需接口</text>
+  <rect x="240" y="361" width="264" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="372.0" y="398" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">printf</text>
+  <text x="372.0" y="431" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">格式化文本 → _putchar</text>
+  <rect x="532" y="361" width="264" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="664.0" y="398" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">GPT 解析</text>
+  <text x="664.0" y="431" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">read 回调访问介质</text>
+  <rect x="824" y="361" width="376" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1012.0" y="398" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">存储器件 HAL</text>
+  <text x="1012.0" y="431" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">SPI Flash · SD · I²C EEPROM</text>
+  <rect x="1228" y="361" width="288" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1372.0" y="398" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">UART debug HAL</text>
+  <text x="1372.0" y="431" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">READ / WRITE / EXEC</text>
+  <line x1="798" y1="406" x2="820" y2="406" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="820,406 811.0,410.0 811.0,402.0" fill="#28619B" stroke="none" />
+  <line x1="372" y1="458" x2="372" y2="510" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="372,510 368.0,501.0 376.0,501.0" fill="#28619B" stroke="none" />
+  <line x1="1012" y1="458" x2="1012" y2="510" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="1012,510 1008.0,501.0 1016.0,501.0" fill="#28619B" stroke="none" />
+  <text x="570" y="493" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">代表性函数调用</text>
+  <rect x="240" y="514" width="264" height="90" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="372.0" y="551" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">UART DIF</text>
+  <text x="372.0" y="584" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">初始化 · FIFO 字节收发</text>
+  <rect x="532" y="514" width="668" height="90" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="866.0" y="551" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">SPI / I²C / GPIO DIF</text>
+  <text x="866.0" y="584" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">控制器配置 · 传输段 · 状态与寄存器操作</text>
+  <rect x="1228" y="514" width="288" height="90" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1372.0" y="551" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">CLINT / DMA 接口</text>
+  <text x="1372.0" y="584" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">计时 · 配置与提交</text>
+  <line x1="372" y1="606" x2="372" y2="642" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="372,642 368.0,633.0 376.0,633.0" fill="#28619B" stroke="none" />
+  <line x1="1012" y1="606" x2="1012" y2="642" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="1012,642 1008.0,633.0 1016.0,633.0" fill="#28619B" stroke="none" />
+  <line x1="1372" y1="606" x2="1372" y2="642" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="1372,642 1368.0,633.0 1376.0,633.0" fill="#28619B" stroke="none" />
+  <rect x="240" y="646" width="1276" height="76" rx="8" fill="#FFFFFF" stroke="#A9C3DD" stroke-width="1.5" />
+  <text x="260" y="677" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="start">MMIO 访问工具</text>
+  <text x="515" y="677" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="normal" text-anchor="start">reg8 / reg32 · mmio_region_read / write</text>
+  <text x="260" y="707" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">基址 + 寄存器偏移 + 访问位宽；regs 头文件提供偏移和位字段</text>
+  <text x="240" y="753" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">其他专用库：LLC · AXI RT     |     libcheshire.a：代码归档方式，涵盖多个职责</text>
+  <rect x="40" y="790" width="1500" height="150" rx="12" fill="#E8F4F1" stroke="none" stroke-width="1.5" />
+  <rect x="40" y="790" width="8" height="150" rx="0" fill="#21756C" stroke="none" stroke-width="1.5" />
+  <text x="68" y="830" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">接口</text>
+  <text x="68" y="872" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="29" font-weight="bold" text-anchor="start">接口边界</text>
+  <text x="68" y="904" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">软件可见的契约</text>
+  <line x1="214" y1="814" x2="214" y2="916" stroke="#CFD9E2" stroke-width="1.5" />
+  <rect x="240" y="818" width="300" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="390.0" y="855" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">指令执行</text>
+  <text x="390.0" y="888" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">标量指令 · RVV</text>
+  <rect x="558" y="818" width="300" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="708.0" y="855" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">CSR 与特权状态</text>
+  <text x="708.0" y="888" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">处理器配置与控制</text>
+  <rect x="876" y="818" width="302" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1027.0" y="855" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">内存与 MMIO</text>
+  <text x="1027.0" y="888" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">地址 · 属性 · 寄存器语义</text>
+  <rect x="1196" y="818" width="320" height="94" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1356.0" y="855" fill="#21756C" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">异常与中断</text>
+  <text x="1356.0" y="888" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">事件入口 · 处理与返回</text>
+  <rect x="40" y="960" width="1500" height="340" rx="12" fill="#FFF0E4" stroke="none" stroke-width="1.5" />
+  <rect x="40" y="960" width="8" height="340" rx="0" fill="#AD6631" stroke="none" stroke-width="1.5" />
+  <text x="68" y="1000" fill="#AD6631" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">03</text>
+  <text x="68" y="1042" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="29" font-weight="bold" text-anchor="start">SoC 硬件</text>
+  <text x="68" y="1074" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">执行、存储与传输</text>
+  <line x1="214" y1="984" x2="214" y2="1276" stroke="#CFD9E2" stroke-width="1.5" />
+  <rect x="240" y="1000" width="264" height="91" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="372.0" y="1037" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">CVA6</text>
+  <text x="372.0" y="1070" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">取指 · 执行 · 访存</text>
+  <rect x="532" y="1000" width="264" height="91" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="664.0" y="1037" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">Ara</text>
+  <text x="664.0" y="1070" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">RVV 执行 · 向量访存</text>
+  <rect x="824" y="1000" width="264" height="91" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="956.0" y="1037" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">iDMA</text>
+  <text x="956.0" y="1070" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">硬件数据搬运</text>
+  <rect x="1116" y="1000" width="400" height="91" rx="0" fill="#FFF9EF" stroke="none" stroke-width="1.5" />
+  <line x1="1116.0" y1="1000.0" x2="1127.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1136.0" y1="1000.0" x2="1147.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1156.0" y1="1000.0" x2="1167.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1176.0" y1="1000.0" x2="1187.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="1000.0" x2="1207.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1216.0" y1="1000.0" x2="1227.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1236.0" y1="1000.0" x2="1247.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1256.0" y1="1000.0" x2="1267.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1276.0" y1="1000.0" x2="1287.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1296.0" y1="1000.0" x2="1307.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1316.0" y1="1000.0" x2="1327.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1336.0" y1="1000.0" x2="1347.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1356.0" y1="1000.0" x2="1367.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1376.0" y1="1000.0" x2="1387.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1396.0" y1="1000.0" x2="1407.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1416.0" y1="1000.0" x2="1427.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1436.0" y1="1000.0" x2="1447.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1456.0" y1="1000.0" x2="1467.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1476.0" y1="1000.0" x2="1487.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1496.0" y1="1000.0" x2="1507.0" y2="1000.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1091.0" x2="1127.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1136.0" y1="1091.0" x2="1147.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1156.0" y1="1091.0" x2="1167.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1176.0" y1="1091.0" x2="1187.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1196.0" y1="1091.0" x2="1207.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1216.0" y1="1091.0" x2="1227.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1236.0" y1="1091.0" x2="1247.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1256.0" y1="1091.0" x2="1267.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1276.0" y1="1091.0" x2="1287.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1296.0" y1="1091.0" x2="1307.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1316.0" y1="1091.0" x2="1327.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1336.0" y1="1091.0" x2="1347.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1356.0" y1="1091.0" x2="1367.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1376.0" y1="1091.0" x2="1387.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1396.0" y1="1091.0" x2="1407.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1416.0" y1="1091.0" x2="1427.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1436.0" y1="1091.0" x2="1447.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1456.0" y1="1091.0" x2="1467.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1476.0" y1="1091.0" x2="1487.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1496.0" y1="1091.0" x2="1507.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1000.0" x2="1116.0" y2="1011.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1020.0" x2="1116.0" y2="1031.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1040.0" x2="1116.0" y2="1051.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1060.0" x2="1116.0" y2="1071.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1116.0" y1="1080.0" x2="1116.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1000.0" x2="1516.0" y2="1011.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1020.0" x2="1516.0" y2="1031.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1040.0" x2="1516.0" y2="1051.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1060.0" x2="1516.0" y2="1071.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1080.0" x2="1516.0" y2="1091.0" stroke="#AD6631" stroke-width="1.8" />
+  <text x="1316.0" y="1037" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">NPU / ISP / 图像接入</text>
+  <text x="1316.0" y="1070" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">自定义 IP 与接口〔规划〕</text>
+  <line x1="506" y1="1040" x2="530" y2="1040" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="530,1040 521.0,1044.0 521.0,1036.0" fill="#AD6631" stroke="none" />
+  <polygon points="506,1040 515.0,1036.0 515.0,1044.0" fill="#AD6631" stroke="none" />
+  <text x="523" y="990" fill="#AD6631" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="middle">专用请求 / 响应</text>
+  <line x1="372" y1="1093" x2="372" y2="1127" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="372,1127 368.0,1118.0 376.0,1118.0" fill="#AD6631" stroke="none" />
+  <polygon points="372,1093 376.0,1102.0 368.0,1102.0" fill="#AD6631" stroke="none" />
+  <line x1="664" y1="1093" x2="664" y2="1127" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="664,1127 660.0,1118.0 668.0,1118.0" fill="#AD6631" stroke="none" />
+  <polygon points="664,1093 668.0,1102.0 660.0,1102.0" fill="#AD6631" stroke="none" />
+  <line x1="956" y1="1093" x2="956" y2="1127" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="956,1127 952.0,1118.0 960.0,1118.0" fill="#AD6631" stroke="none" />
+  <polygon points="956,1093 960.0,1102.0 952.0,1102.0" fill="#AD6631" stroke="none" />
+  <text x="1316" y="1120" fill="#AD6631" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="middle">接入与 DDR 旁路方案待实现</text>
+  <rect x="240" y="1131" width="1276" height="46" rx="6" fill="#F8D9BF" stroke="none" stroke-width="1.5" />
+  <text x="878" y="1162" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">AXI 互连与适配 · 地址路由 · 主设备共享访问</text>
+  <line x1="505" y1="1179" x2="505" y2="1200" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="505,1200 501.0,1191.0 509.0,1191.0" fill="#AD6631" stroke="none" />
+  <polygon points="505,1179 509.0,1188.0 501.0,1188.0" fill="#AD6631" stroke="none" />
+  <line x1="1155" y1="1179" x2="1155" y2="1200" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="1155,1200 1151.0,1191.0 1159.0,1191.0" fill="#AD6631" stroke="none" />
+  <polygon points="1155,1179 1159.0,1188.0 1151.0,1188.0" fill="#AD6631" stroke="none" />
+  <rect x="240" y="1204" width="530" height="72" rx="8" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="505" y="1234" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="middle">原子适配 → LLC / SPM → 主存出口</text>
+  <text x="505" y="1263" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">SPM 复用 LLC 存储阵列</text>
+  <rect x="794" y="1204" width="722" height="72" rx="8" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1155" y="1234" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">寄存器总线 → 外设 / 平台控制</text>
+  <text x="1155" y="1263" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">UART · SPI · I²C · GPIO · 中断/定时器 · ROM 接口</text>
+  <rect x="40" y="1320" width="1500" height="112" rx="12" fill="#F0F3F6" stroke="none" stroke-width="1.5" />
+  <rect x="40" y="1320" width="8" height="112" rx="0" fill="#536777" stroke="none" stroke-width="1.5" />
+  <text x="68" y="1340.0" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="start">04</text>
+  <text x="68" y="1382.0" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="29" font-weight="bold" text-anchor="start">片外器件</text>
+  <text x="68" y="1414.0" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start">经对应控制器连接</text>
+  <line x1="214" y1="1344" x2="214" y2="1408" stroke="#CFD9E2" stroke-width="1.5" />
+  <line x1="505" y1="1278" x2="505" y2="1340" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="505,1340 501.0,1331.0 509.0,1331.0" fill="#AD6631" stroke="none" />
+  <polygon points="505,1278 509.0,1287.0 501.0,1287.0" fill="#AD6631" stroke="none" />
+  <line x1="1009" y1="1278" x2="1009" y2="1340" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="1009,1340 1005.0,1331.0 1013.0,1331.0" fill="#AD6631" stroke="none" />
+  <polygon points="1009,1278 1013.0,1287.0 1005.0,1287.0" fill="#AD6631" stroke="none" />
+  <rect x="240" y="1343" width="530" height="74" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="505.0" y="1380" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">DDR 存储器</text>
+  <text x="505.0" y="1408" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">经 DDR 控制器 / PHY 接入</text>
+  <rect x="794" y="1343" width="430" height="74" rx="10" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1009.0" y="1380" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">Flash · SD 卡 · EEPROM</text>
+  <text x="1009.0" y="1408" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">经 SPI / I²C 接入</text>
+  <rect x="1242" y="1343" width="274" height="74" rx="0" fill="#FFF9EF" stroke="none" stroke-width="1.5" />
+  <line x1="1242.0" y1="1343.0" x2="1253.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1262.0" y1="1343.0" x2="1273.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1282.0" y1="1343.0" x2="1293.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1302.0" y1="1343.0" x2="1313.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1322.0" y1="1343.0" x2="1333.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1342.0" y1="1343.0" x2="1353.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1362.0" y1="1343.0" x2="1373.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1382.0" y1="1343.0" x2="1393.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1402.0" y1="1343.0" x2="1413.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1422.0" y1="1343.0" x2="1433.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1442.0" y1="1343.0" x2="1453.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1462.0" y1="1343.0" x2="1473.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1482.0" y1="1343.0" x2="1493.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1502.0" y1="1343.0" x2="1513.0" y2="1343.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1242.0" y1="1417.0" x2="1253.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1262.0" y1="1417.0" x2="1273.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1282.0" y1="1417.0" x2="1293.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1302.0" y1="1417.0" x2="1313.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1322.0" y1="1417.0" x2="1333.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1342.0" y1="1417.0" x2="1353.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1362.0" y1="1417.0" x2="1373.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1382.0" y1="1417.0" x2="1393.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1402.0" y1="1417.0" x2="1413.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1422.0" y1="1417.0" x2="1433.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1442.0" y1="1417.0" x2="1453.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1462.0" y1="1417.0" x2="1473.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1482.0" y1="1417.0" x2="1493.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1502.0" y1="1417.0" x2="1513.0" y2="1417.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1242.0" y1="1343.0" x2="1242.0" y2="1354.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1242.0" y1="1363.0" x2="1242.0" y2="1374.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1242.0" y1="1383.0" x2="1242.0" y2="1394.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1242.0" y1="1403.0" x2="1242.0" y2="1414.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1343.0" x2="1516.0" y2="1354.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1363.0" x2="1516.0" y2="1374.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1383.0" x2="1516.0" y2="1394.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1516.0" y1="1403.0" x2="1516.0" y2="1414.0" stroke="#AD6631" stroke-width="1.8" />
+  <text x="1379.0" y="1380" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="middle">图像传感器〔规划〕</text>
+  <text x="1379.0" y="1408" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle">LVDS 图像输入</text>
+  <rect x="1570" y="150" width="390" height="200" rx="10" fill="#F3F6F9" stroke="#D9E2E9" stroke-width="1.5" />
+  <text x="1592" y="186" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="bold" text-anchor="start">开发主机上的工具</text>
+  <text x="1592" y="224" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="28" font-weight="bold" text-anchor="start">构建支持</text>
+  <text x="1592" y="262" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">编译器 · 汇编器 · 链接器</text>
+  <text x="1592" y="293" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">Makefile · 链接脚本 · 库归档</text>
+  <text x="1592" y="324" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">生成 ELF，规定代码与数据布局</text>
+  <rect x="1570" y="370" width="390" height="308" rx="10" fill="#F3F6F9" stroke="#D9E2E9" stroke-width="1.5" />
+  <text x="1592" y="406" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="bold" text-anchor="start">准备并维持软件执行环境</text>
+  <text x="1592" y="444" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="28" font-weight="bold" text-anchor="start">启动与运行支持</text>
+  <text x="1592" y="482" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">Boot ROM / 载荷加载</text>
+  <text x="1592" y="513" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">crt0：栈、BSS、异常入口</text>
+  <text x="1592" y="544" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">进入 main；异常处理与返回</text>
+  <text x="1592" y="575" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">启动交接与函数调用分别表达</text>
+  <text x="1592" y="606" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">运行期也可访问必要配置接口</text>
+  <text x="1592" y="637" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">不是每次设备调用的必经层</text>
+  <rect x="1570" y="698" width="390" height="250" rx="10" fill="#F3F6F9" stroke="#D9E2E9" stroke-width="1.5" />
+  <text x="1592" y="734" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="bold" text-anchor="start">扩展方向 · 目标运行待验证</text>
+  <text x="1592" y="772" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="28" font-weight="bold" text-anchor="start">可选操作系统</text>
+  <text x="1592" y="810" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">RTOS：任务、调度与同步</text>
+  <text x="1592" y="841" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">Linux：用户态 / 内核 / 驱动</text>
+  <text x="1592" y="872" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">依各自环境建立设备访问路径</text>
+  <text x="1592" y="903" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">不假定直接复用整套裸机 HAL</text>
+  <rect x="1570" y="968" width="390" height="202" rx="10" fill="#F3F6F9" stroke="#D9E2E9" stroke-width="1.5" />
+  <text x="1592" y="1004" fill="#28619B" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="bold" text-anchor="start">同一结构的实现与适配维度</text>
+  <text x="1592" y="1042" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="28" font-weight="bold" text-anchor="start">硬件实现平台</text>
+  <text x="1592" y="1080" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">FPGA：现有 VCU118 工程</text>
+  <text x="1592" y="1111" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">ASIC：宏、时钟、PAD 等适配</text>
+  <text x="1592" y="1142" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="normal" text-anchor="start">ASIC 实现与验证仍待完成</text>
+  <rect x="1570" y="1190" width="390" height="242" rx="10" fill="#F3F6F9" stroke="#D9E2E9" stroke-width="1.5" />
+  <text x="1592" y="1228" fill="#183247" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="27" font-weight="bold" text-anchor="start">阅读图例</text>
+  <rect x="1592" y="1250" width="35" height="23" rx="2" fill="#FFFFFF" stroke="#C6D3DE" stroke-width="1.5" />
+  <text x="1642" y="1270" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start">实线框：已有代码 / 结构</text>
+  <rect x="1592" y="1290" width="35" height="23" rx="0" fill="#FFF9EF" stroke="none" stroke-width="1.5" />
+  <line x1="1592.0" y1="1290.0" x2="1603.0" y2="1290.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1612.0" y1="1290.0" x2="1623.0" y2="1290.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1592.0" y1="1313.0" x2="1603.0" y2="1313.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1612.0" y1="1313.0" x2="1623.0" y2="1313.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1592.0" y1="1290.0" x2="1592.0" y2="1301.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1592.0" y1="1310.0" x2="1592.0" y2="1313.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1627.0" y1="1290.0" x2="1627.0" y2="1301.0" stroke="#AD6631" stroke-width="1.8" />
+  <line x1="1627.0" y1="1310.0" x2="1627.0" y2="1313.0" stroke="#AD6631" stroke-width="1.8" />
+  <text x="1642" y="1310" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start">虚线框：规划中的扩展</text>
+  <line x1="1592" y1="1340" x2="1627" y2="1340" stroke="#28619B" stroke-width="2.5" />
+  <polygon points="1627,1340 1618.0,1344.0 1618.0,1336.0" fill="#28619B" stroke="none" />
+  <text x="1642" y="1347" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start">蓝色箭头：代表性调用</text>
+  <line x1="1592" y1="1380" x2="1627" y2="1380" stroke="#AD6631" stroke-width="2.5" />
+  <polygon points="1627,1380 1618.0,1384.0 1618.0,1376.0" fill="#AD6631" stroke="none" />
+  <polygon points="1592,1380 1601.0,1376.0 1601.0,1384.0" fill="#AD6631" stroke="none" />
+  <text x="1642" y="1387" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start">棕色箭头：硬件连接</text>
+  <text x="40" y="1471" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start">说明：图示为职责与结构总览；模块按配置启用，已有结构不代表全部功能已仿真或板测。</text>
+  <text x="1960" y="1471" fill="#536777" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="end">L01 · 2026-10-09</text>
+</svg>

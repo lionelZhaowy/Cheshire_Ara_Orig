@@ -33,9 +33,15 @@
 
 根 profile 来源：[标量配置包](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdchsclic_sv39_wb_config_pkg.sv)。WB=写回，WT=写穿；WT 也有写缓冲，不意味着与所有 DMA 自动一致。切 profile 会同时改变多项硬件，不只是开关 V。
 
-## 3. 全部用户配置字段
+<a id="3-全部用户配置字段"></a>
 
-“集成后”中的 `cfg.*` 指 Cheshire 配置字段；“同左”表示 gen_cva6_cfg 没覆盖它。表中数值是当前向量 profile 的源码值；数组用紧凑表达。
+## 3. 按子系统查阅配置字段
+
+“集成后”中的 `cfg.*` 指 Cheshire 配置字段；“同左”表示 gen_cva6_cfg 没覆盖它。表中数值是当前向量 profile 的源码值；数组用紧凑表达。六组共保留全部 88 字段。2026-10-11 在 HEAD `2784340240915fe4338ec54bfd613723b127d62e` 定向复核配置类型、profile 和平台覆盖；表格仍是源码推导，不是特定 bitstream 或仿真产物的配置证明。
+
+### 3.1 指令能力与数值格式
+
+这些字段决定译码与执行能力。软件的 ISA 选项、启动代码及 FS/VS 状态必须配套；例如关闭 RVD 时，不能继续使用含双精度初始化的原 crt0。修改后应执行对应指令并核对合法结果与非法指令异常。
 
 | 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
 | --- | --- | --- | --- |
@@ -50,10 +56,7 @@
 | `RVZCB` | `0` | `同左` | Zcb 压缩子扩展；当前关闭。 |
 | `RVZCMP` | `0` | `同左` | Zcmp 压缩栈操作子扩展；当前关闭。 |
 | `RVZCMT` | `0` | `同左` | Zcmt 压缩表跳转子扩展；当前关闭。 |
-| `RVSCLIC` | `0` | `cfg.Clic` | CLIC 扩展支持；最终被 Cfg.Clic 覆盖。 |
 | `RVZiCond` | `0` | `同左` | 条件操作扩展；当前关闭。 |
-| `RVZicntr` | `1` | `同左` | 基础计数器扩展；不要与 PerfCounterEn 的性能事件使能混为一谈。 |
-| `RVZihpm` | `1` | `同左` | 硬件性能监视计数器扩展。 |
 | `RVF` | `1` | `同左` | 标量单精度浮点；软件 ABI lp64d 还需要 D。 |
 | `RVD` | `1` | `同左` | 标量双精度浮点；当前由 profile 的同一个 CVA6ConfigRVF 常量赋值。 |
 | `XF16` | `0` | `同左` | 非标准半精度浮点选项；不控制 Ara 的 FPUSupport。 |
@@ -61,15 +64,19 @@
 | `XF8` | `0` | `同左` | 非标准 8 位浮点选项。 |
 | `XF8ALT` | `0` | `同左` | 非标准替代 8 位浮点选项。 |
 | `XFVec` | `0` | `同左` | 标量 FPU 内的非标准 packed SIMD；不是 RVV/Ara 开关。 |
-| `PerfCounterEn` | `1` | `同左` | 微架构性能计数逻辑使能；用于性能分析时保留并核对事件定义。 |
+
+### 3.2 特权、地址转换与访问保护
+
+MMU/TLB 管理地址转换，PMP 管理物理访问保护，中断字段选择 CPU 入口协议。硬件存在与软件启用分别检查；更改后覆盖页表命中/缺失、权限异常、PMP 边界或相应中断入口，不能只确认寄存器可读写。
+
+| 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
+| --- | --- | --- | --- |
 | `MmuPresent` | `1` | `同左` | 地址转换 MMU 硬件；不等于软件已经启用分页。 |
 | `RVS` | `1` | `同左` | Supervisor 特权模式支持。 |
 | `RVU` | `1` | `同左` | User 特权模式支持。 |
+| `RVSCLIC` | `0` | `cfg.Clic` | CLIC 扩展支持；最终被 Cfg.Clic 覆盖。 |
 | `SoftwareInterruptEn` | `1` | `同左` | 软件中断支持；配合 CLINT/MSIP。 |
-| `DebugEn` | `1` | `1` | CPU debug 支持；Cheshire 强制为 1。 |
-| `DmBaseAddress` | `64'h0` | `AmDbg` | Debug Module 基址；由 Cheshire AmDbg 覆盖为 0。 |
-| `HaltAddress` | `64'h800` | `'h800` | debug halt 入口偏移；Cheshire 强制 0x800。 |
-| `ExceptionAddress` | `64'h808` | `'h810` | debug 异常入口偏移，不是普通 mtvec；profile 的 0x808 被改成 0x810。 |
+| `CLICNumInterruptSrc` | `256` | `NumCoreIrqs + NumIntIntrs + cfg.NumExtClicIntrs` | CPU CLIC 中断源数量；Cheshire 用 16+内部源数+NumExtClicIntrs 覆盖。 |
 | `TvalEn` | `1` | `同左` | trap value 寄存器信息支持，例如异常关联地址/值。 |
 | `DirectVecOnly` | `0` | `同左` | mtvec 是否只支持 direct 模式；不控制 RVV 向量运算。 |
 | `NrPMPEntries` | `8` | `cfg.Cva6NrPMPEntries` | PMP 表项数量；profile 为 8，但 Cheshire 默认覆盖为 0。 |
@@ -77,6 +84,17 @@
 | `PMPAddrRstVal` | `{64{64'h0}}` | `同左` | PMP 地址寄存器复位值数组；与权限/范围编码一起设置。 |
 | `PMPEntryReadOnly` | `64'd0` | `同左` | PMP 项只读属性位图；须结合保护模型设计。 |
 | `PMPNapotEn` | `1` | `同左` | PMP NA4/NAPOT 地址匹配支持开关。 |
+| `InstrTlbEntries` | `16` | `同左` | 指令 TLB 项数；只影响转换缓存，不改变页表模式。 |
+| `DataTlbEntries` | `16` | `同左` | 数据 TLB 项数。 |
+| `UseSharedTlb` | `0` | `同左` | 是否使用共享 TLB；当前关闭。 |
+| `SharedTlbDepth` | `64` | `同左` | 共享 TLB 深度；UseSharedTlb=0 时不是启用的容量。 |
+
+### 3.3 物理地址属性
+
+这些规则由 Cheshire 按实际存储和设备窗口重建，控制 CPU 对物理访问的处理方式。它们不创建地址译码或存储容量；更改后同时检查访问路由、取指许可、缓存别名及设备副作用。第 4 节给出默认区域。
+
+| 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
+| --- | --- | --- | --- |
 | `NrNonIdempotentRules` | `2` | `2` | 非幂等物理区域规则数；Cheshire 覆盖为 2。 |
 | `NonIdempotentAddrBase` | `见 profile 区域数组（集成时被覆盖）` | `gen_cva6_cfg() 重建，见第 4 节` | 非幂等区域基址数组；Cheshire 重建，避免对有副作用的设备按普通内存处理。 |
 | `NonIdempotentLength` | `见 profile 区域数组（集成时被覆盖）` | `gen_cva6_cfg() 重建，见第 4 节` | 非幂等区域长度数组，byte；不是结束地址。 |
@@ -86,15 +104,32 @@
 | `NrCachedRegionRules` | `1` | `3` | 可缓存物理区域规则数；Cheshire 覆盖为 3。 |
 | `CachedRegionAddrBase` | `见 profile 区域数组（集成时被覆盖）` | `gen_cva6_cfg() 重建，见第 4 节` | CPU 可缓存区域起点数组；并不配置 LLC 或 DMA snoop。 |
 | `CachedRegionLength` | `见 profile 区域数组（集成时被覆盖）` | `gen_cva6_cfg() 重建，见第 4 节` | CPU 可缓存区域长度数组；改变共享区时必须分别考虑 L1、LLC、设备路径。 |
+
+### 3.4 系统总线、调试与加速器接口
+
+这些字段连接 CPU 与 SoC，gen_cva6_cfg 会覆盖多项原值。总线尺寸改变需检查 typedef、序列化/宽度适配和端点；调试需实际 halt/resume 与系统总线访问；Ara 需配对专用请求/响应及 MMU 接口。
+
+| 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
+| --- | --- | --- | --- |
+| `DebugEn` | `1` | `1` | CPU debug 支持；Cheshire 强制为 1。 |
+| `DmBaseAddress` | `64'h0` | `AmDbg` | Debug Module 基址；由 Cheshire AmDbg 覆盖为 0。 |
+| `HaltAddress` | `64'h800` | `'h800` | debug halt 入口偏移；Cheshire 强制 0x800。 |
+| `ExceptionAddress` | `64'h808` | `'h810` | debug 异常入口偏移，不是普通 mtvec；profile 的 0x808 被改成 0x810。 |
 | `CvxifEn` | `0` | `0` | 通用 CV-X-IF 使能；Cheshire 强制为 0，Ara 通过专用 accelerator/MMU 通路集成。 |
 | `CoproType` | `config_pkg::COPRO_NONE` | `同左` | 通用 coprocessor 类型；当前 COPRO_NONE，不能因此推断 Ara 不存在。 |
 | `NOCType` | `config_pkg::NOC_TYPE_AXI4_ATOP` | `config_pkg::NOC_TYPE_AXI4_ATOP` | CPU 外部互连类型；Cheshire 固定 NOC_TYPE_AXI4_ATOP。 |
-| `CLICNumInterruptSrc` | `256` | `NumCoreIrqs + NumIntIntrs + cfg.NumExtClicIntrs` | CPU CLIC 中断源数量；Cheshire 用 16+内部源数+NumExtClicIntrs 覆盖。 |
 | `AxiAddrWidth` | `64` | `cfg.AddrWidth` | CPU AXI 地址位宽，profile 为 64，SoC 默认覆盖为 48。 |
 | `AxiDataWidth` | `64` | `cfg.AxiDataWidth` | CPU AXI 数据位宽，由 SoC AxiDataWidth 覆盖。 |
 | `AxiIdWidth` | `4` | `Cva6IdWidth` | CPU 原生 AXI ID 位宽，Cheshire 固定 4；后续 serializer 可压缩。 |
 | `AxiUserWidth` | `CVA6ConfigXlen` | `cfg.AxiUserWidth` | CPU AXI USER 位宽，由 SoC AxiUserWidth 覆盖；不是 FetchUserWidth。 |
 | `AxiBurstWriteEn` | `0` | `同左` | CPU AXI burst 写支持选项；cache 类型和总线实现共同决定事务行为。 |
+
+### 3.5 缓存、写缓冲与内存事务
+
+容量、路数和行宽共同决定 SRAM 组织；cache 类型及写缓冲决定数据何时向下游推进。改变这些参数会影响缺失、替换、排空与 CPU/Ara 共享数据，必须一起验证。WT 仍有缓存读副本，fence 是否触发 flush 取决于本地实现字段。
+
+| 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
+| --- | --- | --- | --- |
 | `MemTidWidth` | `2` | `同左` | cache 内存事务标签位宽；派生 DCACHE_MAX_TX=2^MemTidWidth。 |
 | `IcacheByteSize` | `4096` | `同左` | I-cache 总数据容量，byte；默认向量 profile 为 4 KiB。 |
 | `IcacheSetAssoc` | `4` | `同左` | I-cache way 数，默认 4。 |
@@ -110,6 +145,16 @@
 | `WtDcacheWbufDepth` | `8` | `同左` | WT D-cache 写缓冲深度；WT 仍可能有未完成的缓冲写。 |
 | `FetchUserEn` | `0` | `同左` | 取指附带 USER 信息的功能开关。 |
 | `FetchUserWidth` | `1` | `同左` | 取指 USER 信息位宽；关功能时仍保留非零占位宽度。 |
+
+### 3.6 执行资源、预测与实现选项
+
+队列和预测表改变资源与性能，并不修改每条合法指令的架构结果。先检查实现约束和索引位宽，再验证反压、依赖、冲刷及异常；性能计数器还要核对事件定义。FPGA 选项不能替代工艺单元适配。
+
+| 字段 | 向量 profile 原值 | 集成后来源/覆盖 | 含义与注意点 |
+| --- | --- | --- | --- |
+| `PerfCounterEn` | `1` | `同左` | 微架构性能计数逻辑使能；用于性能分析时保留并核对事件定义。 |
+| `RVZicntr` | `1` | `同左` | 基础计数器扩展；不要与 PerfCounterEn 的性能事件使能混为一谈。 |
+| `RVZihpm` | `1` | `同左` | 硬件性能监视计数器扩展。 |
 | `FpgaEn` | `0` | `同左` | CPU 局部 FPGA 优化选项；profile 为 0，不等于工程没有 FPGA 技术单元。 |
 | `FpgaAlteraEn` | `0` | `同左` | Altera 专用优化选择；不是所有 FPGA 的开关。 |
 | `TechnoCut` | `0` | `同左` | CPU 技术相关切分选项；需核对目标实现路径，不作为初学者常改项。 |
@@ -123,10 +168,6 @@
 | `RASDepth` | `2` | `cfg.Cva6RASDepth` | 返回地址预测栈深度；由 Cfg.Cva6RASDepth 覆盖。 |
 | `BTBEntries` | `32` | `cfg.Cva6BTBEntries` | 分支目标缓冲项数；由 Cfg.Cva6BTBEntries 覆盖。 |
 | `BHTEntries` | `128` | `cfg.Cva6BHTEntries` | 分支历史表项数；由 Cfg.Cva6BHTEntries 覆盖。 |
-| `InstrTlbEntries` | `16` | `同左` | 指令 TLB 项数；只影响转换缓存，不改变页表模式。 |
-| `DataTlbEntries` | `16` | `同左` | 数据 TLB 项数。 |
-| `UseSharedTlb` | `0` | `同左` | 是否使用共享 TLB；当前关闭。 |
-| `SharedTlbDepth` | `64` | `同左` | 共享 TLB 深度；UseSharedTlb=0 时不是启用的容量。 |
 
 ## 4. CPU 物理地址属性与 SoC 地址地图
 

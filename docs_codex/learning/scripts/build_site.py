@@ -3,6 +3,7 @@
 from pathlib import Path
 from html import escape,unescape
 import json,re
+from markdown_export import render_markdown
 ROOT=Path(__file__).resolve().parent.parent
 COURSE=json.loads((ROOT/'scripts/pages.json').read_text())
 PARTS={p['id']:p for p in COURSE['parts']}
@@ -11,6 +12,19 @@ def title(p):return (f"{p['number']:02d} · " if p['kind']=='chapter' else '')+p
 PAGES=[(p['slug'],title(p),p['subtitle']) for p in ENTRIES]
 MIGRATIONS=json.loads((ROOT/'scripts/anchor_migrations.json').read_text())
 def plain(s):return unescape(re.sub('<[^>]+>','',s))
+def course_contents():
+    """The home route, sidebar and adjacent links use one chapter manifest."""
+    sections=[]
+    for part in COURSE['parts']:
+        # The former devices part is now included in the boot/peripheral part.
+        # Preserve that bookmark at its subject, rather than reusing it for config.
+        alias='<span class="legacy-anchor" id="part-devices"></span>' if part['id']=='software' else ''
+        rows=''.join(f'<li><a href="{p["slug"]}.html">{escape(title(p))}</a> — {escape(p["subtitle"])}</li>' for p in ENTRIES if p.get('part')==part['id'])
+        sections.append(f'{alias}<h2 id="part-{part["id"]}">{part["label"]} · {part["title"]}</h2><ol class="chapter-list">{rows}</ol>')
+    return '\n'.join(sections)
+
+def content_bodies():
+    return {p['slug']:(ROOT/'content'/f'{p["slug"]}.html').read_text().replace('<!-- COURSE_CONTENTS -->',course_contents()) for p in ENTRIES}
 def headings(body,entry):
     rows=[];section=0;sub=0;ids=set()
     def repl(m):
@@ -52,7 +66,8 @@ def nav_html(entry,rows):
 
 def render():
     slugs={p['slug'] for p in ENTRIES}
-    bodies={p['slug']:(ROOT/'content'/f'{p["slug"]}.html').read_text() for p in ENTRIES}
+    bodies=content_bodies()
+    (ROOT/'markdown').mkdir(exist_ok=True)
     # Every migration points to actual content, never another redirect or a phantom alias.
     for old,dest in MIGRATIONS.items():
         file,_,id=dest.partition('#');slug=file.removesuffix('.html')
@@ -72,6 +87,7 @@ def render():
                 moved[id]=dest;notices.append(f'<p id="{escape(id)}"><a href="{escape(dest)}">原位置 {escape(id)} 已移至：{escape(title(next(x for x in ENTRIES if x["slug"]+".html"==df)))} · {escape(target)}</a></p>')
             ids.add(id)
         body,rows=headings(body,p)
+        (ROOT/'markdown'/f'{slug}.md').write_text(render_markdown(p,body,ENTRIES,MIGRATIONS))
         body=re.sub(r'(<table\b.*?</table>)',r'<div class="table-wrap">\1</div>',body,flags=re.S)
         if notices:body+='<aside class="moved-sections"><strong>旧书签对应位置</strong><p>以下链接供关闭脚本时使用；正文目录指向当前章节内容。</p>'+''.join(notices)+'</aside>'
         scripts='<script type="application/json" id="moved-anchors">'+json.dumps(moved,ensure_ascii=False)+'</script>'
@@ -82,12 +98,12 @@ def render():
         (ROOT/(slug+'.html')).write_text(f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title(p))} | Cheshire 实验课堂</title><link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
 <body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>实验课堂</span></a><p class="edition">CVA6 × Ara · 工程教材</p><details class="site-menu" open><summary>全书目录</summary><nav aria-label="章节">{nav_html(p,rows)}</nav></details><div class="sidebar-foot">{len(PARTS)}篇 · 离线可读<br><a href="README.md">维护说明</a> · <a href="../learning_backup/index.html">历史备份</a></div></aside>
-<div class="workspace"><header class="topbar"><nav aria-label="面包屑"><a href="index.html">L01</a> / <a href="index.html{('#part-'+part['id']) if part else ''}">{escape(label)}</a> / {escape(number)}</nav><a href="evidence.html#system-20261008">本轮验证记录 ↗</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">{escape(label)}</p><h1>{escape(title(p))}</h1><p class="subtitle">{escape(p['subtitle'])}</p></div><details class="toc-panel"{(' open' if slug!='index' else '')}><summary>{("全书导览 · 展开查看各篇" if slug=="index" else "本章目录 · 节与小节")}</summary><nav class="toc" aria-label="本页目录">{toc_html(rows)}</nav></details>{body}<nav class="nextprev" aria-label="上下章">{prev}{nxt}</nav></main><footer>Cheshire / CVA6 / Ara · L01 中文工程教材 · 系统教学与文档验收 2026-10-08</footer></div>{scripts}</body></html>
+<div class="workspace"><header class="topbar"><nav aria-label="面包屑"><a href="index.html">L01</a> / <a href="index.html{('#part-'+part['id']) if part else ''}">{escape(label)}</a> / {escape(number)}</nav><a href="evidence.html#review-20261011">文档审查记录 ↗</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">{escape(label)}</p><h1>{escape(title(p))}</h1><p class="subtitle">{escape(p['subtitle'])}</p><p class="format-link"><a href="markdown/{slug}.md">Markdown 阅读版</a></p></div><details class="toc-panel"{(' open' if slug!='index' else '')}><summary>{("全书导览 · 展开查看各篇" if slug=="index" else "本章目录 · 节与小节")}</summary><nav class="toc" aria-label="本页目录">{toc_html(rows)}</nav></details>{body}<nav class="nextprev" aria-label="上下章">{prev}{nxt}</nav></main><footer>Cheshire / CVA6 / Ara · L01 中文工程教材 · 文档重构 2026-10-11</footer></div>{scripts}</body></html>
 ''')
     retired=sorted({u.split('#')[0].removesuffix('.html') for u in MIGRATIONS}-slugs)
     for slug in retired:
         target=MIGRATIONS[slug+'.html'];anchors={old.split('#',1)[1]:dest for old,dest in MIGRATIONS.items() if old.startswith(slug+'.html#')}
         links=''.join(f'<p id="{escape(id)}"><a href="{escape(dest)}">{escape(id)} → 对应新节</a></p>' for id,dest in anchors.items())
         (ROOT/(slug+'.html')).write_text(f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>旧链接迁移 | Cheshire 实验课堂</title><link rel="stylesheet" href="assets/site.css"></head><body><main class="compat"><h1>旧章节的位置已调整</h1><p><a href="{target}">进入对应章节</a> · <a href="../learning_backup/{slug}.html">历史版本</a></p><p>旧书签按具体小节迁移；关闭脚本可使用下面的链接。</p>{links}</main><script>const redirects={json.dumps(anchors,ensure_ascii=False)};location.replace(redirects[decodeURIComponent(location.hash.slice(1))]||{json.dumps(target)});</script></body></html>\n''')
-    print(f'Built {len(ENTRIES)} main pages in {len(PARTS)} parts and {len(retired)} legacy redirects')
+    print(f'Built {len(ENTRIES)} HTML/Markdown pairs in {len(PARTS)} parts and {len(retired)} legacy redirects')
 if __name__=='__main__':render()

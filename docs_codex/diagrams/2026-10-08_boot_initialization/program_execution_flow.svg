@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <title>从复位到应用返回的程序执行流程</title>
+  <desc>以 SPI NOR 主动装载为例，显示 ROM 到 SPM 载荷入口、CRT0 到 main 及应用退出后的 CPU 与外部观察者状态。当前 boot_next_stage 返回链按源码推导有自返回循环。</desc>
+  <rect x="0" y="0" width="1600" height="900" fill="#FFFFFF"/>
+  <g font-family="Microsoft YaHei" fill="#172B4D">
+    <text x="40" y="64" font-size="42" font-weight="bold">从复位到应用返回的程序执行流程</text>
+    <text x="40" y="105" font-size="22" fill="#526477">示例：SPI NOR 自主启动（boot_mode=2），PlatformRom=0；程序使用根 SDK 的 CRT0</text>
+    <rect x="40" y="140" width="520" height="690" rx="14" fill="#F5F7FA" stroke="#B8C6D4" stroke-width="2"/>
+    <rect x="610" y="140" width="520" height="690" rx="14" fill="#F5F7FA" stroke="#B8C6D4" stroke-width="2"/>
+    <rect x="1180" y="140" width="380" height="690" rx="14" fill="#F5F7FA" stroke="#B8C6D4" stroke-width="2"/>
+    <text x="70" y="183" font-size="29" font-weight="bold">片上 Boot ROM 镜像</text>
+    <text x="640" y="183" font-size="29" font-weight="bold">SPM 中的应用 / ZSL 镜像</text>
+    <text x="1210" y="183" font-size="28" font-weight="bold">完成后的状态与观察</text>
+
+    <rect x="75" y="210" width="450" height="70" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="95" y="241" font-size="25" font-weight="bold">复位释放 → ROM 的 _start</text>
+    <text x="95" y="269" font-size="21">cheshire_bootrom.S @ Boot ROM</text>
+    <line x1="300" y1="280" x2="300" y2="307" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="300,320 293,307 307,307" fill="#4478AA"/>
+    <rect x="75" y="320" width="450" height="110" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="95" y="352" font-size="25" font-weight="bold">早期运行环境与 LLC 初始化</text>
+    <text x="95" y="380" font-size="21">等待硬件 BIST；配置 SPM / 栈</text>
+    <text x="95" y="408" font-size="21">PlatformRom=0：跳过平台钩子</text>
+    <line x1="300" y1="430" x2="300" y2="472" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="300,485 293,472 307,472" fill="#4478AA"/>
+    <text x="320" y="461" font-size="20" fill="#4478AA">call main</text>
+    <rect x="75" y="485" width="450" height="100" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="95" y="517" font-size="25" font-weight="bold">cheshire_bootrom.c 的 main</text>
+    <text x="95" y="545" font-size="21">读取 boot_mode / RTC，测频</text>
+    <text x="95" y="573" font-size="21">boot_spi_s25fs512s：初始化 SPI</text>
+    <line x1="300" y1="585" x2="300" y2="627" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="300,640 293,627 307,627" fill="#4478AA"/>
+    <rect x="75" y="640" width="450" height="80" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="95" y="671" font-size="25" font-weight="bold">gpt_boot_part_else_raw</text>
+    <text x="95" y="704" font-size="21">镜像字节 → SPM 起点 code_buf</text>
+    <line x1="300" y1="720" x2="300" y2="747" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="300,760 293,747 307,747" fill="#4478AA"/>
+    <rect x="75" y="760" width="450" height="55" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="95" y="795" font-size="24" font-weight="bold">boot_next_stage → jalr ra, 0(t0)</text>
+
+    <path d="M 525 787 L 578 787 L 578 245 L 632 245" fill="none" stroke="#34816B" stroke-width="3"/>
+    <polygon points="645,245 632,238 632,252" fill="#34816B"/>
+    <text x="586" y="507" font-size="20" fill="#34816B">jalr</text>
+    <text x="586" y="535" font-size="18" fill="#34816B">入口</text>
+    <rect x="645" y="210" width="450" height="70" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="665" y="241" font-size="25" font-weight="bold">载荷 _start @ 镜像起点</text>
+    <text x="665" y="269" font-size="21">由 sw/lib/crt0.S 提供</text>
+    <line x1="870" y1="280" x2="870" y2="322" stroke="#34816B" stroke-width="3"/>
+    <polygon points="870,335 863,322 877,322" fill="#34816B"/>
+    <rect x="645" y="335" width="450" height="115" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="665" y="368" font-size="25" font-weight="bold">CRT0：应用的运行环境</text>
+    <text x="665" y="398" font-size="21">sp / gp、mtvec、清 BSS、FP</text>
+    <text x="665" y="428" font-size="21">保存进入应用的 ra；call main</text>
+    <line x1="870" y1="450" x2="870" y2="492" stroke="#34816B" stroke-width="3"/>
+    <polygon points="870,505 863,492 877,492" fill="#34816B"/>
+    <text x="890" y="482" font-size="20" fill="#34816B">call</text>
+    <rect x="645" y="505" width="450" height="90" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="665" y="537" font-size="25" font-weight="bold">载荷自己的 main()</text>
+    <text x="665" y="567" font-size="21">执行任务；不返回则继续按程序运行</text>
+    <line x1="870" y1="595" x2="870" y2="667" stroke="#34816B" stroke-width="3"/>
+    <polygon points="870,680 863,667 877,667" fill="#34816B"/>
+    <text x="890" y="636" font-size="20" fill="#34816B">main 正常返回</text>
+    <text x="890" y="662" font-size="19" fill="#34816B">回到 call 后的指令</text>
+    <rect x="645" y="680" width="450" height="125" rx="10" fill="#E6F4EE" stroke="#34816B" stroke-width="2"/>
+    <text x="665" y="712" font-size="25" font-weight="bold">应用 CRT0 的 _exit</text>
+    <text x="665" y="742" font-size="21">scratch2 = (返回值 &lt;&lt; 1) | 1</text>
+    <text x="665" y="772" font-size="21">恢复栈上 sp / gp / ra，然后 ret</text>
+
+    <rect x="1210" y="210" width="320" height="110" rx="10" fill="#E6EDF4" stroke="#9BAEBF" stroke-width="2"/>
+    <text x="1230" y="241" font-size="23" font-weight="bold">return 不会自动停机</text>
+    <text x="1230" y="271" font-size="21">不自动复位 / 断电 / 换权限</text>
+    <text x="1230" y="301" font-size="21">CPU 仍由时钟驱动并继续取指</text>
+    <rect x="1210" y="405" width="320" height="155" rx="10" fill="#FCECEC" stroke="#B85E5E" stroke-width="2"/>
+    <text x="1230" y="437" font-size="23" font-weight="bold">当前 ROM 的调用后返回点</text>
+    <text x="1230" y="468" font-size="21">boot_next_stage：jalr 后是 ret</text>
+    <text x="1230" y="498" font-size="21">未保存上一层 ra</text>
+    <text x="1230" y="528" font-size="21">可形成 ret 自循环（源码推导）</text>
+    <text x="1230" y="549" font-size="17" fill="#9B4141">不是按设计进入 ROM 的 _exit</text>
+    <path d="M 1095 699 L 1150 699 L 1150 481 L 1197 481" fill="none" stroke="#B85E5E" stroke-width="3"/>
+    <polygon points="1210,481 1197,474 1197,488" fill="#B85E5E"/>
+    <text x="1158" y="616" font-size="19" fill="#9B4141">ret</text>
+    <rect x="1210" y="660" width="320" height="145" rx="10" fill="#E8F0FA" stroke="#4478AA" stroke-width="2"/>
+    <text x="1230" y="692" font-size="22" font-weight="bold">外部观察者：仿真 / 调试器</text>
+    <text x="1230" y="723" font-size="21">读取 scratch2 完成标志</text>
+    <text x="1230" y="753" font-size="21">仿真 TB 可结束仿真进程</text>
+    <text x="1230" y="783" font-size="21">完成通知 ≠ CPU 自动停机</text>
+    <line x1="1095" y1="747" x2="1197" y2="747" stroke="#4478AA" stroke-width="3"/>
+    <polygon points="1210,747 1197,740 1197,754" fill="#4478AA"/>
+
+    <text x="40" y="858" font-size="19" fill="#526477">路径边界：JTAG 直接设置 PC、UART invoke、OS 程序退出各有不同契约；本图不把它们等同此调用链。</text>
+    <text x="40" y="887" font-size="17" fill="#526477">依据：cheshire_bootrom.S / .c；gpt.c；crt0.S；rom.ld · HEAD 278434024 · 2026-10-08 · 未新增目标运行</text>
+  </g>
+</svg>

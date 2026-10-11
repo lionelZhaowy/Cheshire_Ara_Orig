@@ -3,27 +3,27 @@
     {
       "id": "foundations",
       "label": "第一篇",
-      "title": "系统与 CPU 使用模型"
-    },
-    {
-      "id": "software",
-      "label": "第二篇",
-      "title": "裸机软件构建、启动与运行"
+      "title": "系统与程序执行"
     },
     {
       "id": "fabric",
-      "label": "第三篇",
-      "title": "地址、互连与物理存储"
-    },
-    {
-      "id": "devices",
-      "label": "第四篇",
-      "title": "异常、外设与数据搬运"
+      "label": "第二篇",
+      "title": "地址、互连与存储层次"
     },
     {
       "id": "vector",
+      "label": "第三篇",
+      "title": "数据搬运、向量计算与共享"
+    },
+    {
+      "id": "software",
+      "label": "第四篇",
+      "title": "启动、外设与软件运行环境"
+    },
+    {
+      "id": "management",
       "label": "第五篇",
-      "title": "Ara 向量执行与数据交接"
+      "title": "时钟、复位与工程配置"
     },
     {
       "id": "os",
@@ -38,7 +38,7 @@
     {
       "id": "platform",
       "label": "第八篇",
-      "title": "ASIC 平台与物理实现"
+      "title": "ASIC 资源与物理实现"
     },
     {
       "id": "verification",
@@ -70,44 +70,20 @@
       "number": 2
     },
     {
-      "slug": "configuration",
-      "title": "Cheshire、CVA6、Ara 与软件配置",
-      "subtitle": "硬件字段、参数消费者与软件配置的一致性。",
-      "kind": "chapter",
-      "part": "foundations",
-      "number": 3
-    },
-    {
       "slug": "runtime",
       "title": "裸机 C 程序运行模型",
       "subtitle": "C 对象、函数调用、初始化与存储布局。",
       "kind": "chapter",
-      "part": "software",
-      "number": 4
+      "part": "foundations",
+      "number": 3
     },
     {
       "slug": "build",
       "title": "工具链、链接与 ELF",
       "subtitle": "源文件、对象文件、链接布局与 ELF 装载产物。",
       "kind": "chapter",
-      "part": "software",
-      "number": 5
-    },
-    {
-      "slug": "boot",
-      "title": "Boot ROM、启动模式与应用初始化",
-      "subtitle": "ROM 服务、程序装载与应用入口的执行关系。",
-      "kind": "chapter",
-      "part": "software",
-      "number": 6
-    },
-    {
-      "slug": "boot-debug",
-      "title": "JTAG 与程序加载调试",
-      "subtitle": "外部调试、程序装载与执行接管条件。",
-      "kind": "chapter",
-      "part": "software",
-      "number": 7
+      "part": "foundations",
+      "number": 4
     },
     {
       "slug": "address-map",
@@ -115,7 +91,7 @@
       "subtitle": "地址路由窗口、实际资源容量与 CPU 访问属性。",
       "kind": "chapter",
       "part": "fabric",
-      "number": 8
+      "number": 5
     },
     {
       "slug": "axi",
@@ -123,7 +99,7 @@
       "subtitle": "AXI 读写事务的通道握手与完成语义。",
       "kind": "chapter",
       "part": "fabric",
-      "number": 9
+      "number": 6
     },
     {
       "slug": "interconnect",
@@ -131,7 +107,7 @@
       "subtitle": "地址译码、仲裁、写数据路由与 ID 响应关系。",
       "kind": "chapter",
       "part": "fabric",
-      "number": 10
+      "number": 7
     },
     {
       "slug": "adapters",
@@ -139,7 +115,7 @@
       "subtitle": "位宽、协议、ID 转换与跨时钟域接口。",
       "kind": "chapter",
       "part": "fabric",
-      "number": 11
+      "number": 8
     },
     {
       "slug": "memory",
@@ -147,63 +123,15 @@
       "subtitle": "缓存副本、地址别名与共享物理阵列。",
       "kind": "chapter",
       "part": "fabric",
-      "number": 12
-    },
-    {
-      "slug": "traps",
-      "title": "异常、中断与上下文",
-      "subtitle": "函数调用、异常中断与任务上下文的保存责任。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 13
-    },
-    {
-      "slug": "uart-gpio",
-      "title": "MMIO 驱动、UART 与 GPIO",
-      "subtitle": "寄存器访问、设备初始化与引脚行为。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 14
-    },
-    {
-      "slug": "interrupts",
-      "title": "定时器与中断系统",
-      "subtitle": "计时、中断使能、服务、清源与返回流程。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 15
-    },
-    {
-      "slug": "i2c",
-      "title": "I2C 与 EEPROM",
-      "subtitle": "I2C 线路、FIFO、控制寄存器与 EEPROM 读取。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 16
-    },
-    {
-      "slug": "spi",
-      "title": "SPI、NOR 与 SD",
-      "subtitle": "SPI 控制器事务与 NOR、SD 设备协议。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 17
+      "number": 9
     },
     {
       "slug": "dma",
       "title": "iDMA、流量管理与总线错误",
       "subtitle": "数据搬运提交、完成、流量管理与本地执行条件。",
       "kind": "chapter",
-      "part": "devices",
-      "number": 18
-    },
-    {
-      "slug": "stream-io",
-      "title": "Serial Link、VGA 与 USB",
-      "subtitle": "串行链路、显示与 USB 的控制、数据和验证条件。",
-      "kind": "chapter",
-      "part": "devices",
-      "number": 19
+      "part": "vector",
+      "number": 10
     },
     {
       "slug": "ara",
@@ -211,7 +139,7 @@
       "subtitle": "向量请求、应答、CPU 提交与执行完成的协作关系。",
       "kind": "chapter",
       "part": "vector",
-      "number": 20
+      "number": 11
     },
     {
       "slug": "vector",
@@ -219,7 +147,7 @@
       "subtitle": "数组运算的汇编、intrinsics 与自动向量化实现。",
       "kind": "chapter",
       "part": "vector",
-      "number": 21
+      "number": 12
     },
     {
       "slug": "sharing",
@@ -227,7 +155,95 @@
       "subtitle": "共享数据的可见性、所有权与交接协议。",
       "kind": "chapter",
       "part": "vector",
+      "number": 13
+    },
+    {
+      "slug": "boot",
+      "title": "Boot ROM、启动模式与应用初始化",
+      "subtitle": "ROM 服务、程序装载与应用入口的执行关系。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 14
+    },
+    {
+      "slug": "boot-debug",
+      "title": "JTAG 与程序加载调试",
+      "subtitle": "外部调试、程序装载与执行接管条件。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 15
+    },
+    {
+      "slug": "traps",
+      "title": "异常、中断与上下文",
+      "subtitle": "函数调用、异常中断与任务上下文的保存责任。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 16
+    },
+    {
+      "slug": "uart-gpio",
+      "title": "MMIO 驱动、UART 与 GPIO",
+      "subtitle": "寄存器访问、设备初始化与引脚行为。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 17
+    },
+    {
+      "slug": "interrupts",
+      "title": "定时器与中断系统",
+      "subtitle": "计时、中断使能、服务、清源与返回流程。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 18
+    },
+    {
+      "slug": "i2c",
+      "title": "I2C 与 EEPROM",
+      "subtitle": "I2C 线路、FIFO、控制寄存器与 EEPROM 读取。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 19
+    },
+    {
+      "slug": "spi",
+      "title": "SPI、NOR 与 SD",
+      "subtitle": "SPI 控制器事务与 NOR、SD 设备协议。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 20
+    },
+    {
+      "slug": "stream-io",
+      "title": "Serial Link、VGA 与 USB",
+      "subtitle": "串行链路、显示与 USB 的控制、数据和验证条件。",
+      "kind": "chapter",
+      "part": "software",
+      "number": 21
+    },
+    {
+      "slug": "clocks",
+      "title": "时钟系统与 PLL",
+      "subtitle": "时钟域、使能、同步器与平台时钟源。",
+      "kind": "chapter",
+      "part": "management",
       "number": 22
+    },
+    {
+      "slug": "reset",
+      "title": "复位体系与平台启动条件",
+      "subtitle": "复位、平台就绪与在途事务的生命周期。",
+      "kind": "chapter",
+      "part": "management",
+      "number": 23
+    },
+    {
+      "slug": "configuration",
+      "title": "Cheshire、CVA6、Ara 与软件配置",
+      "subtitle": "硬件字段、参数消费者与软件配置的一致性。",
+      "kind": "chapter",
+      "part": "management",
+      "number": 24
     },
     {
       "slug": "rtos",
@@ -235,7 +251,7 @@
       "subtitle": "任务运行、阻塞、唤醒与同步的状态转换。",
       "kind": "chapter",
       "part": "os",
-      "number": 23
+      "number": 25
     },
     {
       "slug": "virtual-memory",
@@ -243,7 +259,7 @@
       "subtitle": "物理布局、虚拟地址翻译与设备地址语义。",
       "kind": "chapter",
       "part": "os",
-      "number": 24
+      "number": 26
     },
     {
       "slug": "linux",
@@ -251,7 +267,7 @@
       "subtitle": "平台固件、内核与首个用户进程的启动关系。",
       "kind": "chapter",
       "part": "os",
-      "number": 25
+      "number": 27
     },
     {
       "slug": "os-devices",
@@ -259,7 +275,7 @@
       "subtitle": "裸机、RTOS 与 Linux 的设备调用和缓冲区管理。",
       "kind": "chapter",
       "part": "os",
-      "number": 26
+      "number": 28
     },
     {
       "slug": "integration",
@@ -267,7 +283,7 @@
       "subtitle": "独立 Reg 设备与系统控制、数据及中断接口。",
       "kind": "chapter",
       "part": "integration",
-      "number": 27
+      "number": 29
     },
     {
       "slug": "ddr",
@@ -275,7 +291,7 @@
       "subtitle": "DDR 平台初始化、访问放行与接口交付条件。",
       "kind": "chapter",
       "part": "integration",
-      "number": 28
+      "number": 30
     },
     {
       "slug": "accelerators",
@@ -283,7 +299,7 @@
       "subtitle": "图像处理 IP 的接口、缓冲、跨域与集成条件。",
       "kind": "chapter",
       "part": "integration",
-      "number": 29
+      "number": 31
     },
     {
       "slug": "models",
@@ -291,22 +307,6 @@
       "subtitle": "明确假设下的 Ara/NPU 协作与数据搬运成本。",
       "kind": "chapter",
       "part": "integration",
-      "number": 30
-    },
-    {
-      "slug": "clocks",
-      "title": "时钟系统与 PLL",
-      "subtitle": "时钟域、使能、同步器与平台时钟源。",
-      "kind": "chapter",
-      "part": "platform",
-      "number": 31
-    },
-    {
-      "slug": "reset",
-      "title": "复位体系与平台启动条件",
-      "subtitle": "复位、平台就绪与在途事务的生命周期。",
-      "kind": "chapter",
-      "part": "platform",
       "number": 32
     },
     {

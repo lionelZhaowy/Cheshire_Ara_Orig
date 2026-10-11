@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>用同一数组比较汇编、intrinsics 和自动向量化。 前置：<a href="ara.html">20 · Ara 结构与 CVA6 协处理器接口</a>、<a href="runtime.html">4 · 裸机 C 程序运行模型</a>、<a href="build.html">5 · 工具链、链接与 ELF</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>用同一数组比较汇编、intrinsics 和自动向量化。 前置：<a href="ara.html">11 · Ara 结构与 CVA6 协处理器接口</a>、<a href="runtime.html">03 · 裸机 C 程序运行模型</a>、<a href="build.html">04 · 工具链、链接与 ELF</a>。</p></div>
 <h2 id="concepts">向量数组程序与校验任务</h2>
 <h3 id="work">数组计算的标量与向量表达</h3>
 <p>标量阶段逐元素计算 3*i+1。向量阶段准备 a[i]=i、b[i]=2*i+1，再执行 c=a+b，结果仍为 3*i+1。输入、长度和独立期望保持一致，便于把差异集中在执行与数据通路。主文件仍为 journey.c；先用 rvv_add.S，随后在同一调用边界增加归约和两种 C 编程入口。</p>
@@ -27,14 +27,15 @@ slli t1, t0, 2
 <p>intrinsics 是编译器提供的带类型 C 接口，例如 vuint32m1_t 对应 e32/m1 的一组值，<code>__riscv_vle32_v_u32m1</code> 显式加载，<code>__riscv_vadd_vv_u32m1</code> 运算，<code>__riscv_vse32_v_u32m1</code> 存储。<a href="examples/rvv_intrinsics.c">完整可构建内核</a>每轮接收实际 vl，再推进三个指针；归约使用 __riscv_vredsum_vs_u32m1_u32m1 和标量取出函数。深度扩充时用实际 GCC 15.2.0 编译核对名称及反汇编，不把网上其他版本 API 直接当作本地事实。</p>
 <p>API版本与工具证据集中见<a href="#toolchain-contract">编译器入口约定</a>；intrinsic版本和硬件RVV规范版本是不同维度。</p>
 <p>自动向量化从普通 C 循环推导并行性。<a href="examples/rvv_auto.c">自动向量化内核</a>用 restrict 承诺三个数组不重叠，独立编译为 -O3 -ftree-vectorize，并保留向量化诊断。restrict 需要调用者实际保证；违反时是 C 语义错误。编译器可以因为依赖、成本或目标选项保留标量代码，实际 dump 才回答它选择了什么。此前构建用 -fno-vect-cost-model 做教学探针，不作为性能最优设置。</p>
-<p>main、crt0、库和参考校验保持标量编译，只有内核对象启用 V。这样第一条向量指令位于 VS 初始化之后，参考循环也不被自动变成同一套向量路径。FP32 intrinsic 另有只编译探针 <a href="examples/rvv_fp_probe.c">rvv_fp_probe.c</a>；其成功只说明工具可产生 vfadd，硬件 FPUSupport、VS/FS、数值与异常仍需目标验证。配置组合查<a href="configuration.html#combinations">第 3 章</a>，各入口精确命令集中在<a href="labs.html#rvv-depth">实验 E 扩展</a>。</p>
+<p>main、crt0、库和参考校验保持标量编译，只有内核对象启用 V。这样第一条向量指令位于 VS 初始化之后，参考循环也不被自动变成同一套向量路径。FP32 intrinsic 另有只编译探针 <a href="examples/rvv_fp_probe.c">rvv_fp_probe.c</a>；其成功只说明工具可产生 vfadd，硬件 FPUSupport、VS/FS、数值与异常仍需目标验证。配置组合查<a href="configuration.html#combinations">第 24 章</a>，各入口精确命令集中在<a href="labs.html#rvv-depth">实验 E 扩展</a>。</p>
 
 <p>09-29 深度扩充的三种整数入口和 FP32 编译探针均通过；完整指令清单及本地宏记录见<a href="evidence/depth-20260929-builds.txt">构建报告</a>。这些产物还需要按<a href="labs.html#rvv-depth">实验 E 的扩展步骤</a>完成真实目标执行、数值与性能分层验收。术语与规范版本见<a href="OFFICIAL_SOURCES.md">官方来源说明</a>。</p>
 <h3 id="toolchain-contract">编译器入口与向量对象边界</h3>
 <p>09-29 深度扩充时实测 riscv64-unknown-elf-gcc 为 15.2.0。汇编、intrinsics 和自动向量化版本均生成了 vadd.vv、连续 load/store 及 vredsum.vs；自动向量化报告标记两个循环使用 variable length vectors。编译器诊断中的 missed 行可能描述变换后语句的再次分析，应结合函数级 optimized 行和反汇编判断，不能看到一个 missed 就断言整个函数没有向量化。</p>
 <p>包含 riscv_vector.h 的本地探针给出 __riscv_v_intrinsic=12000、__riscv_v=1000000、__riscv_v_elen=64、__riscv_v_min_vlen=128。最后一个值是该编译目标的最低保证，不是本工程 RTL 的 VLEN=2048；实际 vl 在运行时选择。<a href="https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/RISC-V-Vector-Intrinsics.html">固定版本GCC 15.2手册</a>仍写intrinsic 0.11，在线主版本曾标ratified 1.0（09-29核对记录）；实际工具的宏和可编译名字必须独立记录，不能将网站版本文字替代本地探针。</p>
+<p>以下是仓库根目录中的只读检查。先按<a href="labs.html#lab-e">实验 E</a>完成汇编版本构建，并沿用其指向该次输出目录的 <code>LEARN_RVV</code>；本轮不重新构建。宏查询预期显示工具支持的 RVV/intrinsic 声明；内核对象应含 V 属性，journey.o 的初始化和参考路径应保持标量。intrinsics/自动向量化版本的内核对象名是 <code>vector_kernel.o</code>，不能照抄汇编版的 rvv_add.o。</p>
 <pre><code>riscv64-unknown-elf-gcc -march=rv64gcv_zifencei -mabi=lp64d   -dM -E -x c -include riscv_vector.h /dev/null
-# 具体内核按 build_journey.sh 编译；逐个对象检查能力边界。
+# LEARN_RVV 必须是实验 E 本次汇编构建的输出目录。
 riscv64-unknown-elf-readelf -A "$LEARN_RVV/rvv_add.o"
 riscv64-unknown-elf-objdump -d "$LEARN_RVV/journey.o"</code></pre>
 <p>本例 -fno-tree-vectorize 用于 main、独立参考和支持库，含 V 的代码集中在专用内核对象，确保启用 VS 之前不会因自动优化提前执行 V。所有对象仍使用一致的 lp64d ABI 与 medany 代码模型。链接器合并出的 ISA 属性是一种静态声明，不能证明实际调用顺序、VS 状态或平台支持。</p>

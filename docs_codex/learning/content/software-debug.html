@@ -17,6 +17,7 @@
 <h3 id="stack-handoff">应用入口的栈有效性与对齐条件</h3>
 <p><code>jtag_elf_halt_load</code> 在 LlcNotBypass 为真时只等 CFG_SPM_LOW.bit0，然后 halt；<code>cheshire_bootrom.S</code> 在配置写之后还会按 LLC_SIZE 扩展 sp。当前 spm.ld 的 __stack_pointer$ 为 0，应用继承进入时栈。应把实际暂停 DPC、sp、所用链接符号与栈覆盖的可写范围记录在一起；不能依据配置位推断栈已位于 SPM 高端。</p>
 <p>原应用 crt0 在进入 main 前保存 24 字节上下文，默认高端初始 sp 与这个动作共同影响调用边界的 16 字节对齐。应在实际 C 调用边界观察 sp，并检查栈与代码/数组区间不相交。无内部 LLC 时，默认链接值本身不会建立可写存储；平台须先提供替代栈，详见<a href="boot.html#platform-rom">正常平台责任</a>。本轮不通过改 PC、改栈或改生产链接脚本掩盖这一契约。</p>
+<p><strong>ROM 自己的 C 入口需单独检查：</strong>当前源汇编在默认内部 SPM 路径设置 <code>sp=__base_spm+LLC_SIZE-8</code>，PlatformRom=0 时随后直接到 <code>_boot: call main</code>，中间没有应用 crt0 那样的 24 字节调整。默认 128 KiB 情形得到 <code>sp=0x1001fff8</code>，余数 <code>sp % 16 = 8</code>，未满足前述常规 ABI 的 16 字节对齐。这里确认的是源代码调用边界问题；本轮没有用目标波形复现异常或判断现有 ROM 编译结果是否受影响。非零 Platform ROM 钩子也继承该初始 sp，若用标准 ABI 的 C 实现同样需要核对；不能用应用 crt0 的对齐结果替 ROM 路径结案，应由启动任务结合实际 ROM 指令和 C 调用验证。</p>
 <h3 id="loader-tail">本地 ELF/JTAG 段尾与补零责任</h3>
 <p>当前 <code>elfloader.cpp::load_elf</code> 以 p_paddr 作为地址，保存 p_filesz 文件字节，并把 p_memsz 作为段长度交给 VIP；p_memsz 大于 p_filesz 时会打印未补零提示。应用 .bss 仍由 crt0 清零。这个源文件叫 get_section 的接口实际迭代 ELF PT_LOAD 段，名称不能用来推断其按 section header 装载。</p>
 <p><code>vip_cheshire_soc.sv::jtag_elf_preload</code> 按 8 字节打包写入，循环条件为 <code>i &lt;= sec_len</code>，并读取 bf[i]…bf[i+7]。段恰为 8 字节整倍数时仍会多进入一轮，非整倍数的末轮也缺逐字节边界限制，构成源码确认的越界风险。尚未动态复现或修复，不能将任意 ELF 安全装载作为既定能力。</p>
@@ -45,6 +46,7 @@
 <table><tr><th>问题/边界</th><th>证据与影响</th><th>当前状态</th></tr>
 <tr><td>Platform ROM 返回 S01-B01</td><td>源汇编及既有生成指令；非零平台钩子</td><td>未修复，未目标回归</td></tr>
 <tr><td>JTAG 继承栈接管</td><td>VIP 等待位与 ROM 后续指令顺序；spm.ld 继承 sp</td><td>真实暂停位置/栈仍需记录，不能泛化失败</td></tr>
+<tr><td>默认 ROM C 调用栈对齐</td><td>源汇编 SPM 顶端−8 后直接 call main；默认 sp 模 16 为 8</td><td>源码边界确认；实际 ROM 指令、影响及目标验证待启动任务处理</td></tr>
 <tr><td>JTAG 段尾</td><td>i&lt;=sec_len 与无末字节边界；任意长度 PT_LOAD</td><td>源码风险确认，未动态复现/修复</td></tr>
 <tr><td>默认 handler / 整数包装范围</td><td>crt0 的弱自循环、128 B整数保存；未包含完整 FP/RVV/嵌套</td><td>当前接口边界；不能当 OS port</td></tr>
 <tr><td>CLINT/UART、SPI/I2C 实现问题</td><td>已有驱动源码与外设诊断；影响计时/完成/介质事务</td><td>对应问题仍开放，本页只回链</td></tr>

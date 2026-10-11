@@ -113,11 +113,23 @@ try:
    report.append(f'PASS {width}x{height}: {slug}; images, current part/chapter, collapsible menu/TOC, no page overflow')
  for width,height,mobile in [(1440,1100,False),(390,844,True)]:
   cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
-  for slug,anchor in [('cva6','configuration-families'),('boot','platform-rom'),('integration','official-instantiation'),('future','resource-mapping'),('configuration','case-axi-rt'),('configuration','case-clic'),('configuration','case-irq-router')]:
+  for slug,anchor in [('cva6','configuration-families'),('boot','platform-rom'),('integration','official-instantiation'),('future','resource-mapping'),('configuration','case-axi-rt'),('configuration','case-clic'),('configuration','case-irq-router'),('memory','cache-geometry'),('dma','control-data-paths'),('build','build-practice'),('registers','group-0')]:
    go(slug+'.html#'+anchor)
    assert cdp.js('(()=>{const e=document.getElementById('+json.dumps(anchor)+');e.scrollIntoView();return !!e&&document.documentElement.scrollWidth<=innerWidth+1})()')
    cdp.shot('teaching-'+str(width)+'-'+slug+'-'+anchor+'.png')
    report.append(f'PASS teaching section at {width}: {slug}#{anchor}; target visible, no page overflow')
+  # Inspect long code and parameter tables at their actual location, not only page tops.
+  for slug,selector,label in [('build','pre','code'),('configuration','table','parameters'),('registers','table','registers')]:
+   go(slug+'.html')
+   stats=cdp.js('(()=>{const e=document.querySelector('+json.dumps(selector)+');e.scrollIntoView();const w=e.closest(".table-wrap")||e;const before=w.scrollLeft;w.scrollLeft=w.scrollWidth;const scrollable=w.scrollWidth<=w.clientWidth+1||w.scrollLeft>before;return {scrollable,pageOverflow:document.documentElement.scrollWidth>innerWidth+1,font:parseFloat(getComputedStyle(e).fontSize)}})()')
+   assert stats['scrollable'] and not stats['pageOverflow'] and stats['font']>=14,(slug,width,stats)
+   cdp.shot('reading-'+str(width)+'-'+label+'.png')
+   report.append(f'PASS reading {width}: {slug}; code/table scroll, font >=14px, no page overflow')
+  go('memory.html#cache-geometry')
+  cdp.js('document.getElementById("cache-geometry").scrollIntoView()')
+  cdp.js('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+  assert cdp.js('document.querySelector(".toc a[aria-current=location]")?.getAttribute("href")')=='#cache-geometry'
+  report.append(f'PASS section position mark at {width}: memory#cache-geometry')
  # The comparison gallery is a standalone artifact, outside the generated course.
  for width,height,mobile in [(1440,1100,False),(390,844,True)]:
   cdp.call('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
@@ -148,6 +160,9 @@ try:
   assert cdp.js('(()=>{const e=document.getElementById(location.hash.slice(1));return !!e&&e.querySelector("a").getAttribute("href")==='+json.dumps(dest)+'})()'),old
   report.append('PASS no-script old bookmark fallback: '+old+' -> '+dest)
  cdp.call('Emulation.setScriptExecutionDisabled',{'value':False})
+ go('index.html#part-devices')
+ assert cdp.js('document.getElementById("part-devices").nextElementSibling.id')=='part-software'
+ report.append('PASS former devices-part bookmark reaches boot/peripheral contents')
  moved={old:dest for old,dest in MIGRATIONS.items() if old.split('#')[0]!=dest.split('#')[0]}
  for old,dest in moved.items():
   go(old,dest)

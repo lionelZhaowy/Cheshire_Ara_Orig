@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>先连续完成默认 ROM/JTAG 到 main 的一次启动，再比较平台钩子和其他装载方法。 前置：<a href="runtime.html">4 · 裸机 C 程序运行模型</a>、<a href="build.html">5 · 工具链、链接与 ELF</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>先连续理解默认 ROM/JTAG 到 main 的一次启动，再比较平台钩子和其他装载方法。前置：<a href="runtime.html">裸机 C 程序运行模型</a>、<a href="build.html">工具链、链接与 ELF</a>及<a href="memory.html">存储层次与 SPM</a>。</p></div>
 <h2 id="default-path">默认 ROM/JTAG 启动的输入与目标</h2>
 <p>假定使用已配套的单核标量设计，Bootrom=1、PlatformRom=0、内部 LLC 保留为 SPM，RTC、UART 与 JTAG 可用；应用是同一目录生成的 <code>journey.spm.elf</code>。主机已经完成编译链接，ELF 入口和装载地址由 spm.ld 确定。此刻文件仍在主机磁盘，CVA6 没有执行其中任何代码。</p>
 <p>目标从复位开始执行自己的 Boot ROM。ROM 先使片上存储可用；仿真 VIP 经 JTAG 请求暂停，再通过 Debug Module 把 ELF 段搬到 SPM，设置应用入口并恢复 CPU。之后由应用 crt0 建立 C 环境、调用 main，main 计算并输出结果。先把这条路径读完，再看 UART、Link 或介质怎样替换装载者。JTAG 详细握手与板上调试工具将在<a href="boot-debug.html">调试章</a>展开。</p>
@@ -7,19 +7,20 @@
 <p>CPU 复位后的 BootAddr 默认是 <code>0x02000000</code>，指向固定 Boot ROM。ROM 是目标CPU立即可取指的启动程序；SPM 是稍后放入应用字节的运行存储；主机上的 ELF 是待装载文件。三者的名称和地址分别对应代码的来源、所在位置与格式。即使 ROM 和应用都使用名为 _start 的符号，它们也属于不同映像，不会在一次应用链接中合并。</p>
 <p>ASIC 中固定 ROM 内容需要在实现/制造前确定，具体可以映射为常量逻辑或 ROM 宏；FPGA 可通过重新生成硬件映像更新相应内容。外部 NOR/EEPROM 则可用规定流程更新程序镜像。更新外部镜像之所以有用，正是因为固定加载器能够读取不同的后续程序。</p>
 <h3 id="rom-initial-state">Boot ROM 的早期存储与栈</h3>
-<p>在默认保留内部 LLC（<code>LlcOutConnect=1、LlcNotBypass=1</code>）的配置下，<code>cheshire_bootrom.S</code> 等待 LLC 内建自测（BIST）完成，设置 CFG_SPM 的 way 位图并提交配置。默认 8 个 way 全部作为 SPM。随后用 LLC_SIZE 把早期栈放到阵列高端，128 KiB 时相应早期 sp 为 0x1001fff8；后续启动汇编还会调整它以建立调用上下文。平台 ROM 若被配置，则按源码约定调用。</p>
+<p>在默认保留内部 LLC（<code>LlcOutConnect=1、LlcNotBypass=1</code>）的配置下，<code>cheshire_bootrom.S</code> 等待 LLC 内建自测（BIST）完成，设置 CFG_SPM 的 way 位图并提交配置。默认 8 个 way 全部作为 SPM。随后用 LLC_SIZE 把早期栈放到阵列高端，128 KiB 时相应早期 sp 为 0x1001fff8。平台 ROM 若被配置，则按源码约定调用；默认无平台钩子时直接进入 _boot 并调用 ROM 自己的 main。应用 crt0 的 24 字节保存动作发生在后续应用入口，不能当作 ROM C 调用前的调整；对应对齐缺口见<a href="software-debug.html#stack-handoff">栈检查</a>。</p>
 <p>Boot ROM 的 C 代码负责启动策略。模式 0 提供被动加载服务，模式 1/2/3 分别访问 SPI SD、SPI NOR 和 I2C EEPROM。JTAG VIP 等待 LLC 的 SPM 配置标志后就请求 halt，因而主线无需假设 ROM 的 C main 已执行完。删除 LLC 或改变其阵列容量会同时改变这里的启动存储和栈条件。</p>
 <h3 id="default-load">JTAG 装载与应用入口交接</h3>
 <p>VIP 的 <code>jtag_elf_halt_load</code> 在内部 LLC 路径轮询 CFG_SPM_LOW.bit0，随后请求 hart0 暂停并等待 allhalted。主机侧 elfloader 解析 ELF 的 PT_LOAD 段，VIP 通过 Debug Module 的系统总线访问口写入目标地址。ELF entry 随后写入 DPC，即调试恢复 PC；恢复执行后，CVA6 开始取应用 _start 的机器指令。</p>
 <p>这个过程有两个必须分别满足的前提：目的存储已经可写，以及应用入口所需的栈/状态已经成立。当前 VIP 对 SPM 配置位的等待不覆盖后续栈建立步骤；spm.ld 的零栈符号表示应用继承进入时的 sp，因此应核对实际暂停 PC、sp 和有效栈区。主机能够写入段，不会自动替 CPU 建立栈。相关本地限制详见<a href="software-debug.html#stack-handoff">继承栈诊断</a>。</p>
 <h2 id="application">应用入口与运行交接</h2>
 <h3 id="crt">应用启动代码建立 C 环境</h3>
-<p>应用 crt0 首先关闭 M/S 全局中断并停住非零 hart。机器态（M）、监管态（S）和用户态（U）是 RISC-V 的权限层级，本书沿机器态裸机路径。crt0 根据非零栈符号决定是否换栈，建立 gp（访问全局数据的辅助指针），保存进入时上下文，再把 mtvec 设为异常入口。</p>
+<p>应用 crt0 首先关闭 M/S 全局中断并停住非零 hart。机器态（M）、监管态（S）和用户态（U）是 RISC-V 的权限层级，本书沿机器态裸机路径。crt0 根据非零栈符号决定是否换栈，建立 gp（访问全局数据的辅助指针），保存进入时的 sp、设置后的 gp 和返回地址 ra（不是完整处理器上下文），再把 mtvec 设为异常入口。</p>
 <p>接着清除 __bss_start 到 __bss_end，把 result 等零初始化对象置零；设置 FS 并初始化浮点寄存器，然后 fence 并 call main。即使 C 只做整数运算，当前原始 crt0 仍执行双精度浮点指令，所以本例要求 F/D 硬件。VS 未在原 crt0 统一设置，向量变体由标量 main 在调用向量函数前开启。</p>
 <p>异常是当前指令引起的事件，如非法指令或访存失败；中断是计时或设备等异步事件。两者统称 trap。CPU 把原因和位置记入 mcause、mepc、mtval 等 CSR，并跳到 mtvec。正常返回还需入口汇编与 handler 配合保存现场。本地弱 trap_vector 默认自循环；本例的正常计算不使用异常服务，若触发 trap 则不具备自动恢复条件，见<a href="software-debug.html#trap-stop">对应诊断</a>。完整机制见<a href="traps.html#software-context">异常与上下文</a>。</p>
 <h3 id="regs">系统寄存器参与初始化与结束</h3>
 <p>SoC 寄存器位于 0x03000000。它们向软件提供硬件信息，避免把某个平台频率硬编码进每个应用。RTC_FREQ（+0x44）供 CLINT 测频使用；NUM_INT_HARTS（+0x4c）报告核数；HW_FEATURES（+0x50）报告配置能力；LLC_SIZE（+0x54）报告阵列容量。容量和当前 way 用途需分别查询，硬件能力位还需结合引脚、时钟和设备模型理解。</p>
-<p>scratch0..15 每项 4 字节，低几个槽承担启动交接。主线程序读取 RTC_FREQ，用 RTC 与 mcycle 测系统频率，再配置 UART。printf 把结果变成字符，经 _putchar、uart_write、MMIO 写到 UART，VIP 采样串行数据并在换行后输出日志。返回前调用 uart_write_flush，确保末尾字符发完。</p>
+<p>scratch0..15 每项 4 字节，是 SoC 的通用读写寄存器；低几个槽由当前固件约定承担启动交接。它们只有少量信息容量，不是存放程序和数组的 scratchpad memory（SPM），也不是 CPU 的 mscratch CSR 或 Debug Module 的调试寄存器。名称相似不代表地址、容量或用途相同。</p>
+<p>主线程序读取 RTC_FREQ，用 RTC 与 mcycle 测系统频率，再配置 UART。printf 把结果变成字符，经 _putchar、uart_write、MMIO 写到 UART，VIP 采样串行数据并在换行后输出日志。返回前调用 uart_write_flush，确保末尾字符发完。</p>
 <p>main 返回值在 a0；应用返回 0 是逐项检查通过的判据，非零是失败码。crt0 的 _exit 把 <code>(返回值 &lt;&lt; 1) | 1</code> 写到 scratch2（+0x08）。VIP 观察 bit0，右移得到返回码；0 输出 [JTAG] SUCCESS，非零输出 FAILED。随后 _exit 的实际指令为 ret，验收应以完成寄存器和日志为准；调用者若希望收回执行权，还需事先建立有效返回地址。这个协议相当于测试环境的程序结束通知，不是操作系统的 exit 服务。</p>
 <h3 id="normal-result">程序结果校验与运行结束判据</h3>
 <p>本章主线的成功结果不是只出现 Hello。journey 先检查 seed 与 result 的启动初值，再计算和逐项检查 137 个整数，打印 <code>LEARN sum=28085 errors=0</code>，等待 UART 发送空闲，最后返回 0。VIP 从 SCRATCH2 读到完成标志和 0 返回码才报告 JTAG SUCCESS。输出正确而返回非零、返回 0 却没有预期逐项检查日志，都不足以验收这个指定程序。</p>
@@ -31,7 +32,7 @@
 <p><strong>栈的成立条件：</strong>ROM 先执行 <code>la sp, __stack_pointer$</code>，只是把链接值写入寄存器。随后检查 <code>HW_FEATURES.llc</code>；该位为 0 就跳到 <code>_prom_check_run</code>，跳过 BIST、SPM 配置和按 LLC_SIZE 调整栈。<code>cheshire_bootrom.ld</code> 的默认栈值指向 SPM 区域，加载这个值本身不能使对应存储可写。</p>
 <p>例如 <code>LlcOutConnect=1、LlcNotBypass=0</code> 保留外存出口但没有内部 LLC/SPM。平台可以提前提供覆盖栈地址的替代可写存储，或让 Platform ROM 先执行不依赖栈的早期汇编，建立替代存储并设置满足 ABI 的 sp，再调用需要栈的 C 程序。这一责任同样适用于 <code>Bootrom=1</code>；若 PlatformRom=0，进入通用 ROM C 代码前也需要平台满足栈前提。<code>LlcOutConnect=0、LlcNotBypass=1</code> 的不一致组合仍应排除，不能据 feature 位推断真实实例存在。</p>
 <p class="source">依据：<a href="../../hw/bootrom/cheshire_bootrom.S">_start 的栈赋值、HW_FEATURES 分支与 _prom_check_run</a>；<a href="../../hw/bootrom/cheshire_bootrom.ld">__stack_pointer$</a>；<a href="../../hw/cheshire_soc.sv">gen_llc / gen_llc_bypass 及 hw_features.llc</a>。以上为源码静态确认，未新增平台启动实测。</p>
-<p><code>Cfg.PlatformRom</code> 是硬件配置输入，SoC 把它反映到只读 <code>PLATFORM_ROM</code> 信息寄存器。应用不能通过写这个信息寄存器更换钩子地址。平台代码执行后能否重新修改 PLL 等 IP，则由那些 IP 自己的可编程控制寄存器决定，见<a href="clocks.html#boot-and-runtime-frequency">启动频率与运行时调频</a>。</p>
+<p><code>Cfg.PlatformRom</code> 是硬件配置输入，SoC 把它反映到只读 <code>PLATFORM_ROM</code> 信息寄存器。应用不能通过写这个信息寄存器更换钩子地址。固定的是 ROM 指令和钩子配置；ROM 执行寄存器写入所建立的 PLL、PAD 或外设状态能否在运行时修改，则由对应 IP 的控制接口、锁定位和时钟依赖决定。沿官方平台钩子进行早期 PLL/IP 配置是本项目已确认的待实现方向，具体频率与 IP 仍未冻结，见<a href="clocks.html#boot-and-runtime-frequency">启动频率与运行时调频</a>。</p>
 <p><strong>适用范围：</strong>当前非零 PlatformRom 的正常返回路径存在已确认缺陷，尚未修复；启用该钩子前需完成独立修复及回归。默认 PlatformRom=0 不进入此路径。详细控制流、生成 ROM 证据和上游修复见<a href="software-debug.html#platform-rom-return">软件诊断</a>。</p>
 <p class="source">源码静态确认：<a href="../../hw/cheshire_soc.sv">BootAddr</a>、<a href="../../hw/bootrom/cheshire_bootrom.S">_prom_check_run / boot_next_stage / _boot</a>、<a href="../../hw/regs/cheshire_regs.hjson">PLATFORM_ROM 只读属性</a>。依据与修复建议详见<a href="../03_Platform_ROM_Clock_IP_Configuration.md">Platform ROM 专题</a>。</p>
 <h3 id="load-path-overview">装载路径比较</h3>
@@ -71,7 +72,8 @@
 <p>当后续软件超出 ROM 的小型装载空间时，可以先把一个较小的加载器放入 SPM，由它继续读取大映像。本地 <code>sw/boot/zsl.c</code> 的 ZSL 使用前一阶段保留的读取回调访问启动介质；scratch0/1/3 在该阶段分别携带函数指针及标志、设备私有参数和原 gp 上下文。<code>grread</code> 负责按约定切换 gp 后调用读取函数。</p>
 <p>ZSL 将 DTB 放到 <code>0x80800000</code>、固件载荷放到 <code>0x80000000</code>，再按入口约定交接。DTB 是设备树二进制，用数据结构描述硬件地址、设备和中断；OpenSBI 提供监管态软件所需的固件服务，U-Boot 再负责后续启动组织。<code>fw_payload</code> 可把 OpenSBI 与后续载荷组合起来。这条链与直接运行裸机 ELF 是不同用途。</p>
 <p>这些 DRAM 写入要求外存已可用；当前 ZSL 不能代替尚未提供的 ASIC DDR 初始化驱动。把初始化职责放在 Platform ROM 或明确的早期平台阶段时，应按实际依赖安排，再进入 ZSL 的加载动作。本地通用 GPT 打包规则已注释，Linux 专用规则仍存在，操作前按<a href="../software/BUILD_AND_SDK.md">当前 SDK/镜像规则</a>逐项核对。</p>
-<p>至此只需把 ZSL 理解成仍由同一个 CPU 执行的较小加载程序，它不会自动提供一个操作系统。完整的固件、内核、根文件系统和第一个用户进程关系在<a href="linux.html">Linux 启动章</a>连续解释；RTOS 的启动和调度在<a href="rtos.html">RTOS 章</a>解释。它们不是当前裸机数组例子的前置。</p>
+<p>至此只需把 ZSL 理解成仍由同一个 CPU 执行的较小加载程序，它不会自动提供一个操作系统。随附官方软件文档描述了 Linux 启动栈，本地也保留 SDK 源码和镜像输入；这些材料不等于当前 VCU118、固定 Ara 配置或未来 ASIC 已完成 OS 验证。完整的固件、内核、根文件系统和第一个用户进程关系在<a href="linux.html">Linux 启动章</a>连续解释；RTOS 的启动和调度在<a href="rtos.html">RTOS 章</a>解释。它们不是当前裸机数组例子或 ASIC 裸机提取的前置。</p>
+<p class="source">官方设计意图参照本地 <a href="../../docs/um/sw.md">Software Stack</a> 和 <a href="../../docs/tg/integr.md#platform-rom">Platform ROM 集成说明</a>；软件手册中的 EEPROM 模式表、scratch 启动位和 UART EXEC 返回码有旧描述差异。本文分别以 <code>cheshire_bootrom.c</code> 的模式 3、<code>boot_passive</code> 的掩码 2、<code>uart_debug_serve</code> 的 EOC=0x14 为准，未据新版上游行为替代当前源码。</p>
 <div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/bootrom/cheshire_bootrom.c">启动选择与 scratch 协议</a>；<a href="../../sw/lib/gpt.c">GPT/raw 读取</a>；<a href="../../.bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_pkg.sv">DMI 寄存器及字段</a>；<a href="../../hw/regs/cheshire_regs.hjson">SoC 寄存器属性</a>；<a href="../../hw/bootrom/cheshire_bootrom.S">ROM 初始化</a>；<a href="../../target/sim/src/elfloader.cpp">ELF 解析</a>；<a href="../../target/sim/src/vip_cheshire_soc.sv">JTAG / UART / Link 加载</a>；<a href="../../sw/lib/crt0.S">应用入口和退出</a></p></div>
 <details class="quiz"><summary>UART 的 EXEC 地址和 NOR 自主启动入口为何可能不同？</summary><p>UART 调用装载者显式发送的 addr64；NOR 共同加载器从 SPM code_buf 起点调用，要求镜像在该处布置入口。两者都要满足地址、代码和栈条件。</p></details>
 

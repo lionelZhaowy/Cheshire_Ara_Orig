@@ -1,0 +1,85 @@
+{
+  "task": "L01 independent read-only coverage audit",
+  "date": "2026-10-11",
+  "head": "2784340240915fe4338ec54bfd613723b127d62e",
+  "scope": ["axi", "adapters", "uart-gpio", "i2c", "spi", "stream-io", "models", "measurement", "reset", "power", "future"],
+  "summary": "已定向完整读取11个content片段，对照当前pages.json及9张原SVG的标题、标签、对象层次和正文说明。没有发现新增的现有实现/未来方案硬性冲突。必须消除9处旧章号；建议以短句补齐GB流量及共源RTC测量边界。未修改仓库文件。",
+  "must_fix": [
+    {
+      "id": "EXTRA-01",
+      "kind": "chapter-number-drift",
+      "impact": "链接目标正确但标签仍显示旧章号，会使读者误认前置顺序和章节位置。",
+      "action": "主管按pages.json统一同步显示章号；不要改现有href或锚点。",
+      "locations": [
+        {"file": "axi.html", "target": "address-map.html", "old": 8, "new": 5},
+        {"file": "adapters.html", "target": "axi.html", "old": 9, "new": 6},
+        {"file": "adapters.html", "target": "interconnect.html", "old": 10, "new": 7},
+        {"file": "uart-gpio.html", "target": "interrupts.html", "old": 15, "new": 18},
+        {"file": "models.html", "target": "vector.html", "old": 21, "new": 12},
+        {"file": "models.html", "target": "sharing.html", "old": 22, "new": 13},
+        {"file": "models.html", "target": "accelerators.html", "old": 29, "new": 31},
+        {"file": "models.html", "target": "sharing.html#handoff", "old": 22, "new": 13},
+        {"file": "models.html", "target": "accelerators.html#npu-topology", "old": 29, "new": 31}
+      ]
+    }
+  ],
+  "recommended_small_clarifications": [
+    {
+      "id": "EXTRA-02",
+      "file": "docs_codex/learning/content/models.html",
+      "anchor": "cost",
+      "finding": "9618 B算术正确，表中也未直接声称全是DDR。但新增独立GB需求后，这个逻辑读写总量应与下一节DDR带宽区分，不能把GB内部复用同时算为DDR流量。",
+      "suggested_text": "9618 B 汇总的是本算例各数据对象的逻辑读写量，尚未指定它们经过哪条物理接口。若中间输入和 Y 留在独立 GB，相关 SRAM 访问计入 GB 端口流量；只有实际 DDR↔GB 搬运才计入 DDR 流量。权重复用还会改变每次任务的 DDR 读取量。",
+      "link": "accelerators.html#global-buffer",
+      "basis": "已读M01_IP_DDR_Interface_Contract.md §12；新accelerators.html#global-buffer；表格274+8768+512+64=9618。",
+      "classification": "知识边界补充，不是原算式错误"
+    },
+    {
+      "id": "EXTRA-03",
+      "file": "docs_codex/learning/content/measurement.html",
+      "anchor": "observation",
+      "finding": "CLINT观测行已说明RTC参数有效和分半读取限制，但尚未联到本轮补齐的VCU118共源测频限制。",
+      "suggested_text": "VCU118 的 RTC 由 soc_clk 分频产生，此比值不能独立证明绝对频率或 MMCM 锁定；平台频率来源见时钟章。",
+      "link": "clocks.html#platform-clocks",
+      "basis": "target/xilinx/src/cheshire_top_xilinx.sv 的 RTC Clock Divider；sw/lib/dif/clint.c::clint_get_core_freq；本轮clocks正文。",
+      "classification": "平台测量适用条件补充"
+    },
+    {
+      "id": "EXTRA-04",
+      "file": "docs_codex/learning/content/measurement.html",
+      "anchor": "observation",
+      "finding": "表中单写scratch结束协议，而本轮启动正文已明确SoC scratch、SPM、mscratch和debug scratch差别。",
+      "suggested_text": "将该表项改为“UART、SoC SCRATCH2 结束协议、数组比对”，并链接boot中的退出说明。无需重复展开协议。",
+      "basis": "sw/lib/crt0.S::_exit 写regs.SCRATCH[2]；vip_cheshire_soc.sv::jtag_poll_bit0/slink_poll_bit0 消费CHESHIRE_SCRATCH_2_OFFSET。",
+      "classification": "术语消歧，可随手收尾"
+    }
+  ],
+  "retain": [
+    {"file": "axi.html", "reason": "通道握手、AW/W独立、B响应与设备动作完成分开，原事务图和WaveDrom表达一致。"},
+    {"file": "adapters.html", "reason": "Regbus副作用、64→32高lane搬移、ID序列化、ATOP与普通AXI4边界清楚；iDMA单独桥缺口链接保留。"},
+    {"file": "uart-gpio.html", "reason": "UART reg8/4字节槽与硬件Reg32不混淆，FIFO/移位器完成分开；GPIO无当前板级回环/LED事实，示例与用户HelloWorld报告分开。"},
+    {"file": "i2c.html", "reason": "EEPROM设备地址/内部地址/MMIO分开；只读16字节范围、HAL问题与VIP/VCU118差异已标注；原图明确STOP后新START，未误画repeated START。"},
+    {"file": "spi.html", "reason": "命令/地址/数据的CS连续性及SD软件协议层次完整；NOR模型不冒充实际板芯片，未授权擦写和目标未运行边界保持。"},
+    {"file": "stream-io.html", "reason": "Link隔离控制悬空、VGA无帧完成IRQ、USB缺PHY激励和软件栈均明确；DMA含义未与完成IRQ混淆。"},
+    {"file": "models.html", "reason": "小矩阵教学算例与未实现NPU伪接口清楚；int32范围、KV384MiB、总量1.87GiB与14GB/s均是可复算假设，未变成性能承诺。"},
+    {"file": "measurement.html", "reason": "已指出标量直接公式与向量数组加法并非公平内核基准；计时完成/可见性与调试暂停边界完整，未新增性能数字。"},
+    {"file": "reset.html", "reason": "JTAG只等SPM bit0不能证明ROM C/栈已就绪、ndmreset未接、四级同步不等于PLL锁定等边界保留；WaveDrom明确未来协议。"},
+    {"file": "power.html", "reason": "候选域、常开控制、隔离/保持/电平转换、在途事务和SRAM所属域分开；图均声明未来，未冒充低功耗实现。GB增加不要求推翻其通用存储域责任。"},
+    {"file": "future.html", "reason": "2-lane/2048是待实施提取基线，未被GB讨论擅自升级；Bender一次性解析、保护.bender、真实工艺模型及多层验收边界完整。"}
+  ],
+  "figures_reviewed": [
+    "assets/figures-20261007/new-transaction.svg",
+    "assets/depth-axi-backpressure.svg",
+    "assets/figures-20261007/new-lanes.svg",
+    "assets/figures-20261007/new-device.svg",
+    "assets/figures-20261007/new-serial.svg",
+    "assets/depth-reset-release.svg",
+    "assets/figures-20261007/depth-clocks-future.svg",
+    "assets/figures-20261007/mechanism-power.svg",
+    "assets/figures-20261007/teaching-asic-responsibilities.svg"
+  ],
+  "verification": {
+    "performed": ["读取11个content片段与当前pages.json", "提取9张SVG文字并核对图注/当前与候选范围", "按新章号定向检查有编号交叉链接", "复核9618字节及KV/容量/带宽公式", "定向读取CLINT测频、SoC Link连接、CRT/VIP scratch协议"],
+    "not_performed": ["浏览器或SVG新增视觉渲染", "全站生成或检查脚本", "上游规范重新联网核查", "软件或RTL构建、仿真、综合、板测"]
+  }
+}

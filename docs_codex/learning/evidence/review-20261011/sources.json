@@ -1,0 +1,248 @@
+{
+  "head": "2784340240915fe4338ec54bfd613723b127d62e",
+  "client_date": "2026-10-11",
+  "classification": "current checkout static source review, not target execution",
+  "files": {
+    "hw/cheshire_pkg.sv": {
+      "sha256": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+      "symbols_or_topics": [
+        "cheshire_cfg_t",
+        "DefaultCfg",
+        "get_llc_size",
+        "gen_axi_in/out",
+        "gen_reg_out",
+        "gen_cva6_cfg"
+      ]
+    },
+    "hw/cheshire_soc.sv": {
+      "sha256": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+      "symbols_or_topics": [
+        "i_axi_xbar",
+        "gen_llc_atomics",
+        "gen_llc",
+        "BootAddr",
+        "gen_dma",
+        "gen_ext_axi_mst"
+      ]
+    },
+    "hw/cheshire_idma_wrap.sv": {
+      "sha256": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd",
+      "symbols_or_topics": [
+        "gen_2d",
+        "i_idma_midend",
+        "i_idma_backend",
+        "i_axi_rw_join"
+      ]
+    },
+    "hw/bootrom/cheshire_bootrom.S": {
+      "sha256": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+      "symbols_or_topics": [
+        "SPM init",
+        "_prom_check_run",
+        "_boot",
+        "boot_next_stage"
+      ]
+    },
+    "hw/bootrom/cheshire_bootrom.ld": {
+      "sha256": "b4445cbb070a9ba673e69342171f12a614be53d99a9857d577c32620b54de990",
+      "symbols_or_topics": [
+        "__stack_pointer$"
+      ]
+    },
+    "hw/bootrom/cheshire_bootrom.c": {
+      "sha256": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae",
+      "symbols_or_topics": [
+        "main",
+        "boot-mode dispatch"
+      ]
+    },
+    "hw/regs/cheshire_regs.hjson": {
+      "sha256": "19dcf3e4a35575f82b8cb3276309a83893216700c51091c1d47f0220da38d0f6",
+      "symbols_or_topics": [
+        "SCRATCH"
+      ]
+    },
+    "sw/lib/crt0.S": {
+      "sha256": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+      "symbols_or_topics": [
+        "_start",
+        "_exit",
+        "FS",
+        "24-byte stack save"
+      ]
+    },
+    "sw/sw.mk": {
+      "sha256": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7",
+      "symbols_or_topics": [
+        "CHS_SW_FLAGS",
+        "lp64d"
+      ]
+    },
+    "cheshire.mk": {
+      "sha256": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063",
+      "symbols_or_topics": [
+        "CHS_BROM_FLAGS"
+      ]
+    },
+    "sw/include/dif/dma.h": {
+      "sha256": "613bc1ba6e053aefde079b5e676920245948fe4071fa3394806a1a3bdc8039e9",
+      "symbols_or_topics": [
+        "sys_dma_2d_memcpy",
+        "NEXT/DONE IDs"
+      ]
+    },
+    "sw/lib/dif/clint.c": {
+      "sha256": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+      "symbols_or_topics": [
+        "clint_get_core_freq"
+      ]
+    },
+    "sw/include/dif/uart.h": {
+      "sha256": "37afa3b555582e5b404044660cdae43d44d08a49586eac507646e23122a974f1",
+      "symbols_or_topics": [
+        "UART_LINE_STATUS_REG_OFFSET"
+      ]
+    },
+    "target/sim/src/tb_cheshire_pkg.sv": {
+      "sha256": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab",
+      "symbols_or_topics": [
+        "gen_cheshire_ara_cfg",
+        "CheshireAraCfg"
+      ]
+    },
+    "target/sim/src/fixture_cheshire_soc.sv": {
+      "sha256": "28172693f9cf8de595766ee3b94e74f89b6ea702d411f0017970317323e070a8",
+      "symbols_or_topics": [
+        "SelectedCfg",
+        "DutCfg"
+      ]
+    },
+    "target/sim/src/vip_cheshire_soc.sv": {
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+      "symbols_or_topics": [
+        "jtag_init",
+        "jtag_poll_bit0",
+        "SlinkMaxClkDiv"
+      ]
+    },
+    "target/xilinx/src/cheshire_top_xilinx.sv": {
+      "sha256": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2",
+      "symbols_or_topics": [
+        "i_clkwiz",
+        "RTC Clock Divider",
+        "rstgen"
+      ]
+    },
+    "target/xilinx/scripts/impl_ip.tcl": {
+      "sha256": "23833808bc6c96ace56e121aeaf205021d0c2009214c7bdf5e6c22c0648b2b5a",
+      "symbols_or_topics": [
+        "CONFIG.CLKOUT1_REQUESTED_OUT_FREQ"
+      ]
+    },
+    "docs/um/arch.md": {
+      "sha256": "736b2b0445c41d19d88725ff86888be83344650c270f31a320088d6536924cb6",
+      "symbols_or_topics": [
+        "architecture",
+        "Memory Map"
+      ]
+    },
+    "docs/tg/integr.md": {
+      "sha256": "9a705e7449fa6922917a0f9cf1cec8f7a6fb0dd91e99d36551ce888fc570e853",
+      "symbols_or_topics": [
+        "SoC integration types"
+      ]
+    },
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv": {
+      "sha256": "40ad5d3c0ec3817662815514d28f1a9190ae1b24af4976c6359502f0a851bd1c",
+      "symbols_or_topics": [
+        "TagLength",
+        "IndexLength",
+        "BlockOffsetLength",
+        "ByteOffsetLength"
+      ]
+    },
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_burst_cutter.sv": {
+      "sha256": "34f2652a0031e008e94844de2abfdfd32eb5515e6865efd65affee4bbed1833f",
+      "symbols_or_topics": [
+        "proc_assign_addr_map"
+      ]
+    },
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_hit_miss.sv": {
+      "sha256": "cf7d95aca77faa5a90dcd4b3fe34bc8d20f08914e0c9dbf67191c387f0607077",
+      "symbols_or_topics": [
+        "spm_lock_i",
+        "RESP_SLVERR"
+      ]
+    },
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv": {
+      "sha256": "60691d56d923e0784a2094a80ea6e423cfc88ac0b4e9daf33db435eb61435138",
+      "symbols_or_topics": [
+        "FsmIdle",
+        "FsmWaitAx",
+        "FsmEndFlush"
+      ]
+    },
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/doc/src/index.rst": {
+      "sha256": "7d5869fd4285b5b6f761311af598c4b786b829538c18730b245c0691a9947d43",
+      "symbols_or_topics": [
+        "official iDMA naming"
+      ]
+    },
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/README.md": {
+      "sha256": "5c0518285fd345483224cc64f93b04a94e8c9b22fc7ade31337d980f9566046c",
+      "symbols_or_topics": [
+        "Data Movement Accelerator"
+      ]
+    },
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/midend/idma_nd_midend.sv": {
+      "sha256": "4ce42cf2b9f6c2baf12f7f941534752b270e84e41f082c5a2923b3d4377005b3",
+      "symbols_or_topics": [
+        "src_addr_calc",
+        "dst_addr_calc"
+      ]
+    },
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv": {
+      "sha256": "7782f1bc3f7920d5f1c2f285110ca950ce12761c173d166cdbb15d2c988f7236",
+      "symbols_or_topics": [
+        "DW=32"
+      ]
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": {
+      "sha256": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+      "symbols_or_topics": [
+        "mscratch",
+        "sscratch",
+        "dscratch",
+        "acc_cons_q"
+      ]
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv": {
+      "sha256": "1f57345ad56b0dbca0e5ab4f34396be2c93ae269c76db72f9abdf5e2abd844ba",
+      "symbols_or_topics": [
+        "cva6_cfg",
+        "CVA6ConfigDcacheType"
+      ]
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/config_pkg.sv": {
+      "sha256": "155381698551e4d631b09561ec58b1bfef752b30588bc5f09e59eedf246e436a",
+      "symbols_or_topics": [
+        "cva6_user_cfg_t"
+      ]
+    },
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv": {
+      "sha256": "a5e830a6f283831906d9f872592035e7f69fc836aa56a293be2ac5117b418496",
+      "symbols_or_topics": [
+        "build_config"
+      ]
+    }
+  },
+  "official_online": [
+    {
+      "url": "https://riscv-non-isa.github.io/riscv-elf-psabi-doc/",
+      "checked": "2026-10-11",
+      "displayed_version": "2.0-rc0, October 08 2026, pre-release",
+      "section": "2.1 Integer Calling Convention",
+      "used_fact": "Standard procedure entry and execution require 128-bit / 16-byte stack alignment; LP64D is ratified. New vector ABI features not adopted."
+    }
+  ]
+}

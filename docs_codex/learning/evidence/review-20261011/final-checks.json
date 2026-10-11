@@ -1,0 +1,17 @@
+[
+  {
+    "command": [
+      "python3",
+      "docs_codex/learning/scripts/check_site.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

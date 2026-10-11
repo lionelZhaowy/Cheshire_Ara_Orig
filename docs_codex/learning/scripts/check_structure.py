@@ -4,7 +4,7 @@ import sys
 sys.dont_write_bytecode=True
 from pathlib import Path
 import hashlib,json,re,subprocess,tempfile,shutil,os
-from build_site import ENTRIES,PARTS,MIGRATIONS
+from build_site import ENTRIES,PARTS,MIGRATIONS,content_bodies
 from report_run import start_run
 R=Path(__file__).resolve().parent.parent;repo=R.parent.parent
 args,OUT,META=start_run('checks',extra=True)
@@ -19,7 +19,9 @@ def run(script,cwd=repo,args=()):
  return x.stdout.strip()
 try:
  baseline=json.loads((R/'evidence/refinement-20260929-input.json').read_text())
- protected={n:h for n,h in baseline['files'].items() if n.startswith(('evidence/','examples/','assets/'))}
+ # The live stylesheet/script are maintained with the current site. Historical
+ # figures, vendor assets, examples and dated evidence remain immutable.
+ protected={n:h for n,h in baseline['files'].items() if n.startswith(('evidence/','examples/','assets/')) and n not in ('assets/site.css','assets/site.js')}
  for n,h in protected.items():assert sha(R/n)==h,('historical asset modified',n)
  assert sha(R.parent/'handoffs/2026-09-29_L01_structure_revision_review.md')==baseline['review_sha256']
  report.append(f'PASS {len(protected)} prior evidence/example/asset files unchanged; review preserved')
@@ -27,15 +29,15 @@ try:
  assert {str(p.relative_to(b)) for p in b.rglob('*') if p.is_file()}==set(m)
  for n,item in m.items():assert sha(b/n)==item['sha256'],n
  report.append(f'PASS backup unchanged: {len(m)} files')
- assert list(PARTS)==['foundations','software','fabric','devices','vector','os','integration','platform','verification']
+ assert list(PARTS)==['foundations','fabric','vector','software','management','os','integration','platform','verification']
  chapters=[p for p in ENTRIES if p['kind']=='chapter']
  assert [p['number'] for p in chapters]==list(range(1,43))
  assert len({p['slug'] for p in ENTRIES})==len(ENTRIES)
  assert {p.stem for p in (R/'content').glob('*.html')}=={p['slug'] for p in ENTRIES}
  positions={p['slug']:i for i,p in enumerate(chapters)}
- for chain in [('runtime','build','boot','boot-debug'),('traps','interrupts','rtos'),('memory','virtual-memory','linux','os-devices'),('ara','vector','sharing'),('asic-memory','timing-physical','silicon-bringup'),('simulation','measurement')]:
+ for chain in [('architecture','runtime','build','address-map','axi','interconnect','memory','dma','ara','sharing','boot','boot-debug'),('traps','interrupts','clocks','reset','configuration','rtos'),('memory','virtual-memory','linux','os-devices'),('ara','vector','sharing'),('asic-memory','timing-physical','silicon-bringup'),('simulation','measurement')]:
   assert [positions[s] for s in chain]==sorted(positions[s] for s in chain),('teaching prerequisite order',chain)
- bodies={p['slug']:(R/'content'/f'{p["slug"]}.html').read_text() for p in ENTRIES}
+ bodies=content_bodies()
  for old,dest in MIGRATIONS.items():
   f,_,anchor=dest.partition('#');assert f[:-5] in bodies
   if anchor:assert f'id="{anchor}"' in bodies[f[:-5]],(old,dest)
@@ -76,7 +78,7 @@ try:
    run(clone/'scripts/build_research_figures.py',cwd=clone,args=['--out-dir',fresh])
    for p in fresh.iterdir():assert sha(p)==sha(R/'assets/figures-20261007'/p.name),('research figure generation mismatch',p.name)
    report.append('PASS 37 research SVG masters and manifest regenerated in a fresh temporary directory')
-   products=list(clone.glob('*.html'))+list((clone/'assets').glob('*.svg'))+[clone/'content/registers.html']
+   products=list(clone.glob('*.html'))+list((clone/'markdown').glob('*.md'))+list((clone/'assets').glob('*.svg'))+[clone/'content/registers.html']
    for p in products:assert sha(p)==sha(R/p.relative_to(clone)),('generated mismatch',str(p.relative_to(clone)))
    report.append(f'PASS temporary-copy generation matches {len(products)} products; no worktree regeneration')
  else:report.append('SKIP generation comparison (request --check-generated explicitly)')

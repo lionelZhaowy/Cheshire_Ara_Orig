@@ -1,16 +1,9 @@
-<div class="goals"><strong>本章任务</strong><p>追踪译码、仲裁、W 路由、ID 与响应。 前置：<a href="axi.html">9 · AXI 通道、突发与握手</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>追踪译码、仲裁、W 路由、ID 与响应。 前置：<a href="axi.html">06 · AXI 通道、突发与握手</a>。</p></div>
 <h2 id="decode">两级地址译码</h2>
 <p>Crossbar 是多发起者到多目标的交叉互连。各输入先根据 AW/AR 地址选择目标，目标端再仲裁不同输入。CPU 访问 UART、DMA 访问主存可以走不同目标；二者访问主存时需要竞争目标资源。返回方向根据保存的归属和 ID 回到发起者。</p>
 <p>当前第一层把 <code>[0x02000000,0x0c000000)</code> 路由到寄存器桥。桥转换协议和位宽后，第二层再次译码，选出 UART 的 <code>[0x03002000,0x03003000)</code> 等窗口。区间含起点、不含终点。关闭 UART 后，该地址仍可到第一层桥，随后在第二层进入错误目标。</p>
 <p>本地译码对重叠规则采用高下标优先，新增窗口应消除意外重叠。第一层不匹配通过 AXI 错误目标返回 DECERR；Reg 层不匹配经 <code>i_reg_err_slv</code> 返回 error 和错误数据 0xBADCAB1E。错误也需要完整应答：写事务仍要接受规定的数据，读 burst 仍需完成相应返回拍。</p>
 <h2 id="crossbar">Crossbar 内部保存的事务状态</h2>
-<h3 id="configuration-versus-registers">结构配置与运行时控制的区别</h3>
-<p>当前 Crossbar 的端口数、ID 宽、连接矩阵和地址规则来自常量配置；<code>i_axi_xbar.addr_map_i</code> 接的是 <code>AxiMap</code>。它没有一套供 C 程序重新规划路由的 MMIO 配置寄存器。通用 AXI IP 把地址表做成输入，允许满足特定空闲条件的外部更新；当前 Cheshire 的连接选择了静态表。阅读 IP 文档时，要继续检查上层究竟把输入接到了常量还是寄存器。</p>
-<p>与此不同，AXI RT 的带宽预算/时间窗口、UNBENT 的错误记录、LLC 的 SPM way 选择有运行时寄存器。它们分别影响流量放行、错误观测和存储用途，并不更改主 Crossbar 的目标窗口。软件配置表应当只列真正可写的控制项，把其余选项放入硬件配置表。</p>
-<h3 id="address-rule-worked-example">外部设备与地址规则的展开</h3>
-<p>设一个未来平台需要两个 AXI 发起者 NPU、ISP 和一个 NPU 控制口。<code>AxiExtNumMst=2</code> 增加接收这两个设备请求的端口，但不为设备分配“内存地址”；发起者使用系统已有目标地址。控制口才是可寻址目标，需要 <code>RegExtNumSlv</code>、规则数和窗口/目标索引。<code>gen_axi_out</code> 将外部 Reg 窗口先指向公共寄存器桥，<code>gen_reg_out</code> 再将其指向对应外部 Reg 口。</p>
-<p>端口数与地址规则数由此可以不同：同一目标可以有多个窗口；同一发起者可以访问多个目标。按当前单核默认配置，加入 Ara 后为 7 个内部来源，再加两个外部来源成为 9 个，Crossbar 需要 4 位来源前缀。系统输入 ID 为 2 位时，Crossbar 目标侧 ID 是 6 位。后续原子适配/LLC 还可能改变 ID 宽度，芯片 wrapper 应使用 typedef 宏计算类型，不能把这 6 位直接套给所有接口。</p>
-<p class="source">源码静态确认：<a href="../../hw/cheshire_soc.sv">AxiMap、i_axi_xbar、gen_ext_axi_mst、gen_ext_reg_slv</a>；<a href="../../hw/cheshire_pkg.sv">gen_axi_in、gen_axi_out、gen_reg_out</a>。IP 能力与顺序条件见本地<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">axi_xbar 设计说明</a>；新增 NPU/ISP 为未来方案。</p>
 <h3 id="transaction-storage">路由信息与在途事务</h3>
 <p><code>axi_xbar_unmuxed</code> 为输入配置译码和 demux（分流器），<code>axi_xbar</code> 在每个目标配置 mux（汇聚仲裁器）。mux 给请求 ID 添加来源编号。例如原 ID 两位、两个来源时，来源 0 的 ID=01 变为 001，来源 1 的同号 ID 变为 101；响应按前缀分送，再恢复原 ID。</p>
 <h3 id="write-route">W 来源与目标的保存</h3>
@@ -37,8 +30,16 @@
 <h3 id="cuts">流水切分与在途容量</h3>
 <p>当前 Crossbar 使用 CUT_ALL_PORTS、FallThrough=0、PipelineStages=0，MaxMstTrans/MaxSlvTrans 均为 24。cut 保存协议拍和有效状态，以分割组合路径；这些深度分别控制不同资源。IP 暴露内部 PipelineStages 参数，同时本地设计说明记录了内部切分的写通道死锁风险；调整时应检查依赖关系并运行长背压场景。</p>
 <figure><img src="assets/figures-20261007/depth-xbar-full.svg" alt="所有主动设备进入 AXI Crossbar 后分往 Debug、DMA、Link、Reg 和 LLC 路径"><figcaption>当前实现的层次图；每个适配器的在途容量是独立约束。</figcaption></figure>
-<h2 id="validation">结构变更与验证范围</h2>
+<h2 id="validation">结构配置、扩展与验证</h2>
+<h3 id="configuration-versus-registers">结构配置与运行时控制的区别</h3>
+<p>当前 Crossbar 的端口数、ID 宽、连接矩阵和地址规则来自常量配置；<code>i_axi_xbar.addr_map_i</code> 接的是 <code>AxiMap</code>。它没有一套供 C 程序重新规划路由的 MMIO 配置寄存器。通用 AXI IP 把地址表做成输入，允许满足特定空闲条件的外部更新；当前 Cheshire 的连接选择了静态表。阅读 IP 文档时，要继续检查上层究竟把输入接到了常量还是寄存器。</p>
+<p>与此不同，AXI RT 的带宽预算/时间窗口、UNBENT 的错误记录、LLC 的 SPM way 选择有运行时寄存器。它们分别影响流量放行、错误观测和存储用途，并不更改主 Crossbar 的目标窗口。软件配置表应当只列真正可写的控制项，把其余选项放入硬件配置表。</p>
+<h3 id="address-rule-worked-example">外部设备与地址规则的展开</h3>
+<p>设一个未来平台需要两个 AXI 发起者 NPU、ISP 和一个 NPU 控制口。<code>AxiExtNumMst=2</code> 增加接收这两个设备请求的端口，但不为设备分配“内存地址”；发起者使用系统已有目标地址。控制口才是可寻址目标，需要 <code>RegExtNumSlv</code>、规则数和窗口/目标索引。<code>gen_axi_out</code> 将外部 Reg 窗口先指向公共寄存器桥，<code>gen_reg_out</code> 再将其指向对应外部 Reg 口。</p>
+<p>端口数与地址规则数由此可以不同：同一目标可以有多个窗口；同一发起者可以访问多个目标。按当前单核默认配置，加入 Ara 后为 7 个内部来源，再加两个外部来源成为 9 个，Crossbar 需要 4 位来源前缀。系统输入 ID 为 2 位时，Crossbar 目标侧 ID 是 6 位。后续原子适配/LLC 还可能改变 ID 宽度，芯片 wrapper 应使用 typedef 宏计算类型，不能把这 6 位直接套给所有接口。</p>
+<p class="source">源码静态确认：<a href="../../hw/cheshire_soc.sv">AxiMap、i_axi_xbar、gen_ext_axi_mst、gen_ext_reg_slv</a>；<a href="../../hw/cheshire_pkg.sv">gen_axi_in、gen_axi_out、gen_reg_out</a>。IP 能力与顺序条件见本地<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">axi_xbar 设计说明</a>；新增 NPU/ISP 为未来方案。</p>
+<h3 id="validation-cases">结构变更的验证范围</h3>
 <p>新增发起端时，用两个发起者的相同 ID 同时访问，检查返回归属；修改路由时，检查窗口首尾和未映射地址；修改位宽时，覆盖 +0/+4、部分 WSTRB、长 burst 和错误响应；修改流水或 CDC 时，错开 AW/W 并持续背压 R/B，停止激励后检查排空。同 ID 先慢后快目标能检验顺序限制。</p>
-<p>排查时沿一笔事务记录输入握手、译码目标、下游握手、返回握手四个位置。VALID 长等可能来自目标未就绪、队列已满或 ID 冲突，应指出具体等待资源。独立教学 Reg 单元将在<a href="integration.html">第 27 章</a>验证副作用契约；生产 Crossbar 的动态回归仍需专门执行。</p>
+<p>排查时沿一笔事务记录输入握手、译码目标、下游握手、返回握手四个位置。VALID 长等可能来自目标未就绪、队列已满或 ID 冲突，应指出具体等待资源。独立教学 Reg 单元将在<a href="integration.html">第 29 章</a>验证副作用契约；生产 Crossbar 的动态回归仍需专门执行。</p>
 <div class="source"><strong>源码与进一步阅读</strong><p><a href="../../hw/cheshire_soc.sv">Crossbar 与 Reg 桥</a>；<a href="../../hw/cheshire_pkg.sv">两级地址规则</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_xbar_unmuxed.sv">译码与分流</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_mux.sv">来源 ID 与 W FIFO</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_demux_simple.sv">ID 跟踪</a>；<a href="../../.bender/git/checkouts/axi-ecdc900686449c15/doc/axi_xbar.md">顺序及切分说明</a></p></div>
 <details class="quiz"><summary>WLAST 被接收后，可以立刻复位存储目标吗？</summary><p>还可能有 B 响应、其他读写和跨域队列未完成。复位放行应基于全路径排空或已定义的错误恢复协议。</p></details>

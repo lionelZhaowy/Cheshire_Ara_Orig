@@ -2,11 +2,13 @@
 
 # Cheshire/CVA6/Ara 配置参考手册
 
-2026-09-29 新教材补充了[三个配置入口的组合验收表](../learning/configuration.html#combinations)与[当前地址/属性差异](../learning/interconnect.html#address-map)；本参考表保持原有静态基准。
+本目录承载参数字典和配置操作说明；连续的原理解释以[主教程](../learning/index.html)为准。同一字段在这里保留声明、覆盖、消费者与验证边界，教材只引用必要子集。
 
 本手册面向有 MIPS/自定义总线经验、正在学习 RISC-V/AXI 的团队，按“在哪里改、参数是什么意思、实际值是多少、哪些地方要一起改”组织。
 
-整理日期：2026-09-20；任务：L01 配置学习文档；源码基准：本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`，含版本管理中的 `.bender/` 本地依赖快照。**本轮只做源码与文档静态检查，未编译、仿真、综合或板测。** 用户此前报告的 VCU118 HelloWorld 不扩展解释成 Ara/DDR 全功能已验证。
+整理日期：2026-09-20；任务：L01 配置学习文档；源码基准：本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`，含版本管理中的 `.bender/` 本地依赖快照。**该次只做源码与文档静态检查，未编译、仿真、综合或板测。** 用户此前报告的 VCU118 HelloWorld 不扩展解释成 Ara/DDR 全功能已验证。
+
+> 2026-10-11 复核基准：HEAD `2784340240915fe4338ec54bfd613723b127d62e`。本次按子系统重组 CVA6 字段，并定向核对配置覆盖、Ara、iDMA、Serial Link 和平台时钟；未重新验证所有组合或运行生产目标。原编制日期与历史证据保留。
 
 > 配置机制与系统行为请从[单线教材](../learning/index.html)进入，重点读[硬件配置与结构展开](../learning/configuration.html)和[互连、地址译码与接口适配](../learning/interconnect.html)。本页仍作为参数字典。
 
@@ -17,7 +19,7 @@
 | 文档 | 解决的问题 | 覆盖范围 |
 | --- | --- | --- |
 | [常用配置与修改流程](RECIPES.md) | 当前到底用哪组配置？第一次怎么改？ | 仿真/FPGA/软件入口、配置矩阵、示例、核对表 |
-| [CVA6 参数](CVA6.md) | CPU profile、ISA、cache、MMU、PMP 怎么配？ | 当前 cva6_user_cfg_t 全部 88 字段，覆盖关系与关键派生量 |
+| [CVA6 参数](CVA6.md) | CPU profile、ISA、cache、MMU、PMP 怎么配？ | cva6_user_cfg_t 全部 88 字段，按六类子系统组织，附覆盖与派生量 |
 | [Cheshire SoC 参数](CHESHIRE.md) | 总线、地址、外设开关、LLC、外部接口怎么配？ | 当前 cheshire_cfg_t 全部 113 字段、默认值、地址图、容量公式 |
 | [Ara 参数](ARA.md) | lanes、VLEN、浮点、访存带宽怎么配？ | 顶层参数、固定实例参数、包常量、现有 lane 示例 |
 | [其他模块与平台参数](PERIPHERALS.md) | DMA、外设、生成包、DDR wrapper、VIP 怎么配？ | 当前集成相关参数与运行时入口、生成依赖和限制 |
@@ -36,7 +38,7 @@
 | 生成参数 | PLIC src/target、CLINTCORES、SerialLink NumBits | 生成寄存器 RTL/头文件时 | 改 SoC 字段不自动重生成 IP |
 | 软件与运行时 | -march/-mabi、VS/FS、DMA 长度、LLC SPM way | 软件构建/运行时 | 编译器能生成指令不表示硬件已经支持 |
 
-`parameter` 是实例化时传入的硬件配置；`localparam` 通常由其他参数计算或由实现固定；`typedef struct packed` 把许多配置打包成一个可传递对象。`DefaultCfg` 是起点，函数先复制再覆盖部分字段。模块声明的 `Cfg='0` 或 `parameter ...=0` 常是占位，不是可工作的推荐实例。
+`parameter` 是实例化时传入的硬件配置；`localparam` 通常由其他参数计算或由实现固定；`typedef struct packed` 把许多配置打包成一个可传递对象。`DefaultCfg` 是起点，函数先复制再覆盖部分字段。模块声明的 `Cfg='0` 或 `parameter ...=0` 常是占位，不是可工作的推荐实例。判断具体目标时，继续沿 TB 的 `DutCfg` 或 FPGA 的 `FPGACfg` 查传入值，再核对选入的 profile/宏；只有构建输入和展开记录一致，才能把推导称为该次构建的最终有效值。
 
 ```mermaid
 flowchart TD

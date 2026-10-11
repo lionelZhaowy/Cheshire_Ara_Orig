@@ -1,3 +1,54 @@
+# Cheshire-Ara 工程文档入口
+
+本文是当前入口。教材解释机制，参考手册提供字段和命令，工程契约记录实施条件；历史调查保留在页末，不再承担现行阅读路线。
+
+## 推荐阅读顺序
+
+从 [HTML 教材首页](learning/index.html) 或 [同步 Markdown 教材](learning/markdown/index.md) 开始，按以下顺序阅读同一套正文：
+
+1. **系统与程序执行**：Cheshire、CVA6、Ara 的职责；C/汇编→编译链接→ELF→装载→入口→`main`。
+2. **地址、互连与存储**：地址窗口、AXI 主从与译码；Cache 的组/路/行；LLC/SPM 与 DDR 的边界。
+3. **数据搬运与计算协作**：iDMA、Ara/RVV、共享缓冲区和缓存可见性。
+4. **启动与软件运行**：Boot ROM、Platform ROM、外部介质/JTAG、应用初始化、trap 与外设。
+5. **系统管理与配置**：时钟、复位以及参数默认值、目标覆盖和消费者。
+6. **OS、扩展集成与验证**：RTOS/Linux 的软件职责，自研 IP/AXI4 DDR 接入，ASIC 资源适配和验证方法。
+
+九篇、42 章的完整顺序由 [pages.json](learning/scripts/pages.json) 生成。首次动手从 [ELF 布局实验](learning/labs.html#lab-a)开始；详细启动之后进行 [装载实验](learning/labs.html#lab-b)。每项实验的环境和运行门槛在实验页给出。
+
+## 文档职责与查询入口
+
+| 职责 | 入口 | 使用方式 |
+| --- | --- | --- |
+| 主教程 | [HTML](learning/index.html) / [Markdown](learning/markdown/index.md) | 连续理解原理、过程和本地源码，二者由同一正文源生成 |
+| 配置参考 | [configuration/README.md](configuration/README.md) | 按 Cheshire/CVA6/Ara/外设查参数，结合目标覆盖和修改验证 |
+| 软件操作参考 | [software/README.md](software/README.md) / [实验手册](learning/labs.html) | 工具链、构建、装载、库/驱动和排错；预期结果与已执行证据分开 |
+| 地址与寄存器 | [地址空间](learning/address-map.html) / [寄存器索引](learning/registers.html) | 区分默认路由窗口、资源容量与真实寄存器偏移 |
+| 固定配置提取 | [02 提取交接书](02_Cheshire_Ara_ASIC_Extraction_Handoff.md) | 独立目录、静态清单与最小验收规格；工程尚未提取 |
+| 平台启动 | [03 平台配置约定](03_Platform_ROM_Clock_IP_Configuration.md) | 已确认的启动方向、Platform ROM 修复依赖与未冻结 IP 参数 |
+| 扩展契约 | [M01 IP/DDR](M01_IP_DDR_Interface_Contract.md) / [P01 ASIC](P01_ASIC_Adaptation_and_Evidence.md) | 接口、所有权、责任和验收条件，不表示 IP 已接入 |
+| 协作与证据 | [项目状态](PROJECT_STATE.md)、[任务表](AGENT_TASKS.md)、[交接索引](handoffs/README.md) | Agent 先定任务和边界，再读对应章节与源码 |
+
+旧规划中的 03/04 启动与处理器主题现由主教程和软件/配置参考承担；05/06 由 IP/DDR 章节与 M01 承担；07 由 OS 四章承担；08 由 ASIC 篇与 P01 承担。无需重复创建旧计划中的六个文件。
+
+## 项目方向与事实边界
+
+CVA6 同时承担控制和通用计算；Ara 承担向量计算，尤其是 NPU 不适合的部分浮点向量运算。自研 ISP、NPU、LVDS、外购 AXI4 DDR 和独立片上 Global Buffer 是扩展目标。近期主 AXI Xbar 保持 64-bit；GB、Ara 分流和 NPU/ISP 旁路仍属待实现需求，具体边界见 M01。原始资料中的 AXI3 描述保留其历史身份，不作为当前目标接口，也不能据目标推断当前 RTL 已完成替换。
+
+已知运行证据是用户报告 VCU118 HelloWorld；Platform ROM 返回路径、iDMA 控制通路、Ara 与设备并发等缺口未因此关闭。裸机、OS 上游支持和本工程当前已验证能力分别记录。文档重构不修改 RTL/驱动，不构成重新仿真、板测或 ASIC 签核。
+
+## 维护与审查
+
+主教程在 `learning/content/*.html` 修改，通过既有 [build_site.py](learning/scripts/build_site.py) 同步生成 HTML 和 Markdown 阅读版。配置/软件 Markdown 保留参考和操作职责；不要把历史问答逐条追加成新的主线。生成、链接、内容保护与浏览器检查见 [教材维护说明](learning/README.md)。
+
+本轮问题、内容迁移、事实修正及验证结果见 [2026-10-11 重构记录](learning/STRUCTURE_REVISION.md#review-20261011)和 [独立交接](handoffs/2026-10-11_L01_documentation_restructure.md)。旧入口、语义锚点、图源、PPTX 和历史证据保留。
+
+## 历史调查与早期规划
+
+以下内容是 2026-09-15 起的原始调查及截至 2026-10-08 的补记；其中“本轮”“当前”“计划”和版本表都属于相应历史日期，不替代上方入口或当前 checkout。保留它们是为了追溯独有分析、旧命令的适用条件和规划演变。
+
+<details>
+<summary>展开原始调查、早期路线与版本记录</summary>
+
 # Cheshire-Ara 工程学习手册
 
 > 2026-10-08 系统教材实施完成：[当前九篇42章](learning/index.html)，[软件/OS/ASIC与测量实施及验收](L01_System_Textbook_Implementation_2026-10-08.md)。全站正式标题按[既定规范专项修正](L01_Title_Style_Revision_2026-10-08.md)。原03–08主题通过教材、[IP/DDR接口契约](M01_IP_DDR_Interface_Contract.md)和[ASIC适配手册](P01_ASIC_Adaptation_and_Evidence.md)承载；生产工程和目标验证未实施。
@@ -141,3 +192,5 @@ ASIC 约束应提前影响设计：阶段 1 就记录工具兼容性、接口和
 上方03–08文件表保留为历史主题规划；当前覆盖、实施条件和建议载体见[逐篇评估](03-08_Topic_Readiness_2026-10-08.md)，不据历史规划重复创建正文。现有03_Platform_ROM_Clock_IP_Configuration.md保持原职责和文件名，与计划中的启动调试主题不同。
 
 [全书教学审查](L01_Teaching_Quality_Review_2026-10-08.md)包括全部30章及改进路线；[外设实际重组](L01_Peripherals_Revision_2026-10-08.md)、[Ara/RVV实际重组](L01_Ara_RVV_Revision_2026-10-08.md)和[后续复制Prompt](L01_Next_Tasks_Prompts_2026-10-08.md)区分已实施文档与待授权工程。
+
+</details>

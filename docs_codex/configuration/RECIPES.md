@@ -132,7 +132,7 @@ run -all
 1. 记录 git HEAD、工作区变更、CPU profile、Cfg 取值、宏、软件 ISA/ABI；明确只改哪个目标配置。
 2. 在独立配置包/wrapper 和独立输出目录实施，保护旧 FPGA 工程。不要在原 DefaultCfg 上顺手做产品裁切。
 3. 检查字段实际消费者、派生位宽/容量/地址与生成包尺寸；核对单位是 bit、byte、项数还是 log2。
-4. 同步必要的源码清单、typedef、生成 RTL、软件头文件/链接脚本与启动方式。
+4. 同步必要的源码清单、typedef、生成 RTL、软件头文件/链接脚本与启动方式；将“声明默认值、目标覆盖值、派生结果、该次构建展开值”分列。没有该次展开记录时，只标为源码推导。
 5. 先语法编译和展开，检查重复 package/module、无效范围、端口截断、断言。
 6. 运行与改动相关的最小功能测试，再进行性能/面积比较；记录真实结果和失败输入，写独立交接。
 
@@ -158,8 +158,9 @@ run -all
 | 项目 | 源码证据 | 对配置使用的影响 |
 | --- | --- | --- |
 | 当前仿真 profile/decoder 未对齐向量 | compile.cheshire_soc.tcl 同时含标量 profile、decoder stub、真实 Ara decoder | SELCFG=3 不足以修复；需后续修正独立清单并重新编译 |
-| SlinkMaxClkDiv 字段未被当前实例消费 | SoC/VIP 用包级常量，不用 Cfg 字段；10 位字段赋 1024 截为 0 | 单改字段无效 |
+| SlinkMaxClkDiv 字段未被当前实例消费 | SoC/VIP 用包级常量，不用 Cfg 字段；Cfg 是 16 位 shrt_bt，可保存 1024，指数 Log2MaxClkDiv=10 不是该字段位宽 | 单改字段无效 |
 | SPM 执行规则未覆盖高地址非缓存别名 | ExecuteRegionLength=2×SizeSpm；别名间隔 0x04000000 | 不承诺从非缓存别名执行代码 |
+| DMA Regbus/访问宽度未统一 | wrapper 默认 Reg64，生成前端固定 DW=32；HAL 以 uint64_t 指针访问 32 位 ID | 先验收 lane/访问宽度及单次提交；wrapper 无完成 IRQ，不能靠错误 IRQ 代替轮询 |
 | DMA 1D 分支 busy 信号可疑 | wrapper 连接 idma_busy，但声明的是 busy | 不能列为已验证可切换的 1D 模式 |
 | DMA 驱动 decouple 位号需核对 | 两个宏表达式均移到 DECOUPLE_AW_BIT，当前宏为 0 | 开启 decouple 之前先对照寄存器定义 |
 | VGA 错误记录容量与读并发不同 | VgaMaxReadTxns=24，错误单元 NumOutstanding=CoreMaxTxns=8 | 更改吞吐参数时补充错误路径验证 |

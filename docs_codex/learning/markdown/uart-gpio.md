@@ -1,0 +1,180 @@
+# 17 · MMIO 驱动、UART 与 GPIO
+
+寄存器访问、设备初始化与引脚行为。
+
+> 自动生成的 Markdown 阅读版；正文只维护 [HTML 内容源](../content/uart-gpio.html)，导航维护 [pages.json](../scripts/pages.json)。[本章 HTML](../uart-gpio.html) · [阅读路线](index.md)
+
+- [17.1 UART 用途与设备连接](#use-and-connection)
+- [17.2 MMIO 字符输出与寄存器访问语义](#registers)
+- [17.3 UART 文本发送流程](#uart-device)
+  - [17.3.1 结构与寄存器窗口](#uart)
+  - [17.3.2 复位、字段与访问宽度](#reset-access)
+  - [17.3.3 初始化与 C 调用](#uart-init)
+  - [17.3.4 支持层次与结果判断](#uart-check)
+  - [17.3.5 共用 UART 与重复初始化](#uart-sharing)
+  - [17.3.6 UART 示例的执行条件](#uart-recovery)
+- [17.4 GPIO 输出控制与输入事件](#gpio-device)
+  - [17.4.1 GPIO 的输入、输出和方向](#gpio)
+  - [17.4.2 输入与输出的复位语义](#gpio-reset)
+  - [17.4.3 初始化与输出操作](#gpio-init)
+  - [17.4.4 GPIO 事件到中断的交接](#events)
+
+**本章任务**
+
+把一段文本送到 UART 接收端，再用 GPIO 理解输出值、方向和输入事件。前置：C 指针、地址与基本寄存器访问；AXI/Reg 桥细节见[接口适配](adapters.md)。
+
+<a id="use-and-connection"></a>
+
+## 17.1 UART 用途与设备连接
+
+UART 用两根单向信号收发字节，适合日志终端或带 UART 的外部模块。本章先发送 ready：CPU 把字符交给控制器，控制器逐位输出，接收端再还原字节。它不是 USB 协议，也不是把 CPU 的并行总线直接接到串口线上。GPIO 则提供单个位的输入、输出和事件，适合按钮、状态信号或经适当电路连接的指示灯；本工程未据此确认任何外接模块的完整订货型号。
+
+以 SoC 为方向参照，uart\_tx\_o 接对端 RX，uart\_rx\_i 接对端 TX，并建立公共参考地和匹配的 I/O 电平。SoC 给出数字信号；RS-232 电平或 USB 接口需要相应收发/转换电路。rts\_no/dtr\_no 为输出，cts\_ni/dsr\_ni/dcd\_ni/rin\_ni 为低有效输入，接线还要符合选定流控方式。fixture 将这些输入接 0；当前 FPGA wrapper 只显式连接 TX/RX，板端流控条件应另核对，不能套用 fixture 绑法。
+
+两端约定 115200、8N1：线路空闲为高，一个起始位后发送 8 个数据位，再发送一个停止位，无校验位；每位约 8.68 μs。控制器用系统 clk\_i 采样并计数，波特率只是这个时钟域内的串行节拍。rst\_ni 是控制器低有效系统复位，外部终端需要自行配置相同格式。
+
+本篇先完整追踪正常操作；需要定位问题时查[外设调试与故障诊断](peripheral-debug.md)。例子的“已有源码/构建记录”与“目标运行通过”分别标明。
+
+<a id="labs"></a>
+
+<a id="registers"></a>
+
+## 17.2 MMIO 字符输出与寄存器访问语义
+
+CPU 用普通 load/store 访问设备地址，这称为 MMIO。应用只决定输出内容；驱动将其变成“读取发送状态，再写入一个字节”。库是代码的组织和链接形式，驱动是其中承担设备控制的代码职责，并不是两台独立运行的机器。
+
+RO/RW/WO 表示只读、可读写、只写；FIFO 是先入先出的队列。读 FIFO 数据会消费队头，写命令可能启动动作。W1C 表示写 1 清事件，因此只写本次要清的位。总线 valid/ready 成交只证明本次寄存器访问被接受，串行传输或计算还需自己的完成条件。
+
+本地 reg8/reg32 按字节偏移形成 volatile 指针；&\_\_base\_uart 取链接符号地址。volatile 保留可观察访问，fence 约束访问排序；它们各自不代替缓存维护或设备完成判断。生成寄存器的 q/qe/re 向状态机传送值与读写事件，hw2reg 返回硬件状态。完整 Regbus 副作用契约见[公共接口说明](adapters.md#reg-contract)。
+
+<a id="uart-device"></a>
+
+## 17.3 UART 文本发送流程
+
+<a id="uart"></a>
+
+### 17.3.1 结构与寄存器窗口
+
+`Cfg.Uart` 选择 UART 实例与地址规则。`reg_uart_wrap` 把 Reg32 转成 APB（外设寄存器总线），以 PADDR\[4:2\] 选择 UART 寄存器，所以每个槽相隔 4 字节。发送路径为保持寄存器/发送 FIFO → 移位器 → TX，接收路径为引脚采样 → 接收状态机 → RX FIFO。
+
+![寄存器写进入FIFO，状态机驱动引脚，状态及中断反向通知软件](../assets/figures-20261007/new-device.svg)
+
+控制接口与外部动作通过队列解耦；用同一模型理解 UART，并在后续 I2C/SPI 章替换具体协议。
+
+<a id="reset-access"></a>
+
+### 17.3.2 复位、字段与访问宽度
+
+UART 的 iLCR、iMCR 在 RTL 复位为 0，FIFO enable 也为 0；因此复位后不能假设已经是 8N1 或 FIFO 模式。LSR 是由 FIFO/移位器/错误状态合成的动态状态，读取线路状态还可能清错误锁存，不宜把它当作可写配置镜像。当前 uart.c 使用 reg8 进行字节访问，寄存器槽仍间隔 4 字节；Reg/APB 适配及有效字节不能与 C 访问宽度混为一谈。
+
+| 0x03002000 + 偏移 | 关键语义 |
+| --- | --- |
+| 0x00 / 0x04 | DLAB=0 时为 RBR/THR、IER；DLAB=1 时为 DLL/DLM |
+| 0x08 | 读 IIR 查中断原因，写 FCR 控制 FIFO |
+| 0x0c / 0x10 | LCR 帧格式与 DLAB；MCR 流控等控制 |
+| 0x14 | LSR bit0 接收可读、bit5 THR 空、bit6 发送器空 |
+
+<a id="uart-init"></a>
+
+### 17.3.3 初始化与 C 调用
+
+先取得控制器时钟，再由驱动设置波特率和帧格式。下面复用 journey.c 的入口顺序：RTC 频率与测得的 hz 均以 Hz 为单位，baud 以位/秒为单位，字符串长度以字节为单位。RTC 必须持续运行且配置值正确；本例将启动波特率设为前文约定的 115200。
+
+```
+/* 与 journey.c 相同的初始化入口；仅展示调用顺序。 */
+uint32_t rtc = *reg32(&__base_regs, CHESHIRE_RTC_FREQ_REG_OFFSET);
+if (rtc < 2500) return 10;
+uint64_t hz = clint_get_core_freq(rtc, 2500);
+uart_init(&__base_uart, hz, __BOOT_BAUDRATE);
+uart_write_str(&__base_uart, "ready\r\n", 7);
+uart_write_flush(&__base_uart);
+```
+
+uart\_init 依次执行 IER=0 → LCR.DLAB=1 → DLL/DLM → LCR=3 → FCR=0xc7 → MCR=0x20，访问均采用 reg8。DLL/DLM 接收 `hz/(16×baud)` 的整数低/高字节；调用者须保证所得除数非零且能放入16位。随后 LCR=3 同时选择8N1并恢复 DLAB=0，使偏移0重新指向 THR，后续字符才会进入发送路径。FCR 清理并启用队列，MCR 设置本地驱动采用的流控模式；接线前提见本章开头。
+
+发送时，uart\_write\_str 逐字节调用 uart\_write，后者轮询 LSR.bit5 再写 THR。使用 printf 时，格式化后的字符经 \_putchar 汇入同一 uart\_write。普通写返回只表示该字节已交给发送路径；uart\_write\_flush 等待 bit5 与 bit6 同时满足，才说明保持寄存器和发送器都空。三个 API 均为 void，不返回错误码；它们的等待条件与接收端实际内容应分别判断。
+
+ready\\r\\n 的7个字节全部离开 TX 后，本例才结束程序；这保证末尾字符不会因结束通知而被截断。轮询执行条件保留在[UART 示例的执行条件](#uart-recovery)，实现限制的详细定位在独立诊断页。
+
+本地 UART FIFO 硬件提供 16/64 字节模式；当前 FCR=0xc7 的 bit5 为 0，选择 16 字节模式。硬件入口是 Cfg.Uart 控制的 gen\_uart/i\_uart，Reg32 经 reg\_uart\_wrap 转 APB；C 驱动仍按槽间距 4 字节做 reg8 访问。API 声明在 [dif/uart.h](../../../sw/include/dif/uart.h)，实现在 uart.c；printf → \_putchar → uart\_write 直接到本地 DIF/MMIO，此链不经过外部器件 HAL。
+
+<a id="uart-check"></a>
+
+### 17.3.4 支持层次与结果判断
+
+journey.c 是现有完整调用例，实验 A/B 提供构建和待目标执行步骤。fixture 的 VIP 可以解码 TX；VCU118 wrapper 和约束接出 UART，用户报告已跑通 HelloWorld。当前 journey 正常/注错的 SoC 运行仍待验证，不能把该板测报告写成所有本章调用都已验收。预期接收端看到完整文本，flush 后程序给出独立计算返回码；串口可见字符、数组正确和程序完成是三个观察点。
+
+<a id="uart-sharing"></a>
+
+### 17.3.5 共用 UART 与重复初始化
+
+同一个 UART 的波特率、DLAB、FIFO 和流控状态由所有调用者共享。初始化要在当前发送结束且没有并发调用时完成；重新设置 FCR 会清队列。轮询发送适合本章少量文本，接收中断属于后续正常使用扩展：UART 汇总到 PLIC 源 1，handler 按 IIR 原因服务 RBR 或线路状态。当前没有把轮询 API 描述为完整中断驱动。
+
+<a id="uart-recovery"></a>
+
+### 17.3.6 UART 示例的执行条件
+
+生产 uart\_write/flush 内含无界轮询，实验采用外层运行时间限制；当前 FPGA 流控连接也应核对。
+
+[症状排查与当前实现限制](peripheral-debug.md#uart)集中在诊断章。
+
+<a id="gpio-device"></a>
+
+## 17.4 GPIO 输出控制与输入事件
+
+GPIO 没有 UART 的串行帧。以 GPIO3 输出高为例，先准备锁存值，再使能引脚驱动；以 GPIO0 输入事件为例，外部电平经过采样形成事件，再交中断逻辑。输入按钮通常还需上拉/下拉及消抖，真实引脚电压、驱动能力与复用由 PAD/板级决定。
+
+<a id="gpio"></a>
+
+### 17.4.1 GPIO 的输入、输出和方向
+
+`Cfg.Gpio` 控制 32 位 GPIO 实例，`GpioInputSyncs` 决定输入同步参数。输出数据寄存器给 gpio\_o，输出使能给 gpio\_en\_o；引脚输入经过同步及可选滤波后形成 DATA\_IN。写输出锁存器和允许驱动引脚是两步操作。当前 fixture 把 gpio\_i 绑零，软件写输出不会形成自动回环。
+
+GPIO 基址为 0x03005000，DIRECT\_OUT(+0x14) 和 DIRECT\_OE(+0x20) 操作整组。MASKED\_OUT\_LOWER(+0x18) 与 MASKED\_OE\_LOWER(+0x24) 的高 16 位是掩码，低 16 位是数据；UPPER 寄存器操作 GPIO\[31:16\]。这样一个使用者可以只改自己拥有的引脚。
+
+<a id="gpio-reset"></a>
+
+### 17.4.2 输入与输出的复位语义
+
+GPIO 的普通输出/输出使能和中断配置从关闭状态开始；DATA\_IN 的来源是引脚，HJSON 对它的 reset 描述为 x，不应在真实板上断言复位后必为零。每次实验显式设置所用 bit 的值、方向、触发和 enable，结束恢复归属。完整字段见寄存器索引，本章保留与动作直接相关的位。
+
+<a id="gpio-init"></a>
+
+### 17.4.3 初始化与输出操作
+
+```
+/* 机制示例：先准备 GPIO3 的值，再开放输出；执行需先确认引脚用途。 */
+*reg32(&__base_gpio, GPIO_MASKED_OUT_LOWER_REG_OFFSET) = 0x00080008;
+*reg32(&__base_gpio, GPIO_MASKED_OE_LOWER_REG_OFFSET)  = 0x00080008;
+/* 恢复输入：对应 OE 写 0x00080000。 */
+```
+
+软件操作通过掩码更新锁存器，OE 打开后才到外部 PAD。DATA\_IN(+0x10) 反映真实输入路径，不是输出寄存器的别名。板级还要确认三态、上拉和连线，才能把读回值解释为外部现象。
+
+gpio\_i/o/en\_o 都是 32 位；en\_o 的 1 表示允许输出，PAD 三态控制若是低有效需反相适配。当前 GPIO 用 clk\_i/rst\_ni，GpioInputSyncs 决定输入同步，滤波不形成新时钟域；它没有数据 FIFO 或独立 AXI DMA 发起口。fixture 把输入绑 0 且输出未接，当前 FPGA wrapper 也未显式接出这组 SoC GPIO，所以 GPIO3 代码是连接机制例，不是本板 LED 驱动。
+
+<a id="events"></a>
+
+### 17.4.4 GPIO 事件到中断的交接
+
+GPIO 的 INTR\_STATE/ENABLE/TEST 位于 +0/+4/+8。可分别选择上升沿、下降沿、高电平或低电平触发；事件锁存后，经使能形成 IRQ。INTR\_TEST 软件写入可生成事件，适合先检查控制器与 CPU 服务链；真实引脚激励另外验证同步器、滤波和边沿检测。
+
+当前 GPIO0 对应 PLIC 源 20，后续引脚依次增加，依据是 SoC 的 packed 中断向量。清 INTR\_STATE 中的 bit0 只需写 1；若选择低电平触发而输入长期为 0，清除后会再次置位。[第 18 章](interrupts.md)把这一点与 PLIC 的领取/完成协议结合，并在实验 C 中保留软注入与定时器的组合验证。
+
+连续跟读 GPIO3 例：在确认独占 bit3 后，以掩码 0x0008 将输出数据设 1；同一掩码将 OE 设 1；外部观测值才应为高。结束写 OE 掩码值 0x00080000，交还引脚。读取 DATA\_IN 检查的是真实输入；现有 fixture 中结果仍为 0。GPIO0 的可复用例是 advanced.c 的 INTR\_TEST 软件注入，完整“初始化→事件→服务→计数”在[中断章](interrupts.md#sequence)，它不证明外部按钮已连接。
+
+本例直接使用 util.h、params.h 和 gpio\_regs.h 的 reg32 宏，没有单独的板级按钮 HAL。DIRECT/MASKED 输出是 RW，DATA\_IN 是硬件 RO，INTR\_STATE 是 W1C、INTR\_TEST 是写触发；共享端口优先使用掩码寄存器并分配 bit 所有权，避免整字覆盖他人的值或重复初始化整个端口。完整列表见[GPIO 索引](registers.md#group-2)。
+
+[症状排查与当前实现限制](peripheral-debug.md#gpio)集中在诊断章。
+
+**源码与进一步阅读**
+
+[UART 寄存器复位和读副作用](../../../.bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv)；[GPIO 访问属性与输入复位定义](../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/data/gpio.hjson)；[UART 初始化与发送](../../../sw/lib/dif/uart.c)；[UART 偏移](../../../sw/include/dif/uart.h)；[Reg/APB 适配](../../../.bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv)；[GPIO 状态与事件](../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv)；[GPIO 绑定](../../../target/sim/src/fixture_cheshire_soc.sv)
+
+**为何写完 THR 还要 flush？**
+
+THR 访问只把字节交给发送路径；FIFO 和移位器完成最后一帧需要后续位周期。
+
+---
+
+[上一页：异常、中断与上下文](traps.md) · [下一页：定时器与中断系统](interrupts.md)

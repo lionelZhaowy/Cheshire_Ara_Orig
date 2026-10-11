@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>用同一 ELF 解释装载、控制执行和观察状态，再核对本地调试接管条件。 前置：<a href="boot.html">6 · Boot ROM、启动模式与应用初始化</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>用同一 ELF 解释装载、控制执行和观察状态，再核对本地调试接管条件。 前置：<a href="boot.html">14 · Boot ROM、启动模式与应用初始化</a>。</p></div>
 <h2 id="debug-workflow">程序描述与目标调试连接</h2>
 <p>我们要在 journey 的 main 处停住，检查 seed 与 result，再让计算完成。GDB 在主机上读取 ELF 的符号和调试信息，把 <code>main</code>、源行和目标地址联系起来；调试服务器把它的请求转换为目标调试操作；探针/传输把请求送到芯片。只打开 ELF 时，GDB 知道变量“应在哪里”，还没有读取或写入这块目标 RAM。</p>
 <p>板上常见的路径为 <code>GDB → OpenOCD → JTAG 探针 → DTM → DMI → Debug Module → CVA6/系统存储</code>。仿真 VIP 则直接驱动 JTAG 任务，无需把 GDB/OpenOCD 插进当前测试。两者使用相同目标调试概念，但当前 VIP 的 SBA 装载流程不能直接当成 OpenOCD 的访问配置。</p>
@@ -12,7 +12,8 @@
 <p>jtag_elf_halt_load 在 DutCfg.LlcNotBypass 为真时轮询 LLC CFG_SPM_LOW.bit0，然后写 DMCONTROL.haltreq，并轮询 DMSTATUS.allhalted。它既不等待 ROM C main，也不等待 clint_get_core_freq 返回。该位来自软件写配置，不能单独扩大成所有初始化完成标志。</p>
 <h3 id="stack-handoff">装载条件与应用入口条件</h3>
 <p>Boot ROM 在写 SPM 配置/COMMIT 后还有扩展 sp 的指令。实际 halt 落在哪条指令要看目标 PC，尤其当应用 spm.ld 通过零栈符号继承进入时栈时，应检查 DPC、sp 和可用栈范围。VIP 没有显式等待这些后续步骤，因此“能开始 SBA 装载”和“应用已有正确栈”应分别验收。</p>
-<p class="source">本节依据：<a href="../../target/sim/src/vip_cheshire_soc.sv">jtag_elf_halt_load / jtag_elf_run</a>。</p><p class="source">本节依据：<a href="../../hw/bootrom/cheshire_bootrom.S">SPM 配置后扩展栈的实际顺序</a>。</p>
+<p>这里的栈检查区分三处边界：ROM 设置早期 sp、ROM 自己调用 C、应用 crt0 调用应用 main。它们使用的指令序列不同，不能由最后一处对齐推出前两处也满足相同条件。具体源码缺口统一保留在<a href="software-debug.html#stack-handoff">软件诊断</a>。</p>
+<p class="source">本节依据：<a href="../../target/sim/src/vip_cheshire_soc.sv">jtag_elf_halt_load / jtag_elf_run</a>；<a href="../../hw/bootrom/cheshire_bootrom.S">SPM 配置后扩展栈的实际顺序</a>。</p>
 <h2 id="debug">JTAG、Debug Module 与实际装载</h2>
 
 <h3 id="elf-load">基于 SBA 的 ELF 段装载</h3>

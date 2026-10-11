@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="550" viewBox="0 0 1440 550">
+<defs>
+<marker id="data" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#3574A8"/></marker>
+<marker id="control" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#7955A0"/></marker>
+<marker id="new" viewBox="0 0 3 3" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BE7127"/></marker>
+</defs>
+<rect x="0" y="0" width="1440" height="550" fill="#FFFFFF"/>
+<text x="40" y="45" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="bold" text-anchor="start" fill="#20334A">当前实现：向量配置下的控制与存储路径</text>
+<rect x="45" y="115" width="190" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="140.0" y="157.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">CVA6</text>
+<text x="140.0" y="185.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">通用计算 / 任务控制</text>
+<rect x="45" y="265" width="190" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="140.0" y="307.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">Ara</text>
+<text x="140.0" y="335.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">向量执行 / 私有 VRF</text>
+<polyline points="140,200 140,265" fill="none" stroke="#7955A0" stroke-width="3" marker-end="url(#control)"/>
+<text x="160" y="239" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="start" fill="#20334A">专用指令接口</text>
+<rect x="285" y="265" width="210" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="390.0" y="307.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">失效过滤 / 位宽适配</text>
+<text x="390.0" y="335.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">仅 Ara → CPU L1D 失效</text>
+<polyline points="235,307 285,307" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)"/>
+<rect x="555" y="115" width="185" height="235" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="647.5" y="232.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">系统 AXI 互连</text>
+<text x="647.5" y="260.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">当前 64-bit</text>
+<polyline points="235,156 555,156" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)"/>
+<polyline points="495,307 555,307" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)"/>
+<rect x="320" y="405" width="175" height="80" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="407.5" y="445.0" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">系统 iDMA</text>
+<text x="407.5" y="473.0" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">MMIO 提交 / 完成轮询</text>
+<polyline points="495,445 648,445 648,350" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)"/>
+<rect x="805" y="115" width="205" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="907.5" y="157.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">原子适配 + LLC</text>
+<text x="907.5" y="185.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">LLC / SPM 共用 SRAM</text>
+<polyline points="740,156 805,156" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)"/>
+<rect x="1080" y="115" width="305" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="1232.5" y="157.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">现有平台外存</text>
+<text x="1232.5" y="185.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">FPGA DDR4 / 仿真存储模型</text>
+<polyline points="1010,156 1080,156" fill="none" stroke="#3574A8" stroke-width="3" marker-end="url(#data)" marker-start="url(#data)"/>
+<rect x="805" y="265" width="205" height="85" rx="8" fill="#E8F1F8" stroke="#3574A8" stroke-width="2"/>
+<text x="907.5" y="307.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">Regbus / 中断</text>
+<text x="907.5" y="335.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">Boot ROM / PLIC / CLINT</text>
+<polyline points="740,307 805,307" fill="none" stroke="#7955A0" stroke-width="3" marker-end="url(#control)" marker-start="url(#control)"/>
+<rect x="1080" y="265" width="305" height="85" rx="8" fill="#FFF1E1" stroke="#BE7127" stroke-width="2" stroke-dasharray="9 5"/>
+<text x="1232.5" y="307.5" font-family="WenQuanYi Zen Hei" font-size="21" font-weight="bold" text-anchor="middle" fill="#20334A">LVDS / ISP / NPU / 独立 GB</text>
+<text x="1232.5" y="335.5" font-family="WenQuanYi Zen Hei" font-size="16" font-weight="normal" text-anchor="middle" fill="#20334A">当前顶层尚无接入</text>
+<text x="45" y="525" font-family="WenQuanYi Zen Hei" font-size="17" font-weight="normal" text-anchor="start" fill="#20334A">实线：当前 RTL 路径（启用条件见报告）    虚线框：待实现对象；无实线表示尚未接通</text>
+</svg>

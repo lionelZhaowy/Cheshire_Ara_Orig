@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/home/zhaowenyao/miniconda3/bin/python3",
+    "docs_codex/reviews/2026-10-11_architecture/scripts/test_budget.py"
+  ],
+  "exit_code": 0,
+  "test_count": 11,
+  "stdout": "",
+  "stderr": "test_bad_values (__main__.BudgetTests.test_bad_values) ... ok\ntest_example_expected_findings (__main__.BudgetTests.test_example_expected_findings) ... ok\ntest_fifo_short_stall_and_deficit (__main__.BudgetTests.test_fifo_short_stall_and_deficit) ... ok\ntest_image_packing_stride_and_sensitivity (__main__.BudgetTests.test_image_packing_stride_and_sensitivity) ... ok\ntest_kv_formula (__main__.BudgetTests.test_kv_formula) ... ok\ntest_physical_sum_and_AXI_direction_are_separate (__main__.BudgetTests.test_physical_sum_and_AXI_direction_are_separate) ... ok\ntest_provenance_required (__main__.BudgetTests.test_provenance_required) ... ok\ntest_read_write_time_bound (__main__.BudgetTests.test_read_write_time_bound) ... ok\ntest_render_changed_fps_preserves_ROI_meaning (__main__.BudgetTests.test_render_changed_fps_preserves_ROI_meaning) ... ok\ntest_render_changed_shape_and_custom_format (__main__.BudgetTests.test_render_changed_shape_and_custom_format) ... ok\ntest_units_and_DDR_no_double_count (__main__.BudgetTests.test_units_and_DDR_no_double_count) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.004s\n\nOK\n",
+  "reproduction_exit_code": 0,
+  "reproduction_identical_to_final": true,
+  "overwrite_attempt_exit_code": 1,
+  "overwrite_refused_and_bytes_unchanged": true,
+  "original_numerical_results_unchanged": true,
+  "result_sha256": {
+    "budget.json": "1c58d045553c6fd998f688e1caa139940cd02ef44e4f6956a4ebc2d70846e1fa",
+    "budget.md": "6eb910553340d2fad633ddefdaa1a75f1a183d458ee8928aa6d9570b84151428"
+  },
+  "input_sha256": "c47696849a97db70401ed0b53907ec9e1fb1718de0a63b61dd0042fcee3db43a",
+  "script_sha256": "b1b21a0ed1fd8e6181110ae88509a4c76e30f126107495bbb7366a0465ab713b",
+  "test_script_sha256": "470f8dc937b0e75a598f45eb68433c76ad12b2abc52f0b201ad3cf1b467bf6d8",
+  "python_version": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]",
+  "scope": "Formula checks, changed fps/shape/format rendering, deterministic generation only. No RTL or target run."
+}

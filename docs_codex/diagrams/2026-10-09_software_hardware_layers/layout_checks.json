@@ -1,0 +1,549 @@
+{
+  "canvas": [
+    2000,
+    1500
+  ],
+  "font_measurement": "/mnt/c/Windows/Fonts/msyh.ttc",
+  "checks": [
+    {
+      "text": "Cheshire SoC 软硬件分层结构",
+      "width": 637.78,
+      "limit": null
+    },
+    {
+      "text": "以当前裸机工程为主线 · 通用功能、设备控制与指令执行各有明确边界",
+      "width": 770.8,
+      "limit": null
+    },
+    {
+      "text": "工程结构 / 规划扩展",
+      "width": 199.5,
+      "limit": null
+    },
+    {
+      "text": "mp/ara-pulp-v2 · 278434024",
+      "width": 274.86,
+      "limit": null
+    },
+    {
+      "text": "01",
+      "width": 27.12,
+      "limit": null
+    },
+    {
+      "text": "应用软件",
+      "width": 116.0,
+      "limit": 156
+    },
+    {
+      "text": "表达计算与任务",
+      "width": 133.0,
+      "limit": 155
+    },
+    {
+      "text": "裸机应用与测试",
+      "width": 182.0,
+      "limit": 276
+    },
+    {
+      "text": "HelloWorld · 结果校验",
+      "width": 215.42,
+      "limit": 278
+    },
+    {
+      "text": "向量算法",
+      "width": 104.0,
+      "limit": 276
+    },
+    {
+      "text": "RVV · 矩阵计算",
+      "width": 143.61,
+      "limit": 278
+    },
+    {
+      "text": "系统工具",
+      "width": 104.0,
+      "limit": 278
+    },
+    {
+      "text": "介质烧写 · 下载执行",
+      "width": 185.5,
+      "limit": 280
+    },
+    {
+      "text": "图像处理与推理",
+      "width": 175.0,
+      "limit": 296
+    },
+    {
+      "text": "ISP / NPU 工作负载〔规划〕",
+      "width": 272.36,
+      "limit": 298
+    },
+    {
+      "text": "02",
+      "width": 27.12,
+      "limit": null
+    },
+    {
+      "text": "基础软件",
+      "width": 116.0,
+      "limit": 156
+    },
+    {
+      "text": "功能与设备控制",
+      "width": 133.0,
+      "limit": 155
+    },
+    {
+      "text": "通用功能与器件协议",
+      "width": 198.0,
+      "limit": null
+    },
+    {
+      "text": "应用可直接调用所需接口",
+      "width": 220.0,
+      "limit": null
+    },
+    {
+      "text": "printf",
+      "width": 74.25,
+      "limit": 240
+    },
+    {
+      "text": "格式化文本 → _putchar",
+      "width": 224.81,
+      "limit": 242
+    },
+    {
+      "text": "GPT 解析",
+      "width": 113.0,
+      "limit": 240
+    },
+    {
+      "text": "read 回调访问介质",
+      "width": 176.91,
+      "limit": 242
+    },
+    {
+      "text": "存储器件 HAL",
+      "width": 160.45,
+      "limit": 352
+    },
+    {
+      "text": "SPI Flash · SD · I²C EEPROM",
+      "width": 273.39,
+      "limit": 354
+    },
+    {
+      "text": "UART debug HAL",
+      "width": 209.98,
+      "limit": 264
+    },
+    {
+      "text": "READ / WRITE / EXEC",
+      "width": 214.56,
+      "limit": 266
+    },
+    {
+      "text": "代表性函数调用",
+      "width": 133.0,
+      "limit": null
+    },
+    {
+      "text": "UART DIF",
+      "width": 124.53,
+      "limit": 240
+    },
+    {
+      "text": "初始化 · FIFO 字节收发",
+      "width": 216.31,
+      "limit": 242
+    },
+    {
+      "text": "SPI / I²C / GPIO DIF",
+      "width": 253.05,
+      "limit": 644
+    },
+    {
+      "text": "控制器配置 · 传输段 · 状态与寄存器操作",
+      "width": 371.0,
+      "limit": 646
+    },
+    {
+      "text": "CLINT / DMA 接口",
+      "width": 215.25,
+      "limit": 264
+    },
+    {
+      "text": "计时 · 配置与提交",
+      "width": 164.5,
+      "limit": 266
+    },
+    {
+      "text": "MMIO 访问工具",
+      "width": 187.7,
+      "limit": null
+    },
+    {
+      "text": "reg8 / reg32 · mmio_region_read / write",
+      "width": 437.98,
+      "limit": null
+    },
+    {
+      "text": "基址 + 寄存器偏移 + 访问位宽；regs 头文件提供偏移和位字段",
+      "width": 616.05,
+      "limit": null
+    },
+    {
+      "text": "其他专用库：LLC · AXI RT     |     libcheshire.a：代码归档方式，涵盖多个职责",
+      "width": 765.42,
+      "limit": null
+    },
+    {
+      "text": "接口",
+      "width": 44.0,
+      "limit": null
+    },
+    {
+      "text": "接口边界",
+      "width": 116.0,
+      "limit": 156
+    },
+    {
+      "text": "软件可见的契约",
+      "width": 133.0,
+      "limit": 155
+    },
+    {
+      "text": "指令执行",
+      "width": 104.0,
+      "limit": 276
+    },
+    {
+      "text": "标量指令 · RVV",
+      "width": 143.61,
+      "limit": 278
+    },
+    {
+      "text": "CSR 与特权状态",
+      "width": 189.05,
+      "limit": 276
+    },
+    {
+      "text": "处理器配置与控制",
+      "width": 168.0,
+      "limit": 278
+    },
+    {
+      "text": "内存与 MMIO",
+      "width": 162.7,
+      "limit": 278
+    },
+    {
+      "text": "地址 · 属性 · 寄存器语义",
+      "width": 224.0,
+      "limit": 280
+    },
+    {
+      "text": "异常与中断",
+      "width": 130.0,
+      "limit": 296
+    },
+    {
+      "text": "事件入口 · 处理与返回",
+      "width": 206.5,
+      "limit": 298
+    },
+    {
+      "text": "03",
+      "width": 27.12,
+      "limit": null
+    },
+    {
+      "text": "SoC 硬件",
+      "width": 122.69,
+      "limit": 156
+    },
+    {
+      "text": "执行、存储与传输",
+      "width": 152.0,
+      "limit": 155
+    },
+    {
+      "text": "CVA6",
+      "width": 70.2,
+      "limit": 240
+    },
+    {
+      "text": "取指 · 执行 · 访存",
+      "width": 161.0,
+      "limit": 242
+    },
+    {
+      "text": "Ara",
+      "width": 45.58,
+      "limit": 240
+    },
+    {
+      "text": "RVV 执行 · 向量访存",
+      "width": 191.83,
+      "limit": 242
+    },
+    {
+      "text": "iDMA",
+      "width": 74.55,
+      "limit": 240
+    },
+    {
+      "text": "硬件数据搬运",
+      "width": 126.0,
+      "limit": 242
+    },
+    {
+      "text": "NPU / ISP / 图像接入",
+      "width": 240.36,
+      "limit": 376
+    },
+    {
+      "text": "自定义 IP 与接口〔规划〕",
+      "width": 241.45,
+      "limit": 378
+    },
+    {
+      "text": "专用请求 / 响应",
+      "width": 133.38,
+      "limit": null
+    },
+    {
+      "text": "接入与 DDR 旁路方案待实现",
+      "width": 255.38,
+      "limit": null
+    },
+    {
+      "text": "AXI 互连与适配 · 地址路由 · 主设备共享访问",
+      "width": 503.92,
+      "limit": null
+    },
+    {
+      "text": "原子适配 → LLC / SPM → 主存出口",
+      "width": 374.55,
+      "limit": 506
+    },
+    {
+      "text": "SPM 复用 LLC 存储阵列",
+      "width": 225.02,
+      "limit": null
+    },
+    {
+      "text": "寄存器总线 → 外设 / 平台控制",
+      "width": 341.62,
+      "limit": null
+    },
+    {
+      "text": "UART · SPI · I²C · GPIO · 中断/定时器 · ROM 接口",
+      "width": 467.45,
+      "limit": 696
+    },
+    {
+      "text": "04",
+      "width": 27.12,
+      "limit": null
+    },
+    {
+      "text": "片外器件",
+      "width": 116.0,
+      "limit": 156
+    },
+    {
+      "text": "经对应控制器连接",
+      "width": 152.0,
+      "limit": 155
+    },
+    {
+      "text": "DDR 存储器",
+      "width": 139.47,
+      "limit": 506
+    },
+    {
+      "text": "经 DDR 控制器 / PHY 接入",
+      "width": 253.53,
+      "limit": 508
+    },
+    {
+      "text": "Flash · SD 卡 · EEPROM",
+      "width": 280.06,
+      "limit": 406
+    },
+    {
+      "text": "经 SPI / I²C 接入",
+      "width": 156.61,
+      "limit": 408
+    },
+    {
+      "text": "图像传感器〔规划〕",
+      "width": 207.0,
+      "limit": 250
+    },
+    {
+      "text": "LVDS 图像输入",
+      "width": 142.03,
+      "limit": 252
+    },
+    {
+      "text": "开发主机上的工具",
+      "width": 152.0,
+      "limit": 346
+    },
+    {
+      "text": "构建支持",
+      "width": 112.0,
+      "limit": 346
+    },
+    {
+      "text": "编译器 · 汇编器 · 链接器",
+      "width": 234.66,
+      "limit": 346
+    },
+    {
+      "text": "Makefile · 链接脚本 · 库归档",
+      "width": 280.14,
+      "limit": 346
+    },
+    {
+      "text": "生成 ELF，规定代码与数据布局",
+      "width": 305.59,
+      "limit": 346
+    },
+    {
+      "text": "准备并维持软件执行环境",
+      "width": 209.0,
+      "limit": 346
+    },
+    {
+      "text": "启动与运行支持",
+      "width": 196.0,
+      "limit": 346
+    },
+    {
+      "text": "Boot ROM / 载荷加载",
+      "width": 220.47,
+      "limit": 346
+    },
+    {
+      "text": "crt0：栈、BSS、异常入口",
+      "width": 256.44,
+      "limit": 346
+    },
+    {
+      "text": "进入 main；异常处理与返回",
+      "width": 278.7,
+      "limit": 346
+    },
+    {
+      "text": "启动交接与函数调用分别表达",
+      "width": 286.0,
+      "limit": 346
+    },
+    {
+      "text": "运行期也可访问必要配置接口",
+      "width": 286.0,
+      "limit": 346
+    },
+    {
+      "text": "不是每次设备调用的必经层",
+      "width": 264.0,
+      "limit": 346
+    },
+    {
+      "text": "扩展方向 · 目标运行待验证",
+      "width": 228.66,
+      "limit": 346
+    },
+    {
+      "text": "可选操作系统",
+      "width": 168.0,
+      "limit": 346
+    },
+    {
+      "text": "RTOS：任务、调度与同步",
+      "width": 253.92,
+      "limit": 346
+    },
+    {
+      "text": "Linux：用户态 / 内核 / 驱动",
+      "width": 276.31,
+      "limit": 346
+    },
+    {
+      "text": "依各自环境建立设备访问路径",
+      "width": 286.0,
+      "limit": 346
+    },
+    {
+      "text": "不假定直接复用整套裸机 HAL",
+      "width": 292.31,
+      "limit": 346
+    },
+    {
+      "text": "同一结构的实现与适配维度",
+      "width": 228.0,
+      "limit": 346
+    },
+    {
+      "text": "硬件实现平台",
+      "width": 168.0,
+      "limit": 346
+    },
+    {
+      "text": "FPGA：现有 VCU118 工程",
+      "width": 264.12,
+      "limit": 346
+    },
+    {
+      "text": "ASIC：宏、时钟、PAD 等适配",
+      "width": 297.75,
+      "limit": 346
+    },
+    {
+      "text": "ASIC 实现与验证仍待完成",
+      "width": 253.89,
+      "limit": 346
+    },
+    {
+      "text": "阅读图例",
+      "width": 108.0,
+      "limit": null
+    },
+    {
+      "text": "实线框：已有代码 / 结构",
+      "width": 231.41,
+      "limit": 295
+    },
+    {
+      "text": "虚线框：规划中的扩展",
+      "width": 210.0,
+      "limit": 295
+    },
+    {
+      "text": "蓝色箭头：代表性调用",
+      "width": 210.0,
+      "limit": 295
+    },
+    {
+      "text": "棕色箭头：硬件连接",
+      "width": 189.0,
+      "limit": 295
+    },
+    {
+      "text": "说明：图示为职责与结构总览；模块按配置启用，已有结构不代表全部功能已仿真或板测。",
+      "width": 840.0,
+      "limit": null
+    },
+    {
+      "text": "L01 · 2026-10-09",
+      "width": 169.56,
+      "limit": null
+    }
+  ]
+}

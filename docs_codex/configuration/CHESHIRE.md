@@ -1,6 +1,6 @@
 # Cheshire SoC 配置参数手册
 
-返回 [配置导航](README.md)。基准：2026-09-20，本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`；以下为源码检查，未重新编译或仿真。
+返回 [配置导航](README.md)。本页承担字段与地址参考职责；连续原理见[配置主教程](../learning/configuration.html)。原字段盘点基准为 2026-09-20、HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`；2026-10-11 对照 HEAD `2784340240915fe4338ec54bfd613723b127d62e` 复核本文涉及的字段类型、存储几何、端口派生、DMA 与参数消费者，并把后加的结构说明归入对应章节。均为静态源码检查，未重新编译或仿真。
 
 <a id="1-从哪里配置"></a>
 
@@ -12,11 +12,15 @@
 
 类型缩写表示存储位宽：`byte_bt=8`、`shrt_bt=16`、`word_bt=32`、`doub_bt=64`、`dw_bt=10`、`aw_bt=6`，均为无符号二态 bit 向量。**可表示范围不等于模块支持范围**；例如 10 位字段无法表示 1024，6 位字段无法表示 64，超宽赋值会截断。`NumCores` 是 5 位；外部端口/规则计数是 4 位，不能因数组有 16 项就把计数写为 16。
 
+阅读或修改一个字段时，沿 `cheshire_cfg_t → DefaultCfg → 目标配置覆盖 → cheshire_soc/派生函数消费者` 确认它的实际作用；CPU 的编译 profile 还需单独核对。硬件参数决定实例、尺寸和常量规则，软件寄存器只在已经生成的资源上设置工作状态。最终值应由具体构建的输入及展开结果确认，本页的默认表不能代替该证据。
+
 <a id="2-全部-soc-字段"></a>
 
 ## 2. SoC 配置字段
 
 ### 2.1 CPU 与 hart
+
+这些字段一部分由 `gen_cva6_cfg()` 覆盖所选 CPU profile，一部分决定 `gen_cva6_cores`、hart 编号和总线适配。改变核数必须同时检查 CLINT/PLIC、调试信息与启动软件；改变 cache 类型或 RVV 能力则要从 CPU profile 入手，不能仅靠本表的 SoC 开关。
 
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
@@ -35,6 +39,8 @@
 
 ### 2.2 中断
 
+事件源先进入同步/路由，再接 PLIC 或各核 CLIC，最后由 CPU trap 软件服务。源数、目标数和 context 数是不同维度；当前生成的 CLINT/PLIC/CLIC 寄存器与 RTL 容量不由这些字段自动重生成。修改后要核对编号、路由、mask/claim/complete 和同步条件。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `NumExtInIntrs` | `doub_bt` | `0` | 外部输入中断数量；须与 PLIC/CLIC 容量和中断编号同步。0 时接口仍有占位位，应绑 0。 |
@@ -46,10 +52,12 @@
 
 ### 2.3 AXI 与 Reg 通路
 
+AXI 发起者进入 Crossbar 后按 AW/AR 地址选择目标，返回用 ID 恢复来源。普通 MMIO 再经过 AXI-to-Reg 转换为 32 位 RegBus；iDMA 控制窗口有独立适配路径。在途容量决定能同时保留多少事务，cut 决定协议状态的流水边界，二者不能互相替代。位宽修改至少检查窄读写、字节 strobe、ID 归还和背压排空。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `AddrWidth` | `aw_bt` | `48` | SoC AXI/Reg 地址位宽，单位 bit；默认 48，不等于 CPU XLEN 或 Sv39 有效虚拟地址位数。 |
-| `AxiDataWidth` | `dw_bt` | `64` | SoC AXI 数据位宽，单位 bit；默认 64。更改会联动 cache/LLC 容量、DMA reg64、DDR 适配和类型。 |
+| `AxiDataWidth` | `dw_bt` | `64` | SoC AXI 数据位宽，单位 bit；默认 64。更改会改变 LLC block/line/总容量，并需核对 CPU/Ara 适配、DMA 控制桥、DDR 与类型；不自动扩大 CPU L1。 |
 | `AxiUserWidth` | `dw_bt` | `2` | AXI USER 位宽；必须容纳原子来源和错误扩展字段，不能直接设 0。 |
 | `AxiMstIdWidth` | `aw_bt` | `2` | 接入交叉开关前的 master ID 位宽；CVA6 自身仍用 4 位，经过 serializer 压缩。 |
 | `AxiMaxMstTrans` | `dw_bt` | `24` | 传给交叉开关 MaxMstTrans：从 xbar 输出 master 端口看允许的在途容量。 |
@@ -67,6 +75,8 @@
 
 ### 2.4 外部扩展端口与规则
 
+发起口使 NPU/ISP 能提交访问；目标口及其地址规则才使一个存储或控制设备可被访问。`gen_axi_in` 分配来源序号，`gen_axi_out` 生成第一层目标规则，`gen_reg_out` 生成 RegBus 第二层规则。一个目标可有多个窗口，所以端口数与规则数应分别填写；加来源还会扩大响应 ID，详见第 3 节。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `AxiExtNumMst` | `bit     [MaxExtAxiMstWidth-1:0]` | `'0（聚合默认）` | 外部 AXI 发起者端口数，例如 NPU DMA 接入现有 SoC xbar；不自动形成 LLC 旁路。 |
@@ -83,10 +93,12 @@
 
 ### 2.5 时钟信息、启动与模块使能
 
+使能位通过 `generate` 决定模块是否存在；运行时寄存器不会补出已裁掉的硬件。关闭设备前先检查 Boot ROM 和软件是否依赖它。`RtcFreq` 是报告给软件的频率信息，`PlatformRom` 是执行入口地址，二者都不是生成 PLL 或外部 ROM 的开关。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `RtcFreq` | `word_bt` | `32768` | RTC 参考频率，单位 Hz；写入只读配置寄存器供软件计时/测频。不会生成这个频率的时钟。 |
-| `PlatformRom` | `word_bt` | `'0（聚合默认）` | 平台 ROM 地址；Bootrom=0 时成为 CPU BootAddr，默认 0 不能当作有效自定义 ROM。 |
+| `PlatformRom` | `word_bt` | `'0（聚合默认）` | 平台入口地址；Bootrom=1 且非零时内置 ROM 调用该钩子，Bootrom=0 时作为 CPU BootAddr。须提供实际可执行存储；当前普通返回缺陷见[启动约定](../03_Platform_ROM_Clock_IP_Configuration.md#s01-b01)。 |
 | `Bootrom` | `bit` | `1` | 生成片内 Boot ROM；禁用时必须提供替代取指目标与启动存储。 |
 | `Uart` | `bit` | `1` | 生成 UART；波特率由运行时寄存器设置，当前 Boot ROM 默认 115200。 |
 | `I2c` | `bit` | `1` | 生成 I2C；自主 EEPROM 启动依赖它以及板级引脚。 |
@@ -104,6 +116,8 @@
 
 ### 2.6 调试
 
+外部 JTAG 经 DTM/DMI 控制 Debug Module；其 SBA 口主动访问系统存储，供 CPU 使用的调试窗口则是另一个被访问目标。这里的请求容量约束对应不同接口，不表示 JTAG 时钟、下载速率或硬件断点数量。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `DbgIdCode` | `jtag_idcode_t` | `CheshireIdCode` | JTAG IDCODE 结构；version=1、part=c5e5、manufacturer=6d9、最低位=1，编码为 0x1c5e5db3。 |
@@ -115,12 +129,14 @@
 
 ### 2.7 LLC 与 SPM
 
+同一份 LLC 数据阵列可按 way 分配为硬件管理的缓存或软件按地址管理的 SPM；每路行数就是缓存组数。`LlcSetAssoc × LlcNumLines × LlcNumBlocks × AxiDataWidth/8` 决定数据容量；默认 8 路、256 组、64 B/行，共 128 KiB。运行时改 CFG_SPM 只改用途，不增加物理容量。调整几何后还需同步 SPM 链接范围、栈、软件共享区和 SRAM 映射；地址拆分与转换条件见[存储主教程](../learning/memory.html#cache-geometry)。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `LlcNotBypass` | `bit` | `1` | 1：启用 LLC/SPM 阵列（同时要求 LlcOutConnect=1）；0：旁路 LLC，无内部 LLC SPM。 |
 | `LlcSetAssoc` | `shrt_bt` | `8` | LLC way 数；同时决定 SPM 可按 way 分配的数量。 |
 | `LlcNumLines` | `shrt_bt` | `256` | 每个 way 的 cache line 数；不是全 cache 的 line 总数。 |
-| `LlcNumBlocks` | `shrt_bt` | `8` | 每条 line 包含的 AXI 数据 beat 数；默认 8×8=64 byte/line。 |
+| `LlcNumBlocks` | `shrt_bt` | `8` | 每条 line 的 block 数，一个 block 等于 AXI 数据口宽度；默认 8×8=64 byte/line，窄访问的 beat 大小仍由 AxSIZE 决定。 |
 | `LlcMaxReadTxns` | `dw_bt` | `16` | LLC 前原子适配器在途读容量；不要误当成整个 LLC MSHR 数。 |
 | `LlcMaxWriteTxns` | `dw_bt` | `16` | LLC 前原子适配器在途写容量。 |
 | `LlcAmoNumCuts` | `aw_bt` | `1` | LLC 前原子适配器的 AXI 流水切分级数。 |
@@ -130,6 +146,8 @@
 | `LlcOutRegionEnd` | `doub_bt` | `64'h1_0000_0000` | 下游窗口排他终点；默认 0x100000000，形成 2 GiB 窗口，不证明物理 DDR 容量。 |
 
 ### 2.8 VGA
+
+VGA 是读帧缓冲的 AXI 发起者：像素格式和 FIFO 影响数据供给，扫描时序由寄存器指定。增大带宽或队列前，应共同检查行跨度、像素时钟、目标服务时延和 BusErr 跟踪容量；源码存在该模块不等于当前板卡已接出显示引脚。
 
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
@@ -143,11 +161,13 @@
 
 ### 2.9 Serial Link
 
+Serial Link 在本地总线事务和链路之间转换；地址 mask/domain 重映射、ID 队列和链路时钟分频分别解决寻址、在途追踪和串行传输。它不是 LVDS 图像接收器。修改配置要检查实际消费者，尤其是以下与包级常量同名但未被实例采用的字段。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `SlinkMaxTxnsPerId` | `dw_bt` | `4` | Serial Link 出站 ID remapper 每 ID 最大事务数。 |
 | `SlinkMaxUniqIds` | `dw_bt` | `4` | Serial Link 出站 ID remapper 可跟踪的不同 ID 数。 |
-| `SlinkMaxClkDiv` | `shrt_bt` | `1024` | 原始赋值 1024，但 dw_bt 只有 10 位，存入该字段会截为 0；当前实例不读取它，实际用包级同名常量 1024，见外设篇。 |
+| `SlinkMaxClkDiv` | `shrt_bt` | `1024` | 字段实际为 16 位 shrt_bt，能保存 1024；当前 SoC/VIP 实例却使用包级同名常量 `1<<Log2MaxClkDiv`，只改 Cfg 字段不生效，见外设篇。 |
 | `SlinkRegionStart` | `doub_bt` | `64'h1_0000_0000` | 发往远端芯片的本地地址窗口起点。 |
 | `SlinkRegionEnd` | `doub_bt` | `64'h2_0000_0000` | 远端窗口排他终点；默认窗口大小 4 GiB。 |
 | `SlinkTxAddrMask` | `doub_bt` | `'hFFFF_FFFF` | 出站地址中保留原地址的位掩码。 |
@@ -156,6 +176,8 @@
 
 ### 2.10 USB
 
+USB OHCI 包装有独立的 DMA 主口。mask/domain 规定设备地址如何投影到系统物理地址，队列上限约束读请求；还要由平台提供 USB 时钟和引脚，软件提供可见且可达的描述符与缓冲区。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `UsbDmaMaxReads` | `dw_bt` | `16` | USB AXI 适配最大在途读数。 |
@@ -163,6 +185,8 @@
 | `UsbAddrDomain` | `doub_bt` | `'h0000_0000` | USB DMA 地址固定高位域；不能替代 MMU 或内存保护。 |
 
 ### 2.11 DMA
+
+当前 `cheshire_idma_wrap` 组合寄存器前端、2D midend 和 `idma_backend_rw_axi`；既读源又写目标，方向由地址决定。控制通路的 `DmaConf*` 在途值和数据后端的 `DmaNumAxInFlight` 是不同资源。修改 1D/2D、位宽或任务队列后，需同步寄存器布局、驱动、完成 ID 和错误验收；现有 reg64/固定 DW=32 桥与 HAL 访问门槛仍见[诊断证据](../learning/peripheral-debug.html#dma)，不能凭字段合法认定 DMA 已运行通过。
 
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
@@ -178,6 +202,8 @@
 
 ### 2.12 GPIO、AXI RT 与 Ara
 
+以下三组互不替代：GPIO 控制输入同步；AXI RT 在总线请求进入 Crossbar 前实施预算；Ara 的 lane/VLEN 决定向量核结构。RT 的 manager 数必须与实际发起者匹配，Ara 还依赖向量 CPU profile、真实 decoder、软件 V/VS，以及涉及浮点时的 FS；调整参数后分别验证输入事件、预算扣减和向量结果。
+
 | 参数 | 类型 | DefaultCfg 原始值 | 含义与联动 |
 | --- | --- | --- | --- |
 | `GpioInputSyncs` | `bit` | `1` | 传给 GPIO 的 GpioAsyncOn，决定输入同步；关闭前需确认输入时钟关系。 |
@@ -189,7 +215,11 @@
 | `AraNrLanes` | `byte_bt` | `2` | 并行向量 lane 数；当前配置 2。Ara=0 时只保留字段，不生成向量核。 |
 | `AraVLEN` | `word_bt` | `2048` | 每个架构向量寄存器长度，单位 bit；当前 2048，32 个寄存器总有效容量 8 KiB。 |
 
+<a id="teaching-20261007"></a>
+
 ## 3. 派生容量、ID 和端口数
+
+以下结果分别从 `get_llc_size`、`gen_axi_in` 和 `hw/include/cheshire/typedef.svh` 派生。端口数、地址规则数与设备寄存器数不是同一个数量；可选模块增减后应重新计算，而不是沿用默认端口序号。
 
 - LLC 数据阵列容量：`LlcSetAssoc × LlcNumLines × LlcNumBlocks × AxiDataWidth / 8`。默认 `8×256×8×64/8=131072 byte=128 KiB`；每 way 16 KiB，每 line 64 byte。不含 tag、状态与控制逻辑。
 - AXI 发起者数：`NumCores + 1(Debug) + Ara + Dma + SerialLink + Vga + Usb + AxiExtNumMst`。默认为 6，Ara 仿真为 7，VCU118 向量 wrapper 为 5。
@@ -197,6 +227,10 @@
 - LLC 下游 ID 位宽：上述输出 ID 位宽再加 `LlcNotBypass`；默认启用 LLC 时为 6。来源是 [typedef.svh](../../hw/include/cheshire/typedef.svh)，接 DDR 时不要误用 2 位。
 - CPU 原生 AXI ID 固定 4 位；`gen_cva6_id_map()` 支持压到 1/2/3 位。压缩增加共用 ID 的串行约束，不能只按 pin 数最小化。
 - 普通 Reg 总线是 32 位数据/4 位 strobe；DMA 控制窗口走单独 AXI 到 reg64 前端，不能把二者混为一谈。
+
+以向量组合的 7 个来源再加 2 个外部来源为例，输入 ID 为 2 位时，Crossbar 目标侧 ID 从 `2+ceil(log2(7))=5` 位变为 `2+ceil(log2(9))=6` 位。各边界必须由类型宏派生，不能把该 6 位直接套给 LLC 下游。
+
+当前 `i_axi_xbar.addr_map_i` 接常量 `AxiMap`，没有供 C 程序重新规划主路由的寄存器。AXI RT 预算、LLC way 用途和设备工作模式通过各自寄存器改变；实例数量、SRAM 容量和接口尺寸属于硬件展开输入。
 
 交叉开关固定配置还包括 `FallThrough=0`、`LatencyMode=CUT_ALL_PORTS`、`PipelineStages=0`、`UniqueIds=0`；这些不在 cheshire_cfg_t 中。增加端口会改变 ID/仲裁/错误追踪容量，也会影响 AXI RT 生成寄存器。
 
@@ -241,15 +275,7 @@ NPU 控制寄存器一般接 `RegExtNumSlv`；NPU 主动读写内存接 `AxiExtN
 
 `iomsb(0)=0` 用于保留合法占位端口范围；它不表示配置为 0 的模块实际存在。wrapper 要按有效计数连接，并给闲置输入稳定值。
 
-<a id="teaching-20261007"></a>
-
-## 结构展开补充：端口、地址与 ASIC 边界（2026-10-07）
-
-`gen_axi_in` 为 CPU、Debug、可选 Ara、DMA、Link、VGA、USB 和外部发起者分配输入序号；`gen_axi_out` 生成目标与 AXI 地址规则；`gen_reg_out` 再生成寄存器目标。规则是区间到目标的映射，一个目标可以有多个窗口。端口数、规则数和设备寄存器数不是同一个数量。
-
-默认 6 个内部发起者开启 Ara 后成为 7 个，再加入 2 个外部发起者成为 9 个。若输入 ID 为 2 位，Crossbar 目标侧 ID 分别需要 `2+ceil(log2(7))=5` 位、`2+ceil(log2(9))=6` 位。LLC 前后的原子适配和自身接口可能继续改变类型，因此应由 `hw/include/cheshire/typedef.svh` 的类型宏派生各边界，而不是全系统写死一个 ID 宽度。
-
-当前 Crossbar 的 `addr_map_i` 接常量 `AxiMap`，没有供 C 程序重新规划主路由的寄存器。AXI RT 预算、LLC way 用途和设备工作模式则通过各自寄存器改变。软件能改变既有资源的运行状态；实例数量、SRAM 容量和接口尺寸属于硬件展开输入。
+### 5.1 扩展修改的关联检查
 
 | 修改 | 需要同步推导 | 本地静态边界 |
 | --- | --- | --- |

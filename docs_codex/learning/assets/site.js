@@ -62,3 +62,20 @@ if(selected&&matchMedia('(min-width:901px)').matches){
   const sidebar=document.querySelector('.sidebar');
   sidebar.scrollTop=Math.max(0,selected.offsetTop-sidebar.clientHeight/2);
 }
+// Mark the section currently being read without changing URLs or scroll position.
+const sectionHeadings=[...document.querySelectorAll('main h2[id],main h3[id]')];
+let sectionTick=false;
+function markSection(){
+  sectionTick=false;
+  const heading=[...sectionHeadings].reverse().find(h=>h.getBoundingClientRect().top<=120);
+  const id=heading?.id;
+  document.querySelectorAll('.toc a,.current-sections a').forEach(a=>{
+    if(id&&a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','location');
+    else a.removeAttribute('aria-current');
+  });
+}
+addEventListener('scroll',()=>{if(!sectionTick){sectionTick=true;requestAnimationFrame(markSection);}}, {passive:true});
+markSection();
+document.querySelectorAll('.table-wrap').forEach(w=>{
+  if(w.scrollWidth>w.clientWidth){w.tabIndex=0;w.setAttribute('role','region');w.setAttribute('aria-label','可横向滚动的表格');}
+});

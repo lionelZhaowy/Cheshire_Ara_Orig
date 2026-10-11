@@ -1,0 +1,64 @@
+Command: riscv64-unknown-elf-objdump -D -b binary -m riscv:rv64 --adjust-vma=0x02000000 --start-address=0x020000a4 --stop-address=0x02000164 /tmp/architecture_review_bootrom_root.bin
+
+/tmp/architecture_review_bootrom_root.bin:     file format binary
+
+
+Disassembly of section .data:
+
+00000000020000a4 <.data+0xa4>:
+ 20000a4:	1161                	addi	sp,sp,-8
+ 20000a6:	01000297          	auipc	t0,0x1000
+ 20000aa:	f5a28293          	addi	t0,t0,-166 # 0x3000000
+ 20000ae:	0482a283          	lw	t0,72(t0)
+ 20000b2:	0a028163          	beqz	t0,0x2000154
+ 20000b6:	9282                	jalr	t0
+ 20000b8:	01000297          	auipc	t0,0x1000
+ 20000bc:	f4828293          	addi	t0,t0,-184 # 0x3000000
+ 20000c0:	00a2a823          	sw	a0,16(t0)
+ 20000c4:	9101                	srli	a0,a0,0x20
+ 20000c6:	00a2aa23          	sw	a0,20(t0)
+ 20000ca:	0ff0000f          	fence
+ 20000ce:	00040297          	auipc	t0,0x40
+ 20000d2:	f3228293          	addi	t0,t0,-206 # 0x2040000
+ 20000d6:	01000397          	auipc	t2,0x1000
+ 20000da:	f2a38393          	addi	t2,t2,-214 # 0x3000000
+ 20000de:	04c3a383          	lw	t2,76(t2)
+ 20000e2:	038a                	slli	t2,t2,0x2
+ 20000e4:	9396                	add	t2,t2,t0
+ 20000e6:	4305                	li	t1,1
+ 20000e8:	0062a023          	sw	t1,0(t0)
+ 20000ec:	0291                	addi	t0,t0,4
+ 20000ee:	fe72cce3          	blt	t0,t2,0x20000e6
+ 20000f2:	10500073          	wfi
+ 20000f6:	34402373          	csrr	t1,mip
+ 20000fa:	00837313          	andi	t1,t1,8
+ 20000fe:	fe030ae3          	beqz	t1,0x20000f2
+ 2000102:	00040297          	auipc	t0,0x40
+ 2000106:	efe28293          	addi	t0,t0,-258 # 0x2040000
+ 200010a:	f1402373          	csrr	t1,mhartid
+ 200010e:	030a                	slli	t1,t1,0x2
+ 2000110:	9316                	add	t1,t1,t0
+ 2000112:	00032023          	sw	zero,0(t1)
+ 2000116:	01000397          	auipc	t2,0x1000
+ 200011a:	eea38393          	addi	t2,t2,-278 # 0x3000000
+ 200011e:	04c3a383          	lw	t2,76(t2)
+ 2000122:	038a                	slli	t2,t2,0x2
+ 2000124:	9396                	add	t2,t2,t0
+ 2000126:	0002a303          	lw	t1,0(t0)
+ 200012a:	fe031ee3          	bnez	t1,0x2000126
+ 200012e:	0291                	addi	t0,t0,4
+ 2000130:	fe72cbe3          	blt	t0,t2,0x2000126
+ 2000134:	01000297          	auipc	t0,0x1000
+ 2000138:	ecc28293          	addi	t0,t0,-308 # 0x3000000
+ 200013c:	0142e303          	lwu	t1,20(t0)
+ 2000140:	1302                	slli	t1,t1,0x20
+ 2000142:	0102e283          	lwu	t0,16(t0)
+ 2000146:	0062e2b3          	or	t0,t0,t1
+ 200014a:	f1402573          	csrr	a0,mhartid
+ 200014e:	000280e7          	jalr	t0
+ 2000152:	8082                	ret
+ 2000154:	4281                	li	t0,0
+ 2000156:	4301                	li	t1,0
+ 2000158:	0ff0000f          	fence
+ 200015c:	0000100f          	fence.i
+ 2000160:	360010ef          	jal	0x20014c0

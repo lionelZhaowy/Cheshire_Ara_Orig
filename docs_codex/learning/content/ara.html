@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>分清请求、应答、CPU 提交和实际完成。 前置：<a href="cva6.html">02 · CVA6 功能与 RISC-V 系统基础</a>、<a href="configuration.html">3 · Cheshire、CVA6、Ara 与软件配置</a>、<a href="axi.html">9 · AXI 通道、突发与握手</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>分清请求、应答、CPU 提交和实际完成。前置：<a href="cva6.html">CVA6 功能</a>、<a href="axi.html">AXI 事务</a>和<a href="memory.html">存储层次</a>。参数修改时再查<a href="configuration.html">系统配置</a>。</p></div>
 <h2 id="array-task">数组计算中的标量与向量分工</h2>
 <p>我们沿已有 journey.c 计算137个 uint32_t：a[i]=i、b[i]=2*i+1，c[i]=a[i]+b[i]，独立期望是3*i+1。标量循环每轮处理一个元素；RVV用一条向量加法描述一批元素，硬件再分多次完成这一批。整数加法按2³²取模，本例范围内没有回绕。</p>
 <p>CVA6负责取指、分支、标量地址/计数和程序顺序；Ara接收CVA6发出的向量指令及必要标量值，执行向量运算并通过自身AXI访存。Ara没有另一个独立程序计数器在内存取这段程序，也不是写某个MMIO启动寄存器才开始的外设。先从软件所见的一批元素出发，再看这种分工怎样实现。</p>
@@ -55,6 +55,11 @@
 <p>AR/R 直接在 Ara 自身 AXI 上传输数据，load 数据经重排和结果缓冲写入各 lane；store 从 VRF 读取，重排成内存字节顺序，经 AW/W/B 完成。两个 lane 时 Ara AXI 为 32×2=64 位，之后仍有显式位宽转换以适配系统。向量元素不经 CPU 的标量 result 总线逐项传送，也不借 CPU L1D 作为向量数据接口。</p>
 <p>当前实现的错误上报/访问边界见<a href="vector-debug.html#local-limits">诊断参考</a>；本例限定对齐整数连续访问，不据完成通知单独认定成功。</p>
 
+<h3 id="memory-destinations">向量事务的地址目标与最终存储</h3>
+<p>CPU 交给 Ara 的基址决定访问对象，VLSU 是 AXI 事务发起者。默认路径依次为 <code>VLSU → axi_inval_filter → axi_dw_converter → AxiIn.ara → 主 Crossbar</code>；随后由物理地址规则选择目标。失效过滤器只提供本地 CPU/Ara 配合，不是可自动吸收其他设备的完整一致性网络。</p>
+<table><tr><th>向量访问目标</th><th>当前请求经过的路径</th><th>数据落点与使用前提</th></tr><tr><td>SPM，含本例 0x14000000 高别名</td><td>主 Crossbar → LLC/SPM 目标及其前置适配</td><td>已经分配为 SPM 的 LLC 数据阵列；按容量保留独占范围，避开 ROM/应用栈与缓存别名</td></tr><tr><td>主存窗口 0x80000000 起</td><td>主 Crossbar → 原子适配 → LLC → 平台内存出口</td><td>配置为 cache 的 way 可命中/分配；未命中或无 cache way 时继续下游，平台模型或 DDR 必须实际就绪</td></tr><tr><td>新增独立 GB</td><td>当前尚无该译码/支路；拟从 Ara 宽侧分流到片上 SRAM</td><td>需要新窗口、端口/仲裁、缓存属性和完成契约；见<a href="accelerators.html#global-buffer">GB 接入规划</a></td></tr></table>
+<p>若仅把 lanes 从 2 增至 4，当前公式使 Ara 出口变为 128 位，后续转换仍接 64 位主总线。更多 lane 和更宽局部出口不自动增加 DDR 带宽；系统位宽又会影响 CPU AXI、LLC 容量、DMA 与 Debug，不能把两类改动合并为一个性能旋钮。具体参数与验证表见<a href="../configuration/ARA.md">Ara 参考</a>。</p>
+<p class="source">路径依据：<a href="../../hw/cheshire_soc.sv">gen_ara / i_ara_axi_inval_filter / i_ara_axi_dw_converter / gen_llc</a>，<a href="../../hw/cheshire_pkg.sv">gen_axi_in / gen_axi_out / get_llc_size</a>。这里是源码连接与拟议支路的区分，没有新增目标访存结果。</p>
 <h2 id="buffer-handoff">Ara 结果写入与 CPU 数据交接</h2>
 <p>本例CPU仅经非缓存SPM高别名准备三个独占数组，fence后调用向量内核，返回后再fence，并在当前CPU/Ara pending及barrier机制下消费c。函数ret只完成控制流返回；最后store的排空条件来自协作机制，不是C函数语法。启动必须保持全SPM、正确栈边界及CSR_ACC_CONS开启等<a href="sharing.html#ownership">共享区前提</a>；不混用缓存别名，不并发DMA改写。然后逐元素核对3*i+1和守卫，再归还缓冲。</p>
 <p>VRF存显式向量寄存器，CPU L1存内存副本，LLC/SPM是系统存储路径，DDR是外部容量层；本例不用DDR。当前生产仿真列表还有profile/decoder匹配门槛，实验E目标运行未完成，见<a href="vector-debug.html#configuration">执行条件</a>。</p>

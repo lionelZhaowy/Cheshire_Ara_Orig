@@ -1,0 +1,39 @@
+# L01 / 科研图调研与新 Skill 规划
+
+## 基本信息
+
+- 日期：2026-10-10。
+- 授权：使用 svg-pptx-diagrams 调研电路/体系结构/AI 论文图例与官方规范，详细归纳优化规律，规划未来新 skill；本次不实现新 skill，旧 skill 保留。
+- 状态：调研与方案完成；新 skill、重绘和对照验收未实施。
+- 输入 HEAD：`2784340240915fe4338ec54bfd613723b127d62e`。
+- 起始已有 M01 契约修改、多份图目录与交接未跟踪，均保留；未启动子 Agent。
+- 负责范围：新增 `docs_codex/diagrams/2026-10-10_publication_figure_research/` 与本交接。
+
+## 本轮结果
+
+- [完整报告](../diagrams/2026-10-10_publication_figure_research/README.md)区分官方要求、样本观察和本项目建议，覆盖用户列出的 14 个场所；APLOPS 暂按 ASPLOS 理解。
+- 实际读取/渲染/查看 13 篇公开论文的关键图页，另查看 VLSI 2026 官方 WLL、ΔΣ 和 TinyNPU 图例；不是全部领域的统计抽样。
+- 用户确认四类问题：彩色圆角卡片、文字与连线层次、缺少领域图式、受聊天影响自动添加外围说明框。规划已分别落实，强调必要事实进入图面、假设进入 caption、验证/来源进入伴随记录。
+- 两张现有 SVG 的物理尺寸计算：整体缩到 182 mm 时，DDR 常见 17–23 单位标签仅 4.57–6.18 pt；LLC 常见 18–22 单位标签仅 5.53–6.76 pt。是按给定缩放条件计算，不是实际投稿/打印证据。
+- 旧 exporter 固定 14 英寸 PPT 宽度，`min_text_pt` 不等于论文最终字号。还存在原生虚线/独立图片面板等支持缺口。没有改旧实现。
+- 建议未来新 skill 候选名 `publication-figures`，按图意、领域图式、物理尺寸、内容审查和导出验证组织；名称/实施范围仍为建议。
+
+## 文件与验证
+
+- 新增：报告 README、`evidence.json`、本交接。未修改共享状态/任务表，项目实现事实未变化。
+- 临时缓存：`/tmp/research_figures_20261010/`；临时 PyMuPDF 1.28.2 安装在 `/tmp/research_figures_20261010_lib`，未改仓库/旧 skill 依赖。
+- 主要命令：`git status --short`、`git rev-parse HEAD`；定向 `cat`/`rg`/`sed`；官方网页检索/读取；临时 Python 下载公开 PDF、`pymupdf.open()` 与 `get_pixmap()` 渲染；`view_image` 视觉检查；ElementTree 读取 SVG `font-size` 和 `viewBox` 并按 mm→pt 计算；SHA-256 记录输入。
+- 下载中存在失败旧链接、403/429、HTML 伪 PDF 路径；成功文档按 PDF 文件头确认。JSSC 改用作者索引中的正确月份路径，Cheshire/Arnold 使用作者 arXiv 公开稿。没有把下载失败当作视觉检查成功。
+- VLSI 模拟图下载脚本初次未展开相对 URL，修正 `urljoin` 后成功。临时图像扩展名转换最初因当前 Python 无 Pillow 失败，随后仅复制 JPEG 原始字节至正确后缀后成功查看，未编辑图像内容。
+- 网页 screenshot 接口未提供可用视觉结果，因此最终检查依据本地渲染，不声称仅从摘要判断图形外观。
+- 报告/交接本地 Markdown 相对链接与 JSON 完整性轻量检查；旧 skill 两个关键文件哈希未变，见 evidence。
+- 未完成：AAAI 当年完整 kit、TVLSI/TC 专属作者页直接核查；报告明确保留缺口。未实施 skill、未重绘、未做读者 A/B 或 Office 实测。
+- 未编译/未仿真/未板测，未 Git 提交。
+
+## 最小下一步
+
+1. 用户就报告提出偏好或实施范围；当前四项反馈无需重新征询。
+2. 获得用户创建授权后，新目录实现新 skill 并保留旧版；先以 DDR/LLC 等做同内容、同尺寸对照，审查必要状态没有被删去。
+3. 真正投稿前，按目标年份/阶段复核官方模板及本轮未读到的专属指南；最终文件分别检查 PDF 与原生 PPTX，不将母版结构检查写成出版合规或 Office 实测。
+
+不要求 C00 更改工程实现状态；如要索引本方法研究，仅记录“调研规划完成，新 skill 未实现”。

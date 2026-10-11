@@ -1,0 +1,32 @@
+[
+  {
+    "name": "llc_cache_access",
+    "height": 425,
+    "width_mm": 182,
+    "caption": "全 Cache 基线的访问机制：48-bit 地址分成 Tag[47:14]、Set[13:6]、Block[5:3]、Byte[2:0]。Set 同时索引各 way 的 tag 与 data，Tag/Valid 比较产生命中 way，选择相应数据。图示仅展开代表 way，其余以 ×8 标注；tag 与 data 是分立 SRAM。Set 42 / hit Way 6 仅为教学例子。",
+    "source": "2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg",
+    "mapping": "地址字段/索引/Tag+Valid比较/way选择/独立阵列→本图；用途位图与SPM寻址→llc_spm_mapping；转换→llc_mode_transition。",
+    "text_count": 21,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "llc_spm_mapping",
+    "height": 370,
+    "width_mm": 182,
+    "caption": "同一 128 KiB 数据阵列按 way 分配给 Cache 或 SPM。CFG_SPM 位为 1 表示 SPM，0 表示 Cache；每 way 为 16 KiB。SPM 固定槽不随位图压缩重排，已配置的 SPM 槽按地址直接选 way，不做 LLC Tag 比较。颜色和 C/S 标签共同编码用途。",
+    "source": "2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg",
+    "mapping": "0x00/0x0F/0xFF、容量守恒、固定地址槽、0x10008AAB示例→本图；别名/L1/错误返回→图注。",
+    "text_count": 45,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "llc_mode_transition",
+    "height": 350,
+    "width_mm": 182,
+    "caption": "运行期 Cache/SPM 切换的逻辑次序。软件先保护/迁移代码、栈与数据，管理上游缓存副本和在途访问，再写 CFG_SPM 并提交。硬件执行隔离、等待和必要刷新；软件按实际寄存器/FSM 契约确认完成后恢复访问。COMMIT 请求清零仅表示接受，不能当作全部刷新完成。",
+    "source": "2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg",
+    "mapping": "软件准备/配置提交/硬件协调/完成确认→本图；容量非复制、反向转换、全SPM外存旁路→图注。",
+    "text_count": 12,
+    "text_bbox_overlaps": []
+  }
+]

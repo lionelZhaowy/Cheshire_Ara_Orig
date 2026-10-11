@@ -20,7 +20,7 @@
 <p>现有DIF/HAL等待没有统一deadline；恢复前先保存片选、队列和错误，确认器件不再执行写入后再重置。写介质需write-enable0x06、program/erase及WIP轮询；当前HAL涉及大扇区擦除，CR3V的0x71写配置segment方向为Rx的静态疑点尚未修复。它不等于只读init必经同一缺陷。本章不执行擦写。SD无本地等价模型，TB的SD启动fatal、VCU118未启用USE_SD；源码有协议不等于已验证卡型。</p>
 <h2 id="dma">本地 iDMA 示例的执行限制</h2>
 
-<p><a href="adapters.html">第 11 章</a>的 +4 lane 例子在这里具有实际意义：cheshire_idma_wrap 的 Reg 类型继承 64 位 AxiDataWidth，旧 axi_to_reg/axi_lite_to_reg 保持该宽度；生成 idma_reg64_2d_reg_top 的内部 DW 却固定为 32，读写数据未显示按 addr[2] 做相应 lane 搬移。因此 +0x44/+0x84 的 32 位访问存在静态不匹配。</p>
+<p><a href="adapters.html">第 8 章</a>的 +4 lane 例子在这里具有实际意义：cheshire_idma_wrap 的 Reg 类型继承 64 位 AxiDataWidth，旧 axi_to_reg/axi_lite_to_reg 保持该宽度；生成 idma_reg64_2d_reg_top 的内部 DW 却固定为 32，读写数据未显示按 addr[2] 做相应 lane 搬移。因此 +0x44/+0x84 的 32 位访问存在静态不匹配。</p>
 <p>旧 dif/dma.h 还以 uint64_t 指针读取这些 32 位 ID；历史 GCC 反汇编显示一次请求拆成相邻两次 32 位读。软件改为 32 位读取也不能修复硬件 lane 适配。保留的 advanced.c 默认输出 BLOCKED/rc16、不提交 DMA，这一门槛继续有效。旧 lesson.c 的 dma 分支仅留作历史代码，本轮正式实验不调用它。</p>
 <p>后续 S01/V01 应统一桥、生成寄存器和 HAL 宽度，再验证 +0/+4、WSTRB、地址高低半、单次 NEXT_ID 只提交一次、非零 ID、DONE 与错误返回。1D 分支还有 busy 信号命名待核对。上述结论来自静态源码和历史汇编记录，尚无本轮生产 DMA 波形复现。</p>
 <p>若后续修复授权执行，V01先验证单次NEXT_ID读取、+0/+4 lane、WSTRB、ID与长度高低半，再验证三行不同数据及守卫、背压/错误。超时隔离目标缓冲，避免CPU复用仍在写的区域；DONE匹配后仍需检查数据与错误。</p>

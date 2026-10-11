@@ -1,6 +1,6 @@
 # 工具链、SDK 与软件编译
 
-返回 [软件导航](README.md)。以下以当前 [sw.mk](../../sw/sw.mk)、[根 Makefile](../../Makefile) 和 [cheshire.mk](../../cheshire.mk) 为准；命令示例未在本轮执行构建。
+返回[软件导航](README.md)。本页承载原 Make/SDK 入口、选项及操作条件；编译、链接、ELF 的连续解释见[主教材构建章](../learning/build.html)。以下按本地 [sw.mk](../../sw/sw.mk)、[根 Makefile](../../Makefile) 和 [cheshire.mk](../../cheshire.mk) 核对；命令示例未在本轮执行构建。
 
 <a id="1-三套东西不要混用"></a>
 
@@ -20,6 +20,8 @@
 
 ## 2. 工具职责与输入输出
 
+交叉编译器运行在开发主机，生成 RISC-V 指令；仿真 DPI 的主机 C++ 编译器生成能装入仿真器的主机代码。前者构建应用 ELF，后者构建解释 ELF 的加载器，两者不能共用一套目标 ISA 选项。
+
 | 工具 | 角色 | 常用检查/操作 |
 | --- | --- | --- |
 | riscv64-unknown-elf-gcc | 裸机交叉编译驱动，可调用 assembler/linker | --version、-c、-T、-march、-mabi |
@@ -35,7 +37,7 @@
 | OpenOCD | JTAG 调试服务 | GDB 与实际硬件之间的接口 |
 | Buildroot 的 riscv64-buildroot-linux-gnu-gcc | Linux 交叉工具链 | 面向 Linux 用户态/系统构建，不能无条件替代裸机工具链 |
 
-本轮只读查询：PATH 中裸机 GCC 在 `/home/zhaowenyao/riscv_toolchain/bin/`，版本 `15.2.0 (g5115c7e44)`；GNU ld 为 `2.46`；GDB/readelf/OpenOCD/dtc/bender 可定位。这是本机快照，不是项目规定的最低版本或新环境保证。`gcc -print-file-name=libc.a` 返回了工具链库路径；不代表本工程已实现完整 libc 系统调用适配。
+2026-09-20 只读查询记录：当时 PATH 中裸机 GCC 在 `/home/zhaowenyao/riscv_toolchain/bin/`，版本 `15.2.0 (g5115c7e44)`；GNU ld 为 `2.46`；GDB/readelf/OpenOCD/dtc/bender 可定位。这是历史主机快照，不是本轮重新查询、项目最低版本或新环境保证。`gcc -print-file-name=libc.a` 返回了工具链库路径；不代表本工程已实现完整 libc 系统调用适配。
 
 在自己的主机可先检查（不编译应用）：
 
@@ -52,7 +54,13 @@ riscv64-unknown-elf-gcc -print-file-name=libc.a
 
 <a id="3-当前编译参数逐项解释"></a>
 
+<a id="工具配置与执行环境补充2026-10-07"></a>
+
+<a id="teaching-20261007"></a>
+
 ## 3. 软件编译参数
+
+先分别确定指令集、调用约定、寻址模型和链接布局，再查具体 flags。`-march` 必须匹配最终 CPU profile，`-mabi` 要与参与链接的对象/库一致；`-mcmodel` 约束代码寻址，链接脚本给出目标地址。当前 crt0 自身包含双精度初始化，因此纯整数 C 程序也仍依赖 F/D。
 
 | 参数 | 当前默认/位置 | 用途与联动 |
 | --- | --- | --- |
@@ -105,6 +113,8 @@ HJSON / 已生成寄存器头
                                                               └→ memh
 ```
 
+寄存器头由本地 HJSON 经 `REGTOOL --cdefines` 生成；不能把其他版本采用的 RDL/PeakRDL 输入直接代入。
+
 库归档除 `sw/lib` 外，还包含 printf、LLC 驱动、AXI RT 驱动及 OpenTitan base/DIF/autogen 源码。因此只复制 `sw/` 并不足以直接用原规则编完整 libcheshire.a；需要对应 `.bender` 软件依赖或后续显式提取它们。
 
 | 源文件名 | 自动收集的链接模式 | 解释 |
@@ -152,6 +162,8 @@ riscv64-unknown-elf-ar t sw/lib/libcheshire.a
 以下为 **Bash 示例，未执行**：只将当前 HelloWorld、crt0、UART/CLINT 和 printf 编到新建临时目录，不是完整 SDK/ASIC 提取脚本。它刻意不使用 LTO，便于看懂归档和链接；产物不应与原 LTO 基线做未经控制的性能比较。要求当前生成头已存在、工具链可用，运行仍须匹配硬件和启动环境。
 
 ```bash
+(
+set -e                              # 首个失败立即停止，避免继续链接旧/不完整对象
 CHS_SW_ROOT_DIR=$(pwd)                 # 在仓库根执行
 CHS_SW_LEARN_OUT=$(mktemp -d /tmp/cheshire-sw-learn.XXXXXX)
 CHS_SW_CC=riscv64-unknown-elf-gcc
@@ -173,6 +185,7 @@ done
   -Wl,-Map,"$CHS_SW_LEARN_OUT/hello.map" \
   "$CHS_SW_LEARN_OUT/crt0.o" "$CHS_SW_LEARN_OUT/main.o" "$CHS_SW_LEARN_OUT/libsupport.a" \
   -o "$CHS_SW_LEARN_OUT/hello.spm.elf"
+)
 ```
 
 crt0 单独列出，支持库放在使用它的对象后面。此例不包含 DMA/LLC/RT/HAL；扩展应用时需补对应源码和头，不把 `-I` 当成“已经链接实现”。
@@ -203,6 +216,8 @@ crt0 单独列出，支持库放在使用它的对象后面。此例不包含 DM
 | riscv-isa-sim / riscv-tests | ISA 模拟/测试组件 | 不是 Cheshire AXI/UART/DDR 的完整 SoC 仿真 |
 | device tree | 描述地址、设备和中断等 | 必须与实际 SoC 配置匹配 |
 
+本地存在 Linux/固件源码和镜像配方，属于可继续适配的输入；并未在本轮证明 VCU118 Linux 启动、用户进程或 FP/RVV 抢占。具体版本与上下文边界见[Linux 主章](../learning/linux.html)。
+
 当前 SDK `XLEN=64`；`RVV=1` 会选择 `_V_defconfig`。桥接文件 `RVV_LINUX:=1`，Linux compiler 路径是 `buildroot/output/host/bin/riscv64-buildroot-linux-gnu-gcc`。仅更改 RVV 并不替代 Linux 上下文切换/固件/硬件一致性的验收。
 
 若后续明确需要 Linux，并准备好完整依赖，可从 Ara 的 `cheshire/sw` 目录使用已有 `make fmatmul-linux`、`make linux-img` 等入口；这是入口说明，不是本轮已执行步骤。源码支持 `HOST_TOOLCHAIN_SUFFIX`，README 中另出现 `TOOLCHAIN_SUFFIX` 拼写，应以 Makefile 为准。规则写“曾在 host GCC/G++ 11.2.0 工作”是历史记录，不是唯一支持版本。
@@ -213,30 +228,10 @@ crt0 单独列出，支持库放在使用它的对象后面。此例不包含 DM
 
 ## 8. 镜像构建规则与平台支持范围
 
+ZSL 的 DTB/固件目的地址位于 DRAM，因此制作出镜像仍需平台先保证外存可访问；修改链接地址或创建分区表都不会初始化 DDR。分层机制见[ZSL 与后续固件](../learning/boot.html#later-stages)。
+
 根 Linux 镜像规则仍在：`sw/boot/linux.<board>.gpt.bin` 将 ZSL、DTB、fw_payload.bin、uImage 放入 GPT 分区。通用裸机 `%.gpt.bin` / `%.gpt.memh` 规则则已注释。**“裸机不必用 GPT”和“Boot ROM 仍支持 GPT/raw”可以同时成立。**
 
 当前根 `sw/boot` 提供 Genesys2、Genesys2 VGA、VCU128 DTS，未见 `cheshire.vcu118.dts`。因此不能直接承诺 `linux.vcu118.gpt.bin` 规则可完成；也不应把 VCU128 的设备树重命名后当作已适配 VCU118。
 
 SDK 自带的 `flash-sdcard/format-sd` 与 Cheshire 根镜像规则使用不同布局；烧写工具见启动篇。首次学习以 ELF 直载为主，制作或写入启动介质需先明确实际板卡、设备与镜像格式。
-
-<a id="teaching-20261007"></a>
-
-## 工具配置与执行环境补充（2026-10-07）
-
-交叉编译器运行在主机，生成 RISC-V 目标程序；仿真器 DPI 使用的主机 C++ 编译器生成可加载进仿真器的主机代码。两者分别处理 ELF 应用和 ELF 加载器，不能共用一套目标 ISA 选项。
-
-本地 `CHS_SW_GCC_BINROOT` 决定目标工具的位置，`CHS_SW_FLAGS` 定义公共 ISA/ABI、优化、分节和 LTO，`CHS_SW_CCFLAGS` 继续增加编译选项，`CHS_SW_LDFLAGS` 继续增加启动/链接选项。覆盖公共变量会替换整组默认值；应保留完整构建日志，而不是只记录新增的 `-march`。原流程使用 LTO，工具版本还需与插件/库匹配；教学独立脚本为观察 .i/.s/.o 省略了 LTO。
-
-`-march=rv64gc_zifencei` 决定机器指令集合，`-mabi=lp64d` 决定函数调用约定，`-mcmodel=medany` 决定代码寻址方式，链接脚本决定最终地址。它们各有消费者：指令集需符合最终 CVA6 配置，ABI 要求参与链接的对象和库一致，地址布局需符合实际可用存储。原 crt0 含双精度初始化，纯整数 C 程序仍依赖 F/D。
-
-| 产物或阶段 | 负责的事情 | 需要前一阶段提供的条件 |
-| --- | --- | --- |
-| 对象 `.o` | 指令编码、符号及重定位 | 正确的头文件、ISA/ABI |
-| ELF | 入口、可装载段、地址和调试信息 | 启动对象、函数实现、链接脚本 |
-| map / dump | 解释布局和反汇编 | 与待运行 ELF 来自同次构建 |
-| 加载器 | 按实际格式把内容放到目标地址 | 目标存储可访问，入口和容量有效 |
-| crt0 / main | 初始化 C 环境并执行应用 | 有效代码、初值、栈、运行状态 |
-
-本地寄存器头规则是 HJSON → `REGTOOL --cdefines`，新版官方软件页中的 RDL/PeakRDL 流程不能直接套用。Linux SDK 又是另一层构建：工具链、OpenSBI、U-Boot、内核、设备树和镜像打包需要互相匹配。当前 `zsl.c` 的固件/DTB 装载目的地在 DRAM，必须先建立外存可用条件。见[启动分层](../learning/boot.html#later-stages)及[源文件到硬件执行图](../learning/build.html#source-to-hardware)。
-
-本节只静态说明配置，不新增工具链构建或目标执行记录；原文的工具可用性与历史编译记录保留各自日期。

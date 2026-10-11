@@ -1,0 +1,66 @@
+{
+  "old_skill_source_files_unchanged": 12,
+  "new_skill_source_files": 15,
+  "installed_and_zip_match_snapshot": true,
+  "regression_and_native_tests_passed": 10,
+  "pptx_objects": 25,
+  "native_arrow_objects": 6,
+  "native_dashed_objects": 2,
+  "programmatic_edit_save_reload_tested": true,
+  "office_application_tested": false,
+  "svg_preview_reviewed": true,
+  "objects": [
+    {
+      "name": "processing-domain",
+      "xml_type": "sp",
+      "start_arrow": false,
+      "end_arrow": false,
+      "dashed": true
+    },
+    {
+      "name": "input-to-compute",
+      "xml_type": "cxnSp",
+      "start_arrow": false,
+      "end_arrow": true,
+      "dashed": false
+    },
+    {
+      "name": "compute-to-output",
+      "xml_type": "cxnSp",
+      "start_arrow": false,
+      "end_arrow": true,
+      "dashed": false
+    },
+    {
+      "name": "feedback",
+      "xml_type": "sp",
+      "start_arrow": false,
+      "end_arrow": true,
+      "dashed": false
+    },
+    {
+      "name": "configuration-elbow",
+      "xml_type": "sp",
+      "start_arrow": false,
+      "end_arrow": true,
+      "dashed": true
+    },
+    {
+      "name": "control-bidirectional",
+      "xml_type": "cxnSp",
+      "start_arrow": true,
+      "end_arrow": true,
+      "dashed": false
+    },
+    {
+      "name": "reverse-status",
+      "xml_type": "cxnSp",
+      "start_arrow": false,
+      "end_arrow": true,
+      "dashed": false
+    }
+  ],
+  "pptx_sha256": "052ff45fb1d024c76b59a717562332a98b27db119e6a59880bda9ad7b0e0235a",
+  "zip_sha256": "6decc54051d860f80e21032566dd8cefb4aa011e7965c1c2ab7ea0e745cd0614",
+  "omitted_canvas_backgrounds": 1
+}

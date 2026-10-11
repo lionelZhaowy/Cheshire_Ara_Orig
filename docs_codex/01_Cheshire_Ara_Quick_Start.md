@@ -1,5 +1,7 @@
 # Cheshire-Ara 源码入门：从 SoC 顶层到裸机程序
 
+> 历史源码调查：正文主要来自 2026-09-15，保留原分析、旧命令与 AXI3 资料差异。首次学习请从[当前入口](00_README.md)和[连续教材](learning/index.html)进入；此页不随章序重构改写成第二套教程。文中的“当前源码”“本轮”均指原调查基线，使用命令前应与现 checkout 核对。
+
 > 2026-09-23 硬件学习扩充：新增[硬件主线](learning/hardware.html)，按参数化RTL、CVA6功能配置、SoC结构生成、Crossbar内部、接口适配、存储/外设原理与IP接入学习；[硬件实验与证据](learning/hardware-labs.html)区分教学模型、独立单元与尚未运行的SoC回归。
 
 > 2026-09-20 软件专题：SDK、交叉工具链、编译链接、嵌入式库与测试程序流程，集中见[软件学习手册](software/README.md)；硬件参数见[配置手册](configuration/README.md)。两套手册均区分当前源码事实与未执行的使用示例。

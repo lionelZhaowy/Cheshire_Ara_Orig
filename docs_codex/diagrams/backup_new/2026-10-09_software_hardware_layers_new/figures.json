@@ -1,0 +1,32 @@
+[
+  {
+    "name": "software_calls",
+    "height": 335,
+    "width_mm": 182,
+    "caption": "代表性的裸机调用关系。应用按需调用库，不要求经过全部层次：printf→_putchar→UART DIF，GPT 经 read 回调访问器件 HAL，HAL 再使用 SPI/I²C DIF；HAL 也可能直接使用 MMIO。DIF/HAL 名称遵循本工程职责，libcheshire.a 是归档方式而不是新的调用层。",
+    "source": "2026-10-09_software_hardware_layers/cheshire_software_hardware.svg",
+    "mapping": "通用功能/器件HAL/DIF/MMIO→本图；执行接口/硬件→hardware_paths；构建与启动侧栏→build_and_execution；OS与规划→图注。",
+    "text_count": 12,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "hardware_paths",
+    "height": 425,
+    "width_mm": 182,
+    "caption": "当前 SoC 的执行与访存结构抽象。CVA6 与 Ara 的专用请求/响应及 MMU 交互同 AXI 访存分开；RVV 不是 MMIO 外设启动。主存路径依次经过原子适配、LLC/SPM 和平台 DDR 子系统。箭头为逻辑事务连接，返回通道省略。SPM 使用 LLC 阵列；片外器件按平台配置连接。",
+    "source": "2026-10-09_software_hardware_layers/cheshire_software_hardware.svg",
+    "mapping": "CVA6/Ara专用接口、独立访存、主存/寄存器/片外器件→本图；规划扩展与FPGA/ASIC边界→图注。",
+    "text_count": 12,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "build_and_execution",
+    "height": 300,
+    "width_mm": 182,
+    "caption": "构建产物与运行环境分开：主机工具根据源代码、库和链接脚本生成 ELF；目标端通过启动/调试通路加载，CRT0 建立环境后由处理器执行应用。指令、CSR、内存/MMIO 和异常/中断是软件可见接口，不是四个必须逐层经过的软件模块。",
+    "source": "2026-10-09_software_hardware_layers/cheshire_software_hardware.svg",
+    "mapping": "工具链、链接/归档、Boot/CRT0、四类软硬件契约→本图；可选OS/ASIC实现维度→图注。",
+    "text_count": 8,
+    "text_bbox_overlaps": []
+  }
+]

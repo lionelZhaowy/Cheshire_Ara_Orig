@@ -14,7 +14,7 @@
 <h2 id="vector-context">向量上下文实现与安全抢占验证缺口</h2>
 <p><strong>源码事实：</strong>官方 FreeRTOS V11.1.0 通用 RISC-V port 默认保存基本整数上下文，额外状态留给 chip-specific 宏，本轮没有确认本项目对应的 FP/RVV RTOS port。本地 Linux v6.5 的 switch_to.h/vector.h/vector.c 则包含 FP/RVV 状态管理。两者能力边界不同，不能统一称为“都支持”或“都没有”。</p>
 <p>配置证据也应逐层保存：linux64_V_defconfig 含 CONFIG_RISCV_ISA_V=y，但用户态默认开启那一行写为 RISCV_ISA_V_DEFAULT_ENABLE=y，缺少 CONFIG_ 前缀；本地已有展开 .config 则含 CONFIG_RISCV_ISA_V_DEFAULT_ENABLE=y。因此可以确认这份 .config 的值，不能据此认定模板拼写正确，或确认某个旧镜像就是按该配置构建。这里仅记录输入溯源差异，不修改配置。</p>
-<p><strong>影响：</strong>裸机 crt0 开启 FS/VS、Linux 配置声明 V、存在保存函数，都不足以验收 CVA6–Ara 解耦执行下的完整交接。后续 S01/V01 需要追踪实际启用配置和代码路径，并测试两个不同向量状态的任务反复切换，校验 v0–v31、vl/vtype/vstart/vcsr、相关 FP 状态及输入输出结果，覆盖 timer/设备事件和访存条件。保存区及访问完成必须满足内存契约，不能用固定延迟或 CPU 应答作为唯一完成依据。</p>
+<p><strong>影响：</strong>裸机 crt0 开启 FS、应用另行开启 VS、Linux 配置声明 V、存在保存函数，都不足以验收 CVA6–Ara 解耦执行下的完整交接。后续 S01/V01 需要追踪实际启用配置和代码路径，并测试两个不同向量状态的任务反复切换，校验 v0–v31、vl/vtype/vstart/vcsr、相关 FP 状态及输入输出结果，覆盖 timer/设备事件和访存条件。保存区及访问完成必须满足内存契约，不能用固定延迟或 CPU 应答作为唯一完成依据。</p>
 <p><strong>状态：</strong>未运行 OS/向量切换，未关闭 Ara 已有错误响应与运行验证缺口。诊断时保留任务标识、切换前后状态、指令位置和数据证据；硬件侧问题继续记录在<a href="vector-debug.html">Ara 专项诊断</a>，不在本页新增猜测的 RTL 修复方案。</p>
 <h2 id="dma-boundary">DMA 映射与平台一致性限制</h2>
 <p>用户 buffer 的正确映射、设备可寻址范围、CPU/LLC 缓存属性与所有权是不同条件。Linux DMA API 提供软件契约，仍依赖平台实现；本地 iDMA 控制宽度门槛也不会因内核驱动存在而消失。涉及本地 iDMA 的运行例继续受<a href="peripheral-debug.html#dma">原诊断</a>限制，未来 ISP/NPU 旁路 DDR 则交 M01/I01。不要在尚未满足这些条件时用真实帧写入试探未知地址。</p>

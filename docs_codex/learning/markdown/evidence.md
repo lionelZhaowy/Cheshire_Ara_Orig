@@ -1,0 +1,153 @@
+# 参考 · 来源与验证记录
+
+当前源码基准、历史证据、实际检查和待验证事项。
+
+> 自动生成的 Markdown 阅读版；正文只维护 [HTML 内容源](../content/evidence.html)，导航维护 [pages.json](../scripts/pages.json)。[本章 HTML](../evidence.html) · [阅读路线](index.md)
+
+- [2026-10-11 文档审查、知识结构与格式同步](#review-20261011)
+- [2026-10-08 系统教材实施与文档验收](#system-20261008)
+- [2026-10-07：现用插图重绘与可编辑导出](#figures-20261007)
+- [2026-10-07：官方资料与本地实现的教学解读](#teaching-20261007)
+  - [独立评审 R1/R2 的定向修正](#review-fixes-20261007)
+- [2026-09-29：机制讲解与维护完善](#refinement)
+- [2026-09-29：篇章结构修订](#structure)
+- [2026-09-29：此前深度扩充证据](#depth)
+- [2026-09-28 重构的输入版本与来源](#baseline)
+- [2026-09-28 重构的实际检查](#current)
+- [按日期保留的历史证据](#history)
+- [待目标环境验证的具体事项](#gaps)
+- [历史文档与当前依据的差异](#differences)
+- [2026-10-08 教学审查与局部实施](#review-20261008)
+
+<a id="review-20261011"></a>
+
+## 2026-10-11 文档审查、知识结构与格式同步
+
+输入为 `mp/ara-pulp-v2 / 2784340240915fe4338ec54bfd613723b127d62e`。本轮从既有教程、配置/软件参考和生成脚本出发，保留九篇 42 章的内容规模，调整知识依赖：程序全流程概览先于地址/存储，详细启动与完整配置后置。HTML 与 Markdown 阅读版由同一正文源生成，历史图稿和链接继续保留。
+
+[审查、迁移与检查记录](../STRUCTURE_REVISION.md#review-20261011)保存问题位置、处理和未解决项；[本次独立证据目录](../evidence/review-20261011/)保存输入保护、来源与实际检查。没有新增软件构建、RTL 仿真、综合、刷板、OS 移植或 ASIC 实现证据；下方各历史日期的结果仍只证明当时范围。
+
+<a id="system-20261008"></a>
+
+## 2026-10-08 系统教材实施与文档验收
+
+本轮以 HEAD `459f9d6f5748e39063f7bb67e959c2f27859915d`及已有未提交教材为输入。用户授权多个子Agent分担软件、OS和ASIC正文，由主管串行整合为九篇42章、51个主页面。补齐正常软件过程、通用trap、OS、真实存储消费者与测量任务；外设/Ara保留已有成果并独立复审。详细诊断集中到各自参考页，正常使用前提和完成条件仍在正文。
+
+[实施与主管验收报告](../../L01_System_Textbook_Implementation_2026-10-08.md)记录修改对照、审读覆盖、问题闭环与实际检查；[本轮独立证据目录](../evidence/system-implementation-20261008/)保存编辑前输入、来源、作者检查及发布结果。构建/浏览器检查的实际通过项以报告为准；教学验收为作者自查与交叉审读，没有真人试读记录。
+
+本轮未改生产RTL、sw、依赖或工程配置，未执行目标软件构建、RTL仿真、综合、板测、OS移植或工艺签核。Platform ROM、iDMA和Ara已有缺口仍开放。37张结构图、6张WaveDrom、可编辑PPTX、旧站及历史证据保持输入状态；下列日期记录仍表示对应历史工作。
+
+<a id="figures-20261007"></a>
+
+## 2026-10-07：现用插图重绘与可编辑导出
+
+2026-10-07交付37张重绘结构图与6张WaveDrom教学时序，当时保留七篇/30章及历史证据。按用户2026-10-07的最新要求，已撤回6张手工波形，恢复既有WaveDrom生成路径；最新检查见[恢复记录](../evidence/wavedrom-restoration-20261007/)，PPTX只包含37张结构图。[新旧图对照页](../figures/20261007/index.html)提供章节入口与原生可编辑PPTX；[维护说明](../FIGURES.md)记录母版、归档和检查方式。Crossbar 的7×5编号限于图中明确的配置，所有时序仍为教学示意。
+
+独立证据位于[本轮目录](../evidence/figures-20261007/)，包含输入快照、来源哈希、SVG实际渲染及网页检查；具体范围以各报告为准。本轮未构建软件，未编译或运行生产RTL，未综合、板测或实施ASIC。
+
+<a id="teaching-20261007"></a>
+
+## 2026-10-07：官方资料与本地实现的教学解读
+
+输入 HEAD 为 `5ddec4fb4e982b460b12c3f3587523807602d5d4`，工作区原有协作记录保留。本轮扩充硬件角色、CVA6 配置族、SoC 组合约束、AXI/LLC 事务、ASIC 资源与初始化依赖，并同步软件分层、工具链和各级启动。保留七篇/30 章、六项实验、原参数字典和既有证据。
+
+[官方章节与教程落点](../OFFICIAL_SOURCES.md#teaching-20261007)明确在线版本与本地实现的区别；[本轮源码哈希](../evidence/teaching-20261007/sources.json)用于复核字段与消费者；[修改前输入快照](../evidence/teaching-20261007/input.json)用于保护检查。网站检查报告保存在 [本轮独立证据目录](../evidence/teaching-20261007/)，每次检查使用新子目录，实际结果以其中 checks.txt/browser.txt 与 run.json 为准。
+
+技术结论来自源码静态确认，三张新增 SVG 为教学示意。未新增软件构建、RTL 仿真、综合或板测记录。Platform ROM 正常返回、仿真 profile/decoder、生成模块尺寸及设备 HAL 等已有缺口继续保留；未来 ASIC 的 PLL、SRAM、DDR 寄存器与电源域需供应商/平台交付。
+
+<a id="review-fixes-20261007"></a>
+
+### 独立评审 R1/R2 的定向修正
+
+以 HEAD `f01487c2f3c3e990b515bff813227b97049976a3` 复核：[Platform ROM](boot.md#platform-rom) 区分保留内部 LLC、旁路及关闭 Boot ROM 的首次栈访问责任；同步时钟、运行环境与平台专题。[AXI RT、CLIC、IRQ Router](configuration.md#case-baseline) 拆为独立配置记录，分别说明 CPU 有效值、尺寸/编号、软件依赖、最小验收及阻塞。三个案例仍是静态确认/待验证，未运行软件或 RTL。
+
+检查按现有入口写入[新证据目录](../evidence/review-fixes-20261007/)，旧报告及独立评审原件保留。源文件快照见[本轮来源哈希](../evidence/review-fixes-20261007/sources.json)；结果以本目录各次 checks.txt/browser.txt 为准。
+
+<a id="refinement"></a>
+
+## 2026-09-29：机制讲解与维护完善
+
+保留七篇/30章，修正主题引用，补 Crossbar、DDR、PLL、电源与 CVA6 的机制图和实例，按模式展开 Boot。此次验证限于本地源码审阅、文档生成和离线网页；软件、RTL、板测与性能证据没有新增。
+
+[复审落实与来源](../REFINEMENT.md) · [结构检查](../evidence/refinement-20260929/checks/checks.txt) · [浏览器检查](../evidence/refinement-20260929/browser/browser.txt) · [输出保护检查](../evidence/refinement-20260929/output-protection.json) · [本地来源](../evidence/refinement-20260929/sources.json)。维护脚本默认在新目录输出，不重写下面的历史报告；生成一致性检查在临时副本执行。
+
+<a id="structure"></a>
+
+## 2026-09-29：篇章结构修订
+
+依据结构评审将内容重组为七篇、30 章；首页、实验和两页参考共 34 个主页面。此次只核对本地源码疑点、迁移内容及检查导航/浏览器，没有重新构建软件或运行生产 RTL。下面的 depth/current 锚点分别保留上一轮深度扩充和 09-28 重构记录。
+
+[修订与迁移说明](../STRUCTURE_REVISION.md) · [本次定向源码依据](../evidence/structure-20260929-sources.json) · [旧节归属](../evidence/structure-20260929-allocation.json) · [旧 URL 精确目标](../scripts/anchor_migrations.json) · [内容与链接检查](../evidence/structure-20260929-checks.txt) · [浏览器检查](../evidence/structure-20260929-browser.txt)。
+
+<a id="depth"></a>
+
+## 2026-09-29：此前深度扩充证据
+
+沿原 16 章扩充系统/ASIC 边界、外设、CVA6–Ara 接口、共享数据和 RVV 实践；新图为 13 张结构/状态 SVG 与 6 张 WaveDrom 教学时序。下方 2026-09-28 及更早记录保持历史身份。
+
+[章节与验收分工](../DEPTH_EXTENSION.md) · [官方资料及版本差异](../OFFICIAL_SOURCES.md) · [本地来源哈希](../evidence/depth-20260929-sources.json) · [软件构建与指令](../evidence/depth-20260929-builds.txt) · [静态及保护检查](../evidence/depth-20260929-checks.txt) · [离线浏览器检查](../evidence/depth-20260929-browser.txt)
+
+五个整数 ELF 与 FP32 编译探针通过；自动向量化实际产生预期指令。目标硬件执行、数值结果、错误注入和性能仍未验证；人工日志只用于检查工具。全部时序图标为教学示意，没有新的生产 SoC 仿真波形。此前深度扩充未改生产 RTL、sw、平台或依赖版本。
+
+<a id="checks"></a>
+
+<a id="preview"></a>
+
+<a id="sources"></a>
+
+<a id="baseline"></a>
+
+## 2026-09-28 重构的输入版本与来源
+
+任务 L01，日期 2026-09-28，输入 HEAD `4f240258ca683913b7e17949aff23139bff981f1`。工作区开始时仅有一份与本任务无关的未跟踪 ENV01 交接，保持原样。范围限于教材、独立示例与辅助脚本、旧站备份和必要共享索引。
+
+旧站在改写前逐文件复制至 docs\_codex/learning\_backup，共 728 个文件、66754766 字节。[备份清单](../evidence/restructure-backup.json)记录相对路径、大小和 SHA-256；各轮检查分别与备份核对。新站保留 evidence 中的历史原件，日期及内容未重新命名为新运行结果。
+
+<a id="current"></a>
+
+## 2026-09-28 重构的实际检查
+
+2026-09-28 重构检查由独立报告记录：[生成、链接、来源和保护范围检查](../evidence/restructure-checks.txt)，[新贯穿示例的构建与静态产物检查](../evidence/restructure-builds.txt)，[实际 Chrome 离线预览](../evidence/restructure-browser.txt)。最终交接按这些报告列出成功项及未执行项；报告中的软件构建不记为目标运行，历史人工日志只用于检查器规则验证。
+
+本次未执行生产 RTL 编译/展开、完整 SoC 仿真、综合、板级操作或 ASIC 提取。独立 Reg 单元保留 2026-09-23 的历史运行记录，本次未为未修改单元重复运行。Questa/VCS 的命令是基于当前入口给出的目标环境操作，具体许可、SV/DPI 兼容性及动态结果仍需在那里验收。
+
+<a id="history"></a>
+
+## 按日期保留的历史证据
+
+| 日期与工作 | 原件 | 证明范围 |
+| --- | --- | --- |
+| 2026-09-22 初版 | [构建摘要](../evidence/builds.txt)、[清单导出](../evidence/prepare.txt)、[浏览器记录](../evidence/browser.txt) | 旧 lesson 示例软件构建、文本清单及页面；无 SoC 运行 |
+| 2026-09-22 外设扩充 | [构建/人工日志](../evidence/advanced-builds.txt)、[DMA 访问汇编](../evidence/advanced-dma-access.s)、[浏览器](../evidence/advanced-browser.txt) | 8 种软件构建、12 个人工日志、静态访问宽度；无 DMA 运行 |
+| 2026-09-23 硬件扩充 | [模型记录](../evidence/hardware-checks.txt)、[独立单元](../evidence/hardware-unit.txt)、[浏览器](../evidence/hardware-browser.txt) | 18 项教学模型、35 项独立 Reg 单元及注错；无生产 SoC |
+| 2026-09-23 编排 | [保留检查](../evidence/editorial-checks.txt)、[浏览器](../evidence/editorial-browser.txt) | 旧站编排和显示，不新增软件或硬件运行 |
+
+完整旧站包含各轮 HTML、图、脚本和示例，入口在[旧版备份](../../learning_backup/index.html)。新教材无需读取这些旧页才能理解主线，它们用于追溯历史命令与结果。历史源码快照和 2026-09-28 的[来源清单](../evidence/restructure-sources.json)用于定位版本，不替代动态回归。
+
+<a id="gaps"></a>
+
+## 待目标环境验证的具体事项
+
+第一优先是唯一 profile/decoder 的真实 RTL 编译、SelectedCfg=3 展开、DPI 与外部模型链接，随后执行实验 B 的标量正常与注错，并验证 JTAG 段尾。再执行 C/D/E 的中断、器件读取和 RVV 动态轨迹。运行需保存工具版本、配置/清单、ELF 哈希、完整阶段日志、结果及最小异常现场。
+
+DMA 先由 S01/V01 统一 64/32 位控制桥、生成寄存器和 HAL 访问，验收单次提交和 lane 后才恢复数据实验。CLINT 睡眠/计数读取、EEPROM 边界/写路径、NOR 配置写方向、AXI RT 生成规模及轮询、错误跟踪容量均保留专项任务。当前未修复生产 RTL 或 sw。
+
+真实引脚 GPIO、VGA 帧、USB 枚举、SD 需要各自补齐激励或模型。PLL/MIG ready、USB 复位域、Serial Link 隔离输出及未来 DDR 旁路的缓存/原子域也需明确契约。不同缺口按章节的最小观察点分别回传，不要求先做一个笼统全量回归。
+
+<a id="differences"></a>
+
+## 历史文档与当前依据的差异
+
+旧项目状态所记 HEAD 是历史快照，本次以实际 git 输出为准。旧 01 的 AXI3 DDR 规划被供应商可提供 AXI4 的用户确认取代。Boot ROM 注释的 scratch 位号、crt0 末尾 wait forever 描述与执行表达式不一致，新正文明确按掩码 2 和 ret 解释。旧“入门—进阶—硬件”目录及重复实验已由单线课程和六项实验替代。
+
+本地源码未发生对应修复时，旧告警仍有效。新构建还保留原 MMIO 符号对象边界和 RWX 链接告警，不把退出码 0 等同于运行正确。正文各章的源码依据指向具体消费者，完整字段继续由配置、软件与寄存器参考承担。
+
+<a id="review-20261008"></a>
+
+## 2026-10-08 教学审查与局部实施
+
+输入HEAD为459f9d6f5748e39063f7bb67e959c2f27859915d。本轮完整审读30章，实施外设与Ara/RVV正常主线重组、诊断分离；未改生产代码、未重新构建软件或运行RTL/板测。记录见[全书审查](../../L01_Teaching_Quality_Review_2026-10-08.md)及[输入快照](../evidence/peripheral-20261008/input.json)。历史目标验证缺口保持开放。
+
+---
+
+[上一页：参考 · 寄存器索引](registers.md) · [下一页：启动与软件故障诊断](software-debug.md)

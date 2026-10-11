@@ -1,0 +1,48 @@
+2026-10-11T10:57:18.522391+08:00
+HEAD: 2784340240915fe4338ec54bfd613723b127d62e
+Output: /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/learning/evidence/review-20261011/structure-final
+Mode: read-only working tree; reports only in new output directory.
+PASS 873 prior evidence/example/asset files unchanged; review preserved
+PASS backup unchanged: 728 files
+PASS nine parts / 42 chapters; 51 pages; prerequisite order; 373 canonical migrations
+PASS register data unchanged (approved title normalization only) and 17 targeted source hashes
+PASS chapter-number targets, reviewed topic links, boot subdivisions and Debug definition order
+PASS: 71 HTML pages, 5149 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace
+PASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 3221 Markdown links and fragments
+PASS: 51 Markdown documents match canonical HTML content and page metadata
+WARN: 20 pre-existing archive links remain broken; exact paths and reasons: scripts/known_link_gaps.json
+  handoffs/2026-10-10_L01_publication_figures_implementation.md: ../diagrams/2026-10-10_publication_figure_research_new/skill/publication-figures/SKILL.md
+  handoffs/2026-10-10_L01_publication_figures_implementation.md: ../diagrams/2026-10-10_publication_figure_research_new/README.md
+  handoffs/2026-10-10_L01_publication_figures_implementation.md: ../diagrams/2026-10-10_publication_figure_research_new/validation.json
+  handoffs/2026-10-10_L01_publication_figures_implementation.md: ../diagrams/2026-10-10_publication_figure_research_new/preservation.json
+  diagrams/backup_new/2026-10-10_ddr_lvds_isp_gb_new/README.md: ../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg
+  diagrams/backup_new/2026-10-10_ddr_lvds_isp_gb_new/README.md: ../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg
+  diagrams/backup_new/2026-10-08_boot_initialization_new/README.md: ../2026-10-08_boot_initialization/initialization_hw_sw.svg
+  diagrams/backup_new/2026-10-08_boot_initialization_new/README.md: ../2026-10-08_boot_initialization/program_execution_flow.svg
+  diagrams/backup_new/2026-10-06_svg_pptx_skill_validation_new/README.md: ../2026-10-06_svg_pptx_skill_validation/example.editable.svg
+  diagrams/backup_new/2026-10-06_svg_pptx_skill_validation_new/README.md: ../2026-10-06_axi_crossbar_ara/ppt_editable_final/crossbar_ara_ppt.svg
+  diagrams/backup_new/2026-10-06_svg_pptx_skill_validation_new/README.md: ../2026-10-06_axi_crossbar_ara/ppt_editable_final/ddr_qos_proposal_ppt.svg
+  diagrams/backup_new/2026-10-09_software_hardware_layers_new/README.md: ../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg
+  diagrams/backup_new/2026-10-09_software_hardware_layers_new/README.md: ../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg
+  diagrams/backup_new/2026-10-09_software_hardware_layers_new/README.md: ../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg
+  diagrams/backup_new/2026-10-06_axi_crossbar_ara_new/README.md: ../2026-10-06_axi_crossbar_ara/ppt_editable_final/crossbar_ara_ppt.svg
+  diagrams/backup_new/2026-10-06_axi_crossbar_ara_new/README.md: ../2026-10-06_axi_crossbar_ara/ppt_editable_final/ddr_qos_proposal_ppt.svg
+  diagrams/backup_new/2026-10-10_llc_cache_spm_new/README.md: ../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg
+  diagrams/backup_new/2026-10-10_llc_cache_spm_new/README.md: ../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg
+  diagrams/backup_new/2026-10-10_llc_cache_spm_new/README.md: ../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg
+  diagrams/backup_new/2026-10-10_publication_figure_research_new/README.md: ../2026-10-10_publication_figure_research/README.md
+FAIL: Traceback (most recent call last):
+  File "/tmp/l01-regen-g6ff1kcw/repo/docs_codex/learning/scripts/build_waves.py", line 14, in <module>
+    c=http.client.HTTPConnection('127.0.0.1',int(f.read_text().splitlines()[0]));c.request('GET','/json')
+                                                 ~~~~~~~~~~~^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaowenyao/miniconda3/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/l01-wavedrom-s4zi7kyv/DevToolsActivePort'
+

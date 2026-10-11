@@ -2,7 +2,7 @@
 
 # 示例程序与验证条件
 
-返回 [软件导航](README.md)。本页覆盖 `sw/tests` 当前全部 **9 个 .c/.S 主程序**，另说明辅助文件、`tests_wo_ara` 和 Ara 依赖中的 **2 个应用、16 个验证程序**。功能说明依据源码，未在本轮执行这些目标程序。
+返回[软件导航](README.md)。本页是原测试源码及限制索引；初学操作优先沿[主教材实验 A/B](../learning/labs.html#lab-a)，不把本页顺序当作可直接运行的回归列表。本页覆盖 `sw/tests` 当前全部 **9 个 .c/.S 主程序**，另说明辅助文件、`tests_wo_ara` 和 Ara 依赖中的 **2 个应用、16 个验证程序**。功能说明依据源码，未在本轮执行这些目标程序。
 
 <a id="1-先用这张表选程序"></a>
 
@@ -11,7 +11,7 @@
 | 当前主程序 | 功能 | 典型硬件配置/存储 | 判据与学习顺序 |
 | --- | --- | --- | --- |
 | [helloworld.c](../../sw/tests/helloworld.c) | UART 格式化输出 | 普通配置、UART/CLINT；先 .spm | 观察两行输出+返回 0；第一步 |
-| [dma_2d.spm.c](../../sw/tests/dma_2d.spm.c) | 二维 DMA、stride 与 SPM 别名 | Dma=1；仅 SPM | 返回不匹配 byte 数；第二步 |
+| [dma_2d.spm.c](../../sw/tests/dma_2d.spm.c) | 二维 DMA、stride 与 SPM 别名 | Dma=1；仅 SPM | 返回不匹配 byte 数；控制接口宽度门槛待验收 |
 | [axirt_hello.spm.c](../../sw/tests/axirt_hello.spm.c) | AXI RT 配置后串口输出 | SELCFG=1、DMA/UART；无 Ara 编号假设 | 特性检查+输出；进阶 |
 | [axirt_budget.spm.c](../../sw/tests/axirt_budget.spm.c) | DMA 预算按传输 byte 计数 | SELCFG=1、64-bit AXI、SPM | 数据比较+读写预算差；进阶 |
 | [axirt_budget_isolate.spm.c](../../sw/tests/axirt_budget_isolate.spm.c) | 超预算隔离意图 | 同上；当前阻塞流程需检查 | 不宜直接作为首个自动回归 |
@@ -38,6 +38,8 @@
 
 ## 3. 二维 DMA 的长度、步长与数据布局
 
+当前 iDMA 控制接口的访问宽度问题尚待独立修复和验收，见[DMA API 前置](LIBRARIES.md#5-idma提交任务和等待完成)及[硬件证据](../learning/peripheral-debug.html#dma)。以下保留二维算法与源码流程，不将它列为已具备运行条件的第二个实验。
+
 流程：
 
 1. 检查 DMA feature；不存在返回 −1。
@@ -56,7 +58,7 @@
 | 2 | [2,17) | [14,29) |
 | 3 | [3,18) | [21,36) |
 
-后段覆盖前段尾部，结果为 `This ishis is is is as is a DMA test!`。本轮只用主机 Python 对上述索引计算复核了 gold，并未运行 DMA 硬件。尾部索引 36/37 应保留 `!/\0`。
+后段覆盖前段尾部，结果为 `This ishis is is is as is a DMA test!`。2026-09-20 文档交接记录了主机 Python 对上述索引计算和 gold 的复核，未运行 DMA 硬件；本轮未重跑该历史检查。尾部索引 36/37 应保留 `!/\0`。
 
 这比二维图像更小，但机制相同：每行长度和行起点间隔可不同。图像例子中常让 dst_stride 等于目标帧 pitch；本例特意用小 stride 产生重叠。不要把这段加别名偏移的代码改成 .dram 链接后原样使用。
 
@@ -64,7 +66,7 @@
 
 ## 4. AXI RT 测试与发起端编号
 
-共同前提：有 AXI RT、DMA，至少 2 个 subordinate region，通常运行 `SELCFG=1`。CPU0 manager=0、Debug=1、DMA=`NumIntHarts+1` 是这些例程的无 Ara 假设。Ara 加入后 DMA 位置变化，同时需检查生成 RT 寄存器的 manager 数。
+共同前提：有 AXI RT、DMA，至少 2 个 subordinate region，通常运行 `SELCFG=1`；其中实际搬运数据的两个预算用例还须先验收上述 iDMA 控制接口。CPU0 manager=0、Debug=1、DMA=`NumIntHarts+1` 是这些例程的无 Ara 假设。Ara 加入后 DMA 位置变化，同时需检查生成 RT 寄存器的 manager 数。
 
 ### 4.1 axirt_hello.spm.c
 

@@ -1,11 +1,11 @@
-<div class="goals"><strong>本章任务</strong><p>用透明假设衡量 Ara/NPU 协作成本。 前置：<a href="vector.html">21 · RVV 编程与结果验证</a>、<a href="sharing.html">22 · CPU、Ara、DMA 与 NPU 的共享数据</a>、<a href="accelerators.html">29 · LVDS、ISP、NPU 与外部 DDR 集成</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>用透明假设衡量 Ara/NPU 协作成本。 前置：<a href="vector.html">12 · RVV 编程与结果验证</a>、<a href="sharing.html">13 · CPU、Ara、DMA 与 NPU 的共享数据</a>、<a href="accelerators.html">31 · LVDS、ISP、NPU 与外部 DDR 集成</a>。</p></div>
 <p>本章是应用规划选读：已理解数组与共享数据后，用一个小模型估算协作成本；它不是学习OS或ASIC平台的先决条件。故障后的隔离和缓冲回收见<a href="system-debug.html#frames">系统诊断</a>，正常计时方法见<a href="measurement.html">测量章</a>。</p>
 <h2 id="model-case">Ara–NPU–Ara 协作的候选流程</h2>
 <p>取一条小型全连接片段作为规划例：输入 X 为 1×137 的 int8，权重 W 为 137×64 的 int8，零点暂取 0，乘加输出 Y 为 1×64 的 int32；随后求 Y 的最大值或总和并按已约定的定点乘数、舍入和饱和规则产生 int8 输出。137 与<a href="vector.html#loop">RVV 分块与尾部处理</a>使用同一数组长度。这里只固定教学算例，不冻结产品量化格式。</p>
 <h3 id="partition">候选分工与交接次数</h3>
 <p>一种候选划分是 CPU 分配描述符并校验边界，Ara 将输入从应用布局整理/量化成 NPU 约定布局，NPU 做矩阵乘加，Ara 对 64 项 int32 做归约、激活或再量化，CPU 检查并交还缓冲。另一种是 Ara 独自完成整个小矩阵；第三种让 NPU 融合后处理减少一次交接。单个 137×64 小任务可能被提交/同步成本主导，无法仅凭峰值 MAC 数选择。</p>
 <h3 id="cost">数据规模、数值与搬运成本</h3>
-<table><tr><th>数据与工作</th><th>本教学例的规模</th><th>交接与测量关注点</th></tr><tr><td>X / W</td><td>137 B / 8768 B</td><td>原始大小未含对齐、padding 与 NPU tile 布局；权重能否复用决定实际 DDR 流量</td></tr><tr><td>Y / 输出</td><td>256 B / 64 B</td><td>两次生产者切换：Ara→NPU，NPU→Ara；另有 CPU 完成回收</td></tr><tr><td>未融合最低数据读写示例</td><td>中间输入写读 274 B、权重读 8768 B、Y 写读 512 B、最终输出写 64 B，共 9618 B</td><td>未含原始输入读取、描述符、对齐放大、cache line 与重复权重加载，不能当总线实测带宽</td></tr><tr><td>数值验证</td><td>独立 int64 累加参考再检查 int32 范围</td><td>最坏 137×16384=2244608 在 int32 内；量化舍入、饱和与 scale 另核对</td></tr></table>
+<table><tr><th>数据与工作</th><th>本教学例的规模</th><th>交接与测量关注点</th></tr><tr><td>X / W</td><td>137 B / 8768 B</td><td>原始大小未含对齐、padding 与 NPU tile 布局；权重能否复用决定实际 DDR 流量</td></tr><tr><td>Y / 输出</td><td>256 B / 64 B</td><td>两次生产者切换：Ara→NPU，NPU→Ara；另有 CPU 完成回收</td></tr><tr><td>未融合最低数据读写示例</td><td>中间输入写读 274 B、权重读 8768 B、Y 写读 512 B、最终输出写 64 B，共 9618 B</td><td>未含原始输入读取、描述符、对齐放大、cache line 与重复权重加载，不能当总线实测带宽；这些是跨存储边界的逻辑读写量，采用<a href="accelerators.html#global-buffer">独立 GB</a>后，GB 内部流量不能全部计入 DDR</td></tr><tr><td>数值验证</td><td>独立 int64 累加参考再检查 int32 范围</td><td>最坏 137×16384=2244608 在 int32 内；量化舍入、饱和与 scale 另核对</td></tr></table>
 <h3 id="cooperation">完整协作流程及未实现接口</h3>
 <pre><code>/* 未来接口伪代码：尚无 NPU 驱动或寄存器地址 */
 lease = acquire_buffer(layout, sizes, alignment);
@@ -20,7 +20,7 @@ if (status.success) {
     publish_visible(lease.output, CPU);
     verify_and_release(lease);
 }</code></pre>
-<p>此前通过构建的部分是<a href="labs.html#rvv-depth">实验 E 的数组运算、尾部与整数归约</a>，并非本页完整模型流程；它们尚未完成当前 SoC 动态回归。伪代码中的 npu_submit、可见性及失败恢复没有现成实现，未来规格必须定义 tensor layout、量化规则、完成码、epoch 和复位语义。完整所有权/交接时序见<a href="sharing.html#handoff">第 22 章</a>，控制/数据拓扑实施计划见<a href="accelerators.html#npu-topology">第 29 章</a>。</p>
+<p>此前通过构建的部分是<a href="labs.html#rvv-depth">实验 E 的数组运算、尾部与整数归约</a>，并非本页完整模型流程；它们尚未完成当前 SoC 动态回归。伪代码中的 npu_submit、可见性及失败恢复没有现成实现，未来规格必须定义 tensor layout、量化规则、完成码、epoch 和复位语义。完整所有权/交接时序见<a href="sharing.html#handoff">第 13 章</a>，控制/数据拓扑实施计划见<a href="accelerators.html#npu-topology">第 31 章</a>。</p>
 <p>判断此划分是否值得采用，应对相同数值标准测量 Ara-only、NPU+Ara、NPU 融合三个端到端方案，改变 batch、权重复用次数和布局转换量，记录内核/搬运/同步时间以及 DDR 实际字节。当前没有 NPU IP、驱动和性能记录，案例用于设计实验，不承诺目标模型的吞吐、容量或生态支持。</p>
 <h2 id="budget">存储容量、数据流量与性能预算</h2>
 <p>模型权重的理想容量是参数量 P×每参数位数/8，实际还要加量化元数据、激活、工作区和对齐。例如 2B 参数 INT4 权重约 1 GB。KV cache 保存历史 token 的键和值，是软件模型数据，不是硬件 LLC；同构解码器的估算为 <code>2×层数×KV头数×每头维度×上下文×并发数×每元素字节</code>。</p>

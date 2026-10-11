@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="88.47222222222223mm" viewBox="0 0 720 350">
+  <rect id="llc_mode_transition-000" x="0" y="0" width="720" height="350" fill="#FFFFFF" stroke="none" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-001" x="162" y="29" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="bold">Software</text>
+  <text id="llc_mode_transition-002" x="546" y="29" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="bold">LLC hardware</text>
+  <rect id="llc_mode_transition-003" x="30" y="56" width="260" height="54" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-004" x="160.0" y="79.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="13" text-anchor="middle" font-weight="normal">Quiesce / protect live data</text>
+  <text id="llc_mode_transition-005" x="160.0" y="96.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="13" text-anchor="middle" font-weight="normal">Handle caches and in-flight work</text>
+  <rect id="llc_mode_transition-006" x="30" y="160" width="260" height="54" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-007" x="160.0" y="183.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Write CFG_SPM</text>
+  <text id="llc_mode_transition-008" x="160.0" y="200.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Submit COMMIT</text>
+  <polyline id="llc_mode_transition-009" points="160,110 160,160" fill="none" stroke="#222222" stroke-width="1.3" stroke-dasharray="none" />
+  <polygon id="llc_mode_transition-010" points="160,160 157.2,154.0 162.8,154.0" fill="#222222" stroke="none" />
+  <rect id="llc_mode_transition-011" x="420" y="160" width="270" height="54" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-012" x="555.0" y="183.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Accept request</text>
+  <text id="llc_mode_transition-013" x="555.0" y="200.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Clear COMMIT request</text>
+  <polyline id="llc_mode_transition-014" points="290,187 420,187" fill="none" stroke="#222222" stroke-width="1.3" stroke-dasharray="none" />
+  <polygon id="llc_mode_transition-015" points="420,187 414.0,189.8 414.0,184.2" fill="#222222" stroke="none" />
+  <rect id="llc_mode_transition-016" x="420" y="271" width="270" height="54" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-017" x="555.0" y="294.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Isolate / wait / flush</text>
+  <text id="llc_mode_transition-018" x="555.0" y="311.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Reach completed state</text>
+  <polyline id="llc_mode_transition-019" points="555,214 555,271" fill="none" stroke="#222222" stroke-width="1.3" stroke-dasharray="none" />
+  <polygon id="llc_mode_transition-020" points="555,271 552.2,265.0 557.8,265.0" fill="#222222" stroke="none" />
+  <rect id="llc_mode_transition-021" x="30" y="271" width="260" height="54" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="none" />
+  <text id="llc_mode_transition-022" x="160.0" y="294.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Confirm completion</text>
+  <text id="llc_mode_transition-023" x="160.0" y="311.0" fill="#222222" stroke="none" font-family="Liberation Sans" font-size="14" text-anchor="middle" font-weight="normal">Resume accesses</text>
+  <polyline id="llc_mode_transition-024" points="420,298 290,298" fill="none" stroke="#17658A" stroke-width="1.3" stroke-dasharray="none" />
+  <polygon id="llc_mode_transition-025" points="290,298 296.0,295.2 296.0,300.8" fill="#17658A" stroke="none" />
+</svg>

@@ -17,7 +17,7 @@ CPU 访问 0x01000000 控制窗口
  → idma_backend_rw_axi → axi_rw_join → SoC AXI xbar → 目标存储
 ```
 
-DMA 控制端是“被 CPU 访问的 slave”，搬运端是“主动访问存储的 master”。因此有两组 ID 宽度和两组事务参数。
+DMA 控制端是“被 CPU 访问的 slave”，搬运端是“主动访问存储的 master”。因此有两组 ID 宽度和两组事务参数。iDMA 指通用的数据搬运 IP；同一后端发起源地址读和目的地址写，不按“输入 DMA”限制传输方向。2D midend 通过长度、stride 和重复次数组织多段搬运，目标可为实际可达的 SPM 或 DDR，而不需要每对存储之间另拉专用线。
 
 | wrapper 参数 | 默认 SoC 下实际值 | 来自哪里 / 意义 |
 | --- | --- | --- |
@@ -66,9 +66,17 @@ wrapper 的整型/bit 默认大多为 0，类型默认为 logic；它依靠 SoC 
 | 读取 NEXT_ID | 提交任务并取得 ID 的驱动入口 | 有副作用，不能当成纯状态寄存器反复读 |
 | 轮询 DONE_ID | 判断任务完成 | DMA 完成后仍需按共享区约定保证 CPU 读到新数据 |
 
-`sw/include/dif/dma.h` 当前使用 `IDMA_REG64_2D_*` 常量；不能只把 IsTwoD 改 0 继续沿用该布局。现有 `dma_memcpy()` 已可在 2D 硬件上进行一维搬运，通常不必为普通 memcpy 裁掉 2D。
+`sw/include/dif/dma.h` 当前使用 `IDMA_REG64_2D_*` 常量；不能只把 IsTwoD 改 0 继续沿用该布局。现有 `dma_memcpy()` 按设计在 2D 前端上提交一维搬运，通常不必为普通 memcpy 裁掉 2D；本地控制接口仍有下述未验收缺口，不能将函数存在视为运行通过。
 
 源码待核查项：1D 分支 `.busy_i(idma_busy)`，本 wrapper 实际声明的是 `busy`，未见 `idma_busy` 声明。这是静态发现的可疑接线；可能受隐式 net/编译检查方式影响，不能写成已验证可用的 1D 配置。本轮未修复。另有驱动中两个 decouple 宏均使用 AW 位号的表达式；当前两个宏值均为 0，若要开启 RW decouple，需要单独核对，不能直接套例程。
+
+### 1.3 当前控制接口与完成通知边界
+
+`reg64_2d` 的名字不足以证明每次寄存器访问为 64 位。本地 wrapper 按 `AxiDataWidth` 定义 Regbus 并传给 `axi_to_reg`，默认是 64 位；生成的 [idma_reg64_2d_reg_top.sv](../../.bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv) 却固定 `DW=32`，读写数据取低 32 位。源/目的地址等字段可由两个 32 位寄存器表示，这与接口一次访问宽度是不同问题。
+
+当前 HAL 的 NEXT_ID/DONE_ID 访问仍返回 `volatile uint64_t *`，而寄存器 ID 字段宽 32 位；低半/高半地址的 byte lane 适配和具有提交副作用的读取次数必须联合核对。该问题已列入 [DMA 诊断](../learning/peripheral-debug.html#dma)；更改总线宽度不能自动解决，需 S01/V01 独立验收寄存器读写、单次提交、完成 ID 与搬运数据。
+
+`cheshire_idma_wrap` 没有完成 IRQ 输出，当前软件沿 DONE_ID 轮询；SoC 的 DMA 读写错误 IRQ 是另一条错误记录路径，不能当成任务完成通知。这里未重新构建或运行 DMA。
 
 ## 2. LLC、SPM、原子通路
 
@@ -102,6 +110,12 @@ CPU 主存请求先经过原子适配器再进入 LLC。ATOP 属于 AXI4 之外�
 
 默认 NumExtInIntrs=0 仍产生一个占位输入位；wrapper 应绑 0。当前 58 个 PLIC 源已由内部向量占满；扩展外部 PLIC 输入需要调整生成包，并确认中断编号、触发方式与驱动。不能仅按 SoC 配置中的 64 位计数字段任意扩容。
 
+### 调试请求与调试访存
+
+源码追踪 `hw/cheshire_soc.sv::i_dbg_dmi_jtag → i_dbg_dm_top`：JTAG DTM 将串行命令转换为 DMI 请求，Debug Module 向 hart 发 halt 请求，或通过 `i_dbg_sba_axi_from_mem` 从 `AxiIn.dbg` 主端发起系统总线访问。故“JTAG 能识别 IDCODE”“hart 能暂停”“SBA 能读写目标 RAM”需要分别验证，调试读取也需要目标互连与存储就绪。
+
+`gen_cva6_cfg` 强制 `DebugEn=1` 并覆盖 halt/exception 入口；`dm_top.ndmreset_o` 当前悬空，不能假定调试模块的复位请求已连接整个 SoC。Debug scratch CSR 是处理器调试时暂存状态的寄存器，与 LLC 的地址可访问 SPM 不是同一种资源。正常装载与问题定位见[启动诊断](../learning/boot-debug.html)。
+
 ## 4. UART、I2C、SPI、GPIO、VGA、USB、Serial Link
 
 | 模块 | 硬件配置入口 | 常用运行时设置 / 来源 | 联动 |
@@ -116,7 +130,7 @@ CPU 主存请求先经过原子适配器再进入 LLC。ATOP 属于 AXI4 之外�
 
 Serial Link 生成常量：[serial_link.hjson](../../hw/serial_link.hjson) 当前 `NumChannels=1, NumBits=8, Log2MaxClkDiv=10, Log2RawModeTXFifoDepth=3`，对应 4 个双沿 lane、最大分频常量 1024、raw TX FIFO 深度编码为 3。更改后须同步寄存器 RTL、接口宽度和软件。
 
-**当前未接入的配置字段**：`Cfg.SlinkMaxClkDiv` 的原始赋值虽写 1024，但字段只有 10 位，实际截断为 0；SoC 和 VIP 实例实际用 `cheshire_pkg::SlinkMaxClkDiv=1<<serial_link_single_channel_reg_pkg::Log2MaxClkDiv`。只改 Cfg 字段不生效，若要改变需要处理生成常量与实例连接。
+**当前未被实例消费的配置字段**：`Cfg.SlinkMaxClkDiv` 类型是 `shrt_bt`（16 位），默认 1024 可完整保存。SoC 和 VIP 实例实际使用包级同名常量 `cheshire_pkg::SlinkMaxClkDiv=1<<serial_link_single_channel_reg_pkg::Log2MaxClkDiv`。因此只改 Cfg 字段不生效；生成常量为 10 的是分频指数，不能误认为该字段只有 10 位或 1024 已截成 0。
 
 VGA 还有一个需验证的容量关系：默认 `VgaMaxReadTxns=24`，其 bus-error 单元却用 `CoreMaxTxns=8` 作为 NumOutstanding。这里只记录消费者取值差异，不推断已经出现功能故障。
 

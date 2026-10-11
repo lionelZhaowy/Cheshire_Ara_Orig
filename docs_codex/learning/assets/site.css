@@ -11,3 +11,13 @@ main{min-width:0}p,li,td{overflow-wrap:anywhere}.legacy-anchor{display:block;scr
 
 /* Chapter and section numbers are already part of each TOC label. */
 .toc ol{list-style:none;padding-left:0}.toc ol ol{padding-left:1.1rem}
+
+/* Reading flow: explanations stay in the article; only exercises are panels. */
+.goals,.source{border:0;border-left:3px solid var(--line);border-radius:0;background:transparent;padding:8px 18px}
+.source{font-size:14px}.goals p:first-child,.source p:first-child{margin-top:0}
+.goals p:last-child,.source p:last-child{margin-bottom:0}
+.lead{font-size:18px;max-width:54em}.format-link{font-size:14px;margin-bottom:0}
+.chapter-list{list-style:none;padding-left:0}.chapter-list li{margin:14px 0}
+.toc a[aria-current="location"],.current-sections a[aria-current="location"]{font-weight:700;text-decoration:underline}
+pre{font-size:14px}.table-wrap:focus-visible{outline:3px solid #e39a1a;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

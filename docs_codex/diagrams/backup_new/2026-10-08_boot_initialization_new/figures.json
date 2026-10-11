@@ -1,0 +1,22 @@
+[
+  {
+    "name": "initialization_hw_sw",
+    "height": 380,
+    "width_mm": 182,
+    "caption": "Bootrom=1、PlatformRom=0、内部 LLC 启用时的初始化对应关系。左侧各软件阶段由同一个 CVA6 执行；右侧为所访问的硬件资源。箭头按标签表示读取、配置或装载。LLC tag BIST 为硬件自主过程，DONE 仅表示完成，错误由 BIST_OUT 表示；不覆盖数据 SRAM。",
+    "source": "2026-10-08_boot_initialization/initialization_hw_sw.svg",
+    "mapping": "硬件/软件对应关系→本图；ROM与CRT0具体顺序→program_execution_flow；测试边界、平台钩子→图注。",
+    "text_count": 19,
+    "text_bbox_overlaps": []
+  },
+  {
+    "name": "program_execution_flow",
+    "height": 465,
+    "width_mm": 182,
+    "caption": "SPI NOR 自主启动（boot_mode=2）的代表控制流。ROM 经 GPT/raw 装载载荷后调用入口，载荷 CRT0 建立环境并调用 main。正常返回由 CRT0 写 scratch2=(返回值<<1)|1，再恢复入口 sp/gp/ra 并 ret。虚线返回段为当前源码推导的 ROM 返回缺陷，不是期望的停机过程，也不是实测轨迹。",
+    "source": "2026-10-08_boot_initialization/program_execution_flow.svg",
+    "mapping": "ROM→GPT/raw→载荷CRT0→main→_exit→ROM返回点→本图；观察者、返回契约区别→图注。",
+    "text_count": 15,
+    "text_bbox_overlaps": []
+  }
+]

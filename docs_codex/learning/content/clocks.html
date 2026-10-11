@@ -1,11 +1,12 @@
-<div class="goals"><strong>本章任务</strong><p>沿“安全时钟下取指 → 配置 PLL → 正常切换 → 恢复设备事务”理解时钟管理。前置：<a href="architecture.html">系统边界</a>、<a href="configuration.html">配置</a>与<a href="axi.html">AXI 事务</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>沿安全时钟下取指、配置 PLL、受控切换与恢复设备事务理解时钟管理。前置：<a href="architecture.html">系统边界</a>与<a href="axi.html">AXI 事务</a>；改变目标参数时再查<a href="configuration.html">配置参考</a>。</p></div>
 <h2 id="clocks">安全启动时钟与软件配置前提</h2>
 <p>设未来芯片上电后要执行一段 Platform ROM 来配置 PLL。第一条配置指令也要由 CPU 取出和执行，因此取指、互连、ROM 以及早期可写存储必须先得到可用时钟。平台硬件先提供安全参考/旁路时钟并满足复位条件，CPU 才能建立最小环境，再通过可访问的控制口配置 PLL。这把硬件上电初值和软件选择工作点连接成了一个过程。</p>
 <p>配置写被接收以后，PLL 按自身协议稳定；平台满足锁定和切换条件后，让相应消费者采用目标时钟。PLL lock、CPU 可执行、DDR ready 是分别产生的条件：PLL 不负责训练 DDR，CPU 能取指也不意味着所有外设都初始化完毕。当前没有选定 ASIC PLL，下面以本地接口解释责任，不给供应商寄存器或频率猜测值。</p>
-<p>通用 SoC 的 CPU、Ara、互连和 LLC 主要使用 <code>clk_i/rst_ni</code>。RTC 是实时时间参考输入，经同步后驱动计时器计数。仿真默认系统周期 5 ns、RTC 周期约 30518 ns；VCU118 shell 连接 50 MHz 系统时钟并声明 1 MHz RTC。软件必须使用所在平台的实际频率来配置 UART 和串行设备。</p>
+<p>通用 SoC 的 CPU、Ara、互连和 LLC 主要使用 <code>clk_i/rst_ni</code>。RTC 是实时时间参考输入，经同步后驱动计时器计数。仿真默认系统周期 5 ns、RTC 周期约 30518 ns；VCU118 的 clkwiz 配方请求 50 MHz，shell 把 clk_50 接入系统，RTC 由该系统时钟除以 50 并声明 1 MHz。软件必须使用所在平台的实际频率来配置 UART 和串行设备。</p>
 <h3 id="platform-clocks">系统时钟与平台 DDR 时钟</h3>
 <p>DDR 的控制器侧时钟来自 MIG 的 UI 接口，通过跨时钟桥连接系统；USB PHY 另有时钟，Serial Link 接收侧有源同步时钟。VGA 的分频寄存器形成状态机使能，本地顶层没有因此新增一根独立像素时钟输入。跨域传输和事务恢复将在互连及系统接入章继续解释。</p>
-<p>当前 FPGA 的 PLL/DDR 就绪放行仍有未验证边界，见<a href="system-debug.html#platform-readiness">系统诊断与实现状态</a>；本章正常序列不表示该闭环已实现。</p>
+<p>当前 shell 的 <code>i_clkwiz.locked</code> 悬空，<code>rstgen</code> 接收板级/VIO 复位，未将 MMCM 锁定作为释放条件。因此同步释放复位不等于已经验证“锁定后才允许 CPU 执行”。这个源码事实与此前 HelloWorld 用户报告并存。DDR 就绪也需要自己的门控条件，见<a href="system-debug.html#platform-readiness">系统诊断与实现状态</a>；本章正常序列不表示该闭环已实现。</p>
+<p>频率声明用于软件换算，不会调整硬件时钟。<code>clint_get_core_freq(ref_freq, ...)</code> 用 mcycle 与 mtime 的比值估算频率；VCU118 上两者来自同一系统源，不能据此独立证明绝对频率或 MMCM 已锁定。仿真 RTC 是独立模型输入，修改模型周期时则须同步修改 RtcFreq。源码证据为 <a href="../../target/xilinx/scripts/impl_ip.tcl">VCU118 clkwiz 配方</a>、<a href="../../target/xilinx/src/cheshire_top_xilinx.sv">i_clkwiz / RTC Clock Divider / rstgen</a> 和 <a href="../../sw/lib/dif/clint.c">clint_get_core_freq</a>；没有本轮物理测频。</p>
 <h2 id="clock-domains">时钟域、分频与同步结构</h2>
 <p>时钟域由真正采样寄存器的时钟决定。UART 的波特率计数、SPI/I2C 的串行节拍和 VGA 的像素使能都可在系统时钟内实现；有一个分频寄存器，不等于已经建立独立时钟域。当前 CPU、Ara、AXI Crossbar、LLC 及 Reg 主通路采用同一 clk_i/rst_ni。SoC 暴露的 LLC 下游 AXI 也在该域，跨 DDR UI 时钟的桥放在平台 wrapper。</p>
 <figure><img src="assets/figures-20261007/depth-clocks-current.svg" alt="列出系统、RTC、JTAG、Link、USB 与 FPGA DDR 跨域边界"><figcaption>当前源码核对图；异步事件同步不等于完整 AXI CDC。</figcaption></figure>

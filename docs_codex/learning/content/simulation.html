@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>按阶段检查输入、运行、数值和退出。 前置：<a href="build.html">5 · 工具链、链接与 ELF</a>、<a href="boot-debug.html">7 · JTAG 与程序加载调试</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>按阶段检查输入、运行、数值和退出。 前置：<a href="build.html">04 · 工具链、链接与 ELF</a>、<a href="boot-debug.html">15 · JTAG 与程序加载调试</a>。</p></div>
 <h2 id="flow">仿真运行的输入组成</h2>
 <p>仿真需要目标软件、硬件模型、主机加载器和外部环境。RISC-V GCC 生成应用 ELF；RTL 编译器处理模块和类型；展开器按 SelectedCfg 建立实例层级；主机 C++ 编译器生成 DPI 加载器。运行时再由 TB 提供复位、器件响应和程序加载。软件构建成功可以推进到后面阶段，不能跳过这些输入检查。</p>
 <p>教材先使用 UseDramSys=0 的 AXI 行为内存，不依赖额外 SystemC/DRAMSys 库。它适合检查地址和总线行为；真实 DDR 的 PHY、校准、刷新和板级时序属于另外的验证对象。当前默认 fixture 有 UART 接收、NOR 和 EEPROM 模型，也有未接出的外设观测点。</p>

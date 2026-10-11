@@ -1,4 +1,4 @@
-<div class="goals"><strong>本章任务</strong><p>沿真实握手语义理解一笔读写事务。 前置：<a href="address-map.html">8 · 地址空间与访问属性</a>。</p></div>
+<div class="goals"><strong>本章任务</strong><p>沿真实握手语义理解一笔读写事务。 前置：<a href="address-map.html">05 · 地址空间与访问属性</a>。</p></div>
 <h2 id="handshake">五条通道与一次传输</h2>
 <p>AXI 是本工程的内存映射互连接口。读事务用 AR 传地址、R 传数据和状态；写事务用 AW 传地址、W 传数据、B 返回状态。每条通道有 VALID 和 READY：发送端准备好有效内容后置 VALID，接收端能接收时置 READY，二者在同一个时钟边沿为 1 才完成这一拍。接收端暂时拒收形成背压，发送端需保持 VALID 和对应内容，不能等到 READY 才首次提出 VALID。</p>
 <h3 id="burst">拍数、字节使能和事务标识</h3>

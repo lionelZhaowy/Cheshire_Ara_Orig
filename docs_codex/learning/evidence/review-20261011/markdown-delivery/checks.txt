@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "review_date": "2026-10-11",
+  "input_head": "2784340240915fe4338ec54bfd613723b127d62e",
+  "renderer": "markdown-it-py 2.2.0, CommonMark + HTML + table rule",
+  "scope": "Existing 51 generated Markdown files and in-memory synthetic cases; no site generation, browser, target build, RTL or board run.",
+  "generated_pages": 51,
+  "headings_and_toc_entries": 513,
+  "pre_blocks_preserved": 30,
+  "images_preserved": 43,
+  "table_cells_preserved": 2324,
+  "source_ids_preserved": 518,
+  "local_links_checked": 1786,
+  "read_only_input_files": 177,
+  "rejection_cases": [
+    {
+      "case": "unknown",
+      "rejected": true,
+      "message": "Unsupported Markdown export tag: video"
+    },
+    {
+      "case": "mismatched",
+      "rejected": true,
+      "message": "Mismatched HTML source tag: p"
+    },
+    {
+      "case": "unclosed",
+      "rejected": true,
+      "message": "Unclosed HTML source tag: p"
+    }
+  ],
+  "errors": []
+}
