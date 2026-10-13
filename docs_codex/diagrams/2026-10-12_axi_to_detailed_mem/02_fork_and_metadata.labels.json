@@ -1,0 +1,275 @@
+[
+  {
+    "x": 40,
+    "y": 43,
+    "text": "② 一项访问分成三条握手支路：执行请求、保存元数据、保存响应选择",
+    "size": 28,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 85,
+    "text": "实线 = 数据字段；虚线 = valid / ready。i_fork 无数据端口。",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 442,
+    "y": 216,
+    "text": "i_fork",
+    "size": 28,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 249,
+    "text": "N_OUP = 3",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 325,
+    "text": "输入状态寄存器",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 362,
+    "text": "+ 三路输出状态",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 516,
+    "text": "记住哪些支路",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 551,
+    "text": "已接收当前项",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 730,
+    "text": "三路各接收一次后",
+    "size": 23,
+    "anchor": "middle"
+  },
+  {
+    "x": 442,
+    "y": 766,
+    "text": "才确认上游完成",
+    "size": 23,
+    "anchor": "middle"
+  },
+  {
+    "x": 50,
+    "y": 391,
+    "text": "来自 i_ax_mux",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 70,
+    "y": 414,
+    "text": "arb_valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 70,
+    "y": 508,
+    "text": "arb_ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 257,
+    "text": "m2s_req_valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 352,
+    "text": "m2s_req_ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 527,
+    "text": "meta_valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 622,
+    "text": "meta_ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 797,
+    "text": "sel_valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 680,
+    "y": 892,
+    "text": "sel_ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1155.0,
+    "y": 259,
+    "text": "i_stream_to_mem",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155.0,
+    "y": 291,
+    "text": "执行本拍请求",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155.0,
+    "y": 323,
+    "text": "内部见图③",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155,
+    "y": 160,
+    "text": "m2s_req（图①）",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155.0,
+    "y": 517,
+    "text": "i_meta_buf",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155.0,
+    "y": 548,
+    "text": "meta_t；深度 2",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155,
+    "y": 425,
+    "text": "meta（图①）",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1330,
+    "y": 526,
+    "text": "meta_buf",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1328,
+    "y": 585,
+    "text": "供响应字段构造",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1155.0,
+    "y": 787,
+    "text": "i_sel_buf",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155.0,
+    "y": 818,
+    "text": "logic[1:0]；深度 2",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1155,
+    "y": 684,
+    "text": "{sel_b, sel_r}",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1328,
+    "y": 776,
+    "text": "sel_buf_b",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1328,
+    "y": 803,
+    "text": "sel_buf_r",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1328,
+    "y": 855,
+    "text": "供 R / B 握手选择",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 961,
+    "text": "sel_b = meta.write & meta.last",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 1004,
+    "text": "sel_r = ~meta.write | meta.atop[5]",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 770,
+    "y": 961,
+    "text": "普通读：(B,R) = (0,1)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 770,
+    "y": 1004,
+    "text": "普通写中间拍：(0,0)；最后拍：(1,0)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 1081,
+    "text": "三条支路可以分不同周期接收；FIFO 均为 fall-through，不代表固定延迟两拍。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

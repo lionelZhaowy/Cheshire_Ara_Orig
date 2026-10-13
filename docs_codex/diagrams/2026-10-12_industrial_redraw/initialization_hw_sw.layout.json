@@ -1,0 +1,493 @@
+{
+  "canvas": [
+    2400.0,
+    1350.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      2400,
+      1350
+    ],
+    "hardware": [
+      60,
+      190,
+      1210,
+      960
+    ],
+    "software": [
+      1450,
+      190,
+      890,
+      960
+    ],
+    "clock-reset": [
+      100,
+      280,
+      1130,
+      60
+    ],
+    "cpu": [
+      100,
+      400,
+      320,
+      125
+    ],
+    "bist": [
+      850,
+      400,
+      380,
+      125
+    ],
+    "rom": [
+      100,
+      610,
+      470,
+      210
+    ],
+    "llc-regs": [
+      770,
+      610,
+      460,
+      210
+    ],
+    "devices": [
+      100,
+      940,
+      470,
+      150
+    ],
+    "spm": [
+      770,
+      940,
+      460,
+      150
+    ],
+    "rom-asm": [
+      1500,
+      280,
+      790,
+      220
+    ],
+    "rom-c": [
+      1500,
+      590,
+      790,
+      235
+    ],
+    "crt0": [
+      1500,
+      920,
+      790,
+      190
+    ]
+  },
+  "texts": [
+    {
+      "text": "启动初始化的软硬件对应关系",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "源码快照：Bootrom=1 · PlatformRom=0 · 内部 LLC · 根 SDK 载荷入口",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "硬件：存储、总线与自主状态机",
+      "x": 665.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "hardware",
+      "id": "o5"
+    },
+    {
+      "text": "软件：由同一个 CVA6 执行",
+      "x": 1895.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "software",
+      "id": "o7"
+    },
+    {
+      "text": "外围平台提供有效 clk_i / rst_ni",
+      "x": 665.0,
+      "y": 318.84,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "clock-reset",
+      "id": "o9"
+    },
+    {
+      "text": "CVA6",
+      "x": 260.0,
+      "y": 455.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "cpu",
+      "id": "o11"
+    },
+    {
+      "text": "取指并执行机器指令",
+      "x": 260.0,
+      "y": 489.02,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cpu",
+      "id": "o12"
+    },
+    {
+      "text": "LLC tag BIST",
+      "x": 1040.0,
+      "y": 455.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "bist",
+      "id": "o14"
+    },
+    {
+      "text": "复位后自主读写测试",
+      "x": 1040.0,
+      "y": 489.02,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "bist",
+      "id": "o15"
+    },
+    {
+      "text": "Boot ROM ① / ②",
+      "x": 335.0,
+      "y": 673.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "rom",
+      "id": "o19"
+    },
+    {
+      "text": "0x02000000",
+      "x": 335.0,
+      "y": 707.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom",
+      "id": "o20"
+    },
+    {
+      "text": "cheshire_bootrom.sv",
+      "x": 335.0,
+      "y": 741.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom",
+      "id": "o21"
+    },
+    {
+      "text": "S / C 预编译为 ROM 内容",
+      "x": 335.0,
+      "y": 775.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom",
+      "id": "o22"
+    },
+    {
+      "text": "LLC 配置寄存器",
+      "x": 1000.0,
+      "y": 690.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "llc-regs",
+      "id": "o24"
+    },
+    {
+      "text": "DONE：完成 · BIST_OUT：错误",
+      "x": 1000.0,
+      "y": 724.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc-regs",
+      "id": "o25"
+    },
+    {
+      "text": "CFG_SPM / COMMIT",
+      "x": 1000.0,
+      "y": 758.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc-regs",
+      "id": "o26"
+    },
+    {
+      "text": "装载设备与通路",
+      "x": 335.0,
+      "y": 990.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "devices",
+      "id": "o30"
+    },
+    {
+      "text": "SPI NOR / SD / EEPROM",
+      "x": 335.0,
+      "y": 1024.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "devices",
+      "id": "o31"
+    },
+    {
+      "text": "UART / JTAG / Link",
+      "x": 335.0,
+      "y": 1058.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "devices",
+      "id": "o32"
+    },
+    {
+      "text": "LLC 数据 / SPM",
+      "x": 1000.0,
+      "y": 990.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "spm",
+      "id": "o34"
+    },
+    {
+      "text": "载荷代码、数据与栈",
+      "x": 1000.0,
+      "y": 1024.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "spm",
+      "id": "o35"
+    },
+    {
+      "text": "tag BIST 不测试数据阵列",
+      "x": 1000.0,
+      "y": 1058.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "spm",
+      "id": "o36"
+    },
+    {
+      "text": "ROM 中的设备驱动",
+      "x": 540,
+      "y": 888,
+      "size": 24,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o38"
+    },
+    {
+      "text": "搬运字节",
+      "x": 670,
+      "y": 998,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o40"
+    },
+    {
+      "text": "① Boot ROM 汇编",
+      "x": 1895.0,
+      "y": 349.2,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "rom-asm",
+      "id": "o42"
+    },
+    {
+      "text": "cheshire_bootrom.S",
+      "x": 1895.0,
+      "y": 383.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-asm",
+      "id": "o43"
+    },
+    {
+      "text": "整数环境、sp / gp；等待 LLC DONE",
+      "x": 1895.0,
+      "y": 417.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-asm",
+      "id": "o44"
+    },
+    {
+      "text": "全 way 配为 SPM；建立早期栈",
+      "x": 1895.0,
+      "y": 451.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-asm",
+      "id": "o45"
+    },
+    {
+      "text": "② Boot ROM C 代码",
+      "x": 1895.0,
+      "y": 666.7,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "rom-c",
+      "id": "o47"
+    },
+    {
+      "text": "cheshire_bootrom.c",
+      "x": 1895.0,
+      "y": 700.7,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-c",
+      "id": "o48"
+    },
+    {
+      "text": "测频、boot_mode、装载驱动",
+      "x": 1895.0,
+      "y": 734.7,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-c",
+      "id": "o49"
+    },
+    {
+      "text": "把载荷装入内存 → 交接执行入口",
+      "x": 1895.0,
+      "y": 768.7,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "rom-c",
+      "id": "o50"
+    },
+    {
+      "text": "③ 应用 / ZSL 启动代码",
+      "x": 1895.0,
+      "y": 974.2,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "crt0",
+      "id": "o52"
+    },
+    {
+      "text": "sw/lib/crt0.S → 该载荷自己的 main",
+      "x": 1895.0,
+      "y": 1008.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "crt0",
+      "id": "o53"
+    },
+    {
+      "text": "sp / gp、mtvec、BSS、FP 初始化",
+      "x": 1895.0,
+      "y": 1042.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "crt0",
+      "id": "o54"
+    },
+    {
+      "text": "main 返回：发布 scratch2，然后 ret",
+      "x": 1895.0,
+      "y": 1076.2,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "crt0",
+      "id": "o55"
+    },
+    {
+      "text": "call ROM main",
+      "x": 2060,
+      "y": 555,
+      "size": 24,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o57"
+    },
+    {
+      "text": "调用载荷入口",
+      "x": 2090,
+      "y": 880,
+      "size": 24,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o59"
+    },
+    {
+      "text": "轮询 DONE",
+      "x": 1360,
+      "y": 775,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o61"
+    },
+    {
+      "text": "提交 SPM",
+      "x": 1360,
+      "y": 810,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o62"
+    },
+    {
+      "text": "镜像入口 _start",
+      "x": 1365,
+      "y": 968,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o64"
+    },
+    {
+      "text": "装载驱动访问设备；应用 BSS 由该载荷 CRT0 清零",
+      "x": 950,
+      "y": 1225,
+      "size": 25,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o65"
+    },
+    {
+      "text": "硬件访问 / 状态",
+      "x": 135,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o67"
+    },
+    {
+      "text": "软件调用 / 配置",
+      "x": 665,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o69"
+    },
+    {
+      "text": "载荷字节 / 入口对应",
+      "x": 1195,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o71"
+    }
+  ]
+}

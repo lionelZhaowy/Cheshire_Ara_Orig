@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="680" viewBox="0 0 1600 680">
+<rect x="0" y="0" width="1600" height="680" fill="#FFFFFF"/>
+<text x="40" y="43" font-family="WenQuanYi Zen Hei" font-size="30" fill="#253447" text-anchor="start">① 请求内容：独立读 / 写来源，共用一个内部请求出口</text>
+<text x="40" y="85" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">实线 = 请求字段；虚线 = 选择控制。valid / ready 另见图②。</text>
+<rect x="230" y="180" width="300" height="115" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="380.0" y="214" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">读请求生成逻辑</text>
+<text x="380.0" y="246" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">rd_meta_q / r_cnt_q</text>
+<text x="380.0" y="278" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">每个读拍生成 rd_meta</text>
+<rect x="230" y="365" width="300" height="115" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="380.0" y="399" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">写请求生成逻辑</text>
+<text x="380.0" y="431" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">wr_meta_q / w_cnt_q</text>
+<text x="380.0" y="463" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">每个写拍生成 wr_meta</text>
+<text x="45" y="222" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">AR 字段</text>
+<polyline points="45,242 230,242" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="230,242 219.0,237.5 219.0,246.5" fill="#205F9C"/>
+<text x="40" y="402" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">AW 字段</text>
+<text x="40" y="434" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">W.strb</text>
+<polyline points="45,452 230,452" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="230,452 219.0,447.5 219.0,456.5" fill="#205F9C"/>
+<polygon points="660,185 735,225 735,430 660,470" fill="#F8F0E6" stroke="#253447" stroke-width="2"/>
+<text x="697" y="310" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="middle">2:1</text>
+<text x="697" y="345" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="middle">MUX</text>
+<text x="640" y="165" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">i_ax_mux</text>
+<polyline points="530,242 660,242" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="660,242 649.0,237.5 649.0,246.5" fill="#205F9C"/>
+<text x="548" y="228" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">rd_meta</text>
+<polyline points="530,422 660,422" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="660,422 649.0,417.5 649.0,426.5" fill="#205F9C"/>
+<text x="548" y="408" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">wr_meta</text>
+<polyline points="735,325 940,325" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="940,325 929.0,320.5 929.0,329.5" fill="#205F9C"/>
+<text x="798" y="308" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">meta</text>
+<rect x="940" y="230" width="270" height="185" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1075.0" y="264" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">组合接线</text>
+<text x="1075.0" y="296" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">addr = meta.addr</text>
+<text x="1075.0" y="328" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">we = meta.write</text>
+<text x="1075.0" y="360" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">id = meta.id</text>
+<text x="1075.0" y="392" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">其余请求属性随行</text>
+<text x="1040" y="130" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">axi_req_i.w.data / w.strb</text>
+<polyline points="870,148 1080,148 1080,230" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1080,230 1084.5,219.0 1075.5,219.0" fill="#205F9C"/>
+<text x="1220" y="307" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">m2s_req</text>
+<polyline points="1210,325 1340,325" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1340,325 1329.0,320.5 1329.0,329.5" fill="#205F9C"/>
+<rect x="1340" y="245" width="220" height="160" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1450.0" y="279" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">请求入口</text>
+<text x="1450.0" y="311" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">图③</text>
+<text x="1450.0" y="343" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_stream_to_mem</text>
+<rect x="570" y="535" width="245" height="90" fill="#F8F0E6" stroke="#253447" stroke-width="2"/>
+<text x="692.5" y="569" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">读写仲裁逻辑</text>
+<text x="692.5" y="601" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">含选择保持状态</text>
+<polyline points="697,535 697,452" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="697,452 692.5,463.0 701.5,463.0" fill="#925021"/>
+<text x="835" y="578" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">选择信号：meta_sel_d</text>
+<circle cx="845" cy="325" r="4" fill="#205F9C"/>
+<polyline points="845,325 845,462 1000,462" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1000,462 989.0,457.5 989.0,466.5" fill="#205F9C"/>
+<text x="1015" y="470" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="start">meta → 图②两个 FIFO 的数据来源</text>
+<text x="40" y="658" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">注意：W.data 不经过 i_ax_mux，也不写入 i_meta_buf。</text>
+</svg>

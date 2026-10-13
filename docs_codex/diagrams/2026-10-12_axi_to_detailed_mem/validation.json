@@ -1,0 +1,51 @@
+{
+  "figures": [
+    {
+      "figure": "01_request_payload.svg",
+      "text_objects": 32,
+      "objects": 58,
+      "text_bounds_ok": true,
+      "text_overlaps": [],
+      "ppt_text_retained": true
+    },
+    {
+      "figure": "02_fork_and_metadata.svg",
+      "text_objects": 39,
+      "objects": 74,
+      "text_bounds_ok": true,
+      "text_overlaps": [],
+      "ppt_text_retained": true
+    },
+    {
+      "figure": "03_stream_to_mem.svg",
+      "text_objects": 32,
+      "objects": 66,
+      "text_bounds_ok": true,
+      "text_overlaps": [],
+      "ppt_text_retained": true
+    },
+    {
+      "figure": "04_banks_and_ports.svg",
+      "text_objects": 49,
+      "objects": 90,
+      "text_bounds_ok": true,
+      "text_overlaps": [],
+      "ppt_text_retained": true
+    }
+  ],
+  "source_sha256": {
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv": "df090ca44a38464c16cb88fb859e23e8dc192609a059e0c12f7325e7c87170cb",
+    ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv": "a8fc48b3541657f67cdfeb60edf58be04670bbfc866728e54cf038387e60130d",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_fork.sv": "81461dadc0d2171761286fa5b6c78f2918f5ef0a0eb0536f0bd4084d707ecf7b",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_fork_dynamic.sv": "c32e9b1417e1cd8ea7235d2692f1bfc88c35d1f3e74ceaa552fd40a607b7d8eb",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_join.sv": "891c90f2a487d0f96412009026e7f47cb62f66cd0ac3d6b0332cc118b26896f7",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv": "d81f9af459e97fd1e7cabbcc7a429303e4d3b9847bc4724a039fd435605eda5a",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv": "555bc9a6053afb91d0c0f2e5e630ed44d5dbe261bdc256c7116d813ed0e10584"
+  },
+  "ppt_has_raster_media": false,
+  "office_tested": false,
+  "rtl_simulated": false,
+  "note": "Geometric/text checks do not establish electrical correctness; see README source analysis."
+}

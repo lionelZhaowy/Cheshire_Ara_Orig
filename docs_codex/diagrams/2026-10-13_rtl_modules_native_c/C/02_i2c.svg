@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040">
+  <defs>
+    <marker id="m23354B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#23354B" />
+    </marker>
+    <marker id="m28699B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#28699B" />
+    </marker>
+    <marker id="m9C5B25" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#9C5B25" />
+    </marker>
+    <marker id="m765096" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765096" />
+    </marker>
+    <marker id="m314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66" />
+    </marker>
+    <marker id="m765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489" />
+    </marker>
+    <marker id="m187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78" />
+    </marker>
+    <marker id="mB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043" />
+    </marker>
+    <marker id="m205F9C" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#205F9C" />
+    </marker>
+    <marker id="m925021" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#925021" />
+    </marker>
+    <marker id="m253447" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#253447" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1800" height="1040" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#214E79" text-anchor="start">02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节</text>
+  <rect x="370" y="130" width="1390" height="745" fill="#F8FAFD" stroke="#A6B5C8" stroke-width="1.7" rx="12" />
+  <text x="385" y="160" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">i2c_core：Host 与 Target 使用不同队列；当前整合使用 clk_i</text>
+  <rect x="40" y="180" width="275" height="150" fill="#EFF8F3" stroke="#317E69" stroke-width="1.8" rx="8" />
+  <rect x="43.0" y="183.0" width="269.0" height="42.0" fill="#317E69" stroke="none" rx="5" />
+  <text x="177.5" y="215.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">1  i2c_reg_top</text>
+  <text x="177.5" y="247.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CONTROL / TIMING</text>
+  <text x="177.5" y="279.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">FDATA / RDATA</text>
+  <text x="177.5" y="311.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">INTR_STATE / ENABLE</text>
+  <text x="40" y="140" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">Regbus 32</text>
+  <rect x="410" y="220" width="330" height="125" fill="#F6F1FB" stroke="#7552A1" stroke-width="1.8" rx="8" />
+  <rect x="413.0" y="223.0" width="324.0" height="45.5" fill="#7552A1" stroke="none" rx="5" />
+  <polyline points="422,220 422,345" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter" />
+  <text x="575.0" y="258.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">2  Host FMT FIFO</text>
+  <text x="575.0" y="290.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">8-bit 字节 + 5-bit 标志</text>
+  <text x="575.0" y="322.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">START / STOP / READ …</text>
+  <polyline id="E01" points="315,245 410,245" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <rect x="410" y="425" width="330" height="110" fill="#F6F1FB" stroke="#7552A1" stroke-width="1.8" rx="8" />
+  <rect x="413.0" y="428.0" width="324.0" height="54.0" fill="#7552A1" stroke="none" rx="5" />
+  <polyline points="422,425 422,535" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter" />
+  <text x="575.0" y="472.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">4  Host RX FIFO</text>
+  <text x="575.0" y="504.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">接收字节 → RDATA</text>
+  <rect x="880" y="270" width="350" height="255" fill="#FFF8EB" stroke="#966017" stroke-width="1.8" rx="8" />
+  <rect x="883.0" y="273.0" width="344.0" height="78.5" fill="#966017" stroke="none" rx="5" />
+  <text x="1055.0" y="341.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">3  i2c_fsm</text>
+  <text x="1055.0" y="373.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SCL / SDA 时序状态机</text>
+  <text x="1055.0" y="405.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">Host / Target 控制</text>
+  <text x="1055.0" y="437.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">ACK / NAK / stretching</text>
+  <text x="1055.0" y="469.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">按 TIMING 寄存器计数</text>
+  <polyline id="E02" points="740,282 800,282 800,330 880,330" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <polyline id="E03" points="880,480 740,480" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <polyline id="E04" points="410,480 175,480 175,330" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <rect x="1390" y="305" width="310" height="175" fill="#EFF6FD" stroke="#346DA6" stroke-width="1.8" rx="8" />
+  <rect x="1393.0" y="308.0" width="304.0" height="54.5" fill="#346DA6" stroke="none" rx="5" />
+  <text x="1545.0" y="352.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">5  SCL / SDA 接口</text>
+  <text x="1545.0" y="384.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">采样输入</text>
+  <text x="1545.0" y="416.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">输出值 + 输出使能</text>
+  <text x="1545.0" y="448.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">外层 PAD / 上拉另接</text>
+  <polyline id="E05" points="1230,390 1390,390" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" marker-start="url(#m28699B)" />
+  <rect x="410" y="665" width="330" height="120" fill="#F6F1FB" stroke="#7552A1" stroke-width="1.8" rx="8" />
+  <rect x="413.0" y="668.0" width="324.0" height="59.0" fill="#7552A1" stroke="none" rx="5" />
+  <polyline points="422,665 422,785" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter" />
+  <text x="575.0" y="717.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">6  Target TX FIFO</text>
+  <text x="575.0" y="749.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">软件送字节 → 总线</text>
+  <rect x="880" y="665" width="350" height="120" fill="#F6F1FB" stroke="#7552A1" stroke-width="1.8" rx="8" />
+  <rect x="883.0" y="668.0" width="344.0" height="59.0" fill="#7552A1" stroke="none" rx="5" />
+  <polyline points="892,665 892,785" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter" />
+  <text x="1055.0" y="717.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">7  Target ACQ FIFO</text>
+  <text x="1055.0" y="749.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">接收字节 + 事务标志</text>
+  <polyline id="E06" points="740,725 795,725 795,570 950,570 950,525" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <polyline id="E07" points="1090,525 1090,665" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <polyline id="E08" points="175,180 175,100 1055,100 1055,270" fill="none" stroke="#9C5B25" stroke-width="2.8" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m9C5B25)" />
+  <text x="585" y="92" font-family="WenQuanYi Zen Hei" font-size="23" fill="#9C5B25" text-anchor="start">CONTROL / TIMING → FSM</text>
+  <rect x="1390" y="665" width="310" height="120" fill="#F6F1FB" stroke="#7552A1" stroke-width="1.8" rx="8" />
+  <rect x="1393.0" y="668.0" width="304.0" height="43.0" fill="#7552A1" stroke="none" rx="5" />
+  <text x="1545.0" y="701.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#FFFFFF" text-anchor="middle">8  事件整合 / prim_intr_hw</text>
+  <text x="1545.0" y="733.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">FSM / FIFO 状态锁存</text>
+  <text x="1545.0" y="765.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">15 路 IRQ → SoC</text>
+  <polyline id="E09" points="1230,450 1320,450 1320,725 1390,725" fill="none" stroke="#765096" stroke-width="2.8" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765096)" />
+  <polyline id="E10" points="315,285 350,285 350,830 1545,830 1545,785" fill="none" stroke="#765096" stroke-width="2.8" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765096)" marker-start="url(#m765096)" />
+  <text x="415" y="905" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">FIFO reset 由 reg_top 直接作用队列；N08 汇总 FSM/FIFO 事件。</text>
+  <polyline id="E11" points="285,330 285,725 410,725" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" />
+  <polyline id="E12" points="1040,785 1040,860 100,860 100,330" fill="none" stroke="#28699B" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#m28699B)" marker-start="url(#m28699B)" />
+  <rect x="337.5" y="214.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="362.0" y="235.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E01</text>
+  <rect x="815.0" y="299.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="839.5" y="320.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E02</text>
+  <rect x="785.0" y="449.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="809.5" y="470.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E03</text>
+  <rect x="267.5" y="449.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="292.0" y="470.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E04</text>
+  <rect x="1285.0" y="359.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="1309.5" y="380.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E05</text>
+  <rect x="804.0" y="633.5" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="828.5" y="654.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E06</text>
+  <rect x="1099.0" y="581.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="1123.5" y="602.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E07</text>
+  <rect x="590.0" y="107.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="614.5" y="128.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#9C5B25" text-anchor="middle" font-weight="bold">E08</text>
+  <rect x="1329.0" y="573.5" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="1353.5" y="594.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#765096" text-anchor="middle" font-weight="bold">E09</text>
+  <rect x="922.5" y="799.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="947.0" y="820.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#765096" text-anchor="middle" font-weight="bold">E10</text>
+  <rect x="294.0" y="513.5" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="318.5" y="534.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E11</text>
+  <rect x="545.0" y="829.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7" />
+  <text x="569.5" y="850.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E12</text>
+  <text x="40" y="1000" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">E 编号对应图下连接表；总线双箭头合并请求/响应；单箭头含义以表为准。</text>
+  <text x="40" y="1028" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">虚线连线表示控制/事件；虚线模块表示规划。交叉无圆点不连接。C：连续走线。</text>
+</svg>

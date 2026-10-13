@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+<marker id="call" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#4775AC"/></marker>
+<marker id="bus" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#287D70"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#8660A5"/></marker>
+<marker id="event" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BB6D30"/></marker>
+</defs>
+<rect x="0" y="0" width="1400" height="900" fill="#FAFCFF"/>
+<text x="48" y="55" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="start" fill="#26384B">字符输出：函数调用、寄存器访问与串行发送</text>
+<rect x="50" y="120" width="340" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="220.0" y="156" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">printf_ / _vsnprintf</text>
+<text x="220.0" y="190" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">格式化得到字符</text>
+<text x="220.0" y="219" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">软件函数调用</text>
+<rect x="525" y="120" width="340" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="695.0" y="156" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">_out_char → _putchar</text>
+<text x="695.0" y="190" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">公共输出封装</text>
+<text x="695.0" y="219" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">选择 __base_uart</text>
+<rect x="1000" y="120" width="350" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="1175.0" y="156" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">uart_write</text>
+<text x="1175.0" y="190" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">轮询 LSR.THRE</text>
+<text x="1175.0" y="219" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">reg8 写 THR</text>
+<polyline points="390,182 525,182" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="455" y="166" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">调用</text>
+<polyline points="865,182 1000,182" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="932" y="166" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">调用</text>
+<rect x="1000" y="380" width="350" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="1175.0" y="416" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CVA6 访存</text>
+<text x="1175.0" y="450" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">lbu / sb → AXI</text>
+<text x="1175.0" y="479" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">地址 / 大小 / byte strobe</text>
+<rect x="525" y="380" width="340" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="695.0" y="416" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">主 Xbar → Reg 出口</text>
+<text x="695.0" y="450" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">原子适配 / cut</text>
+<text x="695.0" y="479" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">axi_to_reg_v2：64 → 32</text>
+<rect x="50" y="380" width="340" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="220.0" y="416" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">RegMap → UART</text>
+<text x="220.0" y="450" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">地址命中 / 请求应答</text>
+<text x="220.0" y="479" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">reg_uart_wrap → APB</text>
+<polyline points="1175,250 1175,380" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="1270" y="320" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">指令执行</text>
+<polyline points="1000,450 865,450" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="932" y="431" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">AXI 请求/响应</text>
+<polyline points="525,450 390,450" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="455" y="431" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">Reg 请求/响应</text>
+<rect x="50" y="675" width="340" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="220.0" y="711" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">apb_uart 寄存器译码</text>
+<text x="220.0" y="745" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">PADDR = paddr[4:2]</text>
+<text x="220.0" y="774" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">DLAB=0：THR 写入</text>
+<rect x="525" y="675" width="340" height="140" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="695.0" y="711" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">TX FIFO / iTSR</text>
+<text x="695.0" y="745" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">iTHRWrite → FIFO 入队</text>
+<text x="695.0" y="774" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">流控允许后取字节</text>
+<rect x="1000" y="675" width="350" height="140" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="1175.0" y="711" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">UART_TX → uart_tx_o</text>
+<text x="1175.0" y="745" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">波特率节拍 / 串行移出</text>
+<text x="1175.0" y="774" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">THRE 与 TEMT 供软件读取</text>
+<polyline points="220,520 220,675" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="310" y="605" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">APB 传输</text>
+<polyline points="390,745 525,745" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)"/>
+<text x="455" y="728" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">字节入队</text>
+<polyline points="865,745 1000,745" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)"/>
+<text x="932" y="728" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">字节传输</text>
+<text x="50" y="860" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="start" fill="#26384B">控制读写的返回沿请求链逆向到 CPU；发送完成由状态位表达，不等于 MMIO 写响应。</text>
+</svg>

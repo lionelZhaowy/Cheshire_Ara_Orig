@@ -1,0 +1,1824 @@
+[
+  {
+    "name": "00a_regbus",
+    "A_sha256": "a3c0a18cb09a89579047f7428e17a52abbf77aee5e4883a47077ab3ecae0dd1f",
+    "C_sha256": "32d1152df6c47ba454d85c4639f670174b5a50222899467cf9336fb8bd87fdf5",
+    "png_sha256": "07d8a14720a14614d78a00cb71d57d893ac1a54e24f6136b2918ae064753fd4f",
+    "styled_modules": [
+      {
+        "box": [
+          25.0,
+          330.0,
+          155.0,
+          105.0
+        ],
+        "header": "CPU 等",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          250.0,
+          315.0,
+          180.0,
+          140.0
+        ],
+        "header": "主 AXI",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          500.0,
+          285.0,
+          350.0,
+          195.0
+        ],
+        "header": "现有 AXI → Regbus 通路",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1000.0,
+          315.0,
+          240.0,
+          150.0
+        ],
+        "header": "i_reg_demux",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1000.0,
+          200.0,
+          240.0,
+          75.0
+        ],
+        "header": "地址解码 RegMap",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          1400.0,
+          215.0,
+          320.0,
+          90.0
+        ],
+        "header": "片内寄存器目标",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1400.0,
+          375.0,
+          320.0,
+          90.0
+        ],
+        "header": "i_reg_err_slv",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1400.0,
+          540.0,
+          320.0,
+          145.0
+        ],
+        "header": "外部 Regbus 端口 [k]",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1380.0,
+          805.0,
+          350.0,
+          120.0
+        ],
+        "header": "自有 IP 寄存器接口",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "00b_ip_contract",
+    "A_sha256": "46d1570e2dcb080f6155c551fbcf7b55c31f16e7acdd467655baec4f08044bd2",
+    "C_sha256": "63acdf0fee26c7d7ef6fdf98ccffce6f9b9df998dc42c52cf08662192bace510",
+    "png_sha256": "d3c28bb9bb7fc3ab0a0f9413ae664dfaacb16f0e8a19ef6cd53092eaecc7bb6a",
+    "styled_modules": [
+      {
+        "box": [
+          410.0,
+          260.0,
+          310.0,
+          185.0
+        ],
+        "header": "地址译码与访问控制",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          960.0,
+          270.0,
+          360.0,
+          130.0
+        ],
+        "header": "配置 / 命令寄存器",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1470.0,
+          280.0,
+          290.0,
+          415.0
+        ],
+        "header": "IP 工作逻辑",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          1080.0,
+          625.0,
+          270.0,
+          110.0
+        ],
+        "header": "状态 / 中断状态",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          490.0,
+          575.0,
+          350.0,
+          170.0
+        ],
+        "header": "读数据选择与访问响应",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "01_uart",
+    "A_sha256": "1a4c69626ef1a48fa2bb0087f77528b7ea1b928542d4e4b11358660f5d30b109",
+    "C_sha256": "e88b00e56edd65b2f3eee6e2586da2d3c8ed1d324a3eddec00086a7fb41d5ac0",
+    "png_sha256": "c162724205e9531a290d1241de121ffdd76678f2465689f05e62b9cc5149e73a",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          360.0,
+          285.0,
+          135.0
+        ],
+        "header": "1  reg_uart_wrap",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          425.0,
+          360.0,
+          290.0,
+          155.0
+        ],
+        "header": "2  APB 地址译码",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          790.0,
+          185.0,
+          310.0,
+          120.0
+        ],
+        "header": "3  baudgen + 节拍逻辑",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          790.0,
+          390.0,
+          270.0,
+          120.0
+        ],
+        "header": "4  TX FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1180.0,
+          390.0,
+          330.0,
+          120.0
+        ],
+        "header": "5  TX 保持 / 发送逻辑",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          790.0,
+          650.0,
+          270.0,
+          120.0
+        ],
+        "header": "7  RX FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1180.0,
+          650.0,
+          330.0,
+          120.0
+        ],
+        "header": "6  uart_receiver",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          40.0,
+          685.0,
+          285.0,
+          115.0
+        ],
+        "header": "8  uart_interrupt",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "02_i2c",
+    "A_sha256": "5c894c425cc1a7868bbf3a56d6548c6fc424898ed6032286d095dc6f651ae38a",
+    "C_sha256": "be5794fe44e86632ce1dcd28b0853fec4f165c06dc05b32e2ac6c29f3712cc84",
+    "png_sha256": "5b16a09061514e5347e6e5a094bf1c21bc219d085db16889fc0a268895b0d7f8",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          180.0,
+          275.0,
+          150.0
+        ],
+        "header": "1  i2c_reg_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          410.0,
+          220.0,
+          330.0,
+          125.0
+        ],
+        "header": "2  Host FMT FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          410.0,
+          425.0,
+          330.0,
+          110.0
+        ],
+        "header": "4  Host RX FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          880.0,
+          270.0,
+          350.0,
+          255.0
+        ],
+        "header": "3  i2c_fsm",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1390.0,
+          305.0,
+          310.0,
+          175.0
+        ],
+        "header": "5  SCL / SDA 接口",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          410.0,
+          665.0,
+          330.0,
+          120.0
+        ],
+        "header": "6  Target TX FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          880.0,
+          665.0,
+          350.0,
+          120.0
+        ],
+        "header": "7  Target ACQ FIFO",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1390.0,
+          665.0,
+          310.0,
+          120.0
+        ],
+        "header": "8  事件整合 / prim_intr_hw",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "03_spi",
+    "A_sha256": "4244d3b77626f3640d3c3a367697cb06c7d5ebc470310a80d214690a08c64394",
+    "C_sha256": "5020a96fdaca5844b5d8882b2df7e9d58c24dce181659502deba9e9f889a3997",
+    "png_sha256": "a0ee77a0d6aeb2ab21449c05bf57cb8e0ed6361e9b1b8ce922567948e893316d",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          175.0,
+          300.0,
+          145.0
+        ],
+        "header": "1  spi_host_reg_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          415.0,
+          180.0,
+          275.0,
+          130.0
+        ],
+        "header": "2  command_queue",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          805.0,
+          195.0,
+          350.0,
+          130.0
+        ],
+        "header": "3  spi_host_fsm",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          40.0,
+          455.0,
+          300.0,
+          155.0
+        ],
+        "header": "4  spi_host_window",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          410.0,
+          435.0,
+          290.0,
+          115.0
+        ],
+        "header": "5  data_fifos：TX",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          410.0,
+          670.0,
+          290.0,
+          115.0
+        ],
+        "header": "9  data_fifos：RX",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          805.0,
+          435.0,
+          350.0,
+          115.0
+        ],
+        "header": "6  byte_select",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          805.0,
+          670.0,
+          350.0,
+          115.0
+        ],
+        "header": "8  byte_merge",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1330.0,
+          425.0,
+          360.0,
+          165.0
+        ],
+        "header": "7  shift_register",
+        "color": "#966017"
+      }
+    ]
+  },
+  {
+    "name": "04_gpio",
+    "A_sha256": "e359b4757dda98e8be62b57b827eab579ef2dfc81e4fd8dee89349627b5c0eef",
+    "C_sha256": "f1e8cca57fcae4bec6367d5722ae63db7773d52ab8cb60099a08826cef3e77db",
+    "png_sha256": "516db79c3d1c61454d21124709bcbbc3ebe3a4411b187fab4e3e091c70187490",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          200.0,
+          290.0,
+          125.0
+        ],
+        "header": "GPIO 输入 32 路",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          435.0,
+          175.0,
+          340.0,
+          155.0
+        ],
+        "header": "1  prim_filter_ctr × 32",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          895.0,
+          180.0,
+          340.0,
+          145.0
+        ],
+        "header": "2  data_in_q + 比较",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1370.0,
+          180.0,
+          355.0,
+          145.0
+        ],
+        "header": "3  prim_intr_hw",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          440.0,
+          565.0,
+          370.0,
+          215.0
+        ],
+        "header": "4  gpio_reg_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1030.0,
+          570.0,
+          345.0,
+          90.0
+        ],
+        "header": "5  cio_gpio_q[31:0]",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1030.0,
+          715.0,
+          345.0,
+          90.0
+        ],
+        "header": "6  cio_gpio_en_q[31:0]",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "05_plic",
+    "A_sha256": "7308aef3fa6f46083ba6b2376d88120f55f364bd122ec76a38f054f79473250c",
+    "C_sha256": "fb0d40a0870d9ef9192c067c7e5c2a989d3d917c23a5ae91cccff26469067b39",
+    "png_sha256": "52f7f07ea9843708c6eea8ec75f363bfe48ab2ee32640219fd8a328203e1a18a",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          205.0,
+          280.0,
+          140.0
+        ],
+        "header": "外设 IRQ 电平",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          420.0,
+          205.0,
+          300.0,
+          140.0
+        ],
+        "header": "1  prim_flop_2sync",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          835.0,
+          180.0,
+          350.0,
+          190.0
+        ],
+        "header": "2  rv_plic_gateway",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1345.0,
+          180.0,
+          385.0,
+          190.0
+        ],
+        "header": "3  rv_plic_target × 目标",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          410.0,
+          655.0,
+          775.0,
+          180.0
+        ],
+        "header": "4  rv_plic_reg_top",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "06a_clint",
+    "A_sha256": "1f4cd3b5c2e78a6f9d49611fef7853f956aac02448b51ca33591f2c897850158",
+    "C_sha256": "ebb7b734a75e9d88983afd25020aac6029f5e5f9c683704153a558bce59ed4b5",
+    "png_sha256": "31586c5ad1ecf12a491c7de9d34acc8f7224be28d2a57acb74469df8f3a76de9",
+    "styled_modules": [
+      {
+        "box": [
+          415.0,
+          235.0,
+          340.0,
+          140.0
+        ],
+        "header": "1  clint_sync_wedge",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          900.0,
+          235.0,
+          350.0,
+          140.0
+        ],
+        "header": "2  MTIME[63:0] 字段",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1380.0,
+          250.0,
+          220.0,
+          120.0
+        ],
+        "header": "3  ≥ 比较",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          900.0,
+          525.0,
+          350.0,
+          120.0
+        ],
+        "header": "4  MTIMECMP[63:0] 字段",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          415.0,
+          555.0,
+          340.0,
+          165.0
+        ],
+        "header": "5  clint_reg_top 访问控制",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1380.0,
+          675.0,
+          250.0,
+          100.0
+        ],
+        "header": "6  MSIP 字段",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "06b_clic",
+    "A_sha256": "b047268aea61ad4b4998154c6381561aa996b39c22c697c32146d0a96788d382",
+    "C_sha256": "4d9d3f80e0d00b6ffaf65b5b60f8a270311496039de95f48c7159eeb40adb46d",
+    "png_sha256": "3fa5736b84032a28d2c756e1102a98109054ec984cd3d3e7c4d6fcb3c5d00f32",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          190.0,
+          365.0,
+          215.0
+        ],
+        "header": "1  clic_intr 输入拼装",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          570.0,
+          205.0,
+          330.0,
+          190.0
+        ],
+        "header": "2  clic_gateway",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1070.0,
+          205.0,
+          335.0,
+          190.0
+        ],
+        "header": "3  clic_target + 顶层整理",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1505.0,
+          175.0,
+          255.0,
+          245.0
+        ],
+        "header": "4  CVA6 CLIC 接口",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          555.0,
+          640.0,
+          865.0,
+          180.0
+        ],
+        "header": "5  mclic_reg_top + clicint_reg_top × 源",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "07_irq_router",
+    "A_sha256": "c25b99a473d6cbb2ef569f29dd0ada56de4fb34dd86aa0ed6b90faaabf5a6188",
+    "C_sha256": "e61d0b132965a3b2c95c4ee1a53c4da8644f7f7eede4c4e86de5a5dd6abf8766",
+    "png_sha256": "9256a73020f599357d4a0d27cc3fe2fd5889e2d0603cd0856e0f776f8ddec8a2",
+    "styled_modules": [
+      {
+        "box": [
+          45.0,
+          180.0,
+          315.0,
+          180.0
+        ],
+        "header": "1  intr 源向量",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          485.0,
+          195.0,
+          330.0,
+          145.0
+        ],
+        "header": "2  irqs_cloned",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1000.0,
+          180.0,
+          285.0,
+          180.0
+        ],
+        "header": "3  按位 AND",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          450.0,
+          595.0,
+          470.0,
+          195.0
+        ],
+        "header": "4  irq_router_reg_top × 源",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "08_bootrom",
+    "A_sha256": "a22c4922d38e1b178d921bf923d37630a1cbb2421ad4ffc01a8c206871705cb8",
+    "C_sha256": "3e4c6926054278c13acbe462925f5d64eaa300dec3b4d065455f3981cbd1667f",
+    "png_sha256": "23b56ec09826dd0c69033ab4014aac98f24a7ef577406f1a53b1a618d1d595b7",
+    "styled_modules": [
+      {
+        "box": [
+          405.0,
+          230.0,
+          345.0,
+          195.0
+        ],
+        "header": "1  reg_to_mem",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          900.0,
+          220.0,
+          400.0,
+          195.0
+        ],
+        "header": "2  cheshire_bootrom",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1440.0,
+          220.0,
+          245.0,
+          195.0
+        ],
+        "header": "3  FF 延迟对齐",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "09_soc_regs",
+    "A_sha256": "60ff4a2c4d30bad70f107109a59462e7550768bd81e4a7f39e9e34cc5945aab1",
+    "C_sha256": "e12e13b46a6d0f5cff47d688d62e72ad23fa148337cd2fc52c1cfbe8cd43ab2d",
+    "png_sha256": "3fc02409fd0743727335e72762c451c4972b579cf94aa93064957d18908c943b",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          340.0,
+          310.0,
+          160.0
+        ],
+        "header": "Regbus 32 请求",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          480.0,
+          195.0,
+          430.0,
+          185.0
+        ],
+        "header": "1  地址与访问译码",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1100.0,
+          155.0,
+          615.0,
+          165.0
+        ],
+        "header": "2  scratch[0…15]",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1100.0,
+          460.0,
+          615.0,
+          195.0
+        ],
+        "header": "3  硬件只读字段",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          480.0,
+          630.0,
+          430.0,
+          155.0
+        ],
+        "header": "4  读回选择 / 响应",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "10_jtag_debug",
+    "A_sha256": "164c59bb791565b495c0f2ec45e24761a5629f714b13fe51d333803d9e655eab",
+    "C_sha256": "45300a224729e4930efb32c70bf571f0fb2c455e0c5f3c04132be01fe64327c5",
+    "png_sha256": "60f7bd12edbc84f4e256286f622080196f582713c93961f5c6db666107ce7c3b",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          185.0,
+          270.0,
+          155.0
+        ],
+        "header": "JTAG 引脚",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          430.0,
+          175.0,
+          390.0,
+          175.0
+        ],
+        "header": "1  dmi_jtag",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          975.0,
+          160.0,
+          375.0,
+          205.0
+        ],
+        "header": "2  dm_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1485.0,
+          175.0,
+          265.0,
+          175.0
+        ],
+        "header": "3  hart 调试入口",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1010.0,
+          610.0,
+          375.0,
+          170.0
+        ],
+        "header": "4  axi_from_mem",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          430.0,
+          605.0,
+          390.0,
+          185.0
+        ],
+        "header": "5  调试存储窗适配",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "11_serial_link",
+    "A_sha256": "f10ef3b09e10dc5a1b8f5279e19f40fdaeaebc6ca3e82bbd83da11c13d461047",
+    "C_sha256": "194d02ceafbd26c22da7d8edf1e40615cff1fb9820f719dc7d06809088a87550",
+    "png_sha256": "3f2ee058731c947caf99262ca6732a90af15eb2d2aec6ace1ffdc3c76c0c5a5c",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          185.0,
+          335.0,
+          190.0
+        ],
+        "header": "1  SoC 外层适配",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          500.0,
+          185.0,
+          365.0,
+          190.0
+        ],
+        "header": "2  serial_link_network",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1000.0,
+          185.0,
+          345.0,
+          190.0
+        ],
+        "header": "3  serial_link_data_link",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1440.0,
+          195.0,
+          320.0,
+          170.0
+        ],
+        "header": "4  channel_allocator",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1260.0,
+          600.0,
+          475.0,
+          180.0
+        ],
+        "header": "5  serial_link_physical × 通道",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          465.0,
+          620.0,
+          540.0,
+          160.0
+        ],
+        "header": "6  serial_link_reg_top",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "12_vga",
+    "A_sha256": "fb85c2c1bc0d4def267d369aa53bb090d6e9868047db49042b93b6d8cb5778b6",
+    "C_sha256": "62c6b659af6c3b2da75f011a4ca57c65513659f60ea2871cf2d4dd6709bcbaf3",
+    "png_sha256": "943e24607b2a1d113280f4650762833fdb6bf6a4b41d9d4ea5ba0b66089fff0b",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          180.0,
+          345.0,
+          185.0
+        ],
+        "header": "1  axi_vga_reg_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          505.0,
+          185.0,
+          360.0,
+          175.0
+        ],
+        "header": "2  axi_vga_fetcher",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1040.0,
+          185.0,
+          370.0,
+          175.0
+        ],
+        "header": "3  timing_fsm",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          505.0,
+          630.0,
+          360.0,
+          150.0
+        ],
+        "header": "4  splitter + 信用门控",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1040.0,
+          630.0,
+          370.0,
+          150.0
+        ],
+        "header": "5  R 通道 FIFO",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "13_usb",
+    "A_sha256": "7881533bfa29c69e3954e8c4a77d320f3647bbcce85f6b667bcf82d9dae3aad8",
+    "C_sha256": "abca8fe9ee8a24275f7e8755412d8d2453f28736c5f38e5318253a7d0291f23e",
+    "png_sha256": "e4fed20590b5512b041b7d442f82c8764ff1f07a95963a88e54353b14b060223",
+    "styled_modules": [
+      {
+        "box": [
+          35.0,
+          185.0,
+          275.0,
+          140.0
+        ],
+        "header": "Regbus 32",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          420.0,
+          185.0,
+          330.0,
+          140.0
+        ],
+        "header": "1  reg_to_axi",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          895.0,
+          185.0,
+          410.0,
+          190.0
+        ],
+        "header": "2  UsbOhciAxi4：前端",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          420.0,
+          595.0,
+          395.0,
+          150.0
+        ],
+        "header": "5  AXI DMA 适配",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          945.0,
+          580.0,
+          365.0,
+          165.0
+        ],
+        "header": "3  CtrlCc",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1415.0,
+          575.0,
+          280.0,
+          175.0
+        ],
+        "header": "4  UsbLsFsPhy",
+        "color": "#966017"
+      }
+    ]
+  },
+  {
+    "name": "14_idma",
+    "A_sha256": "63e7ac74cf6524d3002cca049cd9f40de9840af2bb776a14dbe6a548f8ab4ce9",
+    "C_sha256": "8d69036384c9fa1f8b766bc11922348734b24f4e1f2f01c955f4b3b6ffe41af9",
+    "png_sha256": "4f96506eab7de1642242c23e778d3e6f337e1b3eeeb2e7a6bfdebfdde552c693",
+    "styled_modules": [
+      {
+        "box": [
+          35.0,
+          185.0,
+          275.0,
+          165.0
+        ],
+        "header": "AXI slave 控制口",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          420.0,
+          185.0,
+          320.0,
+          165.0
+        ],
+        "header": "1  axi_to_reg",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          850.0,
+          175.0,
+          405.0,
+          190.0
+        ],
+        "header": "2  idma_reg64_1d / 2d",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1390.0,
+          175.0,
+          365.0,
+          190.0
+        ],
+        "header": "3  Job FIFO + midend",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          995.0,
+          575.0,
+          595.0,
+          210.0
+        ],
+        "header": "4  idma_backend_rw_axi",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          420.0,
+          610.0,
+          395.0,
+          135.0
+        ],
+        "header": "5  axi_rw_join",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          455.0,
+          420.0,
+          340.0,
+          110.0
+        ],
+        "header": "6  transfer_id_gen",
+        "color": "#7552A1"
+      }
+    ]
+  },
+  {
+    "name": "15_interrupt_exception",
+    "A_sha256": "28aa286be2f7be9daa4f1ef5b6b3f1456aad3a5a83803e80b5d0d366be76255b",
+    "C_sha256": "a6f9df09761ca7d78fb50536a15103e0b175c654cd2762da3778e409b54ae26c",
+    "png_sha256": "d496a5413e439a7e65de04dc1f0ca6ef8718940b413d22ab300540586eda638c",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          165.0,
+          330.0,
+          180.0
+        ],
+        "header": "1  平台中断输入",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          480.0,
+          155.0,
+          395.0,
+          200.0
+        ],
+        "header": "2  csr_regfile",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1030.0,
+          155.0,
+          350.0,
+          200.0
+        ],
+        "header": "3  decoder / id_stage",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1480.0,
+          175.0,
+          280.0,
+          160.0
+        ],
+        "header": "4  issue_stage",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1470.0,
+          565.0,
+          295.0,
+          180.0
+        ],
+        "header": "5  commit_stage",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          980.0,
+          580.0,
+          330.0,
+          155.0
+        ],
+        "header": "执行 / 访存异常",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          450.0,
+          590.0,
+          370.0,
+          160.0
+        ],
+        "header": "6  controller + frontend",
+        "color": "#966017"
+      }
+    ]
+  },
+  {
+    "name": "16a_llc",
+    "A_sha256": "0ce3f96436a0d098aaec1a9ab0004ebf09a27f0bf646340e3287f210373e482e",
+    "C_sha256": "523ef9cac6b93df122b7ca3d7c486c3a36d1ac5aa8734dc5de608dc19a8e85a3",
+    "png_sha256": "8340f2828dc47c81ec4a9e4b38d1fb634a41ed1ddc2a043a5c137b5ccb11d984",
+    "styled_modules": [
+      {
+        "box": [
+          35.0,
+          185.0,
+          340.0,
+          180.0
+        ],
+        "header": "1  isolate / demux",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          510.0,
+          185.0,
+          340.0,
+          180.0
+        ],
+        "header": "2  axi_llc_hit_miss",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1010.0,
+          185.0,
+          335.0,
+          180.0
+        ],
+        "header": "3  evict → refill",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1455.0,
+          185.0,
+          300.0,
+          180.0
+        ],
+        "header": "4  merge_unit",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1395.0,
+          565.0,
+          355.0,
+          145.0
+        ],
+        "header": "5  read_unit / write_unit",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          750.0,
+          570.0,
+          470.0,
+          180.0
+        ],
+        "header": "6  axi_llc_ways",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          40.0,
+          615.0,
+          420.0,
+          130.0
+        ],
+        "header": "7  AXI 外存出口",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "16b_spm",
+    "A_sha256": "d5d1d845d039b661ae96f3052276f0eea7afcafcdc8a3d296bc4dd5531b36940",
+    "C_sha256": "d0419ac7f6ab62902312af8047ec452554858dd6385e380bd32094e8b52acd33",
+    "png_sha256": "7feeea38fe01c493b4c1a6f26142e7bc2a079292641deaa61e198a84abe2a4c8",
+    "styled_modules": [
+      {
+        "box": [
+          40.0,
+          175.0,
+          390.0,
+          190.0
+        ],
+        "header": "1  axi_llc_reg_top",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          590.0,
+          175.0,
+          430.0,
+          190.0
+        ],
+        "header": "2  axi_llc_config",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          1170.0,
+          175.0,
+          565.0,
+          190.0
+        ],
+        "header": "3  地址与 way 选择",
+        "color": "#966017"
+      },
+      {
+        "box": [
+          645.0,
+          585.0,
+          240.0,
+          155.0
+        ],
+        "header": "way 0",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          910.0,
+          585.0,
+          240.0,
+          155.0
+        ],
+        "header": "way 1",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1175.0,
+          585.0,
+          240.0,
+          155.0
+        ],
+        "header": "way 2",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1440.0,
+          585.0,
+          240.0,
+          155.0
+        ],
+        "header": "way 3",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "17_axi_extension",
+    "A_sha256": "ba9ef4e1d0ae9256bcbe5494180d4f51553ea0fd4f14a5541c69ad575b04b619",
+    "C_sha256": "fd4d207997e9182364cfee3cedd826ce8a9c7f03367cd39d42cbc1db9d0aad8e",
+    "png_sha256": "27e3832d494222b0b452960141409c0f9af4f759314566963152ff56c2f4a084",
+    "styled_modules": [
+      {
+        "box": [
+          60.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "新增数据 master",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          650.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "DW / ID / CDC",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "AXI RT / 直连",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          60.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "i_axi_xbar",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          650.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "AXI 外部 slave 口",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          1240.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "新增 AXI slave",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          60.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "axi_to_reg_v2",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          650.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "Reg decode / demux",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1240.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "Reg 外部 slave 口",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          60.0,
+          1050.0,
+          490.0,
+          170.0
+        ],
+        "header": "新增配置寄存器",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "18_clock_reset_startup",
+    "A_sha256": "50d775900f3bde3c93ccf61732136dda0171006029b6f79fc24aae5e729440fb",
+    "C_sha256": "9672b3921122ef9c9887720cfc350a73bd5a061648708c26c1e829d5c7e30b6e",
+    "png_sha256": "d720f8485faff5b17348336a3bf210133a2e17a16271fe07f8c744b5eccaa18e",
+    "styled_modules": [
+      {
+        "box": [
+          60.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "clk_i / rst_ni",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          650.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "AXI → Reg / demux",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1240.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "reg_cdc（拟增实例）",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          60.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "IP 配置寄存器",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          650.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "IP 工作逻辑",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "IP 时钟 / 复位",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          60.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "i_ext_intr_sync",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          650.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "Router / PLIC / CLIC",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          1240.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "IP IRQ 状态保持",
+        "color": "#317E69"
+      }
+    ]
+  },
+  {
+    "name": "19_ddr_lvds_pipeline",
+    "A_sha256": "c5df22d154afe5bf246bc4e1937912143d679959e46f625a55f6e6d23c129009",
+    "C_sha256": "53b20c48468e5dfe2a058584df6aa62ff5f232091c68f0d7d718f2ab3792d4c6",
+    "png_sha256": "7d2ed5c19523710155542ae944d73b5c1c615b435d3f6fc2198a4dab8e60daeb",
+    "styled_modules": [
+      {
+        "box": [
+          60.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "LVDS 接收前端",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          650.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "打包 / CDC FIFO",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "ISP / RAW 选择组",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          60.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "帧写入 DMA",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          650.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "DDR Controller / PHY",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          1240.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "现有 LLC 外存出口",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          60.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "NPU / GB 搬运器",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          650.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "GB 访问适配",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "Global Buffer",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          60.0,
+          1050.0,
+          490.0,
+          170.0
+        ],
+        "header": "NPU 计算引擎",
+        "color": "#346DA6"
+      }
+    ]
+  },
+  {
+    "name": "20_accelerator_memory",
+    "A_sha256": "1889dd6a8b8ff5ed401f1f55cd13ebeb00dacf78419056b1faa7980a2d195feb",
+    "C_sha256": "e6d36be9de0613676a02af1f9c1564f17b5260bd0ec9570818911a7a7b434d80",
+    "png_sha256": "8cc23e254ec15139a8a714db5cc382f26895c73b37fbd84ee80c3f00e270ebdc",
+    "styled_modules": [
+      {
+        "box": [
+          60.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "CVA6 acc_dispatcher",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          650.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "i_ara",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          180.0,
+          490.0,
+          170.0
+        ],
+        "header": "axi_inval_filter",
+        "color": "#317E69"
+      },
+      {
+        "box": [
+          60.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "CVA6 L1D 路径",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          650.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "axi_dw_converter",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          1240.0,
+          470.0,
+          490.0,
+          170.0
+        ],
+        "header": "CPU AXI / ID 适配",
+        "color": "#346DA6"
+      },
+      {
+        "box": [
+          60.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "主 AXI Xbar",
+        "color": "#526A87"
+      },
+      {
+        "box": [
+          650.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "原子适配 → LLC",
+        "color": "#7552A1"
+      },
+      {
+        "box": [
+          1240.0,
+          760.0,
+          490.0,
+          170.0
+        ],
+        "header": "LLC 外存 AXI",
+        "color": "#526A87"
+      }
+    ]
+  }
+]

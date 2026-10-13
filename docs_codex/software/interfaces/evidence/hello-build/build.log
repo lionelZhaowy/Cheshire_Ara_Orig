@@ -1,0 +1,392 @@
++ riscv64-unknown-elf-gcc --version
+riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ flags=(-march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -ffunction-sections -fdata-sections -I"$repo_dir/sw/include" -I"$repo_dir/sw/deps/printf")
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/tests/helloworld.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/helloworld.o
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/tests/helloworld.c: In function 'main':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/tests/helloworld.c:35:25: warning: array subscript 17 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   35 |     uint32_t rtc_freq = *reg32(&__base_regs, CHESHIRE_RTC_FREQ_REG_OFFSET);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/tests/helloworld.c:12:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:17:14: note: at offset 68 into object '__base_regs' of size 8
+   17 | extern void *__base_regs;
+      |              ^~~~~~~~~~~
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -nostartfiles -static -T /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link/spm.ld -Wl,-L/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/link -Wl,--gc-sections -Wl,-Map,/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/hello.map /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/scalar-build/crt0.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/helloworld.o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/scalar-build/libsupport.a -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/hello.spm.elf
++ riscv64-unknown-elf-readelf -h -l /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/hello.spm.elf
++ riscv64-unknown-elf-objdump -d -S /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/hello.spm.elf
++ cat
++ riscv64-unknown-elf-gcc -march=rv64gc_zifencei -mabi=lp64d -mcmodel=medany -mstrict-align -O2 -g -Wall -Wextra -fno-builtin -ffunction-sections -fdata-sections -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include -I/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/deps/printf -c /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c -o /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.o
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_src_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:49:16: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   49 |         return (volatile uint64_t *)DMA_SRC_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+In file included from /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:10:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_dst_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:52:16: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   52 |         return (volatile uint64_t *)DMA_DST_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_num_bytes_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:55:16: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   55 |         return (volatile uint64_t *)DMA_NUMBYTES_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_nextid_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:64:16: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   64 |         return (volatile uint64_t *)DMA_NEXTID_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_done_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:67:16: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   67 |         return (volatile uint64_t *)DMA_DONE_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_src_stride_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:70:16: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   70 |         return (volatile uint64_t *)DMA_SRC_STRIDE_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_dst_stride_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:73:16: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   73 |         return (volatile uint64_t *)DMA_DST_STRIDE_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_num_reps_ptr':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:76:16: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   76 |         return (volatile uint64_t *)DMA_NUM_REPS_ADDR(BASE_ADDR); \
+      |                ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:80:9: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   80 |         *(NAME##_dma_src_ptr()) = (uint64_t)src; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:81:9: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   81 |         *(NAME##_dma_dst_ptr()) = (uint64_t)dst; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:82:9: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   82 |         *(NAME##_dma_num_bytes_ptr()) = size; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:83:9: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   83 |         *(NAME##_dma_num_reps_ptr()) = 0; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:86:16: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   86 |         return *(NAME##_dma_nextid_ptr()); \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:80:33: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   80 |         *(NAME##_dma_src_ptr()) = (uint64_t)src; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:81:33: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   81 |         *(NAME##_dma_dst_ptr()) = (uint64_t)dst; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:82:39: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   82 |         *(NAME##_dma_num_bytes_ptr()) = size; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:83:38: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   83 |         *(NAME##_dma_num_reps_ptr()) = 0; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_memcpy',
+    inlined from 'sys_dma_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:86:16: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   86 |         return *(NAME##_dma_nextid_ptr()); \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:91:16: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   91 |         while (*(NAME##_dma_done_ptr()) != tf_id) { \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h: In function 'sys_dma_2d_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:99:9: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   99 |         *(NAME##_dma_src_ptr()) = (uint64_t)src; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:100:9: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  100 |         *(NAME##_dma_dst_ptr()) = (uint64_t)dst; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:101:9: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  101 |         *(NAME##_dma_num_bytes_ptr()) = size; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:105:9: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  105 |         *(NAME##_dma_src_stride_ptr()) = src_stride; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:106:9: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  106 |         *(NAME##_dma_dst_stride_ptr()) = dst_stride; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:107:9: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  107 |         *(NAME##_dma_num_reps_ptr()) = num_reps; \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:108:16: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  108 |         return *(NAME##_dma_nextid_ptr()); \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:99:33: warning: array subscript 27 is outside array bounds of 'void[8]' [-Warray-bounds=]
+   99 |         *(NAME##_dma_src_ptr()) = (uint64_t)src; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 216 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:100:33: warning: array subscript 26 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  100 |         *(NAME##_dma_dst_ptr()) = (uint64_t)dst; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 208 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:101:39: warning: array subscript 28 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  101 |         *(NAME##_dma_num_bytes_ptr()) = size; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 224 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:105:40: warning: array subscript 30 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  105 |         *(NAME##_dma_src_stride_ptr()) = src_stride; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 240 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:106:40: warning: array subscript 29 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  106 |         *(NAME##_dma_dst_stride_ptr()) = dst_stride; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 232 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:107:38: warning: array subscript 31 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  107 |         *(NAME##_dma_num_reps_ptr()) = num_reps; \
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 248 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+In function 'sys_dma_2d_memcpy',
+    inlined from 'sys_dma_2d_blk_memcpy' at /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1:
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:108:16: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  108 |         return *(NAME##_dma_nextid_ptr()); \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h: In function 'sys_dma_2d_blk_memcpy':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:116:16: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+  116 |         while (*(NAME##_dma_done_ptr()) != tf_id) { \
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/dif/dma.h:125:1: note: in expansion of macro 'X'
+  125 | X(sys, &__base_dma)
+      | ^
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c: In function 'probe_next':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c:2:36: warning: array subscript 8 is outside array bounds of 'void[8]' [-Warray-bounds=]
+    2 | uint64_t probe_next(void) { return *sys_dma_nextid_ptr(); }
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 68 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c: In function 'probe_done':
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.c:3:36: warning: array subscript 16 is outside array bounds of 'void[8]' [-Warray-bounds=]
+    3 | uint64_t probe_done(void) { return *sys_dma_done_ptr(); }
+      |                                    ^~~~~~~~~~~~~~~~~~~
+/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/sw/include/params.h:27:14: note: at offset 132 into object '__base_dma' of size 8
+   27 | extern void *__base_dma;
+      |              ^~~~~~~~~~
++ riscv64-unknown-elf-objdump -dr /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/software/interfaces/evidence/hello-build/dma-probe.o
++ echo 'Compile and link only; no target execution.'
+Compile and link only; no target execution.

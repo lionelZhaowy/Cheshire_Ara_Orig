@@ -1,0 +1,879 @@
+{
+  "date": "2026-10-13",
+  "head": "c4162204cfee0c48b81158b4296860a678d92bec",
+  "scope": "08–16文档、对应旧图全部技术边；无RTL/software修改",
+  "coverage": [
+    {
+      "document": "docs_codex/rtl_modules/08_bootrom.md",
+      "reviewed": true,
+      "fixes": [
+        "图前补模块用途/实际配置",
+        "解释启动软件与电路职责、DDR就绪前片内栈前提",
+        "保留S01-B01并明确已知返回缺陷与待核查栈问题"
+      ],
+      "sources": [
+        "hw/cheshire_soc.sv:1294",
+        "hw/bootrom/cheshire_bootrom.sv:24",
+        "hw/bootrom/cheshire_bootrom.S:60",
+        "hw/bootrom/cheshire_bootrom.c:70"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/09_soc_regs.md",
+      "reviewed": true,
+      "fixes": [
+        "补固定存在与时钟边界",
+        "scratch并非软件协议上全空闲：启动入口/退出状态已有使用者",
+        "说明HW_FEATURES.llc来源与实际LLC生成条件差异，解释RW/RO/W1C"
+      ],
+      "sources": [
+        "hw/cheshire_soc.sv:1136",
+        "hw/regs/cheshire_reg_top.sv:54",
+        "hw/bootrom/cheshire_bootrom.S:94"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/10_jtag_debug.md",
+      "reviewed": true,
+      "fixes": [
+        "首次解释DMI/SBA/hart/TAP/DTM/CDC",
+        "明确VCU118有JTAG接线与未新增探针验收",
+        "补逐级调试例与SBA错误返回、DDR前置条件"
+      ],
+      "sources": [
+        "hw/cheshire_soc.sv:1038",
+        "hw/cheshire_soc.sv:1090",
+        "target/xilinx/src/phy_definitions.svh:6",
+        ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dmi_jtag.sv:330"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/11_serial_link.md",
+      "reviewed": true,
+      "fixes": [
+        "明确Xilinx显式关闭SerialLink",
+        "修正clk_sl_i为同源门控预期而非任意异步工作域",
+        "补完整远端AR/R闭环、channel allocator配置"
+      ],
+      "sources": [
+        "hw/cheshire_soc.sv:1695",
+        "target/xilinx/src/cheshire_top_xilinx.sv:115",
+        ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv:35",
+        ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv:249"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/12_vga.md",
+      "reviewed": true,
+      "fixes": [
+        "区分RTL启用与VCU118未接引脚",
+        "明确顶层信用计数不在splitter内",
+        "补基于源码的启用流程、默认RGB565和CLK_DIV=0行为"
+      ],
+      "sources": [
+        ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv:76",
+        ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv:124",
+        ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv:196",
+        "target/xilinx/src/phy_definitions.svh:6"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/13_usb.md",
+      "reviewed": true,
+      "fixes": [
+        "明确VCU118 Usb=0、fixture无PHY时钟",
+        "解释OHCI/PHY/ED/TD与独立DMA",
+        "补建议主机传输闭环和ready不等于USB事务完成",
+        "补本地官方单核默认cache适用边界，不将接口连通扩大为已支持组合"
+      ],
+      "sources": [
+        "hw/future/spinal_usb_ohci.sv:75",
+        "hw/future/spinal_usb_ohci.sv:134",
+        "hw/future/UsbOhciAxi4.v:854",
+        "hw/future/UsbOhciAxi4.v:700",
+        "target/xilinx/src/cheshire_top_xilinx.sv:119",
+        "target/sim/src/fixture_cheshire_soc.sv:138",
+        "docs/um/arch.md:237"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/14_idma.md",
+      "reviewed": true,
+      "fixes": [
+        "默认2D、FIFO/ND反馈解释",
+        "补现有测试/HAL对应但保留位宽BLOCKED语义",
+        "2D retire来源纠错、解释stride/outstanding/legalizer/transport"
+      ],
+      "sources": [
+        "hw/cheshire_idma_wrap.sv:153",
+        "hw/cheshire_idma_wrap.sv:249",
+        "hw/cheshire_idma_wrap.sv:273",
+        ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv:30",
+        "sw/include/dif/dma.h:110",
+        "sw/tests/dma_2d.spm.c:14"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/15_interrupt_exception.md",
+      "reviewed": true,
+      "fixes": [
+        "区别CSR/MMIO并提示可选CLIC",
+        "默认weak trap_vector无限循环，必须由应用提供处理",
+        "补PLIC建议流程与CLIC源码示例的适用前提"
+      ],
+      "sources": [
+        ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:773",
+        ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:1120",
+        ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:1346",
+        "sw/lib/crt0.S:136",
+        "sw/lib/crt0.S:176",
+        "sw/tests/clic_basic.spm.S:30"
+      ]
+    },
+    {
+      "document": "docs_codex/rtl_modules/16_llc_spm.md",
+      "reviewed": true,
+      "fixes": [
+        "默认128KiB和运行时way分配分别说明",
+        "COMMIT_CFG清零表示接受而非完成，FLUSHED为way位图",
+        "官方C setters不等待、活跃SPM栈不能被运行时回收",
+        "明确外部DDR旁路改变官方LLC唯一外存master假设"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv:600",
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv:577",
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv:410",
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv:491",
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/lib/axi_llc_reg32.c:41",
+        "docs/um/arch.md:206"
+      ]
+    }
+  ],
+  "figures": {
+    "08_bootrom": {
+      "edges": [
+        "Regbus 请求/响应：reg_out_req/rsp[RegOut.bootrom]；valid、addr、write、wdata/wstrb，返回 ready、rdata、error；地址发起方向 P01→N01",
+        "ROM 地址/请求：bootrom_addr[15:0]、bootrom_req → addr_i、req_i；当前 ROM 只用地址组合查表，不用 req 门控",
+        "ROM 数据：bootrom_data[31:0] → 外层数据 FF；这是读数据，不是下一次存储请求",
+        "返回控制对齐：bootrom_req、bootrom_we → req_q、we_q FF；与 data 同拍延迟",
+        "存储响应：bootrom_data_q / bootrom_req_q / bootrom_we_q → reg_to_mem.rdata_i / rvalid_i / rerror_i；写不改 ROM 且返回 error"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "P01",
+          "target": "N01",
+          "meaning": "Regbus 请求/响应：reg_out_req/rsp[RegOut.bootrom]；valid、addr、write、wdata/wstrb，返回 ready、rdata、error；地址发起方向 P01→N01"
+        },
+        {
+          "id": "E02",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "ROM 地址/请求：bootrom_addr[15:0]、bootrom_req → addr_i、req_i；当前 ROM 只用地址组合查表，不用 req 门控"
+        },
+        {
+          "id": "E03",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "ROM 数据：bootrom_data[31:0] → 外层数据 FF；这是读数据，不是下一次存储请求"
+        },
+        {
+          "id": "E04",
+          "source": "N01",
+          "target": "N03",
+          "meaning": "返回控制对齐：bootrom_req、bootrom_we → req_q、we_q FF；与 data 同拍延迟"
+        },
+        {
+          "id": "E05",
+          "source": "N03",
+          "target": "N01",
+          "meaning": "存储响应：bootrom_data_q / bootrom_req_q / bootrom_we_q → reg_to_mem.rdata_i / rvalid_i / rerror_i；写不改 ROM 且返回 error"
+        }
+      ],
+      "corrections": []
+    },
+    "09_soc_regs": {
+      "edges": [
+        "Regbus 请求：reg_intf_req.addr/valid/write/wdata/wstrb；形成 reg_addr、reg_we/reg_re 和 reg_be",
+        "写 scratch：scratch_*_we / scratch_*_wd，由命中地址、reg_we、reg_be 选择字节；不是整组每次同时写",
+        "已保存软件值：scratch_*_qs[31:0] → reg_rdata_next 读回选择器",
+        "硬件值：hw2reg.boot_mode、rtc_freq、platform_rom、num_int_harts、hw_features、llc_size、vga_params → reg_rdata_next",
+        "地址命中与非法访问控制：addr_hit/reg_addr、addrmiss、wr_err → 读选择及 reg_error；ready 恒为1",
+        "Regbus 响应：reg_intf_rsp.rdata / error / ready 返回请求者；error=(devmode_i & addrmiss) | wr_err"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "Regbus 请求：reg_intf_req.addr/valid/write/wdata/wstrb；形成 reg_addr、reg_we/reg_re 和 reg_be"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "写 scratch：scratch_*_we / scratch_*_wd，由命中地址、reg_we、reg_be 选择字节；不是整组每次同时写"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N05",
+          "meaning": "已保存软件值：scratch_*_qs[31:0] → reg_rdata_next 读回选择器"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "meaning": "硬件值：hw2reg.boot_mode、rtc_freq、platform_rom、num_int_harts、hw_features、llc_size、vga_params → reg_rdata_next"
+        },
+        {
+          "id": "E05",
+          "source": "N02",
+          "target": "N05",
+          "meaning": "地址命中与非法访问控制：addr_hit/reg_addr、addrmiss、wr_err → 读选择及 reg_error；ready 恒为1"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N01",
+          "meaning": "Regbus 响应：reg_intf_rsp.rdata / error / ready 返回请求者；error=(devmode_i & addrmiss) | wr_err"
+        }
+      ],
+      "corrections": []
+    },
+    "10_jtag_debug": {
+      "edges": [
+        "JTAG 双向引脚组：tck_i/tms_i/trst_ni/td_i 输入 DTM，td_o/tdo_oe_o 输出；双箭头不表示每根引脚均双向",
+        "DMI 请求/响应：dbg_dmi_req/rsp + 各 valid/ready；TCK→clk_i CDC 由 dmi_jtag 内 dmi_cdc 实现",
+        "hart 调试请求：dm_top.debug_req_o=dbg_req，经 dbg_int_req 到 CPU debug_req_i；halt/resume 状态和程序缓冲交互不靠这一根线完成",
+        "SBA 存储接口：dbg_sba_req/addr/we/wdata/strb → axi_from_mem；反向 gnt/rvalid/rdata/err 表示受理与完成",
+        "AXI master：axi_in_req/rsp[AxiIn.dbg]，由 DM 发起 AW/W/AR，经主互联返回 B/R；不是 CPU 发起的 debug 窗访问",
+        "AXI slave：axi_out_req/rsp[AxiOut.dbg] 经 atomics/cut 进入调试存储窗转换；请求来自主互联",
+        "DM slave 存储口：dbg_slv_req/we/addr_long/wstrb/wdata → dm_top.slave_*；slave_rdata_o 返回到适配器；此口无独立 ready 信号"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "JTAG 双向引脚组：tck_i/tms_i/trst_ni/td_i 输入 DTM，td_o/tdo_oe_o 输出；双箭头不表示每根引脚均双向"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "DMI 请求/响应：dbg_dmi_req/rsp + 各 valid/ready；TCK→clk_i CDC 由 dmi_jtag 内 dmi_cdc 实现"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "hart 调试请求：dm_top.debug_req_o=dbg_req，经 dbg_int_req 到 CPU debug_req_i；halt/resume 状态和程序缓冲交互不靠这一根线完成"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "N05",
+          "meaning": "SBA 存储接口：dbg_sba_req/addr/we/wdata/strb → axi_from_mem；反向 gnt/rvalid/rdata/err 表示受理与完成"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "P01",
+          "meaning": "AXI master：axi_in_req/rsp[AxiIn.dbg]，由 DM 发起 AW/W/AR，经主互联返回 B/R；不是 CPU 发起的 debug 窗访问"
+        },
+        {
+          "id": "E06",
+          "source": "P02",
+          "target": "N06",
+          "meaning": "AXI slave：axi_out_req/rsp[AxiOut.dbg] 经 atomics/cut 进入调试存储窗转换；请求来自主互联"
+        },
+        {
+          "id": "E07",
+          "source": "N06",
+          "target": "N03",
+          "meaning": "DM slave 存储口：dbg_slv_req/we/addr_long/wstrb/wdata → dm_top.slave_*；slave_rdata_o 返回到适配器；此口无独立 ready 信号"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "rename_node",
+          "node": "P02",
+          "lines": [
+            "主 AXI：AxiOut.dbg"
+          ],
+          "reason": "这是由主互联译码到DM存储窗口，不是hart与DM的直接专用线",
+          "source": "hw/cheshire_soc.sv:1004"
+        }
+      ]
+    },
+    "11_serial_link": {
+      "edges": [
+        "AXI 双向链路角色：slink_tx_idr_req/rsp 对应 axi_in_req_i/axi_in_rsp_o；对端请求还原为 axi_out_req_o/axi_out_rsp_i 后进入 AxiIn.slink",
+        "封装 payload stream：axis_out_req/rsp 与 axis_in_req/rsp；含封装数据和握手，不是直接五通道 AXI 引脚",
+        "物理片段流：data_link2alloc_data_out + valid/ready，反向 alloc2data_link_data_in + valid/ready；NumChannels=1 时无 allocator 实例",
+        "每通道片段流：alloc2phy_data_out + valid/ready；反向 phy2alloc_data_in + valid/ready",
+        "源同步物理接口：ddr_o/ddr_rcv_clk_o 发出，ddr_i/ddr_rcv_clk_i 接收；DDR 表示双边沿，与 DDR 存储控制器不同",
+        "PHY 配置：reg2hw.tx_phy_clk_div[i].q、tx_phy_clk_start/end[i].q → clk_div_i/clk_shift_start_i/clk_shift_end_i",
+        "data_link 配置/状态：reg2hw.raw_mode_*、cfg_flow_control_fifo_clear 等控制；FIFO fill_state/is_full 返回 hw2reg（应双向标注）"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "AXI 双向链路角色：slink_tx_idr_req/rsp 对应 axi_in_req_i/axi_in_rsp_o；对端请求还原为 axi_out_req_o/axi_out_rsp_i 后进入 AxiIn.slink"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "封装 payload stream：axis_out_req/rsp 与 axis_in_req/rsp；含封装数据和握手，不是直接五通道 AXI 引脚"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "物理片段流：data_link2alloc_data_out + valid/ready，反向 alloc2data_link_data_in + valid/ready；NumChannels=1 时无 allocator 实例"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "meaning": "每通道片段流：alloc2phy_data_out + valid/ready；反向 phy2alloc_data_in + valid/ready"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "P01",
+          "meaning": "源同步物理接口：ddr_o/ddr_rcv_clk_o 发出，ddr_i/ddr_rcv_clk_i 接收；DDR 表示双边沿，与 DDR 存储控制器不同"
+        },
+        {
+          "id": "E06",
+          "source": "N06",
+          "target": "N05",
+          "meaning": "PHY 配置：reg2hw.tx_phy_clk_div[i].q、tx_phy_clk_start/end[i].q → clk_div_i/clk_shift_start_i/clk_shift_end_i"
+        },
+        {
+          "id": "E07",
+          "source": "N06",
+          "target": "N03",
+          "meaning": "data_link 配置/状态：reg2hw.raw_mode_*、cfg_flow_control_fifo_clear 等控制；FIFO fill_state/is_full 返回 hw2reg（应双向标注）"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "add_edge",
+          "source": "N06",
+          "target": "N04",
+          "both": false,
+          "label": "reg2hw.channel_alloc_*：通道使能/clear/flush/同步配置，仅NumChannels>1",
+          "evidence": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv:249"
+        },
+        {
+          "action": "edge_direction",
+          "edge": "E07",
+          "both": true,
+          "reason": "data_link返回FIFO fill_state/is_full到hw2reg",
+          "evidence": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv:203"
+        },
+        {
+          "action": "node_caption",
+          "node": "N06",
+          "reason": "clk_sl_i预期为clk_i门控版本；当前三路同源，并非3个任意异步域"
+        }
+      ]
+    },
+    "12_vga": {
+      "edges": [
+        "fetcher 配置：reg2hw.control.enable.q、start_addr_high/low.q、frame_size.q、burst_len.q → enable_i/start_addr_i/frame_size_i/burst_len_i",
+        "像素握手：red/green/blue + valid 由 fetcher→timing_fsm；ready 反向返回，表示此像素被消费",
+        "显示引脚：red_o/green_o/blue_o、hsync_o/vsync_o；输出节拍由 fsm_en 控制",
+        "读地址请求：axi_req.ar/ar_valid → splitter.slv_req_i；ar_ready 反向返回；写通道在 fetcher 中不发起",
+        "单拍 AR 与信用门控：axi_req_split.ar/ar_valid 经顶层 stream_join、credit_valid 发出 axi_req_o.ar/ar_valid，ar_ready 返回",
+        "AXI R 返回入 FIFO：axi_resp_i.r/r_valid → i_stream_fifo.data_i/valid_i，axi_req_o.r_ready 反向背压；含 data/resp/id/last",
+        "FIFO → splitter：axi_resp_split.r/r_valid；axi_req_split.r_ready 反向；弹出 last 的握手更新信用计数",
+        "splitter → fetcher：axi_resp.r/r_valid，axi_req.r_ready 反向；复原原读 burst 的返回语义",
+        "显示参数与节拍：reg2hw → timing_fsm.reg2hw_i；clk_div 经 clk_cnt_q 产生 fsm_en_i=(clk_cnt_q==0)，不是跨时钟域"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "fetcher 配置：reg2hw.control.enable.q、start_addr_high/low.q、frame_size.q、burst_len.q → enable_i/start_addr_i/frame_size_i/burst_len_i"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "像素握手：red/green/blue + valid 由 fetcher→timing_fsm；ready 反向返回，表示此像素被消费"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "P01",
+          "meaning": "显示引脚：red_o/green_o/blue_o、hsync_o/vsync_o；输出节拍由 fsm_en 控制"
+        },
+        {
+          "id": "E04",
+          "source": "N02",
+          "target": "N04",
+          "meaning": "读地址请求：axi_req.ar/ar_valid → splitter.slv_req_i；ar_ready 反向返回；写通道在 fetcher 中不发起"
+        },
+        {
+          "id": "E05",
+          "source": "N04",
+          "target": "P02",
+          "meaning": "单拍 AR 与信用门控：axi_req_split.ar/ar_valid 经顶层 stream_join、credit_valid 发出 axi_req_o.ar/ar_valid，ar_ready 返回"
+        },
+        {
+          "id": "E06",
+          "source": "P03",
+          "target": "N05",
+          "meaning": "AXI R 返回入 FIFO：axi_resp_i.r/r_valid → i_stream_fifo.data_i/valid_i，axi_req_o.r_ready 反向背压；含 data/resp/id/last"
+        },
+        {
+          "id": "E07",
+          "source": "N05",
+          "target": "N04",
+          "meaning": "FIFO → splitter：axi_resp_split.r/r_valid；axi_req_split.r_ready 反向；弹出 last 的握手更新信用计数"
+        },
+        {
+          "id": "E08",
+          "source": "N04",
+          "target": "N02",
+          "meaning": "splitter → fetcher：axi_resp.r/r_valid，axi_req.r_ready 反向；复原原读 burst 的返回语义"
+        },
+        {
+          "id": "E09",
+          "source": "N01",
+          "target": "N03",
+          "meaning": "显示参数与节拍：reg2hw → timing_fsm.reg2hw_i；clk_div 经 clk_cnt_q 产生 fsm_en_i=(clk_cnt_q==0)，不是跨时钟域"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "rename_node",
+          "node": "N04",
+          "lines": [
+            "4  splitter + 信用门控",
+            "axi_burst_splitter",
+            "顶层 credit / stream_join"
+          ],
+          "reason": "计数器和stream_join在axi_vga外层；合并功能框须写清实际边界",
+          "source": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv:196"
+        },
+        {
+          "action": "edge_direction",
+          "edges": [
+            "E02",
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08"
+          ],
+          "both": true,
+          "reason": "有效数据/地址向前且ready反向；如保持单箭头必须在图例声明仅表示数据方向",
+          "evidence": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv:124"
+        }
+      ]
+    },
+    "13_usb": {
+      "edges": [
+        "配置 Regbus：ctrl_req_i/ctrl_rsp_o，32-bit wdata/rdata，地址/valid/write/wstrb 与 ready/error",
+        "配置 AXI32：ctrl_int_req/rsp；地址12位、ID0；在 UsbOhciAxi4 内 ctrlBridge 转为内部 BMB 控制访问",
+        "内核 DMA AXI32：dma_int_req/rsp，32-bit 地址/数据，OHCI 发 AW/W/AR 并接 B/R",
+        "系统 AXI DMA：dma_req_o/dma_rsp_i → axi_in_req/rsp[AxiIn.usb]；数据位宽适配+地址 domain/mask 后发出，经过主互联访问内存",
+        "SoC 域 USB 流/命令：front_ohci_io_phy_tx_valid/ready、tx_payload_fragment/last、usbReset/usbResume；cc_input_rx_flow_*、端口状态反向",
+        "PHY 域 USB 流/命令：cc_output_tx_*、usbReset/usbResume → back_phy；back_phy_io_ctrl_rx_flow_*、txEop、tick 和端口状态返回",
+        "设备中断：OHCI io_interrupt → wrapper intr_o → intr.usb；由设备状态触发，不是 Regbus ready",
+        "数字引脚：phy_dp_i/dm_i 输入；phy_dp_o/dm_o 与 phy_dp_oe_o/dm_oe_o 输出；平台另实现 PAD/VBUS"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "配置 Regbus：ctrl_req_i/ctrl_rsp_o，32-bit wdata/rdata，地址/valid/write/wstrb 与 ready/error"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "配置 AXI32：ctrl_int_req/rsp；地址12位、ID0；在 UsbOhciAxi4 内 ctrlBridge 转为内部 BMB 控制访问"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "内核 DMA AXI32：dma_int_req/rsp，32-bit 地址/数据，OHCI 发 AW/W/AR 并接 B/R"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "P01",
+          "meaning": "系统 AXI DMA：dma_req_o/dma_rsp_i → axi_in_req/rsp[AxiIn.usb]；数据位宽适配+地址 domain/mask 后发出，经过主互联访问内存"
+        },
+        {
+          "id": "E05",
+          "source": "N03",
+          "target": "N05",
+          "meaning": "SoC 域 USB 流/命令：front_ohci_io_phy_tx_valid/ready、tx_payload_fragment/last、usbReset/usbResume；cc_input_rx_flow_*、端口状态反向"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N06",
+          "meaning": "PHY 域 USB 流/命令：cc_output_tx_*、usbReset/usbResume → back_phy；back_phy_io_ctrl_rx_flow_*、txEop、tick 和端口状态返回"
+        },
+        {
+          "id": "E07",
+          "source": "N03",
+          "target": "P02",
+          "meaning": "设备中断：OHCI io_interrupt → wrapper intr_o → intr.usb；由设备状态触发，不是 Regbus ready"
+        },
+        {
+          "id": "E08",
+          "source": "N06",
+          "target": "P03",
+          "meaning": "数字引脚：phy_dp_i/dm_i 输入；phy_dp_o/dm_o 与 phy_dp_oe_o/dm_oe_o 输出；平台另实现 PAD/VBUS"
+        }
+      ],
+      "corrections": []
+    },
+    "14_idma": {
+      "edges": [
+        "AXI slave 控制请求/响应：axi_slv_req_i/axi_slv_rsp_o；上游 AxiOut.dma 经 atomics/cut",
+        "内部配置 Reg：dma_reg_req/dma_reg_rsp；控制数据 typedef 随 AxiDataWidth，而生成 reg_top DW32（既有缺口）",
+        "提交任务：1D burst_req_d/be_valid_d/be_ready_d；2D idma_nd_req_d/idma_nd_req_valid_d/ready_d；进入 Job FIFO 的握手才 issue",
+        "后端1D任务：burst_req/be_valid/be_ready；2D 由 midend 展开；后端 idma_rsp/valid/ready 返回2D midend，不应漏返向通道",
+        "独立 AXI read/write：axi_read_req/rsp 与 axi_write_req/rsp → axi_rw_join；包含请求与 R/B 返回",
+        "系统 AXI master：axi_mst_req_o/axi_mst_rsp_i → AxiIn.dma；由 DMA 发起对 SRC/DST 的内存事务",
+        "issue_id：前端→Job FIFO 的 valid&ready；默认2D为 idma_nd_req_valid_d & idma_nd_req_ready_d，进入 transfer_id_gen.issue_i",
+        "1D 专用 retire_id：idma_rsp_valid & idma_rsp_ready → transfer_id_gen.retire_i；默认2D不能直接使用此边，必须从 midend 的 nd_rsp 握手退休",
+        "进度寄存器：transfer_id_gen.next_o/completed_o = next_id/done_id → frontend.next_id_i/done_id_i，读 NEXT_ID 还参与提交"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "AXI slave 控制请求/响应：axi_slv_req_i/axi_slv_rsp_o；上游 AxiOut.dma 经 atomics/cut"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "内部配置 Reg：dma_reg_req/dma_reg_rsp；控制数据 typedef 随 AxiDataWidth，而生成 reg_top DW32（既有缺口）"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "提交任务：1D burst_req_d/be_valid_d/be_ready_d；2D idma_nd_req_d/idma_nd_req_valid_d/ready_d；进入 Job FIFO 的握手才 issue"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "meaning": "后端1D任务：burst_req/be_valid/be_ready；2D 由 midend 展开；后端 idma_rsp/valid/ready 返回2D midend，不应漏返向通道"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "N06",
+          "meaning": "独立 AXI read/write：axi_read_req/rsp 与 axi_write_req/rsp → axi_rw_join；包含请求与 R/B 返回"
+        },
+        {
+          "id": "E06",
+          "source": "N06",
+          "target": "P01",
+          "meaning": "系统 AXI master：axi_mst_req_o/axi_mst_rsp_i → AxiIn.dma；由 DMA 发起对 SRC/DST 的内存事务"
+        },
+        {
+          "id": "E07",
+          "source": "N04",
+          "target": "N07",
+          "meaning": "issue_id：前端→Job FIFO 的 valid&ready；默认2D为 idma_nd_req_valid_d & idma_nd_req_ready_d，进入 transfer_id_gen.issue_i"
+        },
+        {
+          "id": "E08",
+          "source": "N05",
+          "target": "N07",
+          "meaning": "1D 专用 retire_id：idma_rsp_valid & idma_rsp_ready → transfer_id_gen.retire_i；默认2D不能直接使用此边，必须从 midend 的 nd_rsp 握手退休"
+        },
+        {
+          "id": "E09",
+          "source": "N07",
+          "target": "N03",
+          "meaning": "进度寄存器：transfer_id_gen.next_o/completed_o = next_id/done_id → frontend.next_id_i/done_id_i，读 NEXT_ID 还参与提交"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "edge_direction",
+          "edge": "E04",
+          "both": true,
+          "reason": "后端响应必须回midend；2D整体完成取决于这个返回路径",
+          "evidence": "hw/cheshire_idma_wrap.sv:261"
+        },
+        {
+          "action": "replace_edge",
+          "edge": "E08",
+          "source": "N04",
+          "target": "N07",
+          "label": "2D retire：idma_nd_rsp_valid & idma_nd_rsp_ready；1D改从backend取idma_rsp握手",
+          "reason": "默认2D，从backend直连ID退休会错误地把每个1D子任务视为整个2D任务结束",
+          "evidence": "hw/cheshire_idma_wrap.sv:266"
+        },
+        {
+          "action": "edge_caption",
+          "edge": "E07",
+          "label": "issue：frontend→JobFIFO 的 valid&ready",
+          "reason": "不是midend向backend派发时issue_id，需标清N04此边来自入口握手",
+          "evidence": "hw/cheshire_idma_wrap.sv:267"
+        },
+        {
+          "action": "node_caption",
+          "node": "N04",
+          "reason": "默认2D；1D时midend不生成。E08以默认2D画，边表注明1D条件。"
+        }
+      ]
+    },
+    "15_interrupt_exception": {
+      "edges": [
+        "CSR 中断输入：irq_i、time_irq_i、ipi_i；CLIC 本身另经 clic_adapter 形成请求，不能把所有 CLIC 位都画成 mip 输入",
+        "CSR→译码条件：irq_ctrl_csr_id、priv_lvl、clic_mode 等，控制 pending/enable/委托/全局允许；非所有外设线均先由 CSR 寄存",
+        "译码指令/异常：issue_entry_id_issue（含 ex）+ valid/ack，经 issue_stage 进入 scoreboard；不是独立设备 IRQ 总线",
+        "按序提交候选：commit_instr_id_commit（含 ex）到 commit_stage；commit_ack_commit_id 反向推进条目",
+        "执行/访存写回异常：ex_ex_ex_id + trans_id_ex_id + wt_valid_ex_id，经 issue_stage 关联 scoreboard 对应条目",
+        "提交 trap：ex_commit（valid/cause/tval）与 pc_commit → csr_regfile.ex_i/pc_i，保存 epc/cause/tval",
+        "CSR 重定向/控制：trap_vector_base_commit_pcgen、epc_commit_pcgen、eret/flush 相关控制到 controller/frontend；另有 ex_commit.valid 直接输入",
+        "逻辑结果：frontend 开始从处理入口取指；此边是控制效果，不是某个外设端口或软件处理程序硬件模块"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "CSR 中断输入：irq_i、time_irq_i、ipi_i；CLIC 本身另经 clic_adapter 形成请求，不能把所有 CLIC 位都画成 mip 输入"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "CSR→译码条件：irq_ctrl_csr_id、priv_lvl、clic_mode 等，控制 pending/enable/委托/全局允许；非所有外设线均先由 CSR 寄存"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "译码指令/异常：issue_entry_id_issue（含 ex）+ valid/ack，经 issue_stage 进入 scoreboard；不是独立设备 IRQ 总线"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "meaning": "按序提交候选：commit_instr_id_commit（含 ex）到 commit_stage；commit_ack_commit_id 反向推进条目"
+        },
+        {
+          "id": "E05",
+          "source": "N06",
+          "target": "N04",
+          "meaning": "执行/访存写回异常：ex_ex_ex_id + trans_id_ex_id + wt_valid_ex_id，经 issue_stage 关联 scoreboard 对应条目"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N02",
+          "meaning": "提交 trap：ex_commit（valid/cause/tval）与 pc_commit → csr_regfile.ex_i/pc_i，保存 epc/cause/tval"
+        },
+        {
+          "id": "E07",
+          "source": "N02",
+          "target": "N07",
+          "meaning": "CSR 重定向/控制：trap_vector_base_commit_pcgen、epc_commit_pcgen、eret/flush 相关控制到 controller/frontend；另有 ex_commit.valid 直接输入"
+        },
+        {
+          "id": "E08",
+          "source": "N07",
+          "target": "P01",
+          "meaning": "逻辑结果：frontend 开始从处理入口取指；此边是控制效果，不是某个外设端口或软件处理程序硬件模块"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "add_edge",
+          "source": "N01",
+          "target": "N03",
+          "label": "irq_i 直接输入；CLIC 经 clic_adapter 后为 clic_irq_req_id/cause_id",
+          "both": false,
+          "reason": "不能把全部输入串过CSR后再进译码",
+          "evidence": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:773"
+        },
+        {
+          "action": "add_edge",
+          "source": "N05",
+          "target": "N07",
+          "label": "ex_commit.valid → controller.ex_valid_i / frontend.ex_valid_i",
+          "both": false,
+          "evidence": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:717,1346"
+        },
+        {
+          "action": "rename_node",
+          "node": "N04",
+          "lines": [
+            "4  issue_stage / scoreboard",
+            "指令与结果关联",
+            "ex 随指令保存"
+          ],
+          "reason": "id_stage输出经issue_stage接入scoreboard，不应误画成id_stage外直接连接孤立FIFO",
+          "evidence": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:869"
+        },
+        {
+          "action": "edge_kind",
+          "edge": "E08",
+          "kind": "logical_effect",
+          "reason": "PC更新后执行处理代码，是逻辑结果不是硬件线",
+          "evidence": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv:720"
+        }
+      ]
+    },
+    "16a_llc": {
+      "edges": [
+        "地址描述符：AW/AR 经 chan_splitter、仲裁和 rw_spill 产生 spill_desc + spill_valid/ready；不含 W/R 数据",
+        "miss 描述符：desc + miss_valid/miss_ready → evict_unit；按标志决定是否写回及 refill",
+        "refill 完成描述符：refill_desc + refill_desc_valid/ready → merge_unit；不是外存返回的数据",
+        "hit/SPM 描述符：desc + hit_valid/hit_ready → merge_unit.bypass_desc_i；受锁定/顺序限制",
+        "分发描述符：read_desc/read_desc_valid/ready 与 write_desc/write_desc_valid/ready → read/write unit",
+        "前台数据 SRAM 访问：to_way[WChanUnit/RChanUnit] + valid/ready，read_way_out + valid/ready 返回读数据",
+        "后台 SRAM 访问：to_way[EvictUnit/RefilUnit] + valid/ready；evict_way_out 读出脏数据，refill 数据写入 way",
+        "完整 AXI bypass：bypass_req/bypass_resp → i_axi_bypass_mux；跳过数据阵列，响应原路返回",
+        "外存 AXI：from_llc_req/from_llc_resp；evict 发 AW/W 收 B，refill 发 AR 收 R，经 mux 到 mst_req_o/mst_resp_i"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "地址描述符：AW/AR 经 chan_splitter、仲裁和 rw_spill 产生 spill_desc + spill_valid/ready；不含 W/R 数据"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "miss 描述符：desc + miss_valid/miss_ready → evict_unit；按标志决定是否写回及 refill"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "meaning": "refill 完成描述符：refill_desc + refill_desc_valid/ready → merge_unit；不是外存返回的数据"
+        },
+        {
+          "id": "E04",
+          "source": "N02",
+          "target": "N04",
+          "meaning": "hit/SPM 描述符：desc + hit_valid/hit_ready → merge_unit.bypass_desc_i；受锁定/顺序限制"
+        },
+        {
+          "id": "E05",
+          "source": "N04",
+          "target": "N05",
+          "meaning": "分发描述符：read_desc/read_desc_valid/ready 与 write_desc/write_desc_valid/ready → read/write unit"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N06",
+          "meaning": "前台数据 SRAM 访问：to_way[WChanUnit/RChanUnit] + valid/ready，read_way_out + valid/ready 返回读数据"
+        },
+        {
+          "id": "E07",
+          "source": "N03",
+          "target": "N06",
+          "meaning": "后台 SRAM 访问：to_way[EvictUnit/RefilUnit] + valid/ready；evict_way_out 读出脏数据，refill 数据写入 way"
+        },
+        {
+          "id": "E08",
+          "source": "N01",
+          "target": "N07",
+          "meaning": "完整 AXI bypass：bypass_req/bypass_resp → i_axi_bypass_mux；跳过数据阵列，响应原路返回"
+        },
+        {
+          "id": "E09",
+          "source": "N03",
+          "target": "N07",
+          "meaning": "外存 AXI：from_llc_req/from_llc_resp；evict 发 AW/W 收 B，refill 发 AR 收 R，经 mux 到 mst_req_o/mst_resp_i"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "add_edge",
+          "source": "N01",
+          "target": "N05",
+          "both": true,
+          "label": "to_llc_req.w/w_valid/wstrb → write_unit；to_llc_resp.r/b 返回原请求者",
+          "reason": "主图应显式画原AXI数据/响应支路，避免误以为W数据跟AW/AR描述符一起经过hit_miss",
+          "evidence": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv:705,739"
+        },
+        {
+          "action": "figure_caption",
+          "reason": "E01–E05描述符流；E06–E09数据/AXI流；不是所有蓝色边都一种协议"
+        }
+      ]
+    },
+    "16b_spm": {
+      "edges": [
+        "配置/状态：conf_regs_i（cfg_spm/cfg_flush/commit_cfg）送 config；conf_regs_o（flushed/BIST 等及写使能）回 reg_top",
+        "way 用途控制：spm_lock/flushed → hit_miss/tag_store；控制哪些 way 可作 cache/SPM；不是 CPU 数据读写接口",
+        "逻辑选择关系：cache tag 或 SPM 地址决定目标 way；实际读写通过图16A merge/read/write/ways 通路，不能解读为 config 直接访问 SRAM"
+      ],
+      "edge_inventory": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "meaning": "配置/状态：conf_regs_i（cfg_spm/cfg_flush/commit_cfg）送 config；conf_regs_o（flushed/BIST 等及写使能）回 reg_top"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "meaning": "way 用途控制：spm_lock/flushed → hit_miss/tag_store；控制哪些 way 可作 cache/SPM；不是 CPU 数据读写接口"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "P01",
+          "meaning": "逻辑选择关系：cache tag 或 SPM 地址决定目标 way；实际读写通过图16A merge/read/write/ways 通路，不能解读为 config 直接访问 SRAM"
+        }
+      ],
+      "corrections": [
+        {
+          "action": "rename_node",
+          "node": "P01",
+          "lines": [
+            "数据 ways（图16A⑥）"
+          ],
+          "reason": "原端点落在分区示例框顶边；应定义为阵列功能边界，而不是某个特定way的真实端口"
+        },
+        {
+          "action": "edge_kind",
+          "edge": "E03",
+          "kind": "logical_selection",
+          "reason": "本图解释分配关系；实际数据/地址走merge→read/write→ways，应画虚线关系且图注解释，不能画成config直连SRAM",
+          "evidence": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv:690,760"
+        }
+      ]
+    }
+  },
+  "document_check": {
+    "local_links_checked": 119,
+    "errors": [],
+    "line_number_upper_bounds_checked": true,
+    "rtl_simulation_performed": false
+  }
+}

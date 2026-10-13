@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="1575" viewBox="0 0 2800 1575">
+  <title>LLC 多路组相联 Cache 与按 way 切换 SPM</title>
+  <defs>
+    <marker id="a314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66" />
+    </marker>
+    <marker id="a187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78" />
+    </marker>
+    <marker id="aB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043" />
+    </marker>
+    <marker id="a765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489" />
+    </marker>
+    <marker id="a93939D" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#93939D" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="2800" height="1575" fill="#FFFFFF" stroke="none" stroke-width="2" id="background" />
+  <text x="45" y="65" font-family="Microsoft YaHei" font-size="43" fill="#29292D" font-weight="bold" text-anchor="start" id="o2">LLC 多路组相联 Cache 与按 way 切换 SPM</text>
+  <text x="48" y="112" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="start" id="o3">DefaultCfg：8 way × 256 行/way × 8 个 64-bit 块/行 = 128 KiB；每 way 16 KiB</text>
+  <rect x="50" y="185" width="1650" height="920" fill="#D8E8F4" stroke="#29292D" stroke-width="2" id="cache" />
+  <text x="875.0" y="228" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o5">① 全 Cache · 8 路组相联 · CFG_SPM = 0x00</text>
+  <rect x="1740" y="185" width="1010" height="920" fill="#D9EEE8" stroke="#29292D" stroke-width="2" id="partition" />
+  <text x="2245.0" y="228" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o7">② 同一数据阵列按整 way 分配</text>
+  <rect x="95" y="285" width="500" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="tag" />
+  <text x="345.0" y="327.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o9">Tag [47:14]</text>
+  <text x="345.0" y="361.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o10">34 bit</text>
+  <rect x="595" y="285" width="350" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="set" />
+  <text x="770.0" y="327.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o12">Set [13:6]</text>
+  <text x="770.0" y="361.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o13">256 组</text>
+  <rect x="945" y="285" width="360" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="block" />
+  <text x="1125.0" y="327.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o15">Block [5:3]</text>
+  <text x="1125.0" y="361.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o16">8 个数据块</text>
+  <rect x="1305" y="285" width="350" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="byte" />
+  <text x="1480.0" y="327.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o18">Byte [2:0]</text>
+  <text x="1480.0" y="361.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o19">块内 8 字节</text>
+  <text x="905" y="430" font-family="Microsoft YaHei" font-size="28" fill="#314D66" font-weight="normal" text-anchor="middle" id="o20">选中一组；Tag 与各 way 的元数据并行比较</text>
+  <text x="325" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o21">Way 0</text>
+  <text x="495" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o22">Way 1</text>
+  <text x="665" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o23">Way 2</text>
+  <text x="835" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o24">Way 3</text>
+  <text x="1005" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o25">Way 4</text>
+  <text x="1175" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o26">Way 5</text>
+  <text x="1345" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o27">Way 6</text>
+  <text x="1515" y="480" font-family="Microsoft YaHei" font-size="26" fill="#29292D" font-weight="bold" text-anchor="middle" id="o28">Way 7</text>
+  <rect x="230" y="713" width="1380" height="94" fill="#EDF6EE" stroke="#187C78" stroke-width="2.5" id="selected-set" />
+  <text x="135" y="548" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="normal" text-anchor="middle" id="o30">组 0</text>
+  <rect x="250" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-0" />
+  <text x="325.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o32">T / V / D</text>
+  <text x="325.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o33">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="250" y1="540" x2="400" y2="540" id="cell-sep-0-0" />
+  <rect x="420" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-1" />
+  <text x="495.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o36">T / V / D</text>
+  <text x="495.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o37">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="420" y1="540" x2="570" y2="540" id="cell-sep-0-1" />
+  <rect x="590" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-2" />
+  <text x="665.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o40">T / V / D</text>
+  <text x="665.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o41">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="590" y1="540" x2="740" y2="540" id="cell-sep-0-2" />
+  <rect x="760" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-3" />
+  <text x="835.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o44">T / V / D</text>
+  <text x="835.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o45">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="760" y1="540" x2="910" y2="540" id="cell-sep-0-3" />
+  <rect x="930" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-4" />
+  <text x="1005.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o48">T / V / D</text>
+  <text x="1005.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o49">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="930" y1="540" x2="1080" y2="540" id="cell-sep-0-4" />
+  <rect x="1100" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-5" />
+  <text x="1175.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o52">T / V / D</text>
+  <text x="1175.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o53">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1100" y1="540" x2="1250" y2="540" id="cell-sep-0-5" />
+  <rect x="1270" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-6" />
+  <text x="1345.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o56">T / V / D</text>
+  <text x="1345.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o57">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1270" y1="540" x2="1420" y2="540" id="cell-sep-0-6" />
+  <rect x="1440" y="500" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-0-7" />
+  <text x="1515.0" y="530.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o60">T / V / D</text>
+  <text x="1515.0" y="564.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o61">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1440" y1="540" x2="1590" y2="540" id="cell-sep-0-7" />
+  <text x="135" y="658" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="normal" text-anchor="middle" id="o63">组 1</text>
+  <rect x="250" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-0" />
+  <text x="325.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o65">T / V / D</text>
+  <text x="325.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o66">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="250" y1="650" x2="400" y2="650" id="cell-sep-1-0" />
+  <rect x="420" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-1" />
+  <text x="495.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o69">T / V / D</text>
+  <text x="495.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o70">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="420" y1="650" x2="570" y2="650" id="cell-sep-1-1" />
+  <rect x="590" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-2" />
+  <text x="665.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o73">T / V / D</text>
+  <text x="665.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o74">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="590" y1="650" x2="740" y2="650" id="cell-sep-1-2" />
+  <rect x="760" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-3" />
+  <text x="835.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o77">T / V / D</text>
+  <text x="835.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o78">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="760" y1="650" x2="910" y2="650" id="cell-sep-1-3" />
+  <rect x="930" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-4" />
+  <text x="1005.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o81">T / V / D</text>
+  <text x="1005.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o82">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="930" y1="650" x2="1080" y2="650" id="cell-sep-1-4" />
+  <rect x="1100" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-5" />
+  <text x="1175.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o85">T / V / D</text>
+  <text x="1175.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o86">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1100" y1="650" x2="1250" y2="650" id="cell-sep-1-5" />
+  <rect x="1270" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-6" />
+  <text x="1345.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o89">T / V / D</text>
+  <text x="1345.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o90">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1270" y1="650" x2="1420" y2="650" id="cell-sep-1-6" />
+  <rect x="1440" y="610" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-1-7" />
+  <text x="1515.0" y="640.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o93">T / V / D</text>
+  <text x="1515.0" y="674.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o94">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1440" y1="650" x2="1590" y2="650" id="cell-sep-1-7" />
+  <text x="135" y="768" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="bold" text-anchor="middle" id="o96">组 42</text>
+  <rect x="250" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-0" />
+  <text x="325.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o98">T / V / D</text>
+  <text x="325.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o99">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="250" y1="760" x2="400" y2="760" id="cell-sep-2-0" />
+  <rect x="420" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-1" />
+  <text x="495.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o102">T / V / D</text>
+  <text x="495.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o103">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="420" y1="760" x2="570" y2="760" id="cell-sep-2-1" />
+  <rect x="590" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-2" />
+  <text x="665.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o106">T / V / D</text>
+  <text x="665.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o107">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="590" y1="760" x2="740" y2="760" id="cell-sep-2-2" />
+  <rect x="760" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-3" />
+  <text x="835.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o110">T / V / D</text>
+  <text x="835.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o111">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="760" y1="760" x2="910" y2="760" id="cell-sep-2-3" />
+  <rect x="930" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-4" />
+  <text x="1005.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o114">T / V / D</text>
+  <text x="1005.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o115">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="930" y1="760" x2="1080" y2="760" id="cell-sep-2-4" />
+  <rect x="1100" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-5" />
+  <text x="1175.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o118">T / V / D</text>
+  <text x="1175.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o119">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1100" y1="760" x2="1250" y2="760" id="cell-sep-2-5" />
+  <rect x="1270" y="720" width="150" height="80" fill="#D9EEE8" stroke="#29292D" stroke-width="2" id="cell-2-6" />
+  <text x="1345.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o122">T / V / D</text>
+  <text x="1345.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o123">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1270" y1="760" x2="1420" y2="760" id="cell-sep-2-6" />
+  <rect x="1440" y="720" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-2-7" />
+  <text x="1515.0" y="750.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o126">T / V / D</text>
+  <text x="1515.0" y="784.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o127">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1440" y1="760" x2="1590" y2="760" id="cell-sep-2-7" />
+  <text x="135" y="963" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="normal" text-anchor="middle" id="o129">组 255</text>
+  <rect x="250" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-0" />
+  <text x="325.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o131">T / V / D</text>
+  <text x="325.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o132">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="250" y1="955" x2="400" y2="955" id="cell-sep-3-0" />
+  <rect x="420" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-1" />
+  <text x="495.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o135">T / V / D</text>
+  <text x="495.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o136">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="420" y1="955" x2="570" y2="955" id="cell-sep-3-1" />
+  <rect x="590" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-2" />
+  <text x="665.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o139">T / V / D</text>
+  <text x="665.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o140">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="590" y1="955" x2="740" y2="955" id="cell-sep-3-2" />
+  <rect x="760" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-3" />
+  <text x="835.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o143">T / V / D</text>
+  <text x="835.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o144">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="760" y1="955" x2="910" y2="955" id="cell-sep-3-3" />
+  <rect x="930" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-4" />
+  <text x="1005.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o147">T / V / D</text>
+  <text x="1005.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o148">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="930" y1="955" x2="1080" y2="955" id="cell-sep-3-4" />
+  <rect x="1100" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-5" />
+  <text x="1175.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o151">T / V / D</text>
+  <text x="1175.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o152">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1100" y1="955" x2="1250" y2="955" id="cell-sep-3-5" />
+  <rect x="1270" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-6" />
+  <text x="1345.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o155">T / V / D</text>
+  <text x="1345.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o156">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1270" y1="955" x2="1420" y2="955" id="cell-sep-3-6" />
+  <rect x="1440" y="915" width="150" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cell-3-7" />
+  <text x="1515.0" y="945.48" font-family="Microsoft YaHei" font-size="22" fill="#29292D" font-weight="bold" text-anchor="middle" id="o159">T / V / D</text>
+  <text x="1515.0" y="979.48" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o160">64 B</text>
+  <line fill="none" stroke="#93939D" stroke-width="1" stroke-linejoin="miter" x1="1440" y1="955" x2="1590" y2="955" id="cell-sep-3-7" />
+  <circle cx="325" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-0-0" />
+  <circle cx="325" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-0-1" />
+  <circle cx="325" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-0-2" />
+  <circle cx="495" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-1-0" />
+  <circle cx="495" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-1-1" />
+  <circle cx="495" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-1-2" />
+  <circle cx="665" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-2-0" />
+  <circle cx="665" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-2-1" />
+  <circle cx="665" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-2-2" />
+  <circle cx="835" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-3-0" />
+  <circle cx="835" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-3-1" />
+  <circle cx="835" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-3-2" />
+  <circle cx="1005" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-4-0" />
+  <circle cx="1005" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-4-1" />
+  <circle cx="1005" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-4-2" />
+  <circle cx="1175" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-5-0" />
+  <circle cx="1175" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-5-1" />
+  <circle cx="1175" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-5-2" />
+  <circle cx="1345" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-6-0" />
+  <circle cx="1345" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-6-1" />
+  <circle cx="1345" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-6-2" />
+  <circle cx="1515" cy="837" r="2.5" fill="#606773" stroke="none" id="ellipsis-7-0" />
+  <circle cx="1515" cy="850" r="2.5" fill="#606773" stroke="none" id="ellipsis-7-1" />
+  <circle cx="1515" cy="863" r="2.5" fill="#606773" stroke="none" id="ellipsis-7-2" />
+  <polyline fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a187C78)" points="770,385 770,400 210,400 210,760 230,760" id="set-index" />
+  <text x="2245" y="264" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o187">C = Cache · S = SPM</text>
+  <text x="905" y="1037" font-family="Microsoft YaHei" font-size="27" fill="#187C78" font-weight="normal" text-anchor="middle" id="o188">示例命中：组 42 / Way 6，由 Tag + Valid 选 way</text>
+  <text x="905" y="1075" font-family="Microsoft YaHei" font-size="25" fill="#606773" font-weight="normal" text-anchor="middle" id="o189">未命中：替换 / 回填；Dirty 决定是否回写 DDR</text>
+  <text x="1780" y="300" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="start" id="o190">0x00：128 KiB Cache</text>
+  <rect x="1780" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-0" />
+  <text x="1830.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o192">W0</text>
+  <text x="1830.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o193">C</text>
+  <rect x="1897" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-1" />
+  <text x="1947.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o195">W1</text>
+  <text x="1947.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o196">C</text>
+  <rect x="2014" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-2" />
+  <text x="2064.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o198">W2</text>
+  <text x="2064.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o199">C</text>
+  <rect x="2131" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-3" />
+  <text x="2181.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o201">W3</text>
+  <text x="2181.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o202">C</text>
+  <rect x="2248" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-4" />
+  <text x="2298.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o204">W4</text>
+  <text x="2298.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o205">C</text>
+  <rect x="2365" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-5" />
+  <text x="2415.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o207">W5</text>
+  <text x="2415.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o208">C</text>
+  <rect x="2482" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-6" />
+  <text x="2532.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o210">W6</text>
+  <text x="2532.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o211">C</text>
+  <rect x="2599" y="335" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-0-7" />
+  <text x="2649.5" y="376.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o213">W7</text>
+  <text x="2649.5" y="410.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o214">C</text>
+  <text x="1780" y="495" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="start" id="o215">0x0F：64 KiB SPM + 64 KiB Cache</text>
+  <rect x="1780" y="530" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-1-0" />
+  <text x="1830.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o217">W0</text>
+  <text x="1830.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o218">S</text>
+  <rect x="1897" y="530" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-1-1" />
+  <text x="1947.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o220">W1</text>
+  <text x="1947.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o221">S</text>
+  <rect x="2014" y="530" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-1-2" />
+  <text x="2064.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o223">W2</text>
+  <text x="2064.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o224">S</text>
+  <rect x="2131" y="530" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-1-3" />
+  <text x="2181.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o226">W3</text>
+  <text x="2181.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o227">S</text>
+  <rect x="2248" y="530" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-1-4" />
+  <text x="2298.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o229">W4</text>
+  <text x="2298.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o230">C</text>
+  <rect x="2365" y="530" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-1-5" />
+  <text x="2415.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o232">W5</text>
+  <text x="2415.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o233">C</text>
+  <rect x="2482" y="530" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-1-6" />
+  <text x="2532.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o235">W6</text>
+  <text x="2532.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o236">C</text>
+  <rect x="2599" y="530" width="101" height="100" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="partition-1-7" />
+  <text x="2649.5" y="571.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o238">W7</text>
+  <text x="2649.5" y="605.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o239">C</text>
+  <text x="1780" y="690" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="start" id="o240">0xFF：128 KiB SPM；DDR 访问旁路</text>
+  <rect x="1780" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-0" />
+  <text x="1830.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o242">W0</text>
+  <text x="1830.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o243">S</text>
+  <rect x="1897" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-1" />
+  <text x="1947.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o245">W1</text>
+  <text x="1947.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o246">S</text>
+  <rect x="2014" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-2" />
+  <text x="2064.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o248">W2</text>
+  <text x="2064.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o249">S</text>
+  <rect x="2131" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-3" />
+  <text x="2181.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o251">W3</text>
+  <text x="2181.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o252">S</text>
+  <rect x="2248" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-4" />
+  <text x="2298.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o254">W4</text>
+  <text x="2298.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o255">S</text>
+  <rect x="2365" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-5" />
+  <text x="2415.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o257">W5</text>
+  <text x="2415.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o258">S</text>
+  <rect x="2482" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-6" />
+  <text x="2532.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o260">W6</text>
+  <text x="2532.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o261">S</text>
+  <rect x="2599" y="725" width="101" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="partition-2-7" />
+  <text x="2649.5" y="766.16" font-family="Microsoft YaHei" font-size="24" fill="#29292D" font-weight="bold" text-anchor="middle" id="o263">W7</text>
+  <text x="2649.5" y="800.16" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o264">S</text>
+  <text x="2245" y="920" font-family="Microsoft YaHei" font-size="25" fill="#29292D" font-weight="normal" text-anchor="middle" id="o265">SPM 固定映射：base + way × 0x4000</text>
+  <text x="2245" y="964" font-family="Microsoft YaHei" font-size="25" fill="#29292D" font-weight="normal" text-anchor="middle" id="o266">Way 2：0x10008000–0x1000BFFF</text>
+  <text x="2245" y="1008" font-family="Microsoft YaHei" font-size="25" fill="#29292D" font-weight="normal" text-anchor="middle" id="o267">0x10008AAB → Way 2 / 组 42 / 块 5 / 字节 3</text>
+  <text x="2245" y="1052" font-family="Microsoft YaHei" font-size="25" fill="#29292D" font-weight="normal" text-anchor="middle" id="o268">直接寻址；非 SPM way 的对应地址槽访问报错</text>
+  <rect x="50" y="1150" width="2700" height="330" fill="#F5E1C9" stroke="#29292D" stroke-width="2" id="transition" />
+  <text x="1400.0" y="1193" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o270">③ 用途转换：软件目标位图 → 硬件协调提交与刷新</text>
+  <rect x="85" y="1260" width="490" height="155" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="quiesce" />
+  <text x="330.0" y="1313.02" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o272">停止相关访问</text>
+  <text x="330.0" y="1347.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o273">迁移代码 / 栈 / 保留数据</text>
+  <text x="330.0" y="1381.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o274">协调缓冲与在途事务</text>
+  <line fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a765489)" x1="575" y1="1337" x2="620" y2="1337" id="transition-0" />
+  <rect x="620" y="1260" width="490" height="155" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="cfg" />
+  <text x="865.0" y="1313.02" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o277">写 CFG_SPM</text>
+  <text x="865.0" y="1347.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o278">1 → SPM</text>
+  <text x="865.0" y="1381.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o279">0 → Cache</text>
+  <line fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a765489)" x1="1110" y1="1337" x2="1155" y2="1337" id="transition-1" />
+  <rect x="1155" y="1260" width="490" height="155" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="commit" />
+  <text x="1400.0" y="1330.02" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o282">写 COMMIT = 1</text>
+  <text x="1400.0" y="1364.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o283">发起配置提交</text>
+  <line fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a765489)" x1="1645" y1="1337" x2="1690" y2="1337" id="transition-2" />
+  <rect x="1690" y="1260" width="490" height="155" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="fsm" />
+  <text x="1935.0" y="1313.02" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o286">LLC 配置 FSM</text>
+  <text x="1935.0" y="1347.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o287">协调已有请求</text>
+  <text x="1935.0" y="1381.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o288">必要 flush / Dirty 回写</text>
+  <line fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a765489)" x1="2180" y1="1337" x2="2225" y2="1337" id="transition-3" />
+  <rect x="2225" y="1260" width="490" height="155" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="resume" />
+  <text x="2470.0" y="1330.02" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o291">按寄存器契约确认完成</text>
+  <text x="2470.0" y="1364.02" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o292">恢复对新用途的访问</text>
+  <text x="75" y="1533" font-family="Microsoft YaHei" font-size="27" fill="#606773" font-weight="normal" text-anchor="start" id="o293">SPM 复用原阵列；用途转换不自动复制数据。CPU L1 属性仍需单独处理。</text>
+</svg>

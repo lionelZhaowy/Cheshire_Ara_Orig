@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoC 横向架构图 · 2026-10-12</title>
+<style>
+body{margin:0;background:#f1f4f7;color:#24374b;font:16px/1.6 system-ui,sans-serif}
+main{max-width:1800px;margin:auto;padding:28px}
+h1{font-size:28px;margin:0 0 6px}h2{font-size:22px;margin:0}
+p{margin:8px 0 18px}a{color:#26699b}nav{display:flex;gap:20px;flex-wrap:wrap}
+article{background:white;padding:20px;margin:24px 0;border:1px solid #d4dee7;border-radius:8px}
+img{display:block;width:100%;height:auto;margin-top:18px}small{color:#61758a}
+</style>
+<main>
+<h1>Cheshire + CVA6 + Ara · SoC 横向架构图</h1>
+<p>2026-10-12 · 两种布局，保留全部 AXI 主从端口、Regbus 外设及 DDR 三端口。</p>
+<nav><a href="soc_landscape_comparison.pptx">下载两页 PPTX 合辑</a><a href="README.md">图稿说明与复现</a></nav>
+<article>
+<h2>版本 1 · 参考图风格</h2>
+<p>工业芯片框图：深色细边框、柔和功能分区、嵌套 IP；16:9 横向布局。</p>
+<nav><a href="soc_reference_style.svg">SVG 母版</a><a href="soc_reference_style.png">原尺寸 PNG</a><a href="soc_reference_style.pptx">可编辑 PPTX</a></nav>
+<a href="soc_reference_style.svg"><img src="soc_reference_style.png" alt="参考图风格的完整 SoC 横向架构图"></a>
+</article>
+<article>
+<h2>版本 2 · 原版重排</h2>
+<p>保留原配色与圆角风格；处理子系统上置，AXI 与 DDR 并排，Regbus 横贯下部。</p>
+<nav><a href="soc_rearranged.svg">SVG 母版</a><a href="soc_rearranged.png">原尺寸 PNG</a><a href="soc_rearranged.pptx">可编辑 PPTX</a></nav>
+<a href="soc_rearranged.svg"><img src="soc_rearranged.png" alt="延续原版配色的完整 SoC 横向重排架构图"></a>
+</article>
+<small>两版 PPTX 均为原生图形、文本与箭头。PNG 来自 SVG 渲染；Office 显示与编辑未实测。新增路径仍为候选方案。</small>
+</main>
+</html>

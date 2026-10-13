@@ -1,0 +1,432 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "11  Serial Link：AXI 通道编码、流控与源同步物理传输",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 207.5,
+      "y": 224.0,
+      "text": "1  SoC 外层适配",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 207.5,
+      "y": 256.0,
+      "text": "出站地址 domain / mask",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 207.5,
+      "y": 288.0,
+      "text": "axi_id_remap",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 207.5,
+      "y": 320.0,
+      "text": "AMO 标记适配",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 207.5,
+      "y": 352.0,
+      "text": "对端入站 → 本地 AXI",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 682.5,
+      "y": 240.0,
+      "text": "2  serial_link_network",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 682.5,
+      "y": 272.0,
+      "text": "AXI AW / W / B / AR / R",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 682.5,
+      "y": 304.0,
+      "text": "通道仲裁 / 封装 / 还原",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 682.5,
+      "y": 336.0,
+      "text": "AXI ↔ payload stream",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1172.5,
+      "y": 240.0,
+      "text": "3  serial_link_data_link",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1172.5,
+      "y": 272.0,
+      "text": "接收缓冲 / 流控",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1172.5,
+      "y": 304.0,
+      "text": "payload 拆分 / 重组",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1172.5,
+      "y": 336.0,
+      "text": "raw mode 支路",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1600.0,
+      "y": 240.0,
+      "text": "4  channel_allocator",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1600.0,
+      "y": 272.0,
+      "text": "NumChannels > 1 时",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1600.0,
+      "y": 304.0,
+      "text": "分配与还原通道",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1600.0,
+      "y": 336.0,
+      "text": "单通道直接连接",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1497.5,
+      "y": 650.0,
+      "text": "5  serial_link_physical × 通道",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1497.5,
+      "y": 682.0,
+      "text": "发送时钟分频 / 相位控制",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1497.5,
+      "y": 714.0,
+      "text": "DDR 引脚收发 / 接收跨域",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1497.5,
+      "y": 746.0,
+      "text": "ddr_rcv_clk + ddr 数据 lanes",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1145,
+      "y": 905,
+      "text": "外部串行链路；此处 DDR 指双边沿传输",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 735.0,
+      "y": 660.0,
+      "text": "6  serial_link_reg_top",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 692.0,
+      "text": "Regbus → 可选 reg_cdc → 配置",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 724.0,
+      "text": "TX clk_div / raw mode / FIFO 控制",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 756.0,
+      "text": "当前 SoC 的三路逻辑时钟都接 clk_i",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 45,
+      "y": 855,
+      "text": "AXI 事务跨芯片传输，不是 UART，也不自动提供缓存一致性。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 185,
+      "w": 335,
+      "h": 190,
+      "lines": [
+        "1  SoC 外层适配",
+        "出站地址 domain / mask",
+        "axi_id_remap",
+        "AMO 标记适配",
+        "对端入站 → 本地 AXI"
+      ]
+    },
+    {
+      "x": 500,
+      "y": 185,
+      "w": 365,
+      "h": 190,
+      "lines": [
+        "2  serial_link_network",
+        "AXI AW / W / B / AR / R",
+        "通道仲裁 / 封装 / 还原",
+        "AXI ↔ payload stream"
+      ]
+    },
+    {
+      "x": 1000,
+      "y": 185,
+      "w": 345,
+      "h": 190,
+      "lines": [
+        "3  serial_link_data_link",
+        "接收缓冲 / 流控",
+        "payload 拆分 / 重组",
+        "raw mode 支路"
+      ]
+    },
+    {
+      "x": 1440,
+      "y": 195,
+      "w": 320,
+      "h": 170,
+      "lines": [
+        "4  channel_allocator",
+        "NumChannels > 1 时",
+        "分配与还原通道",
+        "单通道直接连接"
+      ]
+    },
+    {
+      "x": 1260,
+      "y": 600,
+      "w": 475,
+      "h": 180,
+      "lines": [
+        "5  serial_link_physical × 通道",
+        "发送时钟分频 / 相位控制",
+        "DDR 引脚收发 / 接收跨域",
+        "ddr_rcv_clk + ddr 数据 lanes"
+      ]
+    },
+    {
+      "x": 465,
+      "y": 620,
+      "w": 540,
+      "h": 160,
+      "lines": [
+        "6  serial_link_reg_top",
+        "Regbus → 可选 reg_cdc → 配置",
+        "TX clk_div / raw mode / FIFO 控制",
+        "当前 SoC 的三路逻辑时钟都接 clk_i"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          375,
+          280
+        ],
+        [
+          500,
+          280
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          865,
+          280
+        ],
+        [
+          1000,
+          280
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1345,
+          280
+        ],
+        [
+          1440,
+          280
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1600,
+          365
+        ],
+        [
+          1600,
+          600
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1485,
+          780
+        ],
+        [
+          1485,
+          870
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1005,
+          695
+        ],
+        [
+          1260,
+          695
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          735,
+          620
+        ],
+        [
+          735,
+          485
+        ],
+        [
+          1170,
+          485
+        ],
+        [
+          1170,
+          375
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

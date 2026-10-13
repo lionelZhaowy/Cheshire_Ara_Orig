@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+  <title>DDR 多端口仲裁与 QoS</title>
+  <defs>
+    <marker id="a314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66" />
+    </marker>
+    <marker id="a187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78" />
+    </marker>
+    <marker id="aB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043" />
+    </marker>
+    <marker id="a765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489" />
+    </marker>
+    <marker id="a93939D" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#93939D" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2" id="background" />
+  <text x="45" y="65" font-family="Microsoft YaHei" font-size="43" fill="#29292D" font-weight="bold" text-anchor="start" id="o2">DDR 多端口仲裁与 QoS</text>
+  <text x="48" y="112" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="start" id="o3">历史独立主口方案：S0 = SoC · S1 = ISP · S2 = NPU（与后续 GB 三口方案区分）</text>
+  <rect x="60" y="190" width="960" height="390" fill="#F1D7D9" stroke="#29292D" stroke-width="2" id="soc" />
+  <text x="540.0" y="233" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o5">SoC 主存路径</text>
+  <rect x="100" y="285" width="220" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="2" id="cpu-ara" />
+  <text x="210.0" y="347.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o7">CVA6 + Ara</text>
+  <text x="210.0" y="381.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o8">现有发起端</text>
+  <rect x="380" y="285" width="220" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="2" id="xbar" />
+  <text x="490.0" y="347.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o10">Crossbar</text>
+  <text x="490.0" y="381.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o11">地址路由</text>
+  <rect x="660" y="250" width="320" height="210" fill="#D8E8F4" stroke="#29292D" stroke-width="2" id="llc" />
+  <text x="820.0" y="330.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o13">原子适配 + LLC</text>
+  <text x="820.0" y="364.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o14">LLC 外存出口</text>
+  <text x="820.0" y="398.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o15">SPM 访问可留在片内</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" x1="320" y1="355" x2="380" y2="355" id="soc-xbar" />
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" x1="600" y1="355" x2="660" y2="355" id="xbar-llc" />
+  <rect x="1070" y="190" width="560" height="390" fill="#F5E1C9" stroke="#29292D" stroke-width="2" stroke-dasharray="10 6" id="isp-domain" />
+  <text x="1350.0" y="233" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o19">ISP 数据主口</text>
+  <rect x="1100" y="280" width="500" height="180" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="isp" />
+  <text x="1350.0" y="345.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o21">ISP AXI Master</text>
+  <text x="1350.0" y="379.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o22">写帧缓冲</text>
+  <text x="1350.0" y="413.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o23">绕过主 Crossbar / LLC</text>
+  <rect x="1680" y="190" width="660" height="390" fill="#D9EEE8" stroke="#29292D" stroke-width="2" stroke-dasharray="10 6" id="npu-domain" />
+  <text x="2010.0" y="233" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o25">NPU 数据主口</text>
+  <rect x="1730" y="280" width="560" height="180" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="npu" />
+  <text x="2010.0" y="345.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o27">NPU AXI Master</text>
+  <text x="2010.0" y="379.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o28">读写权重 / 特征图</text>
+  <text x="2010.0" y="413.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o29">绕过 LLC</text>
+  <rect x="60" y="740" width="1900" height="460" fill="#D8E8F4" stroke="#29292D" stroke-width="2" stroke-dasharray="10 6" id="controller" />
+  <text x="1010.0" y="783" font-family="Microsoft YaHei" font-size="30" fill="#29292D" font-weight="bold" text-anchor="middle" id="o31">DDR Controller 内部</text>
+  <rect x="220" y="810" width="170" height="95" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="port0" />
+  <text x="305.0" y="849.68" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="bold" text-anchor="middle" id="o33">S0</text>
+  <text x="305.0" y="883.68" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o34">SoC 外存</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" x1="305" y1="905" x2="305" y2="955" id="portjoin0" />
+  <rect x="1150" y="810" width="170" height="95" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="port1" />
+  <text x="1235.0" y="849.68" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="bold" text-anchor="middle" id="o37">S1</text>
+  <text x="1235.0" y="883.68" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o38">ISP 写入</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" x1="1235" y1="905" x2="1235" y2="955" id="portjoin1" />
+  <rect x="1750" y="810" width="170" height="95" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="port2" />
+  <text x="1835.0" y="849.68" font-family="Microsoft YaHei" font-size="27" fill="#29292D" font-weight="bold" text-anchor="middle" id="o41">S2</text>
+  <text x="1835.0" y="883.68" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="middle" id="o42">NPU 读 / 写</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" x1="1835" y1="905" x2="1835" y2="955" id="portjoin2" />
+  <polyline fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" points="820,460 820,640 305,640 305,810" id="llc-port" />
+  <polyline fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" points="1350,460 1350,675 1235,675 1235,810" id="isp-port" />
+  <polyline fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" points="2010,460 2010,640 1835,640 1835,810" id="npu-port" />
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" x1="305" y1="955" x2="1835" y2="955" id="merge" />
+  <rect x="160" y="1020" width="500" height="140" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="arbiter" />
+  <text x="410.0" y="1065.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o49">端口仲裁 / QoS</text>
+  <text x="410.0" y="1099.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o50">可配置优先级 · 轮询</text>
+  <text x="410.0" y="1133.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o51">页命中限制</text>
+  <rect x="900" y="1020" width="930" height="140" fill="#FFFFFF" stroke="#29292D" stroke-width="2" id="core" />
+  <text x="1365.0" y="1065.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o53">Controller Core</text>
+  <text x="1365.0" y="1099.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o54">内部命令队列 · FR-FCFS</text>
+  <text x="1365.0" y="1133.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o55">遵守 DRAM 时序</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" x1="410" y1="955" x2="410" y2="1020" id="arbiter-in" />
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" x1="660" y1="1090" x2="900" y2="1090" id="arbiter-core" />
+  <rect x="2010" y="1015" width="330" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="2" id="phy" />
+  <text x="2175.0" y="1082.52" font-family="Microsoft YaHei" font-size="28" fill="#29292D" font-weight="bold" text-anchor="middle" id="o59">PHY + SDRAM</text>
+  <text x="2175.0" y="1116.52" font-family="Microsoft YaHei" font-size="24" fill="#606773" font-weight="normal" text-anchor="middle" id="o60">共享外存带宽</text>
+  <line fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#a314D66)" marker-start="url(#a314D66)" x1="1830" y1="1090" x2="2010" y2="1090" id="core-phy" />
+  <line fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#a314D66)" x1="55" y1="1305" x2="120" y2="1305" id="legend0" />
+  <text x="135" y="1313" font-family="Microsoft YaHei" font-size="22" fill="#314D66" font-weight="normal" text-anchor="start" id="o63">AXI 请求 / 数据</text>
+  <rect x="585" y="1290" width="65" height="27" fill="#FFFFFF" stroke="#93939D" stroke-width="2" stroke-dasharray="10 6" id="dash-legend" />
+  <text x="675" y="1313" font-family="Microsoft YaHei" font-size="22" fill="#606773" font-weight="normal" text-anchor="start" id="o65">虚线分区：尚未集成</text>
+</svg>

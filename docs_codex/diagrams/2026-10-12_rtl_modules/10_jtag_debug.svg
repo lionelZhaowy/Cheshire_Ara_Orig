@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">10  JTAG Debug：DMI 控制、hart 调试与系统总线访问</text>
+<rect x="40" y="185" width="270" height="155" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="175.0" y="238.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">JTAG 引脚</text>
+<text x="175.0" y="270.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">TCK / TMS / TDI</text>
+<text x="175.0" y="302.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">TDO / TRSTn</text>
+<rect x="430" y="175" width="390" height="175" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="625.0" y="222.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  dmi_jtag</text>
+<text x="625.0" y="254.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">JTAG TAP / DTM</text>
+<text x="625.0" y="286.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">DMI 请求 / 响应跨域</text>
+<text x="625.0" y="318.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">TCK 域 ↔ clk_i 域</text>
+<polyline points="310,265 430,265" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="430,265 418.0,260.0 418.0,270.0" fill="#28699B"/>
+<polygon points="310,265 322.0,270.0 322.0,260.0" fill="#28699B"/>
+<rect x="975" y="160" width="375" height="205" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="1162.5" y="206.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  dm_top</text>
+<text x="1162.5" y="238.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">dm_csrs：DMI 配置</text>
+<text x="1162.5" y="270.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">dm_mem：调试执行存储窗</text>
+<text x="1162.5" y="302.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">dm_sba：系统总线访问</text>
+<text x="1162.5" y="334.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">dmactive → dbg_active_o</text>
+<polyline points="820,265 975,265" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="975,265 963.0,260.0 963.0,270.0" fill="#28699B"/>
+<polygon points="820,265 832.0,270.0 832.0,260.0" fill="#28699B"/>
+<text x="855" y="243" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">DMI</text>
+<rect x="1485" y="175" width="265" height="175" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<text x="1617.5" y="222.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  hart 调试入口</text>
+<text x="1617.5" y="254.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">debug_req</text>
+<text x="1617.5" y="286.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">执行 debug ROM</text>
+<text x="1617.5" y="318.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">访问程序缓冲区</text>
+<polyline points="1350,250 1485,250" fill="none" stroke="#765096" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1485,250 1473.0,245.0 1473.0,255.0" fill="#765096"/>
+<rect x="1010" y="610" width="375" height="170" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="1197.5" y="655.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  axi_from_mem</text>
+<text x="1197.5" y="687.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SBA req / gnt / rvalid</text>
+<text x="1197.5" y="719.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">→ AXI master</text>
+<text x="1197.5" y="751.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">AxiIn.dbg</text>
+<polyline points="1175,365 1175,610" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1175,610 1180.0,598.0 1170.0,598.0" fill="#28699B"/>
+<polygon points="1175,365 1170.0,377.0 1180.0,377.0" fill="#28699B"/>
+<polyline points="1195,780 1195,860 1720,860" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1720,860 1708.0,855.0 1708.0,865.0" fill="#28699B"/>
+<polygon points="1195,780 1190.0,792.0 1200.0,792.0" fill="#28699B"/>
+<text x="1410" y="841" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">访问系统地址空间</text>
+<rect x="430" y="605" width="390" height="185" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="625.0" y="641.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  调试存储窗适配</text>
+<text x="625.0" y="673.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">AXI atomics / cut</text>
+<text x="625.0" y="705.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">axi_to_mem_interleaved</text>
+<text x="625.0" y="737.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">→ dm_top.slave_*</text>
+<text x="625.0" y="769.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">供 hart 执行调试代码</text>
+<polyline points="40,690 430,690" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="430,690 418.0,685.0 418.0,695.0" fill="#28699B"/>
+<polygon points="40,690 52.0,695.0 52.0,685.0" fill="#28699B"/>
+<text x="45" y="650" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">AxiOut.dbg</text>
+<polyline points="625,605 625,465 1030,465 1030,365" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1030,365 1025.0,377.0 1035.0,377.0" fill="#28699B"/>
+<polygon points="625,605 630.0,593.0 620.0,593.0" fill="#28699B"/>
+<text x="45" y="864" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">当前 ndmreset_o 未接出；不能由 DMI 寄存器存在就推断 SoC 复位已实现。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

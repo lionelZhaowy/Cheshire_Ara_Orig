@@ -1,0 +1,718 @@
+{
+  "canvas": [
+    2800.0,
+    1575.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      2800,
+      1575
+    ],
+    "sources": [
+      50,
+      185,
+      520,
+      1250
+    ],
+    "fabric": [
+      615,
+      185,
+      1320,
+      1250
+    ],
+    "targets": [
+      1980,
+      185,
+      770,
+      1250
+    ],
+    "source0": [
+      80,
+      280,
+      450,
+      120
+    ],
+    "demux0": [
+      655,
+      297,
+      245,
+      86
+    ],
+    "source1": [
+      80,
+      435,
+      450,
+      120
+    ],
+    "demux1": [
+      655,
+      452,
+      245,
+      86
+    ],
+    "source2": [
+      80,
+      590,
+      450,
+      120
+    ],
+    "demux2": [
+      655,
+      607,
+      245,
+      86
+    ],
+    "source3": [
+      80,
+      745,
+      450,
+      120
+    ],
+    "demux3": [
+      655,
+      762,
+      245,
+      86
+    ],
+    "source4": [
+      80,
+      900,
+      450,
+      120
+    ],
+    "demux4": [
+      655,
+      917,
+      245,
+      86
+    ],
+    "source5": [
+      80,
+      1055,
+      450,
+      120
+    ],
+    "demux5": [
+      655,
+      1072,
+      245,
+      86
+    ],
+    "source6": [
+      80,
+      1210,
+      450,
+      120
+    ],
+    "demux6": [
+      655,
+      1227,
+      245,
+      86
+    ],
+    "mux0": [
+      1615,
+      310,
+      260,
+      90
+    ],
+    "mux1": [
+      1615,
+      515,
+      260,
+      90
+    ],
+    "mux2": [
+      1615,
+      755,
+      260,
+      90
+    ],
+    "mux3": [
+      1615,
+      1050,
+      260,
+      90
+    ],
+    "mux4": [
+      1615,
+      1235,
+      260,
+      90
+    ],
+    "target0": [
+      2020,
+      290.0,
+      690,
+      130
+    ],
+    "target1": [
+      2020,
+      465.0,
+      690,
+      190
+    ],
+    "target2": [
+      2020,
+      667.5,
+      690,
+      265
+    ],
+    "target3": [
+      2020,
+      1030.0,
+      690,
+      130
+    ],
+    "target4": [
+      2020,
+      1205.0,
+      690,
+      150
+    ]
+  },
+  "texts": [
+    {
+      "text": "Cheshire + CVA6 + Ara · AXI Crossbar",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "Ara 仿真配置：2 lanes / VLEN 2048 · 64-bit AXI · RT 关闭 · 7 × 5 全连接",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "AXI master / 发起端",
+      "x": 310.0,
+      "y": 228,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "sources",
+      "id": "o5"
+    },
+    {
+      "text": "每输入地址译码 → 每目标独立仲裁",
+      "x": 1275.0,
+      "y": 228,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "fabric",
+      "id": "o7"
+    },
+    {
+      "text": "AXI slave / 目标与下游",
+      "x": 2365.0,
+      "y": 228,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "targets",
+      "id": "o9"
+    },
+    {
+      "text": "S0 · CVA6 core 0",
+      "x": 305.0,
+      "y": 332.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source0",
+      "id": "o11"
+    },
+    {
+      "text": "cheshire_cva6_wrap",
+      "x": 305.0,
+      "y": 366.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source0",
+      "id": "o12"
+    },
+    {
+      "text": "DEMUX S0",
+      "x": 777.5,
+      "y": 332.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux0",
+      "id": "o14"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 366.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux0",
+      "id": "o15"
+    },
+    {
+      "text": "S1 · Debug / SBA",
+      "x": 305.0,
+      "y": 487.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source1",
+      "id": "o18"
+    },
+    {
+      "text": "调试总线发起端",
+      "x": 305.0,
+      "y": 521.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source1",
+      "id": "o19"
+    },
+    {
+      "text": "DEMUX S1",
+      "x": 777.5,
+      "y": 487.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux1",
+      "id": "o21"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 521.1800000000001,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux1",
+      "id": "o22"
+    },
+    {
+      "text": "S2 · Ara 访存",
+      "x": 305.0,
+      "y": 642.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source2",
+      "id": "o25"
+    },
+    {
+      "text": "filter → 64→64 位宽适配",
+      "x": 305.0,
+      "y": 676.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source2",
+      "id": "o26"
+    },
+    {
+      "text": "DEMUX S2",
+      "x": 777.5,
+      "y": 642.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux2",
+      "id": "o28"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 676.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux2",
+      "id": "o29"
+    },
+    {
+      "text": "S3 · iDMA 数据",
+      "x": 305.0,
+      "y": 797.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source3",
+      "id": "o32"
+    },
+    {
+      "text": "独立搬运主口",
+      "x": 305.0,
+      "y": 831.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source3",
+      "id": "o33"
+    },
+    {
+      "text": "DEMUX S3",
+      "x": 777.5,
+      "y": 797.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux3",
+      "id": "o35"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 831.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux3",
+      "id": "o36"
+    },
+    {
+      "text": "S4 · Serial Link RX",
+      "x": 305.0,
+      "y": 952.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source4",
+      "id": "o39"
+    },
+    {
+      "text": "远端请求入口",
+      "x": 305.0,
+      "y": 986.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source4",
+      "id": "o40"
+    },
+    {
+      "text": "DEMUX S4",
+      "x": 777.5,
+      "y": 952.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux4",
+      "id": "o42"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 986.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux4",
+      "id": "o43"
+    },
+    {
+      "text": "S5 · VGA 取帧",
+      "x": 305.0,
+      "y": 1107.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source5",
+      "id": "o46"
+    },
+    {
+      "text": "帧缓冲读取",
+      "x": 305.0,
+      "y": 1141.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source5",
+      "id": "o47"
+    },
+    {
+      "text": "DEMUX S5",
+      "x": 777.5,
+      "y": 1107.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux5",
+      "id": "o49"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 1141.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux5",
+      "id": "o50"
+    },
+    {
+      "text": "S6 · USB DMA",
+      "x": 305.0,
+      "y": 1262.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "source6",
+      "id": "o53"
+    },
+    {
+      "text": "OHCI 数据访问",
+      "x": 305.0,
+      "y": 1296.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "source6",
+      "id": "o54"
+    },
+    {
+      "text": "DEMUX S6",
+      "x": 777.5,
+      "y": 1262.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "demux6",
+      "id": "o56"
+    },
+    {
+      "text": "AR / AW 译码",
+      "x": 777.5,
+      "y": 1296.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "demux6",
+      "id": "o57"
+    },
+    {
+      "text": "MUX M0",
+      "x": 1745.0,
+      "y": 347.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "mux0",
+      "id": "o98"
+    },
+    {
+      "text": "独立仲裁",
+      "x": 1745.0,
+      "y": 381.18,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mux0",
+      "id": "o99"
+    },
+    {
+      "text": "MUX M1",
+      "x": 1745.0,
+      "y": 552.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "mux1",
+      "id": "o102"
+    },
+    {
+      "text": "独立仲裁",
+      "x": 1745.0,
+      "y": 586.18,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mux1",
+      "id": "o103"
+    },
+    {
+      "text": "MUX M2",
+      "x": 1745.0,
+      "y": 792.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "mux2",
+      "id": "o106"
+    },
+    {
+      "text": "独立仲裁",
+      "x": 1745.0,
+      "y": 826.18,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mux2",
+      "id": "o107"
+    },
+    {
+      "text": "MUX M3",
+      "x": 1745.0,
+      "y": 1087.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "mux3",
+      "id": "o110"
+    },
+    {
+      "text": "独立仲裁",
+      "x": 1745.0,
+      "y": 1121.18,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mux3",
+      "id": "o111"
+    },
+    {
+      "text": "MUX M4",
+      "x": 1745.0,
+      "y": 1272.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "mux4",
+      "id": "o114"
+    },
+    {
+      "text": "独立仲裁",
+      "x": 1745.0,
+      "y": 1306.18,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mux4",
+      "id": "o115"
+    },
+    {
+      "text": "M0 · Debug 目标接口",
+      "x": 2365.0,
+      "y": 347.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "target0",
+      "id": "o118"
+    },
+    {
+      "text": "调试地址窗口 · 与 SBA 分开",
+      "x": 2365.0,
+      "y": 381.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target0",
+      "id": "o119"
+    },
+    {
+      "text": "M1 · AXI → Regbus → demux",
+      "x": 2365.0,
+      "y": 535.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "target1",
+      "id": "o121"
+    },
+    {
+      "text": "ROM / CLINT / PLIC / SoC regs",
+      "x": 2365.0,
+      "y": 569.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target1",
+      "id": "o122"
+    },
+    {
+      "text": "UART / I²C / SPI / GPIO / LLC 等",
+      "x": 2365.0,
+      "y": 603.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target1",
+      "id": "o123"
+    },
+    {
+      "text": "M2 · LLC / SPM 共用目标",
+      "x": 2365.0,
+      "y": 741.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "target2",
+      "id": "o125"
+    },
+    {
+      "text": "AMO/LRSC → cut / 地址重映射 → LLC",
+      "x": 2365.0,
+      "y": 775.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target2",
+      "id": "o126"
+    },
+    {
+      "text": "SPM 128 KiB · cached / uncached 别名",
+      "x": 2365.0,
+      "y": 809.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target2",
+      "id": "o127"
+    },
+    {
+      "text": "0x8000_0000 ≤ 外存 < 0x1_0000_0000",
+      "x": 2365.0,
+      "y": 843.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target2",
+      "id": "o128"
+    },
+    {
+      "text": "LLC 下游 → 平台 DDR；命中可留片内",
+      "x": 2365.0,
+      "y": 877.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target2",
+      "id": "o129"
+    },
+    {
+      "text": "M3 · iDMA 控制接口",
+      "x": 2365.0,
+      "y": 1087.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "target3",
+      "id": "o131"
+    },
+    {
+      "text": "0x0100_0000 起 · 与数据主口分开",
+      "x": 2365.0,
+      "y": 1121.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target3",
+      "id": "o132"
+    },
+    {
+      "text": "M4 · Serial Link TX",
+      "x": 2365.0,
+      "y": 1272.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "target4",
+      "id": "o134"
+    },
+    {
+      "text": "0x1_0000_0000 ≤ addr < 0x2_0000_0000",
+      "x": 2365.0,
+      "y": 1306.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "target4",
+      "id": "o135"
+    },
+    {
+      "text": "灰线：所有可达路径；彩线：同时请求示例",
+      "x": 1260,
+      "y": 1398,
+      "size": 25,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o136"
+    },
+    {
+      "text": "不同目标可并行；竞争同一目标时由该目标仲裁。",
+      "x": 65,
+      "y": 1508,
+      "size": 28,
+      "anchor": "start",
+      "owner": null,
+      "id": "o137"
+    },
+    {
+      "text": "S / M 为 Crossbar 端口视角",
+      "x": 2740,
+      "y": 1508,
+      "size": 26,
+      "anchor": "end",
+      "owner": null,
+      "id": "o138"
+    }
+  ]
+}

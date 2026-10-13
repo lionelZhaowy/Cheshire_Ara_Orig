@@ -1,0 +1,360 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RTL 模块图 A / C 连续走线比较</title><style>body{font:17px/1.65 system-ui,sans-serif;color:#23354b;background:#f3f6fa;margin:0}header,main{max-width:1750px;margin:auto;padding:24px}section,header{background:white}section{padding:24px;margin:24px 0;border:1px solid #ccd7e4}.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}.wide .pair{grid-template-columns:1fr}figure{margin:0}img{width:100%;height:auto}a{color:#235e98}button,select{font:inherit;padding:6px 12px}nav{display:flex;gap:20px;flex-wrap:wrap}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border:1px solid #ccd7e4;padding:8px;text-align:left;vertical-align:top}summary{cursor:pointer}@media(max-width:1000px){.pair{grid-template-columns:1fr}}</style><header><h1>A / C：连续走线，两种视觉表达</h1><p>用户比较 C 后已确认继续采用 A，后续补图与修订沿用 A；C 仅保留试绘记录。C 使用 svg-pptx-diagrams-native 的协调配色、模块标题带、浅色主体与柔和边框；复用 A 的布局、全文和全部真实连线，便于直接比较。E 编号只辅助查信号，不替代连线。</p><p>B 端口配对版已按用户意见弃用，不再展示为候选，也不再生成。历史产物仅留档。颜色不定义新协议或时钟域，仍以图中文字及连接表为准。</p><nav><a href="../../rtl_modules/README.md">模块指南</a><a href="C/editable/diagrams.pptx">C 原生 PPTX</a><a href="../2026-10-13_rtl_module_comparison/A/editable/diagrams.pptx">A 原生 PPTX</a><a href="README.md">图源与检查说明</a><button id="layout">切换并排 / 上下</button></nav><p><select id="jump"><option value="">跳转模块…</option>
+<option value="00a_regbus">① Regbus 全路径：现有互连 + 自有 IP 接入边界</option>
+<option value="00b_ip_contract">② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）</option>
+<option value="01_uart">01  UART：寄存器访问与独立收发通路</option>
+<option value="02_i2c">02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节</option>
+<option value="03_spi">03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO</option>
+<option value="04_gpio">04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能</option>
+<option value="05_plic">05  PLIC：源侧 pending / active 与目标侧优先级选择</option>
+<option value="06a_clint">06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断</option>
+<option value="06b_clic">06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口</option>
+<option value="07_irq_router">07  IRQ Router：每条源中断对应一个目标位掩码</option>
+<option value="08_bootrom">08  BootROM：组合 ROM 内容与 Regbus 应答延迟</option>
+<option value="09_soc_regs">09  SoC Regs：软件 scratch 与只读硬件能力信息</option>
+<option value="10_jtag_debug">10  JTAG Debug：DMI 控制、hart 调试与系统总线访问</option>
+<option value="11_serial_link">11  Serial Link：AXI 通道编码、流控与源同步物理传输</option>
+<option value="12_vga">12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据</option>
+<option value="13_usb">13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域</option>
+<option value="14_idma">14  iDMA：AXI 控制入口、任务前端与独立搬运后端</option>
+<option value="15_interrupt_exception">15  CVA6 Trap：异步中断与同步异常在提交路径汇合</option>
+<option value="16a_llc">16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM</option>
+<option value="16b_spm">16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交</option>
+<option value="17_axi_extension">外部 IP 的 AXI 数据口与 Reg 控制口</option>
+<option value="18_clock_reset_startup">异域 IP 的配置、时钟复位与 IRQ 边界</option>
+<option value="19_ddr_lvds_pipeline">规划图像链与 DDR / GB 搬运职责</option>
+<option value="20_accelerator_memory">Ara 访存和 CPU 失效请求的实际边界</option>
+</select></p></header><main>
+<section id="00a_regbus"><h2>① Regbus 全路径：现有互连 + 自有 IP 接入边界</h2><a href="../../rtl_modules/00_regbus.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/00a_regbus.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/00a_regbus.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/00a_regbus.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/00a_regbus.png" alt="① Regbus 全路径：现有互连 + 自有 IP 接入边界 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/00a_regbus.svg">SVG</a> · <a href="C/00a_regbus.pdf">PDF</a></figcaption><a href="C/00a_regbus.png"><img loading="lazy" src="C/00a_regbus.png" alt="① Regbus 全路径：现有互连 + 自有 IP 接入边界 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>CPU 等 ↔ 主 AXI</td><td>AXI4 请求 AW/W/AR 向 Xbar；B/R 响应及 ready 反向。默认数据64、地址48。</td></tr>
+<tr><td>E02</td><td>主 AXI ↔ 现有 AXI → Regbus 通路</td><td>AxiOut.reg_demux：Xbar 选中的 AXI 请求/响应，进入原子适配、cut 和桥。</td></tr>
+<tr><td>E03</td><td>现有 AXI → Regbus 通路 ↔ i_reg_demux</td><td>reg_in_req / reg_in_rsp：Regbus addr/write/wdata[31:0]/wstrb[3:0]/valid，返回 rdata/error/ready。</td></tr>
+<tr><td>E04</td><td>现有 AXI → Regbus 通路 → 地址解码 RegMap</td><td>reg_in_req.addr：地址送 i_reg_demux_decode，以 RegMap 做范围译码。</td></tr>
+<tr><td>E05</td><td>地址解码 RegMap → i_reg_demux</td><td>reg_select：地址译码选中的目标索引；未命中使用默认错误端口。</td></tr>
+<tr><td>E06</td><td>i_reg_demux ↔ 片内寄存器目标</td><td>reg_out_req / reg_out_rsp：被选片内目标的 Regbus 请求及返回。</td></tr>
+<tr><td>E07</td><td>i_reg_demux ↔ i_reg_err_slv</td><td>错误端口 Regbus 请求/响应；未命中时 ready=1、error=1。</td></tr>
+<tr><td>E08</td><td>i_reg_demux ↔ 外部 Regbus 端口 [k]</td><td>扩展端口 reg_ext_slv_req_o[k] / reg_ext_slv_rsp_i[k]；配置产生后才有可用目标。</td></tr>
+<tr><td>E09</td><td>外部 Regbus 端口 [k] ↔ 自有 IP 寄存器接口</td><td>规划：外部 Regbus 请求/响应；同域直连，异域新增 reg_cdc。</td></tr>
+</table></details></section>
+<section id="00b_ip_contract"><h2>② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）</h2><a href="../../rtl_modules/00_regbus.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/00b_ip_contract.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/00b_ip_contract.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/00b_ip_contract.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/00b_ip_contract.png" alt="② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入） A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/00b_ip_contract.svg">SVG</a> · <a href="C/00b_ip_contract.pdf">PDF</a></figcaption><a href="C/00b_ip_contract.png"><img loading="lazy" src="C/00b_ip_contract.png" alt="② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入） C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>Regbus 请求 → 地址译码与访问控制</td><td>建议 Regbus 端点请求：addr/write/wdata/wstrb/valid；完整地址是否减 BASE 由封装定义。</td></tr>
+<tr><td>E02</td><td>地址译码与访问控制 → 配置 / 命令寄存器</td><td>建议写路径：地址命中、权限和 wstrb 合法且 valid&amp;ready 后产生字段写使能/写数据。</td></tr>
+<tr><td>E03</td><td>配置 / 命令寄存器 → IP 工作逻辑</td><td>建议 START 提交及整组配置快照；工作逻辑另定义 accept/busy 协议。</td></tr>
+<tr><td>E04</td><td>IP 工作逻辑 → 状态 / 中断状态</td><td>建议工作状态 busy/done/error 回到可读状态与事件锁存。</td></tr>
+<tr><td>E05</td><td>地址译码与访问控制 → 读数据选择与访问响应</td><td>建议读地址/访问属性译码，选择 rdata 并判定错误及完成条件。</td></tr>
+<tr><td>E06</td><td>配置 / 命令寄存器 → 读数据选择与访问响应</td><td>建议配置寄存器当前值送读选择器。</td></tr>
+<tr><td>E07</td><td>状态 / 中断状态 → 读数据选择与访问响应</td><td>建议状态/事件寄存器当前值送读选择器。</td></tr>
+<tr><td>E08</td><td>地址译码与访问控制 → 状态 / 中断状态</td><td>建议：地址/访问译码生成 W1C 清除使能，N01→N03；没有独立外部 W1C 端口。</td></tr>
+<tr><td>E09</td><td>读数据选择与访问响应 → Regbus 响应</td><td>建议 Regbus 返回：rdata/error/ready；应答配置访问，非等待整个运算完成。</td></tr>
+</table></details></section>
+<section id="01_uart"><h2>01  UART：寄存器访问与独立收发通路</h2><a href="../../rtl_modules/01_uart.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/01_uart.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/01_uart.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/01_uart.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/01_uart.png" alt="01  UART：寄存器访问与独立收发通路 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/01_uart.svg">SVG</a> · <a href="C/01_uart.pdf">PDF</a></figcaption><a href="C/01_uart.png"><img loading="lazy" src="C/01_uart.png" alt="01  UART：寄存器访问与独立收发通路 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  reg_uart_wrap ↔ 2  APB 地址译码</td><td>APB 请求 PSEL/PENABLE/PWRITE/PADDR/PWDATA；PRDATA/PREADY/PSLVERR 返回。PADDR=addr[4:2]。</td></tr>
+<tr><td>E02</td><td>2  APB 地址译码 → 3  baudgen + 节拍逻辑</td><td>iBaudgenDiv={iDLM,iDLL}：分频寄存器给 uart_baudgen.DIVIDER。</td></tr>
+<tr><td>E03</td><td>2  APB 地址译码 → 4  TX FIFO</td><td>PWDATA[7:0] 与 iTXFIFOWrite：合法 THR 写入 TX FIFO；复位/清空由 FCR 控制。</td></tr>
+<tr><td>E04</td><td>4  TX FIFO → 5  TX 保持 / 发送逻辑</td><td>iTXFIFOQ[7:0] 经发送控制过程锁存 iTSR，再送 UART_TX.DIN；iTXFIFORead 消耗队头。</td></tr>
+<tr><td>E05</td><td>5  TX 保持 / 发送逻辑 → UART TX 输出</td><td>iSOUT 到 SOUT/uart_tx_o：串行输出位，调制解调/回环选择属于 UART 包装逻辑。</td></tr>
+<tr><td>E06</td><td>UART RX 输入 → 6  uart_receiver</td><td>uart_rx_i/SIN 经输入同步与回环选择成为 iSIN，送 UART_RX.SIN。</td></tr>
+<tr><td>E07</td><td>6  uart_receiver → 7  RX FIFO</td><td>iRXData[7:0]、iRXPE/iRXFE/iRXBI 与 iRXFinished：RX 控制过程产生 iRXFIFOD[10:0]/iRXFIFOWrite。</td></tr>
+<tr><td>E08</td><td>7  RX FIFO → 2  APB 地址译码</td><td>iRXFIFOQ[7:0]→iRBR→PRDATA；RBR 读产生反向 iRXFIFORead 出队动作。</td></tr>
+<tr><td>E09</td><td>3  baudgen + 节拍逻辑 → 5  TX 保持 / 发送逻辑</td><td>iBaudtick16x 经 UART_BG2 分频得到 iBaudtick2x，作为 UART_TX.TXCLK 的使能节拍。</td></tr>
+<tr><td>E10</td><td>3  baudgen + 节拍逻辑 → 6  uart_receiver</td><td>波特率/边沿逻辑产生 iRCLK，送 UART_RX.RXCLK；不是另一个寄存器时钟域。</td></tr>
+<tr><td>E11</td><td>7  RX FIFO → 8  uart_interrupt</td><td>接收水位/错误/超时派生 iRDAInterrupt、iLSR[4:0]、iCharTimeout，送 UART_IIC。</td></tr>
+<tr><td>E12</td><td>2  APB 地址译码 ↔ 8  uart_interrupt</td><td>iIER[3:0]、iMCR_AFE、iMSR[3:0] 等配置/状态送 UART_IIC；iIIR[3:0] 返回寄存器读路径。</td></tr>
+<tr><td>E13</td><td>8  uart_interrupt → SoC UART IRQ</td><td>UART_IIC.INT→intr_o→intr.intn.uart；设备事件再进入 SoC IRQ 路径。</td></tr>
+<tr><td>E14</td><td>4  TX FIFO → 8  uart_interrupt</td><td>TX FIFO/顶层控制派生 iTHRInterrupt → UART_IIC.THI；发送空事件。</td></tr>
+</table></details></section>
+<section id="02_i2c"><h2>02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节</h2><a href="../../rtl_modules/02_i2c.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/02_i2c.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/02_i2c.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/02_i2c.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/02_i2c.png" alt="02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/02_i2c.svg">SVG</a> · <a href="C/02_i2c.pdf">PDF</a></figcaption><a href="C/02_i2c.png"><img loading="lazy" src="C/02_i2c.png" alt="02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  i2c_reg_top → 2  Host FMT FIFO</td><td>reg2hw.fdata→fmt_fifo_wdata[12:0]/fmt_fifo_wvalid：8-bit 字节+5-bit 事务标志。</td></tr>
+<tr><td>E02</td><td>2  Host FMT FIFO → 3  i2c_fsm</td><td>fmt_byte/五个 fmt_flag 与 fmt_fifo_rvalid；FSM 以 fmt_fifo_rready 消耗命令。</td></tr>
+<tr><td>E03</td><td>3  i2c_fsm → 4  Host RX FIFO</td><td>rx_fifo_wdata[7:0]/rx_fifo_wvalid：FSM 采样接收字节，写入 Host RX FIFO。</td></tr>
+<tr><td>E04</td><td>4  Host RX FIFO → 1  i2c_reg_top</td><td>rx_fifo_rdata→hw2reg.rdata；读请求经 reg2hw.rdata.re 产生 FIFO 消耗。</td></tr>
+<tr><td>E05</td><td>3  i2c_fsm ↔ 5  SCL / SDA 接口</td><td>FSM scl_out_fsm/sda_out_fsm 输出，scl_sync/sda_sync 反馈；core 加 override/采样和 OE 后连接 cio_scl/sda_*。</td></tr>
+<tr><td>E06</td><td>6  Target TX FIFO → 3  i2c_fsm</td><td>tx_fifo_rdata[7:0]/rvalid 与 FSM 反向 rready：Target 发送字节。</td></tr>
+<tr><td>E07</td><td>3  i2c_fsm → 7  Target ACQ FIFO</td><td>acq_fifo_wdata[9:0]/wvalid：Target 接收内容与事务标志；还有 FIFO 深度/当前项反馈到 FSM。</td></tr>
+<tr><td>E08</td><td>1  i2c_reg_top → 3  i2c_fsm</td><td>host_enable/target_enable、thigh/tlow/建立保持/超时等字段控制 FSM；FIFO reset 另接各队列，不是经过 FSM。</td></tr>
+<tr><td>E09</td><td>3  i2c_fsm → 8  事件整合 / prim_intr_hw</td><td>FSM 的 event_nak/event_cmd_complete/event_* 送中断逻辑；水位/溢出等另来自 FIFO 周边。</td></tr>
+<tr><td>E10</td><td>1  i2c_reg_top ↔ 8  事件整合 / prim_intr_hw</td><td>reg2hw.intr_enable/intr_test/intr_state 送 prim_intr_hw；hw2reg.intr_state.d/de 反向更新寄存器。</td></tr>
+<tr><td>E11</td><td>1  i2c_reg_top → 6  Target TX FIFO</td><td>reg2hw.txdata → tx_fifo_wdata/wvalid；Target TX 队列由软件填充。</td></tr>
+<tr><td>E12</td><td>7  Target ACQ FIFO ↔ 1  i2c_reg_top</td><td>acq_fifo_rdata → hw2reg.acqdata；软件读消费由 reg2hw 返回。</td></tr>
+</table></details></section>
+<section id="03_spi"><h2>03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO</h2><a href="../../rtl_modules/03_spi.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/03_spi.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/03_spi.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/03_spi.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/03_spi.png" alt="03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/03_spi.svg">SVG</a> · <a href="C/03_spi.pdf">PDF</a></figcaption><a href="C/03_spi.png"><img loading="lazy" src="C/03_spi.png" alt="03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  spi_host_reg_top → 2  command_queue</td><td>command/command_valid 进入命令队列，command_busy/qd/error_busy 回到状态与错误逻辑。</td></tr>
+<tr><td>E02</td><td>2  command_queue → 3  spi_host_fsm</td><td>core_command/core_command_valid 向 FSM；core_command_ready 反向接受命令。</td></tr>
+<tr><td>E03</td><td>1  spi_host_reg_top ↔ 4  spi_host_window</td><td>fifo_win_h2d[RX/TX] 与 fifo_win_d2h[RX/TX]：reg_top 解码后的两个 Regbus 窗口。</td></tr>
+<tr><td>E04</td><td>4  spi_host_window → 5  data_fifos：TX</td><td>tx_data[31:0]/tx_be[3:0]/tx_valid_checked 入 TX FIFO；tx_ready 用于写溢出检查，不无限延迟 MMIO。</td></tr>
+<tr><td>E05</td><td>9  data_fifos：RX → 4  spi_host_window</td><td>rx_data[31:0]/rx_valid 到窗口；窗口读产生 rx_ready，读空由 error_underflow 报告。</td></tr>
+<tr><td>E06</td><td>5  data_fifos：TX → 6  byte_select</td><td>core_tx_data[31:0]/core_tx_be/core_tx_valid；byte_select 返回 core_tx_ready。</td></tr>
+<tr><td>E07</td><td>8  byte_merge → 9  data_fifos：RX</td><td>core_rx_data[31:0]/core_rx_valid；RX FIFO 返回 core_rx_ready。</td></tr>
+<tr><td>E08</td><td>6  byte_select → 7  shift_register</td><td>tx_data_sr[7:0]/tx_valid_sr；反向 tx_ready_sr，另有 tx_flush_sr 消耗当前残余字节。</td></tr>
+<tr><td>E09</td><td>7  shift_register → 8  byte_merge</td><td>rx_data_sr[7:0]/rx_valid_sr/rx_last_sr；byte_merge 返回 rx_ready_sr。</td></tr>
+<tr><td>E10</td><td>3  spi_host_fsm ↔ 7  shift_register</td><td>wr_en/rd_en/shift_en/sample_en/speed/full_cyc/last_* 到移位器；wr_ready/rd_ready 返回 FSM。SCK/CS/OE 是 FSM 独立引脚输出。</td></tr>
+<tr><td>E11</td><td>3  spi_host_fsm → SPI SCK / CS / SD OE 引脚</td><td>sck_o/csb_o/sd_en_o：FSM 产生 SCK、片选和数据输出使能。</td></tr>
+<tr><td>E12</td><td>7  shift_register ↔ SPI SD[3:0] 数据引脚</td><td>sd_o[3:0]/sd_i[3:0]：移位逻辑输出数据、采样引脚数据。</td></tr>
+</table></details></section>
+<section id="04_gpio"><h2>04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能</h2><a href="../../rtl_modules/04_gpio.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/04_gpio.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/04_gpio.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/04_gpio.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/04_gpio.png" alt="04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/04_gpio.svg">SVG</a> · <a href="C/04_gpio.pdf">PDF</a></figcaption><a href="C/04_gpio.png"><img loading="lazy" src="C/04_gpio.png" alt="04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>GPIO 输入 32 路 → 1  prim_filter_ctr × 32</td><td>gpio_i[31:0]→cio_gpio_i：外部数字输入进入各 prim_filter_ctr。</td></tr>
+<tr><td>E02</td><td>1  prim_filter_ctr × 32 → 2  data_in_q + 比较</td><td>data_in_d[31:0]：滤波后的本拍输入，与保存的 data_in_q 比较。</td></tr>
+<tr><td>E03</td><td>2  data_in_q + 比较 → 3  prim_intr_hw</td><td>event_intr_combined[31:0]：选中的上升/下降沿及高/低电平条件。</td></tr>
+<tr><td>E04</td><td>4  gpio_reg_top ↔ 5  cio_gpio_q[31:0]</td><td>reg2hw.direct_out 或 masked_out_* 的 q/qe：按掩码更新 cio_gpio_q；当前值反向供 hw2reg 回读。</td></tr>
+<tr><td>E05</td><td>4  gpio_reg_top ↔ 6  cio_gpio_en_q[31:0]</td><td>reg2hw.direct_oe 或 masked_oe_* 的 q/qe：按掩码更新 cio_gpio_en_q；当前值反向供 hw2reg 回读。</td></tr>
+<tr><td>E06</td><td>5  cio_gpio_q[31:0] → GPIO PAD 输出值</td><td>cio_gpio_q→cio_gpio_o→gpio_o[31:0]：PAD 输出数据。</td></tr>
+<tr><td>E07</td><td>6  cio_gpio_en_q[31:0] → GPIO PAD 输出使能</td><td>cio_gpio_en_q→cio_gpio_en_o→gpio_en_o[31:0]：PAD 输出使能。</td></tr>
+<tr><td>E08</td><td>4  gpio_reg_top → 1  prim_filter_ctr × 32</td><td>reg2hw.ctrl_en_input_filter.q：逐位滤波使能；同步器有无由 GpioAsyncOn 参数决定。</td></tr>
+<tr><td>E09</td><td>4  gpio_reg_top → 2  data_in_q + 比较</td><td>reg2hw.intr_ctrl_en_rising/falling/lvlhigh/lvllow：选定检测条件。</td></tr>
+<tr><td>E10</td><td>4  gpio_reg_top ↔ 3  prim_intr_hw</td><td>reg2hw.intr_enable/intr_test/intr_state 到 IRQ 逻辑；hw2reg.intr_state.d/de 反向更新事件寄存器。</td></tr>
+<tr><td>E11</td><td>1  prim_filter_ctr × 32 → 4  gpio_reg_top</td><td>data_in_d → hw2reg.data_in.d/de；CPU 回读采样输入。</td></tr>
+<tr><td>E12</td><td>3  prim_intr_hw → SoC GPIO IRQ</td><td>intr_gpio_o[31:0] → intr.intn.gpio，进入 SoC IRQ 汇聚。</td></tr>
+</table></details></section>
+<section id="05_plic"><h2>05  PLIC：源侧 pending / active 与目标侧优先级选择</h2><a href="../../rtl_modules/05_plic.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/05_plic.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/05_plic.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/05_plic.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/05_plic.png" alt="05  PLIC：源侧 pending / active 与目标侧优先级选择 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/05_plic.svg">SVG</a> · <a href="C/05_plic.pdf">PDF</a></figcaption><a href="C/05_plic.png"><img loading="lazy" src="C/05_plic.png" alt="05  PLIC：源侧 pending / active 与目标侧优先级选择 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>外设 IRQ 电平 → 1  prim_flop_2sync</td><td>intr_routed[IntrRtdPlic][NumSrc-1:0]→intr_src_i：输入源向量，当前58位含保留源0。</td></tr>
+<tr><td>E02</td><td>1  prim_flop_2sync → 2  rv_plic_gateway</td><td>intr_src_synced→gateway.src_i；LevelEdgeTrig 默认全0，当前按电平采样。</td></tr>
+<tr><td>E03</td><td>2  rv_plic_gateway → 3  rv_plic_target × 目标</td><td>ip[NumSrc-1:0]→各 target.ip_i：源 pending 向量，active 留在 gateway 内。</td></tr>
+<tr><td>E04</td><td>3  rv_plic_target × 目标 → xeip → hart</td><td>irq_o[NumTarget-1:0]→xeip：当前两个目标向单核发送 M/S 外部中断通知。</td></tr>
+<tr><td>E05</td><td>4  rv_plic_reg_top → 2  rv_plic_gateway</td><td>claim/complete：由 reg2hw.cc*.re/qe 及源ID译为逐源控制位。</td></tr>
+<tr><td>E06</td><td>3  rv_plic_target × 目标 → 4  rv_plic_reg_top</td><td>irq_id_o→cc_id→hw2reg.cc*.d：获胜ID供 claim MMIO 读取；外部 irq_id_o 端口未接CPU。</td></tr>
+<tr><td>E07</td><td>4  rv_plic_reg_top → 3  rv_plic_target × 目标</td><td>prio/ie[target]/threshold[target]：源优先级、目标屏蔽和阈值控制。</td></tr>
+<tr><td>E08</td><td>2  rv_plic_gateway → 4  rv_plic_reg_top</td><td>ip → hw2reg.ip.d/de；pending 状态供软件回读。</td></tr>
+</table></details></section>
+<section id="06a_clint"><h2>06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断</h2><a href="../../rtl_modules/06_clint_clic.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/06a_clint.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/06a_clint.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/06a_clint.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/06a_clint.png" alt="06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/06a_clint.svg">SVG</a> · <a href="C/06a_clint.pdf">PDF</a></figcaption><a href="C/06a_clint.png"><img loading="lazy" src="C/06a_clint.png" alt="06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>rtc_i → 1  clint_sync_wedge</td><td>rtc_i→clint_sync_wedge.serial_i：外部计时时基波形，需满足 SoC 采样条件。</td></tr>
+<tr><td>E02</td><td>1  clint_sync_wedge → 2  MTIME[63:0] 字段</td><td>increase_timer→hw2reg.mtime_low/high.de：RTC 上升沿的一拍自动加1使能。</td></tr>
+<tr><td>E03</td><td>2  MTIME[63:0] 字段 → 3  ≥ 比较</td><td>mtime_q[63:0]={reg2hw.mtime_high.q,mtime_low.q}：组合读出当前时间到比较器。</td></tr>
+<tr><td>E04</td><td>3  ≥ 比较 → MTIP / timer_irq_o</td><td>比较结果 timer_irq_o[0]→mtip：mtime&gt;=mtimecmp 时持续有效。</td></tr>
+<tr><td>E05</td><td>4  MTIMECMP[63:0] 字段 → 3  ≥ 比较</td><td>mtimecmp_q[0]：reg_top 中高/低比较字段组成的64-bit值。</td></tr>
+<tr><td>E06</td><td>Regbus 32 ↔ 5  clint_reg_top 访问控制</td><td>Regbus 请求 addr/write/wdata/wstrb/valid；rdata/error/ready 返回。</td></tr>
+<tr><td>E07</td><td>5  clint_reg_top 访问控制 → 4  MTIMECMP[63:0] 字段</td><td>字段展开：MTIMECMP_LOW0/HIGH0 存储在 clint_reg_top 内，经 reg2hw 组成 mtimecmp_q。</td></tr>
+<tr><td>E08</td><td>5  clint_reg_top 访问控制 ↔ 2  MTIME[63:0] 字段</td><td>字段展开：MTIME 存储在 reg_top，reg2hw 提供当前值，hw2reg.d/de 提交自动计时更新；软件也可读写。</td></tr>
+<tr><td>E09</td><td>5  clint_reg_top 访问控制 → 6  MSIP 字段</td><td>字段展开：reg2hw.msip[0].p.q，存储在 clint_reg_top 内，由软件置位或清零。</td></tr>
+<tr><td>E10</td><td>6  MSIP 字段 → MSIP / ipi_o</td><td>reg2hw.msip[0].p.q→ipi_o[0]→msip：本 hart 软件中断电平。</td></tr>
+</table></details></section>
+<section id="06b_clic"><h2>06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口</h2><a href="../../rtl_modules/06_clint_clic.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/06b_clic.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/06b_clic.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/06b_clic.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/06b_clic.png" alt="06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/06b_clic.svg">SVG</a> · <a href="C/06b_clic.pdf">PDF</a></figcaption><a href="C/06b_clic.png"><img loading="lazy" src="C/06b_clic.png" alt="06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  clic_intr 输入拼装 → 2  clic_gateway</td><td>clic_intr→intr_src_i：SoC 拼装设备向量和 MEIP/SEIP/MTIP/MSIP 等 core 源。</td></tr>
+<tr><td>E02</td><td>2  clic_gateway → 3  clic_target + 顶层整理</td><td>ip→clic_target.ip_i：gateway 维护的 pending 状态。</td></tr>
+<tr><td>E03</td><td>3  clic_target + 顶层整理 → 2  clic_gateway</td><td>claim→gateway.claim_i：target 接受流程产生的逐源认领控制。</td></tr>
+<tr><td>E04</td><td>3  clic_target + 顶层整理 ↔ 4  CVA6 CLIC 接口</td><td>整个 CLIC 的 irq_valid/id/level/shv/priv/kill_req→CPU；irq_ready/kill_ack 返回。顶层另完成 shv 选择与 level/priv 格式化。</td></tr>
+<tr><td>E05</td><td>5  mclic_reg_top + clicint_reg_top × 源 ↔ 2  clic_gateway</td><td>clic_reg_adapter 输出 ip_sw/le 到 gateway；gateway 的 ip 返回 adapter→clicint_hw2reg。</td></tr>
+<tr><td>E06</td><td>5  mclic_reg_top + clicint_reg_top × 源 → 3  clic_target + 顶层整理</td><td>clic_reg_adapter 输出 ie/intctl/intmode/le 到 target；全局 mnlbits/shv 字段另供顶层输出格式化。</td></tr>
+</table></details></section>
+<section id="07_irq_router"><h2>07  IRQ Router：每条源中断对应一个目标位掩码</h2><a href="../../rtl_modules/07_irq_router.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/07_irq_router.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/07_irq_router.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/07_irq_router.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/07_irq_router.png" alt="07  IRQ Router：每条源中断对应一个目标位掩码 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/07_irq_router.svg">SVG</a> · <a href="C/07_irq_router.pdf">PDF</a></figcaption><a href="C/07_irq_router.png"><img loading="lazy" src="C/07_irq_router.png" alt="07  IRQ Router：每条源中断对应一个目标位掩码 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  intr 源向量 → 2  irqs_cloned</td><td>intr→irqs_i：已按 SoC 同步约定形成的源向量。</td></tr>
+<tr><td>E02</td><td>2  irqs_cloned → 3  按位 AND</td><td>irqs_cloned：每目标复制一组输入源，不存储事件。</td></tr>
+<tr><td>E03</td><td>3  按位 AND → target 0 → PLIC</td><td>irqs_distributed_o 对应 intr_routed[0]，截取 PLIC NumSrc 后接 intr_src_i。</td></tr>
+<tr><td>E04</td><td>3  按位 AND → target 1… → hart CLIC</td><td>intr_routed[IntrRtdCoreBase+hart]：各内部 hart 的源分支，仅启用 CLIC 时消费。</td></tr>
+<tr><td>E05</td><td>3  按位 AND → 后续 target → 外部 IRQ</td><td>intr_routed[IntrRtdExtBase+target]：按配置截取后送 intr_ext_o 外部目标。</td></tr>
+<tr><td>E06</td><td>4  irq_router_reg_top × 源 → 3  按位 AND</td><td>irq_router_reg2hw[source].irq_target_mask.q[target] 重排成 irqs_target_mask，与 cloned 逐位 AND。</td></tr>
+</table></details></section>
+<section id="08_bootrom"><h2>08  BootROM：组合 ROM 内容与 Regbus 应答延迟</h2><a href="../../rtl_modules/08_bootrom.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/08_bootrom.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/08_bootrom.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/08_bootrom.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/08_bootrom.png" alt="08  BootROM：组合 ROM 内容与 Regbus 应答延迟 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/08_bootrom.svg">SVG</a> · <a href="C/08_bootrom.pdf">PDF</a></figcaption><a href="C/08_bootrom.png"><img loading="lazy" src="C/08_bootrom.png" alt="08  BootROM：组合 ROM 内容与 Regbus 应答延迟 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>Regbus 32 ↔ 1  reg_to_mem</td><td>Regbus 请求/响应：reg_out_req/rsp[RegOut.bootrom]；valid、addr、write、wdata/wstrb，返回 ready、rdata、error；地址发起方向 P01→N01</td></tr>
+<tr><td>E02</td><td>1  reg_to_mem → 2  cheshire_bootrom</td><td>ROM 地址/请求：bootrom_addr[15:0]、bootrom_req → addr_i、req_i；当前 ROM 只用地址组合查表，不用 req 门控</td></tr>
+<tr><td>E03</td><td>2  cheshire_bootrom → 3  FF 延迟对齐</td><td>ROM 数据：bootrom_data[31:0] → 外层数据 FF；这是读数据，不是下一次存储请求</td></tr>
+<tr><td>E04</td><td>1  reg_to_mem → 3  FF 延迟对齐</td><td>返回控制对齐：bootrom_req、bootrom_we → req_q、we_q FF；与 data 同拍延迟</td></tr>
+<tr><td>E05</td><td>3  FF 延迟对齐 → 1  reg_to_mem</td><td>存储响应：bootrom_data_q / bootrom_req_q / bootrom_we_q → reg_to_mem.rdata_i / rvalid_i / rerror_i；写不改 ROM 且返回 error</td></tr>
+</table></details></section>
+<section id="09_soc_regs"><h2>09  SoC Regs：软件 scratch 与只读硬件能力信息</h2><a href="../../rtl_modules/09_soc_regs.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/09_soc_regs.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/09_soc_regs.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/09_soc_regs.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/09_soc_regs.png" alt="09  SoC Regs：软件 scratch 与只读硬件能力信息 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/09_soc_regs.svg">SVG</a> · <a href="C/09_soc_regs.pdf">PDF</a></figcaption><a href="C/09_soc_regs.png"><img loading="lazy" src="C/09_soc_regs.png" alt="09  SoC Regs：软件 scratch 与只读硬件能力信息 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>Regbus 32 请求 → 1  地址与访问译码</td><td>Regbus 请求：reg_intf_req.addr/valid/write/wdata/wstrb；形成 reg_addr、reg_we/reg_re 和 reg_be</td></tr>
+<tr><td>E02</td><td>1  地址与访问译码 → 2  scratch[0…15]</td><td>写 scratch：scratch_*_we / scratch_*_wd，由命中地址、reg_we、reg_be 选择字节；不是整组每次同时写</td></tr>
+<tr><td>E03</td><td>2  scratch[0…15] → 4  读回选择 / 响应</td><td>已保存软件值：scratch_*_qs[31:0] → reg_rdata_next 读回选择器</td></tr>
+<tr><td>E04</td><td>3  硬件只读字段 → 4  读回选择 / 响应</td><td>硬件值：hw2reg.boot_mode、rtc_freq、platform_rom、num_int_harts、hw_features、llc_size、vga_params → reg_rdata_next</td></tr>
+<tr><td>E05</td><td>1  地址与访问译码 → 4  读回选择 / 响应</td><td>地址命中与非法访问控制：addr_hit/reg_addr、addrmiss、wr_err → 读选择及 reg_error；ready 恒为1</td></tr>
+<tr><td>E06</td><td>4  读回选择 / 响应 → Regbus 32 请求</td><td>Regbus 响应：reg_intf_rsp.rdata / error / ready 返回请求者；error=(devmode_i &amp; addrmiss) | wr_err</td></tr>
+</table></details></section>
+<section id="10_jtag_debug"><h2>10  JTAG Debug：DMI 控制、hart 调试与系统总线访问</h2><a href="../../rtl_modules/10_jtag_debug.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/10_jtag_debug.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/10_jtag_debug.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/10_jtag_debug.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/10_jtag_debug.png" alt="10  JTAG Debug：DMI 控制、hart 调试与系统总线访问 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/10_jtag_debug.svg">SVG</a> · <a href="C/10_jtag_debug.pdf">PDF</a></figcaption><a href="C/10_jtag_debug.png"><img loading="lazy" src="C/10_jtag_debug.png" alt="10  JTAG Debug：DMI 控制、hart 调试与系统总线访问 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>JTAG 引脚 ↔ 1  dmi_jtag</td><td>JTAG 双向引脚组：tck_i/tms_i/trst_ni/td_i 输入 DTM，td_o/tdo_oe_o 输出；双箭头不表示每根引脚均双向</td></tr>
+<tr><td>E02</td><td>1  dmi_jtag ↔ 2  dm_top</td><td>DMI 请求/响应：dbg_dmi_req/rsp + 各 valid/ready；TCK→clk_i CDC 由 dmi_jtag 内 dmi_cdc 实现</td></tr>
+<tr><td>E03</td><td>2  dm_top → 3  hart 调试入口</td><td>hart 调试请求：dm_top.debug_req_o=dbg_req，经 dbg_int_req 到 CPU debug_req_i；halt/resume 状态和程序缓冲交互不靠这一根线完成</td></tr>
+<tr><td>E04</td><td>2  dm_top ↔ 4  axi_from_mem</td><td>SBA 存储接口：dbg_sba_req/addr/we/wdata/strb → axi_from_mem；反向 gnt/rvalid/rdata/err 表示受理与完成</td></tr>
+<tr><td>E05</td><td>4  axi_from_mem ↔ 主 AXI：AxiIn.dbg</td><td>AXI master：axi_in_req/rsp[AxiIn.dbg]，由 DM 发起 AW/W/AR，经主互联返回 B/R；不是 CPU 发起的 debug 窗访问</td></tr>
+<tr><td>E06</td><td>主 AXI：AxiOut.dbg ↔ 5  调试存储窗适配</td><td>AXI slave：axi_out_req/rsp[AxiOut.dbg] 经 atomics/cut 进入调试存储窗转换；请求来自主互联</td></tr>
+<tr><td>E07</td><td>5  调试存储窗适配 ↔ 2  dm_top</td><td>DM slave 存储口：dbg_slv_req/we/addr_long/wstrb/wdata → dm_top.slave_*；slave_rdata_o 返回到适配器；此口无独立 ready 信号</td></tr>
+</table></details></section>
+<section id="11_serial_link"><h2>11  Serial Link：AXI 通道编码、流控与源同步物理传输</h2><a href="../../rtl_modules/11_serial_link.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/11_serial_link.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/11_serial_link.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/11_serial_link.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/11_serial_link.png" alt="11  Serial Link：AXI 通道编码、流控与源同步物理传输 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/11_serial_link.svg">SVG</a> · <a href="C/11_serial_link.pdf">PDF</a></figcaption><a href="C/11_serial_link.png"><img loading="lazy" src="C/11_serial_link.png" alt="11  Serial Link：AXI 通道编码、流控与源同步物理传输 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  SoC 外层适配 ↔ 2  serial_link_network</td><td>AXI 双向链路角色：slink_tx_idr_req/rsp 对应 axi_in_req_i/axi_in_rsp_o；对端请求还原为 axi_out_req_o/axi_out_rsp_i 后进入 AxiIn.slink</td></tr>
+<tr><td>E02</td><td>2  serial_link_network ↔ 3  serial_link_data_link</td><td>封装 payload stream：axis_out_req/rsp 与 axis_in_req/rsp；含封装数据和握手，不是直接五通道 AXI 引脚</td></tr>
+<tr><td>E03</td><td>3  serial_link_data_link ↔ 4  channel_allocator</td><td>物理片段流：data_link2alloc_data_out + valid/ready，反向 alloc2data_link_data_in + valid/ready；NumChannels=1 时无 allocator 实例</td></tr>
+<tr><td>E04</td><td>4  channel_allocator ↔ 5  serial_link_physical × 通道</td><td>每通道片段流：alloc2phy_data_out + valid/ready；反向 phy2alloc_data_in + valid/ready</td></tr>
+<tr><td>E05</td><td>5  serial_link_physical × 通道 ↔ 链路 DDR 引脚</td><td>源同步物理接口：ddr_o/ddr_rcv_clk_o 发出，ddr_i/ddr_rcv_clk_i 接收；DDR 表示双边沿，与 DDR 存储控制器不同</td></tr>
+<tr><td>E06</td><td>6  serial_link_reg_top → 5  serial_link_physical × 通道</td><td>PHY 配置：reg2hw.tx_phy_clk_div[i].q、tx_phy_clk_start/end[i].q → clk_div_i/clk_shift_start_i/clk_shift_end_i</td></tr>
+<tr><td>E07</td><td>6  serial_link_reg_top ↔ 3  serial_link_data_link</td><td>data_link 配置/状态：reg2hw.raw_mode_*、cfg_flow_control_fifo_clear 等控制；FIFO fill_state/is_full 返回 hw2reg（应双向标注）</td></tr>
+<tr><td>E08</td><td>6  serial_link_reg_top → 4  channel_allocator</td><td>reg2hw.channel_alloc_*：通道使能/clear/flush/同步配置；仅 NumChannels&gt;1。</td></tr>
+</table></details></section>
+<section id="12_vga"><h2>12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据</h2><a href="../../rtl_modules/12_vga.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/12_vga.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/12_vga.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/12_vga.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/12_vga.png" alt="12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/12_vga.svg">SVG</a> · <a href="C/12_vga.pdf">PDF</a></figcaption><a href="C/12_vga.png"><img loading="lazy" src="C/12_vga.png" alt="12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  axi_vga_reg_top → 2  axi_vga_fetcher</td><td>fetcher 配置：reg2hw.control.enable.q、start_addr_high/low.q、frame_size.q、burst_len.q → enable_i/start_addr_i/frame_size_i/burst_len_i</td></tr>
+<tr><td>E02</td><td>2  axi_vga_fetcher → 3  timing_fsm</td><td>像素握手：red/green/blue + valid 由 fetcher→timing_fsm；ready 反向返回，表示此像素被消费</td></tr>
+<tr><td>E03</td><td>3  timing_fsm → RGB / HS / VS 引脚</td><td>显示引脚：red_o/green_o/blue_o、hsync_o/vsync_o；输出节拍由 fsm_en 控制</td></tr>
+<tr><td>E04</td><td>2  axi_vga_fetcher → 4  splitter + 信用门控</td><td>读地址请求：axi_req.ar/ar_valid → splitter.slv_req_i；ar_ready 反向返回；写通道在 fetcher 中不发起</td></tr>
+<tr><td>E05</td><td>4  splitter + 信用门控 → 系统 AXI AR</td><td>单拍 AR 与信用门控：axi_req_split.ar/ar_valid 经顶层 stream_join、credit_valid 发出 axi_req_o.ar/ar_valid，ar_ready 返回</td></tr>
+<tr><td>E06</td><td>系统 AXI R → 5  R 通道 FIFO</td><td>AXI R 返回入 FIFO：axi_resp_i.r/r_valid → i_stream_fifo.data_i/valid_i，axi_req_o.r_ready 反向背压；含 data/resp/id/last</td></tr>
+<tr><td>E07</td><td>5  R 通道 FIFO → 4  splitter + 信用门控</td><td>FIFO → splitter：axi_resp_split.r/r_valid；axi_req_split.r_ready 反向；弹出 last 的握手更新信用计数</td></tr>
+<tr><td>E08</td><td>4  splitter + 信用门控 → 2  axi_vga_fetcher</td><td>splitter → fetcher：axi_resp.r/r_valid，axi_req.r_ready 反向；复原原读 burst 的返回语义</td></tr>
+<tr><td>E09</td><td>1  axi_vga_reg_top → 3  timing_fsm</td><td>显示参数与节拍：reg2hw → timing_fsm.reg2hw_i；clk_div 经 clk_cnt_q 产生 fsm_en_i=(clk_cnt_q==0)，不是跨时钟域</td></tr>
+</table></details></section>
+<section id="13_usb"><h2>13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域</h2><a href="../../rtl_modules/13_usb.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/13_usb.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/13_usb.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/13_usb.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/13_usb.png" alt="13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/13_usb.svg">SVG</a> · <a href="C/13_usb.pdf">PDF</a></figcaption><a href="C/13_usb.png"><img loading="lazy" src="C/13_usb.png" alt="13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>Regbus 32 ↔ 1  reg_to_axi</td><td>配置 Regbus：ctrl_req_i/ctrl_rsp_o，32-bit wdata/rdata，地址/valid/write/wstrb 与 ready/error</td></tr>
+<tr><td>E02</td><td>1  reg_to_axi ↔ 2  UsbOhciAxi4：前端</td><td>配置 AXI32：ctrl_int_req/rsp；地址12位、ID0；在 UsbOhciAxi4 内 ctrlBridge 转为内部 BMB 控制访问</td></tr>
+<tr><td>E03</td><td>2  UsbOhciAxi4：前端 ↔ 5  AXI DMA 适配</td><td>内核 DMA AXI32：dma_int_req/rsp，32-bit 地址/数据，OHCI 发 AW/W/AR 并接 B/R</td></tr>
+<tr><td>E04</td><td>5  AXI DMA 适配 ↔ 主 AXI：AxiIn.usb</td><td>系统 AXI DMA：dma_req_o/dma_rsp_i → axi_in_req/rsp[AxiIn.usb]；数据位宽适配+地址 domain/mask 后发出，经过主互联访问内存</td></tr>
+<tr><td>E05</td><td>2  UsbOhciAxi4：前端 ↔ 3  CtrlCc</td><td>SoC 域 USB 流/命令：front_ohci_io_phy_tx_valid/ready、tx_payload_fragment/last、usbReset/usbResume；cc_input_rx_flow_*、端口状态反向</td></tr>
+<tr><td>E06</td><td>3  CtrlCc ↔ 4  UsbLsFsPhy</td><td>PHY 域 USB 流/命令：cc_output_tx_*、usbReset/usbResume → back_phy；back_phy_io_ctrl_rx_flow_*、txEop、tick 和端口状态返回</td></tr>
+<tr><td>E07</td><td>2  UsbOhciAxi4：前端 → SoC USB IRQ</td><td>设备中断：OHCI io_interrupt → wrapper intr_o → intr.usb；由设备状态触发，不是 Regbus ready</td></tr>
+<tr><td>E08</td><td>4  UsbLsFsPhy ↔ DP / DM / OE 引脚</td><td>数字引脚：phy_dp_i/dm_i 输入；phy_dp_o/dm_o 与 phy_dp_oe_o/dm_oe_o 输出；平台另实现 PAD/VBUS</td></tr>
+</table></details></section>
+<section id="14_idma"><h2>14  iDMA：AXI 控制入口、任务前端与独立搬运后端</h2><a href="../../rtl_modules/14_idma.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/14_idma.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/14_idma.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/14_idma.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/14_idma.png" alt="14  iDMA：AXI 控制入口、任务前端与独立搬运后端 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/14_idma.svg">SVG</a> · <a href="C/14_idma.pdf">PDF</a></figcaption><a href="C/14_idma.png"><img loading="lazy" src="C/14_idma.png" alt="14  iDMA：AXI 控制入口、任务前端与独立搬运后端 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>AXI slave 控制口 ↔ 1  axi_to_reg</td><td>AXI slave 控制请求/响应：axi_slv_req_i/axi_slv_rsp_o；上游 AxiOut.dma 经 atomics/cut</td></tr>
+<tr><td>E02</td><td>1  axi_to_reg ↔ 2  idma_reg64_1d / 2d</td><td>内部配置 Reg：dma_reg_req/dma_reg_rsp；控制数据 typedef 随 AxiDataWidth，而生成 reg_top DW32（既有缺口）</td></tr>
+<tr><td>E03</td><td>2  idma_reg64_1d / 2d → 3  Job FIFO + midend</td><td>提交任务：1D burst_req_d/be_valid_d/be_ready_d；2D idma_nd_req_d/idma_nd_req_valid_d/ready_d；进入 Job FIFO 的握手才 issue</td></tr>
+<tr><td>E04</td><td>3  Job FIFO + midend ↔ 4  idma_backend_rw_axi</td><td>后端1D任务：burst_req/be_valid/be_ready；2D 由 midend 展开；后端 idma_rsp/valid/ready 返回2D midend，不应漏返向通道</td></tr>
+<tr><td>E05</td><td>4  idma_backend_rw_axi ↔ 5  axi_rw_join</td><td>独立 AXI read/write：axi_read_req/rsp 与 axi_write_req/rsp → axi_rw_join；包含请求与 R/B 返回</td></tr>
+<tr><td>E06</td><td>5  axi_rw_join ↔ 主 AXI：AxiIn.dma</td><td>系统 AXI master：axi_mst_req_o/axi_mst_rsp_i → AxiIn.dma；由 DMA 发起对 SRC/DST 的内存事务</td></tr>
+<tr><td>E07</td><td>3  Job FIFO + midend → 6  transfer_id_gen</td><td>issue：frontend → Job FIFO 入口 valid &amp; ready；不是 midend 每派发一个一维子任务就 issue 新 ID。</td></tr>
+<tr><td>E08</td><td>3  Job FIFO + midend → 6  transfer_id_gen</td><td>2D retire：midend 的 idma_nd_rsp_valid &amp; idma_nd_rsp_ready → transfer_id_gen；1D 配置则使用 backend 的 idma_rsp 握手。</td></tr>
+<tr><td>E09</td><td>6  transfer_id_gen → 2  idma_reg64_1d / 2d</td><td>进度寄存器：transfer_id_gen.next_o/completed_o = next_id/done_id → frontend.next_id_i/done_id_i，读 NEXT_ID 还参与提交</td></tr>
+</table></details></section>
+<section id="15_interrupt_exception"><h2>15  CVA6 Trap：异步中断与同步异常在提交路径汇合</h2><a href="../../rtl_modules/15_interrupt_exception.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/15_interrupt_exception.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/15_interrupt_exception.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/15_interrupt_exception.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/15_interrupt_exception.png" alt="15  CVA6 Trap：异步中断与同步异常在提交路径汇合 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/15_interrupt_exception.svg">SVG</a> · <a href="C/15_interrupt_exception.pdf">PDF</a></figcaption><a href="C/15_interrupt_exception.png"><img loading="lazy" src="C/15_interrupt_exception.png" alt="15  CVA6 Trap：异步中断与同步异常在提交路径汇合 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  平台中断输入 → 2  csr_regfile</td><td>CSR 中断输入：irq_i、time_irq_i、ipi_i；CLIC 本身另经 clic_adapter 形成请求，不能把所有 CLIC 位都画成 mip 输入</td></tr>
+<tr><td>E02</td><td>2  csr_regfile → 3  decoder / id_stage</td><td>CSR→译码条件：irq_ctrl_csr_id、priv_lvl、clic_mode 等，控制 pending/enable/委托/全局允许；非所有外设线均先由 CSR 寄存</td></tr>
+<tr><td>E03</td><td>3  decoder / id_stage → 4  issue_stage</td><td>译码指令/异常：issue_entry_id_issue（含 ex）+ valid/ack，经 issue_stage 进入 scoreboard；不是独立设备 IRQ 总线</td></tr>
+<tr><td>E04</td><td>4  issue_stage → 5  commit_stage</td><td>按序提交候选：commit_instr_id_commit（含 ex）到 commit_stage；commit_ack_commit_id 反向推进条目</td></tr>
+<tr><td>E05</td><td>执行 / 访存异常 → 4  issue_stage</td><td>执行/访存写回异常：ex_ex_ex_id + trans_id_ex_id + wt_valid_ex_id，经 issue_stage 关联 scoreboard 对应条目</td></tr>
+<tr><td>E06</td><td>5  commit_stage → 2  csr_regfile</td><td>提交 trap：ex_commit（valid/cause/tval）与 pc_commit → csr_regfile.ex_i/pc_i，保存 epc/cause/tval</td></tr>
+<tr><td>E07</td><td>2  csr_regfile → 6  controller + frontend</td><td>CSR 重定向/控制：trap_vector_base_commit_pcgen、epc_commit_pcgen、eret/flush 相关控制到 controller/frontend；另有 ex_commit.valid 直接输入</td></tr>
+<tr><td>E08</td><td>6  controller + frontend → 处理程序取指（逻辑结果）</td><td>逻辑结果：frontend 开始从处理入口取指；此边是控制效果，不是某个外设端口或软件处理程序硬件模块</td></tr>
+<tr><td>E09</td><td>1  平台中断输入 → 3  decoder / id_stage</td><td>irq_i 直接输入译码；CLIC 经 clic_adapter 后为 clic_irq_req_id/cause_id。</td></tr>
+<tr><td>E10</td><td>5  commit_stage → 6  controller + frontend</td><td>ex_commit.valid → controller.ex_valid_i / frontend.ex_valid_i，与 CSR trap 状态更新并行。</td></tr>
+</table></details></section>
+<section id="16a_llc"><h2>16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM</h2><a href="../../rtl_modules/16_llc_spm.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/16a_llc.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/16a_llc.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/16a_llc.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/16a_llc.png" alt="16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/16a_llc.svg">SVG</a> · <a href="C/16a_llc.pdf">PDF</a></figcaption><a href="C/16a_llc.png"><img loading="lazy" src="C/16a_llc.png" alt="16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  isolate / demux → 2  axi_llc_hit_miss</td><td>地址描述符：AW/AR 经 chan_splitter、仲裁和 rw_spill 产生 spill_desc + spill_valid/ready；不含 W/R 数据</td></tr>
+<tr><td>E02</td><td>2  axi_llc_hit_miss → 3  evict → refill</td><td>miss 描述符：desc + miss_valid/miss_ready → evict_unit；按标志决定是否写回及 refill</td></tr>
+<tr><td>E03</td><td>3  evict → refill → 4  merge_unit</td><td>refill 完成描述符：refill_desc + refill_desc_valid/ready → merge_unit；不是外存返回的数据</td></tr>
+<tr><td>E04</td><td>2  axi_llc_hit_miss → 4  merge_unit</td><td>hit/SPM 描述符：desc + hit_valid/hit_ready → merge_unit.bypass_desc_i；受锁定/顺序限制</td></tr>
+<tr><td>E05</td><td>4  merge_unit → 5  read_unit / write_unit</td><td>分发描述符：read_desc/read_desc_valid/ready 与 write_desc/write_desc_valid/ready → read/write unit</td></tr>
+<tr><td>E06</td><td>5  read_unit / write_unit ↔ 6  axi_llc_ways</td><td>前台数据 SRAM 访问：to_way[WChanUnit/RChanUnit] + valid/ready，read_way_out + valid/ready 返回读数据</td></tr>
+<tr><td>E07</td><td>3  evict → refill ↔ 6  axi_llc_ways</td><td>后台 SRAM 访问：to_way[EvictUnit/RefilUnit] + valid/ready；evict_way_out 读出脏数据，refill 数据写入 way</td></tr>
+<tr><td>E08</td><td>1  isolate / demux ↔ 7  AXI 外存出口</td><td>完整 AXI bypass：bypass_req/bypass_resp → i_axi_bypass_mux；跳过数据阵列，响应原路返回</td></tr>
+<tr><td>E09</td><td>3  evict → refill ↔ 7  AXI 外存出口</td><td>外存 AXI：from_llc_req/from_llc_resp；evict 发 AW/W 收 B，refill 发 AR 收 R，经 mux 到 mst_req_o/mst_resp_i</td></tr>
+<tr><td>E10</td><td>1  isolate / demux ↔ 5  read_unit / write_unit</td><td>to_llc_req.w/w_valid/wstrb → write_unit；to_llc_resp.r/b 返回原请求者。独立于 AW/AR 描述符处理。</td></tr>
+</table></details></section>
+<section id="16b_spm"><h2>16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交</h2><a href="../../rtl_modules/16_llc_spm.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/16b_spm.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/16b_spm.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/16b_spm.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/16b_spm.png" alt="16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/16b_spm.svg">SVG</a> · <a href="C/16b_spm.pdf">PDF</a></figcaption><a href="C/16b_spm.png"><img loading="lazy" src="C/16b_spm.png" alt="16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>1  axi_llc_reg_top ↔ 2  axi_llc_config</td><td>配置/状态：conf_regs_i（cfg_spm/cfg_flush/commit_cfg）送 config；conf_regs_o（flushed/BIST 等及写使能）回 reg_top</td></tr>
+<tr><td>E02</td><td>2  axi_llc_config → 3  地址与 way 选择</td><td>way 用途控制：spm_lock/flushed → hit_miss/tag_store；控制哪些 way 可作 cache/SPM；不是 CPU 数据读写接口</td></tr>
+<tr><td>E03</td><td>3  地址与 way 选择 → 同一组 data SRAM（way 0…3 示例）</td><td>逻辑分配关系：地址/way 选择决定使用哪组 SRAM；实际访问经过 merge → read/write → ways，见 LLC 图。不是 config 直接驱动 SRAM 数据口。</td></tr>
+</table></details></section>
+<section id="17_axi_extension"><h2>外部 IP 的 AXI 数据口与 Reg 控制口</h2><a href="../../rtl_modules/17_axi_extension.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/17_axi_extension.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/17_axi_extension.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/17_axi_extension.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/17_axi_extension.png" alt="外部 IP 的 AXI 数据口与 Reg 控制口 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/17_axi_extension.svg">SVG</a> · <a href="C/17_axi_extension.pdf">PDF</a></figcaption><a href="C/17_axi_extension.png"><img loading="lazy" src="C/17_axi_extension.png" alt="外部 IP 的 AXI 数据口与 Reg 控制口 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>新增数据 master ↔ DW / ID / CDC</td><td>规划/待确认连接：新增设备发起 AW/AR/W，适配器返回 B/R；位宽、ID、时钟子集待该 IP 接口确定。</td></tr>
+<tr><td>E02</td><td>DW / ID / CDC ↔ AXI RT / 直连</td><td>规划/待确认连接：拟接 axi_ext_mst_req_i / axi_ext_mst_rsp_o，经 AxiIn.ext_base 进入 axi_in_req；端口数需要显式启用。</td></tr>
+<tr><td>E03</td><td>AXI RT / 直连 ↔ i_axi_xbar</td><td>gen_axi_rt 在启用时生成 i_axi_rt_unit_top；默认 gen_no_axi_rt 直连 axi_in_req 与 axi_rt_in_req。</td></tr>
+<tr><td>E04</td><td>i_axi_xbar ↔ AXI 外部 slave 口</td><td>gen_axi_out 的外部 AXI 规则将请求路由到 AxiOut.ext_base；输出 ID 包含输入端口编号。</td></tr>
+<tr><td>E05</td><td>AXI 外部 slave 口 ↔ 新增 AXI slave</td><td>规划/待确认连接：拟接 axi_ext_slv_req_o / axi_ext_slv_rsp_i；外部 IP 是被访问端，AW/AR/W 由 SoC 侧发起。</td></tr>
+<tr><td>E06</td><td>i_axi_xbar ↔ axi_to_reg_v2</td><td>Reg 窗口先进入 AxiOut.reg_demux，经过现有原子适配和 cut（此处合并）后到 axi_to_reg_v2。</td></tr>
+<tr><td>E07</td><td>axi_to_reg_v2 ↔ Reg decode / demux</td><td>reg_req / reg_rsp 包含 addr、write、wdata、wstrb、valid / rdata、error、ready；默认数据 32-bit。</td></tr>
+<tr><td>E08</td><td>Reg decode / demux ↔ Reg 外部 slave 口</td><td>gen_reg_out 外部规则二次译码；demux 不自动从地址中减去设备基址。</td></tr>
+<tr><td>E09</td><td>Reg 外部 slave 口 ↔ 新增配置寄存器</td><td>规划/待确认连接：拟接 reg_ext_slv_req_o / reg_ext_slv_rsp_i；新寄存器块及时钟域适配需要额外实现。</td></tr>
+</table></details></section>
+<section id="18_clock_reset_startup"><h2>异域 IP 的配置、时钟复位与 IRQ 边界</h2><a href="../../rtl_modules/18_clock_reset_startup.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/18_clock_reset_startup.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/18_clock_reset_startup.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/18_clock_reset_startup.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/18_clock_reset_startup.png" alt="异域 IP 的配置、时钟复位与 IRQ 边界 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/18_clock_reset_startup.svg">SVG</a> · <a href="C/18_clock_reset_startup.pdf">PDF</a></figcaption><a href="C/18_clock_reset_startup.png"><img loading="lazy" src="C/18_clock_reset_startup.png" alt="异域 IP 的配置、时钟复位与 IRQ 边界 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>clk_i / rst_ni → AXI → Reg / demux</td><td>当前 AXI-to-Reg 与 Reg demux 直接使用 SoC clk_i/rst_ni；Regbus 自身没有固定分频。</td></tr>
+<tr><td>E02</td><td>AXI → Reg / demux ↔ reg_cdc（拟增实例）</td><td>规划/待确认连接：拟从 reg_ext_slv_req_o/reg_ext_slv_rsp_i 接 reg_cdc 的 src_req_i/src_rsp_o；外部 Reg 端口需启用。</td></tr>
+<tr><td>E03</td><td>clk_i / rst_ni → reg_cdc（拟增实例）</td><td>规划/待确认连接：拟接 reg_cdc 的 src_clk_i/src_rst_ni 到 SoC 域；这只解决源侧时钟复位。</td></tr>
+<tr><td>E04</td><td>reg_cdc（拟增实例） ↔ IP 配置寄存器</td><td>规划/待确认连接：拟由 reg_cdc dst_req_o/dst_rsp_i 访问 IP 域寄存器；目标响应跨回源域之后才使源 ready 完成。</td></tr>
+<tr><td>E05</td><td>IP 时钟 / 复位 → reg_cdc（拟增实例）</td><td>规划/待确认连接：目标域时钟复位接 reg_cdc dst_clk_i/dst_rst_ni；未运行的目标域不能默认完成访问。</td></tr>
+<tr><td>E06</td><td>IP 时钟 / 复位 → IP 配置寄存器</td><td>规划/待确认连接：候选接法中配置银行与 IP 逻辑同域；具体信号名、频率、复位释放条件待 IP/平台确认。</td></tr>
+<tr><td>E07</td><td>IP 时钟 / 复位 → IP 工作逻辑</td><td>规划/待确认连接：IP 工作逻辑时钟/复位输入待定义；局部停钟和复位须处理在途事务。</td></tr>
+<tr><td>E08</td><td>IP 配置寄存器 ↔ IP 工作逻辑</td><td>规划/待确认连接：拟由同域寄存器发布配置、启动命令并读取状态；接收、生效、完成的区分由 IP 契约规定。</td></tr>
+<tr><td>E09</td><td>IP 工作逻辑 → IP IRQ 状态保持</td><td>规划/待确认连接：规划的事件记录和 IRQ 保持；具体状态位和清除方式尚未定义。</td></tr>
+<tr><td>E10</td><td>IP IRQ 状态保持 → i_ext_intr_sync</td><td>规划/待确认连接：拟将保持到确认的 IRQ 接 intr_ext_i；当前 SoC 用 Cfg.NumExtIntrSyncs 级同步，不保证捕获任意短脉冲。</td></tr>
+<tr><td>E11</td><td>i_ext_intr_sync → Router / PLIC / CLIC</td><td>现有同步输出进入 intr.ext，经可选 Router 或 fanout 送中断目标；不是 IRQ 同步器直接发 trap。</td></tr>
+</table></details></section>
+<section id="19_ddr_lvds_pipeline"><h2>规划图像链与 DDR / GB 搬运职责</h2><a href="../../rtl_modules/19_ddr_lvds_pipeline.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.png" alt="规划图像链与 DDR / GB 搬运职责 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/19_ddr_lvds_pipeline.svg">SVG</a> · <a href="C/19_ddr_lvds_pipeline.pdf">PDF</a></figcaption><a href="C/19_ddr_lvds_pipeline.png"><img loading="lazy" src="C/19_ddr_lvds_pipeline.png" alt="规划图像链与 DDR / GB 搬运职责 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>LVDS 接收前端 → 打包 / CDC FIFO</td><td>规划/待确认连接：规划接收数据和字/行/帧状态成组交付打包与跨域；传感器协议、lane 组织和背压能力待确认。</td></tr>
+<tr><td>E02</td><td>打包 / CDC FIFO → ISP / RAW 选择组</td><td>规划/待确认连接：规划从 FIFO 向 ISP/选择组交付 RAW；组内可经 ISP 或 RAW 旁路，在帧边界选择；不是同时输出两路。</td></tr>
+<tr><td>E03</td><td>ISP / RAW 选择组 → 帧写入 DMA</td><td>规划/待确认连接：规划把选定的一路 RAW 或 ISP 结果交给帧 DMA；格式、有效字节和丢帧标志须明确定义。</td></tr>
+<tr><td>E04</td><td>帧写入 DMA ↔ DDR Controller / PHY</td><td>规划/待确认连接：帧 DMA 作为 master 产生 AW/W，DDR 端返回 B；完成需等待该帧相关响应并处理错误。所需适配与目标端口待定。</td></tr>
+<tr><td>E05</td><td>现有 LLC 外存出口 ↔ DDR Controller / PHY</td><td>规划/待确认连接：已有 axi_llc_mst_req_o/rsp_i 拟接新的 DDR 合流/控制器端口；当前 FPGA 实际连接是 dram_wrapper_xilinx/MIG。</td></tr>
+<tr><td>E06</td><td>NPU / GB 搬运器 ↔ DDR Controller / PHY</td><td>规划/待确认连接：NPU/GB 搬运器作为 DDR master；绕过 LLC。是否与独立 NPU master 合流、是否需要额外端口尚待确定。</td></tr>
+<tr><td>E07</td><td>NPU / GB 搬运器 ↔ GB 访问适配</td><td>规划/待确认连接：搬运器将 DDR 返回写进 GB，或从 GB 读出再写 DDR；本地接口协议/位宽尚未冻结。</td></tr>
+<tr><td>E08</td><td>NPU 计算引擎 ↔ GB 访问适配</td><td>规划/待确认连接：NPU 计算引擎经局部适配访问 GB；与搬运器竞争 bank/端口，不能将逻辑双向线理解成无限带宽。</td></tr>
+<tr><td>E09</td><td>ISP / RAW 选择组 ↔ GB 访问适配</td><td>规划/待确认连接：规划保留 ISP 工作区访问 GB 的候选；是否需要、接口和并行能力取决于算法及 bank 预算。</td></tr>
+<tr><td>E10</td><td>GB 访问适配 ↔ Global Buffer</td><td>规划/待确认连接：规划把多个局部访问者仲裁到实际 SRAM bank/端口；SRAM 延迟、掩码、容量与冲突语义待定。</td></tr>
+</table></details></section>
+<section id="20_accelerator_memory"><h2>Ara 访存和 CPU 失效请求的实际边界</h2><a href="../../rtl_modules/20_accelerator_memory.md">详细解读与源码对应</a><div class="pair">
+<figure><figcaption>A · 当前采用 · <a href="../2026-10-13_rtl_module_comparison/A/20_accelerator_memory.svg">SVG</a> · <a href="../2026-10-13_rtl_module_comparison/A/20_accelerator_memory.pdf">PDF</a></figcaption><a href="../2026-10-13_rtl_module_comparison/A/20_accelerator_memory.png"><img loading="lazy" src="../2026-10-13_rtl_module_comparison/A/20_accelerator_memory.png" alt="Ara 访存和 CPU 失效请求的实际边界 A · 当前采用"></a></figure>
+<figure><figcaption>C · 试绘留档 · <a href="C/20_accelerator_memory.svg">SVG</a> · <a href="C/20_accelerator_memory.pdf">PDF</a></figcaption><a href="C/20_accelerator_memory.png"><img loading="lazy" src="C/20_accelerator_memory.png" alt="Ara 访存和 CPU 失效请求的实际边界 C · 试绘留档"></a></figure>
+</div><details><summary>展开共用连接表（E 编号 → 信号与用途）</summary><table><tr><th>连线</th><th>端点</th><th>信号与含义</th></tr>
+<tr><td>E01</td><td>CVA6 acc_dispatcher ↔ i_ara</td><td>CVA6 向 Ara 发送指令/相关 MMU 信息，Ara 返回执行状态；SoC 同时通过 acc_resp_pack 包装失效状态。</td></tr>
+<tr><td>E02</td><td>i_ara ↔ axi_inval_filter</td><td>axi_ara_wide_req/rsp；默认按 32*AraNrLanes 决定数据位宽，2 lanes 为 64-bit。</td></tr>
+<tr><td>E03</td><td>axi_inval_filter ↔ CVA6 acc_dispatcher</td><td>inval_addr/valid 经 acc_resp_pack.acc_resp 返回 CVA6；inval_ready/acc_cons_en 经 acc_req.acc_req 反馈到过滤器。并非直接额外 snoop 端口。</td></tr>
+<tr><td>E04</td><td>CVA6 acc_dispatcher ↔ CVA6 L1D 路径</td><td>CVA6 acc_dispatcher 转出 inval_addr_o/inval_valid_o 并接收 inval_ready_i；相应 D-cache 分支接收失效，必须匹配最终 profile。</td></tr>
+<tr><td>E05</td><td>axi_inval_filter ↔ axi_dw_converter</td><td>axi_ara_wide_req_inval/rsp_inval 进入现有 DW 转换器；当前没有 GB 地址分流实例。</td></tr>
+<tr><td>E06</td><td>axi_dw_converter ↔ 主 AXI Xbar</td><td>axi_ara_narrow_req/rsp 接主 Xbar 输入（可选 AXI RT 合并表示）；访问 LLC 地址仍走普通主存路径。</td></tr>
+<tr><td>E07</td><td>CVA6 L1D 路径 ↔ CPU AXI / ID 适配</td><td>L1D 属于 CPU 内部访存子系统，随 CPU AXI 汇合输出后由 i_axi_id_serialize 映射 ID；图省略 I-cache/MMU 等其他 CPU 请求源。</td></tr>
+<tr><td>E08</td><td>CPU AXI / ID 适配 ↔ 主 AXI Xbar</td><td>经核心用户信号分配与 ID serialize 的 CPU AXI 接入主 Xbar（可选 AXI RT 合并表示）。</td></tr>
+<tr><td>E09</td><td>主 AXI Xbar ↔ 原子适配 → LLC</td><td>axi_out_req[AxiOut.llc] 经 i_llc_atomics 与 cut 到 LLC；图合并已在16章展开的内部结构。</td></tr>
+<tr><td>E10</td><td>原子适配 → LLC ↔ LLC 外存 AXI</td><td>LLC miss/refill、evict/writeback 和旁路最终使用 axi_llc_mst_req_o/rsp_i；接入 AXI/LLC 不自动等于新设备缓存一致。</td></tr>
+</table></details></section>
+</main><script>document.getElementById("layout").onclick=()=>document.body.classList.toggle("wide");document.getElementById("jump").onchange=e=>{if(e.target.value)location.hash=e.target.value};</script></html>

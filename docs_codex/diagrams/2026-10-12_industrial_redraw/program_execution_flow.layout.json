@@ -1,0 +1,538 @@
+{
+  "canvas": [
+    2400.0,
+    1350.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      2400,
+      1350
+    ],
+    "rom-domain": [
+      60,
+      190,
+      740,
+      1030
+    ],
+    "payload-domain": [
+      850,
+      190,
+      740,
+      1030
+    ],
+    "state-domain": [
+      1640,
+      190,
+      700,
+      1030
+    ],
+    "reset": [
+      100,
+      280,
+      660,
+      100
+    ],
+    "early": [
+      100,
+      450,
+      660,
+      150
+    ],
+    "rom-main": [
+      100,
+      670,
+      660,
+      150
+    ],
+    "gpt-load": [
+      100,
+      890,
+      660,
+      110
+    ],
+    "handoff": [
+      100,
+      1080,
+      660,
+      95
+    ],
+    "payload-start": [
+      890,
+      280,
+      660,
+      100
+    ],
+    "runtime": [
+      890,
+      450,
+      660,
+      160
+    ],
+    "app": [
+      890,
+      710,
+      660,
+      170
+    ],
+    "exit": [
+      890,
+      1030,
+      660,
+      145
+    ],
+    "running": [
+      1680,
+      280,
+      620,
+      220
+    ],
+    "rom-return": [
+      1680,
+      660,
+      620,
+      300
+    ],
+    "observer": [
+      1680,
+      1040,
+      620,
+      150
+    ]
+  },
+  "texts": [
+    {
+      "text": "从复位到应用返回的程序执行流程",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "SPI NOR 自主启动：boot_mode=2 · PlatformRom=0 · 根 SDK CRT0",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "片上 Boot ROM 镜像",
+      "x": 430.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "rom-domain",
+      "id": "o5"
+    },
+    {
+      "text": "SPM 中的应用 / ZSL 镜像",
+      "x": 1220.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "payload-domain",
+      "id": "o7"
+    },
+    {
+      "text": "完成后的状态与观察",
+      "x": 1990.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "state-domain",
+      "id": "o9"
+    },
+    {
+      "text": "复位释放 → ROM _start",
+      "x": 430.0,
+      "y": 322.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "reset",
+      "id": "o11"
+    },
+    {
+      "text": "cheshire_bootrom.S @ ROM",
+      "x": 430.0,
+      "y": 356.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "reset",
+      "id": "o12"
+    },
+    {
+      "text": "早期环境与 LLC 初始化",
+      "x": 430.0,
+      "y": 500.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "early",
+      "id": "o14"
+    },
+    {
+      "text": "等待 BIST · 配置 SPM / 栈",
+      "x": 430.0,
+      "y": 534.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "early",
+      "id": "o15"
+    },
+    {
+      "text": "PlatformRom=0：跳过平台钩子",
+      "x": 430.0,
+      "y": 568.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "early",
+      "id": "o16"
+    },
+    {
+      "text": "cheshire_bootrom.c · main",
+      "x": 430.0,
+      "y": 720.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "rom-main",
+      "id": "o18"
+    },
+    {
+      "text": "boot_mode / RTC 测频",
+      "x": 430.0,
+      "y": 754.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-main",
+      "id": "o19"
+    },
+    {
+      "text": "boot_spi_s25fs512s 初始化 SPI",
+      "x": 430.0,
+      "y": 788.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-main",
+      "id": "o20"
+    },
+    {
+      "text": "gpt_boot_part_else_raw",
+      "x": 430.0,
+      "y": 937.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "gpt-load",
+      "id": "o22"
+    },
+    {
+      "text": "镜像字节 → SPM 的 code_buf",
+      "x": 430.0,
+      "y": 971.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "gpt-load",
+      "id": "o23"
+    },
+    {
+      "text": "boot_next_stage",
+      "x": 430.0,
+      "y": 1120.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "handoff",
+      "id": "o25"
+    },
+    {
+      "text": "jalr ra, 0(t0)",
+      "x": 430.0,
+      "y": 1154.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "handoff",
+      "id": "o26"
+    },
+    {
+      "text": "载荷 _start @ 镜像起点",
+      "x": 1220.0,
+      "y": 322.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "payload-start",
+      "id": "o28"
+    },
+    {
+      "text": "由 sw/lib/crt0.S 提供",
+      "x": 1220.0,
+      "y": 356.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "payload-start",
+      "id": "o29"
+    },
+    {
+      "text": "CRT0：应用运行环境",
+      "x": 1220.0,
+      "y": 505.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o31"
+    },
+    {
+      "text": "sp / gp、mtvec、BSS、FP",
+      "x": 1220.0,
+      "y": 539.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o32"
+    },
+    {
+      "text": "保存进入应用的 ra；call main",
+      "x": 1220.0,
+      "y": 573.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o33"
+    },
+    {
+      "text": "载荷自己的 main()",
+      "x": 1220.0,
+      "y": 770.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "app",
+      "id": "o35"
+    },
+    {
+      "text": "执行任务",
+      "x": 1220.0,
+      "y": 804.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "app",
+      "id": "o36"
+    },
+    {
+      "text": "不返回则继续按程序运行",
+      "x": 1220.0,
+      "y": 838.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "app",
+      "id": "o37"
+    },
+    {
+      "text": "应用 CRT0 · _exit",
+      "x": 1220.0,
+      "y": 1078.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "exit",
+      "id": "o39"
+    },
+    {
+      "text": "scratch2 = (返回值 << 1) | 1",
+      "x": 1220.0,
+      "y": 1112.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "exit",
+      "id": "o40"
+    },
+    {
+      "text": "恢复栈上 sp / gp / ra，然后 ret",
+      "x": 1220.0,
+      "y": 1146.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "exit",
+      "id": "o41"
+    },
+    {
+      "text": "return 不会自动停机",
+      "x": 1990.0,
+      "y": 365.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "running",
+      "id": "o43"
+    },
+    {
+      "text": "不自动复位 / 断电 / 换权限",
+      "x": 1990.0,
+      "y": 399.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "running",
+      "id": "o44"
+    },
+    {
+      "text": "CPU 仍由时钟驱动并继续取指",
+      "x": 1990.0,
+      "y": 433.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "running",
+      "id": "o45"
+    },
+    {
+      "text": "当前 ROM 的调用后返回点",
+      "x": 1990.0,
+      "y": 751.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "rom-return",
+      "id": "o47"
+    },
+    {
+      "text": "boot_next_stage：jalr 后为 ret",
+      "x": 1990.0,
+      "y": 785.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-return",
+      "id": "o48"
+    },
+    {
+      "text": "未保存上一层 ra",
+      "x": 1990.0,
+      "y": 819.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-return",
+      "id": "o49"
+    },
+    {
+      "text": "可形成 ret 自循环（源码推导）",
+      "x": 1990.0,
+      "y": 853.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-return",
+      "id": "o50"
+    },
+    {
+      "text": "不是按设计进入 ROM _exit",
+      "x": 1990.0,
+      "y": 887.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "rom-return",
+      "id": "o51"
+    },
+    {
+      "text": "仿真 / 调试器等外部观察者",
+      "x": 1990.0,
+      "y": 1090.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "observer",
+      "id": "o53"
+    },
+    {
+      "text": "读取 scratch2 完成标志",
+      "x": 1990.0,
+      "y": 1124.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "observer",
+      "id": "o54"
+    },
+    {
+      "text": "TB 可结束仿真；不等于 CPU 停机",
+      "x": 1990.0,
+      "y": 1158.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "observer",
+      "id": "o55"
+    },
+    {
+      "text": "call main",
+      "x": 555,
+      "y": 644,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o60"
+    },
+    {
+      "text": "jalr：转入载荷入口",
+      "x": 818,
+      "y": 1280,
+      "size": 24,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o62"
+    },
+    {
+      "text": "call",
+      "x": 1390,
+      "y": 666,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o65"
+    },
+    {
+      "text": "main 正常返回",
+      "x": 1390,
+      "y": 967,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o67"
+    },
+    {
+      "text": "ret",
+      "x": 1610,
+      "y": 780,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o69"
+    },
+    {
+      "text": "可能 ret 自循环",
+      "x": 2100,
+      "y": 585,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o72"
+    },
+    {
+      "text": "ROM 流程 / 观察",
+      "x": 135,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o74"
+    },
+    {
+      "text": "载荷执行",
+      "x": 665,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o76"
+    },
+    {
+      "text": "当前返回路径缺口",
+      "x": 1195,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o78"
+    }
+  ]
+}

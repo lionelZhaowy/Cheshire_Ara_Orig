@@ -1,0 +1,766 @@
+{
+  "date": "2026-10-12",
+  "input_head": "c4162204cfee0c48b81158b4296860a678d92bec",
+  "source_sha256": {
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv": "df090ca44a38464c16cb88fb859e23e8dc192609a059e0c12f7325e7c87170cb",
+    ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv": "a8fc48b3541657f67cdfeb60edf58be04670bbfc866728e54cf038387e60130d",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv": "d81f9af459e97fd1e7cabbcc7a429303e4d3b9847bc4724a039fd435605eda5a",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv": "555bc9a6053afb91d0c0f2e5e630ed44d5dbe261bdc256c7116d813ed0e10584",
+    ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv": "825757fff4aa98d4c5c916e281a77fbbdb2eeacbba8b38307aab36f9f4f8338b",
+    "docs/um/arch.md": "736b2b0445c41d19d88725ff86888be83344650c270f31a320088d6536924cb6",
+    ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv": "49e4f5c48e76c23242fe0714089446b8f5334b91c468c8f49f8eda9992f18c2e",
+    ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv": "95a020ecfd87d028db2f9aa0c958bc3bd300e8a45a4f3446d20a3ee9cddf51cc",
+    "sw/lib/dif/uart.c": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c.sv": "187c5c4f143cc0beebf95b8dd27e10de44f3c85a1ceb869841e8634e41380ede",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv": "12a5e6e4585ad82c5b86f4475719c781ed4632ffa2556eea67a548be4e8c4adb",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv": "ffd2ebecc5c53acdc409f1daa2f7c683bbc9028cce8da1d4bcf7b2b5e50518c9",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host_core.sv": "84a626b971ab587b8b911fa52c866a60bbf5ff09b5b6dab6effbe49bac836fa8",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv": "978072a85fdaeeb72bd6112bb1f3b2d7555c342d72033b3e1cc3e6d85dd24129",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic.sv": "14191f0bf3fc3ed8d9f439c614c43e84572b13699902bc361317122b5b52a25b",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_gateway.sv": "c9d86f32bd218d3641cdac73656e6ac776b01e72041b98b5f509d3c4956078ff",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_target.sv": "b108ec9304c49e966e7de30e6fada6035cf6e498860157f2428b77b0a1c69153",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_reg_top.sv": "2206b6adffe19782cf786bd1604a64fee934c541b66cda8742860901ff19ac70",
+    ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv": "72c767583ba83e4cec3ddff93ee183bd0a2c0c6169e1d5bbb2166cedb67ad75f",
+    ".bender/git/checkouts/clic-360fff7ce2d41116/src/clic.sv": "613937107adcb31d6a2987149e404aa1fcc3a6b0035ca032a749a23c642f8030",
+    "sw/lib/dif/clint.c": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+    "sw/tests/clic_basic.spm.S": "77830ddb4cdf102943351672095f96bc379b26c7ca050cdfe211015698eebc95",
+    ".bender/git/checkouts/irq_router-376b3d113c15d0ef/rtl/irq_router.sv": "51579e33bf2b95d9d586ad72d3f94ea8bcd11442c651c75fe9c191909b082d38",
+    ".bender/git/checkouts/irq_router-376b3d113c15d0ef/gen/irq_router_regs.hjson": "8af29200e2d93ff3b0a3976a6f0b610a6614ef232d24a273f141afb79cc13c0a",
+    "hw/bootrom/cheshire_bootrom.sv": "c6a8f134c290ae8d2da3a0d9ac8c89cb231909f3db3adcb1b6ded40e5da8aa9d",
+    "hw/bootrom/cheshire_bootrom.S": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+    "hw/bootrom/cheshire_bootrom.c": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae",
+    "hw/bootrom/cheshire_bootrom.ld": "b4445cbb070a9ba673e69342171f12a614be53d99a9857d577c32620b54de990",
+    "hw/regs/cheshire_reg_top.sv": "8e872dabe2ac5a78eb0f7921310251bd2335a80ac465fb428dcbd834f9ddc4ea",
+    "hw/regs/cheshire_regs.hjson": "19dcf3e4a35575f82b8cb3276309a83893216700c51091c1d47f0220da38d0f6",
+    ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dmi_jtag.sv": "a3dbcd4190586d11821b798853a17da4a5276a4d9c56b8007340b7919dc58d0b",
+    ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_top.sv": "89a1f707cc89ec984387fec61f73966e437dd2e399d387b18e2e8fa2232dc823",
+    ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv": "b4a4a537349811c6e776c117f0401a3b2dae055ca6807e52f3121be8d58b4980",
+    ".bender/git/checkouts/serial_link-6e09ea4800bad616/doc/README.md": "331ea6d17e90e3a1057b5a9d7e13c5ad5d5ab43c2cd695271e383ef870a821e3",
+    ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv": "880ef76a0f53af411b6e27a3542e27749ee63c6b3501a639094a1f113603032e",
+    ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv": "1d0af37f6f66a524d68dbb179fc1068a17411abc9aa25ddeceef115acbced83f",
+    ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_timing_fsm.sv": "9b1147235912603c8b3e853b5adb0fb12121587ace400a0f13a577a10a4c6689",
+    "hw/future/spinal_usb_ohci.sv": "09507ee03a1e998ef5b81b058d0ff286a04677eaaa67dde957d426cb73cc1436",
+    "hw/future/UsbOhciAxi4.v": "f98258803336f1c285b331729a3abf1f1fc6d0424ac19947fde9dd21411fdf2f",
+    "hw/cheshire_idma_wrap.sv": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv": "61a0e3bfa04d815dfd5bec3511b6d0e2b155f6320de16d6aa13f3a3f1988b607",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv": "7782f1bc3f7920d5f1c2f285110ca950ce12761c173d166cdbb15d2c988f7236",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv": "8af0d7c124194b0788f1a5157c569f5fadd902caef5f20269beda9d79db79798",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv": "d7760126765d3e623293ef53f21043ae6753355c8d07eb65f533ece1238a257e",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/decoder.sv": "7a49f7001c2adf7a4b644a11e0beb0a6ff9378e33688cfe27aa2d173cc15f04a",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/scoreboard.sv": "f9386b9ffb873f2223718518766642388ecd27f11d4021524a3e794275586ea9",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/commit_stage.sv": "632c4174335156a691b61bd8adf7ba0cf7a97f9cccc2204bcf256d33b0d5a91b",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv": "0ed3e6638cd36abb518c44d4507073daeef93bd11ceb3494d89f88fc74259a3c",
+    "sw/lib/crt0.S": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv": "40ad5d3c0ec3817662815514d28f1a9190ae1b24af4976c6359502f0a851bd1c",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_ways.sv": "b84f2bdf8b5712d17d26aecb9b0e758cdfc6095e87e61fb72950b206208dd9ae",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_reg_wrap.sv": "df67486ef5b91940f301ab340d53337f53b2b93317b06874ad287f44b88c4e10",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv": "60691d56d923e0784a2094a80ea6e423cfc88ac0b4e9daf33db435eb61435138",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/doc/axi_llc.md": "bcd976e8d8956dfe946f98a26efdfb183d1b070c898d9d819bb9e69544960e80"
+  },
+  "anchors": {
+    "00_regbus": [
+      {
+        "role": "SoC：AXI 到 Regbus",
+        "path": "hw/cheshire_soc.sv",
+        "line": 369,
+        "anchor": "axi_to_reg_v2 #("
+      },
+      {
+        "role": "SoC：地址选择",
+        "path": "hw/cheshire_soc.sv",
+        "line": 397,
+        "anchor": ") i_reg_demux_decode ("
+      },
+      {
+        "role": "扩展配置/两级路由",
+        "path": "hw/cheshire_pkg.sv",
+        "line": 120,
+        "anchor": "RegExtRegionIdx;"
+      },
+      {
+        "role": "桥：bank 数与具体参数",
+        "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv",
+        "line": 49,
+        "anchor": "localparam int unsigned NumBanks"
+      },
+      {
+        "role": "AXI 请求与返回信息",
+        "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv",
+        "line": 330,
+        "anchor": ") i_fork ("
+      },
+      {
+        "role": "元数据缓冲",
+        "path": ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv",
+        "line": 364,
+        "anchor": ") i_meta_buf ("
+      },
+      {
+        "role": "流到存储握手",
+        "path": ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv",
+        "line": 17,
+        "anchor": "module stream_to_mem"
+      },
+      {
+        "role": "分拆请求与重组响应",
+        "path": ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv",
+        "line": 15,
+        "anchor": "module mem_to_banks_detailed"
+      },
+      {
+        "role": "跨域完整请求/响应",
+        "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv",
+        "line": 14,
+        "anchor": "module reg_cdc"
+      },
+      {
+        "role": "项目本地架构说明",
+        "path": "docs/um/arch.md",
+        "line": 20,
+        "anchor": "Regbus"
+      }
+    ],
+    "01_uart": [
+      {
+        "role": "SoC 条件生成与接线",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1351,
+        "anchor": ") i_uart ("
+      },
+      {
+        "role": "图①：Regbus/APB 适配",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv",
+        "line": 62,
+        "anchor": "reg_to_apb #("
+      },
+      {
+        "role": "图②：APB 地址位选择",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv",
+        "line": 82,
+        "anchor": ".PADDR"
+      },
+      {
+        "role": "图③：波特率发生器",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+        "line": 630,
+        "anchor": "uart_baudgen UART_BG16"
+      },
+      {
+        "role": "图④⑦：TX/RX 队列",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+        "line": 648,
+        "anchor": "UART_TXFF"
+      },
+      {
+        "role": "图⑤⑥：收发器",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+        "line": 681,
+        "anchor": "uart_transmitter UART_TX"
+      },
+      {
+        "role": "图⑧：IRQ",
+        "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+        "line": 273,
+        "anchor": "uart_interrupt UART_IIC"
+      },
+      {
+        "role": "软件初始化/访问宽度",
+        "path": "sw/lib/dif/uart.c",
+        "line": 12,
+        "anchor": "void uart_init"
+      }
+    ],
+    "02_i2c": [
+      {
+        "role": "SoC 15 路事件/引脚",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1388,
+        "anchor": ") i_i2c ("
+      },
+      {
+        "role": "图①：寄存器与 core 连接",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c.sv",
+        "line": 54,
+        "anchor": ") u_reg ("
+      },
+      {
+        "role": "图②：FMT 字段组合",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+        "line": 269,
+        "anchor": "assign fmt_fifo_wdata"
+      },
+      {
+        "role": "图②④⑥⑦：FIFO 实例",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+        "line": 292,
+        "anchor": "prim_fifo_sync #("
+      },
+      {
+        "role": "图③⑤：时序与引脚",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+        "line": 413,
+        "anchor": ") u_i2c_fsm ("
+      },
+      {
+        "role": "图⑧：事件锁存/使能",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+        "line": 483,
+        "anchor": "intr_hw_fmt_threshold"
+      }
+    ],
+    "03_spi": [
+      {
+        "role": "SoC 片选/引脚/IRQ",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1453,
+        "anchor": ") i_spi_host ("
+      },
+      {
+        "role": "图①②：命令队列",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv",
+        "line": 195,
+        "anchor": "spi_host_command_queue #("
+      },
+      {
+        "role": "图④：数据窗口",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv",
+        "line": 220,
+        "anchor": "spi_host_window #("
+      },
+      {
+        "role": "图⑤⑨：数据 FIFO",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv",
+        "line": 312,
+        "anchor": "spi_host_data_fifos #("
+      },
+      {
+        "role": "图③⑥⑦⑧：核心实例",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host_core.sv",
+        "line": 64,
+        "anchor": "spi_host_byte_merge"
+      },
+      {
+        "role": "溢出/下溢/使能约束",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv",
+        "line": 282,
+        "anchor": "assign error_overflow"
+      }
+    ],
+    "04_gpio": [
+      {
+        "role": "SoC GPIO 参数/接线",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1493,
+        "anchor": ") i_gpio ("
+      },
+      {
+        "role": "图①：输入滤波",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+        "line": 45,
+        "anchor": "prim_filter_ctr #("
+      },
+      {
+        "role": "图⑤⑥：输出/使能更新",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+        "line": 38,
+        "anchor": "cio_gpio_q"
+      },
+      {
+        "role": "图②③：中断检测/锁存",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+        "line": 120,
+        "anchor": "prim_intr_hw #("
+      },
+      {
+        "role": "图④：寄存器连接",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+        "line": 145,
+        "anchor": "gpio_reg_top #("
+      }
+    ],
+    "05_plic": [
+      {
+        "role": "SoC PLIC 目标连接",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1213,
+        "anchor": ") i_plic ("
+      },
+      {
+        "role": "图①：同步与触发类型",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic.sv",
+        "line": 27,
+        "anchor": "LevelEdgeTrig ="
+      },
+      {
+        "role": "图②：pending/active",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_gateway.sv",
+        "line": 7,
+        "anchor": "module rv_plic_gateway"
+      },
+      {
+        "role": "图③：最大值树/阈值",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_target.sv",
+        "line": 42,
+        "anchor": "prim_max_tree #("
+      },
+      {
+        "role": "图④：claim/complete",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic.sv",
+        "line": 58,
+        "anchor": "claim_re"
+      },
+      {
+        "role": "生成寄存器入口",
+        "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_reg_top.sv",
+        "line": 10,
+        "anchor": "module rv_plic_reg_top"
+      }
+    ],
+    "06_clint_clic": [
+      {
+        "role": "SoC CLINT 连接",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1231,
+        "anchor": ") i_clint ("
+      },
+      {
+        "role": "图 A：计数、比较、MSIP",
+        "path": ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv",
+        "line": 15,
+        "anchor": "module clint"
+      },
+      {
+        "role": "RTC 同步与边沿",
+        "path": ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv",
+        "line": 82,
+        "anchor": "clint_sync_wedge"
+      },
+      {
+        "role": "图 B①：输入与生成条件",
+        "path": "hw/cheshire_soc.sv",
+        "line": 716,
+        "anchor": "assign clic_intr"
+      },
+      {
+        "role": "图 B②③④：选择/握手",
+        "path": ".bender/git/checkouts/clic-360fff7ce2d41116/src/clic.sv",
+        "line": 20,
+        "anchor": "module clic"
+      },
+      {
+        "role": "图 B⑤：逐源寄存器",
+        "path": ".bender/git/checkouts/clic-360fff7ce2d41116/src/clic.sv",
+        "line": 170,
+        "anchor": "clicint_reg_top #("
+      },
+      {
+        "role": "当前时间读取 HAL",
+        "path": "sw/lib/dif/clint.c",
+        "line": 14,
+        "anchor": "uint64_t clint_get_mtime"
+      },
+      {
+        "role": "待核查睡眠条件",
+        "path": "sw/lib/dif/clint.c",
+        "line": 55,
+        "anchor": "void clint_sleep_until"
+      },
+      {
+        "role": "已有 CLIC 程序（未本次运行）",
+        "path": "sw/tests/clic_basic.spm.S",
+        "line": 30,
+        "anchor": "main:"
+      }
+    ],
+    "07_irq_router": [
+      {
+        "role": "图①：外部源同步",
+        "path": "hw/cheshire_soc.sv",
+        "line": 165,
+        "anchor": ") i_ext_intr_sync ("
+      },
+      {
+        "role": "SoC Router/旁路生成",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1188,
+        "anchor": ") i_irq_router ("
+      },
+      {
+        "role": "图②③④：源复制与掩码",
+        "path": ".bender/git/checkouts/irq_router-376b3d113c15d0ef/rtl/irq_router.sv",
+        "line": 15,
+        "anchor": "module irq_router"
+      },
+      {
+        "role": "目标掩码复位规格",
+        "path": ".bender/git/checkouts/irq_router-376b3d113c15d0ef/gen/irq_router_regs.hjson",
+        "line": 25,
+        "anchor": "resval: 1"
+      },
+      {
+        "role": "SoC 目标编号定义",
+        "path": "hw/cheshire_soc.sv",
+        "line": 130,
+        "anchor": "IntrRtdCoreBase"
+      }
+    ],
+    "08_bootrom": [
+      {
+        "role": "图①③：存储适配与 FF",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1312,
+        "anchor": ") i_reg_to_bootrom ("
+      },
+      {
+        "role": "图②：组合 ROM",
+        "path": "hw/bootrom/cheshire_bootrom.sv",
+        "line": 24,
+        "anchor": "localparam unsigned NumWords"
+      },
+      {
+        "role": "启动汇编入口",
+        "path": "hw/bootrom/cheshire_bootrom.S",
+        "line": 17,
+        "anchor": "_start:"
+      },
+      {
+        "role": "启动 C 软件",
+        "path": "hw/bootrom/cheshire_bootrom.c",
+        "line": 70,
+        "anchor": "int main"
+      },
+      {
+        "role": "ROM 链接布局",
+        "path": "hw/bootrom/cheshire_bootrom.ld",
+        "line": 11,
+        "anchor": "SECTIONS"
+      }
+    ],
+    "09_soc_regs": [
+      {
+        "role": "图③：硬件只读字段来源",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1136,
+        "anchor": "assign reg_hw2reg"
+      },
+      {
+        "role": "图①④：直接 Regbus/响应",
+        "path": "hw/regs/cheshire_reg_top.sv",
+        "line": 54,
+        "anchor": "assign reg_we"
+      },
+      {
+        "role": "图②：存储寄存器实例",
+        "path": "hw/regs/cheshire_reg_top.sv",
+        "line": 168,
+        "anchor": "prim_subreg #("
+      },
+      {
+        "role": "寄存器规格修改入口",
+        "path": "hw/regs/cheshire_regs.hjson",
+        "line": 20,
+        "anchor": "name:     \"scratch\""
+      }
+    ],
+    "10_jtag_debug": [
+      {
+        "role": "SoC DM / ndmreset 接线",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1038,
+        "anchor": ") i_dbg_dm_top ("
+      },
+      {
+        "role": "图①：DMI CDC",
+        "path": ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dmi_jtag.sv",
+        "line": 330,
+        "anchor": "dmi_cdc i_dmi_cdc"
+      },
+      {
+        "role": "图②：DM 子模块",
+        "path": ".bender/git/checkouts/riscv-dbg-1a98531d53bb4602/src/dm_top.sv",
+        "line": 20,
+        "anchor": "module dm_top"
+      },
+      {
+        "role": "图④：SBA 转 AXI",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1090,
+        "anchor": ") i_dbg_sba_axi_from_mem ("
+      },
+      {
+        "role": "图⑤：调试存储窗",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1004,
+        "anchor": "axi_to_mem_interleaved #("
+      },
+      {
+        "role": "CPU Debug 地址配置",
+        "path": "hw/cheshire_pkg.sv",
+        "line": 503,
+        "anchor": "ret.HaltAddress"
+      }
+    ],
+    "11_serial_link": [
+      {
+        "role": "图①：SoC 出站适配",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1671,
+        "anchor": ") i_serial_link_tx_id_remap ("
+      },
+      {
+        "role": "SoC 时钟/复位/隔离接线",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1695,
+        "anchor": ") i_serial_link ("
+      },
+      {
+        "role": "图②：network",
+        "path": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv",
+        "line": 154,
+        "anchor": ") i_serial_link_network ("
+      },
+      {
+        "role": "图③④⑤：层间连接",
+        "path": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv",
+        "line": 189,
+        "anchor": ") i_serial_link_data_link ("
+      },
+      {
+        "role": "图⑥：可选配置跨域",
+        "path": ".bender/git/checkouts/serial_link-6e09ea4800bad616/src/serial_link.sv",
+        "line": 320,
+        "anchor": ") i_cdc_cfg ("
+      },
+      {
+        "role": "官方分层说明",
+        "path": ".bender/git/checkouts/serial_link-6e09ea4800bad616/doc/README.md",
+        "line": 8,
+        "anchor": "## Architecture"
+      }
+    ],
+    "12_vga": [
+      {
+        "role": "SoC 配置/AXI/错误观察",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1741,
+        "anchor": "axi_vga #("
+      },
+      {
+        "role": "图①③：寄存器和像素使能",
+        "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv",
+        "line": 79,
+        "anchor": "assign clk_cnt_d"
+      },
+      {
+        "role": "图②：读取与像素选择",
+        "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv",
+        "line": 11,
+        "anchor": "module axi_vga_fetcher"
+      },
+      {
+        "role": "图④⑤：拆分/FIFO/信用",
+        "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga.sv",
+        "line": 153,
+        "anchor": "axi_burst_splitter #("
+      },
+      {
+        "role": "显示时序",
+        "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_timing_fsm.sv",
+        "line": 10,
+        "anchor": "module axi_vga_timing_fsm"
+      },
+      {
+        "role": "当前 RRESP 待处理点",
+        "path": ".bender/git/checkouts/axi_vga-74c838b44ce780d5/src/axi_vga_fetcher.sv",
+        "line": 197,
+        "anchor": "TODO check req.r.resp"
+      }
+    ],
+    "13_usb": [
+      {
+        "role": "SoC 两时钟域接线",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1835,
+        "anchor": ") i_spinal_usb_ohci ("
+      },
+      {
+        "role": "图①：Reg→AXI",
+        "path": "hw/future/spinal_usb_ohci.sv",
+        "line": 75,
+        "anchor": ") i_reg_to_axi_ctrl ("
+      },
+      {
+        "role": "图⑤：DMA 位宽/地址适配",
+        "path": "hw/future/spinal_usb_ohci.sv",
+        "line": 134,
+        "anchor": ") i_axi_dw_converter_dma ("
+      },
+      {
+        "role": "图②：OHCI 前端",
+        "path": "hw/future/UsbOhciAxi4.v",
+        "line": 592,
+        "anchor": "UsbOhciAxi4_UsbOhci front_ohci ("
+      },
+      {
+        "role": "图③：CDC",
+        "path": "hw/future/UsbOhciAxi4.v",
+        "line": 854,
+        "anchor": "UsbOhciAxi4_CtrlCc cc ("
+      },
+      {
+        "role": "图④：数字 PHY",
+        "path": "hw/future/UsbOhciAxi4.v",
+        "line": 700,
+        "anchor": "UsbOhciAxi4_UsbLsFsPhy back_phy ("
+      }
+    ],
+    "14_idma": [
+      {
+        "role": "SoC 独立控制与数据端口",
+        "path": "hw/cheshire_soc.sv",
+        "line": 1587,
+        "anchor": ") i_idma ("
+      },
+      {
+        "role": "图①：内部 Reg typedef 与转换",
+        "path": "hw/cheshire_idma_wrap.sv",
+        "line": 66,
+        "anchor": "`REG_BUS_TYPEDEF_ALL"
+      },
+      {
+        "role": "图②：读 NEXT_ID 提交",
+        "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv",
+        "line": 88,
+        "anchor": "proc_launch"
+      },
+      {
+        "role": "控制位宽缺口",
+        "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_reg_top.sv",
+        "line": 30,
+        "anchor": "localparam int DW = 32;"
+      },
+      {
+        "role": "图③：二维展开",
+        "path": "hw/cheshire_idma_wrap.sv",
+        "line": 249,
+        "anchor": ") i_idma_midend ("
+      },
+      {
+        "role": "图④：后端 legalizer",
+        "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv",
+        "line": 344,
+        "anchor": ") i_idma_legalizer ("
+      },
+      {
+        "role": "图⑤：读写口合并",
+        "path": "hw/cheshire_idma_wrap.sv",
+        "line": 331,
+        "anchor": ") i_axi_rw_join ("
+      },
+      {
+        "role": "图⑥：任务进度",
+        "path": "hw/cheshire_idma_wrap.sv",
+        "line": 273,
+        "anchor": ") i_transfer_id_gen_2d ("
+      }
+    ],
+    "15_interrupt_exception": [
+      {
+        "role": "图①②⑤：CPU 实际连接",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv",
+        "line": 1120,
+        "anchor": ") commit_stage_i ("
+      },
+      {
+        "role": "图③：中断 cause 选择",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/decoder.sv",
+        "line": 1594,
+        "anchor": "interrupt_cause ="
+      },
+      {
+        "role": "图④：scoreboard 结构",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/scoreboard.sv",
+        "line": 15,
+        "anchor": "module scoreboard"
+      },
+      {
+        "role": "图⑤：提交与异常",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/commit_stage.sv",
+        "line": 16,
+        "anchor": "module commit_stage"
+      },
+      {
+        "role": "图②：trap 状态",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv",
+        "line": 1977,
+        "anchor": "// Manage Exception Stack"
+      },
+      {
+        "role": "图⑥：flush",
+        "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv",
+        "line": 143,
+        "anchor": "always_comb begin : flush_ctrl"
+      },
+      {
+        "role": "运行库汇编入口",
+        "path": "sw/lib/crt0.S",
+        "line": 13,
+        "anchor": "_start:"
+      }
+    ],
+    "16_llc_spm": [
+      {
+        "role": "SoC 生成/别名/Regbus",
+        "path": "hw/cheshire_soc.sv",
+        "line": 496,
+        "anchor": "if (Cfg.LlcOutConnect && Cfg.LlcNotBypass)"
+      },
+      {
+        "role": "图 A：描述符与数据单元",
+        "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv",
+        "line": 577,
+        "anchor": ") i_hit_miss_unit ("
+      },
+      {
+        "role": "图 A⑥：data ways",
+        "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_ways.sv",
+        "line": 17,
+        "anchor": "module axi_llc_ways"
+      },
+      {
+        "role": "图 B①：当前 Regbus 封装",
+        "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_reg_wrap.sv",
+        "line": 247,
+        "anchor": ") i_llc_config_regfile ("
+      },
+      {
+        "role": "图 B②：配置提交/flush",
+        "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv",
+        "line": 169,
+        "anchor": "module axi_llc_config"
+      },
+      {
+        "role": "SPM 别名常量",
+        "path": "hw/cheshire_pkg.sv",
+        "line": 290,
+        "anchor": "AmSpmBaseUncached"
+      },
+      {
+        "role": "CPU cache 属性定义",
+        "path": "hw/cheshire_pkg.sv",
+        "line": 513,
+        "anchor": "ret.CachedRegionAddrBase"
+      },
+      {
+        "role": "旧官方说明（控制口描述已与代码不同）",
+        "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/doc/axi_llc.md",
+        "line": 154,
+        "anchor": "## Configuration and Flush"
+      }
+    ]
+  },
+  "scope": "Local official source/document snapshot; no RTL simulation or board test."
+}

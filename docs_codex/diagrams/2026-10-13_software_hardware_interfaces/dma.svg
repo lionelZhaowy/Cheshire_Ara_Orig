@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+<marker id="call" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#4775AC"/></marker>
+<marker id="bus" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#287D70"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#8660A5"/></marker>
+<marker id="event" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BB6D30"/></marker>
+</defs>
+<rect x="0" y="0" width="1400" height="900" fill="#FAFCFF"/>
+<text x="48" y="55" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="start" fill="#26384B">DMA 接口：配置接受、任务提交、数据搬运与结果取回</text>
+<rect x="50" y="125" width="345" height="145" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="222.5" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CPU / DMA API</text>
+<text x="222.5" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">SRC / DST / LEN / STRIDE</text>
+<text x="222.5" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">读 NEXT_ID 提交任务</text>
+<text x="222.5" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">轮询 DONE_ID</text>
+<rect x="520" y="125" width="350" height="145" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="695.0" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">AXI slave 配置端</text>
+<text x="695.0" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">axi_to_reg → reg_top</text>
+<text x="695.0" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">参数 q / next_id.re</text>
+<text x="695.0" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">前端 valid / ready</text>
+<rect x="995" y="125" width="355" height="145" rx="9" fill="#FFF2E5" stroke="#BB6D30" stroke-width="2"/>
+<text x="1172.5" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">Job FIFO / 2D midend</text>
+<text x="1172.5" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">入队：issue ID</text>
+<text x="1172.5" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">每行产生 1D 请求</text>
+<text x="1172.5" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">整体响应：retire ID</text>
+<polyline points="395,195 520,195" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="455" y="178" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">MMIO</text>
+<polyline points="870,195 995,195" fill="none" stroke="#BB6D30" stroke-width="2.4" marker-end="url(#event)"/>
+<text x="932" y="178" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#BB6D30">任务握手</text>
+<rect x="995" y="405" width="355" height="145" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="1172.5" y="441" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">idma_backend_rw_axi</text>
+<text x="1172.5" y="475" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">legalizer / transport</text>
+<text x="1172.5" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">独立 AXI 读写</text>
+<text x="1172.5" y="533" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">R / B 响应</text>
+<polyline points="1172,270 1172,405" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="1280" y="340" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">行请求 / 响应</text>
+<rect x="520" y="405" width="350" height="145" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="695.0" y="441" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">主 Xbar / 存储目标</text>
+<text x="695.0" y="475" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">AxiIn.dma</text>
+<text x="695.0" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">SRC 读 → DST 写</text>
+<text x="695.0" y="533" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">SPM / 平台主存</text>
+<polyline points="995,477 870,477" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="932" y="458" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">AXI 数据事务</text>
+<rect x="50" y="405" width="345" height="145" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="222.5" y="441" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CPU 取回缓冲</text>
+<text x="222.5" y="475" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">匹配完成 ID / 检查错误</text>
+<text x="222.5" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">排序 / 必要缓存维护</text>
+<text x="222.5" y="533" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">逐字节比较与守卫</text>
+<polyline points="520,477 395,477" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="455" y="458" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">CPU 读取</text>
+<polyline points="1172,125 1172,90 220,90 220,125" fill="none" stroke="#BB6D30" stroke-width="2.4" marker-end="url(#event)" stroke-dasharray="8 5"/>
+<text x="710" y="82" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#BB6D30">DONE_ID 由 retire 更新，经配置读返回</text>
+<rect x="50" y="685" width="610" height="125" rx="9" fill="#FFF2E5" stroke="#BB6D30" stroke-width="2"/>
+<text x="355.0" y="721" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">配置访问成功 ≠ 数据搬运成功</text>
+<text x="355.0" y="755" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">NEXT_ID 读有副作用；参数写不是任务完成</text>
+<text x="355.0" y="784" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">当前 wrapper 没有完成 IRQ 端口</text>
+<rect x="735" y="685" width="615" height="125" rx="9" fill="#FFF2E5" stroke="#BB6D30" stroke-width="2"/>
+<text x="1042.5" y="721" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">当前运行门槛</text>
+<text x="1042.5" y="755" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">控制 DW / ID 拆读、ND 错误内容未返回</text>
+<text x="1042.5" y="784" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">NO_ERROR_HANDLING；详见源码与正文</text>
+</svg>

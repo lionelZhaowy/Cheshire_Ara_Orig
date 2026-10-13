@@ -1,0 +1,226 @@
+[
+  {
+    "x": 40,
+    "y": 43,
+    "text": "③ i_stream_to_mem：请求直通 + 在途计数 + 返回缓冲",
+    "size": 30,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 85,
+    "text": "默认 BufDepth = 1；括号内为外层 axi_to_detailed_mem 的连线名。",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 139,
+    "text": "上游 stream 接口",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 1195,
+    "y": 139,
+    "text": "下游 memory 接口",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 199,
+    "text": "req_i (m2s_req)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1160,
+    "y": 199,
+    "text": "mem_req_o (mem_req)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 625,
+    "y": 204,
+    "text": "结构体直接连线，不改字段",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 842,
+    "y": 343,
+    "text": "&",
+    "size": 32,
+    "anchor": "middle"
+  },
+  {
+    "x": 55,
+    "y": 288,
+    "text": "req_valid_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1180,
+    "y": 310,
+    "text": "mem_req_valid_o",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 842,
+    "y": 448,
+    "text": "&",
+    "size": 32,
+    "anchor": "middle"
+  },
+  {
+    "x": 55,
+    "y": 413,
+    "text": "req_ready_o",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1180,
+    "y": 418,
+    "text": "mem_req_ready_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1240.0,
+    "y": 564,
+    "text": "req_ready = (cnt_q < BufDepth)",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1240.0,
+    "y": 596,
+    "text": "| (resp_valid_o & resp_ready_i)",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 612.5,
+    "y": 564,
+    "text": "cnt_q：在途计数寄存器",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 612.5,
+    "y": 596,
+    "text": "接收请求 +1；交付响应 -1",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 810,
+    "y": 556,
+    "text": "cnt_q",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 742,
+    "text": "resp_o",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 775,
+    "text": "(m2s_resp)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 770.0,
+    "y": 742,
+    "text": "i_resp_buf",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 770.0,
+    "y": 773,
+    "text": "深度 1；fall-through",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1170,
+    "y": 738,
+    "text": "mem_resp_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1170,
+    "y": 770,
+    "text": "(mem_rdata)",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1170,
+    "y": 814,
+    "text": "mem_resp_valid_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 822,
+    "text": "resp_valid_o",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 891,
+    "text": "resp_ready_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1120,
+    "y": 880,
+    "text": "没有 mem_resp_ready 输出",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 960,
+    "text": "request_fire = req_valid_i & req_ready_o",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 1003,
+    "text": "response_fire = resp_valid_o & resp_ready_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 825,
+    "y": 1003,
+    "text": "cnt_d = cnt_q + request_fire - response_fire",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 55,
+    "y": 1062,
+    "text": "请求是否放行由预留容量决定；响应到达后，即使上游暂停，也有 FIFO 可接住。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

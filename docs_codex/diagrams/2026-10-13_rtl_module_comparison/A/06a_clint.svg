@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040">
+<defs>
+<marker id="m23354B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#23354B"/></marker>
+<marker id="m28699B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#28699B"/></marker>
+<marker id="m9C5B25" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#9C5B25"/></marker>
+<marker id="m765096" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765096"/></marker>
+<marker id="m314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="m765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="m187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="mB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+<marker id="m205F9C" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#205F9C"/></marker>
+<marker id="m925021" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#925021"/></marker>
+<marker id="m253447" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#253447"/></marker>
+</defs>
+<rect x="0" y="0" width="1800" height="1040" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断</text>
+<rect x="370" y="145" width="1375" height="690" fill="#FFFFFF" stroke="#9DAABA" stroke-width="1.7"/>
+<text x="385" y="175" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">clint：寄存器、计数器和比较器均在 clk_i / rst_ni 域</text>
+<text x="70" y="270" font-family="WenQuanYi Zen Hei" font-size="28" fill="#23354B" text-anchor="start">rtc_i</text>
+<polyline id="E01" points="65,300 415,300" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)"/>
+<rect x="415" y="235" width="340" height="140" fill="#FFF0DB" stroke="#23354B" stroke-width="1.7"/>
+<text x="585.0" y="281.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  clint_sync_wedge</text>
+<text x="585.0" y="313.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">同步 + 上升沿检测</text>
+<text x="585.0" y="345.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">increase_timer：一拍使能</text>
+<rect x="900" y="235" width="350" height="140" fill="#F2EEF8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="912,235 912,375" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1075.0" y="281.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  MTIME[63:0] 字段</text>
+<text x="1075.0" y="313.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">reg_top 存储；可由软件写</text>
+<text x="1075.0" y="345.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">RTC 沿使能自动加 1</text>
+<polyline id="E02" points="755,300 900,300" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m9C5B25)"/>
+<rect x="1380" y="250" width="220" height="120" fill="#FFF0DB" stroke="#23354B" stroke-width="1.7"/>
+<text x="1490.0" y="302.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  ≥ 比较</text>
+<text x="1490.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">无条件保持比较</text>
+<polyline id="E03" points="1250,300 1380,300" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)"/>
+<polyline id="E04" points="1600,300 1720,300 1720,420" fill="none" stroke="#765096" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765096)"/>
+<text x="1570" y="463" font-family="WenQuanYi Zen Hei" font-size="24" fill="#765096" text-anchor="start">MTIP → hart</text>
+<rect x="900" y="525" width="350" height="120" fill="#F2EEF8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="912,525 912,645" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1075.0" y="577.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  MTIMECMP[63:0] 字段</text>
+<text x="1075.0" y="609.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">reg_top 内的比较值</text>
+<polyline id="E05" points="1250,585 1490,585 1490,370" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)"/>
+<rect x="415" y="555" width="340" height="165" fill="#E8F2EA" stroke="#23354B" stroke-width="1.7"/>
+<text x="585.0" y="597.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  clint_reg_top 访问控制</text>
+<text x="585.0" y="629.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MTIME_LO / HI</text>
+<text x="585.0" y="661.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MTIMECMP_LO / HI</text>
+<text x="585.0" y="693.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MSIP</text>
+<text x="70" y="630" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="start">Regbus 32</text>
+<polyline id="E06" points="65,665 415,665" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)" marker-start="url(#m28699B)"/>
+<polyline id="E07" points="755,600 900,600" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)"/>
+<polyline id="E08" points="705,555 705,440 990,440 990,375" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)" marker-start="url(#m28699B)"/>
+<rect x="1380" y="675" width="250" height="100" fill="#F2EEF8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="1392,675 1392,775" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1505.0" y="717.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">6  MSIP 字段</text>
+<text x="1505.0" y="749.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">reg_top 内；软件写</text>
+<polyline id="E09" points="755,690 835,690 835,760 1380,760 1380,725" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)"/>
+<polyline id="E10" points="1630,725 1720,725" fill="none" stroke="#765096" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765096)"/>
+<text x="1400" y="810" font-family="WenQuanYi Zen Hei" font-size="24" fill="#765096" text-anchor="start">MSIP → hart</text>
+<text x="45" y="890" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">MTIP 的清除方法是让 MTIMECMP 大于 MTIME；这里没有 PLIC claim / complete。</text>
+<rect x="215.0" y="269.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="239.5" y="290.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E01</text>
+<rect x="802.5" y="269.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="827.0" y="290.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#9C5B25" text-anchor="middle" font-weight="bold">E02</text>
+<rect x="1290.0" y="269.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1314.5" y="290.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E03</text>
+<rect x="1635.0" y="269.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1659.5" y="290.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#765096" text-anchor="middle" font-weight="bold">E04</text>
+<rect x="1345.0" y="554.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1369.5" y="575.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E05</text>
+<rect x="215.0" y="634.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="239.5" y="655.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E06</text>
+<rect x="802.5" y="569.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="827.0" y="590.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E07</text>
+<rect x="822.5" y="409.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="847.0" y="430.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E08</text>
+<rect x="1082.5" y="729.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1107.0" y="750.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E09</text>
+<rect x="1650.0" y="694.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1674.5" y="715.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#765096" text-anchor="middle" font-weight="bold">E10</text>
+<text x="40" y="1000" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">E 编号对应图下连接表；总线双箭头合并请求/响应；单箭头含义以表为准。</text>
+<text x="40" y="1028" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">虚线连线表示控制/事件；虚线模块表示规划。交叉无圆点不连接。A：连续走线。</text>
+</svg>

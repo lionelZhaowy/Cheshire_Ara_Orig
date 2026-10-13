@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF"/>
+<text x="35" y="45" font-family="WenQuanYi Zen Hei" font-size="30" fill="#253447" text-anchor="start">① Regbus 全路径：现有互连 + 自有 IP 接入边界</text>
+<text x="35" y="90" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">蓝色双向线 = 请求向右 / 响应返回；棕色虚线 = 地址与选择；虚线边框 = 拟新增。</text>
+<rect x="220" y="150" width="1545" height="585" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<text x="245" y="188" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">Cheshire 内部互连与寄存器目标：clk_i / rst_ni</text>
+<rect x="25" y="330" width="155" height="105" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="102.5" y="364" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">CPU 等</text>
+<text x="102.5" y="396" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">AXI 发起端</text>
+<rect x="250" y="315" width="180" height="140" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="340.0" y="349" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">主 AXI</text>
+<text x="340.0" y="381" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">Crossbar</text>
+<text x="340.0" y="413" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">第一级选路</text>
+<polyline points="180,385 250,385" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="250,385 239.0,380.5 239.0,389.5" fill="#205F9C"/>
+<polygon points="180,385 191.0,389.5 191.0,380.5" fill="#205F9C"/>
+<rect x="500" y="285" width="350" height="195" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="675.0" y="319" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">现有 AXI → Regbus 通路</text>
+<text x="675.0" y="351" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_reg_atomics</text>
+<text x="675.0" y="383" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">→ i_reg_atomics_cut</text>
+<text x="675.0" y="415" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">→ i_axi_to_reg_v2</text>
+<text x="675.0" y="447" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">64-bit AXI → 32-bit Reg</text>
+<polyline points="430,385 500,385" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="500,385 489.0,380.5 489.0,389.5" fill="#205F9C"/>
+<polygon points="430,385 441.0,389.5 441.0,380.5" fill="#205F9C"/>
+<text x="450" y="271" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="start">AxiOut.reg_demux</text>
+<rect x="1000" y="315" width="240" height="150" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1120.0" y="349" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_reg_demux</text>
+<text x="1120.0" y="381" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">请求分发</text>
+<text x="1120.0" y="413" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">响应选择</text>
+<polyline points="850,385 1000,385" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="1000,385 989.0,380.5 989.0,389.5" fill="#205F9C"/>
+<polygon points="850,385 861.0,389.5 861.0,380.5" fill="#205F9C"/>
+<text x="905" y="425" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">Regbus</text>
+<rect x="1000" y="200" width="240" height="75" fill="#F8F0E6" stroke="#253447" stroke-width="2"/>
+<text x="1120.0" y="234" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">地址解码 RegMap</text>
+<polyline points="885,385 885,235 1000,235" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1000,235 989.0,230.5 989.0,239.5" fill="#925021"/>
+<circle cx="885" cy="385" r="4" fill="#925021"/>
+<text x="875" y="216" font-family="WenQuanYi Zen Hei" font-size="23" fill="#925021" text-anchor="start">addr</text>
+<polyline points="1120,275 1120,315" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1120,315 1124.5,304.0 1115.5,304.0" fill="#925021"/>
+<text x="1150" y="300" font-family="WenQuanYi Zen Hei" font-size="22" fill="#925021" text-anchor="start">reg_select</text>
+<rect x="1400" y="215" width="320" height="90" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1560.0" y="249" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">片内寄存器目标</text>
+<text x="1560.0" y="281" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">SoC / UART / GPIO / …</text>
+<rect x="1400" y="375" width="320" height="90" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1560.0" y="409" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_reg_err_slv</text>
+<text x="1560.0" y="441" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">未命中：ready=1, error=1</text>
+<rect x="1400" y="540" width="320" height="115" fill="#EDF5EB" stroke="#253447" stroke-width="2"/>
+<text x="1560.0" y="574" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">外部 Regbus 端口 [k]</text>
+<text x="1560.0" y="606" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">reg_ext_slv_req_o[k]</text>
+<text x="1560.0" y="638" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">reg_ext_slv_rsp_i[k]</text>
+<polyline points="1240,340 1280,340 1280,260 1400,260" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="1400,260 1389.0,255.5 1389.0,264.5" fill="#205F9C"/>
+<polygon points="1240,340 1251.0,344.5 1251.0,335.5" fill="#205F9C"/>
+<polyline points="1240,390 1320,390 1320,420 1400,420" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="1400,420 1389.0,415.5 1389.0,424.5" fill="#205F9C"/>
+<polygon points="1240,390 1251.0,394.5 1251.0,385.5" fill="#205F9C"/>
+<polyline points="1240,440 1355,440 1355,595 1400,595" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="1400,595 1389.0,590.5 1389.0,599.5" fill="#205F9C"/>
+<polygon points="1240,440 1251.0,444.5 1251.0,435.5" fill="#205F9C"/>
+<text x="470" y="548" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">需要配置：RegExtNumSlv / RegExtNumRules</text>
+<text x="470" y="587" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">RegExtRegionStart / End / Idx</text>
+<text x="470" y="627" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">gen_axi_out + gen_reg_out 自动生成两级地址规则</text>
+<text x="470" y="684" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">默认外部端口数为 0；打开端口后，还要在外层顶层接线。</text>
+<rect x="1380" y="805" width="350" height="120" fill="#EDF5EB" stroke="#253447" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="1555" y="841" font-family="WenQuanYi Zen Hei" font-size="26" fill="#253447" text-anchor="middle">自有 IP 寄存器接口</text>
+<text x="1555" y="877" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">NPU / ISP / DMA / …</text>
+<text x="1555" y="908" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="middle">内部职责见图②</text>
+<polyline points="1560,655 1560,805" fill="none" stroke="#205F9C" stroke-width="3" stroke-linejoin="miter"/>
+<polygon points="1560,805 1564.5,794.0 1555.5,794.0" fill="#205F9C"/>
+<polygon points="1560,655 1555.5,666.0 1564.5,666.0" fill="#205F9C"/>
+<text x="1150" y="770" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">同域直连；异域增加 reg_cdc</text>
+<text x="40" y="810" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">IP 收到：addr[47:0] / write / wdata[31:0] / wstrb[3:0] / valid</text>
+<text x="40" y="851" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">IP 返回：rdata[31:0] / error / ready</text>
+<text x="40" y="904" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">配置走 Regbus；图像、权重、帧数据等批量搬运走独立的数据接口。</text>
+</svg>

@@ -1,0 +1,3930 @@
+{
+  "figures": [
+    {
+      "name": "00a_regbus",
+      "title": "① Regbus 全路径：现有互连 + 自有 IP 接入边界",
+      "doc": "00_regbus.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "CPU 等",
+            "AXI 发起端"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "主 AXI",
+            "Crossbar",
+            "第一级选路"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "现有 AXI → Regbus 通路",
+            "i_reg_atomics",
+            "→ i_reg_atomics_cut",
+            "→ i_axi_to_reg_v2",
+            "64-bit AXI → 32-bit Reg"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "i_reg_demux",
+            "请求分发",
+            "响应选择"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "地址解码 RegMap"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "片内寄存器目标",
+            "SoC / UART / GPIO / …"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "i_reg_err_slv",
+            "未命中：ready=1, error=1"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N08",
+          "lines": [
+            "外部 Regbus 端口 [k]",
+            "reg_ext_slv_req_o[k]",
+            "reg_ext_slv_rsp_i[k]",
+            "默认端口数为 0"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N09",
+          "lines": [
+            "自有 IP 寄存器接口",
+            "NPU / ISP / DMA / …",
+            "内部职责见图②"
+          ],
+          "memory": false,
+          "status": "planned"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "AXI4 请求 AW/W/AR 向 Xbar；B/R 响应及 ready 反向。默认数据64、地址48。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "detail": "AxiOut.reg_demux：Xbar 选中的 AXI 请求/响应，进入原子适配、cut 和桥。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "detail": "reg_in_req / reg_in_rsp：Regbus addr/write/wdata[31:0]/wstrb[3:0]/valid，返回 rdata/error/ready。",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "reg_in_req.addr：地址送 i_reg_demux_decode，以 RegMap 做范围译码。",
+          "source": "N03",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "reg_select：地址译码选中的目标索引；未命中使用默认错误端口。",
+          "source": "N05",
+          "target": "N04"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "reg_out_req / reg_out_rsp：被选片内目标的 Regbus 请求及返回。",
+          "source": "N04",
+          "target": "N06"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "detail": "错误端口 Regbus 请求/响应；未命中时 ready=1、error=1。",
+          "source": "N04",
+          "target": "N07"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "detail": "扩展端口 reg_ext_slv_req_o[k] / reg_ext_slv_rsp_i[k]；配置产生后才有可用目标。",
+          "source": "N04",
+          "target": "N08"
+        },
+        {
+          "id": "E09",
+          "both": true,
+          "detail": "规划：外部 Regbus 请求/响应；同域直连，异域新增 reg_cdc。",
+          "source": "N08",
+          "target": "N09"
+        }
+      ],
+      "notes": [
+        "蓝色双向线 = 请求向右 / 响应返回；棕色虚线 = 地址与选择；虚线边框 = 拟新增。",
+        "Cheshire 内部互连与寄存器目标：clk_i / rst_ni",
+        "AxiOut.reg_demux",
+        "Regbus",
+        "addr",
+        "reg_select",
+        "需要配置：RegExtNumSlv / RegExtNumRules",
+        "RegExtRegionStart / End / Idx",
+        "gen_axi_out + gen_reg_out 自动生成两级地址规则",
+        "默认外部端口数为 0；打开端口后，还要在外层顶层接线。",
+        "自有 IP 寄存器接口",
+        "NPU / ISP / DMA / …",
+        "内部职责见图②",
+        "同域直连；异域增加 reg_cdc",
+        "IP 收到：addr[47:0] / write / wdata[31:0] / wstrb[3:0] / valid",
+        "IP 返回：rdata[31:0] / error / ready",
+        "配置走 Regbus；图像、权重、帧数据等批量搬运走独立的数据接口。"
+      ]
+    },
+    {
+      "name": "00b_ip_contract",
+      "title": "② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）",
+      "doc": "00_regbus.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "地址译码与访问控制",
+            "offset = addr - BASE",
+            "fire = valid & ready",
+            "wr_en = fire & write",
+            "按译码 / wstrb 写入"
+          ],
+          "memory": false,
+          "status": "planned"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "配置 / 命令寄存器",
+            "参数、地址低位 / 高位",
+            "写 START 时提交命令"
+          ],
+          "memory": false,
+          "status": "planned"
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "状态 / 中断状态",
+            "busy / done / error",
+            "建议写 1 清除事件位"
+          ],
+          "memory": false,
+          "status": "planned"
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "读数据选择与访问响应",
+            "rdata = 选中寄存器值",
+            "ready = 本次访问可完成",
+            "error = 地址 / 权限等错误"
+          ],
+          "memory": false,
+          "status": "planned"
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "IP 工作逻辑",
+            "接受命令",
+            "计算 / 搬运 / 接收",
+            "维护 busy / done / error",
+            "数据口另接 AXI / 流接口"
+          ],
+          "memory": false,
+          "status": "planned",
+          "kind": "data"
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "Regbus 请求"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "Regbus 响应"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "建议 Regbus 端点请求：addr/write/wdata/wstrb/valid；完整地址是否减 BASE 由封装定义。",
+          "source": "P01",
+          "target": "N01"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "建议写路径：地址命中、权限和 wstrb 合法且 valid&ready 后产生字段写使能/写数据。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "建议 START 提交及整组配置快照；工作逻辑另定义 accept/busy 协议。",
+          "source": "N02",
+          "target": "N05"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "建议工作状态 busy/done/error 回到可读状态与事件锁存。",
+          "source": "N05",
+          "target": "N03"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "建议读地址/访问属性译码，选择 rdata 并判定错误及完成条件。",
+          "source": "N01",
+          "target": "N04"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "建议配置寄存器当前值送读选择器。",
+          "source": "N02",
+          "target": "N04"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "建议状态/事件寄存器当前值送读选择器。",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "建议：地址/访问译码生成 W1C 清除使能，N01→N03；没有独立外部 W1C 端口。",
+          "source": "N01",
+          "target": "N03"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "建议 Regbus 返回：rdata/error/ready；应答配置访问，非等待整个运算完成。",
+          "source": "N04",
+          "target": "P02"
+        }
+      ],
+      "notes": [
+        "本图采用同 clk_i 域示例；配置访问完成与 IP 运算完成是两个事件。",
+        "IP 寄存器封装：可手写，或使用现有 reggen 生成",
+        "reg_ext_slv_req_o[k]",
+        "addr / write / wdata",
+        "wstrb / valid",
+        "写使能 / 写数据",
+        "IP 工作逻辑",
+        "接受命令",
+        "计算 / 搬运 / 接收",
+        "维护 busy / done / error",
+        "数据口另接 AXI / 流接口",
+        "配置 / 启动",
+        "状态",
+        "offset / 访问属性",
+        "配置回读",
+        "状态回读",
+        "合法 W1C 写从访问译码生成清除使能",
+        "reg_ext_slv_rsp_i[k]",
+        "rdata / error / ready",
+        "短寄存器访问及时应答；长任务用 busy / done 或中断报告，不让 ready 一直等到任务完成。",
+        "中断另接 SoC 中断输入；跨时钟时，事务或配置/状态传递必须有明确的 CDC 与复位方案。"
+      ]
+    },
+    {
+      "name": "01_uart",
+      "title": "01  UART：寄存器访问与独立收发通路",
+      "doc": "01_uart.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  reg_uart_wrap",
+            "reg_to_apb",
+            "Regbus 32 → APB 32"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  APB 地址译码",
+            "PADDR = addr[4:2]",
+            "DLAB / THR / RBR",
+            "IER / IIR / LSR …"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  baudgen + 节拍逻辑",
+            "DLL / DLM → baud ticks"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  TX FIFO",
+            "slib_fifo：字节队列"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  TX 保持 / 发送逻辑",
+            "iTSR + uart_transmitter",
+            "起始 / 数据 / 校验 / 停止"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "7  RX FIFO",
+            "字节 + 接收错误位"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "6  uart_receiver",
+            "采样 / 组字节 / 校验"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N08",
+          "lines": [
+            "8  uart_interrupt",
+            "状态 / IER → INT"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "UART TX 输出"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "UART RX 输入"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "SoC UART IRQ"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "APB 请求 PSEL/PENABLE/PWRITE/PADDR/PWDATA；PRDATA/PREADY/PSLVERR 返回。PADDR=addr[4:2]。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "iBaudgenDiv={iDLM,iDLL}：分频寄存器给 uart_baudgen.DIVIDER。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "PWDATA[7:0] 与 iTXFIFOWrite：合法 THR 写入 TX FIFO；复位/清空由 FCR 控制。",
+          "source": "N02",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "iTXFIFOQ[7:0] 经发送控制过程锁存 iTSR，再送 UART_TX.DIN；iTXFIFORead 消耗队头。",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "iSOUT 到 SOUT/uart_tx_o：串行输出位，调制解调/回环选择属于 UART 包装逻辑。",
+          "source": "N05",
+          "target": "P01"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "uart_rx_i/SIN 经输入同步与回环选择成为 iSIN，送 UART_RX.SIN。",
+          "source": "P02",
+          "target": "N07"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "iRXData[7:0]、iRXPE/iRXFE/iRXBI 与 iRXFinished：RX 控制过程产生 iRXFIFOD[10:0]/iRXFIFOWrite。",
+          "source": "N07",
+          "target": "N06"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "iRXFIFOQ[7:0]→iRBR→PRDATA；RBR 读产生反向 iRXFIFORead 出队动作。",
+          "source": "N06",
+          "target": "N02"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "iBaudtick16x 经 UART_BG2 分频得到 iBaudtick2x，作为 UART_TX.TXCLK 的使能节拍。",
+          "source": "N03",
+          "target": "N05"
+        },
+        {
+          "id": "E10",
+          "both": false,
+          "detail": "波特率/边沿逻辑产生 iRCLK，送 UART_RX.RXCLK；不是另一个寄存器时钟域。",
+          "source": "N03",
+          "target": "N07"
+        },
+        {
+          "id": "E11",
+          "both": false,
+          "detail": "接收水位/错误/超时派生 iRDAInterrupt、iLSR[4:0]、iCharTimeout，送 UART_IIC。",
+          "source": "N06",
+          "target": "N08"
+        },
+        {
+          "id": "E12",
+          "both": true,
+          "detail": "iIER[3:0]、iMCR_AFE、iMSR[3:0] 等配置/状态送 UART_IIC；iIIR[3:0] 返回寄存器读路径。",
+          "source": "N02",
+          "target": "N08"
+        },
+        {
+          "id": "E13",
+          "both": false,
+          "detail": "UART_IIC.INT→intr_o→intr.intn.uart；设备事件再进入 SoC IRQ 路径。",
+          "source": "N08",
+          "target": "P03"
+        },
+        {
+          "id": "E14",
+          "both": false,
+          "source": "N04",
+          "target": "N08",
+          "detail": "TX FIFO/顶层控制派生 iTHRInterrupt → UART_IIC.THI；发送空事件。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "apb_uart 内部展开：CLK = clk_i；收发节拍由波特率计数器产生",
+        "Regbus 请求 / 响应",
+        "TX → 引脚",
+        "RX ← 引脚",
+        "RBR 读出队头",
+        "RX / 线路事件；TX 另有输入",
+        "IRQ → SoC 中断源"
+      ]
+    },
+    {
+      "name": "02_i2c",
+      "title": "02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节",
+      "doc": "02_i2c.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  i2c_reg_top",
+            "CONTROL / TIMING",
+            "FDATA / RDATA",
+            "INTR_STATE / ENABLE"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  Host FMT FIFO",
+            "8-bit 字节 + 5-bit 标志",
+            "START / STOP / READ …"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "4  Host RX FIFO",
+            "接收字节 → RDATA"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  i2c_fsm",
+            "SCL / SDA 时序状态机",
+            "Host / Target 控制",
+            "ACK / NAK / stretching",
+            "按 TIMING 寄存器计数"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  SCL / SDA 接口",
+            "采样输入",
+            "输出值 + 输出使能",
+            "外层 PAD / 上拉另接"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "6  Target TX FIFO",
+            "软件送字节 → 总线"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "7  Target ACQ FIFO",
+            "接收字节 + 事务标志"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N08",
+          "lines": [
+            "8  事件整合 / prim_intr_hw",
+            "FSM / FIFO 状态锁存",
+            "15 路 IRQ → SoC"
+          ],
+          "memory": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "reg2hw.fdata→fmt_fifo_wdata[12:0]/fmt_fifo_wvalid：8-bit 字节+5-bit 事务标志。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "fmt_byte/五个 fmt_flag 与 fmt_fifo_rvalid；FSM 以 fmt_fifo_rready 消耗命令。",
+          "source": "N02",
+          "target": "N04"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "rx_fifo_wdata[7:0]/rx_fifo_wvalid：FSM 采样接收字节，写入 Host RX FIFO。",
+          "source": "N04",
+          "target": "N03"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "rx_fifo_rdata→hw2reg.rdata；读请求经 reg2hw.rdata.re 产生 FIFO 消耗。",
+          "source": "N03",
+          "target": "N01"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "FSM scl_out_fsm/sda_out_fsm 输出，scl_sync/sda_sync 反馈；core 加 override/采样和 OE 后连接 cio_scl/sda_*。",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "tx_fifo_rdata[7:0]/rvalid 与 FSM 反向 rready：Target 发送字节。",
+          "source": "N06",
+          "target": "N04"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "acq_fifo_wdata[9:0]/wvalid：Target 接收内容与事务标志；还有 FIFO 深度/当前项反馈到 FSM。",
+          "source": "N04",
+          "target": "N07"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "host_enable/target_enable、thigh/tlow/建立保持/超时等字段控制 FSM；FIFO reset 另接各队列，不是经过 FSM。",
+          "source": "N01",
+          "target": "N04"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "FSM 的 event_nak/event_cmd_complete/event_* 送中断逻辑；水位/溢出等另来自 FIFO 周边。",
+          "source": "N04",
+          "target": "N08"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "detail": "reg2hw.intr_enable/intr_test/intr_state 送 prim_intr_hw；hw2reg.intr_state.d/de 反向更新寄存器。",
+          "source": "N01",
+          "target": "N08"
+        },
+        {
+          "id": "E11",
+          "both": false,
+          "source": "N01",
+          "target": "N06",
+          "detail": "reg2hw.txdata → tx_fifo_wdata/wvalid；Target TX 队列由软件填充。",
+          "reviewed_addition": true
+        },
+        {
+          "id": "E12",
+          "both": true,
+          "source": "N07",
+          "target": "N01",
+          "detail": "acq_fifo_rdata → hw2reg.acqdata；软件读消费由 reg2hw 返回。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "i2c_core：Host 与 Target 使用不同队列；当前整合使用 clk_i",
+        "Regbus 32",
+        "CONTROL / TIMING → FSM",
+        "FIFO reset 由 reg_top 直接作用队列；N08 汇总 FSM/FIFO 事件。"
+      ]
+    },
+    {
+      "name": "03_spi",
+      "title": "03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO",
+      "doc": "03_spi.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  spi_host_reg_top",
+            "CONTROL / CONFIGOPTS",
+            "CSID / COMMAND",
+            "STATUS / INTR_*"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  command_queue",
+            "方向 / 长度 / 速度",
+            "片选与时序配置"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  spi_host_fsm",
+            "SCK / CS / sample / shift",
+            "CPOL / CPHA / 分频"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  spi_host_window",
+            "TX 写窗口 / RX 读窗口",
+            "32-bit + byte enables",
+            "FIFO 满空由软件检查"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  data_fifos：TX",
+            "32-bit 数据队列"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "9  data_fifos：RX",
+            "32-bit 接收字队列"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "6  byte_select",
+            "32-bit → 有效发送字节"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N08",
+          "lines": [
+            "8  byte_merge",
+            "接收字节 → 32-bit"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N09",
+          "lines": [
+            "7  shift_register",
+            "串 / 并转换",
+            "标准 / 双线 / 四线",
+            "SD[3:0] 输入 / 输出"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "SPI SCK / CS / SD OE 引脚"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "SPI SD[3:0] 数据引脚"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "command/command_valid 进入命令队列，command_busy/qd/error_busy 回到状态与错误逻辑。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "core_command/core_command_valid 向 FSM；core_command_ready 反向接受命令。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "detail": "fifo_win_h2d[RX/TX] 与 fifo_win_d2h[RX/TX]：reg_top 解码后的两个 Regbus 窗口。",
+          "source": "N01",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "tx_data[31:0]/tx_be[3:0]/tx_valid_checked 入 TX FIFO；tx_ready 用于写溢出检查，不无限延迟 MMIO。",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "rx_data[31:0]/rx_valid 到窗口；窗口读产生 rx_ready，读空由 error_underflow 报告。",
+          "source": "N06",
+          "target": "N04"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "core_tx_data[31:0]/core_tx_be/core_tx_valid；byte_select 返回 core_tx_ready。",
+          "source": "N05",
+          "target": "N07"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "core_rx_data[31:0]/core_rx_valid；RX FIFO 返回 core_rx_ready。",
+          "source": "N08",
+          "target": "N06"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "tx_data_sr[7:0]/tx_valid_sr；反向 tx_ready_sr，另有 tx_flush_sr 消耗当前残余字节。",
+          "source": "N07",
+          "target": "N09"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "rx_data_sr[7:0]/rx_valid_sr/rx_last_sr；byte_merge 返回 rx_ready_sr。",
+          "source": "N09",
+          "target": "N08"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "detail": "wr_en/rd_en/shift_en/sample_en/speed/full_cyc/last_* 到移位器；wr_ready/rd_ready 返回 FSM。SCK/CS/OE 是 FSM 独立引脚输出。",
+          "source": "N03",
+          "target": "N09"
+        },
+        {
+          "id": "E11",
+          "both": false,
+          "source": "N03",
+          "target": "P01",
+          "detail": "sck_o/csb_o/sd_en_o：FSM 产生 SCK、片选和数据输出使能。",
+          "reviewed_addition": true
+        },
+        {
+          "id": "E12",
+          "both": true,
+          "source": "N09",
+          "target": "P02",
+          "detail": "sd_o[3:0]/sd_i[3:0]：移位逻辑输出数据、采样引脚数据。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "spi_host_core：一个命令可以包含多个串行数据拍",
+        "Regbus 32",
+        "移位 / 采样及 ready 反馈",
+        "IRQ：ERROR / SPI_EVENT；片选数量、FIFO 深度和字节顺序以当前参数为准。",
+        "SCK / CS / SD OE → 引脚"
+      ]
+    },
+    {
+      "name": "04_gpio",
+      "title": "04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能",
+      "doc": "04_gpio.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "GPIO 输入 32 路",
+            "gpio_i[31:0]"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  prim_filter_ctr × 32",
+            "可选输入同步",
+            "可选计数滤波",
+            "DATA_IN → 软件"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  data_in_q + 比较",
+            "上升沿 / 下降沿",
+            "高电平 / 低电平"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  prim_intr_hw",
+            "事件状态 + enable/test",
+            "32 路 intr_gpio_o"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "4  gpio_reg_top",
+            "DIRECT_OUT / DIRECT_OE",
+            "MASKED_OUT / MASKED_OE",
+            "INTR_CTRL / STATE",
+            "INPUT_FILTER / DATA_IN"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "5  cio_gpio_q[31:0]"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "6  cio_gpio_en_q[31:0]"
+          ],
+          "memory": true
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "GPIO PAD 输出值"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "GPIO PAD 输出使能"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "SoC GPIO IRQ"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "gpio_i[31:0]→cio_gpio_i：外部数字输入进入各 prim_filter_ctr。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "data_in_d[31:0]：滤波后的本拍输入，与保存的 data_in_q 比较。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "event_intr_combined[31:0]：选中的上升/下降沿及高/低电平条件。",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "reg2hw.direct_out 或 masked_out_* 的 q/qe：按掩码更新 cio_gpio_q；当前值反向供 hw2reg 回读。",
+          "source": "N05",
+          "target": "N06"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "reg2hw.direct_oe 或 masked_oe_* 的 q/qe：按掩码更新 cio_gpio_en_q；当前值反向供 hw2reg 回读。",
+          "source": "N05",
+          "target": "N07"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "cio_gpio_q→cio_gpio_o→gpio_o[31:0]：PAD 输出数据。",
+          "source": "N06",
+          "target": "P01"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "cio_gpio_en_q→cio_gpio_en_o→gpio_en_o[31:0]：PAD 输出使能。",
+          "source": "N07",
+          "target": "P02"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "reg2hw.ctrl_en_input_filter.q：逐位滤波使能；同步器有无由 GpioAsyncOn 参数决定。",
+          "source": "N05",
+          "target": "N02"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "reg2hw.intr_ctrl_en_rising/falling/lvlhigh/lvllow：选定检测条件。",
+          "source": "N05",
+          "target": "N03"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "detail": "reg2hw.intr_enable/intr_test/intr_state 到 IRQ 逻辑；hw2reg.intr_state.d/de 反向更新事件寄存器。",
+          "source": "N05",
+          "target": "N04"
+        },
+        {
+          "id": "E11",
+          "both": false,
+          "source": "N02",
+          "target": "N05",
+          "detail": "data_in_d → hw2reg.data_in.d/de；CPU 回读采样输入。",
+          "reviewed_addition": true
+        },
+        {
+          "id": "E12",
+          "both": false,
+          "source": "N04",
+          "target": "P03",
+          "detail": "intr_gpio_o[31:0] → intr.intn.gpio，进入 SoC IRQ 汇聚。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "Regbus 请求 / 响应",
+        "输出值 → PAD",
+        "输出使能 → PAD",
+        "中断使能 / 清除 / 测试",
+        "MASKED 写：掩码选中哪些位，只更新这些位；输入、输出值和输出使能是三条不同路径。",
+        "intr_gpio_o → SoC"
+      ]
+    },
+    {
+      "name": "05_plic",
+      "title": "05  PLIC：源侧 pending / active 与目标侧优先级选择",
+      "doc": "05_plic.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "外设 IRQ 电平",
+            "IRQ Router 或旁路",
+            "PLIC 目标分支"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  prim_flop_2sync",
+            "同步输入",
+            "本集成按电平触发"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  rv_plic_gateway",
+            "每源 pending：ip",
+            "每源 active：ia",
+            "claim 清 pending",
+            "complete 允许再触发"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  rv_plic_target × 目标",
+            "pending & enable",
+            "priority > threshold",
+            "选择获胜源 / 产生 IRQ"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "4  rv_plic_reg_top",
+            "源 priority；每目标 enable / threshold",
+            "读 claim → 源 ID；写 complete ← 已处理 ID",
+            "源 ID = 0 保留；设备自身状态需驱动清除"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "xeip → hart"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "intr_routed[IntrRtdPlic][NumSrc-1:0]→intr_src_i：输入源向量，当前58位含保留源0。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "intr_src_synced→gateway.src_i；LevelEdgeTrig 默认全0，当前按电平采样。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "ip[NumSrc-1:0]→各 target.ip_i：源 pending 向量，active 留在 gateway 内。",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "irq_o[NumTarget-1:0]→xeip：当前两个目标向单核发送 M/S 外部中断通知。",
+          "source": "N04",
+          "target": "P01"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "claim/complete：由 reg2hw.cc*.re/qe 及源ID译为逐源控制位。",
+          "source": "N05",
+          "target": "N03"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "irq_id_o→cc_id→hw2reg.cc*.d：获胜ID供 claim MMIO 读取；外部 irq_id_o 端口未接CPU。",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "prio/ie[target]/threshold[target]：源优先级、目标屏蔽和阈值控制。",
+          "source": "N05",
+          "target": "N04"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "source": "N03",
+          "target": "N05",
+          "detail": "ip → hw2reg.ip.d/de；pending 状态供软件回读。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "xeip → hart",
+        "M / S 外部中断",
+        "Regbus 请求 / 响应",
+        "claim / complete",
+        "获胜源 ID",
+        "priority / enable / threshold"
+      ]
+    },
+    {
+      "name": "06a_clint",
+      "title": "06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断",
+      "doc": "06_clint_clic.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  clint_sync_wedge",
+            "同步 + 上升沿检测",
+            "increase_timer：一拍使能"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  MTIME[63:0] 字段",
+            "reg_top 存储；可由软件写",
+            "RTC 沿使能自动加 1"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  ≥ 比较",
+            "无条件保持比较"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  MTIMECMP[63:0] 字段",
+            "reg_top 内的比较值"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  clint_reg_top 访问控制",
+            "MTIME_LO / HI",
+            "MTIMECMP_LO / HI",
+            "MSIP"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "6  MSIP 字段",
+            "reg_top 内；软件写"
+          ],
+          "memory": true
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "rtc_i"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "MTIP / timer_irq_o"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "Regbus 32"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P04",
+          "lines": [
+            "MSIP / ipi_o"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "rtc_i→clint_sync_wedge.serial_i：外部计时时基波形，需满足 SoC 采样条件。",
+          "source": "P01",
+          "target": "N01"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "increase_timer→hw2reg.mtime_low/high.de：RTC 上升沿的一拍自动加1使能。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "mtime_q[63:0]={reg2hw.mtime_high.q,mtime_low.q}：组合读出当前时间到比较器。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "比较结果 timer_irq_o[0]→mtip：mtime>=mtimecmp 时持续有效。",
+          "source": "N03",
+          "target": "P02"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "mtimecmp_q[0]：reg_top 中高/低比较字段组成的64-bit值。",
+          "source": "N04",
+          "target": "N03"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "Regbus 请求 addr/write/wdata/wstrb/valid；rdata/error/ready 返回。",
+          "source": "P03",
+          "target": "N05"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "字段展开：MTIMECMP_LOW0/HIGH0 存储在 clint_reg_top 内，经 reg2hw 组成 mtimecmp_q。",
+          "source": "N05",
+          "target": "N04"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "detail": "字段展开：MTIME 存储在 reg_top，reg2hw 提供当前值，hw2reg.d/de 提交自动计时更新；软件也可读写。",
+          "source": "N05",
+          "target": "N02"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "字段展开：reg2hw.msip[0].p.q，存储在 clint_reg_top 内，由软件置位或清零。",
+          "source": "N05",
+          "target": "N06"
+        },
+        {
+          "id": "E10",
+          "both": false,
+          "detail": "reg2hw.msip[0].p.q→ipi_o[0]→msip：本 hart 软件中断电平。",
+          "source": "N06",
+          "target": "P04"
+        }
+      ],
+      "notes": [
+        "clint：寄存器、计数器和比较器均在 clk_i / rst_ni 域",
+        "rtc_i",
+        "MTIP → hart",
+        "Regbus 32",
+        "MSIP → hart",
+        "MTIP 的清除方法是让 MTIMECMP 大于 MTIME；这里没有 PLIC claim / complete。"
+      ]
+    },
+    {
+      "name": "06b_clic",
+      "title": "06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口",
+      "doc": "06_clint_clic.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  clic_intr 输入拼装",
+            "IRQ Router 的本 hart 分支",
+            "MEIP / SEIP（来自 PLIC）",
+            "MTIP / MSIP（来自 CLINT）",
+            "保留源按 SoC 定义连接"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  clic_gateway",
+            "电平 / 边沿 pending",
+            "软件置 pending",
+            "来自 target 的 claim"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  clic_target + 顶层整理",
+            "pending / enable",
+            "level / priority / mode",
+            "获胜源与 SHV / level 格式化"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  CVA6 CLIC 接口",
+            "valid / ready",
+            "id / level",
+            "shv / priv",
+            "kill_req / kill_ack"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  mclic_reg_top + clicint_reg_top × 源",
+            "Regbus 地址译码 → 对应寄存器",
+            "reg_adapter：整理 reg2hw / hw2reg 字段",
+            "全局 level 划分；每源 pending / enable / attr / ctl"
+          ],
+          "memory": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "clic_intr→intr_src_i：SoC 拼装设备向量和 MEIP/SEIP/MTIP/MSIP 等 core 源。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "ip→clic_target.ip_i：gateway 维护的 pending 状态。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "claim→gateway.claim_i：target 接受流程产生的逐源认领控制。",
+          "source": "N03",
+          "target": "N02"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "整个 CLIC 的 irq_valid/id/level/shv/priv/kill_req→CPU；irq_ready/kill_ack 返回。顶层另完成 shv 选择与 level/priv 格式化。",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "clic_reg_adapter 输出 ip_sw/le 到 gateway；gateway 的 ip 返回 adapter→clicint_hw2reg。",
+          "source": "N05",
+          "target": "N02"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "clic_reg_adapter 输出 ie/intctl/intmode/le 到 target；全局 mnlbits/shv 字段另供顶层输出格式化。",
+          "source": "N05",
+          "target": "N03"
+        }
+      ],
+      "notes": [
+        "claim",
+        "当前默认 / FPGA：Cfg.Clic = 0",
+        "CLIC 不产生 RTC 计数；CPU 接受中断的握手也不等于清除了外设事件。"
+      ]
+    },
+    {
+      "name": "07_irq_router",
+      "title": "07  IRQ Router：每条源中断对应一个目标位掩码",
+      "doc": "07_irq_router.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  intr 源向量",
+            "片内外设 IRQ",
+            "外部 IRQ 经 sync",
+            "源 0 固定为 0"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  irqs_cloned",
+            "每个目标一份源向量",
+            "组合逻辑复制"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  按位 AND",
+            "out[target][source]",
+            "= src[source]",
+            "& mask[source][target]"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  irq_router_reg_top × 源",
+            "每源一个 IRQ_TARGET_MASK",
+            "地址低位 addr[15:2] 选择源",
+            "复位 mask = 1：仅 target 0"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "target 0 → PLIC"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "target 1… → hart CLIC"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "后续 target → 外部 IRQ"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "intr→irqs_i：已按 SoC 同步约定形成的源向量。",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "irqs_cloned：每目标复制一组输入源，不存储事件。",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "irqs_distributed_o 对应 intr_routed[0]，截取 PLIC NumSrc 后接 intr_src_i。",
+          "source": "N03",
+          "target": "P01"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "intr_routed[IntrRtdCoreBase+hart]：各内部 hart 的源分支，仅启用 CLIC 时消费。",
+          "source": "N03",
+          "target": "P02"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "intr_routed[IntrRtdExtBase+target]：按配置截取后送 intr_ext_o 外部目标。",
+          "source": "N03",
+          "target": "P03"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "irq_router_reg2hw[source].irq_target_mask.q[target] 重排成 irqs_target_mask，与 cloned 逐位 AND。",
+          "source": "N04",
+          "target": "N03"
+        }
+      ],
+      "notes": [
+        "target 0 → PLIC",
+        "target 1… → 各 hart CLIC",
+        "后续 target → 外部输出",
+        "Regbus 请求 / 响应",
+        "掩码重排为目标 × 源",
+        "当前默认 / FPGA 为 0；Cfg.IrqRouter = 0 时：绕过掩码，原始源向量复制给各目标；模块没有 pending 或优先级队列。"
+      ]
+    },
+    {
+      "name": "08_bootrom",
+      "title": "08  BootROM：组合 ROM 内容与 Regbus 应答延迟",
+      "doc": "08_bootrom.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  reg_to_mem",
+            "地址截为 16-bit",
+            "req / we / addr",
+            "gnt = req",
+            "rvalid / rerror 返回"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  cheshire_bootrom",
+            "word = addr / 4",
+            "case(word) → data[31:0]",
+            "当前生成内容：2048 words",
+            "组合查表；clk / rst 未用"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  FF 延迟对齐",
+            "data_q ← data",
+            "req_q ← req",
+            "we_q ← we"
+          ],
+          "memory": true
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "Regbus 32"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "Regbus 请求/响应：reg_out_req/rsp[RegOut.bootrom]；valid、addr、write、wdata/wstrb，返回 ready、rdata、error；地址发起方向 P01→N01",
+          "source": "P01",
+          "target": "N01"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "ROM 地址/请求：bootrom_addr[15:0]、bootrom_req → addr_i、req_i；当前 ROM 只用地址组合查表，不用 req 门控",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "ROM 数据：bootrom_data[31:0] → 外层数据 FF；这是读数据，不是下一次存储请求",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "返回控制对齐：bootrom_req、bootrom_we → req_q、we_q FF；与 data 同拍延迟",
+          "source": "N01",
+          "target": "N03"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "存储响应：bootrom_data_q / bootrom_req_q / bootrom_we_q → reg_to_mem.rdata_i / rvalid_i / rerror_i；写不改 ROM 且返回 error",
+          "source": "N03",
+          "target": "N01"
+        }
+      ],
+      "notes": [
+        "Cfg.Bootrom 生成分支；clk_i / rst_ni",
+        "Regbus 32",
+        "req / we 同步延迟",
+        "rdata = data_q；rvalid = req_q；rerror = we_q",
+        "软件源 .S / .c → 链接与 ROM 生成脚本 → cheshire_bootrom.sv 常量内容",
+        "写访问返回错误；16-bit 接口窗口不等于 64 KiB 唯一 ROM 内容。"
+      ]
+    },
+    {
+      "name": "09_soc_regs",
+      "title": "09  SoC Regs：软件 scratch 与只读硬件能力信息",
+      "doc": "09_soc_regs.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "Regbus 32 请求",
+            "addr / write / wstrb",
+            "wdata / valid"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  地址与访问译码",
+            "cheshire_reg_top",
+            "reg_we / reg_re",
+            "字节写使能 / 未命中错误"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  scratch[0…15]",
+            "prim_subreg：16 × 32-bit RW",
+            "保存软件数据；复位为 0；不是 SRAM"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  硬件只读字段",
+            "boot_mode_i；RtcFreq；PlatformRom",
+            "NumIntHarts；HW_FEATURES；LLC_SIZE",
+            "VGA RGB 位宽",
+            "来自 SoC 的 hw2reg 连线"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "4  读回选择 / 响应",
+            "rdata = 地址选中值",
+            "ready = 1；error = 非法访问"
+          ],
+          "memory": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "Regbus 请求：reg_intf_req.addr/valid/write/wdata/wstrb；形成 reg_addr、reg_we/reg_re 和 reg_be",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "写 scratch：scratch_*_we / scratch_*_wd，由命中地址、reg_we、reg_be 选择字节；不是整组每次同时写",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "已保存软件值：scratch_*_qs[31:0] → reg_rdata_next 读回选择器",
+          "source": "N03",
+          "target": "N05"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "硬件值：hw2reg.boot_mode、rtc_freq、platform_rom、num_int_harts、hw_features、llc_size、vga_params → reg_rdata_next",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "地址命中与非法访问控制：addr_hit/reg_addr、addrmiss、wr_err → 读选择及 reg_error；ready 恒为1",
+          "source": "N02",
+          "target": "N05"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "Regbus 响应：reg_intf_rsp.rdata / error / ready 返回请求者；error=(devmode_i & addrmiss) | wr_err",
+          "source": "N05",
+          "target": "N01"
+        }
+      ],
+      "notes": [
+        "rdata / error / ready",
+        "功能位描述当前综合配置，不是动态电源开关，也不是 PLL 或 DDR 初始化控制器。"
+      ]
+    },
+    {
+      "name": "10_jtag_debug",
+      "title": "10  JTAG Debug：DMI 控制、hart 调试与系统总线访问",
+      "doc": "10_jtag_debug.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "JTAG 引脚",
+            "TCK / TMS / TDI",
+            "TDO / TRSTn"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  dmi_jtag",
+            "JTAG TAP / DTM",
+            "DMI 请求 / 响应跨域",
+            "TCK 域 ↔ clk_i 域"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  dm_top",
+            "dm_csrs：DMI 配置",
+            "dm_mem：调试执行存储窗",
+            "dm_sba：系统总线访问",
+            "dmactive → dbg_active_o"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  hart 调试入口",
+            "debug_req",
+            "执行 debug ROM",
+            "访问程序缓冲区"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "4  axi_from_mem",
+            "SBA req / gnt / rvalid",
+            "→ AXI master",
+            "AxiIn.dbg"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "5  调试存储窗适配",
+            "AXI atomics / cut",
+            "axi_to_mem_interleaved",
+            "→ dm_top.slave_*",
+            "供 hart 执行调试代码"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "主 AXI：AxiIn.dbg"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "主 AXI：AxiOut.dbg"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "JTAG 双向引脚组：tck_i/tms_i/trst_ni/td_i 输入 DTM，td_o/tdo_oe_o 输出；双箭头不表示每根引脚均双向",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "detail": "DMI 请求/响应：dbg_dmi_req/rsp + 各 valid/ready；TCK→clk_i CDC 由 dmi_jtag 内 dmi_cdc 实现",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "hart 调试请求：dm_top.debug_req_o=dbg_req，经 dbg_int_req 到 CPU debug_req_i；halt/resume 状态和程序缓冲交互不靠这一根线完成",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "SBA 存储接口：dbg_sba_req/addr/we/wdata/strb → axi_from_mem；反向 gnt/rvalid/rdata/err 表示受理与完成",
+          "source": "N03",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "AXI master：axi_in_req/rsp[AxiIn.dbg]，由 DM 发起 AW/W/AR，经主互联返回 B/R；不是 CPU 发起的 debug 窗访问",
+          "source": "N05",
+          "target": "P01"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "AXI slave：axi_out_req/rsp[AxiOut.dbg] 经 atomics/cut 进入调试存储窗转换；请求来自主互联",
+          "source": "P02",
+          "target": "N06"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "detail": "DM slave 存储口：dbg_slv_req/we/addr_long/wstrb/wdata → dm_top.slave_*；slave_rdata_o 返回到适配器；此口无独立 ready 信号",
+          "source": "N06",
+          "target": "N03"
+        }
+      ],
+      "notes": [
+        "DMI",
+        "访问系统地址空间",
+        "AxiOut.dbg",
+        "当前 ndmreset_o 未接出；不能由 DMI 寄存器存在就推断 SoC 复位已实现。"
+      ]
+    },
+    {
+      "name": "11_serial_link",
+      "title": "11  Serial Link：AXI 通道编码、流控与源同步物理传输",
+      "doc": "11_serial_link.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  SoC 外层适配",
+            "出站地址 domain / mask",
+            "axi_id_remap",
+            "AMO 标记适配",
+            "对端入站 → 本地 AXI"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  serial_link_network",
+            "AXI AW / W / B / AR / R",
+            "通道仲裁 / 封装 / 还原",
+            "AXI ↔ payload stream"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  serial_link_data_link",
+            "接收缓冲 / 流控",
+            "payload 拆分 / 重组",
+            "raw mode 支路"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  channel_allocator",
+            "NumChannels > 1 时",
+            "分配与还原通道",
+            "单通道直接连接"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  serial_link_physical × 通道",
+            "发送时钟分频 / 相位控制",
+            "DDR 引脚收发 / 接收跨域",
+            "ddr_rcv_clk + ddr 数据 lanes"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "6  serial_link_reg_top",
+            "Regbus → 可选 reg_cdc → 配置",
+            "TX clk_div / raw mode / FIFO 控制",
+            "当前 SoC 的三路逻辑时钟都接 clk_i"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "链路 DDR 引脚"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "AXI 双向链路角色：slink_tx_idr_req/rsp 对应 axi_in_req_i/axi_in_rsp_o；对端请求还原为 axi_out_req_o/axi_out_rsp_i 后进入 AxiIn.slink",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "detail": "封装 payload stream：axis_out_req/rsp 与 axis_in_req/rsp；含封装数据和握手，不是直接五通道 AXI 引脚",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "detail": "物理片段流：data_link2alloc_data_out + valid/ready，反向 alloc2data_link_data_in + valid/ready；NumChannels=1 时无 allocator 实例",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "每通道片段流：alloc2phy_data_out + valid/ready；反向 phy2alloc_data_in + valid/ready",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "源同步物理接口：ddr_o/ddr_rcv_clk_o 发出，ddr_i/ddr_rcv_clk_i 接收；DDR 表示双边沿，与 DDR 存储控制器不同",
+          "source": "N05",
+          "target": "P01"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "PHY 配置：reg2hw.tx_phy_clk_div[i].q、tx_phy_clk_start/end[i].q → clk_div_i/clk_shift_start_i/clk_shift_end_i",
+          "source": "N06",
+          "target": "N05"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "detail": "data_link 配置/状态：reg2hw.raw_mode_*、cfg_flow_control_fifo_clear 等控制；FIFO fill_state/is_full 返回 hw2reg（应双向标注）",
+          "source": "N06",
+          "target": "N03"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "source": "N06",
+          "target": "N04",
+          "detail": "reg2hw.channel_alloc_*：通道使能/clear/flush/同步配置；仅 NumChannels>1。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "外部串行链路；此处 DDR 指双边沿传输",
+        "AXI 事务跨芯片传输，不是 UART，也不自动提供缓存一致性。"
+      ]
+    },
+    {
+      "name": "12_vga",
+      "title": "12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据",
+      "doc": "12_vga.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  axi_vga_reg_top",
+            "START_ADDR / FRAME_SIZE",
+            "BURST_LEN / ENABLE",
+            "水平 / 垂直时序",
+            "CLK_DIV"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  axi_vga_fetcher",
+            "地址 / 长度状态机",
+            "拆取 RGB 像素",
+            "保持 beat / pixel offset"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  timing_fsm",
+            "水平 / 垂直计数",
+            "可见区与消隐区",
+            "消费像素 valid / ready"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  splitter + 信用门控",
+            "axi_burst_splitter",
+            "顶层 credit / stream_join"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  R 通道 FIFO",
+            "BufferDepth + 1",
+            "缓冲存储器返回数据"
+          ],
+          "memory": true
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "RGB / HS / VS 引脚"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "系统 AXI AR"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "系统 AXI R"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "fetcher 配置：reg2hw.control.enable.q、start_addr_high/low.q、frame_size.q、burst_len.q → enable_i/start_addr_i/frame_size_i/burst_len_i",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "像素握手：red/green/blue + valid 由 fetcher→timing_fsm；ready 反向返回，表示此像素被消费",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "显示引脚：red_o/green_o/blue_o、hsync_o/vsync_o；输出节拍由 fsm_en 控制",
+          "source": "N03",
+          "target": "P01"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "读地址请求：axi_req.ar/ar_valid → splitter.slv_req_i；ar_ready 反向返回；写通道在 fetcher 中不发起",
+          "source": "N02",
+          "target": "N04"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "单拍 AR 与信用门控：axi_req_split.ar/ar_valid 经顶层 stream_join、credit_valid 发出 axi_req_o.ar/ar_valid，ar_ready 返回",
+          "source": "N04",
+          "target": "P02"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "AXI R 返回入 FIFO：axi_resp_i.r/r_valid → i_stream_fifo.data_i/valid_i，axi_req_o.r_ready 反向背压；含 data/resp/id/last",
+          "source": "P03",
+          "target": "N05"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "FIFO → splitter：axi_resp_split.r/r_valid；axi_req_split.r_ready 反向；弹出 last 的握手更新信用计数",
+          "source": "N05",
+          "target": "N04"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "splitter → fetcher：axi_resp.r/r_valid，axi_req.r_ready 反向；复原原读 burst 的返回语义",
+          "source": "N04",
+          "target": "N02"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "显示参数与节拍：reg2hw → timing_fsm.reg2hw_i；clk_div 经 clk_cnt_q 产生 fsm_en_i=(clk_cnt_q==0)，不是跨时钟域",
+          "source": "N01",
+          "target": "N03"
+        }
+      ],
+      "notes": [
+        "Regbus 32",
+        "RGB",
+        "RGB / HS / VS",
+        "AR 请求",
+        "AR → 内存",
+        "R ← 内存",
+        "返回 beat",
+        "clk_cnt_q == 0 → fsm_en",
+        "同一个 clk_i 域；CLK_DIV 控制像素状态机使能。"
+      ]
+    },
+    {
+      "name": "13_usb",
+      "title": "13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域",
+      "doc": "13_usb.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "Regbus 32",
+            "ctrl_req / ctrl_rsp"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  reg_to_axi",
+            "32-bit Reg → AXI32",
+            "控制地址取低 12 位"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  UsbOhciAxi4：前端",
+            "ctrlBridge → front_ohci",
+            "OHCI 寄存器 / 帧调度",
+            "读取 ED / TD、搬运数据",
+            "完成状态 / IRQ"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "5  AXI DMA 适配",
+            "axi_dw_converter：32 → 系统",
+            "axi_modify_address",
+            "32-bit 地址 domain / mask"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "3  CtrlCc",
+            "命令 / 数据 / 状态跨域",
+            "生成 RTL 的握手同步",
+            "两域分别复位"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "4  UsbLsFsPhy",
+            "数字收发逻辑",
+            "LS / FS；4 个端口",
+            "DP / DM + OE"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "主 AXI：AxiIn.usb"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P02",
+          "lines": [
+            "SoC USB IRQ"
+          ],
+          "port": true,
+          "kind": "boundary"
+        },
+        {
+          "id": "P03",
+          "lines": [
+            "DP / DM / OE 引脚"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "配置 Regbus：ctrl_req_i/ctrl_rsp_o，32-bit wdata/rdata，地址/valid/write/wstrb 与 ready/error",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "detail": "配置 AXI32：ctrl_int_req/rsp；地址12位、ID0；在 UsbOhciAxi4 内 ctrlBridge 转为内部 BMB 控制访问",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "detail": "内核 DMA AXI32：dma_int_req/rsp，32-bit 地址/数据，OHCI 发 AW/W/AR 并接 B/R",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "系统 AXI DMA：dma_req_o/dma_rsp_i → axi_in_req/rsp[AxiIn.usb]；数据位宽适配+地址 domain/mask 后发出，经过主互联访问内存",
+          "source": "N04",
+          "target": "P01"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "SoC 域 USB 流/命令：front_ohci_io_phy_tx_valid/ready、tx_payload_fragment/last、usbReset/usbResume；cc_input_rx_flow_*、端口状态反向",
+          "source": "N03",
+          "target": "N05"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "PHY 域 USB 流/命令：cc_output_tx_*、usbReset/usbResume → back_phy；back_phy_io_ctrl_rx_flow_*、txEop、tick 和端口状态返回",
+          "source": "N05",
+          "target": "N06"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "设备中断：OHCI io_interrupt → wrapper intr_o → intr.usb；由设备状态触发，不是 Regbus ready",
+          "source": "N03",
+          "target": "P02"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "detail": "数字引脚：phy_dp_i/dm_i 输入；phy_dp_o/dm_o 与 phy_dp_oe_o/dm_oe_o 输出；平台另实现 PAD/VBUS",
+          "source": "N06",
+          "target": "P03"
+        }
+      ],
+      "notes": [
+        "spinal_usb_ohci：控制 / DMA 在 soc_clk_i；PHY 使用 phy_clk_i",
+        "AXI DMA ↔ 内存",
+        "intr_o → SoC",
+        "PAD / 电气 / VBUS 由平台实现",
+        "DMA 内核地址为 32-bit；系统 AXI 更宽不会自动解除这一限制。"
+      ]
+    },
+    {
+      "name": "14_idma",
+      "title": "14  iDMA：AXI 控制入口、任务前端与独立搬运后端",
+      "doc": "14_idma.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "AXI slave 控制口",
+            "AxiOut.dma",
+            "atomics / cut",
+            "CPU 发起配置访问"
+          ],
+          "memory": false,
+          "kind": "boundary"
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "1  axi_to_reg",
+            "i_axi_translate",
+            "内部 Reg 数据宽度",
+            "随 AxiDataWidth"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "2  idma_reg64_1d / 2d",
+            "SRC / DST / LENGTH",
+            "STRIDE / REPS（2D）",
+            "NEXT_ID / DONE_ID",
+            "访问触发任务提交"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "3  Job FIFO + midend",
+            "入口握手 issue ID",
+            "2D：展开并汇总完成",
+            "1D：不生成 midend"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "4  idma_backend_rw_axi",
+            "legalizer：长度 / 地址 / burst 合法化",
+            "transport：读数据、移位 / 缓冲、写数据",
+            "独立 AXI read / write 通道",
+            "当前 ErrorCap = NO_ERROR_HANDLING"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "5  axi_rw_join",
+            "合并 AXI 读写端口",
+            "AXI master → AxiIn.dma"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "6  transfer_id_gen",
+            "issue / retire → ID"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "主 AXI：AxiIn.dma"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "AXI slave 控制请求/响应：axi_slv_req_i/axi_slv_rsp_o；上游 AxiOut.dma 经 atomics/cut",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "detail": "内部配置 Reg：dma_reg_req/dma_reg_rsp；控制数据 typedef 随 AxiDataWidth，而生成 reg_top DW32（既有缺口）",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "提交任务：1D burst_req_d/be_valid_d/be_ready_d；2D idma_nd_req_d/idma_nd_req_valid_d/ready_d；进入 Job FIFO 的握手才 issue",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "detail": "后端1D任务：burst_req/be_valid/be_ready；2D 由 midend 展开；后端 idma_rsp/valid/ready 返回2D midend，不应漏返向通道",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "detail": "独立 AXI read/write：axi_read_req/rsp 与 axi_write_req/rsp → axi_rw_join；包含请求与 R/B 返回",
+          "source": "N05",
+          "target": "N06"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "系统 AXI master：axi_mst_req_o/axi_mst_rsp_i → AxiIn.dma；由 DMA 发起对 SRC/DST 的内存事务",
+          "source": "N06",
+          "target": "P01"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "issue：frontend → Job FIFO 入口 valid & ready；不是 midend 每派发一个一维子任务就 issue 新 ID。",
+          "source": "N04",
+          "target": "N07"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "2D retire：midend 的 idma_nd_rsp_valid & idma_nd_rsp_ready → transfer_id_gen；1D 配置则使用 backend 的 idma_rsp 握手。",
+          "source": "N04",
+          "target": "N07"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "detail": "进度寄存器：transfer_id_gen.next_o/completed_o = next_id/done_id → frontend.next_id_i/done_id_i，读 NEXT_ID 还参与提交",
+          "source": "N07",
+          "target": "N03"
+        }
+      ],
+      "notes": [
+        "AXI ↔ SRC / DST 内存",
+        "既有控制宽度缺口未关闭；wrapper 未导出任务完成 IRQ；总线错误 IRQ 是另一路。"
+      ]
+    },
+    {
+      "name": "15_interrupt_exception",
+      "title": "15  CVA6 Trap：异步中断与同步异常在提交路径汇合",
+      "doc": "15_interrupt_exception.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  平台中断输入",
+            "PLIC：irq_i（M / S）",
+            "CLINT：time_irq_i / ipi_i",
+            "可选 CLIC 握手"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  csr_regfile",
+            "pending / enable / 委托",
+            "mip / mie / mstatus …",
+            "trap 状态：epc / cause / tval",
+            "trap_vector_base / eret"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  decoder / id_stage",
+            "结合特权级与 IRQ 控制",
+            "选出可接受的中断",
+            "或生成译码异常",
+            "写入指令的 ex 信息"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  issue_stage",
+            "/ scoreboard",
+            "指令与结果关联",
+            "ex 随指令保存"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  commit_stage",
+            "按提交顺序选异常",
+            "阻止错误指令提交",
+            "ex_commit → CSR"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "执行 / 访存异常",
+            "非法操作 / 访问故障等",
+            "结果携带 exception_t"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "6  controller + frontend",
+            "flush 错误路径流水线",
+            "PC 转向 trap 入口",
+            "xRET 恢复返回 PC"
+          ],
+          "memory": false
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "处理程序取指（逻辑结果）"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "CSR 中断输入：irq_i、time_irq_i、ipi_i；CLIC 本身另经 clic_adapter 形成请求，不能把所有 CLIC 位都画成 mip 输入",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "CSR→译码条件：irq_ctrl_csr_id、priv_lvl、clic_mode 等，控制 pending/enable/委托/全局允许；非所有外设线均先由 CSR 寄存",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "译码指令/异常：issue_entry_id_issue（含 ex）+ valid/ack，经 issue_stage 进入 scoreboard；不是独立设备 IRQ 总线",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "按序提交候选：commit_instr_id_commit（含 ex）到 commit_stage；commit_ack_commit_id 反向推进条目",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "执行/访存写回异常：ex_ex_ex_id + trans_id_ex_id + wt_valid_ex_id，经 issue_stage 关联 scoreboard 对应条目",
+          "source": "N06",
+          "target": "N04"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "detail": "提交 trap：ex_commit（valid/cause/tval）与 pc_commit → csr_regfile.ex_i/pc_i，保存 epc/cause/tval",
+          "source": "N05",
+          "target": "N02"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "detail": "CSR 重定向/控制：trap_vector_base_commit_pcgen、epc_commit_pcgen、eret/flush 相关控制到 controller/frontend；另有 ex_commit.valid 直接输入",
+          "source": "N02",
+          "target": "N07"
+        },
+        {
+          "id": "E08",
+          "both": false,
+          "detail": "逻辑结果：frontend 开始从处理入口取指；此边是控制效果，不是某个外设端口或软件处理程序硬件模块",
+          "kind": "logical_effect",
+          "source": "N07",
+          "target": "P01"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "source": "N01",
+          "target": "N03",
+          "detail": "irq_i 直接输入译码；CLIC 经 clic_adapter 后为 clic_irq_req_id/cause_id。",
+          "reviewed_addition": true
+        },
+        {
+          "id": "E10",
+          "both": false,
+          "source": "N05",
+          "target": "N07",
+          "detail": "ex_commit.valid → controller.ex_valid_i / frontend.ex_valid_i，与 CSR trap 状态更新并行。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "ex_commit / PC",
+        "CPU 开始执行处理程序",
+        "图中软件处理程序不在硬件中：保存现场、处理设备 / 控制器、恢复现场，再执行返回指令。"
+      ]
+    },
+    {
+      "name": "16a_llc",
+      "title": "16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM",
+      "doc": "16_llc_spm.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  isolate / demux",
+            "入口隔离与 bypass",
+            "chan_splitter / 仲裁",
+            "AW / AR → 描述符"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  axi_llc_hit_miss",
+            "tag_store / valid / dirty",
+            "锁定与同 ID 顺序约束",
+            "cache 或 SPM 地址判定"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  evict → refill",
+            "必要时写回脏行",
+            "从外存补入 cache line",
+            "完成后传递描述符"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "4  merge_unit",
+            "汇合命中 / 补入路径",
+            "分发 read / write"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "5  read_unit / write_unit",
+            "连接 AXI R / W / B",
+            "访问选定的数据 way"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "6  axi_llc_ways",
+            "read / write / evict / refill 仲裁",
+            "每个 way 的 SRAM",
+            "按地址、way、byte strobe 访问"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "7  AXI 外存出口",
+            "bypass 与 refill / evict",
+            "经 axi_bypass_mux 汇合"
+          ],
+          "memory": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "detail": "地址描述符：AW/AR 经 chan_splitter、仲裁和 rw_spill 产生 spill_desc + spill_valid/ready；不含 W/R 数据",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "miss 描述符：desc + miss_valid/miss_ready → evict_unit；按标志决定是否写回及 refill",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "refill 完成描述符：refill_desc + refill_desc_valid/ready → merge_unit；不是外存返回的数据",
+          "source": "N03",
+          "target": "N04"
+        },
+        {
+          "id": "E04",
+          "both": false,
+          "detail": "hit/SPM 描述符：desc + hit_valid/hit_ready → merge_unit.bypass_desc_i；受锁定/顺序限制",
+          "source": "N02",
+          "target": "N04"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "detail": "分发描述符：read_desc/read_desc_valid/ready 与 write_desc/write_desc_valid/ready → read/write unit",
+          "source": "N04",
+          "target": "N05"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "detail": "前台数据 SRAM 访问：to_way[WChanUnit/RChanUnit] + valid/ready，read_way_out + valid/ready 返回读数据",
+          "source": "N05",
+          "target": "N06"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "detail": "后台 SRAM 访问：to_way[EvictUnit/RefilUnit] + valid/ready；evict_way_out 读出脏数据，refill 数据写入 way",
+          "source": "N03",
+          "target": "N06"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "detail": "完整 AXI bypass：bypass_req/bypass_resp → i_axi_bypass_mux；跳过数据阵列，响应原路返回",
+          "source": "N01",
+          "target": "N07"
+        },
+        {
+          "id": "E09",
+          "both": true,
+          "detail": "外存 AXI：from_llc_req/from_llc_resp；evict 发 AW/W 收 B，refill 发 AR 收 R，经 mux 到 mst_req_o/mst_resp_i",
+          "source": "N03",
+          "target": "N07"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "source": "N01",
+          "target": "N05",
+          "detail": "to_llc_req.w/w_valid/wstrb → write_unit；to_llc_resp.r/b 返回原请求者。独立于 AW/AR 描述符处理。",
+          "reviewed_addition": true
+        }
+      ],
+      "notes": [
+        "miss",
+        "hit / SPM 快路径（仍受顺序约束）",
+        "bypass",
+        "外存读 / 写",
+        "实线表示描述符或数据路径，标签区分；图中省略返回 ID 队列与逐通道握手。"
+      ]
+    },
+    {
+      "name": "16b_spm",
+      "title": "16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交",
+      "doc": "16_llc_spm.md",
+      "nodes": [
+        {
+          "id": "N01",
+          "lines": [
+            "1  axi_llc_reg_top",
+            "CFG_SPM / CFG_FLUSH",
+            "COMMIT_CFG / FLUSHED",
+            "BIST / 容量 / 版本",
+            "当前控制接口：Regbus"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N02",
+          "lines": [
+            "2  axi_llc_config",
+            "提交新配置 / 停止接收新事务",
+            "等待在途工作 / 发 flush 描述符",
+            "必要时写回脏行",
+            "更新 spm_lock / flushed"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N03",
+          "lines": [
+            "3  地址与 way 选择",
+            "cache 地址：tag lookup → cache way",
+            "SPM 地址：直接选择被锁定的 way",
+            "未配置为 SPM 的对应 way 不可当 RAM 用",
+            "SPM 访问不进行外存 refill"
+          ],
+          "memory": false
+        },
+        {
+          "id": "N04",
+          "lines": [
+            "way 0",
+            "SPM",
+            "相同 data SRAM"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N05",
+          "lines": [
+            "way 1",
+            "SPM",
+            "相同 data SRAM"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N06",
+          "lines": [
+            "way 2",
+            "Cache",
+            "相同 data SRAM"
+          ],
+          "memory": true
+        },
+        {
+          "id": "N07",
+          "lines": [
+            "way 3",
+            "Cache",
+            "相同 data SRAM"
+          ],
+          "memory": true
+        },
+        {
+          "id": "P01",
+          "lines": [
+            "同一组 data SRAM（way 0…3 示例）"
+          ],
+          "port": true,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "detail": "配置/状态：conf_regs_i（cfg_spm/cfg_flush/commit_cfg）送 config；conf_regs_o（flushed/BIST 等及写使能）回 reg_top",
+          "source": "N01",
+          "target": "N02"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "detail": "way 用途控制：spm_lock/flushed → hit_miss/tag_store；控制哪些 way 可作 cache/SPM；不是 CPU 数据读写接口",
+          "source": "N02",
+          "target": "N03"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "detail": "逻辑分配关系：地址/way 选择决定使用哪组 SRAM；实际访问经过 merge → read/write → ways，见 LLC 图。不是 config 直接驱动 SRAM 数据口。",
+          "kind": "logical_selection",
+          "source": "N03",
+          "target": "P01"
+        }
+      ],
+      "notes": [
+        "4  同一组数据 SRAM：下图仅为分区示例，不代表当前运行配置",
+        "SoC 的 SPM 地址别名",
+        "AmSpm / AmSpmBaseUncached",
+        "外层地址重映射到同一存储",
+        "CPU 缓存属性需另外匹配",
+        "LLC/SPM 不是独立 Global Buffer；DDR 旁路 master 也不会自动窥探 CPU / LLC 中的脏数据。"
+      ]
+    },
+    {
+      "name": "17_axi_extension",
+      "title": "外部 IP 的 AXI 数据口与 Reg 控制口",
+      "doc": "17_axi_extension.md",
+      "nodes": [
+        {
+          "id": "ip_mst",
+          "lines": [
+            "新增数据 master",
+            "NPU / DMA（规划）"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "external"
+        },
+        {
+          "id": "adapter",
+          "lines": [
+            "DW / ID / CDC",
+            "按接口差异选配"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "external"
+        },
+        {
+          "id": "rt",
+          "lines": [
+            "AXI RT / 直连",
+            "已有；默认 RT 关闭"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "xbar",
+          "lines": [
+            "i_axi_xbar",
+            "规则选择目标"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "axi_out",
+          "lines": [
+            "AXI 外部 slave 口",
+            "默认数量 0"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "axi_ip",
+          "lines": [
+            "新增 AXI slave",
+            "存储 / IP 窗口"
+          ],
+          "memory": true,
+          "kind": "memory",
+          "status": "planned",
+          "group": "external"
+        },
+        {
+          "id": "reg_bridge",
+          "lines": [
+            "axi_to_reg_v2",
+            "64 → 32（默认）"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "reg_demux",
+          "lines": [
+            "Reg decode / demux",
+            "第二级地址选择"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "reg_out",
+          "lines": [
+            "Reg 外部 slave 口",
+            "默认数量 0"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "reg_ip",
+          "lines": [
+            "新增配置寄存器",
+            "IP 控制 / 状态"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "planned",
+          "group": "external"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "source": "ip_mst",
+          "target": "adapter",
+          "label": "IP AXI",
+          "detail": "规划/待确认连接：新增设备发起 AW/AR/W，适配器返回 B/R；位宽、ID、时钟子集待该 IP 接口确定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md#4-axi-数据面双方逐项填一致",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "source": "adapter",
+          "target": "rt",
+          "label": "axi_ext_mst",
+          "detail": "规划/待确认连接：拟接 axi_ext_mst_req_i / axi_ext_mst_rsp_o，经 AxiIn.ext_base 进入 axi_in_req；端口数需要显式启用。",
+          "source_ref": "hw/cheshire_soc.sv#L279",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "source": "rt",
+          "target": "xbar",
+          "label": "AXI 请求 / 响应",
+          "detail": "gen_axi_rt 在启用时生成 i_axi_rt_unit_top；默认 gen_no_axi_rt 直连 axi_in_req 与 axi_rt_in_req。",
+          "source_ref": "hw/cheshire_soc.sv#L1246",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "source": "xbar",
+          "target": "axi_out",
+          "label": "AxiExtRegion*",
+          "detail": "gen_axi_out 的外部 AXI 规则将请求路由到 AxiOut.ext_base；输出 ID 包含输入端口编号。",
+          "source_ref": "hw/cheshire_pkg.sv#L353",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "source": "axi_out",
+          "target": "axi_ip",
+          "label": "axi_ext_slv",
+          "detail": "规划/待确认连接：拟接 axi_ext_slv_req_o / axi_ext_slv_rsp_i；外部 IP 是被访问端，AW/AR/W 由 SoC 侧发起。",
+          "source_ref": "hw/cheshire_soc.sv#L287",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "source": "xbar",
+          "target": "reg_bridge",
+          "label": "AXI 控制访问",
+          "detail": "Reg 窗口先进入 AxiOut.reg_demux，经过现有原子适配和 cut（此处合并）后到 axi_to_reg_v2。",
+          "source_ref": "hw/cheshire_soc.sv#L314",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "source": "reg_bridge",
+          "target": "reg_demux",
+          "label": "Reg req / rsp",
+          "detail": "reg_req / reg_rsp 包含 addr、write、wdata、wstrb、valid / rdata、error、ready；默认数据 32-bit。",
+          "source_ref": "hw/cheshire_soc.sv#L380",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "source": "reg_demux",
+          "target": "reg_out",
+          "label": "RegExtRegion*",
+          "detail": "gen_reg_out 外部规则二次译码；demux 不自动从地址中减去设备基址。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E09",
+          "both": true,
+          "source": "reg_out",
+          "target": "reg_ip",
+          "label": "Reg32 配置",
+          "detail": "规划/待确认连接：拟接 reg_ext_slv_req_o / reg_ext_slv_rsp_i；新寄存器块及时钟域适配需要额外实现。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "planned"
+        }
+      ],
+      "notes": [
+        "已有扩展逻辑默认端口数为 0。规划模块尚未接入；AXI 双箭头概括请求和响应，master 由边说明指定。"
+      ]
+    },
+    {
+      "name": "18_clock_reset_startup",
+      "title": "异域 IP 的配置、时钟复位与 IRQ 边界",
+      "doc": "18_clock_reset_startup.md",
+      "nodes": [
+        {
+          "id": "soc_clock",
+          "lines": [
+            "clk_i / rst_ni",
+            "SoC 外部输入"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "regbus",
+          "lines": [
+            "AXI → Reg / demux",
+            "现有配置通路"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "cdc",
+          "lines": [
+            "reg_cdc（拟增实例）",
+            "请求与响应成组跨域"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "planned",
+          "group": "cross"
+        },
+        {
+          "id": "ip_regs",
+          "lines": [
+            "IP 配置寄存器",
+            "命令 / 状态（规划）"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "planned",
+          "group": "ip"
+        },
+        {
+          "id": "ip_engine",
+          "lines": [
+            "IP 工作逻辑",
+            "计算 / 搬运（规划）"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "ip"
+        },
+        {
+          "id": "ip_clock",
+          "lines": [
+            "IP 时钟 / 复位",
+            "平台域划分待定"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "tbd",
+          "group": "ip"
+        },
+        {
+          "id": "irq_sync",
+          "lines": [
+            "i_ext_intr_sync",
+            "外部 IRQ 同步"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "irq_target",
+          "lines": [
+            "Router / PLIC / CLIC",
+            "按 Cfg 选择目标"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "soc"
+        },
+        {
+          "id": "irq_state",
+          "lines": [
+            "IP IRQ 状态保持",
+            "原因记录 / 软件清除"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "planned",
+          "group": "ip"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "source": "soc_clock",
+          "target": "regbus",
+          "label": "clk_i / rst_ni",
+          "detail": "当前 AXI-to-Reg 与 Reg demux 直接使用 SoC clk_i/rst_ni；Regbus 自身没有固定分频。",
+          "source_ref": "hw/cheshire_soc.sv#L380",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "source": "regbus",
+          "target": "cdc",
+          "label": "Reg req / rsp",
+          "detail": "规划/待确认连接：拟从 reg_ext_slv_req_o/reg_ext_slv_rsp_i 接 reg_cdc 的 src_req_i/src_rsp_o；外部 Reg 端口需启用。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "source": "soc_clock",
+          "target": "cdc",
+          "label": "src_clk / rst",
+          "detail": "规划/待确认连接：拟接 reg_cdc 的 src_clk_i/src_rst_ni 到 SoC 域；这只解决源侧时钟复位。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "source": "cdc",
+          "target": "ip_regs",
+          "label": "Reg req / rsp",
+          "detail": "规划/待确认连接：拟由 reg_cdc dst_req_o/dst_rsp_i 访问 IP 域寄存器；目标响应跨回源域之后才使源 ready 完成。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E05",
+          "both": false,
+          "source": "ip_clock",
+          "target": "cdc",
+          "label": "dst_clk / rst",
+          "detail": "规划/待确认连接：目标域时钟复位接 reg_cdc dst_clk_i/dst_rst_ni；未运行的目标域不能默认完成访问。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E06",
+          "both": false,
+          "source": "ip_clock",
+          "target": "ip_regs",
+          "label": "IP 域 clk / rst",
+          "detail": "规划/待确认连接：候选接法中配置银行与 IP 逻辑同域；具体信号名、频率、复位释放条件待 IP/平台确认。",
+          "source_ref": "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E07",
+          "both": false,
+          "source": "ip_clock",
+          "target": "ip_engine",
+          "label": "IP 域 clk / rst",
+          "detail": "规划/待确认连接：IP 工作逻辑时钟/复位输入待定义；局部停钟和复位须处理在途事务。",
+          "source_ref": "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "source": "ip_regs",
+          "target": "ip_engine",
+          "label": "配置 / 状态",
+          "detail": "规划/待确认连接：拟由同域寄存器发布配置、启动命令并读取状态；接收、生效、完成的区分由 IP 契约规定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "control",
+          "status": "planned"
+        },
+        {
+          "id": "E09",
+          "both": false,
+          "source": "ip_engine",
+          "target": "irq_state",
+          "label": "完成 / 错误",
+          "detail": "规划/待确认连接：规划的事件记录和 IRQ 保持；具体状态位和清除方式尚未定义。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "irq",
+          "status": "planned"
+        },
+        {
+          "id": "E10",
+          "both": false,
+          "source": "irq_state",
+          "target": "irq_sync",
+          "label": "intr_ext_i",
+          "detail": "规划/待确认连接：拟将保持到确认的 IRQ 接 intr_ext_i；当前 SoC 用 Cfg.NumExtIntrSyncs 级同步，不保证捕获任意短脉冲。",
+          "source_ref": "hw/cheshire_soc.sv#L161",
+          "kind": "irq",
+          "status": "planned"
+        },
+        {
+          "id": "E11",
+          "both": false,
+          "source": "irq_sync",
+          "target": "irq_target",
+          "label": "intr.ext / routed",
+          "detail": "现有同步输出进入 intr.ext，经可选 Router 或 fanout 送中断目标；不是 IRQ 同步器直接发 trap。",
+          "source_ref": "hw/cheshire_soc.sv#L161",
+          "kind": "irq",
+          "status": "implemented"
+        }
+      ],
+      "notes": [
+        "候选接法：寄存器银行位于 IP 域。reg_cdc 源码已有，图中接入实例未实现；本图不规定 PLL 频率或域划分。"
+      ]
+    },
+    {
+      "name": "19_ddr_lvds_pipeline",
+      "title": "规划图像链与 DDR / GB 搬运职责",
+      "doc": "19_ddr_lvds_pipeline.md",
+      "nodes": [
+        {
+          "id": "lvds",
+          "lines": [
+            "LVDS 接收前端",
+            "解串 / 字行帧对齐"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "image"
+        },
+        {
+          "id": "fifo",
+          "lines": [
+            "打包 / CDC FIFO",
+            "像素与同步标志配对"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "image"
+        },
+        {
+          "id": "isp",
+          "lines": [
+            "ISP / RAW 选择组",
+            "帧边界选择一路输出"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "image"
+        },
+        {
+          "id": "frame_dma",
+          "lines": [
+            "帧写入 DMA",
+            "地址 / W打包 / B计数"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "image"
+        },
+        {
+          "id": "ddr",
+          "lines": [
+            "DDR Controller / PHY",
+            "端口 / 训练 / 仲裁待定"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "tbd",
+          "group": "memory"
+        },
+        {
+          "id": "llc_out",
+          "lines": [
+            "现有 LLC 外存出口",
+            "axi_llc_mst_*"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "memory"
+        },
+        {
+          "id": "move",
+          "lines": [
+            "NPU / GB 搬运器",
+            "DDR ↔ GB 显式搬运"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "compute"
+        },
+        {
+          "id": "gb_adapt",
+          "lines": [
+            "GB 访问适配",
+            "局部仲裁 / bank 路由"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "compute"
+        },
+        {
+          "id": "gb",
+          "lines": [
+            "Global Buffer",
+            "独立 SRAM；容量待定"
+          ],
+          "memory": true,
+          "kind": "memory",
+          "status": "planned",
+          "group": "compute"
+        },
+        {
+          "id": "npu",
+          "lines": [
+            "NPU 计算引擎",
+            "消费 / 产生局部数据"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "planned",
+          "group": "compute"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": false,
+          "source": "lvds",
+          "target": "fifo",
+          "label": "像素 + 行帧标志",
+          "detail": "规划/待确认连接：规划接收数据和字/行/帧状态成组交付打包与跨域；传感器协议、lane 组织和背压能力待确认。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E02",
+          "both": false,
+          "source": "fifo",
+          "target": "isp",
+          "label": "RAW 像素流",
+          "detail": "规划/待确认连接：规划从 FIFO 向 ISP/选择组交付 RAW；组内可经 ISP 或 RAW 旁路，在帧边界选择；不是同时输出两路。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E03",
+          "both": false,
+          "source": "isp",
+          "target": "frame_dma",
+          "label": "选定像素 + 标志",
+          "detail": "规划/待确认连接：规划把选定的一路 RAW 或 ISP 结果交给帧 DMA；格式、有效字节和丢帧标志须明确定义。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "source": "frame_dma",
+          "target": "ddr",
+          "label": "AXI 写；B 返回",
+          "detail": "规划/待确认连接：帧 DMA 作为 master 产生 AW/W，DDR 端返回 B；完成需等待该帧相关响应并处理错误。所需适配与目标端口待定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "source": "llc_out",
+          "target": "ddr",
+          "label": "AXI 读写（拟接）",
+          "detail": "规划/待确认连接：已有 axi_llc_mst_req_o/rsp_i 拟接新的 DDR 合流/控制器端口；当前 FPGA 实际连接是 dram_wrapper_xilinx/MIG。",
+          "source_ref": "hw/cheshire_soc.sv#L531",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "source": "move",
+          "target": "ddr",
+          "label": "AXI 读写（拟接）",
+          "detail": "规划/待确认连接：NPU/GB 搬运器作为 DDR master；绕过 LLC。是否与独立 NPU master 合流、是否需要额外端口尚待确定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "source": "move",
+          "target": "gb_adapt",
+          "label": "GB 局部读写",
+          "detail": "规划/待确认连接：搬运器将 DDR 返回写进 GB，或从 GB 读出再写 DDR；本地接口协议/位宽尚未冻结。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "source": "npu",
+          "target": "gb_adapt",
+          "label": "GB 计算读写",
+          "detail": "规划/待确认连接：NPU 计算引擎经局部适配访问 GB；与搬运器竞争 bank/端口，不能将逻辑双向线理解成无限带宽。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E09",
+          "both": true,
+          "source": "isp",
+          "target": "gb_adapt",
+          "label": "可选中间数据",
+          "detail": "规划/待确认连接：规划保留 ISP 工作区访问 GB 的候选；是否需要、接口和并行能力取决于算法及 bank 预算。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "source": "gb_adapt",
+          "target": "gb",
+          "label": "bank 请求 / 返回",
+          "detail": "规划/待确认连接：规划把多个局部访问者仲裁到实际 SRAM bank/端口；SRAM 延迟、掩码、容量与冲突语义待定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned"
+        }
+      ],
+      "notes": [
+        "除 LLC 出口外均为规划或待确认边界；像素流向与 AXI 事务方向分别标注。端口数、宽度、地址和 IRQ 未冻结。"
+      ]
+    },
+    {
+      "name": "20_accelerator_memory",
+      "title": "Ara 访存和 CPU 失效请求的实际边界",
+      "doc": "20_accelerator_memory.md",
+      "nodes": [
+        {
+          "id": "dispatch",
+          "lines": [
+            "CVA6 acc_dispatcher",
+            "指令 / MMU / 状态"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "cpu"
+        },
+        {
+          "id": "ara",
+          "lines": [
+            "i_ara",
+            "RVV 执行与访存"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "implemented",
+          "group": "ara"
+        },
+        {
+          "id": "filter",
+          "lines": [
+            "axi_inval_filter",
+            "AW FIFO / 行失效"
+          ],
+          "memory": false,
+          "kind": "control",
+          "status": "implemented",
+          "group": "ara"
+        },
+        {
+          "id": "cache",
+          "lines": [
+            "CVA6 L1D 路径",
+            "当前向量 profile：WT"
+          ],
+          "memory": true,
+          "kind": "memory",
+          "status": "implemented",
+          "group": "cpu"
+        },
+        {
+          "id": "dw",
+          "lines": [
+            "axi_dw_converter",
+            "Ara 宽度 → 系统宽度"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "implemented",
+          "group": "ara"
+        },
+        {
+          "id": "cpu_axi",
+          "lines": [
+            "CPU AXI / ID 适配",
+            "i_axi_id_serialize"
+          ],
+          "memory": false,
+          "kind": "data",
+          "status": "implemented",
+          "group": "cpu"
+        },
+        {
+          "id": "xbar",
+          "lines": [
+            "主 AXI Xbar",
+            "普通数据访问"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "memory"
+        },
+        {
+          "id": "llc",
+          "lines": [
+            "原子适配 → LLC",
+            "当前普通主存路径"
+          ],
+          "memory": true,
+          "kind": "memory",
+          "status": "implemented",
+          "group": "memory"
+        },
+        {
+          "id": "out",
+          "lines": [
+            "LLC 外存 AXI",
+            "axi_llc_mst_*"
+          ],
+          "memory": false,
+          "kind": "boundary",
+          "status": "implemented",
+          "group": "memory"
+        }
+      ],
+      "edges": [
+        {
+          "id": "E01",
+          "both": true,
+          "source": "dispatch",
+          "target": "ara",
+          "label": "acc_req / acc_resp",
+          "detail": "CVA6 向 Ara 发送指令/相关 MMU 信息，Ara 返回执行状态；SoC 同时通过 acc_resp_pack 包装失效状态。",
+          "source_ref": "hw/cheshire_soc.sv#L625",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E02",
+          "both": true,
+          "source": "ara",
+          "target": "filter",
+          "label": "Ara AXI",
+          "detail": "axi_ara_wide_req/rsp；默认按 32*AraNrLanes 决定数据位宽，2 lanes 为 64-bit。",
+          "source_ref": "hw/cheshire_soc.sv#L818",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E03",
+          "both": true,
+          "source": "filter",
+          "target": "dispatch",
+          "label": "inval 地址 / 握手",
+          "detail": "inval_addr/valid 经 acc_resp_pack.acc_resp 返回 CVA6；inval_ready/acc_cons_en 经 acc_req.acc_req 反馈到过滤器。并非直接额外 snoop 端口。",
+          "source_ref": "hw/cheshire_soc.sv#L625",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E04",
+          "both": true,
+          "source": "dispatch",
+          "target": "cache",
+          "label": "inval_addr / valid",
+          "detail": "CVA6 acc_dispatcher 转出 inval_addr_o/inval_valid_o 并接收 inval_ready_i；相应 D-cache 分支接收失效，必须匹配最终 profile。",
+          "source_ref": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv#L301",
+          "kind": "control",
+          "status": "implemented"
+        },
+        {
+          "id": "E05",
+          "both": true,
+          "source": "filter",
+          "target": "dw",
+          "label": "AXI 贯通",
+          "detail": "axi_ara_wide_req_inval/rsp_inval 进入现有 DW 转换器；当前没有 GB 地址分流实例。",
+          "source_ref": "hw/cheshire_soc.sv#L861",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E06",
+          "both": true,
+          "source": "dw",
+          "target": "xbar",
+          "label": "AxiIn.ara",
+          "detail": "axi_ara_narrow_req/rsp 接主 Xbar 输入（可选 AXI RT 合并表示）；访问 LLC 地址仍走普通主存路径。",
+          "source_ref": "hw/cheshire_soc.sv#L889",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E07",
+          "both": true,
+          "source": "cache",
+          "target": "cpu_axi",
+          "label": "CPU 数据访问",
+          "detail": "L1D 属于 CPU 内部访存子系统，随 CPU AXI 汇合输出后由 i_axi_id_serialize 映射 ID；图省略 I-cache/MMU 等其他 CPU 请求源。",
+          "source_ref": "hw/cheshire_soc.sv#L775",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E08",
+          "both": true,
+          "source": "cpu_axi",
+          "target": "xbar",
+          "label": "AxiIn.cores[i]",
+          "detail": "经核心用户信号分配与 ID serialize 的 CPU AXI 接入主 Xbar（可选 AXI RT 合并表示）。",
+          "source_ref": "hw/cheshire_soc.sv#L793",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E09",
+          "both": true,
+          "source": "xbar",
+          "target": "llc",
+          "label": "LLC 目标 AXI",
+          "detail": "axi_out_req[AxiOut.llc] 经 i_llc_atomics 与 cut 到 LLC；图合并已在16章展开的内部结构。",
+          "source_ref": "hw/cheshire_soc.sv#L448",
+          "kind": "data",
+          "status": "implemented"
+        },
+        {
+          "id": "E10",
+          "both": true,
+          "source": "llc",
+          "target": "out",
+          "label": "外存请求 / 响应",
+          "detail": "LLC miss/refill、evict/writeback 和旁路最终使用 axi_llc_mst_req_o/rsp_i；接入 AXI/LLC 不自动等于新设备缓存一致。",
+          "source_ref": "hw/cheshire_soc.sv#L531",
+          "kind": "data",
+          "status": "implemented"
+        }
+      ],
+      "notes": [
+        "表示 Cfg.Ara=1 分支；默认配置未启用 Ara。失效反馈经 acc_resp_pack 与 CVA6 dispatcher；不覆盖新 NPU/ISP 旁路写。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO</text>
+<rect x="755" y="150" width="1005" height="640" fill="#FFFFFF" stroke="#9DAABA" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="770" y="180" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">spi_host_core：一个命令可以包含多个串行数据拍</text>
+<rect x="40" y="175" width="300" height="145" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="190.0" y="207.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  spi_host_reg_top</text>
+<text x="190.0" y="239.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CONTROL / CONFIGOPTS</text>
+<text x="190.0" y="271.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CSID / COMMAND</text>
+<text x="190.0" y="303.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">STATUS / INTR_*</text>
+<text x="40" y="130" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">Regbus 32</text>
+<rect x="415" y="180" width="275" height="130" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="427" y1="180" x2="427" y2="310" stroke="#23354B" stroke-width="1.5"/>
+<text x="552.5" y="221.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  command_queue</text>
+<text x="552.5" y="253.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">方向 / 长度 / 速度</text>
+<text x="552.5" y="285.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">片选与时序配置</text>
+<polyline points="340,235 415,235" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="415,235 403.0,230.0 403.0,240.0" fill="#28699B"/>
+<rect x="805" y="195" width="350" height="130" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="980.0" y="236.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  spi_host_fsm</text>
+<text x="980.0" y="268.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SCK / CS / sample / shift</text>
+<text x="980.0" y="300.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CPOL / CPHA / 分频</text>
+<polyline points="690,245 805,245" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="805,245 793.0,240.0 793.0,250.0" fill="#28699B"/>
+<rect x="40" y="455" width="300" height="155" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="190.0" y="492.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  spi_host_window</text>
+<text x="190.0" y="524.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">TX 写窗口 / RX 读窗口</text>
+<text x="190.0" y="556.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit + byte enables</text>
+<text x="190.0" y="588.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">FIFO 满空由软件检查</text>
+<polyline points="190,320 190,455" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="190,455 195.0,443.0 185.0,443.0" fill="#28699B"/>
+<polygon points="190,320 185.0,332.0 195.0,332.0" fill="#28699B"/>
+<rect x="410" y="435" width="290" height="115" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="422" y1="435" x2="422" y2="550" stroke="#23354B" stroke-width="1.5"/>
+<text x="555.0" y="484.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  data_fifos：TX</text>
+<text x="555.0" y="516.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit 数据队列</text>
+<rect x="410" y="670" width="290" height="115" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="422" y1="670" x2="422" y2="785" stroke="#23354B" stroke-width="1.5"/>
+<text x="555.0" y="719.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">9  data_fifos：RX</text>
+<text x="555.0" y="751.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit 接收字队列</text>
+<polyline points="340,490 410,490" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="410,490 398.0,485.0 398.0,495.0" fill="#28699B"/>
+<polyline points="410,725 190,725 190,610" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="190,610 185.0,622.0 195.0,622.0" fill="#28699B"/>
+<rect x="805" y="435" width="350" height="115" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="980.0" y="484.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">6  byte_select</text>
+<text x="980.0" y="516.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit → 有效发送字节</text>
+<rect x="805" y="670" width="350" height="115" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="980.0" y="719.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">8  byte_merge</text>
+<text x="980.0" y="751.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">接收字节 → 32-bit</text>
+<polyline points="700,490 805,490" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="805,490 793.0,485.0 793.0,495.0" fill="#28699B"/>
+<polyline points="805,725 700,725" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="700,725 712.0,730.0 712.0,720.0" fill="#28699B"/>
+<rect x="1330" y="425" width="360" height="165" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1510.0" y="467.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">7  shift_register</text>
+<text x="1510.0" y="499.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">串 / 并转换</text>
+<text x="1510.0" y="531.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">标准 / 双线 / 四线</text>
+<text x="1510.0" y="563.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SD[3:0] 输入 / 输出 / OE</text>
+<polyline points="1155,490 1330,490" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1330,490 1318.0,485.0 1318.0,495.0" fill="#28699B"/>
+<polyline points="1510,590 1510,725 1155,725" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1155,725 1167.0,730.0 1167.0,720.0" fill="#28699B"/>
+<polyline points="1155,260 1510,260 1510,425" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1510,425 1515.0,413.0 1505.0,413.0" fill="#9C5B25"/>
+<text x="1250" y="242" font-family="WenQuanYi Zen Hei" font-size="22" fill="#9C5B25" text-anchor="start">SCK / CS 与移位节拍</text>
+<text x="90" y="862" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">IRQ：ERROR / SPI_EVENT；片选数量、FIFO 深度和字节顺序以当前参数为准。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

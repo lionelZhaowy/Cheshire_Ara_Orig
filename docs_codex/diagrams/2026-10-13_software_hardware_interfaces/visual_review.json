@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-13",
+  "reviewer": "L01 tutorial author",
+  "reviewed_figures": [
+    "boot",
+    "uart",
+    "dma",
+    "ara"
+  ],
+  "method": "Author inspected actual Chrome PNGs with view_image. All four inspected in browser-verified; boot inspected again after its label adjustment in browser-review; remaining SVG hashes unchanged. Representative desktop cases and mobile index also inspected.",
+  "result": "Readable text, semantic arrow labels, no observed label/line intersections after final boot and Ara adjustments.",
+  "artifacts": {
+    "docs_codex/diagrams/2026-10-13_software_hardware_interfaces/boot.svg": "b4557923c88f318be7907287a0a74f549b031730190c54101c07e632f6f1078f",
+    "docs_codex/software/interfaces/evidence/browser-review/figure-boot.png": "6e57aa7c145822450abc69ead46f8056b42e68b71cf8411daba290f44c4b7a13",
+    "docs_codex/diagrams/2026-10-13_software_hardware_interfaces/uart.svg": "aa3ae51215afacca43b8b3105089cd8cbf97c2a10f69aec525a69972124f148e",
+    "docs_codex/software/interfaces/evidence/browser-review/figure-uart.png": "575f6ea533798a956e5ad4ab29f2e722e4483bd5ea421509f281e3669b2fd00b",
+    "docs_codex/diagrams/2026-10-13_software_hardware_interfaces/dma.svg": "db7fb44b41c890505c62915d02f87466b886bd7b5b129272568183b0eb0fbfce",
+    "docs_codex/software/interfaces/evidence/browser-review/figure-dma.png": "133ad575b16f0cd138b7bf72289680167f9a693d9788a68ff6a8e62e527caeaa",
+    "docs_codex/diagrams/2026-10-13_software_hardware_interfaces/ara.svg": "80a9f767d6847f7d59b384f0c5917f5407117b9223a998f3885ef0001ff10e02",
+    "docs_codex/software/interfaces/evidence/browser-review/figure-ara.png": "b9b428e76f8c6ce013a813e51b5e5eb471d32f9ac8f0267f68596ce649a1c9f0",
+    "docs_codex/diagrams/2026-10-13_software_hardware_interfaces/export-reviewed/diagrams.pptx": "5531667e3e41168e6143ef8dd5cfd26144d19852bf865e6ea251b623da382451",
+    "docs_codex/software/interfaces/evidence/browser-verified/cases-1440.png": "f7b0067c3896a90b517ea8709da3816267ab1a28938ecf0ee284386739cd8f3a",
+    "docs_codex/software/interfaces/evidence/browser-verified/index-390.png": "60ddcce2f2737758a7f04d7795e2590d1a17b7aa9744f32f220396cab77e4aa8"
+  },
+  "office_display_or_edit_tested": false,
+  "notes": "PPTX verified by export structure only; intermediate previews/exports retained."
+}

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1090" viewBox="0 0 1600 1090">
+<rect x="0" y="0" width="1600" height="1090" fill="#FFFFFF"/>
+<text x="40" y="43" font-family="WenQuanYi Zen Hei" font-size="30" fill="#253447" text-anchor="start">③ i_stream_to_mem：请求直通 + 在途计数 + 返回缓冲</text>
+<text x="40" y="85" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">默认 BufDepth = 1；括号内为外层 axi_to_detailed_mem 的连线名。</text>
+<text x="55" y="139" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">上游 stream 接口</text>
+<text x="1195" y="139" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">下游 memory 接口</text>
+<text x="55" y="199" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">req_i (m2s_req)</text>
+<text x="1160" y="199" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">mem_req_o (mem_req)</text>
+<polyline points="60,220 1500,220" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1500,220 1489.0,215.5 1489.0,224.5" fill="#205F9C"/>
+<text x="625" y="204" font-family="WenQuanYi Zen Hei" font-size="24" fill="#205F9C" text-anchor="start">结构体直接连线，不改字段</text>
+<rect x="810" y="300" width="65" height="65" fill="#FBF4E9" stroke="#253447" stroke-width="2"/>
+<text x="842" y="343" font-family="WenQuanYi Zen Hei" font-size="32" fill="#253447" text-anchor="middle">&amp;</text>
+<text x="55" y="288" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">req_valid_i</text>
+<polyline points="60,330 810,330" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="810,330 799.0,325.5 799.0,334.5" fill="#925021"/>
+<polyline points="875,330 1500,330" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1500,330 1489.0,325.5 1489.0,334.5" fill="#925021"/>
+<text x="1180" y="310" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">mem_req_valid_o</text>
+<rect x="810" y="405" width="65" height="65" fill="#FBF4E9" stroke="#253447" stroke-width="2"/>
+<text x="842" y="448" font-family="WenQuanYi Zen Hei" font-size="32" fill="#253447" text-anchor="middle">&amp;</text>
+<text x="55" y="413" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">req_ready_o</text>
+<polyline points="810,438 60,438" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="60,438 71.0,442.5 71.0,433.5" fill="#925021"/>
+<polyline points="1500,438 875,438" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="875,438 886.0,442.5 886.0,433.5" fill="#925021"/>
+<text x="1180" y="418" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">mem_req_ready_i</text>
+<rect x="950" y="530" width="580" height="95" fill="#FBF4E9" stroke="#253447" stroke-width="2"/>
+<text x="1240.0" y="564" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">req_ready = (cnt_q &lt; BufDepth)</text>
+<text x="1240.0" y="596" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">| (resp_valid_o &amp; resp_ready_i)</text>
+<polyline points="1240,530 1240,493 842,493 842,470" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="842,470 837.5,481.0 846.5,481.0" fill="#925021"/>
+<circle cx="1240" cy="493" r="4" fill="#925021"/>
+<polyline points="1240,493 1570,493 1570,265 842,265 842,300" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="842,300 846.5,289.0 837.5,289.0" fill="#925021"/>
+<rect x="450" y="530" width="325" height="95" fill="#FBF4E9" stroke="#253447" stroke-width="2"/>
+<text x="612.5" y="564" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">cnt_q：在途计数寄存器</text>
+<text x="612.5" y="596" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">接收请求 +1；交付响应 -1</text>
+<polyline points="775,574 950,574" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="950,574 939.0,569.5 939.0,578.5" fill="#925021"/>
+<text x="810" y="556" font-family="WenQuanYi Zen Hei" font-size="23" fill="#925021" text-anchor="start">cnt_q</text>
+<text x="55" y="742" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">resp_o</text>
+<text x="55" y="775" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">(m2s_resp)</text>
+<rect x="590" y="710" width="360" height="150" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="770.0" y="742" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_resp_buf</text>
+<text x="770.0" y="773" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">深度 1；fall-through</text>
+<rect x="615" y="822" width="310" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<polyline points="590,765 260,765" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="260,765 271.0,769.5 271.0,760.5" fill="#205F9C"/>
+<text x="1170" y="738" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">mem_resp_i</text>
+<text x="1170" y="770" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">(mem_rdata)</text>
+<polyline points="1150,765 950,765" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="950,765 961.0,769.5 961.0,760.5" fill="#205F9C"/>
+<polyline points="1150,815 950,815" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="950,815 961.0,819.5 961.0,810.5" fill="#925021"/>
+<text x="1170" y="814" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">mem_resp_valid_i</text>
+<polyline points="590,810 260,810" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="260,810 271.0,814.5 271.0,805.5" fill="#925021"/>
+<text x="55" y="822" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">resp_valid_o</text>
+<polyline points="260,880 680,880 680,860" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="680,860 675.5,871.0 684.5,871.0" fill="#925021"/>
+<text x="55" y="891" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">resp_ready_i</text>
+<text x="1120" y="880" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">没有 mem_resp_ready 输出</text>
+<text x="55" y="960" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">request_fire = req_valid_i &amp; req_ready_o</text>
+<text x="55" y="1003" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">response_fire = resp_valid_o &amp; resp_ready_i</text>
+<text x="825" y="1003" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">cnt_d = cnt_q + request_fire - response_fire</text>
+<text x="55" y="1062" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">请求是否放行由预留容量决定；响应到达后，即使上游暂停，也有 FIFO 可接住。</text>
+</svg>

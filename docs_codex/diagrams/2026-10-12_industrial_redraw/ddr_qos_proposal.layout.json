@@ -1,0 +1,427 @@
+{
+  "canvas": [
+    2400.0,
+    1350.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      2400,
+      1350
+    ],
+    "soc": [
+      60,
+      190,
+      960,
+      390
+    ],
+    "cpu-ara": [
+      100,
+      285,
+      220,
+      140
+    ],
+    "xbar": [
+      380,
+      285,
+      220,
+      140
+    ],
+    "llc": [
+      660,
+      250,
+      320,
+      210
+    ],
+    "isp-domain": [
+      1070,
+      190,
+      560,
+      390
+    ],
+    "isp": [
+      1100,
+      280,
+      500,
+      180
+    ],
+    "npu-domain": [
+      1680,
+      190,
+      660,
+      390
+    ],
+    "npu": [
+      1730,
+      280,
+      560,
+      180
+    ],
+    "controller": [
+      60,
+      740,
+      1900,
+      460
+    ],
+    "port0": [
+      220,
+      810,
+      170,
+      95
+    ],
+    "port1": [
+      1150,
+      810,
+      170,
+      95
+    ],
+    "port2": [
+      1750,
+      810,
+      170,
+      95
+    ],
+    "arbiter": [
+      160,
+      1020,
+      500,
+      140
+    ],
+    "core": [
+      900,
+      1020,
+      930,
+      140
+    ],
+    "phy": [
+      2010,
+      1015,
+      330,
+      150
+    ],
+    "dash-legend": [
+      585,
+      1290,
+      65,
+      27
+    ]
+  },
+  "texts": [
+    {
+      "text": "DDR 多端口仲裁与 QoS",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "历史独立主口方案：S0 = SoC · S1 = ISP · S2 = NPU（与后续 GB 三口方案区分）",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "SoC 主存路径",
+      "x": 540.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "soc",
+      "id": "o5"
+    },
+    {
+      "text": "CVA6 + Ara",
+      "x": 210.0,
+      "y": 347.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "cpu-ara",
+      "id": "o7"
+    },
+    {
+      "text": "现有发起端",
+      "x": 210.0,
+      "y": 381.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cpu-ara",
+      "id": "o8"
+    },
+    {
+      "text": "Crossbar",
+      "x": 490.0,
+      "y": 347.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "xbar",
+      "id": "o10"
+    },
+    {
+      "text": "地址路由",
+      "x": 490.0,
+      "y": 381.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "xbar",
+      "id": "o11"
+    },
+    {
+      "text": "原子适配 + LLC",
+      "x": 820.0,
+      "y": 330.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "llc",
+      "id": "o13"
+    },
+    {
+      "text": "LLC 外存出口",
+      "x": 820.0,
+      "y": 364.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc",
+      "id": "o14"
+    },
+    {
+      "text": "SPM 访问可留在片内",
+      "x": 820.0,
+      "y": 398.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc",
+      "id": "o15"
+    },
+    {
+      "text": "ISP 数据主口",
+      "x": 1350.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "isp-domain",
+      "id": "o19"
+    },
+    {
+      "text": "ISP AXI Master",
+      "x": 1350.0,
+      "y": 345.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "isp",
+      "id": "o21"
+    },
+    {
+      "text": "写帧缓冲",
+      "x": 1350.0,
+      "y": 379.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "isp",
+      "id": "o22"
+    },
+    {
+      "text": "绕过主 Crossbar / LLC",
+      "x": 1350.0,
+      "y": 413.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "isp",
+      "id": "o23"
+    },
+    {
+      "text": "NPU 数据主口",
+      "x": 2010.0,
+      "y": 233,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "npu-domain",
+      "id": "o25"
+    },
+    {
+      "text": "NPU AXI Master",
+      "x": 2010.0,
+      "y": 345.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "npu",
+      "id": "o27"
+    },
+    {
+      "text": "读写权重 / 特征图",
+      "x": 2010.0,
+      "y": 379.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "npu",
+      "id": "o28"
+    },
+    {
+      "text": "绕过 LLC",
+      "x": 2010.0,
+      "y": 413.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "npu",
+      "id": "o29"
+    },
+    {
+      "text": "DDR Controller 内部",
+      "x": 1010.0,
+      "y": 783,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "controller",
+      "id": "o31"
+    },
+    {
+      "text": "S0",
+      "x": 305.0,
+      "y": 849.68,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "port0",
+      "id": "o33"
+    },
+    {
+      "text": "SoC 外存",
+      "x": 305.0,
+      "y": 883.68,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "port0",
+      "id": "o34"
+    },
+    {
+      "text": "S1",
+      "x": 1235.0,
+      "y": 849.68,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "port1",
+      "id": "o37"
+    },
+    {
+      "text": "ISP 写入",
+      "x": 1235.0,
+      "y": 883.68,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "port1",
+      "id": "o38"
+    },
+    {
+      "text": "S2",
+      "x": 1835.0,
+      "y": 849.68,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "port2",
+      "id": "o41"
+    },
+    {
+      "text": "NPU 读 / 写",
+      "x": 1835.0,
+      "y": 883.68,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "port2",
+      "id": "o42"
+    },
+    {
+      "text": "端口仲裁 / QoS",
+      "x": 410.0,
+      "y": 1065.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "arbiter",
+      "id": "o49"
+    },
+    {
+      "text": "可配置优先级 · 轮询",
+      "x": 410.0,
+      "y": 1099.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "arbiter",
+      "id": "o50"
+    },
+    {
+      "text": "页命中限制",
+      "x": 410.0,
+      "y": 1133.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "arbiter",
+      "id": "o51"
+    },
+    {
+      "text": "Controller Core",
+      "x": 1365.0,
+      "y": 1065.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "core",
+      "id": "o53"
+    },
+    {
+      "text": "内部命令队列 · FR-FCFS",
+      "x": 1365.0,
+      "y": 1099.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "core",
+      "id": "o54"
+    },
+    {
+      "text": "遵守 DRAM 时序",
+      "x": 1365.0,
+      "y": 1133.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "core",
+      "id": "o55"
+    },
+    {
+      "text": "PHY + SDRAM",
+      "x": 2175.0,
+      "y": 1082.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "phy",
+      "id": "o59"
+    },
+    {
+      "text": "共享外存带宽",
+      "x": 2175.0,
+      "y": 1116.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "phy",
+      "id": "o60"
+    },
+    {
+      "text": "AXI 请求 / 数据",
+      "x": 135,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o63"
+    },
+    {
+      "text": "虚线分区：尚未集成",
+      "x": 675,
+      "y": 1313,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o65"
+    }
+  ]
+}

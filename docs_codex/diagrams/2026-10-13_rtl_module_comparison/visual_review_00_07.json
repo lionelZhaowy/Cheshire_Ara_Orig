@@ -1,0 +1,458 @@
+{
+  "date": "2026-10-13",
+  "reviewer": "L01 review_reg_peripherals",
+  "round": "final",
+  "checked_images": 20,
+  "office_tested": false,
+  "notes": [
+    "A/B共用连接表负责展开编号信号组；B采用两端配对端口，无长线不是缺失连接。",
+    "初次审查SHA256用于标识实际查看版本；root修后需对变动图另做复核。",
+    "A05等问题为图面文字和走线冲突，不表示RTL连接错误。",
+    "第二轮已实际复看5张A和全部10张B；初次9项均已解决，新发现B图注复制引入图例颜色矛盾与重复碎片。",
+    "最终定向实看 B/00a、B/00b、A/05：第二轮问题全部消除。其余17张SHA256与已看版本一致。"
+  ],
+  "images": [
+    {
+      "file": "A/00a_regbus.png",
+      "sha256": "8ca1b0c403efb40df7867c7c61d0094b70f82f04948cf019be134c2b9cf3ebcb",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "47e1a25a5bd29b7c97412246dd6c77f7618e97f244e786770a64420364eb3b73",
+          "issues": [
+            {
+              "severity": "fix",
+              "where": "N08 外部 Regbus 端口框 y540/h115",
+              "issue": "新增第四行使首行与末行碰上下边框。",
+              "suggestion": "增加框高，或缩小文字/行距并保留内边距。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "A/00b_ip_contract.png",
+      "sha256": "58328f934b9c6bd8e348676704a2c2f9196a5e3f6baa9753d753d4a7c640d290",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "b65750258e01fc8ecfe6642dd12c9516d8b934e9d821f70adc45afdd0af173b9",
+          "issues": [
+            {
+              "severity": "minor",
+              "where": "E08 x680转折与 offset / 访问属性注释",
+              "issue": "清除路径贴穿注释底部，影响读线。",
+              "suggestion": "注释上移约12px或避开转折位置。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "A/01_uart.png",
+      "sha256": "74ddad5c6627bf28f02052abe77cf7ffc03c4a28c951b718205193ee76a7087b",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "74ddad5c6627bf28f02052abe77cf7ffc03c4a28c951b718205193ee76a7087b",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": false
+    },
+    {
+      "file": "A/02_i2c.png",
+      "sha256": "5a30515f5ec34424789d87cd995f668ecefa546331dc5c4eab82200b9cc6158e",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "5a30515f5ec34424789d87cd995f668ecefa546331dc5c4eab82200b9cc6158e",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": false
+    },
+    {
+      "file": "A/03_spi.png",
+      "sha256": "60a7fc692ade73676a0b778c66ef5db07732a1fd3963b9fc2149cafd75537db6",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "08f6dd31bac7a89a7e139fa903b654aa35a10facde3f98b3bfa2e9b74ff2dc01",
+          "issues": [
+            {
+              "severity": "fix",
+              "where": "E11 x1100竖线与 spi_host_core 区域标题 y175",
+              "issue": "新增SCK/CS/OE引脚路径穿过区域标题“多个”附近。",
+              "suggestion": "移区域标题到不经过此竖线的位置。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "A/04_gpio.png",
+      "sha256": "ae50ab1d072b9db481860e1a7bfd498e8fabb4bf17e7bdd94ffac3d78fc81960",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "ae50ab1d072b9db481860e1a7bfd498e8fabb4bf17e7bdd94ffac3d78fc81960",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": false
+    },
+    {
+      "file": "A/05_plic.png",
+      "sha256": "43d05901890275a4955ace30dd91d23bd752a91a99d0d0ff2037abff21c7ed2a",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "b521c0ec16c6fc98a07354f5a3bbc8c3b46b20bf7a77a82718d2d06999aa3fe1",
+          "issues": [
+            {
+              "severity": "fix",
+              "where": "E08 x895 与 claim / complete 标签；x520 与 Regbus 请求/响应标签",
+              "issue": "两处竖线穿文字；拓扑方向正确。",
+              "suggestion": "移动标签或在空白走廊重新走E08。"
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "sha256": "2c124f4863f289e4c97dfd49f61e9b2fc2d39840ea58c678415310ede382d454",
+          "issues": [
+            {
+              "severity": "minor",
+              "issue": "claim/complete标签已无交叉但远离E05，建议x1030,y505贴近实际控制线。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true,
+      "final_recheck": "view_image 实看：图注已精简、颜色约定无冲突、claim标签贴近E05且不遮挡。"
+    },
+    {
+      "file": "A/06a_clint.png",
+      "sha256": "c865d21f29ff1a20d23bb60d93ec379c4f77a537011ceab4202d53482bde7f29",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "e02fba9e218ecaa4606c3af253f7dca8a0447e775734cfa4c37ebe55adb68739",
+          "issues": [
+            {
+              "severity": "minor",
+              "where": "N06 MSIP字段框第二行",
+              "issue": "第二行接近左侧存储条，留白不足。",
+              "suggestion": "缩短为“reg_top内；软件写”或调整字号/框宽。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "A/06b_clic.png",
+      "sha256": "31dbdaf4cfa59d59fcfa5ba26af0757a50fdf3a6aebf1535ec603c6f3f69e627",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "31dbdaf4cfa59d59fcfa5ba26af0757a50fdf3a6aebf1535ec603c6f3f69e627",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": false
+    },
+    {
+      "file": "A/07_irq_router.png",
+      "sha256": "3280552e9ab82187b24a7421d1d0a78dace53be5317aaa7814ccba0381b57a9c",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "3280552e9ab82187b24a7421d1d0a78dace53be5317aaa7814ccba0381b57a9c",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": false
+    },
+    {
+      "file": "B/00a_regbus.png",
+      "sha256": "9e4aad12e0692ef8ec9b61b1dc5c37e05038400de15789897420bd087a152e6e",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "3cae50c985ff32763c5a37a89aaf381095339918c1db8f8be43dc02840d2df73",
+          "issues": []
+        },
+        {
+          "round": 2,
+          "sha256": "2e6d577ab70d2c5b9b969a23a5c5170b6c23eff94ad04c810a1573feccc452bd",
+          "issues": [
+            {
+              "severity": "fix",
+              "issue": "从A复制的棕色虚线图例与B紫色端口虚线不一致。"
+            },
+            {
+              "severity": "readability",
+              "issue": "A散落标签全部逐行附到页底，含重复模块/信号名，建议仅保留独立边界/状态/参数注释。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true,
+      "final_recheck": "view_image 实看：图注已精简、颜色约定无冲突、claim标签贴近E05且不遮挡。"
+    },
+    {
+      "file": "B/00b_ip_contract.png",
+      "sha256": "b9a68c858238320d434ce2d73719288e2ccf0cd41104673f11059b9a62a1a82a",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "bb8b64def31db9834802331f61c86d8bf3a66334538c00fe3cfd882f4c13c580",
+          "issues": [
+            {
+              "severity": "minor",
+              "where": "N05类别标签",
+              "issue": "IP工作逻辑被自动标为“接口与配置”，语义不贴切。",
+              "suggestion": "改“工作逻辑”类别。"
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "sha256": "23f6ea77c3219c3cc306830216f47c14007551672222f7ea94c1bf4a13fc7ea6",
+          "issues": [
+            {
+              "severity": "readability",
+              "issue": "重复模块文本与单词标签堆为20余行，建议合并保留独立说明。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true,
+      "final_recheck": "view_image 实看：图注已精简、颜色约定无冲突、claim标签贴近E05且不遮挡。"
+    },
+    {
+      "file": "B/01_uart.png",
+      "sha256": "8a8e9163270a9b60ed140c8fc42434a5be3314a845235d38f2241f280287a5f7",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "991d1295d3e3a51d98ed8560a5dcf7fc26d2a67686657f7596813daba18064d9",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/02_i2c.png",
+      "sha256": "5aa465d812d944fe8c40339b01e76a47b92ce58b3edb90fae451a64ed93de767",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "7d4586fb37f85c09ace754ed2c3f549f8390cfc7528b6999016a7d1d1782d8a5",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/03_spi.png",
+      "sha256": "68640d2d3e9baf75f64caf8602285733ebc08d88a383c7dd9f6c018ad0600450",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "1986102cb2280e71337d6888277d0008149f6cdd8ec3380ca3ef1e012a784525",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/04_gpio.png",
+      "sha256": "c5617595c906f029bdf2387f6fc797d6170f8699022b94a6db242a4e7e751537",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "8531edc90d6e4495009caf0b770ab2db111c71d7c011682cdd17dcf3bfaeaba7",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/05_plic.png",
+      "sha256": "d07d1c7f755ff7bdc204ae6b44ae3c8eabd5a2511f9973191b52ed7c0730c630",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "183d1bbabf35633eb3f7537a83a0ae8692e5881c1705a5f3e225b17881a35b73",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/06a_clint.png",
+      "sha256": "8f6c21e15b86db21be769d7e4f2f57b78804aa76216331722dbe7b4a783054d5",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "c026c0d4cd8a80786d5c2899bf0236885caa1e40e45d2a94e774d30d6d2f9e64",
+          "issues": []
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/06b_clic.png",
+      "sha256": "0d88a7af85968381a734cb1ef4ea6724a4a54c524b280235a5ab278ac136b257",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "eaebe272890a57e081242ddf27abc1bb1a6a85919cb090a58669ddcbd96c2ae8",
+          "issues": [
+            {
+              "severity": "fix",
+              "where": "N04类别标签",
+              "issue": "CVA6 CLIC接口被标为“状态/存储”，可能误认其为寄存器或缓存块。",
+              "suggestion": "改为“CPU接口/握手”。"
+            },
+            {
+              "severity": "fix",
+              "where": "图副标题或页脚",
+              "issue": "图片本体缺A版当前默认/FPGA Cfg.Clic=0说明。",
+              "suggestion": "B版直接保留当前未启用状态，避免脱离正文误判。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    },
+    {
+      "file": "B/07_irq_router.png",
+      "sha256": "a54085b826e1eb7d8b72d362b8b59f163ac5d2d259178dbb31ab2b79e894b896",
+      "checked": true,
+      "method": "view_image逐张查看整张PNG；不是拼图或仅XML检查",
+      "issues": [],
+      "topology": "编号/端点/箭头与已核对review_00_07语义比较；新增UART TX IRQ、I2C Target、GPIO输入与PLIC pending反馈存在",
+      "office_tested": false,
+      "history": [
+        {
+          "round": 1,
+          "sha256": "1d3fb06af776cb208fca7ccc9b7c4062c9164967a5544692f9336539fdb6e09f",
+          "issues": [
+            {
+              "severity": "fix",
+              "where": "图副标题或页脚",
+              "issue": "图片本体缺A版默认/FPGA Cfg.IrqRouter=0及旁路说明。",
+              "suggestion": "B版直接标当前未启用、采用复制旁路；完整细节可留共用连接表。"
+            }
+          ]
+        }
+      ],
+      "rechecked_after_fix": true
+    }
+  ],
+  "status": "passed",
+  "open_issues": 0,
+  "unchanged_hashes_final_round": 17
+}

@@ -1,0 +1,275 @@
+[
+  {
+    "x": 35,
+    "y": 45,
+    "text": "① Regbus 全路径：现有互连 + 自有 IP 接入边界",
+    "size": 30,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 90,
+    "text": "蓝色双向线 = 请求向右 / 响应返回；棕色虚线 = 地址与选择；虚线边框 = 拟新增。",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 245,
+    "y": 188,
+    "text": "Cheshire 内部互连与寄存器目标：clk_i / rst_ni",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 102.5,
+    "y": 364,
+    "text": "CPU 等",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 102.5,
+    "y": 396,
+    "text": "AXI 发起端",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 340.0,
+    "y": 349,
+    "text": "主 AXI",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 340.0,
+    "y": 381,
+    "text": "Crossbar",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 340.0,
+    "y": 413,
+    "text": "第一级选路",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 675.0,
+    "y": 319,
+    "text": "现有 AXI → Regbus 通路",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 675.0,
+    "y": 351,
+    "text": "i_reg_atomics",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 675.0,
+    "y": 383,
+    "text": "→ i_reg_atomics_cut",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 675.0,
+    "y": 415,
+    "text": "→ i_axi_to_reg_v2",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 675.0,
+    "y": 447,
+    "text": "64-bit AXI → 32-bit Reg",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 450,
+    "y": 271,
+    "text": "AxiOut.reg_demux",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1120.0,
+    "y": 349,
+    "text": "i_reg_demux",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1120.0,
+    "y": 381,
+    "text": "请求分发",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1120.0,
+    "y": 413,
+    "text": "响应选择",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 905,
+    "y": 425,
+    "text": "Regbus",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1120.0,
+    "y": 234,
+    "text": "地址解码 RegMap",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 875,
+    "y": 216,
+    "text": "addr",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1150,
+    "y": 300,
+    "text": "reg_select",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1560.0,
+    "y": 249,
+    "text": "片内寄存器目标",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 281,
+    "text": "SoC / UART / GPIO / …",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 409,
+    "text": "i_reg_err_slv",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 441,
+    "text": "未命中：ready=1, error=1",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 574,
+    "text": "外部 Regbus 端口 [k]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 606,
+    "text": "reg_ext_slv_req_o[k]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1560.0,
+    "y": 638,
+    "text": "reg_ext_slv_rsp_i[k]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 470,
+    "y": 548,
+    "text": "需要配置：RegExtNumSlv / RegExtNumRules",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 470,
+    "y": 587,
+    "text": "RegExtRegionStart / End / Idx",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 470,
+    "y": 627,
+    "text": "gen_axi_out + gen_reg_out 自动生成两级地址规则",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 470,
+    "y": 684,
+    "text": "默认外部端口数为 0；打开端口后，还要在外层顶层接线。",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1555,
+    "y": 841,
+    "text": "自有 IP 寄存器接口",
+    "size": 26,
+    "anchor": "middle"
+  },
+  {
+    "x": 1555,
+    "y": 877,
+    "text": "NPU / ISP / DMA / …",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1555,
+    "y": 908,
+    "text": "内部职责见图②",
+    "size": 23,
+    "anchor": "middle"
+  },
+  {
+    "x": 1150,
+    "y": 770,
+    "text": "同域直连；异域增加 reg_cdc",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 810,
+    "text": "IP 收到：addr[47:0] / write / wdata[31:0] / wstrb[3:0] / valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 851,
+    "text": "IP 返回：rdata[31:0] / error / ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 904,
+    "text": "配置走 Regbus；图像、权重、帧数据等批量搬运走独立的数据接口。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

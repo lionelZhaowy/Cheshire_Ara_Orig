@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+<marker id="call" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#4775AC"/></marker>
+<marker id="bus" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#287D70"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#8660A5"/></marker>
+<marker id="event" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BB6D30"/></marker>
+</defs>
+<rect x="0" y="0" width="1400" height="900" fill="#FAFCFF"/>
+<text x="48" y="55" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="start" fill="#26384B">Ara 接口：向量请求与批量数据走不同通路</text>
+<rect x="50" y="125" width="350" height="150" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="225.0" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">软件向量内核</text>
+<text x="225.0" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">vsetvli / vle32 / vadd / vse32</text>
+<text x="225.0" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">标量 GPR 给基址与长度</text>
+<text x="225.0" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">VS / FS 和特权条件</text>
+<rect x="515" y="125" width="355" height="150" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="692.5" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CVA6 acc_dispatcher</text>
+<text x="692.5" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">insn / rs1 / rs2 / trans_id</text>
+<text x="692.5" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">非推测发射 / pending</text>
+<text x="692.5" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">barrier 与结果写回</text>
+<rect x="995" y="125" width="355" height="150" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="1172.5" y="161" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">Ara dispatcher / lanes</text>
+<text x="1172.5" y="195" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">指令执行 / 向量寄存器</text>
+<text x="1172.5" y="224" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">VL / VTYPE / 元素运算</text>
+<text x="1172.5" y="253" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">响应 / exception / 完成</text>
+<polyline points="400,200 515,200" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="458" y="183" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">指令执行</text>
+<polyline points="870,200 995,200" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)" marker-start="url(#call)"/>
+<text x="932" y="183" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">专用请求/响应</text>
+<rect x="515" y="405" width="355" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="692.5" y="441" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CVA6 MMU / LSU</text>
+<text x="692.5" y="475" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">虚拟地址 → 物理地址</text>
+<text x="692.5" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">DTLB / 权限 / 翻译异常</text>
+<rect x="995" y="405" width="355" height="140" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="1172.5" y="441" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">Ara VLSU / addrgen</text>
+<text x="1172.5" y="475" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">向量地址产生</text>
+<text x="1172.5" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">vldu / vstu 发 AXI 请求</text>
+<polyline points="1172,275 1172,405" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="1285" y="345" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">load / store</text>
+<polyline points="995,475 870,475" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="932" y="457" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">地址翻译</text>
+<rect x="995" y="690" width="355" height="140" rx="9" fill="#E9F5F1" stroke="#287D70" stroke-width="2"/>
+<text x="1172.5" y="726" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">写失效 / 位宽适配</text>
+<text x="1172.5" y="760" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">axi_inval_filter</text>
+<text x="1172.5" y="789" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">axi_dw_converter</text>
+<rect x="515" y="690" width="355" height="140" rx="9" fill="#F1ECF7" stroke="#8660A5" stroke-width="2"/>
+<text x="692.5" y="726" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">主 Xbar → SPM / DDR</text>
+<text x="692.5" y="760" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">AxiIn.ara</text>
+<text x="692.5" y="789" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">批量数据及 R / B 响应</text>
+<rect x="50" y="690" width="350" height="140" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="225.0" y="726" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CPU 后继消费者</text>
+<text x="225.0" y="760" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">fence / 所有权交接</text>
+<text x="225.0" y="789" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">读取 c 与 golden 比较</text>
+<polyline points="1172,545 1172,690" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="1265" y="620" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">独立 AXI</text>
+<polyline points="995,762 870,762" fill="none" stroke="#8660A5" stroke-width="2.4" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="932" y="744" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#8660A5">AXI 数据</text>
+<polyline points="515,762 400,762" fill="none" stroke="#287D70" stroke-width="2.4" marker-end="url(#bus)" marker-start="url(#bus)"/>
+<text x="458" y="744" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#287D70">CPU load</text>
+<polyline points="1050,690 1050,600 445,600 445,240 515,240" fill="none" stroke="#BB6D30" stroke-width="2.4" marker-end="url(#event)" stroke-dasharray="8 5"/>
+<text x="690" y="585" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#BB6D30">写地址失效 / inval_ready</text>
+<text x="50" y="440" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#26384B">rs1/rs2 不是数组数据流</text>
+<text x="50" y="478" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#26384B">MMU 返回不是 load 数据</text>
+<text x="50" y="516" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#26384B">新增 GB 支路尚未实现</text>
+</svg>

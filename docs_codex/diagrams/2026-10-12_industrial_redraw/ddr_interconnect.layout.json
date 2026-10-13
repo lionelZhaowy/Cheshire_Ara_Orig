@@ -1,0 +1,709 @@
+{
+  "canvas": [
+    2800.0,
+    1575.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      2800,
+      1575
+    ],
+    "cpu-domain": [
+      60,
+      200,
+      840,
+      430
+    ],
+    "cpu": [
+      90,
+      290,
+      220,
+      135
+    ],
+    "ara": [
+      400,
+      290,
+      465,
+      110
+    ],
+    "filter": [
+      400,
+      455,
+      125,
+      100
+    ],
+    "split": [
+      550,
+      455,
+      125,
+      100
+    ],
+    "width": [
+      700,
+      455,
+      165,
+      100
+    ],
+    "gb-domain": [
+      930,
+      200,
+      900,
+      430
+    ],
+    "npu": [
+      960,
+      305,
+      220,
+      140
+    ],
+    "router": [
+      1215,
+      305,
+      250,
+      140
+    ],
+    "gb": [
+      1500,
+      305,
+      290,
+      140
+    ],
+    "mover": [
+      1500,
+      495,
+      290,
+      100
+    ],
+    "image-domain": [
+      1860,
+      200,
+      880,
+      430
+    ],
+    "lvds": [
+      1895,
+      370,
+      140,
+      125
+    ],
+    "cdc": [
+      2055,
+      370,
+      140,
+      125
+    ],
+    "isp": [
+      2215,
+      370,
+      140,
+      125
+    ],
+    "select": [
+      2375,
+      370,
+      140,
+      125
+    ],
+    "frame": [
+      2535,
+      370,
+      160,
+      125
+    ],
+    "xbar": [
+      70,
+      800,
+      1260,
+      120
+    ],
+    "atomics": [
+      400,
+      1050,
+      260,
+      135
+    ],
+    "llc": [
+      780,
+      1050,
+      290,
+      135
+    ],
+    "ddr": [
+      1400,
+      800,
+      1050,
+      535
+    ],
+    "ddr-port0": [
+      1460,
+      930,
+      160,
+      100
+    ],
+    "ddr-port1": [
+      1850,
+      930,
+      160,
+      100
+    ],
+    "ddr-port2": [
+      2240,
+      930,
+      160,
+      100
+    ],
+    "qos": [
+      1460,
+      1140,
+      310,
+      130
+    ],
+    "scheduler": [
+      1840,
+      1140,
+      550,
+      130
+    ],
+    "phy-ddr": [
+      2500,
+      1140,
+      230,
+      130
+    ]
+  },
+  "texts": [
+    {
+      "text": "DDR 互联候选结构 · 共享 Global Buffer",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "S0 = SoC / LLC · S1 = 统一 NPU / GB 搬运 · S2 = 图像帧写入",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "CVA6–Ara 系统路径",
+      "x": 480.0,
+      "y": 243,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "cpu-domain",
+      "id": "o5"
+    },
+    {
+      "text": "CVA6",
+      "x": 200.0,
+      "y": 350.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "cpu",
+      "id": "o7"
+    },
+    {
+      "text": "标量访存",
+      "x": 200.0,
+      "y": 384.02,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cpu",
+      "id": "o8"
+    },
+    {
+      "text": "Ara",
+      "x": 632.5,
+      "y": 337.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "ara",
+      "id": "o10"
+    },
+    {
+      "text": "单一 AXI 访存出口",
+      "x": 632.5,
+      "y": 371.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ara",
+      "id": "o11"
+    },
+    {
+      "text": "失效过滤",
+      "x": 462.5,
+      "y": 496.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "filter",
+      "id": "o13"
+    },
+    {
+      "text": "现有",
+      "x": 462.5,
+      "y": 530.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "filter",
+      "id": "o14"
+    },
+    {
+      "text": "地址分流",
+      "x": 612.5,
+      "y": 496.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "split",
+      "id": "o16"
+    },
+    {
+      "text": "新增",
+      "x": 612.5,
+      "y": 530.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "split",
+      "id": "o17"
+    },
+    {
+      "text": "位宽适配",
+      "x": 782.5,
+      "y": 496.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "width",
+      "id": "o19"
+    },
+    {
+      "text": "普通地址",
+      "x": 782.5,
+      "y": 530.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "width",
+      "id": "o20"
+    },
+    {
+      "text": "独立 GB / NPU 子系统",
+      "x": 1380.0,
+      "y": 243,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "gb-domain",
+      "id": "o25"
+    },
+    {
+      "text": "NPU 计算",
+      "x": 1070.0,
+      "y": 367.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "npu",
+      "id": "o27"
+    },
+    {
+      "text": "独立于搬运器",
+      "x": 1070.0,
+      "y": 401.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "npu",
+      "id": "o28"
+    },
+    {
+      "text": "GB 访问适配",
+      "x": 1340.0,
+      "y": 367.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "router",
+      "id": "o30"
+    },
+    {
+      "text": "仲裁 / bank 冲突",
+      "x": 1340.0,
+      "y": 401.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "router",
+      "id": "o31"
+    },
+    {
+      "text": "Global Buffer",
+      "x": 1645.0,
+      "y": 350.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "gb",
+      "id": "o33"
+    },
+    {
+      "text": "独立分 bank SRAM",
+      "x": 1645.0,
+      "y": 384.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "gb",
+      "id": "o34"
+    },
+    {
+      "text": "工作区 / 双缓冲",
+      "x": 1645.0,
+      "y": 418.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "gb",
+      "id": "o35"
+    },
+    {
+      "text": "NPU / GB 搬运",
+      "x": 1645.0,
+      "y": 537.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "mover",
+      "id": "o37"
+    },
+    {
+      "text": "DDR ↔ GB",
+      "x": 1645.0,
+      "y": 571.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "mover",
+      "id": "o38"
+    },
+    {
+      "text": "图像接收 / ISP / 帧写入",
+      "x": 2300.0,
+      "y": 243,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "image-domain",
+      "id": "o44"
+    },
+    {
+      "text": "LVDS",
+      "x": 1965.0,
+      "y": 424.34,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "lvds",
+      "id": "o46"
+    },
+    {
+      "text": "解串 / 帧行",
+      "x": 1965.0,
+      "y": 458.34,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "lvds",
+      "id": "o47"
+    },
+    {
+      "text": "CDC/FIFO",
+      "x": 2125.0,
+      "y": 424.34,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "cdc",
+      "id": "o49"
+    },
+    {
+      "text": "像素缓冲",
+      "x": 2125.0,
+      "y": 458.34,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "cdc",
+      "id": "o50"
+    },
+    {
+      "text": "ISP",
+      "x": 2285.0,
+      "y": 424.34,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "isp",
+      "id": "o52"
+    },
+    {
+      "text": "处理/行缓冲",
+      "x": 2285.0,
+      "y": 458.34,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "isp",
+      "id": "o53"
+    },
+    {
+      "text": "帧选择",
+      "x": 2445.0,
+      "y": 424.34,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "select",
+      "id": "o55"
+    },
+    {
+      "text": "RAW / ISP",
+      "x": 2445.0,
+      "y": 458.34,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "select",
+      "id": "o56"
+    },
+    {
+      "text": "帧 DMA",
+      "x": 2615.0,
+      "y": 424.34,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "frame",
+      "id": "o58"
+    },
+    {
+      "text": "地址/stride",
+      "x": 2615.0,
+      "y": 458.34,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "frame",
+      "id": "o59"
+    },
+    {
+      "text": "RAW 旁路",
+      "x": 2500,
+      "y": 318,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o66"
+    },
+    {
+      "text": "ISP 中间数据",
+      "x": 1910,
+      "y": 273,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o68"
+    },
+    {
+      "text": "主 AXI Crossbar",
+      "x": 700.0,
+      "y": 854.9,
+      "size": 35,
+      "anchor": "middle",
+      "owner": "xbar",
+      "id": "o70"
+    },
+    {
+      "text": "系统 64 bit",
+      "x": 700.0,
+      "y": 888.9,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "xbar",
+      "id": "o71"
+    },
+    {
+      "text": "原子适配",
+      "x": 530.0,
+      "y": 1110.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "atomics",
+      "id": "o75"
+    },
+    {
+      "text": "AMO / LRSC",
+      "x": 530.0,
+      "y": 1144.02,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "atomics",
+      "id": "o76"
+    },
+    {
+      "text": "LLC / SPM",
+      "x": 925.0,
+      "y": 1110.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "llc",
+      "id": "o78"
+    },
+    {
+      "text": "保留 · 不等于 GB",
+      "x": 925.0,
+      "y": 1144.02,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc",
+      "id": "o79"
+    },
+    {
+      "text": "DDR Controller · 多 AXI slave",
+      "x": 1925,
+      "y": 1315,
+      "size": 29,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o83"
+    },
+    {
+      "text": "S0",
+      "x": 1540.0,
+      "y": 972.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "ddr-port0",
+      "id": "o85"
+    },
+    {
+      "text": "SoC / LLC",
+      "x": 1540.0,
+      "y": 1006.52,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "ddr-port0",
+      "id": "o86"
+    },
+    {
+      "text": "S1",
+      "x": 1930.0,
+      "y": 972.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "ddr-port1",
+      "id": "o89"
+    },
+    {
+      "text": "NPU / GB",
+      "x": 1930.0,
+      "y": 1006.52,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "ddr-port1",
+      "id": "o90"
+    },
+    {
+      "text": "S2",
+      "x": 2320.0,
+      "y": 972.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "ddr-port2",
+      "id": "o93"
+    },
+    {
+      "text": "帧写入",
+      "x": 2320.0,
+      "y": 1006.52,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "ddr-port2",
+      "id": "o94"
+    },
+    {
+      "text": "端口仲裁 / QoS",
+      "x": 1615.0,
+      "y": 1197.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "qos",
+      "id": "o101"
+    },
+    {
+      "text": "共享 DDR 带宽",
+      "x": 1615.0,
+      "y": 1231.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "qos",
+      "id": "o102"
+    },
+    {
+      "text": "读写 / Bank / Row / 命令调度",
+      "x": 2115.0,
+      "y": 1213.84,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "scheduler",
+      "id": "o104"
+    },
+    {
+      "text": "PHY / DDR",
+      "x": 2615.0,
+      "y": 1197.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "phy-ddr",
+      "id": "o108"
+    },
+    {
+      "text": "外存器件",
+      "x": 2615.0,
+      "y": 1231.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "phy-ddr",
+      "id": "o109"
+    },
+    {
+      "text": "GB 容量、bank、位宽及频率待定",
+      "x": 715,
+      "y": 1340,
+      "size": 27,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o111"
+    },
+    {
+      "text": "并行能力取决于 SRAM 带宽与分区",
+      "x": 715,
+      "y": 1385,
+      "size": 27,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o112"
+    },
+    {
+      "text": "AXI / 外存通路",
+      "x": 135,
+      "y": 1538,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o114"
+    },
+    {
+      "text": "GB 本地读写",
+      "x": 665,
+      "y": 1538,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o116"
+    },
+    {
+      "text": "像素流",
+      "x": 1195,
+      "y": 1538,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o118"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+[
+  {
+    "x": 35,
+    "y": 45,
+    "text": "② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）",
+    "size": 30,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 90,
+    "text": "本图采用同 clk_i 域示例；配置访问完成与 IP 运算完成是两个事件。",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 365,
+    "y": 209,
+    "text": "IP 寄存器封装：可手写，或使用现有 reggen 生成",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 294,
+    "text": "reg_ext_slv_req_o[k]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 329,
+    "text": "addr / write / wdata",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 364,
+    "text": "wstrb / valid",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 565.0,
+    "y": 294,
+    "text": "地址译码与访问控制",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 565.0,
+    "y": 326,
+    "text": "offset = addr - BASE",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 565.0,
+    "y": 358,
+    "text": "fire = valid & ready",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 565.0,
+    "y": 390,
+    "text": "wr_en = fire & write",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 565.0,
+    "y": 422,
+    "text": "按译码 / wstrb 写入",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1140.0,
+    "y": 304,
+    "text": "配置 / 命令寄存器",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1140.0,
+    "y": 336,
+    "text": "参数、地址低位 / 高位",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1140.0,
+    "y": 368,
+    "text": "写 START 时提交命令",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 745,
+    "y": 316,
+    "text": "写使能 / 写数据",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1615,
+    "y": 320,
+    "text": "IP 工作逻辑",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1615,
+    "y": 400,
+    "text": "接受命令",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1615,
+    "y": 450,
+    "text": "计算 / 搬运 / 接收",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1615,
+    "y": 535,
+    "text": "维护 busy / done / error",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1615,
+    "y": 620,
+    "text": "数据口另接 AXI / 流接口",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1340,
+    "y": 320,
+    "text": "配置 / 启动",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1215.0,
+    "y": 659,
+    "text": "状态 / 中断状态",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1215.0,
+    "y": 691,
+    "text": "busy / done / error",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1215.0,
+    "y": 723,
+    "text": "建议写 1 清除事件位",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1390,
+    "y": 649,
+    "text": "状态",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 665.0,
+    "y": 609,
+    "text": "读数据选择与访问响应",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 665.0,
+    "y": 641,
+    "text": "rdata = 选中寄存器值",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 665.0,
+    "y": 673,
+    "text": "ready = 本次访问可完成",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 665.0,
+    "y": 705,
+    "text": "error = 地址 / 权限等错误",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 594,
+    "y": 515,
+    "text": "offset / 访问属性",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 950,
+    "y": 462,
+    "text": "配置回读",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 901,
+    "y": 666,
+    "text": "状态回读",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 1070,
+    "y": 797,
+    "text": "合法 W1C 写生成清除使能",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 599,
+    "text": "reg_ext_slv_rsp_i[k]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 35,
+    "y": 634,
+    "text": "rdata / error / ready",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 862,
+    "text": "短寄存器访问及时应答；长任务用 busy / done 或中断报告，不让 ready 一直等到任务完成。",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 909,
+    "text": "中断另接 SoC 中断输入；跨时钟时，事务或配置/状态传递必须有明确的 CDC 与复位方案。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

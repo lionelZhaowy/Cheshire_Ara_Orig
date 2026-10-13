@@ -1,0 +1,345 @@
+[
+  {
+    "x": 40,
+    "y": 43,
+    "text": "④ i_mem_to_banks：字段切片、两路独立请求、两路响应收齐",
+    "size": 29,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 85,
+    "text": "64-bit 数据 / 48-bit 地址；NumBanks = 2，FifoDepth = 1，HideStrb = 0。",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 142,
+    "text": "请求方向 →",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 180.0,
+    "y": 244,
+    "text": "mem_req.addr [47:0]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 180.0,
+    "y": 276,
+    "text": "mem_req.wdata [63:0]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 180.0,
+    "y": 308,
+    "text": "mem_req.strb [7:0]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 180.0,
+    "y": 340,
+    "text": "mem_req.we",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 180.0,
+    "y": 372,
+    "text": "其余属性随行",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 209,
+    "text": "组合切片：子通路 0",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 241,
+    "text": "addr = align8(addr)",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 273,
+    "text": "wdata[31:0] / strb[3:0]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 389,
+    "text": "组合切片：子通路 1",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 421,
+    "text": "addr = align8(addr) + 4",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 590.0,
+    "y": 453,
+    "text": "wdata[63:32] / strb[7:4]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 925.0,
+    "y": 212,
+    "text": "请求 FIFO",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 925.0,
+    "y": 243,
+    "text": "深度 1",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1175,
+    "y": 186,
+    "text": "mem_addr_o[0] / mem_wdata_o[0]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 216,
+    "text": "mem_strb_o[0] / mem_we_o[0]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 252,
+    "text": "mem_req_o[0] → / ← mem_gnt_i[0]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 284,
+    "text": "接外层第 0 路适配器",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 925.0,
+    "y": 392,
+    "text": "请求 FIFO",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 925.0,
+    "y": 423,
+    "text": "深度 1",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1175,
+    "y": 366,
+    "text": "mem_addr_o[1] / mem_wdata_o[1]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 396,
+    "text": "mem_strb_o[1] / mem_we_o[1]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 432,
+    "text": "mem_req_o[1] → / ← mem_gnt_i[1]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1175,
+    "y": 464,
+    "text": "接外层第 1 路适配器",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 539,
+    "text": "地址是 48 bit，切片的是数据与字节使能；最终仍汇入外层的同一个 Regbus。",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 620,
+    "text": "响应方向 ←",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 497.5,
+    "y": 744,
+    "text": "组合拼接",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 497.5,
+    "y": 776,
+    "text": "mem_rdata.data [31:0]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 497.5,
+    "y": 808,
+    "text": "← 第 0 路响应数据",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 497.5,
+    "y": 840,
+    "text": "mem_rdata.data [63:32]",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 497.5,
+    "y": 872,
+    "text": "← 第 1 路响应数据",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 497.5,
+    "y": 904,
+    "text": "err / exokay 按路保留",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 975.0,
+    "y": 712,
+    "text": "响应 FIFO 0",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 975.0,
+    "y": 743,
+    "text": "深度 1",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1160,
+    "y": 702,
+    "text": "mem_rdata_i[0] [31:0]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1160,
+    "y": 736,
+    "text": "mem_err_i[0] / mem_exokay_i[0]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1160,
+    "y": 775,
+    "text": "mem_rvalid_i[0]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 975.0,
+    "y": 942,
+    "text": "响应 FIFO 1",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 975.0,
+    "y": 973,
+    "text": "深度 1",
+    "size": 22,
+    "anchor": "middle"
+  },
+  {
+    "x": 1160,
+    "y": 932,
+    "text": "mem_rdata_i[1] [31:0]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1160,
+    "y": 966,
+    "text": "mem_err_i[1] / mem_exokay_i[1]",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1160,
+    "y": 1005,
+    "text": "mem_rvalid_i[1]",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 45,
+    "y": 781,
+    "text": "64-bit 结果",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 45,
+    "y": 850,
+    "text": "送回图③",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 45,
+    "y": 883,
+    "text": "mem_resp_i",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 45,
+    "y": 1090,
+    "text": "mem_rvalid = resp_valid[0] & resp_valid[1]：两路都到齐才交付整拍结果。",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 45,
+    "y": 1135,
+    "text": "读、写都必须返回完成响应；先到的一路保存在自己的响应 FIFO 中。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+<marker id="call" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#4775AC"/></marker>
+<marker id="bus" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#287D70"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#8660A5"/></marker>
+<marker id="event" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#BB6D30"/></marker>
+</defs>
+<rect x="0" y="0" width="1400" height="900" fill="#FAFCFF"/>
+<text x="48" y="55" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="start" fill="#26384B">启动接口：复位环境、装载动作与应用入口</text>
+<rect x="50" y="115" width="350" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="225.0" y="151" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">CPU 复位 → Boot ROM</text>
+<text x="225.0" y="185" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">cheshire_bootrom.S::_start</text>
+<text x="225.0" y="214" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">整数状态 / 非零 hart 暂停</text>
+<rect x="510" y="115" width="350" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="685.0" y="151" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">片内运行环境</text>
+<text x="685.0" y="185" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">等待 LLC BIST / 配置 SPM</text>
+<text x="685.0" y="214" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">设置早期 sp / gp</text>
+<rect x="970" y="115" width="380" height="130" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="1160.0" y="151" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">Platform ROM 钩子</text>
+<text x="1160.0" y="185" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">地址非零时跳转</text>
+<text x="1160.0" y="214" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">启动关键资源按平台配置</text>
+<polyline points="400,180 510,180" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="455" y="166" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">执行</text>
+<polyline points="860,180 970,180" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)" stroke-dasharray="8 5"/>
+<text x="915" y="166" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">可选</text>
+<rect x="970" y="375" width="380" height="135" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="1160.0" y="411" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">Boot ROM C / 介质加载</text>
+<text x="1160.0" y="445" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">PlatformRom=0 的默认路径</text>
+<text x="1160.0" y="474" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">GPT/raw → 复制到 SPM</text>
+<polyline points="850,245 900,245 900,442 970,442" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="1010" y="302" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">默认路径</text>
+<rect x="50" y="375" width="350" height="135" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="225.0" y="411" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">开发主机 / VIP</text>
+<text x="225.0" y="445" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">ELF 段与入口</text>
+<text x="225.0" y="474" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">JTAG 或 UART / Serial Link</text>
+<rect x="510" y="375" width="350" height="135" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="685.0" y="411" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">装载与控制转交</text>
+<text x="685.0" y="445" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">写目标内存 / 设置入口</text>
+<text x="685.0" y="474" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">按各加载协议开始执行</text>
+<polyline points="400,442 510,442" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="455" y="421" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">装载协议</text>
+<polyline points="970,472 860,472" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="915" y="497" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">加载结果</text>
+<rect x="510" y="665" width="350" height="145" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="685.0" y="701" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">应用 _start：crt0.S</text>
+<text x="685.0" y="735" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">sp/gp、mtvec、BSS、FS</text>
+<text x="685.0" y="764" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">必要的加载初值已在内存</text>
+<text x="685.0" y="793" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">不执行通用 DDR 初始化</text>
+<rect x="970" y="665" width="380" height="145" rx="9" fill="#EAF1FC" stroke="#4775AC" stroke-width="2"/>
+<text x="1160.0" y="701" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#26384B">应用 main / 返回</text>
+<text x="1160.0" y="735" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">应用设备初始化与业务</text>
+<text x="1160.0" y="764" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#26384B">_exit → SCRATCH2 / ret</text>
+<polyline points="685,510 685,665" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="865" y="590" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">跳转 ELF / payload 入口</text>
+<polyline points="860,735 970,735" fill="none" stroke="#4775AC" stroke-width="2.4" marker-end="url(#call)"/>
+<text x="915" y="721" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#4775AC">调用 / 返回</text>
+<text x="50" y="830" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="start" fill="#26384B">Platform ROM 普通返回缺陷及 ROM C 栈对齐条件，见正文；图中未把它们画成已修复路径。</text>
+</svg>

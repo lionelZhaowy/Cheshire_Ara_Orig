@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1130" viewBox="0 0 1600 1130">
+<rect x="0" y="0" width="1600" height="1130" fill="#FFFFFF"/>
+<text x="40" y="43" font-family="WenQuanYi Zen Hei" font-size="28" fill="#253447" text-anchor="start">② 一项访问分成三条握手支路：执行请求、保存元数据、保存响应选择</text>
+<text x="40" y="85" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">实线 = 数据字段；虚线 = valid / ready。i_fork 无数据端口。</text>
+<rect x="300" y="170" width="285" height="715" fill="#FBF4E9" stroke="#253447" stroke-width="2"/>
+<text x="442" y="216" font-family="WenQuanYi Zen Hei" font-size="28" fill="#253447" text-anchor="middle">i_fork</text>
+<text x="442" y="249" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">N_OUP = 3</text>
+<text x="442" y="325" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">输入状态寄存器</text>
+<text x="442" y="362" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">+ 三路输出状态</text>
+<text x="442" y="516" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">记住哪些支路</text>
+<text x="442" y="551" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">已接收当前项</text>
+<text x="442" y="730" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="middle">三路各接收一次后</text>
+<text x="442" y="766" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="middle">才确认上游完成</text>
+<text x="50" y="391" font-family="WenQuanYi Zen Hei" font-size="23" fill="#253447" text-anchor="start">来自 i_ax_mux</text>
+<polyline points="50,425 300,425" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="300,425 289.0,420.5 289.0,429.5" fill="#925021"/>
+<text x="70" y="414" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">arb_valid</text>
+<polyline points="300,475 50,475" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="50,475 61.0,479.5 61.0,470.5" fill="#925021"/>
+<text x="70" y="508" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">arb_ready</text>
+<polyline points="585,270 1000,270" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1000,270 989.0,265.5 989.0,274.5" fill="#925021"/>
+<text x="680" y="257" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">m2s_req_valid</text>
+<polyline points="1000,320 585,320" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="585,320 596.0,324.5 596.0,315.5" fill="#925021"/>
+<text x="680" y="352" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">m2s_req_ready</text>
+<polyline points="585,540 1000,540" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1000,540 989.0,535.5 989.0,544.5" fill="#925021"/>
+<text x="680" y="527" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">meta_valid</text>
+<polyline points="1000,590 585,590" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="585,590 596.0,594.5 596.0,585.5" fill="#925021"/>
+<text x="680" y="622" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">meta_ready</text>
+<polyline points="585,810 1000,810" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1000,810 989.0,805.5 989.0,814.5" fill="#925021"/>
+<text x="680" y="797" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">sel_valid</text>
+<polyline points="1000,860 585,860" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="585,860 596.0,864.5 596.0,855.5" fill="#925021"/>
+<text x="680" y="892" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">sel_ready</text>
+<rect x="1000" y="225" width="310" height="125" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="1155.0" y="259" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_stream_to_mem</text>
+<text x="1155.0" y="291" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">执行本拍请求</text>
+<text x="1155.0" y="323" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">内部见图③</text>
+<text x="1155" y="160" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">m2s_req（图①）</text>
+<polyline points="1155,178 1155,225" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1155,225 1159.5,214.0 1150.5,214.0" fill="#205F9C"/>
+<rect x="1000" y="485" width="310" height="130" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="1155.0" y="517" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_meta_buf</text>
+<text x="1155.0" y="548" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">meta_t；深度 2</text>
+<rect x="1025" y="577" width="260" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<polyline points="1155.0,577 1155.0,600" fill="none" stroke="#253447" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="1155" y="425" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">meta（图①）</text>
+<polyline points="1155,443 1155,485" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1155,485 1159.5,474.0 1150.5,474.0" fill="#205F9C"/>
+<polyline points="1310,545 1470,545" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1470,545 1459.0,540.5 1459.0,549.5" fill="#205F9C"/>
+<text x="1330" y="526" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">meta_buf</text>
+<text x="1328" y="585" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">供响应字段构造</text>
+<rect x="1000" y="755" width="310" height="130" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="1155.0" y="787" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">i_sel_buf</text>
+<text x="1155.0" y="818" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">logic[1:0]；深度 2</text>
+<rect x="1025" y="847" width="260" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<polyline points="1155.0,847 1155.0,870" fill="none" stroke="#253447" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="1155" y="684" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">{sel_b, sel_r}</text>
+<polyline points="1155,702 1155,755" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1155,755 1159.5,744.0 1150.5,744.0" fill="#205F9C"/>
+<polyline points="1310,815 1470,815" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1470,815 1459.0,810.5 1459.0,819.5" fill="#205F9C"/>
+<text x="1328" y="776" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">sel_buf_b</text>
+<text x="1328" y="803" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">sel_buf_r</text>
+<text x="1328" y="855" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">供 R / B 握手选择</text>
+<text x="40" y="961" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">sel_b = meta.write &amp; meta.last</text>
+<text x="40" y="1004" font-family="WenQuanYi Zen Hei" font-size="25" fill="#253447" text-anchor="start">sel_r = ~meta.write | meta.atop[5]</text>
+<text x="770" y="961" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">普通读：(B,R) = (0,1)</text>
+<text x="770" y="1004" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">普通写中间拍：(0,0)；最后拍：(1,0)</text>
+<text x="40" y="1081" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">三条支路可以分不同周期接收；FIFO 均为 fall-through，不代表固定延迟两拍。</text>
+</svg>

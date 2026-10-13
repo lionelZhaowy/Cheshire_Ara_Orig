@@ -1,0 +1,420 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 235.0,
+      "y": 214.0,
+      "text": "1  axi_llc_reg_top",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 235.0,
+      "y": 246.0,
+      "text": "CFG_SPM / CFG_FLUSH",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 235.0,
+      "y": 278.0,
+      "text": "COMMIT_CFG / FLUSHED",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 235.0,
+      "y": 310.0,
+      "text": "BIST / 容量 / 版本",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 235.0,
+      "y": 342.0,
+      "text": "当前控制接口：Regbus",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 805.0,
+      "y": 214.0,
+      "text": "2  axi_llc_config",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 805.0,
+      "y": 246.0,
+      "text": "提交新配置 / 停止接收新事务",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 805.0,
+      "y": 278.0,
+      "text": "等待在途工作 / 发 flush 描述符",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 805.0,
+      "y": 310.0,
+      "text": "必要时写回脏行",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 805.0,
+      "y": 342.0,
+      "text": "更新 spm_lock / flushed",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1452.5,
+      "y": 214.0,
+      "text": "3  地址与 way 选择",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1452.5,
+      "y": 246.0,
+      "text": "cache 地址：tag lookup → cache way",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1452.5,
+      "y": 278.0,
+      "text": "SPM 地址：直接选择被锁定的 way",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1452.5,
+      "y": 310.0,
+      "text": "未配置为 SPM 的对应 way 不可当 RAM 用",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1452.5,
+      "y": 342.0,
+      "text": "SPM 访问不进行外存 refill",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625,
+      "y": 545,
+      "text": "4  同一组数据 SRAM：下图仅为分区示例，不代表当前运行配置",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 765.0,
+      "y": 638.5,
+      "text": "way 0",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 765.0,
+      "y": 670.5,
+      "text": "SPM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 765.0,
+      "y": 702.5,
+      "text": "相同 data SRAM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1030.0,
+      "y": 638.5,
+      "text": "way 1",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1030.0,
+      "y": 670.5,
+      "text": "SPM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1030.0,
+      "y": 702.5,
+      "text": "相同 data SRAM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1295.0,
+      "y": 638.5,
+      "text": "way 2",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1295.0,
+      "y": 670.5,
+      "text": "Cache",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1295.0,
+      "y": 702.5,
+      "text": "相同 data SRAM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1560.0,
+      "y": 638.5,
+      "text": "way 3",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1560.0,
+      "y": 670.5,
+      "text": "Cache",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1560.0,
+      "y": 702.5,
+      "text": "相同 data SRAM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 70,
+      "y": 580,
+      "text": "SoC 的 SPM 地址别名",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 70,
+      "y": 630,
+      "text": "AmSpm / AmSpmBaseUncached",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 70,
+      "y": 680,
+      "text": "外层地址重映射到同一存储",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 70,
+      "y": 730,
+      "text": "CPU 缓存属性需另外匹配",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 45,
+      "y": 865,
+      "text": "LLC/SPM 不是独立 Global Buffer；DDR 旁路 master 也不会自动窥探 CPU / LLC 中的脏数据。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 175,
+      "w": 390,
+      "h": 190,
+      "lines": [
+        "1  axi_llc_reg_top",
+        "CFG_SPM / CFG_FLUSH",
+        "COMMIT_CFG / FLUSHED",
+        "BIST / 容量 / 版本",
+        "当前控制接口：Regbus"
+      ]
+    },
+    {
+      "x": 590,
+      "y": 175,
+      "w": 430,
+      "h": 190,
+      "lines": [
+        "2  axi_llc_config",
+        "提交新配置 / 停止接收新事务",
+        "等待在途工作 / 发 flush 描述符",
+        "必要时写回脏行",
+        "更新 spm_lock / flushed"
+      ]
+    },
+    {
+      "x": 1170,
+      "y": 175,
+      "w": 565,
+      "h": 190,
+      "lines": [
+        "3  地址与 way 选择",
+        "cache 地址：tag lookup → cache way",
+        "SPM 地址：直接选择被锁定的 way",
+        "未配置为 SPM 的对应 way 不可当 RAM 用",
+        "SPM 访问不进行外存 refill"
+      ]
+    },
+    {
+      "x": 645,
+      "y": 585,
+      "w": 240,
+      "h": 155,
+      "lines": [
+        "way 0",
+        "SPM",
+        "相同 data SRAM"
+      ]
+    },
+    {
+      "x": 910,
+      "y": 585,
+      "w": 240,
+      "h": 155,
+      "lines": [
+        "way 1",
+        "SPM",
+        "相同 data SRAM"
+      ]
+    },
+    {
+      "x": 1175,
+      "y": 585,
+      "w": 240,
+      "h": 155,
+      "lines": [
+        "way 2",
+        "Cache",
+        "相同 data SRAM"
+      ]
+    },
+    {
+      "x": 1440,
+      "y": 585,
+      "w": 240,
+      "h": 155,
+      "lines": [
+        "way 3",
+        "Cache",
+        "相同 data SRAM"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          430,
+          260
+        ],
+        [
+          590,
+          260
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1020,
+          260
+        ],
+        [
+          1170,
+          260
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1420,
+          365
+        ],
+        [
+          1420,
+          515
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Preserve this topic's actual evidence despite repository-wide build ignores.
+!*.log
+!*.dump
+!*.elf
+# Objects and support archives can be regenerated; no production output is used.
+*.o
+*.a

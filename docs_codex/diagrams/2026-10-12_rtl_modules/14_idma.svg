@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">14  iDMA：AXI 控制入口、任务前端与独立搬运后端</text>
+<rect x="35" y="185" width="275" height="165" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="172.5" y="227.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">AXI slave 控制口</text>
+<text x="172.5" y="259.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">AxiOut.dma</text>
+<text x="172.5" y="291.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">atomics / cut</text>
+<text x="172.5" y="323.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CPU 发起配置访问</text>
+<rect x="420" y="185" width="320" height="165" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="580.0" y="227.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  axi_to_reg</text>
+<text x="580.0" y="259.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">i_axi_translate</text>
+<text x="580.0" y="291.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">内部 Reg 数据宽度</text>
+<text x="580.0" y="323.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">随 AxiDataWidth</text>
+<polyline points="310,270 420,270" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="420,270 408.0,265.0 408.0,275.0" fill="#28699B"/>
+<polygon points="310,270 322.0,275.0 322.0,265.0" fill="#28699B"/>
+<rect x="850" y="175" width="405" height="190" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="1052.5" y="214.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  idma_reg64_1d / 2d</text>
+<text x="1052.5" y="246.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SRC / DST / LENGTH</text>
+<text x="1052.5" y="278.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">STRIDE / REPS（2D）</text>
+<text x="1052.5" y="310.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">NEXT_ID / DONE_ID</text>
+<text x="1052.5" y="342.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">访问触发任务提交</text>
+<polyline points="740,270 850,270" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="850,270 838.0,265.0 838.0,275.0" fill="#28699B"/>
+<polygon points="740,270 752.0,275.0 752.0,265.0" fill="#28699B"/>
+<rect x="1390" y="175" width="365" height="190" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="1402" y1="175" x2="1402" y2="365" stroke="#23354B" stroke-width="1.5"/>
+<text x="1572.5" y="230.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  Job FIFO + midend</text>
+<text x="1572.5" y="262.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">队列缓冲传输请求</text>
+<text x="1572.5" y="294.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">2D：idma_nd_midend</text>
+<text x="1572.5" y="326.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">展开为一维传输</text>
+<polyline points="1255,270 1390,270" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1390,270 1378.0,265.0 1378.0,275.0" fill="#28699B"/>
+<rect x="995" y="575" width="595" height="210" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1292.5" y="624.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  idma_backend_rw_axi</text>
+<text x="1292.5" y="656.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">legalizer：长度 / 地址 / burst 合法化</text>
+<text x="1292.5" y="688.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">transport：读数据、移位 / 缓冲、写数据</text>
+<text x="1292.5" y="720.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">独立 AXI read / write 通道</text>
+<text x="1292.5" y="752.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">当前 ErrorCap = NO_ERROR_HANDLING</text>
+<polyline points="1570,365 1570,575" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1570,575 1575.0,563.0 1565.0,563.0" fill="#28699B"/>
+<rect x="420" y="610" width="395" height="135" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="617.5" y="653.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  axi_rw_join</text>
+<text x="617.5" y="685.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">合并 AXI 读写端口</text>
+<text x="617.5" y="717.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">AXI master → AxiIn.dma</text>
+<polyline points="995,665 815,665" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="815,665 827.0,670.0 827.0,660.0" fill="#28699B"/>
+<polygon points="995,665 983.0,660.0 983.0,670.0" fill="#28699B"/>
+<polyline points="420,675 55,675" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="55,675 67.0,680.0 67.0,670.0" fill="#28699B"/>
+<polygon points="420,675 408.0,670.0 408.0,680.0" fill="#28699B"/>
+<text x="50" y="637" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">AXI ↔ SRC / DST 内存</text>
+<rect x="455" y="420" width="340" height="110" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<text x="625.0" y="467.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">6  transfer_id_gen</text>
+<text x="625.0" y="499.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">issue / retire → ID</text>
+<polyline points="1390,315 1330,315 1330,470 795,470" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="795,470 807.0,475.0 807.0,465.0" fill="#9C5B25"/>
+<polyline points="1120,575 1120,530 795,530 795,505" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="795,505 790.0,517.0 800.0,517.0" fill="#9C5B25"/>
+<polyline points="625,420 625,395 970,395 970,365" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="970,365 965.0,377.0 975.0,377.0" fill="#28699B"/>
+<text x="45" y="865" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">既有控制宽度缺口未关闭；wrapper 未导出任务完成 IRQ；总线错误 IRQ 是另一路。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

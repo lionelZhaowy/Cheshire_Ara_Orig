@@ -1,0 +1,193 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>指令、Ara 与 CSR | Cheshire 软硬件接口</title><link rel="stylesheet" href="../../learning/assets/site.css"><script defer src="../../learning/assets/site.js"></script></head><body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>软硬件接口</span></a><p class="edition">L01 · 当前工程源码专题</p><details class="site-menu" open><summary>专题目录</summary><nav aria-label="章节"><a class="chapter-link" href="index.html">00 · 软硬件接口专题</a><a class="chapter-link" href="build-boot.html">01 · 构建、加载与启动</a><a class="chapter-link" href="instructions.html" aria-current="page">02 · 指令、Ara 与 CSR</a><a class="chapter-link" href="memory-mmio.html">03 · 内存、MMIO 与数据交接</a><a class="chapter-link" href="interrupts.html">04 · 异常与中断</a><a class="chapter-link" href="cases.html">05 · 五条软件到 RTL 案例</a><a class="chapter-link" href="integration.html">06 · 自定义 IP 与 Linux 修改导航</a><a class="chapter-link" href="labs.html">07 · 最小实践与验证记录</a></nav></details><div class="sidebar-foot"><a href="README.md">维护说明</a> · <a href="../../learning/index.html">主教材</a></div></aside><div class="workspace"><header class="topbar"><a href="index.html">专题入口</a><a href="labs.html#evidence">本轮验证记录</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">软硬件接口层</p><h1>指令、Ara 与 CSR</h1><p class="subtitle">处理器内部接口与向量数据通路</p><p class="format-link"><a href="markdown/instructions.md">Markdown 阅读版</a></p></div><details class="toc-panel" open><summary>本页目录</summary><nav class="toc"><ol><li><a href="#scalar">C 运算、机器指令与提交</a></li><li><a href="#rvv-entry">三种 RVV 编程入口</a></li><li><a href="#ara-path">CVA6 与 Ara 的请求、翻译和完成</a></li><li><a href="#csr">CSR 的访问指令与工程调用</a></li><li><a href="#privilege">特权与异常的边界</a></li></ol></nav></details><p>本章分开三种软件动作：算术/访存指令、控制状态寄存器访问、向量专用请求。CSR（Control and Status Register，控制与状态寄存器）是处理器内部按指令编码寻址的状态；它没有 UART 那样的 MMIO 基址。</p>
+<h2 id="scalar">C 运算、机器指令与提交</h2>
+<p><a href="../../learning/examples/journey.c">已有 journey.c</a> 的 <code>make_value(i)</code> 返回 <code>3u*i+seed</code>。编译器可把乘3化为移位加法，把局部临时量放寄存器甚至消去；只有地址可见/必须保存的值才需要内存对象。不能把每个 C 变量对应成一块 SRAM。</p>
+<p>从本轮 <a href="evidence/scalar-build/journey.dump">scalar-build/journey.dump</a> 搜索 <code>&lt;make_value&gt;</code>，可以看到整数运算、读取 seed 和返回；从 <code>&lt;_putchar&gt;</code> 可见内联后的字节读写。CVA6 的 <a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/frontend.sv">frontend</a> 根据PC发取指请求，经地址转换/I-cache取得机器码；<a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/id_stage.sv">id_stage</a>/<a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/decoder.sv">decoder</a>解析，<a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_stage.sv">issue_stage</a>调度，执行结果按事务ID写回 scoreboard，最后 <a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/commit_stage.sv">commit_stage</a>落实架构状态或精确异常。</p>
+<p>“软件看到执行完成”由架构提交和指令语义决定，并不意味着所有后续总线写响应已返回。整数加法主要改GPR（通用寄存器），store进入访存/缓存系统，CSR改内部状态，向量指令还有专用完成/在途信息。</p>
+<h2 id="rvv-entry">三种 RVV 编程入口</h2>
+<p>RVV（RISC-V Vector，RISC-V 向量扩展）按 <code>vl</code> 个元素执行向量操作；VLEN是每个向量寄存器的位数，lane是硬件执行资源数，二者不同。更改lane不等于直接更改C数组长度。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>入口</th>
+<th>仓库已有例子</th>
+<th>使用条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显式汇编</td>
+<td><a href="../../learning/examples/rvv_add.S">rvv_add.S</a> <code>learn_vadd</code></td>
+<td>精确控制 <code>vsetvli/vle32/vadd/vse32</code>；调用者负责VS和缓冲区</td>
+</tr>
+<tr>
+<td>intrinsic（编译器向量内建函数）</td>
+<td><a href="../../learning/examples/rvv_intrinsics.c">rvv_intrinsics.c</a></td>
+<td>本机工具链支持对应头文件/API；检查输出指令</td>
+</tr>
+<tr>
+<td>自动向量化</td>
+<td><a href="../../learning/examples/rvv_auto.c">rvv_auto.c</a></td>
+<td>循环依赖和编译优化满足条件；使用V编译不保证循环真的向量化</td>
+</tr>
+<tr>
+<td>现有算法</td>
+<td><a href="../../../sw/tests/fmatmul_test_4x4.c">fmatmul_test_4x4.c</a>、Ara apps</td>
+<td>浮点要求FS，数据布局和工具链也要匹配；打印矩阵不能替代golden比较</td>
+</tr>
+</tbody>
+</table></div>
+<p>已有汇编核心如下，这是仓库源码片段，非虚构反汇编：</p>
+<pre><code class="language-asm">vsetvli t0, a3, e32, m1, ta, ma
+vle32.v v0, (a0)
+vle32.v v1, (a1)
+vadd.vv v2, v0, v1
+vse32.v v2, (a2)
+sub a3, a3, t0
+slli t1, t0, 2
+</code></pre>
+<p>a0/a1/a2是三个数组的基址，a3是剩余元素数。<code>vsetvli</code>返回本轮实际vl，<code>e32</code>表示32位元素、m1表示一个向量寄存器组；因此指针增量是 <code>vl*4</code> 字节。尾部元素通过再次设置vl处理，不能每轮固定加一个假设的硬件向量长度。<code>v0/v1/v2</code>是Ara向量寄存器，不是CPU GPR，也不是可从AXI寻址的MMIO区域。</p>
+<h2 id="ara-path">CVA6 与 Ara 的请求、翻译和完成</h2>
+<figure><img src="../../diagrams/2026-10-13_software_hardware_interfaces/ara.svg" alt="向量指令请求与独立数据通路" /><figcaption>向量指令请求与独立数据通路。图中箭头分别标注软件调用、总线事务或硬件事件。</figcaption></figure>
+<p><a href="../../../hw/cheshire_soc.sv">cheshire_soc.sv</a>使用 <code>cva6_to_acc_t / acc_to_cva6_t</code>，把CVA6的 <code>cvxif_req_o/resp_i</code> 接到Ara的 <code>acc_req_i/resp_o</code>。虽然端口名含cvxif，<code>gen_cva6_cfg()</code>把 <code>CvxifEn=0</code>；此组合承载专用加速器/MMU契约，不是通用NPU插槽。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>定义 → 发送/接收</th>
+<th>对软件的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初步识别</td>
+<td>Ara <a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/cva6_accel_first_pass_decoder.sv">cva6_accel_first_pass_decoder</a> → CVA6 decoder</td>
+<td>辨别向量指令及VS/FS条件；必须排除CVA6同名stub</td>
+</tr>
+<tr>
+<td>发射</td>
+<td>CVA6 <a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv">acc_dispatcher</a> <code>acc_req_o.acc_req</code> → Ara <a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_dispatcher.sv">ara_dispatcher</a></td>
+<td>非推测发射协调；传递insn、rs1、rs2、frm、trans_id及valid/ready</td>
+</tr>
+<tr>
+<td>内部执行</td>
+<td><a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv">ara.sv</a> → dispatcher/sequencer/lanes</td>
+<td>向量寄存器和lane执行运算；不由CPU逐元素写Ara寄存器</td>
+</tr>
+<tr>
+<td>标量结果/异常返回</td>
+<td><a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara/intf_typedef.svh">intf_typedef.svh</a> <code>accelerator_resp_t</code> → CVA6写回/提交</td>
+<td><code>result/trans_id/exception/resp_valid</code>关联原指令；fflags更新浮点状态</td>
+</tr>
+<tr>
+<td>向量地址</td>
+<td><a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/addrgen.sv">vlsu/addrgen.sv</a> → <code>acc_mmu_req</code> → CVA6 <a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_store_unit.sv">load_store_unit</a></td>
+<td>传虚拟地址和store属性，CVA6返回物理地址/DTLB信息/异常；不是DMA IOMMU</td>
+</tr>
+<tr>
+<td>向量数据</td>
+<td>VLSU的<a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vldu.sv">vldu</a>/<a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv">vstu</a> → Ara AXI → filter → DW converter → <code>AxiIn.ara</code></td>
+<td>Ara自己发AR/AW/W并收R/B；批量数据不经过CPU专用请求的rs1/rs2字段</td>
+</tr>
+<tr>
+<td>在途与排空</td>
+<td><code>load_complete/store_complete/store_pending</code> → CVA6 acc_dispatcher</td>
+<td>与标量访存、fence/barrier配合；函数ret本身不是总线排空证明</td>
+</tr>
+</tbody>
+</table></div>
+<p>访问翻译请求的 <code>CVA6Cfg.VLEN</code> 在此指虚拟地址相关宽度，不能与 <code>Cfg.AraVLEN=2048</code> 的向量寄存器位数混淆。读写的MMU返回错误与外部AXI错误是不同层次；本地 <code>vstu.sv</code> 仍标注B通道错误处理TODO，所以“store_complete出现”不能独自证明所有数据正确。</p>
+<p>软件使用Ara需要同时满足：带V的CPU profile、真实译码、SoC Ara使能及合法lane/VLEN、ELF指令集匹配、VS非Off；浮点向量还要FS可用。共享存储要可达且满足<a href="memory-mmio.html#visibility">可见性规则</a>。OS多任务还需保存/恢复向量状态，不能从一次裸机向量成功推导为抢占正确。</p>
+<h2 id="csr">CSR 的访问指令与工程调用</h2>
+<p><code>csrr</code>是读CSR的汇编别名，<code>csrw</code>写，<code>csrs/csrc</code>按掩码置/清位。指令携带CSR编号，不产生AXI寄存器地址事务。<a href="../../../sw/include/util.h">util.h</a> 的 <code>set_mie(1)</code>使用 <code>csrsi mstatus,8</code>，<code>set_mtie(1)</code>对mie置bit7；<code>get_mcycle()</code>使用 <code>csrr ...,mcycle</code>。与 <code>*reg32(&amp;__base_clint,offset)</code> 会产生访存指令形成对照。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>CSR/字段</th>
+<th>本地软件使用位置</th>
+<th>RTL消费者与典型修改影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mstatus.MIE/SIE</code></td>
+<td>crt0关闭；util <code>set_mie</code></td>
+<td><a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">csr_regfile</a>与decoder中断判断；M模式示例需MIE及相应mie都开</td>
+</tr>
+<tr>
+<td><code>mie.MTIE</code> / <code>mie.MEIE</code></td>
+<td>clint_sleep接口；外设ISR初始化需另写MEIE</td>
+<td>定时与PLIC外部中断是不同位；开MTIE不放行PLIC</td>
+</tr>
+<tr>
+<td><code>mip</code></td>
+<td>诊断待处理事件</td>
+<td><code>time_irq_i/ipi_i/irq_i</code>形成待处理条件；不是所有位都能靠写mip清掉</td>
+</tr>
+<tr>
+<td><code>mtvec</code></td>
+<td>crt0设置 <code>_trap_handler_wrap</code></td>
+<td>trap入口与模式；普通直接模式和CLIC模式要分开</td>
+</tr>
+<tr>
+<td><code>mepc/mcause/mtval</code></td>
+<td>自定义trap诊断；默认处理不解码</td>
+<td>提交异常写入返回PC/原因/附加值；错误修改mepc会跳错指令</td>
+</tr>
+<tr>
+<td><code>mstatus.MPP/MPIE</code></td>
+<td>trap硬件及 <code>mret</code></td>
+<td>保存/恢复先前特权和中断使能；mret不清设备pending</td>
+</tr>
+<tr>
+<td><code>mstatus.FS[14:13]</code></td>
+<td>crt0设Initial并初始化FP寄存器</td>
+<td>浮点执行/状态跟踪；FS=Off可触发非法指令</td>
+</tr>
+<tr>
+<td><code>mstatus.VS[10:9]</code></td>
+<td>HelloWorld置位；journey在向量内核前置位</td>
+<td>允许向量状态使用；仅写VS不证明执行过V指令</td>
+</tr>
+<tr>
+<td><code>vl/vtype/vstart</code></td>
+<td>RVV内核和Ara dispatcher</td>
+<td>当前元素数、类型/组大小和重启位置；与向量上下文相关</td>
+</tr>
+<tr>
+<td><code>mcycle</code></td>
+<td>util、clint_get_core_freq</td>
+<td>csr_regfile <code>cycle_q</code>；CPU周期计数，非CLINT RTC tick</td>
+</tr>
+<tr>
+<td><code>satp</code></td>
+<td>后续S-mode/Linux；当前crt0未建页表</td>
+<td>load_store_unit/MMU选择Sv39页表；改映射还需相应TLB同步</td>
+</tr>
+<tr>
+<td><code>pmpcfg*/pmpaddr*</code></td>
+<td>当前裸机例不建立完整隔离方案</td>
+<td>物理内存保护PMP，按<code>Cfg.Cva6NrPMPEntries</code>生成，当前DefaultCfg为0，不能据profile原始值宣称PMP隔离已启用；不能拿C/I/E代替权限</td>
+</tr>
+<tr>
+<td><code>medeleg/mideleg</code>、<code>mcounteren/scounteren</code></td>
+<td>OS/固件移植入口</td>
+<td>异常/中断委托、低特权读计数器权限；软件栈必须匹配实现</td>
+</tr>
+<tr>
+<td><code>CSR_ACC_CONS</code>（0x7c2 bit0）</td>
+<td>当前向量协作依赖其复位开启状态</td>
+<td>csr_regfile <code>acc_cons_en_o</code> → acc_dispatcher/filter；关闭会改变访存协调前提</td>
+</tr>
+<tr>
+<td><code>CSR_DCACHE/ICACHE</code></td>
+<td>平台调试时按本地实现核对</td>
+<td>本地自定义cache控制CSR；不是通用逐行clean/invalidate API</td>
+</tr>
+</tbody>
+</table></div>
+<p>具体编码和可写字段以本地<a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv">csr_regfile.sv</a>及<a href="../../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/riscv_pkg.sv">riscv包</a>为准。<code>satp</code>、PMP等这里只建立接口导航，本轮没有新增页表/权限配置程序。</p>
+<h2 id="privilege">特权与异常的边界</h2>
+<p>现有裸机按M模式运行。S模式通常承载Linux内核，U模式承载用户进程；向量profile未启用H扩展，不把默认另一个带H的profile能力混进来。低特权代码访问不允许的CSR、写只读CSR、执行未实现指令会进入异常路径；某些已实现的WARL字段（写任意值、读合法值）会约束写入值，因此应读回核对，而不是假定每一非法字段值都trap。</p>
+<p>本地csr_regfile通过CSR编码、读写意图、特权及配置控制合法性；MMIO访问则经翻译、PMP/属性和总线目标判定。U-mode代码通常不能直接 <code>csrs mstatus</code> 或访问任意物理寄存器。Linux应通过系统调用/驱动获得服务，不能把裸机指针强转后原样搬到用户程序。</p>
+<p>标准背景参见<a href="https://docs.riscv.org/reference/isa/v20240411/_attachments/riscv-privileged.pdf">RISC-V 20240411特权规范</a>，用于解释M/S/U、trap状态和CSR访问规则；CLIC及本地自定义CSR仍按当前源码核对，不把规范最新扩展当作现有硬件能力。</p>
+<nav class="nextprev"><a href="build-boot.html">← 构建、加载与启动</a><a href="memory-mmio.html">内存、MMIO 与数据交接 →</a></nav></main><footer>L01 · 2026-10-13 · 源码分析与文档验证；目标运行另行验收</footer></div></body></html>

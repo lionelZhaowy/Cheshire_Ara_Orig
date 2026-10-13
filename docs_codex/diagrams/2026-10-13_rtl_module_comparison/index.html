@@ -1,0 +1,26 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>图稿入口已迁移</title><h1>B 版已弃用；请使用 A/C 连续走线对比</h1><p>原 B 配对端口表达不再作为候选或模板。历史文件仅留档；文档当前采用 A。</p><p><a href="../2026-10-13_rtl_modules_native_c/index.html">打开 A/C 比较页</a></p>
+<p id="00a_regbus"><a href="../2026-10-13_rtl_modules_native_c/index.html#00a_regbus">① Regbus 全路径：现有互连 + 自有 IP 接入边界</a></p>
+<p id="00b_ip_contract"><a href="../2026-10-13_rtl_modules_native_c/index.html#00b_ip_contract">② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）</a></p>
+<p id="01_uart"><a href="../2026-10-13_rtl_modules_native_c/index.html#01_uart">01  UART：寄存器访问与独立收发通路</a></p>
+<p id="02_i2c"><a href="../2026-10-13_rtl_modules_native_c/index.html#02_i2c">02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节</a></p>
+<p id="03_spi"><a href="../2026-10-13_rtl_modules_native_c/index.html#03_spi">03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO</a></p>
+<p id="04_gpio"><a href="../2026-10-13_rtl_modules_native_c/index.html#04_gpio">04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能</a></p>
+<p id="05_plic"><a href="../2026-10-13_rtl_modules_native_c/index.html#05_plic">05  PLIC：源侧 pending / active 与目标侧优先级选择</a></p>
+<p id="06a_clint"><a href="../2026-10-13_rtl_modules_native_c/index.html#06a_clint">06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断</a></p>
+<p id="06b_clic"><a href="../2026-10-13_rtl_modules_native_c/index.html#06b_clic">06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口</a></p>
+<p id="07_irq_router"><a href="../2026-10-13_rtl_modules_native_c/index.html#07_irq_router">07  IRQ Router：每条源中断对应一个目标位掩码</a></p>
+<p id="08_bootrom"><a href="../2026-10-13_rtl_modules_native_c/index.html#08_bootrom">08  BootROM：组合 ROM 内容与 Regbus 应答延迟</a></p>
+<p id="09_soc_regs"><a href="../2026-10-13_rtl_modules_native_c/index.html#09_soc_regs">09  SoC Regs：软件 scratch 与只读硬件能力信息</a></p>
+<p id="10_jtag_debug"><a href="../2026-10-13_rtl_modules_native_c/index.html#10_jtag_debug">10  JTAG Debug：DMI 控制、hart 调试与系统总线访问</a></p>
+<p id="11_serial_link"><a href="../2026-10-13_rtl_modules_native_c/index.html#11_serial_link">11  Serial Link：AXI 通道编码、流控与源同步物理传输</a></p>
+<p id="12_vga"><a href="../2026-10-13_rtl_modules_native_c/index.html#12_vga">12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据</a></p>
+<p id="13_usb"><a href="../2026-10-13_rtl_modules_native_c/index.html#13_usb">13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域</a></p>
+<p id="14_idma"><a href="../2026-10-13_rtl_modules_native_c/index.html#14_idma">14  iDMA：AXI 控制入口、任务前端与独立搬运后端</a></p>
+<p id="15_interrupt_exception"><a href="../2026-10-13_rtl_modules_native_c/index.html#15_interrupt_exception">15  CVA6 Trap：异步中断与同步异常在提交路径汇合</a></p>
+<p id="16a_llc"><a href="../2026-10-13_rtl_modules_native_c/index.html#16a_llc">16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM</a></p>
+<p id="16b_spm"><a href="../2026-10-13_rtl_modules_native_c/index.html#16b_spm">16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交</a></p>
+<p id="17_axi_extension"><a href="../2026-10-13_rtl_modules_native_c/index.html#17_axi_extension">外部 IP 的 AXI 数据口与 Reg 控制口</a></p>
+<p id="18_clock_reset_startup"><a href="../2026-10-13_rtl_modules_native_c/index.html#18_clock_reset_startup">异域 IP 的配置、时钟复位与 IRQ 边界</a></p>
+<p id="19_ddr_lvds_pipeline"><a href="../2026-10-13_rtl_modules_native_c/index.html#19_ddr_lvds_pipeline">规划图像链与 DDR / GB 搬运职责</a></p>
+<p id="20_accelerator_memory"><a href="../2026-10-13_rtl_modules_native_c/index.html#20_accelerator_memory">Ara 访存和 CPU 失效请求的实际边界</a></p>
+</html>

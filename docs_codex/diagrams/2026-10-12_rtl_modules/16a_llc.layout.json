@@ -1,0 +1,501 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 205.0,
+      "y": 235.0,
+      "text": "1  isolate / demux",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 267.0,
+      "text": "入口隔离与 bypass",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 299.0,
+      "text": "chan_splitter / 仲裁",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 331.0,
+      "text": "AW / AR → 描述符",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 680.0,
+      "y": 235.0,
+      "text": "2  axi_llc_hit_miss",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 680.0,
+      "y": 267.0,
+      "text": "tag_store / valid / dirty",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 680.0,
+      "y": 299.0,
+      "text": "锁定与同 ID 顺序约束",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 680.0,
+      "y": 331.0,
+      "text": "cache 或 SPM 地址判定",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1177.5,
+      "y": 235.0,
+      "text": "3  evict → refill",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1177.5,
+      "y": 267.0,
+      "text": "必要时写回脏行",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1177.5,
+      "y": 299.0,
+      "text": "从外存补入 cache line",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1177.5,
+      "y": 331.0,
+      "text": "完成后传递描述符",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 875,
+      "y": 289,
+      "text": "miss",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 1605.0,
+      "y": 251.0,
+      "text": "4  merge_unit",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1605.0,
+      "y": 283.0,
+      "text": "汇合命中 / 补入路径",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1605.0,
+      "y": 315.0,
+      "text": "分发 read / write",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 890,
+      "y": 92,
+      "text": "hit / SPM 快路径（仍受顺序约束）",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 1572.5,
+      "y": 613.5,
+      "text": "5  read_unit / write_unit",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 645.5,
+      "text": "连接 AXI R / W / B",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 677.5,
+      "text": "访问选定的数据 way",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 985.0,
+      "y": 620.0,
+      "text": "6  axi_llc_ways",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 985.0,
+      "y": 652.0,
+      "text": "read / write / evict / refill 仲裁",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 985.0,
+      "y": 684.0,
+      "text": "每个 way 的 SRAM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 985.0,
+      "y": 716.0,
+      "text": "按地址、way、byte strobe 访问",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 250.0,
+      "y": 656.0,
+      "text": "7  AXI 外存出口",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 250.0,
+      "y": 688.0,
+      "text": "bypass 与 refill / evict",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 250.0,
+      "y": 720.0,
+      "text": "经 axi_bypass_mux 汇合",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 135,
+      "y": 495,
+      "text": "bypass",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 480,
+      "y": 446,
+      "text": "外存读 / 写",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 45,
+      "y": 865,
+      "text": "实线表示描述符或数据路径，标签区分；图中省略返回 ID 队列与逐通道握手。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 35,
+      "y": 185,
+      "w": 340,
+      "h": 180,
+      "lines": [
+        "1  isolate / demux",
+        "入口隔离与 bypass",
+        "chan_splitter / 仲裁",
+        "AW / AR → 描述符"
+      ]
+    },
+    {
+      "x": 510,
+      "y": 185,
+      "w": 340,
+      "h": 180,
+      "lines": [
+        "2  axi_llc_hit_miss",
+        "tag_store / valid / dirty",
+        "锁定与同 ID 顺序约束",
+        "cache 或 SPM 地址判定"
+      ]
+    },
+    {
+      "x": 1010,
+      "y": 185,
+      "w": 335,
+      "h": 180,
+      "lines": [
+        "3  evict → refill",
+        "必要时写回脏行",
+        "从外存补入 cache line",
+        "完成后传递描述符"
+      ]
+    },
+    {
+      "x": 1455,
+      "y": 185,
+      "w": 300,
+      "h": 180,
+      "lines": [
+        "4  merge_unit",
+        "汇合命中 / 补入路径",
+        "分发 read / write"
+      ]
+    },
+    {
+      "x": 1395,
+      "y": 565,
+      "w": 355,
+      "h": 145,
+      "lines": [
+        "5  read_unit / write_unit",
+        "连接 AXI R / W / B",
+        "访问选定的数据 way"
+      ]
+    },
+    {
+      "x": 750,
+      "y": 570,
+      "w": 470,
+      "h": 180,
+      "lines": [
+        "6  axi_llc_ways",
+        "read / write / evict / refill 仲裁",
+        "每个 way 的 SRAM",
+        "按地址、way、byte strobe 访问"
+      ]
+    },
+    {
+      "x": 40,
+      "y": 615,
+      "w": 420,
+      "h": 130,
+      "lines": [
+        "7  AXI 外存出口",
+        "bypass 与 refill / evict",
+        "经 axi_bypass_mux 汇合"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          375,
+          265
+        ],
+        [
+          510,
+          265
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          850,
+          305
+        ],
+        [
+          1010,
+          305
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1345,
+          285
+        ],
+        [
+          1455,
+          285
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          680,
+          185
+        ],
+        [
+          680,
+          105
+        ],
+        [
+          1605,
+          105
+        ],
+        [
+          1605,
+          185
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1610,
+          365
+        ],
+        [
+          1610,
+          565
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1395,
+          640
+        ],
+        [
+          1220,
+          640
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1175,
+          365
+        ],
+        [
+          1175,
+          570
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          117,
+          365
+        ],
+        [
+          117,
+          615
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1010,
+          345
+        ],
+        [
+          935,
+          345
+        ],
+        [
+          935,
+          465
+        ],
+        [
+          350,
+          465
+        ],
+        [
+          350,
+          615
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

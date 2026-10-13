@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域</text>
+<rect x="385" y="115" width="1360" height="720" fill="#FFFFFF" stroke="#9DAABA" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="400" y="145" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">spinal_usb_ohci：控制 / DMA 在 soc_clk_i；PHY 使用 phy_clk_i</text>
+<rect x="35" y="185" width="275" height="140" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="172.5" y="247.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">Regbus 32</text>
+<text x="172.5" y="279.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">ctrl_req / ctrl_rsp</text>
+<rect x="420" y="185" width="330" height="140" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="585.0" y="231.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  reg_to_axi</text>
+<text x="585.0" y="263.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit Reg → AXI32</text>
+<text x="585.0" y="295.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">控制地址取低 12 位</text>
+<polyline points="310,255 420,255" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="420,255 408.0,250.0 408.0,260.0" fill="#28699B"/>
+<polygon points="310,255 322.0,260.0 322.0,250.0" fill="#28699B"/>
+<rect x="895" y="185" width="410" height="190" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1100.0" y="224.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  UsbOhciAxi4：前端</text>
+<text x="1100.0" y="256.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">ctrlBridge → front_ohci</text>
+<text x="1100.0" y="288.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">OHCI 寄存器 / 帧调度</text>
+<text x="1100.0" y="320.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">读取 ED / TD、搬运数据</text>
+<text x="1100.0" y="352.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">完成状态 / IRQ</text>
+<polyline points="750,255 895,255" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="895,255 883.0,250.0 883.0,260.0" fill="#28699B"/>
+<polygon points="750,255 762.0,260.0 762.0,250.0" fill="#28699B"/>
+<rect x="420" y="595" width="395" height="150" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="617.5" y="630.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  AXI DMA 适配</text>
+<text x="617.5" y="662.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">axi_dw_converter：32 → 系统</text>
+<text x="617.5" y="694.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">axi_modify_address</text>
+<text x="617.5" y="726.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">32-bit 地址 domain / mask</text>
+<polyline points="895,340 860,340 860,665 815,665" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="815,665 827.0,670.0 827.0,660.0" fill="#28699B"/>
+<polygon points="895,340 883.0,335.0 883.0,345.0" fill="#28699B"/>
+<polyline points="420,665 55,665" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="55,665 67.0,670.0 67.0,660.0" fill="#28699B"/>
+<polygon points="420,665 408.0,660.0 408.0,670.0" fill="#28699B"/>
+<text x="50" y="627" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">AXI DMA ↔ 内存</text>
+<rect x="945" y="580" width="365" height="165" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<text x="1127.5" y="622.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  CtrlCc</text>
+<text x="1127.5" y="654.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">命令 / 数据 / 状态跨域</text>
+<text x="1127.5" y="686.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">生成 RTL 的握手同步</text>
+<text x="1127.5" y="718.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">两域分别复位</text>
+<polyline points="1125,375 1125,580" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1125,580 1130.0,568.0 1120.0,568.0" fill="#28699B"/>
+<polygon points="1125,375 1120.0,387.0 1130.0,387.0" fill="#28699B"/>
+<rect x="1415" y="575" width="280" height="175" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1555.0" y="622.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  UsbLsFsPhy</text>
+<text x="1555.0" y="654.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">数字收发逻辑</text>
+<text x="1555.0" y="686.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">LS / FS；4 个端口</text>
+<text x="1555.0" y="718.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">DP / DM + OE</text>
+<polyline points="1310,665 1415,665" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1415,665 1403.0,660.0 1403.0,670.0" fill="#28699B"/>
+<polygon points="1310,665 1322.0,670.0 1322.0,660.0" fill="#28699B"/>
+<polyline points="1305,255 1570,255" fill="none" stroke="#765096" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1570,255 1558.0,250.0 1558.0,260.0" fill="#765096"/>
+<text x="1370" y="233" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765096" text-anchor="start">intr_o → SoC</text>
+<polyline points="1570,750 1570,880" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1570,880 1575.0,868.0 1565.0,868.0" fill="#28699B"/>
+<polygon points="1570,750 1565.0,762.0 1575.0,762.0" fill="#28699B"/>
+<text x="1180" y="908" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">PAD / 电气 / VBUS 由平台实现</text>
+<text x="45" y="866" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">DMA 内核地址为 32-bit；系统 AXI 更宽不会自动解除这一限制。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

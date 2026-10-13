@@ -1,0 +1,416 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "05  PLIC：源侧 pending / active 与目标侧优先级选择",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 180.0,
+      "y": 251.0,
+      "text": "外设 IRQ 电平",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 180.0,
+      "y": 283.0,
+      "text": "经 IRQ Router",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 180.0,
+      "y": 315.0,
+      "text": "PLIC 目标分支",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 570.0,
+      "y": 251.0,
+      "text": "1  prim_flop_2sync",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 570.0,
+      "y": 283.0,
+      "text": "同步输入",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 570.0,
+      "y": 315.0,
+      "text": "本集成按电平触发",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1010.0,
+      "y": 219.0,
+      "text": "2  rv_plic_gateway",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1010.0,
+      "y": 251.0,
+      "text": "每源 pending：ip",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1010.0,
+      "y": 283.0,
+      "text": "每源 active：ia",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1010.0,
+      "y": 315.0,
+      "text": "claim 清 pending",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1010.0,
+      "y": 347.0,
+      "text": "complete 允许再触发",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1537.5,
+      "y": 235.0,
+      "text": "3  rv_plic_target × 目标",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1537.5,
+      "y": 267.0,
+      "text": "pending & enable",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1537.5,
+      "y": 299.0,
+      "text": "priority > threshold",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1537.5,
+      "y": 331.0,
+      "text": "选择获胜源 / 产生 IRQ",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1490,
+      "y": 500,
+      "text": "xeip → hart",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 1490,
+      "y": 536,
+      "text": "M / S 外部中断",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 797.5,
+      "y": 705.0,
+      "text": "4  rv_plic_reg_top",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 797.5,
+      "y": 737.0,
+      "text": "源 priority；每目标 enable / threshold",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 797.5,
+      "y": 769.0,
+      "text": "读 claim → 源 ID；写 complete ← 已处理 ID",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 797.5,
+      "y": 801.0,
+      "text": "源 ID = 0 保留；设备自身状态需驱动清除",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 440,
+      "y": 615,
+      "text": "Regbus 请求 / 响应",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 760,
+      "y": 510,
+      "text": "claim / complete",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 1210,
+      "y": 594,
+      "text": "获胜源 ID",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1320,
+      "y": 801,
+      "text": "priority / enable / threshold",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 205,
+      "w": 280,
+      "h": 140,
+      "lines": [
+        "外设 IRQ 电平",
+        "经 IRQ Router",
+        "PLIC 目标分支"
+      ]
+    },
+    {
+      "x": 420,
+      "y": 205,
+      "w": 300,
+      "h": 140,
+      "lines": [
+        "1  prim_flop_2sync",
+        "同步输入",
+        "本集成按电平触发"
+      ]
+    },
+    {
+      "x": 835,
+      "y": 180,
+      "w": 350,
+      "h": 190,
+      "lines": [
+        "2  rv_plic_gateway",
+        "每源 pending：ip",
+        "每源 active：ia",
+        "claim 清 pending",
+        "complete 允许再触发"
+      ]
+    },
+    {
+      "x": 1345,
+      "y": 180,
+      "w": 385,
+      "h": 190,
+      "lines": [
+        "3  rv_plic_target × 目标",
+        "pending & enable",
+        "priority > threshold",
+        "选择获胜源 / 产生 IRQ"
+      ]
+    },
+    {
+      "x": 410,
+      "y": 655,
+      "w": 775,
+      "h": 180,
+      "lines": [
+        "4  rv_plic_reg_top",
+        "源 priority；每目标 enable / threshold",
+        "读 claim → 源 ID；写 complete ← 已处理 ID",
+        "源 ID = 0 保留；设备自身状态需驱动清除"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          320,
+          275
+        ],
+        [
+          420,
+          275
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          720,
+          275
+        ],
+        [
+          835,
+          275
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1185,
+          275
+        ],
+        [
+          1345,
+          275
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1535,
+          370
+        ],
+        [
+          1535,
+          470
+        ]
+      ],
+      "color": "#765096",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1070,
+          655
+        ],
+        [
+          1070,
+          535
+        ],
+        [
+          1010,
+          535
+        ],
+        [
+          1010,
+          370
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1410,
+          370
+        ],
+        [
+          1410,
+          570
+        ],
+        [
+          1140,
+          570
+        ],
+        [
+          1140,
+          655
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1185,
+          760
+        ],
+        [
+          1695,
+          760
+        ],
+        [
+          1695,
+          370
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

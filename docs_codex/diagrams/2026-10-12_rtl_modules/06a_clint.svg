@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断</text>
+<rect x="370" y="145" width="1375" height="690" fill="#FFFFFF" stroke="#9DAABA" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="385" y="175" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">clint：寄存器、计数器和比较器均在 clk_i / rst_ni 域</text>
+<text x="70" y="270" font-family="WenQuanYi Zen Hei" font-size="28" fill="#23354B" text-anchor="start">rtc_i</text>
+<polyline points="65,300 415,300" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="415,300 403.0,295.0 403.0,305.0" fill="#28699B"/>
+<rect x="415" y="235" width="340" height="140" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="585.0" y="281.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  clint_sync_wedge</text>
+<text x="585.0" y="313.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">同步 + 上升沿检测</text>
+<text x="585.0" y="345.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">increase_timer：一拍使能</text>
+<rect x="900" y="235" width="350" height="140" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="912" y1="235" x2="912" y2="375" stroke="#23354B" stroke-width="1.5"/>
+<text x="1075.0" y="281.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  MTIME[63:0]</text>
+<text x="1075.0" y="313.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">寄存器反馈 + 加 1</text>
+<text x="1075.0" y="345.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">仅 RTC 上升沿使能更新</text>
+<polyline points="755,300 900,300" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="900,300 888.0,295.0 888.0,305.0" fill="#9C5B25"/>
+<rect x="1380" y="250" width="220" height="120" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1490.0" y="302.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  ≥ 比较</text>
+<text x="1490.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">无条件保持比较</text>
+<polyline points="1250,300 1380,300" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1380,300 1368.0,295.0 1368.0,305.0" fill="#28699B"/>
+<polyline points="1600,300 1720,300 1720,420" fill="none" stroke="#765096" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1720,420 1725.0,408.0 1715.0,408.0" fill="#765096"/>
+<text x="1570" y="463" font-family="WenQuanYi Zen Hei" font-size="24" fill="#765096" text-anchor="start">MTIP → hart</text>
+<rect x="900" y="525" width="350" height="120" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="912" y1="525" x2="912" y2="645" stroke="#23354B" stroke-width="1.5"/>
+<text x="1075.0" y="577.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  MTIMECMP[63:0]</text>
+<text x="1075.0" y="609.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">每 hart 一个比较值</text>
+<polyline points="1250,585 1490,585 1490,370" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1490,370 1485.0,382.0 1495.0,382.0" fill="#28699B"/>
+<rect x="415" y="555" width="340" height="165" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="585.0" y="597.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  clint_reg_top</text>
+<text x="585.0" y="629.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MTIME_LO / HI</text>
+<text x="585.0" y="661.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MTIMECMP_LO / HI</text>
+<text x="585.0" y="693.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MSIP</text>
+<text x="70" y="630" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="start">Regbus 32</text>
+<polyline points="65,665 415,665" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="415,665 403.0,660.0 403.0,670.0" fill="#28699B"/>
+<polygon points="65,665 77.0,670.0 77.0,660.0" fill="#28699B"/>
+<polyline points="755,600 900,600" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="900,600 888.0,595.0 888.0,605.0" fill="#28699B"/>
+<polyline points="705,555 705,440 990,440 990,375" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="990,375 985.0,387.0 995.0,387.0" fill="#28699B"/>
+<polygon points="705,555 710.0,543.0 700.0,543.0" fill="#28699B"/>
+<rect x="1380" y="675" width="250" height="100" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="1392" y1="675" x2="1392" y2="775" stroke="#23354B" stroke-width="1.5"/>
+<text x="1505.0" y="717.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">6  MSIP 位</text>
+<text x="1505.0" y="749.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">软件置位 / 清零</text>
+<polyline points="755,690 835,690 835,760 1380,760 1380,725" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1380,725 1375.0,737.0 1385.0,737.0" fill="#28699B"/>
+<polyline points="1630,725 1720,725" fill="none" stroke="#765096" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1720,725 1708.0,720.0 1708.0,730.0" fill="#765096"/>
+<text x="1400" y="810" font-family="WenQuanYi Zen Hei" font-size="24" fill="#765096" text-anchor="start">MSIP → hart</text>
+<text x="45" y="890" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">MTIP 的清除方法是让 MTIMECMP 大于 MTIME；这里没有 PLIC claim / complete。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1860" viewBox="0 0 2400 1860">
+<defs><marker id="a314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker><marker id="a765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker><marker id="a187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker><marker id="a29292D" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#29292D"/></marker></defs>
+<rect id="n001" x="0" y="0" width="2400" height="1860" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8"/>
+<text id="n002" x="45" y="57" font-family="Microsoft YaHei" font-size="38" font-weight="bold" text-anchor="start" fill="#29292D">AXI → Regbus：桥内部的数据通路与时序边界</text>
+<text id="n003" x="45" y="99" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="start" fill="#606773">i_axi_to_reg_v2 · 默认参数展开：AXI 64 bit / Reg 32 bit / 地址 48 bit / NumBanks = 2</text>
+<rect id="n004" x="40" y="135" width="2320" height="530" fill="#F3F7FA" stroke="#645C5D" stroke-width="1.8"/>
+<text id="n005" x="60" y="172" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">A  i_axi_to_detailed_mem：AXI 请求、状态与内部子通路</text>
+<rect id="n006" x="75" y="225" width="330" height="105" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n007" x="240.0" y="255.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">AR 读请求处理</text>
+<text id="n008" x="240.0" y="285.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">rd_meta_q / r_cnt_q</text>
+<text id="n009" x="240.0" y="315.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">握手推进地址与剩余拍数</text>
+<rect id="n010" x="75" y="405" width="330" height="105" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n011" x="240.0" y="435.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">AW + W 写请求处理</text>
+<text id="n012" x="240.0" y="465.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">wr_meta_q / w_cnt_q</text>
+<text id="n013" x="240.0" y="495.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">新写需 AWVALID &amp; WVALID</text>
+<polygon id="n014" points="515,250 670,278 670,472 515,500" fill="#E8DFED" stroke="#29292D" stroke-width="1.8" stroke-linejoin="miter"/>
+<text id="n015" x="592.5" y="383.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">2:1</text>
+<polyline id="n016" points="405,277 465,277 465,305 515,305" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<polyline id="n017" points="405,457 465,457 465,445 515,445" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n018" x="592" y="233" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="middle" fill="#29292D">i_ax_mux</text>
+<rect id="n019" x="445" y="555" width="405" height="75" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="n020" x="647.5" y="585.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">读写选择 + 背压锁定</text>
+<text id="n021" x="647.5" y="615.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">meta_sel_q / sel_lock_q</text>
+<polyline id="n022" points="590,555 590,500" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n023" x="780" y="205" width="230" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n024" x="895.0" y="243.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_fork</text>
+<text id="n025" x="895.0" y="273.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">仅三路握手控制</text>
+<polyline id="n026" points="670,345 730,345 730,250 780,250" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n027" x="1170" y="320" width="390" height="110" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n028" x="1365.0" y="353.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_stream_to_mem</text>
+<text id="n029" x="1365.0" y="383.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">在途计数 / 响应缓冲</text>
+<text id="n030" x="1365.0" y="413.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">BufDepth = 1</text>
+<polyline id="n031" points="670,375 1170,375" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n032" x="915" y="360" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">meta + W.data / W.strb</text>
+<polyline id="n033" points="1010,250 1100,250 1100,335 1170,335" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n034" x="1740" y="285" width="560" height="195" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text id="n035" x="2020.0" y="345.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_mem_to_banks</text>
+<text id="n036" x="2020.0" y="375.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">按 8 B 对齐；两个 32-bit 子通路</text>
+<text id="n037" x="2020.0" y="405.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">每路请求 FIFO = 1；响应 FIFO = 1</text>
+<text id="n038" x="2020.0" y="435.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">addr[i] = align8(addr) + 4×i</text>
+<polyline id="n039" points="1560,375 1740,375" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n040" x="1645" y="360" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">64 bit</text>
+<rect id="n041" x="980" y="535" width="360" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n042" x="1160.0" y="570.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">i_meta_buf</text>
+<text id="n043" x="1160.0" y="600.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">深度 2 · ID / size / last / …</text>
+<polyline id="n044" points="989,544 989,611" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n045" points="997,544 997,611" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<rect id="n046" x="1470" y="535" width="360" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n047" x="1650.0" y="570.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">i_sel_buf</text>
+<text id="n048" x="1650.0" y="600.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">深度 2 · {sel_b, sel_r}</text>
+<polyline id="n049" points="1479,544 1479,611" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n050" points="1487,544 1487,611" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<rect id="n051" x="816" y="310" width="74" height="34" fill="#FFFFFF" stroke="#765489" stroke-width="1.8"/>
+<text id="n052" x="853" y="334" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#765489">F0</text>
+<polyline id="n053" points="850,295 850,310" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n054" x="911" y="310" width="74" height="34" fill="#FFFFFF" stroke="#765489" stroke-width="1.8"/>
+<text id="n055" x="948" y="334" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#765489">F1</text>
+<polyline id="n056" points="945,295 945,310" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n057" x="1118" y="480" width="74" height="34" fill="#FFFFFF" stroke="#765489" stroke-width="1.8"/>
+<text id="n058" x="1155" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#765489">F0</text>
+<polyline id="n059" points="1155,514 1155,535" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n060" x="1608" y="480" width="74" height="34" fill="#FFFFFF" stroke="#765489" stroke-width="1.8"/>
+<text id="n061" x="1645" y="504" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#765489">F1</text>
+<polyline id="n062" points="1645,514 1645,535" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<text id="n063" x="900" y="460" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#765489">F0/F1：握手；FIFO 数据来自 meta</text>
+<rect id="n064" x="1360" y="560" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n065" x="1397" y="584" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">META</text>
+<polyline id="n066" points="1340,577 1360,577" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n067" x="1860" y="560" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n068" x="1897" y="584" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">RB</text>
+<polyline id="n069" points="1830,577 1860,577" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n070" points="2020,480 2020,520" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<rect id="n071" x="1983" y="520" width="74" height="34" fill="#FFFFFF" stroke="#314D66" stroke-width="1.8"/>
+<text id="n072" x="2020" y="544" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#314D66">P0/1</text>
+<polyline id="n073" points="2130,570 2130,480" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n074" x="2093" y="570" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n075" x="2130" y="594" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">T0/1</text>
+<text id="n076" x="2020" y="640" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">P：请求 / gnt；T：返回 / rvalid</text>
+<rect id="n077" x="40" y="700" width="2320" height="620" fill="#FAF8FB" stroke="#645C5D" stroke-width="1.8"/>
+<text id="n078" x="60" y="737" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">B  gen_tcdm_to_reg[i] × 2：32-bit 子请求 → 一个公共 Regbus</text>
+<rect id="n079" x="70" y="840" width="74" height="34" fill="#FFFFFF" stroke="#314D66" stroke-width="1.8"/>
+<text id="n080" x="107" y="864" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#314D66">P0</text>
+<polyline id="n081" points="144,857 245,857" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<rect id="n082" x="245" y="810" width="310" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n083" x="400.0" y="850.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">i_mem_req_spill</text>
+<text id="n084" x="400.0" y="880.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">CutMemReqs = 1（默认）</text>
+<polyline id="n085" points="254,819 254,896" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n086" points="262,819 262,896" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<rect id="n087" x="655" y="810" width="355" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n088" x="832.5" y="850.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_periph_to_reg</text>
+<text id="n089" x="832.5" y="880.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">请求直通；响应寄存器见 C</text>
+<polyline id="n090" points="555,857 655,857" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n091" x="596" y="838" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">32 bit</text>
+<rect id="n092" x="1110" y="810" width="380" height="95" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="n093" x="1300.0" y="850.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">零写过滤 · reg_demux(2)</text>
+<text id="n094" x="1300.0" y="880.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">Z = write &amp; (wstrb == 0)</text>
+<polyline id="n095" points="1010,857 1110,857" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<polyline id="n096" points="1490,843 1690,843 1690,910 1770,910" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n097" x="1580" y="824" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">Z=0：正常请求</text>
+<rect id="n098" x="1140" y="955" width="340" height="65" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text id="n099" x="1310.0" y="980.5" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#29292D">Z=1：本地成功响应</text>
+<text id="n100" x="1310.0" y="1010.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">ready=1 / error=0 / rdata=0</text>
+<polyline id="n101" points="1300,905 1300,955" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n102" x="1533" y="935" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n103" x="1570" y="959" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">R0</text>
+<polyline id="n104" points="1570,935 1570,885 1490,885" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n105" points="1140,988 1080,988 1080,897 1110,897" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n106" points="1110,885 1050,885 1050,932 835,932 835,905" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<text id="n107" x="935" y="926" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#187C78">reg_rsp[i]</text>
+<polyline id="n108" points="655,880 615,880 615,973 540,973" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n109" x="245" y="943" width="295" height="60" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n110" x="392.5" y="966.0" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#29292D">i_mem_rsp_spill：旁路</text>
+<text id="n111" x="392.5" y="996.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">CutMemRsps = 0</text>
+<polyline id="n112" points="245,973 145,973" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n113" x="71" y="956" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n114" x="108" y="980" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">T0</text>
+<rect id="n115" x="70" y="1090" width="74" height="34" fill="#FFFFFF" stroke="#314D66" stroke-width="1.8"/>
+<text id="n116" x="107" y="1114" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#314D66">P1</text>
+<polyline id="n117" points="144,1107 245,1107" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<rect id="n118" x="245" y="1060" width="310" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n119" x="400.0" y="1100.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">i_mem_req_spill</text>
+<text id="n120" x="400.0" y="1130.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">CutMemReqs = 1（默认）</text>
+<polyline id="n121" points="254,1069 254,1146" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n122" points="262,1069 262,1146" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<rect id="n123" x="655" y="1060" width="355" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n124" x="832.5" y="1100.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_periph_to_reg</text>
+<text id="n125" x="832.5" y="1130.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">请求直通；响应寄存器见 C</text>
+<polyline id="n126" points="555,1107 655,1107" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n127" x="596" y="1088" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">32 bit</text>
+<rect id="n128" x="1110" y="1060" width="380" height="95" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="n129" x="1300.0" y="1100.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">零写过滤 · reg_demux(2)</text>
+<text id="n130" x="1300.0" y="1130.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">Z = write &amp; (wstrb == 0)</text>
+<polyline id="n131" points="1010,1107 1110,1107" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<polyline id="n132" points="1490,1093 1690,1093 1690,1060 1770,1060" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n133" x="1580" y="1074" font-family="Microsoft YaHei" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">Z=0：正常请求</text>
+<rect id="n134" x="1140" y="1205" width="340" height="65" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text id="n135" x="1310.0" y="1230.5" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#29292D">Z=1：本地成功响应</text>
+<text id="n136" x="1310.0" y="1260.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">ready=1 / error=0 / rdata=0</text>
+<polyline id="n137" points="1300,1155 1300,1205" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n138" x="1533" y="1185" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n139" x="1570" y="1209" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">R1</text>
+<polyline id="n140" points="1570,1185 1570,1135 1490,1135" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n141" points="1140,1238 1080,1238 1080,1147 1110,1147" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n142" points="1110,1135 1050,1135 1050,1182 835,1182 835,1155" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<text id="n143" x="935" y="1176" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#187C78">reg_rsp[i]</text>
+<polyline id="n144" points="655,1130 615,1130 615,1223 540,1223" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n145" x="245" y="1193" width="295" height="60" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n146" x="392.5" y="1216.0" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#29292D">i_mem_rsp_spill：旁路</text>
+<text id="n147" x="392.5" y="1246.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">CutMemRsps = 0</text>
+<polyline id="n148" points="245,1223 145,1223" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n149" x="71" y="1206" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n150" x="108" y="1230" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">T1</text>
+<polygon id="n151" points="1770,865 1950,893 1950,1097 1770,1125" fill="#E8DFED" stroke="#29292D" stroke-width="1.8" stroke-linejoin="miter"/>
+<text id="n152" x="1860.0" y="1003.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">2:1</text>
+<text id="n153" x="1860" y="839" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">i_reg_mux</text>
+<rect id="n154" x="2070" y="910" width="235" height="160" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="n155" x="2187.5" y="968.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">公共 Regbus</text>
+<text id="n156" x="2187.5" y="998.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">reg_req_o</text>
+<text id="n157" x="2187.5" y="1028.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">reg_rsp_i</text>
+<polyline id="n158" points="1950,973 2070,973" fill="none" stroke="#314D66" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a314D66)"/>
+<text id="n159" x="2010" y="952" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">req</text>
+<rect id="n160" x="1920" y="1128" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n161" x="1957" y="1152" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">R0/1</text>
+<polyline id="n162" points="2187,1070 2187,1145 1994,1145" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<text id="n163" x="2100" y="1187" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="middle" fill="#29292D">rdata / error 广播；ready 仅回选中路</text>
+<rect id="n164" x="1690" y="1215" width="625" height="75" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="n165" x="2002.5" y="1245.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">stream_arbiter：轮询 / 等待时保持选择</text>
+<text id="n166" x="2002.5" y="1275.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">内部两路仲裁，不是 SoC 外设地址解码</text>
+<polyline id="n167" points="1805,1215 1805,1125" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<rect id="n168" x="40" y="1355" width="1370" height="385" fill="#F3F7FA" stroke="#645C5D" stroke-width="1.8"/>
+<text id="n169" x="60" y="1392" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">C  periph_to_reg：请求直通，返回数据与有效位打一拍</text>
+<text id="n170" x="70" y="1435" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">req_i</text>
+<text id="n171" x="70" y="1505" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="start" fill="#29292D">reg_rsp.ready</text>
+<path id="n172" d="M 340 1410 L 405 1410 C 475 1410 475 1530 405 1530 L 340 1530 Z" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="n173" x="393" y="1480" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">&amp;</text>
+<polyline id="n174" points="165,1427 340,1427" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<polyline id="n175" points="255,1497 340,1497" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n176" points="458,1470 570,1470" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<text id="n177" x="510" y="1448" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">gnt_o</text>
+<rect id="n178" x="570" y="1425" width="335" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n179" x="737.5" y="1463.0" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">D → r_valid_q → Q</text>
+<text id="n180" x="737.5" y="1493.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">clk_i / rst_ni</text>
+<polyline id="n181" points="570,1487 582,1495 570,1503" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n182" points="905,1470 1320,1470" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<text id="n183" x="1080" y="1450" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="middle" fill="#29292D">r_valid_o（下一拍）</text>
+<text id="n184" x="70" y="1590" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="start" fill="#29292D">reg_rsp.{rdata,error}</text>
+<polyline id="n185" points="325,1582 570,1582" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n186" x="570" y="1540" width="335" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n187" x="737.5" y="1578.0" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">r_rdata_q / r_opc_q</text>
+<text id="n188" x="737.5" y="1608.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">每拍采样；无 gnt 数据使能</text>
+<polyline id="n189" points="570,1602 582,1610 570,1618" fill="none" stroke="#29292D" stroke-width="2.4" stroke-linejoin="miter"/>
+<polyline id="n190" points="905,1582 1320,1582" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<text id="n191" x="1100" y="1560" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="middle" fill="#29292D">r_rdata_o / r_opc_o</text>
+<text id="n192" x="75" y="1692" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">请求字段直通；write = ~wen_i；valid = req_i；低有效异步复位清零响应寄存器</text>
+<rect id="n193" x="1440" y="1355" width="920" height="385" fill="#F3F7FA" stroke="#645C5D" stroke-width="1.8"/>
+<text id="n194" x="1460" y="1392" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">D  AXI 响应重建（位于 A 内部）</text>
+<rect id="n195" x="1470" y="1430" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n196" x="1507" y="1454" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">T0/1</text>
+<rect id="n197" x="1470" y="1510" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n198" x="1507" y="1534" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">META</text>
+<rect id="n199" x="1470" y="1590" width="74" height="34" fill="#FFFFFF" stroke="#187C78" stroke-width="1.8"/>
+<text id="n200" x="1507" y="1614" font-family="Microsoft YaHei" font-size="20" font-weight="bold" text-anchor="middle" fill="#187C78">RB</text>
+<rect id="n201" x="1660" y="1410" width="655" height="110" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text id="n202" x="1987.5" y="1458.0" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">收集两路响应 + 配对元数据</text>
+<text id="n203" x="1987.5" y="1488.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">bank 响应 FIFO → stream_to_mem → i_join</text>
+<polyline id="n204" points="1544,1447 1660,1447" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n205" points="1544,1527 1600,1527 1600,1482 1660,1482" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<rect id="n206" x="1660" y="1570" width="655" height="115" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="n207" x="1987.5" y="1605.5" font-family="Microsoft YaHei" font-size="23" font-weight="bold" text-anchor="middle" fill="#29292D">i_fork_dynamic → AXI R / B</text>
+<text id="n208" x="1987.5" y="1635.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">R：数据 / ID / LAST；B：写错误累积</text>
+<text id="n209" x="1987.5" y="1665.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">由 RREADY / BREADY 施加反压</text>
+<polyline id="n210" points="1985,1520 1985,1570" fill="none" stroke="#187C78" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a187C78)"/>
+<polyline id="n211" points="1544,1607 1660,1607" fill="none" stroke="#765489" stroke-width="2.4" stroke-linejoin="miter" marker-end="url(#a765489)"/>
+<text id="n212" x="45" y="1793" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">蓝：请求／数据   绿：响应   紫：握手／选择   P、T、R、META、RB、F：同名连接点；正向箭头旁的反压未逐线展开</text>
+<text id="n213" x="45" y="1830" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#606773">范围：原子适配与外部 AXI 切片之后；时序单元使用 clk_i / rst_ni。子通路 bank 是宽度拆分，不是 SRAM bank。</text>
+</svg>

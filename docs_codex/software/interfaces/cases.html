@@ -1,0 +1,85 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>五条软件到 RTL 案例 | Cheshire 软硬件接口</title><link rel="stylesheet" href="../../learning/assets/site.css"><script defer src="../../learning/assets/site.js"></script></head><body><a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="brand" href="index.html">CHESHIRE <span>软硬件接口</span></a><p class="edition">L01 · 当前工程源码专题</p><details class="site-menu" open><summary>专题目录</summary><nav aria-label="章节"><a class="chapter-link" href="index.html">00 · 软硬件接口专题</a><a class="chapter-link" href="build-boot.html">01 · 构建、加载与启动</a><a class="chapter-link" href="instructions.html">02 · 指令、Ara 与 CSR</a><a class="chapter-link" href="memory-mmio.html">03 · 内存、MMIO 与数据交接</a><a class="chapter-link" href="interrupts.html">04 · 异常与中断</a><a class="chapter-link" href="cases.html" aria-current="page">05 · 五条软件到 RTL 案例</a><a class="chapter-link" href="integration.html">06 · 自定义 IP 与 Linux 修改导航</a><a class="chapter-link" href="labs.html">07 · 最小实践与验证记录</a></nav></details><div class="sidebar-foot"><a href="README.md">维护说明</a> · <a href="../../learning/index.html">主教材</a></div></aside><div class="workspace"><header class="topbar"><a href="index.html">专题入口</a><a href="labs.html#evidence">本轮验证记录</a></header><main id="main"><div class="chapter-head"><p class="eyebrow">软硬件接口层</p><h1>五条软件到 RTL 案例</h1><p class="subtitle">UART、计时、DMA、GPIO 中断与向量加法</p><p class="format-link"><a href="markdown/cases.md">Markdown 阅读版</a></p></div><details class="toc-panel" open><summary>本页目录</summary><nav class="toc"><ol><li><a href="#uart">字符输出抵达 UART 发送器</a></li><li><a href="#timer">定时读取与比较事件</a></li><li><a href="#dma">二维 DMA 从配置提交到结果校验</a></li><li><a href="#gpio-irq">GPIO 事件经过 PLIC 进入处理程序</a></li><li><a href="#ara">最小 Ara 加法与标量结果核对</a></li></ol></nav></details><p>以下每个案例都沿软件操作追到实际RTL再返回观察点。图中实线箭头按标签分别表示调用、访存和数据传输，事件虚线另标IRQ；不存在用一根箭头把“调用驱动”直接变成“设备已完成”的省略。</p>
+<h2 id="uart">字符输出抵达 UART 发送器</h2>
+<p><strong>目标和前提。</strong> 复用 <a href="../../../sw/tests/helloworld.c">helloworld.c</a> 或本轮编译的journey；需Cfg.Uart=1、运行存储/栈可用、实际UART频率/引脚和流控一致。<code>uart_init</code>关闭IER，配置DLAB及分频，再恢复8N1并设FIFO/自动流控。DLAB未恢复时写offset0会改分频低字节，不能发送字符。</p>
+<figure><img src="../../diagrams/2026-10-13_software_hardware_interfaces/uart.svg" alt="printf到UART引脚的逐层对应" /><figcaption>printf到UART引脚的逐层对应。图中箭头分别标注软件调用、总线事务或硬件事件。</figcaption></figure>
+<p><strong>软件链。</strong> <a href="../../../sw/deps/printf/printf.h">printf.h</a>把printf映射为printf_；<a href="../../../sw/deps/printf/printf.c">printf.c</a> <code>_vsnprintf → _out_char</code>按格式得到字符；<a href="../../../sw/lib/dif/uart.c">uart.c</a> <code>_putchar → uart_write</code>负责发送。它的关键访问为：</p>
+<pre><code class="language-c">while (!__uart_write_ready(uart_base)) ;
+*reg8(uart_base, UART_THR_REG_OFFSET) = byte;
+</code></pre>
+<p><code>__uart_write_ready</code>读取LSR offset20(bit5 THRE)，THR offset0。基址为<code>__base_uart=0x03002000</code>；软件读<code>0x03002014</code>，写<code>0x03002000</code>。本轮编译中uart_write被内联进<code>_putchar</code>；实际机器指令见下方摘录。一次printf的返回不是串行发送完成。</p>
+<p>以下摘自本轮 <a href="evidence/hello-build/hello.dump">hello.dump</a> 的 <code>_putchar</code>（地址形成指令省略）：</p><pre><code>10000246: lbu  a5,-558(a5)  # 0x03002014：LSR
+1000024a: andi a5,a5,32      # bit5 THRE
+1000024e: beqz a5,10000242   # 继续等待
+10000254: sb   a0,-592(a5)   # 0x03002000：THR</code></pre>
+<p><strong>访问和RTL。</strong> CVA6 AXI请求→Xbar Reg出口→原子适配/cut→<code>axi_to_reg_v2</code>→RegMap UART→<a href="../../../.bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv">reg_uart_wrap</a>的<code>i_reg_uart_reg_to_apb</code>→APB。包装传 <code>paddr[4:2]</code>，因此软件偏移每4字节对应一个UART寄存器编号。<a href="../../../.bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv">apb_uart</a>中 <code>iWrite=PSEL &amp;&amp; PENABLE &amp;&amp; PWRITE</code>；PADDR=0且DLAB=0产生 <code>iTHRWrite</code>，低8位PWDATA经 <code>iTXFIFOWrite</code>写入 <code>UART_TXFF</code>。</p>
+<p><strong>状态和完成。</strong> TX FIFO非空且流控允许时，发送状态机取FIFO数据到 <code>iTSR</code>，<code>UART_TX</code>在波特率节拍下产生SOUT，SoC接到<code>uart_tx_o</code>。FIFO空时LSR.THRE置位，<code>!iTXRunning &amp;&amp; THRE</code>形成TEMT；<code>uart_write_flush()</code>先fence再等THRE/TEMT。总线B响应、FIFO接受、最后停止位发送是三个时刻。驱动仍保留CVA6读写顺序核查TODO，没有超时，不能当作完整的关钟恢复协议。</p>
+<p><strong>观察和排错。</strong> UART文本及SCRATCH2作为软件观察；RTL看Reg地址/valid/ready、APB三控制线、iTHRWrite、FIFO占用、iTXRunning、SOUT。无字符依次查：是否到main→基址/译码→时钟/复位→DLAB/分频→CTS→TX引脚；乱码先核对实际时钟与baud，而非先改printf。HelloWorld会写VS但没有执行向量计算，不作为Ara验收。</p>
+<h2 id="timer">定时读取与比较事件</h2>
+<p><strong>目标和前提。</strong> 使用HelloWorld或journey内的 <code>clint_get_core_freq(rtc,2500)</code>理解两种计数：CLINT <code>mtime</code>是MMIO，<code>mcycle</code>是CSR。RTC必须实际跳变，声明的RTC_FREQ须对应硬件，否则测频等待可能挂住或结果错误。</p>
+<p><strong>软件/访问。</strong> <a href="../../../sw/lib/dif/clint.c">clint.c</a> <code>clint_get_mtime</code>读 <code>CLINT_MTIME_HIGH/LOW_REG_OFFSET</code>，基址<code>0x02040000</code>，偏移由 <a href="../../../sw/include/regs/clint.h">clint.h</a>生成；<code>get_mcycle</code>则执行CSR读。频率函数观察RTC边界，计算 <code>(end_mcycle-start_mcycle)*ref_freq/(end_mtime-start_mtime)</code>。FPGA RTC与SoC时钟的生成关系要对照顶层，这不是独立参考仪器测量。</p>
+<p><strong>RTL变化。</strong> CPU→Reg桥→CLINT译码→<a href="../../../.bender/git/checkouts/clint-de4a234303f657d0/src/clint_reg_top.sv">clint_reg_top</a>；<a href="../../../.bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv">clint.sv</a>的<code>i_sync_edge</code>同步RTC上升沿成 <code>increase_timer</code>，通过hw2reg更新mtime。<code>mtime_q &gt;= mtimecmp_q[0]</code>令<code>timer_irq_o[0]</code>有效，SoC接mtip→CVA6 time_irq_i→mip.MTIP。</p>
+<p><strong>完成和清除。</strong> 单次MMIO读完成不保证64位原子快照，现有高/低两读跨低32位翻转时需重试策略。定时ISR设置下一次mtimecmp到未来解除到期条件，不写PLIC complete；CPU的MTIE/MIE和有效trap处理要先准备。当前sleep_until早退条件有静态问题，所以本轮只将计数读取列为现有可复用路径，定时中断列为待完善验收。</p>
+<p><strong>观察和排错。</strong> 反汇编应区分mtime的load与mcycle的csrr；调试器看RTC/mtime_q/mtimecmp_q/mtip，再看mie/mstatus/mtvec。恒0/不增长查RTC与复位；中断风暴查比较值是否仍在过去；卡在trap_vector查是否覆盖weak默认。避免用会读清除的外设寄存器替代计数观察。</p>
+<h2 id="dma">二维 DMA 从配置提交到结果校验</h2>
+<p><strong>目标和前提。</strong> 复用 <a href="../../../sw/tests/dma_2d.spm.c">dma_2d.spm.c</a>。要求Dma使能、2D前端匹配、SPM与高别名合法，并先关闭控制位宽缺口；当前仅源码分析/编译探针，未声称可直接运行。</p>
+<figure><img src="../../diagrams/2026-10-13_software_hardware_interfaces/dma.svg" alt="DMA参数、传输、完成与CPU取回" /><figcaption>DMA参数、传输、完成与CPU取回。图中箭头分别标注软件调用、总线事务或硬件事件。</figcaption></figure>
+<p><strong>软件配置。</strong> <a href="../../../sw/include/dif/dma.h">dma.h</a>宏 <code>X(sys,&amp;__base_dma)</code>生成 <code>sys_dma_2d_blk_memcpy</code>等函数，写SRC/DST/LENGTH、ND enable、两个stride和reps，随后<strong>读NEXT_ID提交</strong>，轮询DONE_ID等于返回ID。DMA基址<code>0x01000000</code>是独立AXI slave窗口，不挂主Regbus demux。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>关键字段</th>
+<th>生成偏移</th>
+<th>软件/硬件含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONF</td>
+<td><code>IDMA_REG64_2D_CONF_REG_OFFSET</code></td>
+<td>ENABLE_ND等配置；查<a href="../../../sw/include/regs/idma.h">生成头</a>，不是START位</td>
+</tr>
+<tr>
+<td>NEXT_ID_0 / DONE_ID_0</td>
+<td>0x44 / 0x84</td>
+<td>32位ID；前者读有提交副作用，后者只表示retire进度</td>
+</tr>
+<tr>
+<td>SRC/DST</td>
+<td>对应LOW/HIGH宏</td>
+<td>物理byte地址组成；受wrapper实际地址位数限制</td>
+</tr>
+<tr>
+<td>LENGTH_LOW/HIGH</td>
+<td>0xe0 / 0xe4</td>
+<td>每行byte数；wrapper有效TfLenWidth=32，不能因有HIGH宏就使用64位长度</td>
+</tr>
+<tr>
+<td>DST_STRIDE_2 / SRC_STRIDE_2</td>
+<td>0xe8/0xec；0xf0/0xf4</td>
+<td>相邻行<strong>起点</strong>之差，单位byte，不是行末间隙</td>
+</tr>
+<tr>
+<td>REPS_2</td>
+<td>0xf8/0xfc</td>
+<td>行数；当前midend计数由1起到reps；有效宽度32</td>
+</tr>
+</tbody>
+</table></div>
+<p>测试源<code>&quot;This is a DMA test&quot;</code>含19字节（含NUL），传 <code>sizeof(src_cached)-4=15</code>字节/行，dst_stride=7、src_stride=1、reps=4。四行源起点为src+0/1/2/3，目的起点dst+0/7/14/21，每行15字节；目的区域有重叠。最后一行末端为dst+35（不含dst+36），预先放在36/37的<code>!\0</code>用于检查越界，gold字符串为源码中的完整期望值。此例说明stride不必≥length；真实多行重叠写的顺序仍需后端/AXI动态验证。</p>
+<p><strong>从写入到搬运。</strong> <a href="../../../hw/cheshire_idma_wrap.sv">cheshire_idma_wrap</a>控制AXI→旧<code>axi_to_reg</code>→<code>dma_reg_req</code>→<a href="../../../.bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv">idma_reg64_2d</a>。寄存器q存参数；NEXT_ID读使<code>next_id.re</code>有效，<code>proc_launch</code>置arb_valid；前端与Job FIFO入口valid/ready握手才issue任务ID。FIFO输出经 <a href="../../../.bender/git/checkouts/idma-77bf7fa56d324e6a/src/midend/idma_nd_midend.sv">idma_nd_midend</a>更新每行源/目的地址，向 <a href="../../../.bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv">idma_backend_rw_axi</a>给出1D请求；legalizer组织burst、transport发独立read/write，<code>i_axi_rw_join</code>合成AXI master接 <code>AxiIn.dma</code>，由它完成内存读取和写入。</p>
+<p><strong>四种事件必须分开。</strong> 参数MMIO被接受≠读NEXT_ID任务入队≠整体ND响应retire≠CPU可见正确结果。2D wrapper以<code>idma_nd_rsp_valid &amp; ready</code>推进DONE_ID，不是任一行完成就推进；wrapper无完成IRQ端口，SoC可选bus-error IRQ也不是DMA DONE。当前backend <code>ErrorCap=NO_ERROR_HANDLING</code>且<code>nd_rsp_o</code>未连接内容，缺少可靠的软件错误结果。</p>
+<p><strong>现有缺口。</strong> 内部Reg typedef跟AxiDataWidth，当前64位；生成reg_top的DW固定32。HAL把+0x44/+0x84的32位ID转成<code>volatile uint64_t*</code>；本轮探针<code>probe_next/probe_done</code>均生成两条<code>lwu</code>：分别访问+0x44/+0x48、+0x84/+0x88，不能靠类型名reg64证明兼容。普通 <code>sys_dma_memcpy()</code>设置reps=0；在2D wrapper中enable_nd=0也使reps为0，而midend的zero路径抑制burst并生成ND_MIDEND错误响应，wrapper却只计retire。<strong>静态推断：即使完成ID变化也可能没有搬运</strong>。需S01/V01用独立最小波形确认并另行修复，当前不把普通1D API作为规避2D问题的办法。</p>
+<p><strong>可见性。</strong> 原测试把源/目的转换到+0x04000000的SPM高别名，并把源值写到该别名，再从同一非缓存别名比较；不能混用缓存别名比较旧副本。API自身没有完整fence/缓存维护/超时闭环；CPU发布写和后续读取的排序需纳入验收。</p>
+<p><strong>观察和排错。</strong> 先看寄存器实际LOW/HIGH值和byte lane，再看NEXT_ID的re次数/FIFO握手、各行src/dst/length、AXI R/B、ND retire、DONE_ID及gold/sentinel。结果超时不能立即释放缓冲；坏数据先分“配置未接受/无burst/地址错/长度或stride错/传输错误/旧缓存”。修复授权后最小用例从单行、非重叠、短长度开始，再回到原2D重叠例。</p>
+<h2 id="gpio-irq">GPIO 事件经过 PLIC 进入处理程序</h2>
+<p><strong>目标和前提。</strong> 当前GPIO/PLIC/DIF有实现，但没有检索到根sw/tests中可直接运行的完整GPIO→PLIC C ISR测试。以下是源码支持的完整静态追踪及待补测试步骤，不是声称已运行的新例程。优先用GPIO <code>INTR_TEST</code>注入，避免默认fixture GPIO输入绑零造成无法产生边沿。</p>
+<p><strong>软件链。</strong> <a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_gpio_autogen.c">dif_gpio_autogen.c</a>的 <code>dif_gpio_irq_force</code>写INTR_TEST、<code>dif_gpio_irq_set_enabled</code>设源使能、<code>dif_gpio_irq_acknowledge</code>以W1C清INTR_STATE。<a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_rv_plic.c">PLIC DIF</a>设置priority、target enable/threshold，<code>dif_rv_plic_irq_claim/complete</code>使用目标CC寄存器。基址分别<code>0x03005000</code>和<code>0x04000000</code>；具体偏移来自 <a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/gpio_regs.h">gpio_regs.h</a>/<a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/rv_plic_regs.h">rv_plic_regs.h</a>。</p>
+<p><strong>访问和事件。</strong> 每次DIF写经CPU→AXI→Reg桥→GPIO/PLIC译码。<a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv">gpio.sv</a> <code>intr_hw</code>消费 <code>reg2hw.intr_test.q/qe</code>、<code>intr_enable.q</code>并更新INTR_STATE；IRQ接 <code>intr.intn.gpio</code>。当前packed结构低位是zero、uart和I²C等，GPIO[0]对应源20；这是从<a href="../../../hw/cheshire_pkg.sv">cheshire_int_intr_t</a>的字段顺序静态推导，改变结构后须重算，不把20写成永久平台约定。默认无Router时fanout到PLIC，后者输出M目标xeip到CVA6。</p>
+<p><strong>进入和返回。</strong> 安装自己的trap_vector→打开目标enable/priority/threshold和CPU MEIE/MIE→注入事件→GPIO state/IRQ置位→PLIC pending→CPU trap→读取mcause识别M external→claim拿到源ID→读取/记录设备原因→acknowledge GPIO对应位→必要排序→complete同一ID→普通C返回→crt0恢复整数现场并mret。硬件INTR_TEST注入绕过外部引脚，但保留寄存器/IRQ/控制器/trap路径。</p>
+<p><strong>观察和排错。</strong> 后续测试应记录ISR计数恰好加1、claim ID、设备pending清零、complete后无持续重入以及返回主循环标志。先查源是否pending，再查PLIC优先级/enable/threshold、CPU mie/mstatus和mtvec。不要用调试器持续读取CC窗口，它会claim；现有64→32桥邻读还要求单独验证threshold/claim相邻布局。未补齐ISR和该副作用验收前，本例不是默认板测命令。</p>
+<h2 id="ara">最小 Ara 加法与标量结果核对</h2>
+<p><strong>目标和前提。</strong> 复用 <a href="../../learning/examples/journey.c">journey.c</a>+<a href="../../learning/examples/rvv_add.S">rvv_add.S</a>，硬件向量profile、Ara2/2048、单hart、全128KiB SPM、CSR_ACC_CONS开启。程序静态区在低64KiB，ROM/应用栈必须始终高于物理<code>0x10011000</code>；测试独占物理<code>[0x10010000,0x10011000)</code>，CPU和Ara只使用高别名。</p>
+<p><strong>准备与执行。</strong> a/b/c高别名分别为<code>0x14010000/0x14010400/0x14010800</code>；N=137，每槽使用548字节加一个守卫。CPU填a[i]=i、b[i]=2*i+1、c哨值→fence→置VS→调用learn_vadd。每轮vsetvli按剩余数量给vl；CVA6把指令/rs1等交给Ara，VLSU沿独立AXI加载两个数组，lane执行vadd，再写c。</p>
+<p><strong>完成与消费。</strong> 专用响应/在途计数及barrier配合函数返回后的fence；CPU从同一高别名读c，逐元素比较<code>3*i+1</code>，核对输入未改和边界守卫，总和应为28085。开启JOURNEY_DEPTH还运行长度0/1/63/64/65/137和归约，覆盖部分尾部边界；这不是全部RVV ISA验证。</p>
+<p><strong>运行、观察与排错。</strong> 本轮已重编RVV ELF并看到vsetvli/vle32/vadd/vse32，不代表Ara执行通过。目标运行应记录 <code>RVV_DEPTH cases=6 errors=0</code>、<code>LEARN sum=28085 errors=0</code>及退出码，检查无访问/非法指令异常。非法指令先查profile/stub/VS/FS，挂起查专用ready和pending，坏结果查物理别名、vl指针增量、缓冲所有权与AXI响应；只有日志而无逐元素断言不算算法验收。</p>
+<nav class="nextprev"><a href="interrupts.html">← 异常与中断</a><a href="integration.html">自定义 IP 与 Linux 修改导航 →</a></nav></main><footer>L01 · 2026-10-13 · 源码分析与文档验证；目标运行另行验收</footer></div></body></html>

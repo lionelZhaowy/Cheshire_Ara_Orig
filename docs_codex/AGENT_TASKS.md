@@ -24,6 +24,8 @@
 
 2026-10-11 L01 补充交付：[片外器件与接口参考](EXTERNAL_DEVICES_AND_INTERFACES.md)、[主题交接](handoffs/L01_interface_reference.md)。交接规则已改为任务主题文件持续更新，普通答疑不单独建日志；历史命名迁移不代表重新实施或验证历史任务。
 
+2026-10-12 L01 图稿补充：使用 `industrial-svg-pptx`，完成旧图目录中 9 张非教程独立图的工业风格版；[新旧对照与下载](diagrams/2026-10-12_industrial_redraw/index.html)、[主题交接](handoffs/L01_native_reconstruction.md)。教程图及原目录不变，原生 SVG/PPTX 结构检查通过；Office 显示/编辑与目标硬件运行未新增验证。
+
 ## 2. 每个对话只带必要上下文
 
 所有对话先读根 `AGENTS.md` 和 `PROJECT_STATE.md`。额外阅读：

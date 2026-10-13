@@ -1,0 +1,919 @@
+{
+  "canvas": [
+    3200.0,
+    1800.0
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      3200,
+      1800
+    ],
+    "applications": [
+      50,
+      175,
+      2500,
+      170
+    ],
+    "app-test": [
+      95,
+      240,
+      580,
+      80
+    ],
+    "app-vector": [
+      715,
+      240,
+      580,
+      80
+    ],
+    "app-tools": [
+      1335,
+      240,
+      580,
+      80
+    ],
+    "app-image": [
+      1955,
+      240,
+      580,
+      80
+    ],
+    "base-software": [
+      50,
+      385,
+      2500,
+      440
+    ],
+    "printf": [
+      100,
+      465,
+      330,
+      100
+    ],
+    "gpt": [
+      480,
+      465,
+      350,
+      100
+    ],
+    "storage-hal": [
+      880,
+      465,
+      720,
+      100
+    ],
+    "debug-hal": [
+      1650,
+      465,
+      820,
+      100
+    ],
+    "uart-dif": [
+      100,
+      630,
+      570,
+      90
+    ],
+    "serial-dif": [
+      720,
+      630,
+      1120,
+      90
+    ],
+    "timer-dma": [
+      1890,
+      630,
+      580,
+      90
+    ],
+    "mmio": [
+      100,
+      755,
+      2370,
+      50
+    ],
+    "interfaces": [
+      50,
+      865,
+      2500,
+      155
+    ],
+    "contract0": [
+      95,
+      930,
+      580,
+      80
+    ],
+    "contract1": [
+      715,
+      930,
+      580,
+      80
+    ],
+    "contract2": [
+      1335,
+      930,
+      580,
+      80
+    ],
+    "contract3": [
+      1955,
+      930,
+      580,
+      80
+    ],
+    "hardware": [
+      50,
+      1060,
+      2500,
+      435
+    ],
+    "cva6": [
+      95,
+      1140,
+      580,
+      100
+    ],
+    "ara": [
+      715,
+      1140,
+      580,
+      100
+    ],
+    "dma": [
+      1335,
+      1140,
+      580,
+      100
+    ],
+    "future-ip": [
+      1955,
+      1140,
+      580,
+      100
+    ],
+    "axi": [
+      100,
+      1290,
+      2370,
+      65
+    ],
+    "memory": [
+      100,
+      1400,
+      1130,
+      65
+    ],
+    "peripherals": [
+      1290,
+      1400,
+      1180,
+      65
+    ],
+    "offchip": [
+      50,
+      1535,
+      2500,
+      170
+    ],
+    "dram": [
+      100,
+      1600,
+      740,
+      80
+    ],
+    "media": [
+      890,
+      1600,
+      820,
+      80
+    ],
+    "sensor": [
+      1760,
+      1600,
+      710,
+      80
+    ],
+    "build": [
+      2620,
+      195,
+      530,
+      285
+    ],
+    "runtime": [
+      2620,
+      535,
+      530,
+      285
+    ],
+    "os": [
+      2620,
+      875,
+      530,
+      285
+    ],
+    "platform": [
+      2620,
+      1215,
+      530,
+      285
+    ]
+  },
+  "texts": [
+    {
+      "text": "Cheshire SoC 软硬件分层结构",
+      "x": 45,
+      "y": 65,
+      "size": 43,
+      "anchor": "start",
+      "owner": null,
+      "id": "o2"
+    },
+    {
+      "text": "裸机工程主线 · 功能库、设备控制、指令执行与片外器件分别表达",
+      "x": 48,
+      "y": 112,
+      "size": 24,
+      "anchor": "start",
+      "owner": null,
+      "id": "o3"
+    },
+    {
+      "text": "应用软件",
+      "x": 1300.0,
+      "y": 218,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "applications",
+      "id": "o5"
+    },
+    {
+      "text": "裸机应用与测试",
+      "x": 385.0,
+      "y": 272.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "app-test",
+      "id": "o7"
+    },
+    {
+      "text": "HelloWorld / 结果校验",
+      "x": 385.0,
+      "y": 306.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "app-test",
+      "id": "o8"
+    },
+    {
+      "text": "向量算法",
+      "x": 1005.0,
+      "y": 272.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "app-vector",
+      "id": "o10"
+    },
+    {
+      "text": "RVV / 矩阵计算",
+      "x": 1005.0,
+      "y": 306.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "app-vector",
+      "id": "o11"
+    },
+    {
+      "text": "系统工具",
+      "x": 1625.0,
+      "y": 272.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "app-tools",
+      "id": "o13"
+    },
+    {
+      "text": "介质烧写 / 下载执行",
+      "x": 1625.0,
+      "y": 306.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "app-tools",
+      "id": "o14"
+    },
+    {
+      "text": "图像处理与推理",
+      "x": 2245.0,
+      "y": 272.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "app-image",
+      "id": "o16"
+    },
+    {
+      "text": "ISP / NPU 工作负载〔规划〕",
+      "x": 2245.0,
+      "y": 306.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "app-image",
+      "id": "o17"
+    },
+    {
+      "text": "基础软件 · 通用功能与设备控制",
+      "x": 1300.0,
+      "y": 428,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "base-software",
+      "id": "o19"
+    },
+    {
+      "text": "printf",
+      "x": 265.0,
+      "y": 507.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "printf",
+      "id": "o21"
+    },
+    {
+      "text": "格式化 → _putchar",
+      "x": 265.0,
+      "y": 541.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "printf",
+      "id": "o22"
+    },
+    {
+      "text": "GPT 解析",
+      "x": 655.0,
+      "y": 507.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "gpt",
+      "id": "o24"
+    },
+    {
+      "text": "read 回调访问介质",
+      "x": 655.0,
+      "y": 541.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "gpt",
+      "id": "o25"
+    },
+    {
+      "text": "存储器件 HAL",
+      "x": 1240.0,
+      "y": 507.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "storage-hal",
+      "id": "o27"
+    },
+    {
+      "text": "SPI Flash / SD / I²C EEPROM",
+      "x": 1240.0,
+      "y": 541.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "storage-hal",
+      "id": "o28"
+    },
+    {
+      "text": "UART debug HAL",
+      "x": 2060.0,
+      "y": 507.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "debug-hal",
+      "id": "o30"
+    },
+    {
+      "text": "READ / WRITE / EXEC",
+      "x": 2060.0,
+      "y": 541.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "debug-hal",
+      "id": "o31"
+    },
+    {
+      "text": "UART DIF",
+      "x": 385.0,
+      "y": 667.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "uart-dif",
+      "id": "o33"
+    },
+    {
+      "text": "初始化 / FIFO 字节收发",
+      "x": 385.0,
+      "y": 701.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "uart-dif",
+      "id": "o34"
+    },
+    {
+      "text": "SPI / I²C / GPIO DIF",
+      "x": 1280.0,
+      "y": 667.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "serial-dif",
+      "id": "o36"
+    },
+    {
+      "text": "控制器配置 / 传输段 / 状态与寄存器",
+      "x": 1280.0,
+      "y": 701.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "serial-dif",
+      "id": "o37"
+    },
+    {
+      "text": "CLINT / DMA 接口",
+      "x": 2180.0,
+      "y": 667.52,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "timer-dma",
+      "id": "o39"
+    },
+    {
+      "text": "计时 / 配置与提交",
+      "x": 2180.0,
+      "y": 701.52,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "timer-dma",
+      "id": "o40"
+    },
+    {
+      "text": "MMIO：reg8 / reg32 · mmio_region_read / write · 基址 + 偏移 + 位宽",
+      "x": 1285.0,
+      "y": 788.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "mmio",
+      "id": "o42"
+    },
+    {
+      "text": "软件可见的接口契约",
+      "x": 1300.0,
+      "y": 908,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "interfaces",
+      "id": "o51"
+    },
+    {
+      "text": "指令执行",
+      "x": 385.0,
+      "y": 961.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "contract0",
+      "id": "o53"
+    },
+    {
+      "text": "标量指令 / RVV",
+      "x": 385.0,
+      "y": 995.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "contract0",
+      "id": "o54"
+    },
+    {
+      "text": "CSR 与特权状态",
+      "x": 1005.0,
+      "y": 961.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "contract1",
+      "id": "o56"
+    },
+    {
+      "text": "处理器配置与控制",
+      "x": 1005.0,
+      "y": 995.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "contract1",
+      "id": "o57"
+    },
+    {
+      "text": "内存与 MMIO",
+      "x": 1625.0,
+      "y": 961.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "contract2",
+      "id": "o59"
+    },
+    {
+      "text": "地址 / 属性 / 寄存器语义",
+      "x": 1625.0,
+      "y": 995.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "contract2",
+      "id": "o60"
+    },
+    {
+      "text": "异常与中断",
+      "x": 2245.0,
+      "y": 961.5,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "contract3",
+      "id": "o62"
+    },
+    {
+      "text": "事件入口 / 处理与返回",
+      "x": 2245.0,
+      "y": 995.5,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "contract3",
+      "id": "o63"
+    },
+    {
+      "text": "SoC 硬件 · 执行、存储与传输",
+      "x": 1300.0,
+      "y": 1103,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "hardware",
+      "id": "o65"
+    },
+    {
+      "text": "CVA6",
+      "x": 385.0,
+      "y": 1182.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "cva6",
+      "id": "o67"
+    },
+    {
+      "text": "取指 / 执行 / 访存",
+      "x": 385.0,
+      "y": 1216.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cva6",
+      "id": "o68"
+    },
+    {
+      "text": "Ara",
+      "x": 1005.0,
+      "y": 1182.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "ara",
+      "id": "o70"
+    },
+    {
+      "text": "RVV / 向量访存",
+      "x": 1005.0,
+      "y": 1216.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ara",
+      "id": "o71"
+    },
+    {
+      "text": "iDMA",
+      "x": 1625.0,
+      "y": 1182.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "dma",
+      "id": "o73"
+    },
+    {
+      "text": "硬件数据搬运",
+      "x": 1625.0,
+      "y": 1216.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "dma",
+      "id": "o74"
+    },
+    {
+      "text": "NPU / ISP / 图像接入",
+      "x": 2245.0,
+      "y": 1182.86,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "future-ip",
+      "id": "o76"
+    },
+    {
+      "text": "自定义 IP 与接口〔规划〕",
+      "x": 2245.0,
+      "y": 1216.86,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "future-ip",
+      "id": "o77"
+    },
+    {
+      "text": "AXI 互连与适配 · 地址路由 · 主设备共享访问",
+      "x": 1285.0,
+      "y": 1332.7,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "axi",
+      "id": "o80"
+    },
+    {
+      "text": "原子适配 → LLC / SPM → 主存出口",
+      "x": 665.0,
+      "y": 1442.02,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "memory",
+      "id": "o86"
+    },
+    {
+      "text": "Regbus → UART / SPI / I²C / GPIO / 中断 / 定时 / ROM",
+      "x": 1880.0,
+      "y": 1441.0,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "peripherals",
+      "id": "o88"
+    },
+    {
+      "text": "片外器件 · 经对应控制器连接",
+      "x": 1300.0,
+      "y": 1578,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "offchip",
+      "id": "o92"
+    },
+    {
+      "text": "DDR 存储器",
+      "x": 470.0,
+      "y": 1632.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "dram",
+      "id": "o94"
+    },
+    {
+      "text": "DDR Controller / PHY",
+      "x": 470.0,
+      "y": 1666.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "dram",
+      "id": "o95"
+    },
+    {
+      "text": "Flash / SD / EEPROM",
+      "x": 1300.0,
+      "y": 1632.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "media",
+      "id": "o97"
+    },
+    {
+      "text": "SPI / I²C 控制器",
+      "x": 1300.0,
+      "y": 1666.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "media",
+      "id": "o98"
+    },
+    {
+      "text": "图像传感器〔规划〕",
+      "x": 2115.0,
+      "y": 1632.18,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "sensor",
+      "id": "o100"
+    },
+    {
+      "text": "LVDS 输入",
+      "x": 2115.0,
+      "y": 1666.18,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "sensor",
+      "id": "o101"
+    },
+    {
+      "text": "开发主机：构建支持",
+      "x": 2885.0,
+      "y": 296.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "build",
+      "id": "o106"
+    },
+    {
+      "text": "编译器 / 汇编器 / 链接器",
+      "x": 2885.0,
+      "y": 330.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "build",
+      "id": "o107"
+    },
+    {
+      "text": "Makefile / 链接脚本 / 库归档",
+      "x": 2885.0,
+      "y": 364.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "build",
+      "id": "o108"
+    },
+    {
+      "text": "生成 ELF 与代码数据布局",
+      "x": 2885.0,
+      "y": 398.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "build",
+      "id": "o109"
+    },
+    {
+      "text": "启动与运行支持",
+      "x": 2885.0,
+      "y": 636.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o111"
+    },
+    {
+      "text": "Boot ROM / 载荷加载",
+      "x": 2885.0,
+      "y": 670.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o112"
+    },
+    {
+      "text": "crt0：栈 / BSS / 异常入口",
+      "x": 2885.0,
+      "y": 704.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o113"
+    },
+    {
+      "text": "进入 main；异常处理与返回",
+      "x": 2885.0,
+      "y": 738.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "runtime",
+      "id": "o114"
+    },
+    {
+      "text": "可选操作系统",
+      "x": 2885.0,
+      "y": 976.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "os",
+      "id": "o116"
+    },
+    {
+      "text": "RTOS：任务 / 调度 / 同步",
+      "x": 2885.0,
+      "y": 1010.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "os",
+      "id": "o117"
+    },
+    {
+      "text": "Linux：用户态 / 内核 / 驱动",
+      "x": 2885.0,
+      "y": 1044.3600000000001,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "os",
+      "id": "o118"
+    },
+    {
+      "text": "按各自环境建立设备访问路径",
+      "x": 2885.0,
+      "y": 1078.3600000000001,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "os",
+      "id": "o119"
+    },
+    {
+      "text": "硬件实现与适配",
+      "x": 2885.0,
+      "y": 1316.36,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "platform",
+      "id": "o121"
+    },
+    {
+      "text": "FPGA：现有 VCU118 工程",
+      "x": 2885.0,
+      "y": 1350.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "platform",
+      "id": "o122"
+    },
+    {
+      "text": "ASIC：宏 / 时钟 / PAD 适配",
+      "x": 2885.0,
+      "y": 1384.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "platform",
+      "id": "o123"
+    },
+    {
+      "text": "ASIC 实现与验证仍待完成",
+      "x": 2885.0,
+      "y": 1418.36,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "platform",
+      "id": "o124"
+    },
+    {
+      "text": "LLC / AXI RT 等专用库",
+      "x": 2885,
+      "y": 1580,
+      "size": 25,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o125"
+    },
+    {
+      "text": "libcheshire.a 跨多个职责归档",
+      "x": 2885,
+      "y": 1620,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o126"
+    },
+    {
+      "text": "虚线：规划扩展",
+      "x": 2885,
+      "y": 1690,
+      "size": 24,
+      "anchor": "middle",
+      "owner": null,
+      "id": "o127"
+    },
+    {
+      "text": "硬件访问",
+      "x": 135,
+      "y": 1763,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o129"
+    },
+    {
+      "text": "代表性调用 / 专用接口",
+      "x": 665,
+      "y": 1763,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o131"
+    },
+    {
+      "text": "规划中的图像输入",
+      "x": 1195,
+      "y": 1763,
+      "size": 22,
+      "anchor": "start",
+      "owner": null,
+      "id": "o133"
+    }
+  ]
+}

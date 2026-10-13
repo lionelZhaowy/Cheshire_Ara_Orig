@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1170" viewBox="0 0 1600 1170">
+<rect x="0" y="0" width="1600" height="1170" fill="#FFFFFF"/>
+<text x="40" y="43" font-family="WenQuanYi Zen Hei" font-size="29" fill="#253447" text-anchor="start">④ i_mem_to_banks：字段切片、两路独立请求、两路响应收齐</text>
+<text x="40" y="85" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">64-bit 数据 / 48-bit 地址；NumBanks = 2，FifoDepth = 1，HideStrb = 0。</text>
+<text x="40" y="142" font-family="WenQuanYi Zen Hei" font-size="25" fill="#205F9C" text-anchor="start">请求方向 →</text>
+<rect x="50" y="210" width="260" height="180" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="180.0" y="244" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_req.addr [47:0]</text>
+<text x="180.0" y="276" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_req.wdata [63:0]</text>
+<text x="180.0" y="308" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_req.strb [7:0]</text>
+<text x="180.0" y="340" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_req.we</text>
+<text x="180.0" y="372" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">其余属性随行</text>
+<rect x="420" y="175" width="340" height="120" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="590.0" y="209" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">组合切片：子通路 0</text>
+<text x="590.0" y="241" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">addr = align8(addr)</text>
+<text x="590.0" y="273" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">wdata[31:0] / strb[3:0]</text>
+<rect x="420" y="355" width="340" height="120" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="590.0" y="389" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">组合切片：子通路 1</text>
+<text x="590.0" y="421" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">addr = align8(addr) + 4</text>
+<text x="590.0" y="453" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">wdata[63:32] / strb[7:4]</text>
+<polyline points="310,300 365,300 365,235 420,235" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="420,235 409.0,230.5 409.0,239.5" fill="#205F9C"/>
+<polyline points="365,300 365,415 420,415" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="420,415 409.0,410.5 409.0,419.5" fill="#205F9C"/>
+<circle cx="365" cy="300" r="4" fill="#205F9C"/>
+<rect x="820" y="180" width="210" height="105" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="925.0" y="212" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">请求 FIFO</text>
+<text x="925.0" y="243" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">深度 1</text>
+<rect x="845" y="247" width="160" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<polyline points="760,235 820,235" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="820,235 809.0,230.5 809.0,239.5" fill="#205F9C"/>
+<polyline points="1030,225 1160,225" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1160,225 1149.0,220.5 1149.0,229.5" fill="#205F9C"/>
+<text x="1175" y="186" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_addr_o[0] / mem_wdata_o[0]</text>
+<text x="1175" y="216" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_strb_o[0] / mem_we_o[0]</text>
+<text x="1175" y="252" font-family="WenQuanYi Zen Hei" font-size="22" fill="#925021" text-anchor="start">mem_req_o[0] → / ← mem_gnt_i[0]</text>
+<text x="1175" y="284" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">接外层第 0 路适配器</text>
+<rect x="820" y="360" width="210" height="105" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="925.0" y="392" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">请求 FIFO</text>
+<text x="925.0" y="423" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">深度 1</text>
+<rect x="845" y="427" width="160" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<polyline points="760,415 820,415" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="820,415 809.0,410.5 809.0,419.5" fill="#205F9C"/>
+<polyline points="1030,405 1160,405" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1160,405 1149.0,400.5 1149.0,409.5" fill="#205F9C"/>
+<text x="1175" y="366" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_addr_o[1] / mem_wdata_o[1]</text>
+<text x="1175" y="396" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_strb_o[1] / mem_we_o[1]</text>
+<text x="1175" y="432" font-family="WenQuanYi Zen Hei" font-size="22" fill="#925021" text-anchor="start">mem_req_o[1] → / ← mem_gnt_i[1]</text>
+<text x="1175" y="464" font-family="WenQuanYi Zen Hei" font-size="23" fill="#536174" text-anchor="start">接外层第 1 路适配器</text>
+<text x="40" y="539" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">地址是 48 bit，切片的是数据与字节使能；最终仍汇入外层的同一个 Regbus。</text>
+<polyline points="40,570 1560,570" fill="none" stroke="#253447" stroke-width="1" stroke-linejoin="miter"/>
+<text x="40" y="620" font-family="WenQuanYi Zen Hei" font-size="25" fill="#205F9C" text-anchor="start">响应方向 ←</text>
+<rect x="320" y="710" width="355" height="220" fill="#F1F5F9" stroke="#253447" stroke-width="2"/>
+<text x="497.5" y="744" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">组合拼接</text>
+<text x="497.5" y="776" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_rdata.data [31:0]</text>
+<text x="497.5" y="808" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">← 第 0 路响应数据</text>
+<text x="497.5" y="840" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">mem_rdata.data [63:32]</text>
+<text x="497.5" y="872" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">← 第 1 路响应数据</text>
+<text x="497.5" y="904" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">err / exokay 按路保留</text>
+<rect x="855" y="680" width="240" height="120" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="975.0" y="712" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">响应 FIFO 0</text>
+<text x="975.0" y="743" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">深度 1</text>
+<rect x="880" y="762" width="190" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<text x="1160" y="702" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">mem_rdata_i[0] [31:0]</text>
+<text x="1160" y="736" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_err_i[0] / mem_exokay_i[0]</text>
+<polyline points="1140,730 1095,730" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1095,730 1106.0,734.5 1106.0,725.5" fill="#205F9C"/>
+<polyline points="1140,770 1095,770" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1095,770 1106.0,774.5 1106.0,765.5" fill="#925021"/>
+<text x="1160" y="775" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">mem_rvalid_i[0]</text>
+<rect x="855" y="910" width="240" height="120" fill="#EEF5EE" stroke="#253447" stroke-width="2"/>
+<text x="975.0" y="942" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="middle">响应 FIFO 1</text>
+<text x="975.0" y="973" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="middle">深度 1</text>
+<rect x="880" y="992" width="190" height="23" fill="#FFFFFF" stroke="#253447" stroke-width="2"/>
+<text x="1160" y="932" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">mem_rdata_i[1] [31:0]</text>
+<text x="1160" y="966" font-family="WenQuanYi Zen Hei" font-size="22" fill="#253447" text-anchor="start">mem_err_i[1] / mem_exokay_i[1]</text>
+<polyline points="1140,960 1095,960" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="1095,960 1106.0,964.5 1106.0,955.5" fill="#205F9C"/>
+<polyline points="1140,1000 1095,1000" fill="none" stroke="#925021" stroke-width="2.4" stroke-linejoin="miter" stroke-dasharray="8 5"/>
+<polygon points="1095,1000 1106.0,1004.5 1106.0,995.5" fill="#925021"/>
+<text x="1160" y="1005" font-family="WenQuanYi Zen Hei" font-size="24" fill="#925021" text-anchor="start">mem_rvalid_i[1]</text>
+<polyline points="855,730 675,730" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="675,730 686.0,734.5 686.0,725.5" fill="#205F9C"/>
+<polyline points="855,960 740,960 740,880 675,880" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="675,880 686.0,884.5 686.0,875.5" fill="#205F9C"/>
+<text x="45" y="781" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">64-bit 结果</text>
+<polyline points="320,805 45,805" fill="none" stroke="#205F9C" stroke-width="2.4" stroke-linejoin="miter"/>
+<polygon points="45,805 56.0,809.5 56.0,800.5" fill="#205F9C"/>
+<text x="45" y="850" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">送回图③</text>
+<text x="45" y="883" font-family="WenQuanYi Zen Hei" font-size="24" fill="#253447" text-anchor="start">mem_resp_i</text>
+<text x="45" y="1090" font-family="WenQuanYi Zen Hei" font-size="25" fill="#925021" text-anchor="start">mem_rvalid = resp_valid[0] &amp; resp_valid[1]：两路都到齐才交付整拍结果。</text>
+<text x="45" y="1135" font-family="WenQuanYi Zen Hei" font-size="24" fill="#536174" text-anchor="start">读、写都必须返回完成响应；先到的一路保存在自己的响应 FIFO 中。</text>
+</svg>

@@ -1,0 +1,910 @@
+{
+  "task": "L01",
+  "date": "2026-10-13",
+  "head": "c4162204cfee0c48b81158b4296860a678d92bec",
+  "coverage": [
+    {
+      "file": "docs_codex/rtl_modules/00_regbus.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv",
+        ".bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv",
+        ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv",
+        ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv",
+        ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv",
+        "docs/um/arch.md"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/01_uart.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv",
+        ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv",
+        "sw/lib/dif/uart.c"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/02_i2c.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/i2c/rtl/i2c_core.sv",
+        "sw/lib/hal/i2c_24fc1025.c"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/03_spi.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/spi_host/rtl/spi_host_core.sv",
+        "sw/lib/hal/spi_s25fs512s.c"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/04_gpio.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_gpio.c"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/05_plic.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_gateway.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_target.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_reg_top.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_reg_pkg.sv",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_rv_plic.c"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/06_clint_clic.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv",
+        ".bender/git/checkouts/clic-360fff7ce2d41116/src/clic.sv",
+        "sw/lib/dif/clint.c",
+        "sw/tests/clic_basic.spm.S"
+      ]
+    },
+    {
+      "file": "docs_codex/rtl_modules/07_irq_router.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sources": [
+        "hw/cheshire_pkg.sv",
+        "target/xilinx/src/cheshire_top_xilinx.sv",
+        "hw/cheshire_soc.sv",
+        ".bender/git/checkouts/irq_router-376b3d113c15d0ef/rtl/irq_router.sv",
+        ".bender/git/checkouts/irq_router-376b3d113c15d0ef/gen/irq_router_regs.hjson"
+      ]
+    }
+  ],
+  "figures": {
+    "00a_regbus": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "AXI4 请求 AW/W/AR 向 Xbar；B/R 响应及 ready 反向。默认数据64、地址48。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "AxiOut.reg_demux：Xbar 选中的 AXI 请求/响应，进入原子适配、cut 和桥。"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "label": "reg_in_req / reg_in_rsp：Regbus addr/write/wdata[31:0]/wstrb[3:0]/valid，返回 rdata/error/ready。"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "N05",
+          "label": "reg_in_req.addr：地址送 i_reg_demux_decode，以 RegMap 做范围译码。"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "N04",
+          "label": "reg_select：地址译码选中的目标索引；未命中使用默认错误端口。"
+        },
+        {
+          "id": "E06",
+          "source": "N04",
+          "target": "N06",
+          "label": "reg_out_req / reg_out_rsp：被选片内目标的 Regbus 请求及返回。"
+        },
+        {
+          "id": "E07",
+          "source": "N04",
+          "target": "N07",
+          "label": "错误端口 Regbus 请求/响应；未命中时 ready=1、error=1。"
+        },
+        {
+          "id": "E08",
+          "source": "N04",
+          "target": "N08",
+          "label": "扩展端口 reg_ext_slv_req_o[k] / reg_ext_slv_rsp_i[k]；配置产生后才有可用目标。"
+        },
+        {
+          "id": "E09",
+          "source": "N08",
+          "target": "N09",
+          "label": "规划：外部 Regbus 请求/响应；同域直连，异域新增 reg_cdc。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "note",
+          "message": "N08/N09 都须标默认端口数0/规划；现有同域桥与拟新增CDC分开；64/32/48来自DefaultCfg而非接口固定限制。"
+        }
+      ]
+    },
+    "00b_ip_contract": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "P01",
+          "target": "N01",
+          "label": "建议 Regbus 端点请求：addr/write/wdata/wstrb/valid；完整地址是否减 BASE 由封装定义。"
+        },
+        {
+          "id": "E02",
+          "source": "N01",
+          "target": "N02",
+          "label": "建议写路径：地址命中、权限和 wstrb 合法且 valid&ready 后产生字段写使能/写数据。"
+        },
+        {
+          "id": "E03",
+          "source": "N02",
+          "target": "N05",
+          "label": "建议 START 提交及整组配置快照；工作逻辑另定义 accept/busy 协议。"
+        },
+        {
+          "id": "E04",
+          "source": "N05",
+          "target": "N03",
+          "label": "建议工作状态 busy/done/error 回到可读状态与事件锁存。"
+        },
+        {
+          "id": "E05",
+          "source": "N01",
+          "target": "N04",
+          "label": "建议读地址/访问属性译码，选择 rdata 并判定错误及完成条件。"
+        },
+        {
+          "id": "E06",
+          "source": "N02",
+          "target": "N04",
+          "label": "建议配置寄存器当前值送读选择器。"
+        },
+        {
+          "id": "E07",
+          "source": "N03",
+          "target": "N04",
+          "label": "建议状态/事件寄存器当前值送读选择器。"
+        },
+        {
+          "id": "E08",
+          "source": "P02",
+          "target": "N03",
+          "label": "建议清除使能来自地址/写握手译码，W1C 对应 wdata 中写1且 wstrb 选中的事件位。"
+        },
+        {
+          "id": "E09",
+          "source": "N04",
+          "target": "P03",
+          "label": "建议 Regbus 返回：rdata/error/ready；应答配置访问，非等待整个运算完成。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "edge",
+          "id": "E08",
+          "source": "N01",
+          "target": "N03",
+          "message": "W1C箭头起点不应悬空为真实外部端口P02；清除使能从地址/合法写握手逻辑来。建议改成N01→N03，P02删除或仅作注释。"
+        },
+        {
+          "kind": "note",
+          "message": "整图是建议契约，所有具体字段名均示意；busy/done/error为功能角色，不是已有NPU寄存器。"
+        }
+      ]
+    },
+    "01_uart": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "APB 请求 PSEL/PENABLE/PWRITE/PADDR/PWDATA；PRDATA/PREADY/PSLVERR 返回。PADDR=addr[4:2]。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "iBaudgenDiv={iDLM,iDLL}：分频寄存器给 uart_baudgen.DIVIDER。"
+        },
+        {
+          "id": "E03",
+          "source": "N02",
+          "target": "N04",
+          "label": "PWDATA[7:0] 与 iTXFIFOWrite：合法 THR 写入 TX FIFO；复位/清空由 FCR 控制。"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "label": "iTXFIFOQ[7:0] 经发送控制过程锁存 iTSR，再送 UART_TX.DIN；iTXFIFORead 消耗队头。"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "P01",
+          "label": "iSOUT 到 SOUT/uart_tx_o：串行输出位，调制解调/回环选择属于 UART 包装逻辑。"
+        },
+        {
+          "id": "E06",
+          "source": "P02",
+          "target": "N07",
+          "label": "uart_rx_i/SIN 经输入同步与回环选择成为 iSIN，送 UART_RX.SIN。"
+        },
+        {
+          "id": "E07",
+          "source": "N07",
+          "target": "N06",
+          "label": "iRXData[7:0]、iRXPE/iRXFE/iRXBI 与 iRXFinished：RX 控制过程产生 iRXFIFOD[10:0]/iRXFIFOWrite。"
+        },
+        {
+          "id": "E08",
+          "source": "N06",
+          "target": "N02",
+          "label": "iRXFIFOQ[7:0]→iRBR→PRDATA；RBR 读产生反向 iRXFIFORead 出队动作。"
+        },
+        {
+          "id": "E09",
+          "source": "N03",
+          "target": "N05",
+          "label": "iBaudtick16x 经 UART_BG2 分频得到 iBaudtick2x，作为 UART_TX.TXCLK 的使能节拍。"
+        },
+        {
+          "id": "E10",
+          "source": "N03",
+          "target": "N07",
+          "label": "波特率/边沿逻辑产生 iRCLK，送 UART_RX.RXCLK；不是另一个寄存器时钟域。"
+        },
+        {
+          "id": "E11",
+          "source": "N06",
+          "target": "N08",
+          "label": "接收水位/错误/超时派生 iRDAInterrupt、iLSR[4:0]、iCharTimeout，送 UART_IIC。"
+        },
+        {
+          "id": "E12",
+          "source": "N02",
+          "target": "N08",
+          "label": "iIER[3:0]、iMCR_AFE、iMSR[3:0] 等配置/状态送 UART_IIC；iIIR[3:0] 返回寄存器读路径。"
+        },
+        {
+          "id": "E13",
+          "source": "N08",
+          "target": "P03",
+          "label": "UART_IIC.INT→intr_o→intr.intn.uart；设备事件再进入 SoC IRQ 路径。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "node",
+          "id": "N05",
+          "message": "可标“uart_transmitter + TX控制”；TX FIFO经顶层iTSR保持寄存器后到DIN，非实例直接data连线。"
+        },
+        {
+          "kind": "edge",
+          "id": "E12",
+          "both": true,
+          "message": "加入iIIR返回APB读路径，IER/MSR等正向。"
+        },
+        {
+          "kind": "add_edge",
+          "source": "N04",
+          "target": "N08",
+          "label": "TX空派生iTHRInterrupt→UART_IIC.THI",
+          "message": "E11只可解释接收相关中断，发送中断应单独补线或配对端口。"
+        },
+        {
+          "kind": "note",
+          "message": "RX引脚到receiver包含输入同步/回环选择；baudgen方框需解释为包含后续tick分频/边沿逻辑。"
+        }
+      ]
+    },
+    "02_i2c": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "reg2hw.fdata→fmt_fifo_wdata[12:0]/fmt_fifo_wvalid：8-bit 字节+5-bit 事务标志。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N04",
+          "label": "fmt_byte/五个 fmt_flag 与 fmt_fifo_rvalid；FSM 以 fmt_fifo_rready 消耗命令。"
+        },
+        {
+          "id": "E03",
+          "source": "N04",
+          "target": "N03",
+          "label": "rx_fifo_wdata[7:0]/rx_fifo_wvalid：FSM 采样接收字节，写入 Host RX FIFO。"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "N01",
+          "label": "rx_fifo_rdata→hw2reg.rdata；读请求经 reg2hw.rdata.re 产生 FIFO 消耗。"
+        },
+        {
+          "id": "E05",
+          "source": "N04",
+          "target": "N05",
+          "label": "FSM scl_out_fsm/sda_out_fsm 输出，scl_sync/sda_sync 反馈；core 加 override/采样和 OE 后连接 cio_scl/sda_*。"
+        },
+        {
+          "id": "E06",
+          "source": "N06",
+          "target": "N04",
+          "label": "tx_fifo_rdata[7:0]/rvalid 与 FSM 反向 rready：Target 发送字节。"
+        },
+        {
+          "id": "E07",
+          "source": "N04",
+          "target": "N07",
+          "label": "acq_fifo_wdata[9:0]/wvalid：Target 接收内容与事务标志；还有 FIFO 深度/当前项反馈到 FSM。"
+        },
+        {
+          "id": "E08",
+          "source": "N01",
+          "target": "N04",
+          "label": "host_enable/target_enable、thigh/tlow/建立保持/超时等字段控制 FSM；FIFO reset 另接各队列，不是经过 FSM。"
+        },
+        {
+          "id": "E09",
+          "source": "N04",
+          "target": "N08",
+          "label": "FSM 的 event_nak/event_cmd_complete/event_* 送中断逻辑；水位/溢出等另来自 FIFO 周边。"
+        },
+        {
+          "id": "E10",
+          "source": "N01",
+          "target": "N08",
+          "label": "reg2hw.intr_enable/intr_test/intr_state 送 prim_intr_hw；hw2reg.intr_state.d/de 反向更新寄存器。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "add_edge",
+          "source": "N01",
+          "target": "N06",
+          "label": "reg2hw.txdata→tx_fifo_wdata/wvalid；Target软件填充"
+        },
+        {
+          "kind": "add_edge",
+          "source": "N07",
+          "target": "N01",
+          "label": "acq_fifo_rdata→hw2reg.acqdata；读消费由reg2hw返回"
+        },
+        {
+          "kind": "edge",
+          "id": "E10",
+          "both": true,
+          "message": "中断状态hw2reg回写也是该组关系，勿只标enable/test单方向。"
+        },
+        {
+          "kind": "note",
+          "message": "E08的FIFO reset从reg2hw直接到各FIFO，不经过FSM。N08还收FIFO派生事件，建议标“FSM/FIFO事件”，避免把15路全归FSM。N05包含同步/override/IO控制，并非FSM直接处理PAD OE。"
+        }
+      ]
+    },
+    "03_spi": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "command/command_valid 进入命令队列，command_busy/qd/error_busy 回到状态与错误逻辑。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "core_command/core_command_valid 向 FSM；core_command_ready 反向接受命令。"
+        },
+        {
+          "id": "E03",
+          "source": "N01",
+          "target": "N04",
+          "label": "fifo_win_h2d[RX/TX] 与 fifo_win_d2h[RX/TX]：reg_top 解码后的两个 Regbus 窗口。"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "N05",
+          "label": "tx_data[31:0]/tx_be[3:0]/tx_valid_checked 入 TX FIFO；tx_ready 用于写溢出检查，不无限延迟 MMIO。"
+        },
+        {
+          "id": "E05",
+          "source": "N06",
+          "target": "N04",
+          "label": "rx_data[31:0]/rx_valid 到窗口；窗口读产生 rx_ready，读空由 error_underflow 报告。"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N07",
+          "label": "core_tx_data[31:0]/core_tx_be/core_tx_valid；byte_select 返回 core_tx_ready。"
+        },
+        {
+          "id": "E07",
+          "source": "N08",
+          "target": "N06",
+          "label": "core_rx_data[31:0]/core_rx_valid；RX FIFO 返回 core_rx_ready。"
+        },
+        {
+          "id": "E08",
+          "source": "N07",
+          "target": "N09",
+          "label": "tx_data_sr[7:0]/tx_valid_sr；反向 tx_ready_sr，另有 tx_flush_sr 消耗当前残余字节。"
+        },
+        {
+          "id": "E09",
+          "source": "N09",
+          "target": "N08",
+          "label": "rx_data_sr[7:0]/rx_valid_sr/rx_last_sr；byte_merge 返回 rx_ready_sr。"
+        },
+        {
+          "id": "E10",
+          "source": "N03",
+          "target": "N09",
+          "label": "wr_en/rd_en/shift_en/sample_en/speed/full_cyc/last_* 到移位器；wr_ready/rd_ready 返回 FSM。SCK/CS/OE 是 FSM 独立引脚输出。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "edge",
+          "id": "E10",
+          "both": true,
+          "message": "删“SCK/CS与移位节拍”误导标注，改“移位/采样控制及ready反馈”。"
+        },
+        {
+          "kind": "node",
+          "id": "N09",
+          "message": "删SD输出OE属于shift_register的暗示，OE由FSM产生；写SD输入/输出即可。"
+        },
+        {
+          "kind": "add_port_edge",
+          "source": "N03",
+          "port": "SPI 时序引脚",
+          "label": "sck_o/csb_o/sd_en_o；SCK/片选/数据输出使能"
+        },
+        {
+          "kind": "add_port_edge",
+          "source": "N09",
+          "port": "SD 数据引脚",
+          "both": true,
+          "label": "sd_o[3:0]/sd_i[3:0]；数据输出/采样输入"
+        },
+        {
+          "kind": "note",
+          "message": "IRQ目前仅文本标注，若补箭头须来自spi_host顶层error/event整合逻辑，不能只从FSM直接到SoC。"
+        }
+      ]
+    },
+    "04_gpio": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "gpio_i[31:0]→cio_gpio_i：外部数字输入进入各 prim_filter_ctr。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "data_in_d[31:0]：滤波后的本拍输入，与保存的 data_in_q 比较。"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "label": "event_intr_combined[31:0]：选中的上升/下降沿及高/低电平条件。"
+        },
+        {
+          "id": "E04",
+          "source": "N05",
+          "target": "N06",
+          "label": "reg2hw.direct_out 或 masked_out_* 的 q/qe：按掩码更新 cio_gpio_q；当前值反向供 hw2reg 回读。"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "N07",
+          "label": "reg2hw.direct_oe 或 masked_oe_* 的 q/qe：按掩码更新 cio_gpio_en_q；当前值反向供 hw2reg 回读。"
+        },
+        {
+          "id": "E06",
+          "source": "N06",
+          "target": "P01",
+          "label": "cio_gpio_q→cio_gpio_o→gpio_o[31:0]：PAD 输出数据。"
+        },
+        {
+          "id": "E07",
+          "source": "N07",
+          "target": "P02",
+          "label": "cio_gpio_en_q→cio_gpio_en_o→gpio_en_o[31:0]：PAD 输出使能。"
+        },
+        {
+          "id": "E08",
+          "source": "N05",
+          "target": "N02",
+          "label": "reg2hw.ctrl_en_input_filter.q：逐位滤波使能；同步器有无由 GpioAsyncOn 参数决定。"
+        },
+        {
+          "id": "E09",
+          "source": "N05",
+          "target": "N03",
+          "label": "reg2hw.intr_ctrl_en_rising/falling/lvlhigh/lvllow：选定检测条件。"
+        },
+        {
+          "id": "E10",
+          "source": "N05",
+          "target": "N04",
+          "label": "reg2hw.intr_enable/intr_test/intr_state 到 IRQ 逻辑；hw2reg.intr_state.d/de 反向更新事件寄存器。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "edge",
+          "id": "E10",
+          "both": true,
+          "message": "该关系同时有hw2reg.intr_state反馈；双向+标签对应。"
+        },
+        {
+          "kind": "edge",
+          "id": "E04",
+          "both": true,
+          "message": "当前OUT读回hw2reg.direct_out/masked_out也可归入此组。"
+        },
+        {
+          "kind": "edge",
+          "id": "E05",
+          "both": true,
+          "message": "当前OE读回hw2reg.direct_oe/masked_oe也可归入此组。"
+        },
+        {
+          "kind": "add_edge",
+          "source": "N02",
+          "target": "N05",
+          "label": "data_in_d→hw2reg.data_in.d/de；CPU读取采样输入"
+        },
+        {
+          "kind": "add_port_edge",
+          "source": "N04",
+          "port": "SoC GPIO IRQ",
+          "label": "intr_gpio_o[31:0]→intr.intn.gpio"
+        }
+      ]
+    },
+    "05_plic": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "intr_routed[IntrRtdPlic][NumSrc-1:0]→intr_src_i：输入源向量，当前58位含保留源0。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "intr_src_synced→gateway.src_i；LevelEdgeTrig 默认全0，当前按电平采样。"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N04",
+          "label": "ip[NumSrc-1:0]→各 target.ip_i：源 pending 向量，active 留在 gateway 内。"
+        },
+        {
+          "id": "E04",
+          "source": "N04",
+          "target": "P01",
+          "label": "irq_o[NumTarget-1:0]→xeip：当前两个目标向单核发送 M/S 外部中断通知。"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "N03",
+          "label": "claim/complete：由 reg2hw.cc*.re/qe 及源ID译为逐源控制位。"
+        },
+        {
+          "id": "E06",
+          "source": "N04",
+          "target": "N05",
+          "label": "irq_id_o→cc_id→hw2reg.cc*.d：获胜ID供 claim MMIO 读取；外部 irq_id_o 端口未接CPU。"
+        },
+        {
+          "id": "E07",
+          "source": "N05",
+          "target": "N04",
+          "label": "prio/ie[target]/threshold[target]：源优先级、目标屏蔽和阈值控制。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "add_edge",
+          "source": "N03",
+          "target": "N05",
+          "label": "ip→hw2reg.ip.d/de；pending回读"
+        },
+        {
+          "kind": "note",
+          "message": "N01“经IRQ Router”应写“Router或旁路”；当前Router=0。当前目标2/源58，不把图中复制符号当任意核配置都已生成。"
+        }
+      ]
+    },
+    "06a_clint": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "P01",
+          "target": "N01",
+          "label": "rtc_i→clint_sync_wedge.serial_i：外部计时时基波形，需满足 SoC 采样条件。"
+        },
+        {
+          "id": "E02",
+          "source": "N01",
+          "target": "N02",
+          "label": "increase_timer→hw2reg.mtime_low/high.de：RTC 上升沿的一拍自动加1使能。"
+        },
+        {
+          "id": "E03",
+          "source": "N02",
+          "target": "N03",
+          "label": "mtime_q[63:0]={reg2hw.mtime_high.q,mtime_low.q}：组合读出当前时间到比较器。"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "P02",
+          "label": "比较结果 timer_irq_o[0]→mtip：mtime>=mtimecmp 时持续有效。"
+        },
+        {
+          "id": "E05",
+          "source": "N04",
+          "target": "N03",
+          "label": "mtimecmp_q[0]：reg_top 中高/低比较字段组成的64-bit值。"
+        },
+        {
+          "id": "E06",
+          "source": "P03",
+          "target": "N05",
+          "label": "Regbus 请求 addr/write/wdata/wstrb/valid；rdata/error/ready 返回。"
+        },
+        {
+          "id": "E07",
+          "source": "N05",
+          "target": "N04",
+          "label": "字段展开：MTIMECMP_LOW0/HIGH0 存储在 clint_reg_top 内，经 reg2hw 组成 mtimecmp_q。"
+        },
+        {
+          "id": "E08",
+          "source": "N05",
+          "target": "N02",
+          "label": "字段展开：MTIME 存储在 reg_top，reg2hw 提供当前值，hw2reg.d/de 提交自动计时更新；软件也可读写。"
+        },
+        {
+          "id": "E09",
+          "source": "N05",
+          "target": "N06",
+          "label": "字段展开：reg2hw.msip[0].p.q，存储在 clint_reg_top 内，由软件置位或清零。"
+        },
+        {
+          "id": "E10",
+          "source": "N06",
+          "target": "P04",
+          "label": "reg2hw.msip[0].p.q→ipi_o[0]→msip：本 hart 软件中断电平。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "node",
+          "id": "N02",
+          "message": "改“RTC沿使能自动加1；MTIME存储在reg_top”，软件仍可写，不应写仅RTC沿更新。"
+        },
+        {
+          "kind": "note",
+          "message": "N02/N04/N06均为reg_top字段的功能展开，不是三个独立模块。可在图下注“存储字段展开，mtime_q/mtimecmp_q为组合别名”。N05建议“Regbus译码/字段控制”避免重复显示存储实例。"
+        }
+      ]
+    },
+    "06b_clic": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "clic_intr→intr_src_i：SoC 拼装设备向量和 MEIP/SEIP/MTIP/MSIP 等 core 源。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "ip→clic_target.ip_i：gateway 维护的 pending 状态。"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "N02",
+          "label": "claim→gateway.claim_i：target 接受流程产生的逐源认领控制。"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "N04",
+          "label": "整个 CLIC 的 irq_valid/id/level/shv/priv/kill_req→CPU；irq_ready/kill_ack 返回。顶层另完成 shv 选择与 level/priv 格式化。"
+        },
+        {
+          "id": "E05",
+          "source": "N05",
+          "target": "N02",
+          "label": "clic_reg_adapter 输出 ip_sw/le 到 gateway；gateway 的 ip 返回 adapter→clicint_hw2reg。"
+        },
+        {
+          "id": "E06",
+          "source": "N05",
+          "target": "N03",
+          "label": "clic_reg_adapter 输出 ie/intctl/intmode/le 到 target；全局 mnlbits/shv 字段另供顶层输出格式化。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "node",
+          "id": "N05",
+          "message": "删除“Regbus→reg_adapter→对应寄存器”；改“Regbus地址译码→寄存器；reg_adapter整理字段”。adapter处于reg2hw/hw2reg侧。"
+        },
+        {
+          "kind": "node",
+          "id": "N03",
+          "message": "N03改“clic_target + 顶层输出组合逻辑”，否则E04误认为shv/level/priv全由target实例产生。"
+        },
+        {
+          "kind": "edge",
+          "id": "E05",
+          "both": true,
+          "message": "加ip pending返回到寄存器侧。"
+        },
+        {
+          "kind": "note",
+          "message": "须标当前默认/FPGA Cfg.Clic=0；这是已有未启用结构。"
+        }
+      ]
+    },
+    "07_irq_router": {
+      "edges": [
+        {
+          "id": "E01",
+          "source": "N01",
+          "target": "N02",
+          "label": "intr→irqs_i：已按 SoC 同步约定形成的源向量。"
+        },
+        {
+          "id": "E02",
+          "source": "N02",
+          "target": "N03",
+          "label": "irqs_cloned：每目标复制一组输入源，不存储事件。"
+        },
+        {
+          "id": "E03",
+          "source": "N03",
+          "target": "P01",
+          "label": "irqs_distributed_o 对应 intr_routed[0]，截取 PLIC NumSrc 后接 intr_src_i。"
+        },
+        {
+          "id": "E04",
+          "source": "N03",
+          "target": "P02",
+          "label": "intr_routed[IntrRtdCoreBase+hart]：各内部 hart 的源分支，仅启用 CLIC 时消费。"
+        },
+        {
+          "id": "E05",
+          "source": "N03",
+          "target": "P03",
+          "label": "intr_routed[IntrRtdExtBase+target]：按配置截取后送 intr_ext_o 外部目标。"
+        },
+        {
+          "id": "E06",
+          "source": "N04",
+          "target": "N03",
+          "label": "irq_router_reg2hw[source].irq_target_mask.q[target] 重排成 irqs_target_mask，与 cloned 逐位 AND。"
+        }
+      ],
+      "corrections": [
+        {
+          "kind": "note",
+          "message": "整体标当前默认/FPGA未启用；P02仅Cfg.Clic生成时消费。输出需要目标宽度截取，不默认新加外部源都到PLIC。"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1252 @@
+{
+  "pages": [
+    {
+      "title": "异常与中断 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 5,
+      "nav": 8,
+      "page": "interrupts.html",
+      "width": 1440
+    },
+    {
+      "title": "内存、MMIO 与数据交接 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 6,
+      "nav": 8,
+      "page": "memory-mmio.html",
+      "width": 1440
+    },
+    {
+      "title": "最小实践与验证记录 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 8,
+      "nav": 8,
+      "page": "labs.html",
+      "width": 1440
+    },
+    {
+      "title": "自定义 IP 与 Linux 修改导航 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 6,
+      "nav": 8,
+      "page": "integration.html",
+      "width": 1440
+    },
+    {
+      "title": "构建、加载与启动 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/boot.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "build-boot.html",
+      "width": 1440
+    },
+    {
+      "title": "软硬件接口专题 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 4,
+      "nav": 8,
+      "page": "index.html",
+      "width": 1440
+    },
+    {
+      "title": "指令、Ara 与 CSR | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/ara.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "instructions.html",
+      "width": 1440
+    },
+    {
+      "title": "五条软件到 RTL 案例 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/uart.svg",
+          "ok": true
+        },
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/dma.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "cases.html",
+      "width": 1440
+    },
+    {
+      "title": "异常与中断 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 5,
+      "nav": 8,
+      "page": "interrupts.html",
+      "width": 390
+    },
+    {
+      "title": "内存、MMIO 与数据交接 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 6,
+      "nav": 8,
+      "page": "memory-mmio.html",
+      "width": 390
+    },
+    {
+      "title": "最小实践与验证记录 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 8,
+      "nav": 8,
+      "page": "labs.html",
+      "width": 390
+    },
+    {
+      "title": "自定义 IP 与 Linux 修改导航 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 6,
+      "nav": 8,
+      "page": "integration.html",
+      "width": 390
+    },
+    {
+      "title": "构建、加载与启动 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/boot.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "build-boot.html",
+      "width": 390
+    },
+    {
+      "title": "软硬件接口专题 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [],
+      "headings": 4,
+      "nav": 8,
+      "page": "index.html",
+      "width": 390
+    },
+    {
+      "title": "指令、Ara 与 CSR | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/ara.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "instructions.html",
+      "width": 390
+    },
+    {
+      "title": "五条软件到 RTL 案例 | Cheshire 软硬件接口",
+      "overflow": false,
+      "images": [
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/uart.svg",
+          "ok": true
+        },
+        {
+          "src": "../../diagrams/2026-10-13_software_hardware_interfaces/dma.svg",
+          "ok": true
+        }
+      ],
+      "headings": 5,
+      "nav": 8,
+      "page": "cases.html",
+      "width": 390
+    }
+  ],
+  "figures": [
+    {
+      "file": "boot.svg",
+      "sha256": "b4557923c88f318be7907287a0a74f549b031730190c54101c07e632f6f1078f",
+      "text_bounds": [
+        {
+          "text": "启动接口：复位环境、装载动作与应用入口",
+          "x": 47,
+          "y": 28,
+          "width": 571,
+          "height": 33
+        },
+        {
+          "text": "CPU 复位 → Boot ROM",
+          "x": 104.2578125,
+          "y": 131,
+          "width": 241.76904296875,
+          "height": 25
+        },
+        {
+          "text": "cheshire_bootrom.S::_start",
+          "x": 116.9609375,
+          "y": 167,
+          "width": 216.517578125,
+          "height": 22
+        },
+        {
+          "text": "整数状态 / 非零 hart 暂停",
+          "x": 116.671875,
+          "y": 196,
+          "width": 216.65625,
+          "height": 22
+        },
+        {
+          "text": "片内运行环境",
+          "x": 615,
+          "y": 130,
+          "width": 139,
+          "height": 26
+        },
+        {
+          "text": "等待 LLC BIST / 配置 SPM",
+          "x": 569.328125,
+          "y": 167,
+          "width": 231.5546875,
+          "height": 22
+        },
+        {
+          "text": "设置早期 sp / gp",
+          "x": 615.828125,
+          "y": 196,
+          "width": 138.34375,
+          "height": 23
+        },
+        {
+          "text": "Platform ROM 钩子",
+          "x": 1059.078125,
+          "y": 131,
+          "width": 201.84375,
+          "height": 25
+        },
+        {
+          "text": "地址非零时跳转",
+          "x": 1089,
+          "y": 167,
+          "width": 141,
+          "height": 22
+        },
+        {
+          "text": "启动关键资源按平台配置",
+          "x": 1050,
+          "y": 196,
+          "width": 220,
+          "height": 22
+        },
+        {
+          "text": "执行",
+          "x": 436,
+          "y": 149,
+          "width": 38,
+          "height": 21
+        },
+        {
+          "text": "可选",
+          "x": 896,
+          "y": 149,
+          "width": 38,
+          "height": 21
+        },
+        {
+          "text": "Boot ROM C / 介质加载",
+          "x": 1039.890625,
+          "y": 391,
+          "width": 240.21875,
+          "height": 25
+        },
+        {
+          "text": "PlatformRom=0 的默认路径",
+          "x": 1042.4140625,
+          "y": 427,
+          "width": 235.171875,
+          "height": 22
+        },
+        {
+          "text": "GPT/raw → 复制到 SPM",
+          "x": 1055.8203125,
+          "y": 456,
+          "width": 208.56640625,
+          "height": 22
+        },
+        {
+          "text": "默认路径",
+          "x": 971,
+          "y": 285,
+          "width": 77,
+          "height": 21
+        },
+        {
+          "text": "开发主机 / VIP",
+          "x": 149.25,
+          "y": 390,
+          "width": 150.5,
+          "height": 26
+        },
+        {
+          "text": "ELF 段与入口",
+          "x": 164.71875,
+          "y": 427,
+          "width": 120.5625,
+          "height": 22
+        },
+        {
+          "text": "JTAG 或 UART / Serial Link",
+          "x": 107.421875,
+          "y": 456,
+          "width": 235.15625,
+          "height": 22
+        },
+        {
+          "text": "装载与控制转交",
+          "x": 603.5,
+          "y": 390,
+          "width": 162,
+          "height": 26
+        },
+        {
+          "text": "写目标内存 / 设置入口",
+          "x": 587.21875,
+          "y": 427,
+          "width": 195.5625,
+          "height": 22
+        },
+        {
+          "text": "按各加载协议开始执行",
+          "x": 585,
+          "y": 456,
+          "width": 200,
+          "height": 22
+        },
+        {
+          "text": "装载协议",
+          "x": 417,
+          "y": 404,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "加载结果",
+          "x": 877,
+          "y": 480,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "应用 _start：crt0.S",
+          "x": 588.8203125,
+          "y": 680,
+          "width": 191.359375,
+          "height": 26
+        },
+        {
+          "text": "sp/gp、mtvec、BSS、FS",
+          "x": 579.9765625,
+          "y": 717,
+          "width": 210.046875,
+          "height": 23
+        },
+        {
+          "text": "必要的加载初值已在内存",
+          "x": 575,
+          "y": 746,
+          "width": 220,
+          "height": 22
+        },
+        {
+          "text": "不执行通用 DDR 初始化",
+          "x": 578.8828125,
+          "y": 775,
+          "width": 212.234375,
+          "height": 22
+        },
+        {
+          "text": "应用 main / 返回",
+          "x": 1076.2578125,
+          "y": 680,
+          "width": 166.484375,
+          "height": 26
+        },
+        {
+          "text": "应用设备初始化与业务",
+          "x": 1060,
+          "y": 717,
+          "width": 200,
+          "height": 22
+        },
+        {
+          "text": "_exit → SCRATCH2 / ret",
+          "x": 1055.6640625,
+          "y": 746,
+          "width": 208.11328125,
+          "height": 22
+        },
+        {
+          "text": "跳转 ELF / payload 入口",
+          "x": 767.8984375,
+          "y": 573,
+          "width": 194.203125,
+          "height": 21
+        },
+        {
+          "text": "调用 / 返回",
+          "x": 869.609375,
+          "y": 704,
+          "width": 90.78125,
+          "height": 21
+        },
+        {
+          "text": "Platform ROM 普通返回缺陷及 ROM C 栈对齐条件，见正文；图中未把它们画成已修复路径。",
+          "x": 50,
+          "y": 812,
+          "width": 819.46875,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "file": "dma.svg",
+      "sha256": "db7fb44b41c890505c62915d02f87466b886bd7b5b129272568183b0eb0fbfce",
+      "text_bounds": [
+        {
+          "text": "DMA 接口：配置接受、任务提交、数据搬运与结果取回",
+          "x": 48,
+          "y": 28,
+          "width": 737.5,
+          "height": 33
+        },
+        {
+          "text": "CPU / DMA API",
+          "x": 141.0390625,
+          "y": 141,
+          "width": 162.95849609375,
+          "height": 25
+        },
+        {
+          "text": "SRC / DST / LEN / STRIDE",
+          "x": 107.109375,
+          "y": 177,
+          "width": 230.78125,
+          "height": 22
+        },
+        {
+          "text": "读 NEXT_ID 提交任务",
+          "x": 125.28125,
+          "y": 206,
+          "width": 194.4375,
+          "height": 22
+        },
+        {
+          "text": "轮询 DONE_ID",
+          "x": 156.671875,
+          "y": 235,
+          "width": 131.65625,
+          "height": 22
+        },
+        {
+          "text": "AXI slave 配置端",
+          "x": 609.3828125,
+          "y": 141,
+          "width": 171.234375,
+          "height": 25
+        },
+        {
+          "text": "axi_to_reg → reg_top",
+          "x": 606.6875,
+          "y": 177,
+          "width": 176.625,
+          "height": 23
+        },
+        {
+          "text": "参数 q / next_id.re",
+          "x": 619.453125,
+          "y": 206,
+          "width": 151.20703125,
+          "height": 23
+        },
+        {
+          "text": "前端 valid / ready",
+          "x": 622.515625,
+          "y": 235,
+          "width": 144.96875,
+          "height": 23
+        },
+        {
+          "text": "Job FIFO / 2D midend",
+          "x": 1061.3125,
+          "y": 141,
+          "width": 222.57177734375,
+          "height": 25
+        },
+        {
+          "text": "入队：issue ID",
+          "x": 1109.4453125,
+          "y": 177,
+          "width": 126.109375,
+          "height": 22
+        },
+        {
+          "text": "每行产生 1D 请求",
+          "x": 1095.2734375,
+          "y": 206,
+          "width": 154.453125,
+          "height": 22
+        },
+        {
+          "text": "整体响应：retire ID",
+          "x": 1088.3515625,
+          "y": 235,
+          "width": 168.296875,
+          "height": 22
+        },
+        {
+          "text": "MMIO",
+          "x": 428.078125,
+          "y": 161,
+          "width": 53.84375,
+          "height": 21
+        },
+        {
+          "text": "任务握手",
+          "x": 893,
+          "y": 161,
+          "width": 77,
+          "height": 21
+        },
+        {
+          "text": "idma_backend_rw_axi",
+          "x": 1060.6796875,
+          "y": 421,
+          "width": 224.2421875,
+          "height": 25
+        },
+        {
+          "text": "legalizer / transport",
+          "x": 1094.75,
+          "y": 457,
+          "width": 155.931640625,
+          "height": 23
+        },
+        {
+          "text": "独立 AXI 读写",
+          "x": 1109.7265625,
+          "y": 486,
+          "width": 125.546875,
+          "height": 22
+        },
+        {
+          "text": "R / B 响应",
+          "x": 1128.875,
+          "y": 515,
+          "width": 87.25,
+          "height": 22
+        },
+        {
+          "text": "行请求 / 响应",
+          "x": 1225.109375,
+          "y": 323,
+          "width": 109.78125,
+          "height": 21
+        },
+        {
+          "text": "主 Xbar / 存储目标",
+          "x": 599.328125,
+          "y": 420,
+          "width": 190.34375,
+          "height": 26
+        },
+        {
+          "text": "AxiIn.dma",
+          "x": 651.953125,
+          "y": 457,
+          "width": 86.216796875,
+          "height": 22
+        },
+        {
+          "text": "SRC 读 → DST 写",
+          "x": 617.3828125,
+          "y": 486,
+          "width": 155.234375,
+          "height": 22
+        },
+        {
+          "text": "SPM / 平台主存",
+          "x": 627.203125,
+          "y": 515,
+          "width": 135.59375,
+          "height": 22
+        },
+        {
+          "text": "AXI 数据事务",
+          "x": 874.734375,
+          "y": 441,
+          "width": 114.53125,
+          "height": 21
+        },
+        {
+          "text": "CPU 取回缓冲",
+          "x": 149.984375,
+          "y": 421,
+          "width": 145.03125,
+          "height": 25
+        },
+        {
+          "text": "匹配完成 ID / 检查错误",
+          "x": 121.6640625,
+          "y": 457,
+          "width": 201.671875,
+          "height": 22
+        },
+        {
+          "text": "排序 / 必要缓存维护",
+          "x": 133.71875,
+          "y": 486,
+          "width": 176.5625,
+          "height": 22
+        },
+        {
+          "text": "逐字节比较与守卫",
+          "x": 142.5,
+          "y": 515,
+          "width": 160,
+          "height": 22
+        },
+        {
+          "text": "CPU 读取",
+          "x": 415.140625,
+          "y": 441,
+          "width": 79.71875,
+          "height": 21
+        },
+        {
+          "text": "DONE_ID 由 retire 更新，经配置读返回",
+          "x": 546.671875,
+          "y": 65,
+          "width": 326.65625,
+          "height": 21
+        },
+        {
+          "text": "配置访问成功 ≠ 数据搬运成功",
+          "x": 204.9375,
+          "y": 700,
+          "width": 300.125,
+          "height": 26
+        },
+        {
+          "text": "NEXT_ID 读有副作用；参数写不是任务完成",
+          "x": 160.28125,
+          "y": 737,
+          "width": 389.4375,
+          "height": 22
+        },
+        {
+          "text": "当前 wrapper 没有完成 IRQ 端口",
+          "x": 215.015625,
+          "y": 766,
+          "width": 279.96875,
+          "height": 23
+        },
+        {
+          "text": "当前运行门槛",
+          "x": 973.5,
+          "y": 701,
+          "width": 138,
+          "height": 25
+        },
+        {
+          "text": "控制 DW / ID 拆读、ND 错误内容未返回",
+          "x": 865.7421875,
+          "y": 737,
+          "width": 353.515625,
+          "height": 22
+        },
+        {
+          "text": "NO_ERROR_HANDLING；详见源码与正文",
+          "x": 851.9453125,
+          "y": 766,
+          "width": 381.109375,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "file": "uart.svg",
+      "sha256": "aa3ae51215afacca43b8b3105089cd8cbf97c2a10f69aec525a69972124f148e",
+      "text_bounds": [
+        {
+          "text": "字符输出：函数调用、寄存器访问与串行发送",
+          "x": 48,
+          "y": 28,
+          "width": 600,
+          "height": 33
+        },
+        {
+          "text": "printf_ / _vsnprintf",
+          "x": 125.4296875,
+          "y": 136,
+          "width": 189.47314453125,
+          "height": 25
+        },
+        {
+          "text": "格式化得到字符",
+          "x": 149,
+          "y": 172,
+          "width": 141,
+          "height": 22
+        },
+        {
+          "text": "软件函数调用",
+          "x": 160,
+          "y": 201,
+          "width": 120,
+          "height": 22
+        },
+        {
+          "text": "_out_char → _putchar",
+          "x": 582.3984375,
+          "y": 136,
+          "width": 224.203125,
+          "height": 25
+        },
+        {
+          "text": "公共输出封装",
+          "x": 635,
+          "y": 172,
+          "width": 120,
+          "height": 22
+        },
+        {
+          "text": "选择 __base_uart",
+          "x": 624.1796875,
+          "y": 201,
+          "width": 142.07421875,
+          "height": 22
+        },
+        {
+          "text": "uart_write",
+          "x": 1122.625,
+          "y": 136,
+          "width": 104.75,
+          "height": 25
+        },
+        {
+          "text": "轮询 LSR.THRE",
+          "x": 1105.546875,
+          "y": 172,
+          "width": 138.90625,
+          "height": 22
+        },
+        {
+          "text": "reg8 写 THR",
+          "x": 1122.2265625,
+          "y": 201,
+          "width": 106.197265625,
+          "height": 23
+        },
+        {
+          "text": "调用",
+          "x": 436,
+          "y": 149,
+          "width": 38,
+          "height": 21
+        },
+        {
+          "text": "调用",
+          "x": 913,
+          "y": 149,
+          "width": 38,
+          "height": 21
+        },
+        {
+          "text": "CVA6 访存",
+          "x": 1119.9375,
+          "y": 395,
+          "width": 110.125,
+          "height": 26
+        },
+        {
+          "text": "lbu / sb → AXI",
+          "x": 1113.328125,
+          "y": 432,
+          "width": 123.34375,
+          "height": 22
+        },
+        {
+          "text": "地址 / 大小 / byte strobe",
+          "x": 1074.28125,
+          "y": 461,
+          "width": 200.546875,
+          "height": 23
+        },
+        {
+          "text": "主 Xbar → Reg 出口",
+          "x": 591.9921875,
+          "y": 395,
+          "width": 205.015625,
+          "height": 26
+        },
+        {
+          "text": "原子适配 / cut",
+          "x": 635,
+          "y": 432,
+          "width": 120.43359375,
+          "height": 22
+        },
+        {
+          "text": "axi_to_reg_v2：64 → 32",
+          "x": 592.234375,
+          "y": 461,
+          "width": 205.53125,
+          "height": 23
+        },
+        {
+          "text": "RegMap → UART",
+          "x": 128.40625,
+          "y": 396,
+          "width": 183.1875,
+          "height": 25
+        },
+        {
+          "text": "地址命中 / 请求应答",
+          "x": 131.21875,
+          "y": 432,
+          "width": 176.5625,
+          "height": 22
+        },
+        {
+          "text": "reg_uart_wrap → APB",
+          "x": 127.7890625,
+          "y": 461,
+          "width": 184.421875,
+          "height": 23
+        },
+        {
+          "text": "指令执行",
+          "x": 1232,
+          "y": 303,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "AXI 请求/响应",
+          "x": 872.09375,
+          "y": 414,
+          "width": 119.8125,
+          "height": 21
+        },
+        {
+          "text": "Reg 请求/响应",
+          "x": 396.6796875,
+          "y": 414,
+          "width": 116.640625,
+          "height": 21
+        },
+        {
+          "text": "apb_uart 寄存器译码",
+          "x": 114.25,
+          "y": 690,
+          "width": 211.5,
+          "height": 26
+        },
+        {
+          "text": "PADDR = paddr[4:2]",
+          "x": 134.171875,
+          "y": 727,
+          "width": 171.65625,
+          "height": 23
+        },
+        {
+          "text": "DLAB=0：THR 写入",
+          "x": 129.6328125,
+          "y": 756,
+          "width": 180.734375,
+          "height": 22
+        },
+        {
+          "text": "TX FIFO / iTSR",
+          "x": 614.1640625,
+          "y": 691,
+          "width": 162.052734375,
+          "height": 25
+        },
+        {
+          "text": "iTHRWrite → FIFO 入队",
+          "x": 591.234375,
+          "y": 727,
+          "width": 207.53125,
+          "height": 22
+        },
+        {
+          "text": "流控允许后取字节",
+          "x": 615,
+          "y": 756,
+          "width": 160,
+          "height": 22
+        },
+        {
+          "text": "UART_TX → uart_tx_o",
+          "x": 1055.9296875,
+          "y": 691,
+          "width": 238.140625,
+          "height": 25
+        },
+        {
+          "text": "波特率节拍 / 串行移出",
+          "x": 1077.21875,
+          "y": 727,
+          "width": 195.5625,
+          "height": 22
+        },
+        {
+          "text": "THRE 与 TEMT 供软件读取",
+          "x": 1054.3515625,
+          "y": 756,
+          "width": 241.296875,
+          "height": 22
+        },
+        {
+          "text": "APB 传输",
+          "x": 270.140625,
+          "y": 588,
+          "width": 79.71875,
+          "height": 21
+        },
+        {
+          "text": "字节入队",
+          "x": 417,
+          "y": 711,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "字节传输",
+          "x": 894,
+          "y": 711,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "控制读写的返回沿请求链逆向到 CPU；发送完成由状态位表达，不等于 MMIO 写响应。",
+          "x": 50,
+          "y": 842,
+          "width": 770.578125,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "file": "ara.svg",
+      "sha256": "80a9f767d6847f7d59b384f0c5917f5407117b9223a998f3885ef0001ff10e02",
+      "text_bounds": [
+        {
+          "text": "Ara 接口：向量请求与批量数据走不同通路",
+          "x": 48,
+          "y": 28,
+          "width": 567.484375,
+          "height": 33
+        },
+        {
+          "text": "软件向量内核",
+          "x": 155,
+          "y": 141,
+          "width": 139,
+          "height": 25
+        },
+        {
+          "text": "vsetvli / vle32 / vadd / vse32",
+          "x": 110.0078125,
+          "y": 177,
+          "width": 229.984375,
+          "height": 22
+        },
+        {
+          "text": "标量 GPR 给基址与长度",
+          "x": 120.546875,
+          "y": 206,
+          "width": 208.90625,
+          "height": 22
+        },
+        {
+          "text": "VS / FS 和特权条件",
+          "x": 140.8125,
+          "y": 235,
+          "width": 168.375,
+          "height": 22
+        },
+        {
+          "text": "CVA6 acc_dispatcher",
+          "x": 586.9765625,
+          "y": 141,
+          "width": 211.046875,
+          "height": 25
+        },
+        {
+          "text": "insn / rs1 / rs2 / trans_id",
+          "x": 595.828125,
+          "y": 177,
+          "width": 193.34375,
+          "height": 22
+        },
+        {
+          "text": "非推测发射 / pending",
+          "x": 602.5,
+          "y": 206,
+          "width": 180,
+          "height": 23
+        },
+        {
+          "text": "barrier 与结果写回",
+          "x": 613.3515625,
+          "y": 235,
+          "width": 158.296875,
+          "height": 22
+        },
+        {
+          "text": "Ara dispatcher / lanes",
+          "x": 1065.0546875,
+          "y": 141,
+          "width": 214.93310546875,
+          "height": 25
+        },
+        {
+          "text": "指令执行 / 向量寄存器",
+          "x": 1073.71875,
+          "y": 177,
+          "width": 196.5625,
+          "height": 22
+        },
+        {
+          "text": "VL / VTYPE / 元素运算",
+          "x": 1071.9375,
+          "y": 206,
+          "width": 201.125,
+          "height": 22
+        },
+        {
+          "text": "响应 / exception / 完成",
+          "x": 1078.0703125,
+          "y": 235,
+          "width": 188.859375,
+          "height": 23
+        },
+        {
+          "text": "指令执行",
+          "x": 420,
+          "y": 166,
+          "width": 76,
+          "height": 21
+        },
+        {
+          "text": "专用请求/响应",
+          "x": 872.359375,
+          "y": 166,
+          "width": 119.28125,
+          "height": 21
+        },
+        {
+          "text": "CVA6 MMU / LSU",
+          "x": 599.109375,
+          "y": 421,
+          "width": 187.1640625,
+          "height": 25
+        },
+        {
+          "text": "虚拟地址 → 物理地址",
+          "x": 597.5,
+          "y": 457,
+          "width": 190,
+          "height": 22
+        },
+        {
+          "text": "DTLB / 权限 / 翻译异常",
+          "x": 590.828125,
+          "y": 486,
+          "width": 203.34375,
+          "height": 22
+        },
+        {
+          "text": "Ara VLSU / addrgen",
+          "x": 1070.15625,
+          "y": 421,
+          "width": 204.89501953125,
+          "height": 25
+        },
+        {
+          "text": "向量地址产生",
+          "x": 1112.5,
+          "y": 457,
+          "width": 120,
+          "height": 22
+        },
+        {
+          "text": "vldu / vstu 发 AXI 请求",
+          "x": 1075,
+          "y": 486,
+          "width": 195,
+          "height": 22
+        },
+        {
+          "text": "load / store",
+          "x": 1242.78125,
+          "y": 328,
+          "width": 84.4375,
+          "height": 21
+        },
+        {
+          "text": "地址翻译",
+          "x": 893,
+          "y": 440,
+          "width": 77,
+          "height": 21
+        },
+        {
+          "text": "写失效 / 位宽适配",
+          "x": 1083.0546875,
+          "y": 706,
+          "width": 179.89013671875,
+          "height": 25
+        },
+        {
+          "text": "axi_inval_filter",
+          "x": 1110.8515625,
+          "y": 742,
+          "width": 123.630859375,
+          "height": 22
+        },
+        {
+          "text": "axi_dw_converter",
+          "x": 1100.3046875,
+          "y": 771,
+          "width": 144.724609375,
+          "height": 22
+        },
+        {
+          "text": "主 Xbar → SPM / DDR",
+          "x": 576.390625,
+          "y": 705,
+          "width": 231.603515625,
+          "height": 26
+        },
+        {
+          "text": "AxiIn.ara",
+          "x": 654.4609375,
+          "y": 742,
+          "width": 76.197265625,
+          "height": 22
+        },
+        {
+          "text": "批量数据及 R / B 响应",
+          "x": 596.375,
+          "y": 771,
+          "width": 192.25,
+          "height": 22
+        },
+        {
+          "text": "CPU 后继消费者",
+          "x": 140.984375,
+          "y": 706,
+          "width": 168.03125,
+          "height": 25
+        },
+        {
+          "text": "fence / 所有权交接",
+          "x": 145.5703125,
+          "y": 742,
+          "width": 158.859375,
+          "height": 22
+        },
+        {
+          "text": "读取 c 与 golden 比较",
+          "x": 133.34375,
+          "y": 771,
+          "width": 183.3125,
+          "height": 23
+        },
+        {
+          "text": "独立 AXI",
+          "x": 1226.734375,
+          "y": 603,
+          "width": 76.53125,
+          "height": 21
+        },
+        {
+          "text": "AXI 数据",
+          "x": 893.734375,
+          "y": 727,
+          "width": 76.53125,
+          "height": 21
+        },
+        {
+          "text": "CPU load",
+          "x": 420.78125,
+          "y": 727,
+          "width": 74.9228515625,
+          "height": 21
+        },
+        {
+          "text": "写地址失效 / inval_ready",
+          "x": 590.265625,
+          "y": 568,
+          "width": 199.962890625,
+          "height": 21
+        },
+        {
+          "text": "rs1/rs2 不是数组数据流",
+          "x": 50,
+          "y": 420,
+          "width": 219.390625,
+          "height": 25
+        },
+        {
+          "text": "MMU 返回不是 load 数据",
+          "x": 50,
+          "y": 458,
+          "width": 241.390625,
+          "height": 25
+        },
+        {
+          "text": "新增 GB 支路尚未实现",
+          "x": 50,
+          "y": 496,
+          "width": 217.5625,
+          "height": 25
+        }
+      ]
+    }
+  ],
+  "html_sha256": {
+    "interrupts.html": "c9a5126df3865e33620e04905a0a34b1b31f82c940802bccbe6150db86be84c7",
+    "memory-mmio.html": "d61d83936b31e47ecbba8fbd475a82a6997c04c141050db94bc65f68b51d86a0",
+    "labs.html": "d23103da8e76a7051a69d368222578d11ab07f956b1e1c3d87af6a992a4e2a46",
+    "integration.html": "3a0fb272bea9a52cae52b8e21e1e87400bd6d7f466cb9dc2755f1772dede1fcd",
+    "build-boot.html": "5a8adccc780510c753f4143b1b538cf248e4d90839a9bd7cc0a56f3c295b7647",
+    "index.html": "17af432200b8cce435e51b026b12c63a60910d4d348e537a5e3fbbf4e18ae67b",
+    "instructions.html": "bd3f53d74c69e84a6d1605e13b7bc7a3aa8d9ec11f4f57b2f85668dd6b80436b",
+    "cases.html": "ec6daa0f455776cbc85f529dee95abc5b6bbc2c35c319d77b2da248b2fb826c4"
+  },
+  "status": "pass"
+}

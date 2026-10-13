@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口</text>
+<rect x="40" y="190" width="365" height="215" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="222.5" y="241.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  clic_intr 输入拼装</text>
+<text x="222.5" y="273.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">IRQ Router 的本 hart 分支</text>
+<text x="222.5" y="305.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MEIP / SEIP（来自 PLIC）</text>
+<text x="222.5" y="337.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">MTIP / MSIP（来自 CLINT）</text>
+<text x="222.5" y="369.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">保留源按 SoC 定义连接</text>
+<rect x="570" y="205" width="330" height="190" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="735.0" y="260.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  clic_gateway</text>
+<text x="735.0" y="292.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">电平 / 边沿 pending</text>
+<text x="735.0" y="324.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">软件置 pending</text>
+<text x="735.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">来自 target 的 claim</text>
+<polyline points="405,300 570,300" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="570,300 558.0,295.0 558.0,305.0" fill="#28699B"/>
+<rect x="1070" y="205" width="335" height="190" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1237.5" y="260.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  clic_target</text>
+<text x="1237.5" y="292.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">pending / enable</text>
+<text x="1237.5" y="324.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">level / priority / mode</text>
+<text x="1237.5" y="356.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">选择待提交中断</text>
+<polyline points="900,300 1070,300" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1070,300 1058.0,295.0 1058.0,305.0" fill="#28699B"/>
+<polyline points="1160,395 1160,470 735,470 735,395" fill="none" stroke="#9C5B25" stroke-width="2.5"/>
+<polygon points="735,395 730.0,407.0 740.0,407.0" fill="#9C5B25"/>
+<text x="895" y="456" font-family="WenQuanYi Zen Hei" font-size="23" fill="#9C5B25" text-anchor="start">claim</text>
+<rect x="1505" y="175" width="255" height="245" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<text x="1632.5" y="241.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  CVA6 CLIC 接口</text>
+<text x="1632.5" y="273.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">valid / ready</text>
+<text x="1632.5" y="305.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">id / level</text>
+<text x="1632.5" y="337.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">shv / priv</text>
+<text x="1632.5" y="369.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">kill_req / kill_ack</text>
+<polyline points="1405,280 1505,280" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1505,280 1493.0,275.0 1493.0,285.0" fill="#28699B"/>
+<polygon points="1405,280 1417.0,285.0 1417.0,275.0" fill="#28699B"/>
+<rect x="555" y="640" width="865" height="180" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="987.5" y="690.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  mclic_reg_top + clicint_reg_top × 源</text>
+<text x="987.5" y="722.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">全局配置：level / priority 的划分</text>
+<text x="987.5" y="754.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">每源配置：pending / enable / attr / ctl</text>
+<text x="987.5" y="786.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">Regbus → reg_adapter → 对应寄存器</text>
+<text x="45" y="565" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">Cfg.Clic 控制生成</text>
+<polyline points="725,640 725,520 625,520 625,395" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="625,395 620.0,407.0 630.0,407.0" fill="#9C5B25"/>
+<polyline points="1215,640 1215,395" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1215,395 1210.0,407.0 1220.0,407.0" fill="#9C5B25"/>
+<text x="45" y="865" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">CLIC 不产生 RTC 计数；CPU 接受中断的握手也不等于清除了外设事件。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

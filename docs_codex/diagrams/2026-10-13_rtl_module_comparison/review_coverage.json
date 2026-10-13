@@ -1,0 +1,245 @@
+{
+  "date": "2026-10-13",
+  "chapters": [
+    {
+      "document": "docs_codex/rtl_modules/00_regbus.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "f11c8d4a8022ce68794f2b4afc928e6da1fbc5a26755037a9f90c67d08c12725",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/01_uart.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "9c41cffb2db51f45c5f2b74d31065d1268bfb5cc9b29a60bd3ae3237e7b34ddd",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/02_i2c.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "ccdb9bb7ade8461d3b39da9fe8caad9de38be0e1db3adff59641b04960ece7de",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/03_spi.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "aaad3945075744cda97c614be09329274f949c7f8f88e733b5e898e2aaabd092",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/04_gpio.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "9c55a68f637ccbf015c812655db859351f5f5b18aebcc0e68bac36cc3f88dccf",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/05_plic.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "801eaf09247d62d6d29c8b90b7b86f2e6849e81d1091a6f8704c2a46d613b45d",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/06_clint_clic.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "82212c0f450dbff7a3b2b465e40c63c38c1fb1424c7d088f47a62ecc149b1708",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/07_irq_router.md",
+      "reviewed": true,
+      "fixes": [
+        "完整审读；补用途/术语、默认与FPGA生成状态、图前阅读问题",
+        "补现有软件/RTL依据的运行过程和集成责任边界",
+        "逐图技术连线核对见figures；本次未改RTL或软件"
+      ],
+      "sha256": "c7f1fa48a38f56ba7e26b61eb85c58878c0badae7eae258ab6d1301c38ebcfc9",
+      "review_source": "review_00_07.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/08_bootrom.md",
+      "reviewed": true,
+      "fixes": [
+        "图前补模块用途/实际配置",
+        "解释启动软件与电路职责、DDR就绪前片内栈前提",
+        "保留S01-B01并明确已知返回缺陷与待核查栈问题"
+      ],
+      "sha256": "5e8f981b8ec997f90f708eea6959543cc69eac539372d195ced6e608efd93bf4",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/09_soc_regs.md",
+      "reviewed": true,
+      "fixes": [
+        "补固定存在与时钟边界",
+        "scratch并非软件协议上全空闲：启动入口/退出状态已有使用者",
+        "说明HW_FEATURES.llc来源与实际LLC生成条件差异，解释RW/RO/W1C"
+      ],
+      "sha256": "fdc651f61c3a044cbc1ed88ad514d790427f73ee404838d0b3745a12777c64ce",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/10_jtag_debug.md",
+      "reviewed": true,
+      "fixes": [
+        "首次解释DMI/SBA/hart/TAP/DTM/CDC",
+        "明确VCU118有JTAG接线与未新增探针验收",
+        "补逐级调试例与SBA错误返回、DDR前置条件"
+      ],
+      "sha256": "64a58a19a021e4cc1c64d1e50f8339b1ef8850e72fc65c35b5434a73bad46a79",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/11_serial_link.md",
+      "reviewed": true,
+      "fixes": [
+        "明确Xilinx显式关闭SerialLink",
+        "修正clk_sl_i为同源门控预期而非任意异步工作域",
+        "补完整远端AR/R闭环、channel allocator配置"
+      ],
+      "sha256": "edc443a95fe0553a825daf69c07d5d58729c999dff472df96c7b4771dd320a00",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/12_vga.md",
+      "reviewed": true,
+      "fixes": [
+        "区分RTL启用与VCU118未接引脚",
+        "明确顶层信用计数不在splitter内",
+        "补基于源码的启用流程、默认RGB565和CLK_DIV=0行为"
+      ],
+      "sha256": "d7814a3416198f585f5740f936ec11835226f358320232a9b777c19214094e66",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/13_usb.md",
+      "reviewed": true,
+      "fixes": [
+        "明确VCU118 Usb=0、fixture无PHY时钟",
+        "解释OHCI/PHY/ED/TD与独立DMA",
+        "补建议主机传输闭环和ready不等于USB事务完成",
+        "补本地官方单核默认cache适用边界，不将接口连通扩大为已支持组合"
+      ],
+      "sha256": "e92b5e114e644609bf12e11621490d23eb849dab9826ea240a59166de9acb898",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/14_idma.md",
+      "reviewed": true,
+      "fixes": [
+        "默认2D、FIFO/ND反馈解释",
+        "补现有测试/HAL对应但保留位宽BLOCKED语义",
+        "2D retire来源纠错、解释stride/outstanding/legalizer/transport"
+      ],
+      "sha256": "4a048b4ef413c2698d8994e8c24869536a765bf00e3cac172b67e4303d2634f9",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/15_interrupt_exception.md",
+      "reviewed": true,
+      "fixes": [
+        "区别CSR/MMIO并提示可选CLIC",
+        "默认weak trap_vector无限循环，必须由应用提供处理",
+        "补PLIC建议流程与CLIC源码示例的适用前提"
+      ],
+      "sha256": "9a09ed7b2f77ca05c2735c3c43750c63f171b894aa1ad5abcbb470a3b472b553",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/16_llc_spm.md",
+      "reviewed": true,
+      "fixes": [
+        "默认128KiB和运行时way分配分别说明",
+        "COMMIT_CFG清零表示接受而非完成，FLUSHED为way位图",
+        "官方C setters不等待、活跃SPM栈不能被运行时回收",
+        "明确外部DDR旁路改变官方LLC唯一外存master假设"
+      ],
+      "sha256": "104e9e1c49d17a407545e292ca35060a95c9da388c0dcd42e4566c1658a0334b",
+      "review_source": "review_08_16.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/17_axi_extension.md",
+      "reviewed": true,
+      "fixes": [
+        "新增主从方向与两级译码说明",
+        "区分已有扩展机制和默认零端口",
+        "说明ID扩展、适配、限流和BusErr实际覆盖"
+      ],
+      "sha256": "2da583c41ee08de059c0a4e409a07c5f621e20622a430f24d15ee301be16d5de",
+      "review_source": "integration_graphs.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/18_clock_reset_startup.md",
+      "reviewed": true,
+      "fixes": [
+        "新增完整Reg事务CDC与目标停钟风险",
+        "补启动/DDR ready的独立条件",
+        "保留PlatformROM返回及栈对齐待核查项"
+      ],
+      "sha256": "d6d19add0699bb82df787a73e7a97011e2306e2dc8da87905d6a2128d9817820",
+      "review_source": "integration_graphs.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/19_ddr_lvds_pipeline.md",
+      "reviewed": true,
+      "fixes": [
+        "明确全部新增图像/DDR合流模块的规划状态",
+        "区分像素流、帧写入、系统DMA、NPU搬运与独立GB",
+        "补帧尾与AXI完成区别及供应商缺失输入"
+      ],
+      "sha256": "4d23a445f432a0497085200b72dd1978bb55f320e35c5ab8790649508ffa446c",
+      "review_source": "integration_graphs.json"
+    },
+    {
+      "document": "docs_codex/rtl_modules/20_accelerator_memory.md",
+      "reviewed": true,
+      "fixes": [
+        "区分Ara指令协作与NPU MMIO",
+        "逐路径解释PMA、cache、LLC和所有权",
+        "标出失效过滤及原子适配的观察范围"
+      ],
+      "sha256": "4641c939828e2379536aef917f12a2a212cf5f76a991ae79b88b126d7c249969",
+      "review_source": "integration_graphs.json"
+    }
+  ],
+  "original_chapters_reviewed": 17,
+  "new_chapters": 4,
+  "root_additional_review": [
+    "I2C write HAL chunk/STOP static finding recorded in 02; no code fix",
+    "WT cache profile and MIG calib_ready tied-off ports checked directly",
+    "All changes limited to documentation, diagrams and generation scripts"
+  ]
+}

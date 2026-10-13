@@ -1,0 +1,360 @@
+{
+  "reviewer": "L01 integration_gaps",
+  "date": "2026-10-13",
+  "phase": "final",
+  "office_tested": false,
+  "hardware_validation": false,
+  "summary": "8张最终PNG均重新实际打开。初审共享转角和B页脚表述问题已关闭；无新增问题。A/B采用同一技术内容，规划与条件启用说明已置入图片。",
+  "images": [
+    {
+      "file": "A/17_axi_extension.png",
+      "sha256": "ff307365654dfdb667b849edd044c0f8feb1ae398d5886c0d81d25d7c50853b7",
+      "source_svg_sha256": "ba9ef4e1d0ae9256bcbe5494180d4f51553ea0fd4f14a5541c69ad575b04b619",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "独立端口和走线；SVG 定向复核无共用内部转角点；保留无连接的正交交叉"
+      ],
+      "issues": [],
+      "resolved_issues": []
+    },
+    {
+      "file": "B/17_axi_extension.png",
+      "sha256": "fa86275f30b5d224d2c94511b64a71a183bf972e205fd00204e8dc238b6a7acf",
+      "source_svg_sha256": "e2e0060aee5f3e14cd456a640453de8fe04d3987b6a38857a1967b99e329ad10",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "B 配对端口编号/箭头方向对应正确；页脚不再将规划边称为已有 RTL"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+          "severity": "correction",
+          "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "A/18_clock_reset_startup.png",
+      "sha256": "2a31a2d08f52a8831c03ad192b99ded7be3cfdd1ce1f1108bcff392839c8efa5",
+      "source_svg_sha256": "50d775900f3bde3c93ccf61732136dda0171006029b6f79fc24aae5e729440fb",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "独立端口和走线；SVG 定向复核无共用内部转角点；保留无连接的正交交叉"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "A18_SHARED_BEND",
+          "severity": "readability",
+          "description": "E07 与 E09 共用转角 (1160,500)，控制时钟与 IRQ 路径在该处相接，颜色能区分但建议分离 lane。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "B/18_clock_reset_startup.png",
+      "sha256": "ca1ee1c6a82deaeb6641c6c047c8885b441303493ed741b8c5c1bbe2caef59fa",
+      "source_svg_sha256": "e3fd1bd38d6cd07cdf9f83cd5d54a4d6a7ab7882bbb654c6c9a71f1455cb2c9e",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "B 配对端口编号/箭头方向对应正确；页脚不再将规划边称为已有 RTL"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+          "severity": "correction",
+          "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "A/19_ddr_lvds_pipeline.png",
+      "sha256": "3d1483cdf9169e3e97df3a5c7927f1e21aeb6b7821bd15a4d3a876194e3f845b",
+      "source_svg_sha256": "c5df22d154afe5bf246bc4e1937912143d679959e46f625a55f6e6d23c129009",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "独立端口和走线；SVG 定向复核无共用内部转角点；保留无连接的正交交叉"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "A19_SHARED_BENDS",
+          "severity": "correction",
+          "description": "E04/E06/E07/E08 分别在 (630,500)/(630,760)/(630,790) 共用转角，形成似连续干线；不能清楚区分 DDR 与 GB 连接，应使用独立 lane。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "B/19_ddr_lvds_pipeline.png",
+      "sha256": "5567bf6a25df8922d0aafd4458d3f3710761d5a45fabf2b5e917d8173fdffca3",
+      "source_svg_sha256": "571ed9b287fcf0a2f2e25f9a195caeaf86d4dc8d09f1ffe14ac914a293456161",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "默认/规划条件 caption 已保留",
+        "B 配对端口编号/箭头方向对应正确；页脚不再将规划边称为已有 RTL"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+          "severity": "correction",
+          "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "A/20_accelerator_memory.png",
+      "sha256": "5d7ef4fcd8f40714ade35752cce9e368b06eca676a6619324e65a0c501b84766",
+      "source_svg_sha256": "1889dd6a8b8ff5ed401f1f55cd13ebeb00dacf78419056b1faa7980a2d195feb",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "图20最新 WT 标签及 Ara 条件说明已保留",
+        "独立端口和走线；SVG 定向复核无共用内部转角点；保留无连接的正交交叉"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "A20_SHARED_BEND",
+          "severity": "correction",
+          "description": "E06/E07 共用转角 (570,470)，视觉形成不存在的 L1D↔DW converter 连接，应分离 lane 或改出入口。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    },
+    {
+      "file": "B/20_accelerator_memory.png",
+      "sha256": "54f5de0c7ce39a26438c18126f8956ba97fcbf0963da666079ccc40e071b40c3",
+      "source_svg_sha256": "063bd9d61646c7a5fb453ed51eb105b75b30f032e6f3a16a3799ecf4cacac02f",
+      "checked": true,
+      "method": "view_image 逐图复看；SVG 定向核对端点/转角及文字",
+      "checks": [
+        "通过 view_image 实际查看最终完整彩色 PNG",
+        "文字无明显遮挡或裁切",
+        "图示节点/逻辑边与 canonical 技术内容一致",
+        "A/B 对应范围、方向、已有/规划说明一致",
+        "图20最新 WT 标签及 Ara 条件说明已保留",
+        "B 配对端口编号/箭头方向对应正确；页脚不再将规划边称为已有 RTL"
+      ],
+      "issues": [],
+      "resolved_issues": [
+        {
+          "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+          "severity": "global_wording",
+          "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。",
+          "status": "closed",
+          "resolution": "最终 PNG 已复看，走线分离/页脚及状态 caption 修正已生效。"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "reviewer": "L01 integration_gaps",
+      "date": "2026-10-13",
+      "phase": "initial",
+      "office_tested": false,
+      "hardware_validation": false,
+      "summary": "8张均实际打开。A17通过；A18/A19/A20共享转角需修复；B技术连接配对正确，但统一页脚的已实现表述需修正。修复后需重新生成并定向复看。",
+      "images": [
+        {
+          "file": "A/17_axi_extension.png",
+          "sha256": "645cef0dff0883657788257cce47033aa8a4dcf7c09c4c17833ad2ca92ffb920",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": []
+        },
+        {
+          "file": "B/17_axi_extension.png",
+          "sha256": "376061ca4d0d9c89e7a4942bf5bc40e544405bc2e0ea34d065c3400921501c5e",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": [
+            {
+              "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+              "severity": "correction",
+              "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。"
+            }
+          ]
+        },
+        {
+          "file": "A/18_clock_reset_startup.png",
+          "sha256": "9b9e401f863e4fdf0f679d6e2d383d1bc634e33ed80967e598e31a69e9e469e7",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": [
+            {
+              "id": "A18_SHARED_BEND",
+              "severity": "readability",
+              "description": "E07 与 E09 共用转角 (1160,500)，控制时钟与 IRQ 路径在该处相接，颜色能区分但建议分离 lane。"
+            }
+          ]
+        },
+        {
+          "file": "B/18_clock_reset_startup.png",
+          "sha256": "1e3ea555cb6066d46bd1326e43c9d24a187d4e686df3ca81f063df7027c08e18",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": [
+            {
+              "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+              "severity": "correction",
+              "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。"
+            }
+          ]
+        },
+        {
+          "file": "A/19_ddr_lvds_pipeline.png",
+          "sha256": "1969c882b895d7ccce0610f13896dfda8ce0ba2a77ebcd6da8783927e8802e92",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": [
+            {
+              "id": "A19_SHARED_BENDS",
+              "severity": "correction",
+              "description": "E04/E06/E07/E08 分别在 (630,500)/(630,760)/(630,790) 共用转角，形成似连续干线；不能清楚区分 DDR 与 GB 连接，应使用独立 lane。"
+            }
+          ]
+        },
+        {
+          "file": "B/19_ddr_lvds_pipeline.png",
+          "sha256": "36254927578ecb8b73496bd17243b3c4653d554ded9051e6dac78dc9727181e4",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "已有/规划由虚线模块和正文表区分"
+          ],
+          "issues": [
+            {
+              "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+              "severity": "correction",
+              "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。"
+            }
+          ]
+        },
+        {
+          "file": "A/20_accelerator_memory.png",
+          "sha256": "6a6ca28512c6df0381d5b402e5c234ec12c5faff0ffeeded5884a6b204385262",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "A20/B20已显示最新WT标签"
+          ],
+          "issues": [
+            {
+              "id": "A20_SHARED_BEND",
+              "severity": "correction",
+              "description": "E06/E07 共用转角 (570,470)，视觉形成不存在的 L1D↔DW converter 连接，应分离 lane 或改出入口。"
+            }
+          ]
+        },
+        {
+          "file": "B/20_accelerator_memory.png",
+          "sha256": "9bfcbb0db44089e1b94566fb3cb491f3f027635a6dba06c118e079d017e86e93",
+          "checked": true,
+          "method": "view_image：逐张完整彩色 PNG；另读取 SVG 确认转角坐标",
+          "checks": [
+            "文字无明显遮挡/裁切",
+            "模块范围和 canonical graph 一致",
+            "B同编号两端配对与A逻辑边一致",
+            "A20/B20已显示最新WT标签"
+          ],
+          "issues": [
+            {
+              "id": "B_FOOTER_IMPLEMENTATION_CLAIM",
+              "severity": "global_wording",
+              "description": "页脚“各接口仍为原 RTL 连接”不适用于规划边；应说明按模块/连接表区分已有与规划。已消息 root。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

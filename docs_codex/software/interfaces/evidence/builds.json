@@ -1,0 +1,44 @@
+{
+  "toolchain": "riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0",
+  "commands": [
+    {
+      "command": "JOURNEY_OUT=\"$PWD/docs_codex/software/interfaces/evidence/scalar-build\" bash docs_codex/learning/scripts/build_journey.sh scalar spm",
+      "exit_code": 0
+    },
+    {
+      "command": "JOURNEY_OUT=\"$PWD/docs_codex/software/interfaces/evidence/rvv-build\" JOURNEY_DEPTH=1 bash docs_codex/learning/scripts/build_journey.sh rvv spm",
+      "exit_code": 0
+    },
+    {
+      "command": "bash docs_codex/software/interfaces/scripts/compile_probes.sh \"$PWD/docs_codex/software/interfaces/evidence/hello-build\" \"$PWD/docs_codex/software/interfaces/evidence/scalar-build\"",
+      "exit_code": 0
+    }
+  ],
+  "artifacts": {
+    "scalar-build/journey.spm.elf": "d489e11108ae92285e489acc43164400850bbed183494cd50563579c292c1cae",
+    "scalar-build/journey.i": "f28fa3fb4f41f7175ea03e2f408043d2ee05ab6165f72fe41379e51033670eeb",
+    "scalar-build/journey.s": "d9611b54a8862d95d83d7f59eed6aeeb2d905ae7a0f6ae6219485c8b4c19dcbb",
+    "scalar-build/build.log": "362de396f429765eb7ae819043171537bd70326bd54bd6dcf429a6b5076db777",
+    "scalar-build/journey.map": "a2fe220f7fb36529cefb1db541311c3b0cc95f49e011a6aaf0465c79442c8c13",
+    "scalar-build/readelf.txt": "c40f027169738de005f86e9515e1f13b935807d1b60f35131d250bdad1183a3f",
+    "scalar-build/journey.dump": "33b81b724ade4c12c07cdd77096128fc4304bfe7ff37cd2f40a8bb8c5a3c8466",
+    "scalar-build/symbols.txt": "c139824ad67b61319769a274682f55b58667494ed0b0636324709a471cd48e87",
+    "rvv-build/journey.spm.elf": "973808b31d3145a6bd17830e1d92553a7e2f27358073eb00118e01454cadeb68",
+    "rvv-build/journey.i": "9cbab0e99527cf984f987018b099484fc4fa955e9de0d213ffdbe1d52db2e20d",
+    "rvv-build/journey.s": "8b877e9470af7913ca2d16dbed80aad52825240f9b54f502185ee0eeaca7fa34",
+    "rvv-build/build.log": "7d49a9a88f22d7d433e05c2ae69b16237639839f4dfb250880162e47b6d1c682",
+    "rvv-build/journey.map": "16e033468c024fd1c506da4381e5a52bf92c807e09acefa88c35c0b90267befe",
+    "rvv-build/readelf.txt": "a9180de5057e1b4a04b4b6bfb18aab830f1259c58538914f97aa93873081938c",
+    "rvv-build/journey.dump": "f2f8b7dc8fe32a87e6051f21d49dd580c8c2622277d13604ad05bf47dde4e9ea",
+    "rvv-build/symbols.txt": "98581abca2f26b183cd89ee1eb3770936a4d0b2bea21d5dfd07a32591bf80081",
+    "hello-build/build.log": "4a8cea29a5885b16ead731ed283e27cd5733ef1211ffa99d375f62e96aa21e2c",
+    "hello-build/hello.spm.elf": "fd9e4a2a649aef3c702d16ab37273d837841e8c4f6d0ed5857c8a2693f74e4be",
+    "hello-build/dma-probe.c": "04a86a92fd1cf5fd680e7d5bebbfe77e86fe0969b805750887a924c929b97351",
+    "hello-build/hello.map": "4c673e2a0f0ddfac278b2fe172ce62338e6b10d638dc2ecd11f31176f61c777c",
+    "hello-build/readelf.txt": "28797f1fc2b51022d82f01c2f5fa8e2ba13cb05efd2568be6c1a289bc24f70cf",
+    "hello-build/hello.dump": "8a65eb95a9295ca5b27ebd7b52e620869208b5432ecc2576905ab84080c1b966",
+    "hello-build/dma-probe.dump": "f87b0858e5c1c2d1284d1c99f24d2ff95ec56acf67ceb63afa0209d891c9099c"
+  },
+  "target_execution": false,
+  "warnings": "Compiler -Warray-bounds warnings on MMIO linker-symbol declarations and LD RWX segment warnings retained in logs."
+}

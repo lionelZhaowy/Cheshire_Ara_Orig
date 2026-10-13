@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<defs><marker id="arrow-314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker><marker id="arrow-765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker><marker id="arrow-187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker></defs>
+<rect id="background" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8"/>
+<text id="title" x="55" y="65" font-family="Microsoft YaHei" font-size="40" font-weight="bold" text-anchor="start" fill="#29292D">Cheshire 公共 Regbus 结构</text>
+<text id="subtitle" x="55" y="103" font-family="Microsoft YaHei" font-size="25" font-weight="normal" text-anchor="start" fill="#606773">AXI 配置分支 → 协议转换 → 地址解码与寄存器访问分发</text>
+<rect id="clock-domain" x="55" y="135" width="2290" height="840" fill="#FAF8FB" stroke="#645C5D" stroke-width="1.8"/>
+<text id="clock-label" x="85" y="174" font-family="Microsoft YaHei" font-size="25" font-weight="normal" text-anchor="start" fill="#29292D">系统时钟域 clk_i  ·  桥与内部寄存器同域；解码／分发为组合逻辑；此路径无分频、无 CDC</text>
+<rect id="xbar" x="90" y="220" width="360" height="110" fill="#F5E1C9" stroke="#29292D" stroke-width="1.8"/>
+<text id="xbar-t0" x="270.0" y="252.0" font-family="Microsoft YaHei" font-size="25" font-weight="bold" text-anchor="middle" fill="#29292D">主 AXI Crossbar</text>
+<text id="xbar-t1" x="270.0" y="283.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">i_axi_xbar</text>
+<text id="xbar-t2" x="270.0" y="314.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">AxiOut.reg_demux</text>
+<rect id="atomics" x="570" y="220" width="400" height="110" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="atomics-t0" x="770.0" y="252.0" font-family="Microsoft YaHei" font-size="25" font-weight="bold" text-anchor="middle" fill="#29292D">原子适配</text>
+<text id="atomics-t1" x="770.0" y="283.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">axi_riscv_atomics_structs</text>
+<text id="atomics-t2" x="770.0" y="314.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">i_reg_atomics</text>
+<rect id="cut" x="1090" y="220" width="340" height="110" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text id="cut-t0" x="1260.0" y="252.0" font-family="Microsoft YaHei" font-size="25" font-weight="bold" text-anchor="middle" fill="#29292D">AXI 寄存器切片</text>
+<text id="cut-t1" x="1260.0" y="283.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">i_reg_atomics_cut</text>
+<text id="cut-t2" x="1260.0" y="314.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">RegAmoPostCut 可旁路</text>
+<rect id="bridge" x="1550" y="220" width="620" height="110" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="bridge-t0" x="1860.0" y="252.0" font-family="Microsoft YaHei" font-size="25" font-weight="bold" text-anchor="middle" fill="#29292D">AXI → Regbus</text>
+<text id="bridge-t1" x="1860.0" y="283.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">i_axi_to_reg_v2</text>
+<text id="bridge-t2" x="1860.0" y="314.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">AxiDataWidth → 32 bit</text>
+<polyline id="axi0" points="450,275 570,275" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-314D66)" marker-start="url(#arrow-314D66)"/>
+<polyline id="axi1" points="970,275 1090,275" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-314D66)" marker-start="url(#arrow-314D66)"/>
+<polyline id="axi2" points="1430,275 1550,275" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-314D66)" marker-start="url(#arrow-314D66)"/>
+<polyline id="reg-main" points="2170,275 2310,275 2310,700 2290,700" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<text id="reg-main-label" x="2205" y="308" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#765489">Reg</text>
+<circle id="addr-tap" cx="2310" cy="367" r="4" fill="#765489" stroke="#765489" stroke-width="1"/>
+<polyline id="addr-to-decode" points="2310,367 320,367 320,400" fill="none" stroke="#187C78" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-187C78)"/>
+<text id="addr-label" x="1500" y="357" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="middle" fill="#187C78">reg_in_req.addr</text>
+<rect id="decode" x="90" y="400" width="460" height="87" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text id="decode-t0" x="320.0" y="436.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">地址解码  i_reg_demux_decode</text>
+<text id="decode-t1" x="320.0" y="467.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">addr_decode · 未匹配 → RegOut.err</text>
+<rect id="map" x="700" y="400" width="570" height="87" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="map-t0" x="985.0" y="436.0" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">静态地址规则 RegMap</text>
+<text id="map-t1" x="985.0" y="467.0" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">gen_reg_out(Cfg) → gen_reg_map()</text>
+<polyline id="map-to-decode" points="700,443 550,443" fill="none" stroke="#187C78" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-187C78)"/>
+<polyline id="select-to-demux" points="90,460 72,460 72,723 90,723" fill="none" stroke="#187C78" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-187C78)"/>
+<text id="select-label" x="100" y="513" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="start" fill="#187C78">选择控制：reg_select</text>
+<text id="bridge-cut-note" x="1630" y="433" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="middle" fill="#606773">桥内 CutMemReqs = Cfg.RegAdaptMemCut</text>
+<text id="bridge-width-note" x="1630" y="469" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="middle" fill="#606773">地址宽度 = Cfg.AddrWidth（默认 48 bit）</text>
+<rect id="demux" x="90" y="675" width="2200" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text id="demux-name" x="1200" y="710" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">i_reg_demux  ·  单入口／多目标</text>
+<text id="demux-behavior" x="1200" y="746" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="middle" fill="#29292D">请求仅送选中端口；响应从同一端口返回  ·  无事务 ID、无 burst、无独立读写通道</text>
+<rect id="bootrom" x="90.0" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="bootrom-t0" x="200.0" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">Boot ROM</text>
+<text id="bootrom-t1" x="200.0" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">bootrom</text>
+<polyline id="port-bootrom" points="200.0,675 200.0,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="clint" x="337.5" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="clint-t0" x="447.5" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">CLINT</text>
+<text id="clint-t1" x="447.5" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">clint</text>
+<polyline id="port-clint" points="447.5,675 447.5,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="plic" x="585.0" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="plic-t0" x="695.0" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">PLIC</text>
+<text id="plic-t1" x="695.0" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">plic</text>
+<polyline id="port-plic" points="695.0,675 695.0,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="clic" x="832.5" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="clic-t0" x="942.5" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">CLIC</text>
+<text id="clic-t1" x="942.5" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">clic[i] · 每核一组</text>
+<polyline id="port-clic" points="942.5,675 942.5,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="irq" x="1080.0" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="irq-t0" x="1190.0" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">IRQ Router</text>
+<text id="irq-t1" x="1190.0" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">irq_router</text>
+<polyline id="port-irq" points="1190.0,675 1190.0,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="rt" x="1327.5" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="rt-t0" x="1437.5" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">AXI RT 配置</text>
+<text id="rt-t1" x="1437.5" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">axirt</text>
+<polyline id="port-rt" points="1437.5,675 1437.5,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="soc" x="1575.0" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8"/>
+<text id="soc-t0" x="1685.0" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">SoC 寄存器</text>
+<text id="soc-t1" x="1685.0" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">regs</text>
+<polyline id="port-soc" points="1685.0,675 1685.0,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="llc" x="1822.5" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="llc-t0" x="1932.5" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">LLC 配置</text>
+<text id="llc-t1" x="1932.5" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">llc</text>
+<polyline id="port-llc" points="1932.5,675 1932.5,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="buserr" x="2070.0" y="525" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="buserr-t0" x="2180.0" y="562.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">Bus-error 记录</text>
+<text id="buserr-t1" x="2180.0" y="593.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">bus_err[j] · 2+核数</text>
+<polyline id="port-buserr" points="2180.0,675 2180.0,615" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="uart" x="90.0" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="uart-t0" x="200.0" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">UART</text>
+<text id="uart-t1" x="200.0" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">uart</text>
+<polyline id="port-uart" points="200.0,765 200.0,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="i2c" x="337.5" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="i2c-t0" x="447.5" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">I2C</text>
+<text id="i2c-t1" x="447.5" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">i2c</text>
+<polyline id="port-i2c" points="447.5,765 447.5,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="spi" x="585.0" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="spi-t0" x="695.0" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">SPI Host</text>
+<text id="spi-t1" x="695.0" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">spi_host</text>
+<polyline id="port-spi" points="695.0,765 695.0,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="gpio" x="832.5" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="gpio-t0" x="942.5" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">GPIO</text>
+<text id="gpio-t1" x="942.5" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">gpio</text>
+<polyline id="port-gpio" points="942.5,765 942.5,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="slink" x="1080.0" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="slink-t0" x="1190.0" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">Serial Link 配置</text>
+<text id="slink-t1" x="1190.0" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">slink</text>
+<polyline id="port-slink" points="1190.0,765 1190.0,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="vga" x="1327.5" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="vga-t0" x="1437.5" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">VGA 配置</text>
+<text id="vga-t1" x="1437.5" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">vga</text>
+<polyline id="port-vga" points="1437.5,765 1437.5,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="usb" x="1575.0" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="usb-t0" x="1685.0" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">USB 配置</text>
+<text id="usb-t1" x="1685.0" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">usb</text>
+<polyline id="port-usb" points="1685.0,765 1685.0,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="error" x="1822.5" y="835" width="220" height="90" fill="#F1D7D9" stroke="#29292D" stroke-width="1.8"/>
+<text id="error-t0" x="1932.5" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">错误响应</text>
+<text id="error-t1" x="1932.5" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">err · reg_err_slv</text>
+<polyline id="port-error" points="1932.5,765 1932.5,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<rect id="ext" x="2070.0" y="835" width="220" height="90" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="ext-t0" x="2180.0" y="872.5" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#29292D">外部 RegExt</text>
+<text id="ext-t1" x="2180.0" y="903.5" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">ext_base + k</text>
+<polyline id="port-ext" points="2180.0,765 2180.0,835" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<text id="bottom-port-caption" x="100" y="954" font-family="Microsoft YaHei" font-size="21" font-weight="normal" text-anchor="start" fill="#765489">端口下标为 RegOut.&lt;名称&gt;；每个端口独立连接 reg_out_req[p] / reg_out_rsp[p]</text>
+<text id="ext-note" x="2230" y="953" font-family="Microsoft YaHei" font-size="19" font-weight="normal" text-anchor="end" fill="#606773">同域接口；外部异步 IP 需适配</text>
+<rect id="signals" x="55" y="1010" width="1115" height="180" fill="#F3F7FA" stroke="#29292D" stroke-width="1.8"/>
+<text id="signals-title" x="85" y="1050" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">Regbus 接口</text>
+<text id="signals-req" x="85" y="1091" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">请求：addr / write / wdata[31:0] / wstrb[3:0] / valid</text>
+<text id="signals-rsp" x="85" y="1130" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">响应：rdata[31:0] / error / ready</text>
+<text id="signals-complete" x="85" y="1169" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">上升沿 valid &amp;&amp; ready：当前寄存器访问完成</text>
+<rect id="routing" x="1200" y="1010" width="1145" height="180" fill="#F3F7FA" stroke="#29292D" stroke-width="1.8"/>
+<text id="routing-title" x="1230" y="1050" font-family="Microsoft YaHei" font-size="27" font-weight="bold" text-anchor="start" fill="#29292D">两级地址路由</text>
+<text id="routing-axi" x="1230" y="1091" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">一级 AXI：原窗口 [0x0200_0000, 0x0c00_0000)</text>
+<text id="routing-ext" x="1230" y="1130" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">RegExtRegion* 也由 AXI 表送入同一 Regbus 分支</text>
+<text id="routing-reg" x="1230" y="1169" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="start" fill="#29292D">二级 Reg：按 RegMap 选目标；空洞转向错误响应</text>
+<polyline id="legend-axi" points="75,1240 140,1240" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-314D66)" marker-start="url(#arrow-314D66)"/>
+<text id="legend-axi-t" x="155" y="1248" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">AXI 请求／响应</text>
+<polyline id="legend-reg" points="420,1240 485,1240" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-765489)" marker-start="url(#arrow-765489)"/>
+<text id="legend-reg-t" x="500" y="1248" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">Regbus 请求／响应</text>
+<polyline id="legend-ctl" points="820,1240 885,1240" fill="none" stroke="#187C78" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow-187C78)"/>
+<text id="legend-ctl-t" x="900" y="1248" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">地址／选择控制</text>
+<rect id="legend-optional" x="1200" y="1226" width="58" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text id="legend-optional-t" x="1275" y="1248" font-family="Microsoft YaHei" font-size="22" font-weight="normal" text-anchor="start" fill="#29292D">虚线：按 Cfg 条件生成的目标／扩展口</text>
+<text id="legend-scope" x="55" y="1305" font-family="Microsoft YaHei" font-size="23" font-weight="normal" text-anchor="start" fill="#606773">目标类别按 RTL 展开；不代表某一 FPGA 配置全部启用。iDMA 使用独立 AXI 配置目标，不在此公共分支。</text>
+</svg>

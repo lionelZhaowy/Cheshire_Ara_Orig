@@ -1,0 +1,219 @@
+<p>本专题负责五层结构中的<strong>软硬件接口层</strong>，借助必要的基础软件和 SoC RTL，把程序的一次操作追到硬件，再追到软件观察到的结果。适合有 RTL/NPU 经验、正在学习 RISC-V 启动和驱动的读者。</p>
+<h2 id="route">阅读顺序与使用方法</h2>
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>章节</th>
+<th>阅读后能回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="build-boot.html">构建、加载与启动</a></td>
+<td>ELF 放在哪里，CPU 怎样到达 main，谁清 BSS、准备栈</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="instructions.html">指令、Ara 与 CSR</a></td>
+<td>普通计算、向量请求、CSR 分别走哪条接口</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="memory-mmio.html">内存、MMIO 与数据交接</a></td>
+<td>一条 load/store 如何命中实际存储或产生寄存器副作用</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="interrupts.html">异常与中断</a></td>
+<td>事件如何进入 trap，谁保存现场、清源、返回</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="cases.html">五条软件到 RTL 案例</a></td>
+<td>字符、计时、DMA、GPIO 中断、RVV 的完整证据链</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="integration.html">自定义 IP 与 Linux 修改导航</a></td>
+<td>地址、字段、IRQ、DMA、启动、设备树怎样共同修改</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="labs.html">最小实践与验证记录</a></td>
+<td>当前可以动手做什么，怎样判定成功或阻塞</td>
+</tr>
+</tbody>
+</table>
+<p>第一次按顺序阅读；定位问题时从案例表跳到相应机制。每个案例采用“目标/前提—软件—访问—RTL—完成—观察—排错”的顺序。本专题的图是静态源码关系图，不是仿真波形。</p>
+<p>分层文档将构建、启动与运行支持另列为横向支撑。本专题沿用用户的五层框架：主机工具、crt0 和驱动归入基础软件的讨论范围，但不把编译器画成目标端每次 MMIO 都经过的调用层。软硬件接口本身是语义契约，不是一个必须被链接的库。<a href="../LAYERS_AND_TOOLS.md">分层索引</a>提供全局分类。</p>
+<h2 id="baseline">输入版本与配置基线</h2>
+<p>本次核对日期 <strong>2026-10-13</strong>，分支 <code>mp/ara-pulp-v2</code>，主仓库 HEAD <code>c4162204cfee0c48b81158b4296860a678d92bec</code>。工作区已有文档、图稿迁移和其他对话的未跟踪文件；本次未改生产 RTL、软件或依赖。输入状态见 <a href="evidence/input.json">input.json</a>，引用源的 SHA-256 见 <a href="evidence/sources.json">sources.json</a>。上游来源由 <a href="../../../.bender/SNAPSHOT.tsv">.bender/SNAPSHOT.tsv</a>和 <a href="../../../.bender/UPSTREAM.lock">UPSTREAM.lock</a>记录；目录名后缀不是 commit。</p>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>保存的上游 HEAD</th>
+<th>当前解释条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVA6</td>
+<td><code>99eac9a649001bdf5b8f9da52e0ca73d5c48db1c</code></td>
+<td>本地有集成差异；以被引用文件内容为准</td>
+</tr>
+<tr>
+<td>Ara</td>
+<td><code>2895ba907e9eb14b3464609dc791a969d159a7c3</code></td>
+<td>专用 CVA6 加速器/MMU 接口</td>
+</tr>
+<tr>
+<td>AXI</td>
+<td><code>39f5f2d51c5e524f6fc5cf8b6e901f7dcc5622d7</code></td>
+<td>检查此快照的桥/互连，不能套最新版本行为</td>
+</tr>
+<tr>
+<td>LLC</td>
+<td><code>559bcbd09a5a884dbe31e2d72fd95d024e357f39</code></td>
+<td>当前配置接口是 Regbus</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../../Bender.local">Bender.local</a>将依赖定向到仓库内快照，当前 <a href="../../../Bender.lock">Bender.lock</a>记录 Path、revision=null；这是当前锁法，不能据 null 宣称未固定依赖。其他已引用依赖的来源记录一并保存在证据清单。</p>
+<table>
+<thead>
+<tr>
+<th>配置入口</th>
+<th>当前源码取值/选择</th>
+<th>能证明什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../../cheshire.mk">cheshire.mk</a> <code>CHS_BENDER_RTL_FLAGS</code></td>
+<td>默认 <code>cv64a6_imafdchsclic_sv39_wb</code></td>
+<td>根规则默认标量 profile；不能通过 SELCFG 自动变成向量 CPU</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/Makefile">Ara/cheshire/Makefile</a> <code>COMMON_CUSTOM_TARGETS</code></td>
+<td><code>cv64a6_imafdcv_sv39</code>、<code>exclude_first_pass_decoder</code>、ARA；默认 2_lanes</td>
+<td>官方集成入口选择向量译码，lane/VLEN 从配置文件读取</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/config/2_lanes.mk">config/2_lanes.mk</a></td>
+<td>2 lanes，VLEN=2048</td>
+<td>当前向量参考组合，非最终 ASIC 参数冻结</td>
+</tr>
+<tr>
+<td><a href="../../../target/xilinx/scripts/add_sources.vcu118.tcl">VCU118 清单</a> 与 <a href="../../../target/xilinx/src/cheshire_top_xilinx.sv">FPGA top</a></td>
+<td>向量 profile，ARA/2/2048；<code>gen_cheshire_xilinx_cfg()</code> 从 DefaultCfg 覆盖 RTC/SerialLink/USB/Ara</td>
+<td>已生成的配置和加源输入；不证明旧 bitstream 与此输入一致</td>
+</tr>
+<tr>
+<td><a href="../../../target/sim/vsim/compile.cheshire_soc.tcl">现有仿真清单</a>、<a href="../../../target/sim/src/tb_cheshire_pkg.sv">TB 配置</a></td>
+<td>现有清单仍选标量 profile，first-pass stub 与真实实现并存；Ara 的 SoC 组合用 SelectedCfg=3</td>
+<td>向量仿真前须重建并验收匹配清单，不能直接只改 <code>SELCFG=3</code></td>
+</tr>
+<tr>
+<td><a href="../../../sw/sw.mk">sw/sw.mk</a></td>
+<td><code>rv64gc_zifencei</code> / <code>lp64d</code></td>
+<td>默认软件不带 V；<a href="../../../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/Makefile">Ara 软件入口</a>另加 V</td>
+</tr>
+<tr>
+<td>ASIC 规划</td>
+<td>独立目录、固定配置、静态清单</td>
+<td>提取、外购 DDR、GB、新 IP 尚未实现；Bender 不是长期迁移目标</td>
+</tr>
+</tbody>
+</table>
+<p><code>DefaultCfg</code> 是默认配置结构，不等于唯一实际平台：<code>gen_cva6_cfg()</code>、TB/FPGA 覆盖、CPU profile 与编译宏共同决定硬件。当前没有可追溯到本次源码和 ELF 的在板 bitstream 身份，因此不声称“当前板上一定运行这一配置”。用户曾报告的 VCU118 HelloWorld 只作为历史输出证据。</p>
+<h2 id="source-map">从软件模块找到实际硬件</h2>
+<p>DIF（Device Interface Function，设备接口函数）主要操作控制器寄存器；HAL（Hardware Abstraction Layer，硬件抽象层）还可封装片外器件命令。以下不是强制调用层级：应用可以直接调用 DIF，也可以直接 MMIO。</p>
+<table>
+<thead>
+<tr>
+<th>软件对象与关键符号</th>
+<th>调用者 → 实际消费者</th>
+<th>硬件落点/边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../../sw/deps/printf/printf.c">printf.c</a> <code>printf_</code>、<code>_out_char</code>；<a href="../../../sw/lib/dif/uart.c">uart.c</a> <code>_putchar</code></td>
+<td>应用 printf 宏 → 格式化 → <code>_putchar</code> → <code>uart_write</code></td>
+<td>CPU 逐字节写 UART；<code>.a</code> 不在硬件中运行</td>
+</tr>
+<tr>
+<td><a href="../../../sw/lib/dif/uart.c">UART DIF</a> <code>uart_init/read/write/flush</code></td>
+<td>程序或 UART debug → <code>reg8</code></td>
+<td><code>reg_uart_wrap → reg_to_apb → apb_uart</code>，不是 OpenTitan UART</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_spi_host.c">SPI DIF</a> <code>dif_spi_host_transaction</code></td>
+<td>Flash/SD HAL → command/TX/RX 寄存器</td>
+<td><code>spi_host</code> 命令队列和收发状态机</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c">I²C DIF</a> <code>dif_i2c_write_byte_raw</code></td>
+<td>EEPROM HAL → FDATA 等寄存器</td>
+<td><code>i2c</code> 主机 FMT FIFO → SCL/SDA；器件地址不同于 SoC MMIO 基址</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_gpio.c">GPIO DIF</a> <code>dif_gpio_write_masked</code></td>
+<td>应用 → 掩码寄存器</td>
+<td><code>gpio</code> 输出/OE；实际板级引脚另核对</td>
+</tr>
+<tr>
+<td><a href="../../../sw/lib/hal/spi_s25fs512s.c">Flash HAL</a>、<a href="../../../sw/lib/hal/spi_sdcard.c">SD HAL</a>、<a href="../../../sw/lib/hal/i2c_24fc1025.c">EEPROM HAL</a></td>
+<td>Boot ROM 或应用 → 设备协议 → SPI/I²C DIF</td>
+<td>HAL 负责命令/等待/校验，RTL 控制器负责电气时序</td>
+</tr>
+<tr>
+<td><a href="../../../sw/lib/gpt.c">GPT</a> <code>gpt_boot_part_else_raw</code>；<a href="../../../sw/include/gpt.h">gpt.h</a> <code>gpt_read_t</code></td>
+<td>GPT 按字节 offset/length 调用 read(priv, dst, addr, len)</td>
+<td>GPT 不直接驱动总线；回调把读取转成对应介质事务</td>
+</tr>
+<tr>
+<td><a href="../../../sw/lib/hal/uart_debug.c">UART debug</a> <code>uart_debug_serve</code></td>
+<td>Boot ROM → READ/WRITE/EXEC 解释</td>
+<td>收到地址后由 <strong>CPU</strong> 读写内存或跳转；不是 UART 自带 AXI DMA</td>
+</tr>
+<tr>
+<td><a href="../../../sw/lib/dif/clint.c">CLINT DIF</a></td>
+<td><code>clint_get_mtime</code> 等 → <code>reg32</code></td>
+<td>RTC 驱动的 MMIO 计数与比较；<code>get_mcycle</code> 另走 CPU CSR</td>
+</tr>
+<tr>
+<td><a href="../../../sw/include/dif/dma.h">DMA API</a> <code>sys_dma_2d_memcpy</code></td>
+<td>头文件 inline 写参数、读 NEXT_ID</td>
+<td>DMA 控制 AXI slave 与搬运 AXI master 分开；当前缺口见案例</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/lib/axi_llc_reg32.c">LLC API</a></td>
+<td>CPU 配置 way/commit/flush</td>
+<td>LLC/SPM 阵列和配置状态机；不自动刷新 CPU L1</td>
+</tr>
+<tr>
+<td><a href="../../../.bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.c">AXI RT API</a></td>
+<td><a href="../../../sw/tests/axirt_hello.spm.c">axirt_hello</a> 等配置预算</td>
+<td>SoC 可选 <code>i_axi_rt_unit_top</code>；不是通用 memcpy 库</td>
+</tr>
+<tr>
+<td><a href="../../../sw/include/util.h">util.h</a> <code>reg8/reg32/fence</code>、<a href="../../../.bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/mmio.h">mmio.h</a> <code>mmio_region_read32/write32</code></td>
+<td>上述 DIF/HAL 的最低软件访问工具</td>
+<td>load/store 或 fence 指令；没有名叫 MMIO 的独立硬件 IP</td>
+</tr>
+<tr>
+<td><a href="../../../sw/sw.mk">sw.mk</a> <code>CHS_SW_LIB_SRCS_O</code>、<code>libcheshire.a</code></td>
+<td>链接器从归档取所需对象</td>
+<td>格式化、crt0、本地 HAL/DIF、OT base/DIF/autogen、LLC/AXI RT 一同归档；unused 节可被裁掉</td>
+</tr>
+</tbody>
+</table>
+<p><code>params.h</code> 中的 <code>extern ... __base_uart</code> 是链接符号声明。<code>&amp;__base_uart</code> 得到链接器赋的数值地址，不是先从该地址读取一个指针。全库编入归档也不表示最终 ELF 包含所有驱动，更不表示所有外设都启用。</p>
+<h2 id="boundaries">与既有文档及参考图的关系</h2>
+<p><a href="../../rtl_modules/README.md">RTL 模块指南</a>负责模块内部电路；<a href="../README.md">软件手册</a>负责命令/API 查阅；本专题负责贯穿它们的执行场景，避免重建整份 SoC 地址表。详细地址和 C/I/E 条件继续查 <a href="../../01_Cheshire_Ara_Quick_Start.md#81-cie-attributes">01 §8.1</a>。</p>
+<p>本轮附件只有文本，没有可直接核验的两张附图；已经找到<a href="../LAYERS_AND_TOOLS.md">分层参考</a>和 <a href="../../diagrams/2026-10-12_soc_landscape/README.md">SoC 规划图说明</a>。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 <a href="../../engineering/IP_DDR_Interface_Contract.md">IP/DDR 契约 §12</a>为准，不从图中冻结新地址、宽度或频率。</p>
+<p>本专题中“源码事实”表示已核对引用源；“分析推断”表示根据该配置推演；“设计建议”表示后续需要实现与验证。编译结果、目标运行和板测分别记录在<a href="labs.html#evidence">实践页</a>。</p>

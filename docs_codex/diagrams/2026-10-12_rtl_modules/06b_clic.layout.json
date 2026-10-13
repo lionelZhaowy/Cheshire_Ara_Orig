@@ -1,0 +1,401 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 222.5,
+      "y": 241.5,
+      "text": "1  clic_intr 输入拼装",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 222.5,
+      "y": 273.5,
+      "text": "IRQ Router 的本 hart 分支",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 222.5,
+      "y": 305.5,
+      "text": "MEIP / SEIP（来自 PLIC）",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 222.5,
+      "y": 337.5,
+      "text": "MTIP / MSIP（来自 CLINT）",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 222.5,
+      "y": 369.5,
+      "text": "保留源按 SoC 定义连接",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 260.0,
+      "text": "2  clic_gateway",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 292.0,
+      "text": "电平 / 边沿 pending",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 324.0,
+      "text": "软件置 pending",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 735.0,
+      "y": 356.0,
+      "text": "来自 target 的 claim",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1237.5,
+      "y": 260.0,
+      "text": "3  clic_target",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1237.5,
+      "y": 292.0,
+      "text": "pending / enable",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1237.5,
+      "y": 324.0,
+      "text": "level / priority / mode",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1237.5,
+      "y": 356.0,
+      "text": "选择待提交中断",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 895,
+      "y": 456,
+      "text": "claim",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 1632.5,
+      "y": 241.5,
+      "text": "4  CVA6 CLIC 接口",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1632.5,
+      "y": 273.5,
+      "text": "valid / ready",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1632.5,
+      "y": 305.5,
+      "text": "id / level",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1632.5,
+      "y": 337.5,
+      "text": "shv / priv",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1632.5,
+      "y": 369.5,
+      "text": "kill_req / kill_ack",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 987.5,
+      "y": 690.0,
+      "text": "5  mclic_reg_top + clicint_reg_top × 源",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 987.5,
+      "y": 722.0,
+      "text": "全局配置：level / priority 的划分",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 987.5,
+      "y": 754.0,
+      "text": "每源配置：pending / enable / attr / ctl",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 987.5,
+      "y": 786.0,
+      "text": "Regbus → reg_adapter → 对应寄存器",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 45,
+      "y": 565,
+      "text": "Cfg.Clic 控制生成",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 45,
+      "y": 865,
+      "text": "CLIC 不产生 RTC 计数；CPU 接受中断的握手也不等于清除了外设事件。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 190,
+      "w": 365,
+      "h": 215,
+      "lines": [
+        "1  clic_intr 输入拼装",
+        "IRQ Router 的本 hart 分支",
+        "MEIP / SEIP（来自 PLIC）",
+        "MTIP / MSIP（来自 CLINT）",
+        "保留源按 SoC 定义连接"
+      ]
+    },
+    {
+      "x": 570,
+      "y": 205,
+      "w": 330,
+      "h": 190,
+      "lines": [
+        "2  clic_gateway",
+        "电平 / 边沿 pending",
+        "软件置 pending",
+        "来自 target 的 claim"
+      ]
+    },
+    {
+      "x": 1070,
+      "y": 205,
+      "w": 335,
+      "h": 190,
+      "lines": [
+        "3  clic_target",
+        "pending / enable",
+        "level / priority / mode",
+        "选择待提交中断"
+      ]
+    },
+    {
+      "x": 1505,
+      "y": 175,
+      "w": 255,
+      "h": 245,
+      "lines": [
+        "4  CVA6 CLIC 接口",
+        "valid / ready",
+        "id / level",
+        "shv / priv",
+        "kill_req / kill_ack"
+      ]
+    },
+    {
+      "x": 555,
+      "y": 640,
+      "w": 865,
+      "h": 180,
+      "lines": [
+        "5  mclic_reg_top + clicint_reg_top × 源",
+        "全局配置：level / priority 的划分",
+        "每源配置：pending / enable / attr / ctl",
+        "Regbus → reg_adapter → 对应寄存器"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          405,
+          300
+        ],
+        [
+          570,
+          300
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          900,
+          300
+        ],
+        [
+          1070,
+          300
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1160,
+          395
+        ],
+        [
+          1160,
+          470
+        ],
+        [
+          735,
+          470
+        ],
+        [
+          735,
+          395
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1405,
+          280
+        ],
+        [
+          1505,
+          280
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          725,
+          640
+        ],
+        [
+          725,
+          520
+        ],
+        [
+          625,
+          520
+        ],
+        [
+          625,
+          395
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1215,
+          640
+        ],
+        [
+          1215,
+          395
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "10  JTAG Debug：DMI 控制、hart 调试与系统总线访问",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 175.0,
+      "y": 238.5,
+      "text": "JTAG 引脚",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 175.0,
+      "y": 270.5,
+      "text": "TCK / TMS / TDI",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 175.0,
+      "y": 302.5,
+      "text": "TDO / TRSTn",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 222.5,
+      "text": "1  dmi_jtag",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 254.5,
+      "text": "JTAG TAP / DTM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 286.5,
+      "text": "DMI 请求 / 响应跨域",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 318.5,
+      "text": "TCK 域 ↔ clk_i 域",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1162.5,
+      "y": 206.5,
+      "text": "2  dm_top",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1162.5,
+      "y": 238.5,
+      "text": "dm_csrs：DMI 配置",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1162.5,
+      "y": 270.5,
+      "text": "dm_mem：调试执行存储窗",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1162.5,
+      "y": 302.5,
+      "text": "dm_sba：系统总线访问",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1162.5,
+      "y": 334.5,
+      "text": "dmactive → dbg_active_o",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 855,
+      "y": 243,
+      "text": "DMI",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 1617.5,
+      "y": 222.5,
+      "text": "3  hart 调试入口",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 254.5,
+      "text": "debug_req",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 286.5,
+      "text": "执行 debug ROM",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 318.5,
+      "text": "访问程序缓冲区",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1197.5,
+      "y": 655.0,
+      "text": "4  axi_from_mem",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1197.5,
+      "y": 687.0,
+      "text": "SBA req / gnt / rvalid",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1197.5,
+      "y": 719.0,
+      "text": "→ AXI master",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1197.5,
+      "y": 751.0,
+      "text": "AxiIn.dbg",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1410,
+      "y": 841,
+      "text": "访问系统地址空间",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 625.0,
+      "y": 641.5,
+      "text": "5  调试存储窗适配",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 673.5,
+      "text": "AXI atomics / cut",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 705.5,
+      "text": "axi_to_mem_interleaved",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 737.5,
+      "text": "→ dm_top.slave_*",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 769.5,
+      "text": "供 hart 执行调试代码",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 45,
+      "y": 650,
+      "text": "AxiOut.dbg",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 45,
+      "y": 864,
+      "text": "当前 ndmreset_o 未接出；不能由 DMI 寄存器存在就推断 SoC 复位已实现。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 185,
+      "w": 270,
+      "h": 155,
+      "lines": [
+        "JTAG 引脚",
+        "TCK / TMS / TDI",
+        "TDO / TRSTn"
+      ]
+    },
+    {
+      "x": 430,
+      "y": 175,
+      "w": 390,
+      "h": 175,
+      "lines": [
+        "1  dmi_jtag",
+        "JTAG TAP / DTM",
+        "DMI 请求 / 响应跨域",
+        "TCK 域 ↔ clk_i 域"
+      ]
+    },
+    {
+      "x": 975,
+      "y": 160,
+      "w": 375,
+      "h": 205,
+      "lines": [
+        "2  dm_top",
+        "dm_csrs：DMI 配置",
+        "dm_mem：调试执行存储窗",
+        "dm_sba：系统总线访问",
+        "dmactive → dbg_active_o"
+      ]
+    },
+    {
+      "x": 1485,
+      "y": 175,
+      "w": 265,
+      "h": 175,
+      "lines": [
+        "3  hart 调试入口",
+        "debug_req",
+        "执行 debug ROM",
+        "访问程序缓冲区"
+      ]
+    },
+    {
+      "x": 1010,
+      "y": 610,
+      "w": 375,
+      "h": 170,
+      "lines": [
+        "4  axi_from_mem",
+        "SBA req / gnt / rvalid",
+        "→ AXI master",
+        "AxiIn.dbg"
+      ]
+    },
+    {
+      "x": 430,
+      "y": 605,
+      "w": 390,
+      "h": 185,
+      "lines": [
+        "5  调试存储窗适配",
+        "AXI atomics / cut",
+        "axi_to_mem_interleaved",
+        "→ dm_top.slave_*",
+        "供 hart 执行调试代码"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          310,
+          265
+        ],
+        [
+          430,
+          265
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          820,
+          265
+        ],
+        [
+          975,
+          265
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1350,
+          250
+        ],
+        [
+          1485,
+          250
+        ]
+      ],
+      "color": "#765096",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1175,
+          365
+        ],
+        [
+          1175,
+          610
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1195,
+          780
+        ],
+        [
+          1195,
+          860
+        ],
+        [
+          1720,
+          860
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          40,
+          690
+        ],
+        [
+          430,
+          690
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          625,
+          605
+        ],
+        [
+          625,
+          465
+        ],
+        [
+          1030,
+          465
+        ],
+        [
+          1030,
+          365
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据</text>
+<rect x="40" y="180" width="345" height="185" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="212.5" y="216.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  axi_vga_reg_top</text>
+<text x="212.5" y="248.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">START_ADDR / FRAME_SIZE</text>
+<text x="212.5" y="280.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">BURST_LEN / ENABLE</text>
+<text x="212.5" y="312.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">水平 / 垂直时序</text>
+<text x="212.5" y="344.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CLK_DIV</text>
+<text x="45" y="130" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">Regbus 32</text>
+<rect x="505" y="185" width="360" height="175" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="685.0" y="232.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  axi_vga_fetcher</text>
+<text x="685.0" y="264.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">地址 / 长度状态机</text>
+<text x="685.0" y="296.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">拆取 RGB 像素</text>
+<text x="685.0" y="328.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">保持 beat / pixel offset</text>
+<polyline points="385,250 505,250" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="505,250 493.0,245.0 493.0,255.0" fill="#9C5B25"/>
+<rect x="1040" y="185" width="370" height="175" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1225.0" y="232.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  timing_fsm</text>
+<text x="1225.0" y="264.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">水平 / 垂直计数</text>
+<text x="1225.0" y="296.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">可见区与消隐区</text>
+<text x="1225.0" y="328.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">消费像素 valid / ready</text>
+<polyline points="865,280 1040,280" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1040,280 1028.0,275.0 1028.0,285.0" fill="#28699B"/>
+<text x="875" y="260" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">RGB</text>
+<polyline points="1410,265 1720,265" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1720,265 1708.0,260.0 1708.0,270.0" fill="#28699B"/>
+<text x="1450" y="244" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">RGB / HS / VS</text>
+<rect x="505" y="630" width="360" height="150" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="685.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  axi_burst_splitter</text>
+<text x="685.0" y="713.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">把请求拆成单拍事务</text>
+<text x="685.0" y="745.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">信用计数限制在途读取</text>
+<polyline points="620,360 620,630" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="620,630 625.0,618.0 615.0,618.0" fill="#28699B"/>
+<text x="642" y="483" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">AR 请求</text>
+<rect x="1040" y="630" width="370" height="150" fill="#F2EEF8" stroke="#23354B" stroke-width="2"/>
+<line x1="1052" y1="630" x2="1052" y2="780" stroke="#23354B" stroke-width="1.5"/>
+<text x="1225.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">5  R 通道 FIFO</text>
+<text x="1225.0" y="713.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">BufferDepth + 1</text>
+<text x="1225.0" y="745.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">缓冲存储器返回数据</text>
+<polyline points="865,700 975,700 975,860 1720,860" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1720,860 1708.0,855.0 1708.0,865.0" fill="#28699B"/>
+<text x="1120" y="886" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">AR → 内存</text>
+<polyline points="1720,710 1410,710" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1410,710 1422.0,715.0 1422.0,705.0" fill="#28699B"/>
+<text x="1490" y="684" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">R ← 内存</text>
+<polyline points="1040,720 865,720" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="865,720 877.0,725.0 877.0,715.0" fill="#28699B"/>
+<polyline points="765,630 765,360" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="765,360 760.0,372.0 770.0,372.0" fill="#28699B"/>
+<text x="782" y="563" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">返回 beat</text>
+<polyline points="385,315 435,315 435,435 1230,435 1230,360" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1230,360 1225.0,372.0 1235.0,372.0" fill="#9C5B25"/>
+<text x="990" y="475" font-family="WenQuanYi Zen Hei" font-size="23" fill="#9C5B25" text-anchor="start">clk_cnt_q == 0 → fsm_en</text>
+<text x="45" y="850" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">同一个 clk_i 域；CLK_DIV 控制像素状态机使能。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

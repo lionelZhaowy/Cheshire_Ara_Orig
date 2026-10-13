@@ -1,0 +1,5655 @@
+{
+  "00a_regbus": {
+    "title": "① Regbus 全路径：现有互连 + 自有 IP 接入边界",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 25,
+        "y": 330,
+        "w": 155,
+        "h": 105,
+        "lines": [
+          "CPU 等",
+          "AXI 发起端"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 250,
+        "y": 315,
+        "w": 180,
+        "h": 140,
+        "lines": [
+          "主 AXI",
+          "Crossbar",
+          "第一级选路"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 500,
+        "y": 285,
+        "w": 350,
+        "h": 195,
+        "lines": [
+          "现有 AXI → Regbus 通路",
+          "i_reg_atomics",
+          "→ i_reg_atomics_cut",
+          "→ i_axi_to_reg_v2",
+          "64-bit AXI → 32-bit Reg"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1000,
+        "y": 315,
+        "w": 240,
+        "h": 150,
+        "lines": [
+          "i_reg_demux",
+          "请求分发",
+          "响应选择"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1000,
+        "y": 200,
+        "w": 240,
+        "h": 75,
+        "lines": [
+          "地址解码 RegMap"
+        ],
+        "fill": "#F8F0E6",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 1400,
+        "y": 215,
+        "w": 320,
+        "h": 90,
+        "lines": [
+          "片内寄存器目标",
+          "SoC / UART / GPIO / …"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N07",
+        "x": 1400,
+        "y": 375,
+        "w": 320,
+        "h": 90,
+        "lines": [
+          "i_reg_err_slv",
+          "未命中：ready=1, error=1"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N08",
+        "x": 1400,
+        "y": 540,
+        "w": 320,
+        "h": 115,
+        "lines": [
+          "外部 Regbus 端口 [k]",
+          "reg_ext_slv_req_o[k]",
+          "reg_ext_slv_rsp_i[k]"
+        ],
+        "fill": "#EDF5EB",
+        "memory": false
+      },
+      {
+        "id": "N09",
+        "x": 1380,
+        "y": 805,
+        "w": 350,
+        "h": 120,
+        "lines": [
+          "自有 IP 寄存器接口",
+          "NPU / ISP / DMA / …",
+          "内部职责见图②"
+        ],
+        "fill": "#EDF5EB",
+        "memory": false,
+        "status": "planned",
+        "virtual": true
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            180,
+            385
+          ],
+          [
+            250,
+            385
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            430,
+            385
+          ],
+          [
+            500,
+            385
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            850,
+            385
+          ],
+          [
+            1000,
+            385
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            885,
+            385
+          ],
+          [
+            885,
+            235
+          ],
+          [
+            1000,
+            235
+          ]
+        ],
+        "color": "#925021",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1120,
+            275
+          ],
+          [
+            1120,
+            315
+          ]
+        ],
+        "color": "#925021",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N04"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1240,
+            340
+          ],
+          [
+            1280,
+            340
+          ],
+          [
+            1280,
+            260
+          ],
+          [
+            1400,
+            260
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "N06"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1240,
+            390
+          ],
+          [
+            1320,
+            390
+          ],
+          [
+            1320,
+            420
+          ],
+          [
+            1400,
+            420
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "N07"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            1240,
+            440
+          ],
+          [
+            1355,
+            440
+          ],
+          [
+            1355,
+            595
+          ],
+          [
+            1400,
+            595
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "N08"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            1560,
+            655
+          ],
+          [
+            1560,
+            805
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N08",
+        "target": "N09"
+      }
+    ]
+  },
+  "00b_ip_contract": {
+    "title": "② 自有 IP：需要实现的寄存器接口（建议结构，尚未接入）",
+    "height": 970,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 410,
+        "y": 260,
+        "w": 310,
+        "h": 185,
+        "lines": [
+          "地址译码与访问控制",
+          "offset = addr - BASE",
+          "fire = valid & ready",
+          "wr_en = fire & write",
+          "按译码 / wstrb 写入"
+        ],
+        "fill": "#F8F0E6",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 960,
+        "y": 270,
+        "w": 360,
+        "h": 130,
+        "lines": [
+          "配置 / 命令寄存器",
+          "参数、地址低位 / 高位",
+          "写 START 时提交命令"
+        ],
+        "fill": "#EDF5EB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1080,
+        "y": 625,
+        "w": 270,
+        "h": 110,
+        "lines": [
+          "状态 / 中断状态",
+          "busy / done / error",
+          "建议写 1 清除事件位"
+        ],
+        "fill": "#EDF5EB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 490,
+        "y": 575,
+        "w": 350,
+        "h": 170,
+        "lines": [
+          "读数据选择与访问响应",
+          "rdata = 选中寄存器值",
+          "ready = 本次访问可完成",
+          "error = 地址 / 权限等错误"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1470,
+        "y": 280,
+        "w": 290,
+        "h": 415,
+        "lines": [
+          "IP 工作逻辑",
+          "接受命令",
+          "计算 / 搬运 / 接收",
+          "维护 busy / done / error",
+          "数据口另接 AXI / 流接口"
+        ],
+        "fill": "#EDF5EB",
+        "memory": false,
+        "status": "planned",
+        "virtual": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "Regbus 请求"
+        ],
+        "port": true,
+        "port_position": [
+          45,
+          390
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "W1C 写清除使能"
+        ],
+        "port": true,
+        "port_position": [
+          1215,
+          772
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "Regbus 响应"
+        ],
+        "port": true,
+        "port_position": [
+          45,
+          655
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            45,
+            390
+          ],
+          [
+            410,
+            390
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "P01",
+        "target": "N01"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            720,
+            340
+          ],
+          [
+            960,
+            340
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1320,
+            340
+          ],
+          [
+            1470,
+            340
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N05"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1470,
+            675
+          ],
+          [
+            1350,
+            675
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N03"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            570,
+            445
+          ],
+          [
+            570,
+            575
+          ]
+        ],
+        "color": "#925021",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N04"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1120,
+            400
+          ],
+          [
+            1120,
+            480
+          ],
+          [
+            900,
+            480
+          ],
+          [
+            900,
+            620
+          ],
+          [
+            840,
+            620
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N04"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1080,
+            685
+          ],
+          [
+            840,
+            685
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            1215,
+            772
+          ],
+          [
+            1215,
+            735
+          ]
+        ],
+        "color": "#925021",
+        "dash": true,
+        "both": false,
+        "source": "P02",
+        "target": "N03"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            490,
+            655
+          ],
+          [
+            45,
+            655
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "P03"
+      }
+    ]
+  },
+  "01_uart": {
+    "title": "01  UART：寄存器访问与独立收发通路",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 360,
+        "w": 285,
+        "h": 135,
+        "lines": [
+          "1  reg_uart_wrap",
+          "reg_to_apb",
+          "Regbus 32 → APB 32"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 425,
+        "y": 360,
+        "w": 290,
+        "h": 155,
+        "lines": [
+          "2  APB 地址译码",
+          "PADDR = addr[4:2]",
+          "DLAB / THR / RBR",
+          "IER / IIR / LSR …"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 790,
+        "y": 185,
+        "w": 310,
+        "h": 120,
+        "lines": [
+          "3  uart_baudgen",
+          "DLL / DLM → baud ticks"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 790,
+        "y": 390,
+        "w": 270,
+        "h": 120,
+        "lines": [
+          "4  TX FIFO",
+          "slib_fifo：字节队列"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N05",
+        "x": 1180,
+        "y": 390,
+        "w": 330,
+        "h": 120,
+        "lines": [
+          "5  uart_transmitter",
+          "起始 / 数据 / 校验 / 停止"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 790,
+        "y": 650,
+        "w": 270,
+        "h": 120,
+        "lines": [
+          "7  RX FIFO",
+          "字节 + 接收错误位"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 1180,
+        "y": 650,
+        "w": 330,
+        "h": 120,
+        "lines": [
+          "6  uart_receiver",
+          "采样 / 组字节 / 校验"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N08",
+        "x": 40,
+        "y": 685,
+        "w": 285,
+        "h": 115,
+        "lines": [
+          "8  uart_interrupt",
+          "状态 / IER → INT"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "UART TX 输出"
+        ],
+        "port": true,
+        "port_position": [
+          1730,
+          450
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "UART RX 输入"
+        ],
+        "port": true,
+        "port_position": [
+          1730,
+          710
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "SoC UART IRQ"
+        ],
+        "port": true,
+        "port_position": [
+          182,
+          580
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            325,
+            425
+          ],
+          [
+            425,
+            425
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            570,
+            360
+          ],
+          [
+            570,
+            245
+          ],
+          [
+            790,
+            245
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            715,
+            450
+          ],
+          [
+            790,
+            450
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1060,
+            450
+          ],
+          [
+            1180,
+            450
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1510,
+            450
+          ],
+          [
+            1730,
+            450
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "P01"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1730,
+            710
+          ],
+          [
+            1510,
+            710
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "P02",
+        "target": "N07"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1180,
+            710
+          ],
+          [
+            1060,
+            710
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N07",
+        "target": "N06"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            790,
+            710
+          ],
+          [
+            575,
+            710
+          ],
+          [
+            575,
+            515
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N06",
+        "target": "N02"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            1100,
+            245
+          ],
+          [
+            1350,
+            245
+          ],
+          [
+            1350,
+            390
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N05"
+      },
+      {
+        "id": "E10",
+        "points": [
+          [
+            1350,
+            245
+          ],
+          [
+            1750,
+            245
+          ],
+          [
+            1750,
+            595
+          ],
+          [
+            1350,
+            595
+          ],
+          [
+            1350,
+            650
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N07"
+      },
+      {
+        "id": "E11",
+        "points": [
+          [
+            790,
+            770
+          ],
+          [
+            790,
+            835
+          ],
+          [
+            182,
+            835
+          ],
+          [
+            182,
+            800
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N06",
+        "target": "N08"
+      },
+      {
+        "id": "E12",
+        "points": [
+          [
+            425,
+            490
+          ],
+          [
+            370,
+            490
+          ],
+          [
+            370,
+            740
+          ],
+          [
+            325,
+            740
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N08"
+      },
+      {
+        "id": "E13",
+        "points": [
+          [
+            182,
+            685
+          ],
+          [
+            182,
+            580
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N08",
+        "target": "P03"
+      }
+    ]
+  },
+  "02_i2c": {
+    "title": "02  I²C：命令 FIFO 驱动总线时序，接收 FIFO 返回字节",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 180,
+        "w": 275,
+        "h": 150,
+        "lines": [
+          "1  i2c_reg_top",
+          "CONTROL / TIMING",
+          "FDATA / RDATA",
+          "INTR_STATE / ENABLE"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 410,
+        "y": 220,
+        "w": 330,
+        "h": 125,
+        "lines": [
+          "2  Host FMT FIFO",
+          "8-bit 字节 + 5-bit 标志",
+          "START / STOP / READ …"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N03",
+        "x": 410,
+        "y": 425,
+        "w": 330,
+        "h": 110,
+        "lines": [
+          "4  Host RX FIFO",
+          "接收字节 → RDATA"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N04",
+        "x": 880,
+        "y": 270,
+        "w": 350,
+        "h": 255,
+        "lines": [
+          "3  i2c_fsm",
+          "SCL / SDA 时序状态机",
+          "Host / Target 控制",
+          "ACK / NAK / stretching",
+          "按 TIMING 寄存器计数"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1390,
+        "y": 305,
+        "w": 310,
+        "h": 175,
+        "lines": [
+          "5  SCL / SDA 接口",
+          "采样输入",
+          "输出值 + 输出使能",
+          "外层 PAD / 上拉另接"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 410,
+        "y": 665,
+        "w": 330,
+        "h": 120,
+        "lines": [
+          "6  Target TX FIFO",
+          "软件送字节 → 总线"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 880,
+        "y": 665,
+        "w": 350,
+        "h": 120,
+        "lines": [
+          "7  Target ACQ FIFO",
+          "接收字节 + 事务标志"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N08",
+        "x": 1390,
+        "y": 665,
+        "w": 310,
+        "h": 120,
+        "lines": [
+          "8  prim_intr_hw × 事件",
+          "状态锁存 / 屏蔽 / 测试",
+          "15 路 IRQ → SoC"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            315,
+            245
+          ],
+          [
+            410,
+            245
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            740,
+            282
+          ],
+          [
+            800,
+            282
+          ],
+          [
+            800,
+            330
+          ],
+          [
+            880,
+            330
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N04"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            880,
+            480
+          ],
+          [
+            740,
+            480
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N03"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            410,
+            480
+          ],
+          [
+            175,
+            480
+          ],
+          [
+            175,
+            330
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N01"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1230,
+            390
+          ],
+          [
+            1390,
+            390
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            740,
+            725
+          ],
+          [
+            795,
+            725
+          ],
+          [
+            795,
+            570
+          ],
+          [
+            950,
+            570
+          ],
+          [
+            950,
+            525
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N06",
+        "target": "N04"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1090,
+            525
+          ],
+          [
+            1090,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N07"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            175,
+            180
+          ],
+          [
+            175,
+            100
+          ],
+          [
+            1055,
+            100
+          ],
+          [
+            1055,
+            270
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N04"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            1230,
+            450
+          ],
+          [
+            1320,
+            450
+          ],
+          [
+            1320,
+            725
+          ],
+          [
+            1390,
+            725
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N04",
+        "target": "N08"
+      },
+      {
+        "id": "E10",
+        "points": [
+          [
+            315,
+            285
+          ],
+          [
+            350,
+            285
+          ],
+          [
+            350,
+            830
+          ],
+          [
+            1545,
+            830
+          ],
+          [
+            1545,
+            785
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N08"
+      }
+    ]
+  },
+  "03_spi": {
+    "title": "03  SPI Host：命令队列控制移位，数据窗口连接收发 FIFO",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 175,
+        "w": 300,
+        "h": 145,
+        "lines": [
+          "1  spi_host_reg_top",
+          "CONTROL / CONFIGOPTS",
+          "CSID / COMMAND",
+          "STATUS / INTR_*"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 415,
+        "y": 180,
+        "w": 275,
+        "h": 130,
+        "lines": [
+          "2  command_queue",
+          "方向 / 长度 / 速度",
+          "片选与时序配置"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N03",
+        "x": 805,
+        "y": 195,
+        "w": 350,
+        "h": 130,
+        "lines": [
+          "3  spi_host_fsm",
+          "SCK / CS / sample / shift",
+          "CPOL / CPHA / 分频"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 40,
+        "y": 455,
+        "w": 300,
+        "h": 155,
+        "lines": [
+          "4  spi_host_window",
+          "TX 写窗口 / RX 读窗口",
+          "32-bit + byte enables",
+          "FIFO 满空由软件检查"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 410,
+        "y": 435,
+        "w": 290,
+        "h": 115,
+        "lines": [
+          "5  data_fifos：TX",
+          "32-bit 数据队列"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N06",
+        "x": 410,
+        "y": 670,
+        "w": 290,
+        "h": 115,
+        "lines": [
+          "9  data_fifos：RX",
+          "32-bit 接收字队列"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 805,
+        "y": 435,
+        "w": 350,
+        "h": 115,
+        "lines": [
+          "6  byte_select",
+          "32-bit → 有效发送字节"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N08",
+        "x": 805,
+        "y": 670,
+        "w": 350,
+        "h": 115,
+        "lines": [
+          "8  byte_merge",
+          "接收字节 → 32-bit"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N09",
+        "x": 1330,
+        "y": 425,
+        "w": 360,
+        "h": 165,
+        "lines": [
+          "7  shift_register",
+          "串 / 并转换",
+          "标准 / 双线 / 四线",
+          "SD[3:0] 输入 / 输出 / OE"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            340,
+            235
+          ],
+          [
+            415,
+            235
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            690,
+            245
+          ],
+          [
+            805,
+            245
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            190,
+            320
+          ],
+          [
+            190,
+            455
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            340,
+            490
+          ],
+          [
+            410,
+            490
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            410,
+            725
+          ],
+          [
+            190,
+            725
+          ],
+          [
+            190,
+            610
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N06",
+        "target": "N04"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            700,
+            490
+          ],
+          [
+            805,
+            490
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N07"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            805,
+            725
+          ],
+          [
+            700,
+            725
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N08",
+        "target": "N06"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            1155,
+            490
+          ],
+          [
+            1330,
+            490
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N07",
+        "target": "N09"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            1510,
+            590
+          ],
+          [
+            1510,
+            725
+          ],
+          [
+            1155,
+            725
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N09",
+        "target": "N08"
+      },
+      {
+        "id": "E10",
+        "points": [
+          [
+            1155,
+            260
+          ],
+          [
+            1510,
+            260
+          ],
+          [
+            1510,
+            425
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N09"
+      }
+    ]
+  },
+  "04_gpio": {
+    "title": "04  GPIO：输入滤波、边沿检测与独立的输出值 / 输出使能",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 200,
+        "w": 290,
+        "h": 125,
+        "lines": [
+          "GPIO 输入 32 路",
+          "gpio_i[31:0]"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 435,
+        "y": 175,
+        "w": 340,
+        "h": 155,
+        "lines": [
+          "1  prim_filter_ctr × 32",
+          "可选输入同步",
+          "可选计数滤波",
+          "DATA_IN → 软件"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 895,
+        "y": 180,
+        "w": 340,
+        "h": 145,
+        "lines": [
+          "2  data_in_q + 比较",
+          "上升沿 / 下降沿",
+          "高电平 / 低电平"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1370,
+        "y": 180,
+        "w": 355,
+        "h": 145,
+        "lines": [
+          "3  prim_intr_hw",
+          "事件状态 + enable/test",
+          "32 路 intr_gpio_o"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 440,
+        "y": 565,
+        "w": 370,
+        "h": 215,
+        "lines": [
+          "4  gpio_reg_top",
+          "DIRECT_OUT / DIRECT_OE",
+          "MASKED_OUT / MASKED_OE",
+          "INTR_CTRL / STATE",
+          "INPUT_FILTER / DATA_IN"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 1030,
+        "y": 570,
+        "w": 345,
+        "h": 90,
+        "lines": [
+          "5  cio_gpio_q[31:0]"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 1030,
+        "y": 715,
+        "w": 345,
+        "h": 90,
+        "lines": [
+          "6  cio_gpio_en_q[31:0]"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "GPIO PAD 输出值"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          620
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "GPIO PAD 输出使能"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          760
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            330,
+            260
+          ],
+          [
+            435,
+            260
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            775,
+            260
+          ],
+          [
+            895,
+            260
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1235,
+            260
+          ],
+          [
+            1370,
+            260
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            810,
+            620
+          ],
+          [
+            1030,
+            620
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N06"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            810,
+            745
+          ],
+          [
+            1030,
+            745
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N07"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1375,
+            620
+          ],
+          [
+            1720,
+            620
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N06",
+        "target": "P01"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1375,
+            760
+          ],
+          [
+            1720,
+            760
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N07",
+        "target": "P02"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            605,
+            565
+          ],
+          [
+            605,
+            330
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N02"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            735,
+            565
+          ],
+          [
+            735,
+            430
+          ],
+          [
+            1065,
+            430
+          ],
+          [
+            1065,
+            325
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N03"
+      },
+      {
+        "id": "E10",
+        "points": [
+          [
+            810,
+            680
+          ],
+          [
+            860,
+            680
+          ],
+          [
+            860,
+            480
+          ],
+          [
+            1545,
+            480
+          ],
+          [
+            1545,
+            325
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N04"
+      }
+    ]
+  },
+  "05_plic": {
+    "title": "05  PLIC：源侧 pending / active 与目标侧优先级选择",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 205,
+        "w": 280,
+        "h": 140,
+        "lines": [
+          "外设 IRQ 电平",
+          "经 IRQ Router",
+          "PLIC 目标分支"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 420,
+        "y": 205,
+        "w": 300,
+        "h": 140,
+        "lines": [
+          "1  prim_flop_2sync",
+          "同步输入",
+          "本集成按电平触发"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 835,
+        "y": 180,
+        "w": 350,
+        "h": 190,
+        "lines": [
+          "2  rv_plic_gateway",
+          "每源 pending：ip",
+          "每源 active：ia",
+          "claim 清 pending",
+          "complete 允许再触发"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1345,
+        "y": 180,
+        "w": 385,
+        "h": 190,
+        "lines": [
+          "3  rv_plic_target × 目标",
+          "pending & enable",
+          "priority > threshold",
+          "选择获胜源 / 产生 IRQ"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 410,
+        "y": 655,
+        "w": 775,
+        "h": 180,
+        "lines": [
+          "4  rv_plic_reg_top",
+          "源 priority；每目标 enable / threshold",
+          "读 claim → 源 ID；写 complete ← 已处理 ID",
+          "源 ID = 0 保留；设备自身状态需驱动清除"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "xeip → hart"
+        ],
+        "port": true,
+        "port_position": [
+          1535,
+          470
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            320,
+            275
+          ],
+          [
+            420,
+            275
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            720,
+            275
+          ],
+          [
+            835,
+            275
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1185,
+            275
+          ],
+          [
+            1345,
+            275
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1535,
+            370
+          ],
+          [
+            1535,
+            470
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N04",
+        "target": "P01"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1070,
+            655
+          ],
+          [
+            1070,
+            535
+          ],
+          [
+            1010,
+            535
+          ],
+          [
+            1010,
+            370
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N03"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1410,
+            370
+          ],
+          [
+            1410,
+            570
+          ],
+          [
+            1140,
+            570
+          ],
+          [
+            1140,
+            655
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1185,
+            760
+          ],
+          [
+            1695,
+            760
+          ],
+          [
+            1695,
+            370
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N04"
+      }
+    ]
+  },
+  "06a_clint": {
+    "title": "06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 415,
+        "y": 235,
+        "w": 340,
+        "h": 140,
+        "lines": [
+          "1  clint_sync_wedge",
+          "同步 + 上升沿检测",
+          "increase_timer：一拍使能"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 900,
+        "y": 235,
+        "w": 350,
+        "h": 140,
+        "lines": [
+          "2  MTIME[63:0]",
+          "寄存器反馈 + 加 1",
+          "仅 RTC 上升沿使能更新"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N03",
+        "x": 1380,
+        "y": 250,
+        "w": 220,
+        "h": 120,
+        "lines": [
+          "3  ≥ 比较",
+          "无条件保持比较"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 900,
+        "y": 525,
+        "w": 350,
+        "h": 120,
+        "lines": [
+          "4  MTIMECMP[63:0]",
+          "每 hart 一个比较值"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N05",
+        "x": 415,
+        "y": 555,
+        "w": 340,
+        "h": 165,
+        "lines": [
+          "5  clint_reg_top",
+          "MTIME_LO / HI",
+          "MTIMECMP_LO / HI",
+          "MSIP"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 1380,
+        "y": 675,
+        "w": 250,
+        "h": 100,
+        "lines": [
+          "6  MSIP 位",
+          "软件置位 / 清零"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "rtc_i"
+        ],
+        "port": true,
+        "port_position": [
+          65,
+          300
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "MTIP / timer_irq_o"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          420
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "Regbus 32"
+        ],
+        "port": true,
+        "port_position": [
+          65,
+          665
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P04",
+        "lines": [
+          "MSIP / ipi_o"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          725
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            65,
+            300
+          ],
+          [
+            415,
+            300
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "P01",
+        "target": "N01"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            755,
+            300
+          ],
+          [
+            900,
+            300
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1250,
+            300
+          ],
+          [
+            1380,
+            300
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1600,
+            300
+          ],
+          [
+            1720,
+            300
+          ],
+          [
+            1720,
+            420
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "P02"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1250,
+            585
+          ],
+          [
+            1490,
+            585
+          ],
+          [
+            1490,
+            370
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N03"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            65,
+            665
+          ],
+          [
+            415,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "P03",
+        "target": "N05"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            755,
+            600
+          ],
+          [
+            900,
+            600
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N04"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            705,
+            555
+          ],
+          [
+            705,
+            440
+          ],
+          [
+            990,
+            440
+          ],
+          [
+            990,
+            375
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "N02"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            755,
+            690
+          ],
+          [
+            835,
+            690
+          ],
+          [
+            835,
+            760
+          ],
+          [
+            1380,
+            760
+          ],
+          [
+            1380,
+            725
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N06"
+      },
+      {
+        "id": "E10",
+        "points": [
+          [
+            1630,
+            725
+          ],
+          [
+            1720,
+            725
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N06",
+        "target": "P04"
+      }
+    ]
+  },
+  "06b_clic": {
+    "title": "06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 190,
+        "w": 365,
+        "h": 215,
+        "lines": [
+          "1  clic_intr 输入拼装",
+          "IRQ Router 的本 hart 分支",
+          "MEIP / SEIP（来自 PLIC）",
+          "MTIP / MSIP（来自 CLINT）",
+          "保留源按 SoC 定义连接"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 570,
+        "y": 205,
+        "w": 330,
+        "h": 190,
+        "lines": [
+          "2  clic_gateway",
+          "电平 / 边沿 pending",
+          "软件置 pending",
+          "来自 target 的 claim"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1070,
+        "y": 205,
+        "w": 335,
+        "h": 190,
+        "lines": [
+          "3  clic_target",
+          "pending / enable",
+          "level / priority / mode",
+          "选择待提交中断"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1505,
+        "y": 175,
+        "w": 255,
+        "h": 245,
+        "lines": [
+          "4  CVA6 CLIC 接口",
+          "valid / ready",
+          "id / level",
+          "shv / priv",
+          "kill_req / kill_ack"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 555,
+        "y": 640,
+        "w": 865,
+        "h": 180,
+        "lines": [
+          "5  mclic_reg_top + clicint_reg_top × 源",
+          "全局配置：level / priority 的划分",
+          "每源配置：pending / enable / attr / ctl",
+          "Regbus → reg_adapter → 对应寄存器"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            405,
+            300
+          ],
+          [
+            570,
+            300
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            900,
+            300
+          ],
+          [
+            1070,
+            300
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1160,
+            395
+          ],
+          [
+            1160,
+            470
+          ],
+          [
+            735,
+            470
+          ],
+          [
+            735,
+            395
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N02"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1405,
+            280
+          ],
+          [
+            1505,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            725,
+            640
+          ],
+          [
+            725,
+            520
+          ],
+          [
+            625,
+            520
+          ],
+          [
+            625,
+            395
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N02"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1215,
+            640
+          ],
+          [
+            1215,
+            395
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N03"
+      }
+    ]
+  },
+  "07_irq_router": {
+    "title": "07  IRQ Router：每条源中断对应一个目标位掩码",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 45,
+        "y": 180,
+        "w": 315,
+        "h": 180,
+        "lines": [
+          "1  intr 源向量",
+          "片内外设 IRQ",
+          "外部 IRQ 经 sync",
+          "源 0 固定为 0"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 485,
+        "y": 195,
+        "w": 330,
+        "h": 145,
+        "lines": [
+          "2  irqs_cloned",
+          "每个目标一份源向量",
+          "组合逻辑复制"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1000,
+        "y": 180,
+        "w": 285,
+        "h": 180,
+        "lines": [
+          "3  按位 AND",
+          "out[target][source]",
+          "= src[source]",
+          "& mask[source][target]"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 450,
+        "y": 595,
+        "w": 470,
+        "h": 195,
+        "lines": [
+          "4  irq_router_reg_top × 源",
+          "每源一个 IRQ_TARGET_MASK",
+          "地址低位 addr[15:2] 选择源",
+          "复位 mask = 1：仅 target 0"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "target 0 → PLIC"
+        ],
+        "port": true,
+        "port_position": [
+          1415,
+          225
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "target 1… → hart CLIC"
+        ],
+        "port": true,
+        "port_position": [
+          1415,
+          275
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "后续 target → 外部 IRQ"
+        ],
+        "port": true,
+        "port_position": [
+          1415,
+          325
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            360,
+            270
+          ],
+          [
+            485,
+            270
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            815,
+            270
+          ],
+          [
+            1000,
+            270
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1285,
+            225
+          ],
+          [
+            1415,
+            225
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "P01"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1285,
+            275
+          ],
+          [
+            1415,
+            275
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "P02"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1285,
+            325
+          ],
+          [
+            1415,
+            325
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "P03"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            920,
+            690
+          ],
+          [
+            1140,
+            690
+          ],
+          [
+            1140,
+            360
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N04",
+        "target": "N03"
+      }
+    ]
+  },
+  "08_bootrom": {
+    "title": "08  BootROM：组合 ROM 内容与 Regbus 应答延迟",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 405,
+        "y": 230,
+        "w": 345,
+        "h": 195,
+        "lines": [
+          "1  reg_to_mem",
+          "地址截为 16-bit",
+          "req / we / addr",
+          "gnt = req",
+          "rvalid / rerror 返回"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 900,
+        "y": 220,
+        "w": 400,
+        "h": 195,
+        "lines": [
+          "2  cheshire_bootrom",
+          "word = addr / 4",
+          "case(word) → data[31:0]",
+          "当前生成内容：2048 words",
+          "组合查表；clk / rst 未用"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N03",
+        "x": 1440,
+        "y": 220,
+        "w": 245,
+        "h": 195,
+        "lines": [
+          "3  FF 延迟对齐",
+          "data_q ← data",
+          "req_q ← req",
+          "we_q ← we"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "Regbus 32"
+        ],
+        "port": true,
+        "port_position": [
+          50,
+          330
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            50,
+            330
+          ],
+          [
+            405,
+            330
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "P01",
+        "target": "N01"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            750,
+            280
+          ],
+          [
+            900,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1300,
+            280
+          ],
+          [
+            1440,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            750,
+            380
+          ],
+          [
+            815,
+            380
+          ],
+          [
+            815,
+            480
+          ],
+          [
+            1560,
+            480
+          ],
+          [
+            1560,
+            415
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N03"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1440,
+            350
+          ],
+          [
+            1370,
+            350
+          ],
+          [
+            1370,
+            595
+          ],
+          [
+            585,
+            595
+          ],
+          [
+            585,
+            425
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N01"
+      }
+    ]
+  },
+  "09_soc_regs": {
+    "title": "09  SoC Regs：软件 scratch 与只读硬件能力信息",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 340,
+        "w": 310,
+        "h": 160,
+        "lines": [
+          "Regbus 32 请求",
+          "addr / write / wstrb",
+          "wdata / valid"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 480,
+        "y": 195,
+        "w": 430,
+        "h": 185,
+        "lines": [
+          "1  地址与访问译码",
+          "cheshire_reg_top",
+          "reg_we / reg_re",
+          "字节写使能 / 未命中错误"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1100,
+        "y": 155,
+        "w": 615,
+        "h": 165,
+        "lines": [
+          "2  scratch[0…15]",
+          "prim_subreg：16 × 32-bit RW",
+          "保存软件数据；复位为 0；不是 SRAM"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N04",
+        "x": 1100,
+        "y": 460,
+        "w": 615,
+        "h": 195,
+        "lines": [
+          "3  硬件只读字段",
+          "boot_mode_i；RtcFreq；PlatformRom",
+          "NumIntHarts；HW_FEATURES；LLC_SIZE",
+          "VGA RGB 位宽",
+          "来自 SoC 的 hw2reg 连线"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 480,
+        "y": 630,
+        "w": 430,
+        "h": 155,
+        "lines": [
+          "4  读回选择 / 响应",
+          "rdata = 地址选中值",
+          "ready = 1；error = 非法访问"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            350,
+            400
+          ],
+          [
+            410,
+            400
+          ],
+          [
+            410,
+            285
+          ],
+          [
+            480,
+            285
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            910,
+            250
+          ],
+          [
+            1100,
+            250
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1200,
+            320
+          ],
+          [
+            1200,
+            395
+          ],
+          [
+            970,
+            395
+          ],
+          [
+            970,
+            680
+          ],
+          [
+            910,
+            680
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N05"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1100,
+            570
+          ],
+          [
+            1020,
+            570
+          ],
+          [
+            1020,
+            735
+          ],
+          [
+            910,
+            735
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            690,
+            380
+          ],
+          [
+            690,
+            630
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N05"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            480,
+            710
+          ],
+          [
+            195,
+            710
+          ],
+          [
+            195,
+            500
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N01"
+      }
+    ]
+  },
+  "10_jtag_debug": {
+    "title": "10  JTAG Debug：DMI 控制、hart 调试与系统总线访问",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 185,
+        "w": 270,
+        "h": 155,
+        "lines": [
+          "JTAG 引脚",
+          "TCK / TMS / TDI",
+          "TDO / TRSTn"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 430,
+        "y": 175,
+        "w": 390,
+        "h": 175,
+        "lines": [
+          "1  dmi_jtag",
+          "JTAG TAP / DTM",
+          "DMI 请求 / 响应跨域",
+          "TCK 域 ↔ clk_i 域"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 975,
+        "y": 160,
+        "w": 375,
+        "h": 205,
+        "lines": [
+          "2  dm_top",
+          "dm_csrs：DMI 配置",
+          "dm_mem：调试执行存储窗",
+          "dm_sba：系统总线访问",
+          "dmactive → dbg_active_o"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1485,
+        "y": 175,
+        "w": 265,
+        "h": 175,
+        "lines": [
+          "3  hart 调试入口",
+          "debug_req",
+          "执行 debug ROM",
+          "访问程序缓冲区"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1010,
+        "y": 610,
+        "w": 375,
+        "h": 170,
+        "lines": [
+          "4  axi_from_mem",
+          "SBA req / gnt / rvalid",
+          "→ AXI master",
+          "AxiIn.dbg"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 430,
+        "y": 605,
+        "w": 390,
+        "h": 185,
+        "lines": [
+          "5  调试存储窗适配",
+          "AXI atomics / cut",
+          "axi_to_mem_interleaved",
+          "→ dm_top.slave_*",
+          "供 hart 执行调试代码"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "主 AXI：AxiIn.dbg"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          860
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "待核对端点 (40, 690)"
+        ],
+        "port": true,
+        "port_position": [
+          40,
+          690
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            310,
+            265
+          ],
+          [
+            430,
+            265
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            820,
+            265
+          ],
+          [
+            975,
+            265
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1350,
+            250
+          ],
+          [
+            1485,
+            250
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1175,
+            365
+          ],
+          [
+            1175,
+            610
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1195,
+            780
+          ],
+          [
+            1195,
+            860
+          ],
+          [
+            1720,
+            860
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "P01"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            40,
+            690
+          ],
+          [
+            430,
+            690
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "P02",
+        "target": "N06"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            625,
+            605
+          ],
+          [
+            625,
+            465
+          ],
+          [
+            1030,
+            465
+          ],
+          [
+            1030,
+            365
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N06",
+        "target": "N03"
+      }
+    ]
+  },
+  "11_serial_link": {
+    "title": "11  Serial Link：AXI 通道编码、流控与源同步物理传输",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 185,
+        "w": 335,
+        "h": 190,
+        "lines": [
+          "1  SoC 外层适配",
+          "出站地址 domain / mask",
+          "axi_id_remap",
+          "AMO 标记适配",
+          "对端入站 → 本地 AXI"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 500,
+        "y": 185,
+        "w": 365,
+        "h": 190,
+        "lines": [
+          "2  serial_link_network",
+          "AXI AW / W / B / AR / R",
+          "通道仲裁 / 封装 / 还原",
+          "AXI ↔ payload stream"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1000,
+        "y": 185,
+        "w": 345,
+        "h": 190,
+        "lines": [
+          "3  serial_link_data_link",
+          "接收缓冲 / 流控",
+          "payload 拆分 / 重组",
+          "raw mode 支路"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1440,
+        "y": 195,
+        "w": 320,
+        "h": 170,
+        "lines": [
+          "4  channel_allocator",
+          "NumChannels > 1 时",
+          "分配与还原通道",
+          "单通道直接连接"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1260,
+        "y": 600,
+        "w": 475,
+        "h": 180,
+        "lines": [
+          "5  serial_link_physical × 通道",
+          "发送时钟分频 / 相位控制",
+          "DDR 引脚收发 / 接收跨域",
+          "ddr_rcv_clk + ddr 数据 lanes"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 465,
+        "y": 620,
+        "w": 540,
+        "h": 160,
+        "lines": [
+          "6  serial_link_reg_top",
+          "Regbus → 可选 reg_cdc → 配置",
+          "TX clk_div / raw mode / FIFO 控制",
+          "当前 SoC 的三路逻辑时钟都接 clk_i"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "链路 DDR 引脚"
+        ],
+        "port": true,
+        "port_position": [
+          1485,
+          870
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            375,
+            280
+          ],
+          [
+            500,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            865,
+            280
+          ],
+          [
+            1000,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1345,
+            280
+          ],
+          [
+            1440,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1600,
+            365
+          ],
+          [
+            1600,
+            600
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1485,
+            780
+          ],
+          [
+            1485,
+            870
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "P01"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1005,
+            695
+          ],
+          [
+            1260,
+            695
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N06",
+        "target": "N05"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            735,
+            620
+          ],
+          [
+            735,
+            485
+          ],
+          [
+            1170,
+            485
+          ],
+          [
+            1170,
+            375
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N06",
+        "target": "N03"
+      }
+    ]
+  },
+  "12_vga": {
+    "title": "12  VGA：AXI 读取帧缓冲，再按像素节拍消耗数据",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 180,
+        "w": 345,
+        "h": 185,
+        "lines": [
+          "1  axi_vga_reg_top",
+          "START_ADDR / FRAME_SIZE",
+          "BURST_LEN / ENABLE",
+          "水平 / 垂直时序",
+          "CLK_DIV"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 505,
+        "y": 185,
+        "w": 360,
+        "h": 175,
+        "lines": [
+          "2  axi_vga_fetcher",
+          "地址 / 长度状态机",
+          "拆取 RGB 像素",
+          "保持 beat / pixel offset"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1040,
+        "y": 185,
+        "w": 370,
+        "h": 175,
+        "lines": [
+          "3  timing_fsm",
+          "水平 / 垂直计数",
+          "可见区与消隐区",
+          "消费像素 valid / ready"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 505,
+        "y": 630,
+        "w": 360,
+        "h": 150,
+        "lines": [
+          "4  axi_burst_splitter",
+          "把请求拆成单拍事务",
+          "信用计数限制在途读取"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1040,
+        "y": 630,
+        "w": 370,
+        "h": 150,
+        "lines": [
+          "5  R 通道 FIFO",
+          "BufferDepth + 1",
+          "缓冲存储器返回数据"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "RGB / HS / VS 引脚"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          265
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "系统 AXI AR"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          860
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "系统 AXI R"
+        ],
+        "port": true,
+        "port_position": [
+          1720,
+          710
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            385,
+            250
+          ],
+          [
+            505,
+            250
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            865,
+            280
+          ],
+          [
+            1040,
+            280
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1410,
+            265
+          ],
+          [
+            1720,
+            265
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "P01"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            620,
+            360
+          ],
+          [
+            620,
+            630
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N04"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            865,
+            700
+          ],
+          [
+            975,
+            700
+          ],
+          [
+            975,
+            860
+          ],
+          [
+            1720,
+            860
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "P02"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1720,
+            710
+          ],
+          [
+            1410,
+            710
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "P03",
+        "target": "N05"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1040,
+            720
+          ],
+          [
+            865,
+            720
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N04"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            765,
+            630
+          ],
+          [
+            765,
+            360
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N02"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            385,
+            315
+          ],
+          [
+            435,
+            315
+          ],
+          [
+            435,
+            435
+          ],
+          [
+            1230,
+            435
+          ],
+          [
+            1230,
+            360
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N03"
+      }
+    ]
+  },
+  "13_usb": {
+    "title": "13  USB OHCI：控制适配、描述符 DMA 与独立 PHY 时钟域",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 35,
+        "y": 185,
+        "w": 275,
+        "h": 140,
+        "lines": [
+          "Regbus 32",
+          "ctrl_req / ctrl_rsp"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 420,
+        "y": 185,
+        "w": 330,
+        "h": 140,
+        "lines": [
+          "1  reg_to_axi",
+          "32-bit Reg → AXI32",
+          "控制地址取低 12 位"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 895,
+        "y": 185,
+        "w": 410,
+        "h": 190,
+        "lines": [
+          "2  UsbOhciAxi4：前端",
+          "ctrlBridge → front_ohci",
+          "OHCI 寄存器 / 帧调度",
+          "读取 ED / TD、搬运数据",
+          "完成状态 / IRQ"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 420,
+        "y": 595,
+        "w": 395,
+        "h": 150,
+        "lines": [
+          "5  AXI DMA 适配",
+          "axi_dw_converter：32 → 系统",
+          "axi_modify_address",
+          "32-bit 地址 domain / mask"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 945,
+        "y": 580,
+        "w": 365,
+        "h": 165,
+        "lines": [
+          "3  CtrlCc",
+          "命令 / 数据 / 状态跨域",
+          "生成 RTL 的握手同步",
+          "两域分别复位"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 1415,
+        "y": 575,
+        "w": 280,
+        "h": 175,
+        "lines": [
+          "4  UsbLsFsPhy",
+          "数字收发逻辑",
+          "LS / FS；4 个端口",
+          "DP / DM + OE"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "主 AXI：AxiIn.usb"
+        ],
+        "port": true,
+        "port_position": [
+          55,
+          665
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P02",
+        "lines": [
+          "SoC USB IRQ"
+        ],
+        "port": true,
+        "port_position": [
+          1570,
+          255
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "P03",
+        "lines": [
+          "DP / DM / OE 引脚"
+        ],
+        "port": true,
+        "port_position": [
+          1570,
+          880
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            310,
+            255
+          ],
+          [
+            420,
+            255
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            750,
+            255
+          ],
+          [
+            895,
+            255
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            895,
+            340
+          ],
+          [
+            860,
+            340
+          ],
+          [
+            860,
+            665
+          ],
+          [
+            815,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            420,
+            665
+          ],
+          [
+            55,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N04",
+        "target": "P01"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1125,
+            375
+          ],
+          [
+            1125,
+            580
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N05"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1310,
+            665
+          ],
+          [
+            1415,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "N06"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1305,
+            255
+          ],
+          [
+            1570,
+            255
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N03",
+        "target": "P02"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            1570,
+            750
+          ],
+          [
+            1570,
+            880
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N06",
+        "target": "P03"
+      }
+    ]
+  },
+  "14_idma": {
+    "title": "14  iDMA：AXI 控制入口、任务前端与独立搬运后端",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 35,
+        "y": 185,
+        "w": 275,
+        "h": 165,
+        "lines": [
+          "AXI slave 控制口",
+          "AxiOut.dma",
+          "atomics / cut",
+          "CPU 发起配置访问"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 420,
+        "y": 185,
+        "w": 320,
+        "h": 165,
+        "lines": [
+          "1  axi_to_reg",
+          "i_axi_translate",
+          "内部 Reg 数据宽度",
+          "随 AxiDataWidth"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 850,
+        "y": 175,
+        "w": 405,
+        "h": 190,
+        "lines": [
+          "2  idma_reg64_1d / 2d",
+          "SRC / DST / LENGTH",
+          "STRIDE / REPS（2D）",
+          "NEXT_ID / DONE_ID",
+          "访问触发任务提交"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1390,
+        "y": 175,
+        "w": 365,
+        "h": 190,
+        "lines": [
+          "3  Job FIFO + midend",
+          "队列缓冲传输请求",
+          "2D：idma_nd_midend",
+          "展开为一维传输"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N05",
+        "x": 995,
+        "y": 575,
+        "w": 595,
+        "h": 210,
+        "lines": [
+          "4  idma_backend_rw_axi",
+          "legalizer：长度 / 地址 / burst 合法化",
+          "transport：读数据、移位 / 缓冲、写数据",
+          "独立 AXI read / write 通道",
+          "当前 ErrorCap = NO_ERROR_HANDLING"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 420,
+        "y": 610,
+        "w": 395,
+        "h": 135,
+        "lines": [
+          "5  axi_rw_join",
+          "合并 AXI 读写端口",
+          "AXI master → AxiIn.dma"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N07",
+        "x": 455,
+        "y": 420,
+        "w": 340,
+        "h": 110,
+        "lines": [
+          "6  transfer_id_gen",
+          "issue / retire → ID"
+        ],
+        "fill": "#F2EEF8",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "主 AXI：AxiIn.dma"
+        ],
+        "port": true,
+        "port_position": [
+          55,
+          675
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            310,
+            270
+          ],
+          [
+            420,
+            270
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            740,
+            270
+          ],
+          [
+            850,
+            270
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1255,
+            270
+          ],
+          [
+            1390,
+            270
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1570,
+            365
+          ],
+          [
+            1570,
+            575
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            995,
+            665
+          ],
+          [
+            815,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "N06"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            420,
+            675
+          ],
+          [
+            55,
+            675
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N06",
+        "target": "P01"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1390,
+            315
+          ],
+          [
+            1330,
+            315
+          ],
+          [
+            1330,
+            470
+          ],
+          [
+            795,
+            470
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N04",
+        "target": "N07"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            1120,
+            575
+          ],
+          [
+            1120,
+            530
+          ],
+          [
+            795,
+            530
+          ],
+          [
+            795,
+            505
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N05",
+        "target": "N07"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            625,
+            420
+          ],
+          [
+            625,
+            395
+          ],
+          [
+            970,
+            395
+          ],
+          [
+            970,
+            365
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N07",
+        "target": "N03"
+      }
+    ]
+  },
+  "15_interrupt_exception": {
+    "title": "15  CVA6 Trap：异步中断与同步异常在提交路径汇合",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 165,
+        "w": 330,
+        "h": 180,
+        "lines": [
+          "1  平台中断输入",
+          "PLIC：irq_i（M / S）",
+          "CLINT：time_irq_i / ipi_i",
+          "可选 CLIC 握手"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 480,
+        "y": 155,
+        "w": 395,
+        "h": 200,
+        "lines": [
+          "2  csr_regfile",
+          "pending / enable / 委托",
+          "mip / mie / mstatus …",
+          "trap 状态：epc / cause / tval",
+          "trap_vector_base / eret"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1030,
+        "y": 155,
+        "w": 350,
+        "h": 200,
+        "lines": [
+          "3  decoder / id_stage",
+          "结合特权级与 IRQ 控制",
+          "选出可接受的中断",
+          "或生成译码异常",
+          "写入指令的 ex 信息"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1480,
+        "y": 175,
+        "w": 280,
+        "h": 160,
+        "lines": [
+          "4  scoreboard",
+          "指令与结果关联",
+          "ex 随指令保存"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N05",
+        "x": 1470,
+        "y": 565,
+        "w": 295,
+        "h": 180,
+        "lines": [
+          "5  commit_stage",
+          "按提交顺序选异常",
+          "阻止错误指令提交",
+          "ex_commit → CSR"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 980,
+        "y": 580,
+        "w": 330,
+        "h": 155,
+        "lines": [
+          "执行 / 访存异常",
+          "非法操作 / 访问故障等",
+          "结果携带 exception_t"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N07",
+        "x": 450,
+        "y": 590,
+        "w": 370,
+        "h": 160,
+        "lines": [
+          "6  controller + frontend",
+          "flush 错误路径流水线",
+          "PC 转向 trap 入口",
+          "xRET 恢复返回 PC"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "处理程序取指（逻辑结果）"
+        ],
+        "port": true,
+        "port_position": [
+          60,
+          665
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            370,
+            245
+          ],
+          [
+            480,
+            245
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            875,
+            245
+          ],
+          [
+            1030,
+            245
+          ]
+        ],
+        "color": "#765096",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1380,
+            245
+          ],
+          [
+            1480,
+            245
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            1620,
+            335
+          ],
+          [
+            1620,
+            565
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1145,
+            580
+          ],
+          [
+            1145,
+            440
+          ],
+          [
+            1550,
+            440
+          ],
+          [
+            1550,
+            335
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N06",
+        "target": "N04"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1570,
+            745
+          ],
+          [
+            1570,
+            805
+          ],
+          [
+            930,
+            805
+          ],
+          [
+            930,
+            400
+          ],
+          [
+            775,
+            400
+          ],
+          [
+            775,
+            355
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N05",
+        "target": "N02"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            590,
+            355
+          ],
+          [
+            590,
+            590
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N07"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            450,
+            665
+          ],
+          [
+            60,
+            665
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N07",
+        "target": "P01"
+      }
+    ]
+  },
+  "16a_llc": {
+    "title": "16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 35,
+        "y": 185,
+        "w": 340,
+        "h": 180,
+        "lines": [
+          "1  isolate / demux",
+          "入口隔离与 bypass",
+          "chan_splitter / 仲裁",
+          "AW / AR → 描述符"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 510,
+        "y": 185,
+        "w": 340,
+        "h": 180,
+        "lines": [
+          "2  axi_llc_hit_miss",
+          "tag_store / valid / dirty",
+          "锁定与同 ID 顺序约束",
+          "cache 或 SPM 地址判定"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1010,
+        "y": 185,
+        "w": 335,
+        "h": 180,
+        "lines": [
+          "3  evict → refill",
+          "必要时写回脏行",
+          "从外存补入 cache line",
+          "完成后传递描述符"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 1455,
+        "y": 185,
+        "w": 300,
+        "h": 180,
+        "lines": [
+          "4  merge_unit",
+          "汇合命中 / 补入路径",
+          "分发 read / write"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N05",
+        "x": 1395,
+        "y": 565,
+        "w": 355,
+        "h": 145,
+        "lines": [
+          "5  read_unit / write_unit",
+          "连接 AXI R / W / B",
+          "访问选定的数据 way"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      },
+      {
+        "id": "N06",
+        "x": 750,
+        "y": 570,
+        "w": 470,
+        "h": 180,
+        "lines": [
+          "6  axi_llc_ways",
+          "read / write / evict / refill 仲裁",
+          "每个 way 的 SRAM",
+          "按地址、way、byte strobe 访问"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 40,
+        "y": 615,
+        "w": 420,
+        "h": 130,
+        "lines": [
+          "7  AXI 外存出口",
+          "bypass 与 refill / evict",
+          "经 axi_bypass_mux 汇合"
+        ],
+        "fill": "#EAF1F8",
+        "memory": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            375,
+            265
+          ],
+          [
+            510,
+            265
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            850,
+            305
+          ],
+          [
+            1010,
+            305
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1345,
+            285
+          ],
+          [
+            1455,
+            285
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "N04"
+      },
+      {
+        "id": "E04",
+        "points": [
+          [
+            680,
+            185
+          ],
+          [
+            680,
+            105
+          ],
+          [
+            1605,
+            105
+          ],
+          [
+            1605,
+            185
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N02",
+        "target": "N04"
+      },
+      {
+        "id": "E05",
+        "points": [
+          [
+            1610,
+            365
+          ],
+          [
+            1610,
+            565
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N04",
+        "target": "N05"
+      },
+      {
+        "id": "E06",
+        "points": [
+          [
+            1395,
+            640
+          ],
+          [
+            1220,
+            640
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N05",
+        "target": "N06"
+      },
+      {
+        "id": "E07",
+        "points": [
+          [
+            1175,
+            365
+          ],
+          [
+            1175,
+            570
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N06"
+      },
+      {
+        "id": "E08",
+        "points": [
+          [
+            117,
+            365
+          ],
+          [
+            117,
+            615
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N07"
+      },
+      {
+        "id": "E09",
+        "points": [
+          [
+            1010,
+            345
+          ],
+          [
+            935,
+            345
+          ],
+          [
+            935,
+            465
+          ],
+          [
+            350,
+            465
+          ],
+          [
+            350,
+            615
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N03",
+        "target": "N07"
+      }
+    ]
+  },
+  "16b_spm": {
+    "title": "16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交",
+    "height": 980,
+    "nodes": [
+      {
+        "id": "N01",
+        "x": 40,
+        "y": 175,
+        "w": 390,
+        "h": 190,
+        "lines": [
+          "1  axi_llc_reg_top",
+          "CFG_SPM / CFG_FLUSH",
+          "COMMIT_CFG / FLUSHED",
+          "BIST / 容量 / 版本",
+          "当前控制接口：Regbus"
+        ],
+        "fill": "#E8F2EA",
+        "memory": false
+      },
+      {
+        "id": "N02",
+        "x": 590,
+        "y": 175,
+        "w": 430,
+        "h": 190,
+        "lines": [
+          "2  axi_llc_config",
+          "提交新配置 / 停止接收新事务",
+          "等待在途工作 / 发 flush 描述符",
+          "必要时写回脏行",
+          "更新 spm_lock / flushed"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N03",
+        "x": 1170,
+        "y": 175,
+        "w": 565,
+        "h": 190,
+        "lines": [
+          "3  地址与 way 选择",
+          "cache 地址：tag lookup → cache way",
+          "SPM 地址：直接选择被锁定的 way",
+          "未配置为 SPM 的对应 way 不可当 RAM 用",
+          "SPM 访问不进行外存 refill"
+        ],
+        "fill": "#FFF0DB",
+        "memory": false
+      },
+      {
+        "id": "N04",
+        "x": 645,
+        "y": 585,
+        "w": 240,
+        "h": 155,
+        "lines": [
+          "way 0",
+          "SPM",
+          "相同 data SRAM"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N05",
+        "x": 910,
+        "y": 585,
+        "w": 240,
+        "h": 155,
+        "lines": [
+          "way 1",
+          "SPM",
+          "相同 data SRAM"
+        ],
+        "fill": "#F2EEF8",
+        "memory": true
+      },
+      {
+        "id": "N06",
+        "x": 1175,
+        "y": 585,
+        "w": 240,
+        "h": 155,
+        "lines": [
+          "way 2",
+          "Cache",
+          "相同 data SRAM"
+        ],
+        "fill": "#EAF1F8",
+        "memory": true
+      },
+      {
+        "id": "N07",
+        "x": 1440,
+        "y": 585,
+        "w": 240,
+        "h": 155,
+        "lines": [
+          "way 3",
+          "Cache",
+          "相同 data SRAM"
+        ],
+        "fill": "#EAF1F8",
+        "memory": true
+      },
+      {
+        "id": "P01",
+        "lines": [
+          "待核对端点 (1420, 515)"
+        ],
+        "port": true,
+        "port_position": [
+          1420,
+          515
+        ],
+        "kind": "boundary",
+        "fill": "#FFFFFF"
+      }
+    ],
+    "edges": [
+      {
+        "id": "E01",
+        "points": [
+          [
+            430,
+            260
+          ],
+          [
+            590,
+            260
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": true,
+        "source": "N01",
+        "target": "N02"
+      },
+      {
+        "id": "E02",
+        "points": [
+          [
+            1020,
+            260
+          ],
+          [
+            1170,
+            260
+          ]
+        ],
+        "color": "#9C5B25",
+        "dash": true,
+        "both": false,
+        "source": "N02",
+        "target": "N03"
+      },
+      {
+        "id": "E03",
+        "points": [
+          [
+            1420,
+            365
+          ],
+          [
+            1420,
+            515
+          ]
+        ],
+        "color": "#28699B",
+        "dash": false,
+        "both": false,
+        "source": "N03",
+        "target": "P01"
+      }
+    ]
+  }
+}

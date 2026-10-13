@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1030" viewBox="0 0 2400 1030">
+<defs>
+<marker id="m23354B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#23354B"/></marker>
+<marker id="m28699B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#28699B"/></marker>
+<marker id="m9C5B25" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#9C5B25"/></marker>
+<marker id="m765096" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765096"/></marker>
+<marker id="m314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="m765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="m187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="mB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+<marker id="m205F9C" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#205F9C"/></marker>
+<marker id="m925021" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#925021"/></marker>
+<marker id="m253447" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#253447"/></marker>
+</defs>
+<rect x="0" y="0" width="2400" height="1030" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="40" y="46" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start" font-weight="bold">05  PLIC：源侧 pending / active 与目标侧优先级选择</text>
+<text x="40" y="90" font-family="WenQuanYi Zen Hei" font-size="25" fill="#606773" text-anchor="start">B  工业端口图：同一 E 编号的两端相连；完整信号组、方向与用途见共用连接表。</text>
+<rect x="40" y="145" width="730" height="221" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="58" y="174" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">N01  外部/组边界</text>
+<text x="405" y="209" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">外设 IRQ 电平</text>
+<text x="405" y="241" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">IRQ Router 或旁路</text>
+<text x="405" y="273" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">PLIC 目标分支</text>
+<rect x="55" y="304" width="700" height="48" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E01-source" points="734,329 785,329" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="720" y="337" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="end">E01 → N02</text>
+<rect x="40" y="406" width="730" height="288" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="58" y="435" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">N04  内部工作逻辑</text>
+<text x="405" y="470" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">3  rv_plic_target × 目标</text>
+<text x="405" y="502" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">pending &amp; enable</text>
+<text x="405" y="534" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">priority &gt; threshold</text>
+<text x="405" y="566" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">选择获胜源 / 产生 IRQ</text>
+<rect x="55" y="597" width="700" height="83" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E03-target" points="25,622 76,622" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="89" y="630" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="start">E03 ← N03</text>
+<polyline id="E07-target" points="25,657 76,657" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="89" y="665" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="start">E07 ← N05</text>
+<polyline id="E04-source" points="734,622 785,622" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="720" y="630" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="end">E04 → P01</text>
+<polyline id="E06-source" points="734,657 785,657" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="720" y="665" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="end">E06 → N05</text>
+<rect x="835" y="145" width="730" height="221" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="853" y="174" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">N02  内部工作逻辑</text>
+<text x="1200" y="209" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">1  prim_flop_2sync</text>
+<text x="1200" y="241" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">同步输入</text>
+<text x="1200" y="273" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">本集成按电平触发</text>
+<rect x="850" y="304" width="700" height="48" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E01-target" points="820,329 871,329" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="884" y="337" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="start">E01 ← N01</text>
+<polyline id="E02-source" points="1529,329 1580,329" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="1515" y="337" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="end">E02 → N03</text>
+<rect x="835" y="406" width="730" height="288" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="853" y="435" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">N05  接口与配置</text>
+<text x="1200" y="470" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">4  rv_plic_reg_top</text>
+<text x="1200" y="502" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">源 priority；每目标 enable / threshold</text>
+<text x="1200" y="534" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">读 claim → 源 ID；写 complete ← 已处理 ID</text>
+<text x="1200" y="566" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">源 ID = 0 保留；设备自身状态需驱动清除</text>
+<rect x="850" y="597" width="700" height="83" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E06-target" points="820,622 871,622" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="884" y="630" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="start">E06 ← N04</text>
+<polyline id="E08-target" points="820,657 871,657" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="884" y="665" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="start">E08 ← N03</text>
+<polyline id="E05-source" points="1529,622 1580,622" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="1515" y="630" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="end">E05 → N03</text>
+<polyline id="E07-source" points="1529,657 1580,657" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="1515" y="665" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="end">E07 → N04</text>
+<rect x="1630" y="145" width="730" height="320" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1648" y="174" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">N03  内部工作逻辑</text>
+<text x="1995" y="209" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">2  rv_plic_gateway</text>
+<text x="1995" y="241" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">每源 pending：ip</text>
+<text x="1995" y="273" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">每源 active：ia</text>
+<text x="1995" y="305" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">claim 清 pending</text>
+<text x="1995" y="337" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="middle">complete 允许再触发</text>
+<rect x="1645" y="368" width="700" height="83" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E02-target" points="1615,393 1666,393" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="1679" y="401" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="start">E02 ← N02</text>
+<polyline id="E05-target" points="1615,428 1666,428" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="1679" y="436" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="start">E05 ← N05</text>
+<polyline id="E03-source" points="2324,393 2375,393" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="2310" y="401" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="end">E03 → N04</text>
+<polyline id="E08-source" points="2324,428 2375,428" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m314D66)"/>
+<text x="2310" y="436" font-family="WenQuanYi Zen Hei" font-size="23" fill="#314D66" text-anchor="end">E08 → N05</text>
+<rect x="1630" y="505" width="730" height="157" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1648" y="534" font-family="WenQuanYi Zen Hei" font-size="22" fill="#606773" text-anchor="start">P01  外部/组边界</text>
+<text x="1995" y="569" font-family="WenQuanYi Zen Hei" font-size="25" fill="#23354B" text-anchor="middle" font-weight="bold">xeip → hart</text>
+<rect x="1645" y="600" width="700" height="48" fill="#FFFFFF" stroke="#B8BDC5" stroke-width="1"/>
+<polyline id="E04-target" points="1615,625 1666,625" fill="none" stroke="#765489" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m765489)"/>
+<text x="1679" y="633" font-family="WenQuanYi Zen Hei" font-size="23" fill="#765489" text-anchor="start">E04 ← N04</text>
+<text x="40" y="744" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">xeip → hart</text>
+<text x="40" y="775" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">M / S 外部中断</text>
+<text x="40" y="806" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">Regbus 请求 / 响应</text>
+<text x="40" y="837" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">claim / complete</text>
+<text x="40" y="868" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">获胜源 ID</text>
+<text x="40" y="899" font-family="WenQuanYi Zen Hei" font-size="23" fill="#606773" text-anchor="start">priority / enable / threshold</text>
+<text x="40" y="1003" font-family="WenQuanYi Zen Hei" font-size="24" fill="#606773" text-anchor="start">配对端口表示图示连接；已有/规划状态见模块和连接表。方向与 A 版一致。虚线模块表示规划。</text>
+</svg>

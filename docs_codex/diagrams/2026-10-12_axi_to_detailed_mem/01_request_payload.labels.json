@@ -1,0 +1,226 @@
+[
+  {
+    "x": 40,
+    "y": 43,
+    "text": "① 请求内容：独立读 / 写来源，共用一个内部请求出口",
+    "size": 30,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 85,
+    "text": "实线 = 请求字段；虚线 = 选择控制。valid / ready 另见图②。",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 380.0,
+    "y": 214,
+    "text": "读请求生成逻辑",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 380.0,
+    "y": 246,
+    "text": "rd_meta_q / r_cnt_q",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 380.0,
+    "y": 278,
+    "text": "每个读拍生成 rd_meta",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 380.0,
+    "y": 399,
+    "text": "写请求生成逻辑",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 380.0,
+    "y": 431,
+    "text": "wr_meta_q / w_cnt_q",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 380.0,
+    "y": 463,
+    "text": "每个写拍生成 wr_meta",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 45,
+    "y": 222,
+    "text": "AR 字段",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 402,
+    "text": "AW 字段",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 434,
+    "text": "W.strb",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 697,
+    "y": 310,
+    "text": "2:1",
+    "size": 25,
+    "anchor": "middle"
+  },
+  {
+    "x": 697,
+    "y": 345,
+    "text": "MUX",
+    "size": 23,
+    "anchor": "middle"
+  },
+  {
+    "x": 640,
+    "y": 165,
+    "text": "i_ax_mux",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 548,
+    "y": 228,
+    "text": "rd_meta",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 548,
+    "y": 408,
+    "text": "wr_meta",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 798,
+    "y": 308,
+    "text": "meta",
+    "size": 25,
+    "anchor": "start"
+  },
+  {
+    "x": 1075.0,
+    "y": 264,
+    "text": "组合接线",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1075.0,
+    "y": 296,
+    "text": "addr = meta.addr",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1075.0,
+    "y": 328,
+    "text": "we = meta.write",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1075.0,
+    "y": 360,
+    "text": "id = meta.id",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1075.0,
+    "y": 392,
+    "text": "其余请求属性随行",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1040,
+    "y": 130,
+    "text": "axi_req_i.w.data / w.strb",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1220,
+    "y": 307,
+    "text": "m2s_req",
+    "size": 22,
+    "anchor": "start"
+  },
+  {
+    "x": 1450.0,
+    "y": 279,
+    "text": "请求入口",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1450.0,
+    "y": 311,
+    "text": "图③",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 1450.0,
+    "y": 343,
+    "text": "i_stream_to_mem",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 692.5,
+    "y": 569,
+    "text": "读写仲裁逻辑",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 692.5,
+    "y": 601,
+    "text": "含选择保持状态",
+    "size": 24,
+    "anchor": "middle"
+  },
+  {
+    "x": 835,
+    "y": 578,
+    "text": "选择信号：meta_sel_d",
+    "size": 24,
+    "anchor": "start"
+  },
+  {
+    "x": 1015,
+    "y": 470,
+    "text": "meta → 图②两个 FIFO 的数据来源",
+    "size": 23,
+    "anchor": "start"
+  },
+  {
+    "x": 40,
+    "y": 658,
+    "text": "注意：W.data 不经过 i_ax_mux，也不写入 i_meta_buf。",
+    "size": 24,
+    "anchor": "start"
+  }
+]

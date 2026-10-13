@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+<rect x="0" y="0" width="1800" height="980" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">07  IRQ Router：每条源中断对应一个目标位掩码</text>
+<rect x="45" y="180" width="315" height="180" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="202.5" y="230.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  intr 源向量</text>
+<text x="202.5" y="262.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">片内外设 IRQ</text>
+<text x="202.5" y="294.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">外部 IRQ 经 sync</text>
+<text x="202.5" y="326.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">源 0 固定为 0</text>
+<rect x="485" y="195" width="330" height="145" fill="#EAF1F8" stroke="#23354B" stroke-width="2"/>
+<text x="650.0" y="243.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  irqs_cloned</text>
+<text x="650.0" y="275.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">每个目标一份源向量</text>
+<text x="650.0" y="307.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">组合逻辑复制</text>
+<polyline points="360,270 485,270" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="485,270 473.0,265.0 473.0,275.0" fill="#28699B"/>
+<rect x="1000" y="180" width="285" height="180" fill="#FFF0DB" stroke="#23354B" stroke-width="2"/>
+<text x="1142.5" y="230.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  按位 AND</text>
+<text x="1142.5" y="262.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">out[target][source]</text>
+<text x="1142.5" y="294.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">= src[source]</text>
+<text x="1142.5" y="326.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">&amp; mask[source][target]</text>
+<polyline points="815,270 1000,270" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1000,270 988.0,265.0 988.0,275.0" fill="#28699B"/>
+<polyline points="1285,225 1415,225" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1415,225 1403.0,220.0 1403.0,230.0" fill="#28699B"/>
+<polyline points="1285,275 1415,275" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1415,275 1403.0,270.0 1403.0,280.0" fill="#28699B"/>
+<polyline points="1285,325 1415,325" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="1415,325 1403.0,320.0 1403.0,330.0" fill="#28699B"/>
+<text x="1435" y="231" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">target 0 → PLIC</text>
+<text x="1435" y="281" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">target 1… → 各 hart CLIC</text>
+<text x="1435" y="331" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">后续 target → 外部输出</text>
+<rect x="450" y="595" width="470" height="195" fill="#E8F2EA" stroke="#23354B" stroke-width="2"/>
+<text x="685.0" y="652.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">4  irq_router_reg_top × 源</text>
+<text x="685.0" y="684.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">每源一个 IRQ_TARGET_MASK</text>
+<text x="685.0" y="716.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">地址低位 addr[15:2] 选择源</text>
+<text x="685.0" y="748.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">复位 mask = 1：仅 target 0</text>
+<text x="455" y="548" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">Regbus 请求 / 响应</text>
+<polyline points="920,690 1140,690 1140,360" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="1140,360 1135.0,372.0 1145.0,372.0" fill="#9C5B25"/>
+<text x="1170" y="536" font-family="WenQuanYi Zen Hei" font-size="23" fill="#9C5B25" text-anchor="start">掩码重排为目标 × 源</text>
+<text x="55" y="870" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">Cfg.IrqRouter = 0 时：绕过掩码，原始源向量复制给各目标；模块没有 pending 或优先级队列。</text>
+<polyline points="42,940 118,940" fill="none" stroke="#28699B" stroke-width="2.5"/>
+<polygon points="118,940 106.0,935.0 106.0,945.0" fill="#28699B"/>
+<text x="130" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">数据 / 请求；双箭头含返回</text>
+<polyline points="575,940 655,940" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-dasharray="8 5"/>
+<polygon points="655,940 643.0,935.0 643.0,945.0" fill="#9C5B25"/>
+<text x="667" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">配置 / 控制（标注 IRQ、使能时按标签）</text>
+<text x="1270" y="946" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">编号与正文逐块对应</text>
+</svg>

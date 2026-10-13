@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040">
+<defs>
+<marker id="m23354B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#23354B"/></marker>
+<marker id="m28699B" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#28699B"/></marker>
+<marker id="m9C5B25" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#9C5B25"/></marker>
+<marker id="m765096" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765096"/></marker>
+<marker id="m314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="m765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="m187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="mB96043" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+<marker id="m205F9C" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#205F9C"/></marker>
+<marker id="m925021" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#925021"/></marker>
+<marker id="m253447" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#253447"/></marker>
+</defs>
+<rect x="0" y="0" width="1800" height="1040" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="40" y="49" font-family="WenQuanYi Zen Hei" font-size="32" fill="#23354B" text-anchor="start">16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交</text>
+<rect x="40" y="175" width="390" height="190" fill="#E8F2EA" stroke="#23354B" stroke-width="1.7"/>
+<text x="235.0" y="214.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">1  axi_llc_reg_top</text>
+<text x="235.0" y="246.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">CFG_SPM / CFG_FLUSH</text>
+<text x="235.0" y="278.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">COMMIT_CFG / FLUSHED</text>
+<text x="235.0" y="310.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">BIST / 容量 / 版本</text>
+<text x="235.0" y="342.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">当前控制接口：Regbus</text>
+<rect x="590" y="175" width="430" height="190" fill="#FFF0DB" stroke="#23354B" stroke-width="1.7"/>
+<text x="805.0" y="214.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">2  axi_llc_config</text>
+<text x="805.0" y="246.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">提交新配置 / 停止接收新事务</text>
+<text x="805.0" y="278.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">等待在途工作 / 发 flush 描述符</text>
+<text x="805.0" y="310.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">必要时写回脏行</text>
+<text x="805.0" y="342.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">更新 spm_lock / flushed</text>
+<polyline id="E01" points="430,260 590,260" fill="none" stroke="#28699B" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#m28699B)" marker-start="url(#m28699B)"/>
+<rect x="1170" y="175" width="565" height="190" fill="#FFF0DB" stroke="#23354B" stroke-width="1.7"/>
+<text x="1452.5" y="214.0" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">3  地址与 way 选择</text>
+<text x="1452.5" y="246.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">cache 地址：tag lookup → cache way</text>
+<text x="1452.5" y="278.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SPM 地址：直接选择被锁定的 way</text>
+<text x="1452.5" y="310.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">未配置为 SPM 的对应 way 不可当 RAM 用</text>
+<text x="1452.5" y="342.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SPM 访问不进行外存 refill</text>
+<polyline id="E02" points="1020,260 1170,260" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m9C5B25)"/>
+<rect x="610" y="515" width="1125" height="280" fill="#FFFFFF" stroke="#9DAABA" stroke-width="1.7"/>
+<text x="625" y="545" font-family="WenQuanYi Zen Hei" font-size="23" fill="#56697F" text-anchor="start">4  同一组数据 SRAM：下图仅为分区示例，不代表当前运行配置</text>
+<rect x="645" y="585" width="240" height="155" fill="#F2EEF8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="657,585 657,740" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="765.0" y="638.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">way 0</text>
+<text x="765.0" y="670.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SPM</text>
+<text x="765.0" y="702.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">相同 data SRAM</text>
+<rect x="910" y="585" width="240" height="155" fill="#F2EEF8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="922,585 922,740" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1030.0" y="638.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">way 1</text>
+<text x="1030.0" y="670.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">SPM</text>
+<text x="1030.0" y="702.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">相同 data SRAM</text>
+<rect x="1175" y="585" width="240" height="155" fill="#EAF1F8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="1187,585 1187,740" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1295.0" y="638.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">way 2</text>
+<text x="1295.0" y="670.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">Cache</text>
+<text x="1295.0" y="702.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">相同 data SRAM</text>
+<rect x="1440" y="585" width="240" height="155" fill="#EAF1F8" stroke="#23354B" stroke-width="1.7"/>
+<polyline points="1452,585 1452,740" fill="none" stroke="#23354B" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="1560.0" y="638.5" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="middle">way 3</text>
+<text x="1560.0" y="670.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">Cache</text>
+<text x="1560.0" y="702.5" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="middle">相同 data SRAM</text>
+<polyline id="E03" points="1420,365 1420,515" fill="none" stroke="#9C5B25" stroke-width="2.5" stroke-linejoin="miter" stroke-dasharray="8 5" marker-end="url(#m9C5B25)"/>
+<text x="70" y="580" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">SoC 的 SPM 地址别名</text>
+<text x="70" y="630" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">AmSpm / AmSpmBaseUncached</text>
+<text x="70" y="680" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">外层地址重映射到同一存储</text>
+<text x="70" y="730" font-family="WenQuanYi Zen Hei" font-size="23" fill="#23354B" text-anchor="start">CPU 缓存属性需另外匹配</text>
+<text x="45" y="865" font-family="WenQuanYi Zen Hei" font-size="24" fill="#23354B" text-anchor="start">LLC/SPM 不是独立 Global Buffer；DDR 旁路 master 也不会自动窥探 CPU / LLC 中的脏数据。</text>
+<rect x="485.0" y="229.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="509.5" y="250.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#28699B" text-anchor="middle" font-weight="bold">E01</text>
+<rect x="1070.0" y="229.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1094.5" y="250.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#9C5B25" text-anchor="middle" font-weight="bold">E02</text>
+<rect x="1429.0" y="426.0" width="49" height="27" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="1453.5" y="447.0" font-family="WenQuanYi Zen Hei" font-size="22" fill="#9C5B25" text-anchor="middle" font-weight="bold">E03</text>
+<text x="40" y="1000" font-family="WenQuanYi Zen Hei" font-size="22" fill="#23354B" text-anchor="start">E 编号对应图下连接表；总线双箭头合并请求/响应；单箭头含义以表为准。</text>
+<text x="40" y="1028" font-family="WenQuanYi Zen Hei" font-size="22" fill="#56697F" text-anchor="start">虚线连线表示控制/事件；虚线模块表示规划。交叉无圆点不连接。A：连续走线。</text>
+</svg>

@@ -1,0 +1,501 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "15  CVA6 Trap：异步中断与同步异常在提交路径汇合",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 205.0,
+      "y": 215.0,
+      "text": "1  平台中断输入",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 247.0,
+      "text": "PLIC：irq_i（M / S）",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 279.0,
+      "text": "CLINT：time_irq_i / ipi_i",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 205.0,
+      "y": 311.0,
+      "text": "可选 CLIC 握手",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 677.5,
+      "y": 199.0,
+      "text": "2  csr_regfile",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 677.5,
+      "y": 231.0,
+      "text": "pending / enable / 委托",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 677.5,
+      "y": 263.0,
+      "text": "mip / mie / mstatus …",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 677.5,
+      "y": 295.0,
+      "text": "trap 状态：epc / cause / tval",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 677.5,
+      "y": 327.0,
+      "text": "trap_vector_base / eret",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1205.0,
+      "y": 199.0,
+      "text": "3  decoder / id_stage",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1205.0,
+      "y": 231.0,
+      "text": "结合特权级与 IRQ 控制",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1205.0,
+      "y": 263.0,
+      "text": "选出可接受的中断",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1205.0,
+      "y": 295.0,
+      "text": "或生成译码异常",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1205.0,
+      "y": 327.0,
+      "text": "写入指令的 ex 信息",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1620.0,
+      "y": 231.0,
+      "text": "4  scoreboard",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1620.0,
+      "y": 263.0,
+      "text": "指令与结果关联",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1620.0,
+      "y": 295.0,
+      "text": "ex 随指令保存",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 615.0,
+      "text": "5  commit_stage",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 647.0,
+      "text": "按提交顺序选异常",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 679.0,
+      "text": "阻止错误指令提交",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1617.5,
+      "y": 711.0,
+      "text": "ex_commit → CSR",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1145.0,
+      "y": 633.5,
+      "text": "执行 / 访存异常",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1145.0,
+      "y": 665.5,
+      "text": "非法操作 / 访问故障等",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1145.0,
+      "y": 697.5,
+      "text": "结果携带 exception_t",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1090,
+      "y": 837,
+      "text": "ex_commit / PC",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 635.0,
+      "y": 630.0,
+      "text": "6  controller + frontend",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 635.0,
+      "y": 662.0,
+      "text": "flush 错误路径流水线",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 635.0,
+      "y": 694.0,
+      "text": "PC 转向 trap 入口",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 635.0,
+      "y": 726.0,
+      "text": "xRET 恢复返回 PC",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 50,
+      "y": 626,
+      "text": "CPU 开始执行处理程序",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 45,
+      "y": 865,
+      "text": "图中软件处理程序不在硬件中：保存现场、处理设备 / 控制器、恢复现场，再执行返回指令。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 40,
+      "y": 165,
+      "w": 330,
+      "h": 180,
+      "lines": [
+        "1  平台中断输入",
+        "PLIC：irq_i（M / S）",
+        "CLINT：time_irq_i / ipi_i",
+        "可选 CLIC 握手"
+      ]
+    },
+    {
+      "x": 480,
+      "y": 155,
+      "w": 395,
+      "h": 200,
+      "lines": [
+        "2  csr_regfile",
+        "pending / enable / 委托",
+        "mip / mie / mstatus …",
+        "trap 状态：epc / cause / tval",
+        "trap_vector_base / eret"
+      ]
+    },
+    {
+      "x": 1030,
+      "y": 155,
+      "w": 350,
+      "h": 200,
+      "lines": [
+        "3  decoder / id_stage",
+        "结合特权级与 IRQ 控制",
+        "选出可接受的中断",
+        "或生成译码异常",
+        "写入指令的 ex 信息"
+      ]
+    },
+    {
+      "x": 1480,
+      "y": 175,
+      "w": 280,
+      "h": 160,
+      "lines": [
+        "4  scoreboard",
+        "指令与结果关联",
+        "ex 随指令保存"
+      ]
+    },
+    {
+      "x": 1470,
+      "y": 565,
+      "w": 295,
+      "h": 180,
+      "lines": [
+        "5  commit_stage",
+        "按提交顺序选异常",
+        "阻止错误指令提交",
+        "ex_commit → CSR"
+      ]
+    },
+    {
+      "x": 980,
+      "y": 580,
+      "w": 330,
+      "h": 155,
+      "lines": [
+        "执行 / 访存异常",
+        "非法操作 / 访问故障等",
+        "结果携带 exception_t"
+      ]
+    },
+    {
+      "x": 450,
+      "y": 590,
+      "w": 370,
+      "h": 160,
+      "lines": [
+        "6  controller + frontend",
+        "flush 错误路径流水线",
+        "PC 转向 trap 入口",
+        "xRET 恢复返回 PC"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          370,
+          245
+        ],
+        [
+          480,
+          245
+        ]
+      ],
+      "color": "#765096",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          875,
+          245
+        ],
+        [
+          1030,
+          245
+        ]
+      ],
+      "color": "#765096",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1380,
+          245
+        ],
+        [
+          1480,
+          245
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1620,
+          335
+        ],
+        [
+          1620,
+          565
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1145,
+          580
+        ],
+        [
+          1145,
+          440
+        ],
+        [
+          1550,
+          440
+        ],
+        [
+          1550,
+          335
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1570,
+          745
+        ],
+        [
+          1570,
+          805
+        ],
+        [
+          930,
+          805
+        ],
+        [
+          930,
+          400
+        ],
+        [
+          775,
+          400
+        ],
+        [
+          775,
+          355
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          590,
+          355
+        ],
+        [
+          590,
+          590
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          450,
+          665
+        ],
+        [
+          60,
+          665
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}

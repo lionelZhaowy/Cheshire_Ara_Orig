@@ -1,0 +1,2317 @@
+{
+  "canvas": [
+    3400,
+    1850
+  ],
+  "blocks": {
+    "background": [
+      0,
+      0,
+      3400,
+      1850
+    ],
+    "cpu-ara-domain": [
+      60,
+      165,
+      1080,
+      290
+    ],
+    "cpu": [
+      90,
+      247,
+      280,
+      137
+    ],
+    "ara": [
+      460,
+      247,
+      650,
+      160
+    ],
+    "ara-filter": [
+      480,
+      308,
+      150,
+      75
+    ],
+    "ara-split": [
+      660,
+      308,
+      165,
+      75
+    ],
+    "ara-width": [
+      855,
+      308,
+      230,
+      75
+    ],
+    "gb-npu-domain": [
+      1170,
+      165,
+      1090,
+      290
+    ],
+    "npu-compute": [
+      1200,
+      255,
+      220,
+      125
+    ],
+    "tag-C6-31": [
+      1360,
+      341,
+      48,
+      31
+    ],
+    "gb-adapter": [
+      1450,
+      255,
+      240,
+      125
+    ],
+    "global-buffer": [
+      1720,
+      255,
+      270,
+      125
+    ],
+    "tag-C9-39": [
+      1930,
+      341,
+      48,
+      31
+    ],
+    "npu-transfer": [
+      2020,
+      235,
+      210,
+      176
+    ],
+    "tag-C7-45": [
+      2170,
+      368,
+      48,
+      31
+    ],
+    "image-domain": [
+      2290,
+      165,
+      1030,
+      290
+    ],
+    "lvds": [
+      2320,
+      307,
+      160,
+      115
+    ],
+    "pixel-cdc": [
+      2500,
+      307,
+      150,
+      115
+    ],
+    "isp": [
+      2670,
+      307,
+      150,
+      115
+    ],
+    "frame-select": [
+      2840,
+      307,
+      160,
+      115
+    ],
+    "frame-dma": [
+      3020,
+      307,
+      270,
+      115
+    ],
+    "tag-C4-69": [
+      2420,
+      381,
+      48,
+      31
+    ],
+    "tag-C5-71": [
+      2760,
+      381,
+      48,
+      31
+    ],
+    "tag-C8-73": [
+      3230,
+      381,
+      48,
+      31
+    ],
+    "debug-master": [
+      290,
+      548,
+      160,
+      72
+    ],
+    "idma-master": [
+      820,
+      548,
+      160,
+      72
+    ],
+    "slink-master": [
+      1010,
+      548,
+      220,
+      72
+    ],
+    "vga-master": [
+      1250,
+      548,
+      160,
+      72
+    ],
+    "usb-master": [
+      1440,
+      548,
+      160,
+      72
+    ],
+    "axi-ext-master": [
+      1630,
+      548,
+      140,
+      72
+    ],
+    "xbar": [
+      60,
+      665,
+      1720,
+      140
+    ],
+    "pin-S0": [
+      127,
+      650,
+      86,
+      31
+    ],
+    "pin-S1": [
+      327,
+      650,
+      86,
+      31
+    ],
+    "pin-S2": [
+      607,
+      650,
+      86,
+      31
+    ],
+    "pin-S3": [
+      857,
+      650,
+      86,
+      31
+    ],
+    "pin-S4": [
+      1077,
+      650,
+      86,
+      31
+    ],
+    "pin-S5": [
+      1287,
+      650,
+      86,
+      31
+    ],
+    "pin-S6": [
+      1477,
+      650,
+      86,
+      31
+    ],
+    "pin-S_EXT": [
+      1657,
+      650,
+      86,
+      31
+    ],
+    "pin-M0": [
+      145,
+      792,
+      90,
+      31
+    ],
+    "debug-target": [
+      80,
+      890,
+      220,
+      125
+    ],
+    "pin-M1": [
+      397,
+      792,
+      90,
+      31
+    ],
+    "reg-bridge": [
+      325,
+      890,
+      235,
+      125
+    ],
+    "pin-M3": [
+      677,
+      792,
+      90,
+      31
+    ],
+    "idma-target": [
+      585,
+      890,
+      275,
+      125
+    ],
+    "pin-M4": [
+      970,
+      792,
+      90,
+      31
+    ],
+    "slink-target": [
+      885,
+      890,
+      260,
+      125
+    ],
+    "pin-M_EXT": [
+      1240,
+      792,
+      90,
+      31
+    ],
+    "axi-ext-target": [
+      1170,
+      890,
+      230,
+      125
+    ],
+    "pin-M2": [
+      1555,
+      792,
+      90,
+      31
+    ],
+    "memory-target": [
+      1425,
+      890,
+      350,
+      125
+    ],
+    "memory-atomics": [
+      1437,
+      938,
+      140,
+      60
+    ],
+    "llc": [
+      1610,
+      938,
+      151,
+      60
+    ],
+    "platform-clock": [
+      1840,
+      490,
+      370,
+      116
+    ],
+    "tag-C1-172": [
+      2150,
+      563,
+      48,
+      31
+    ],
+    "ddr-controller": [
+      1820,
+      650,
+      1040,
+      430
+    ],
+    "tag-C2-177": [
+      2798,
+      666,
+      48,
+      31
+    ],
+    "ddr-S0": [
+      1870,
+      740,
+      160,
+      90
+    ],
+    "ddr-S1": [
+      2270,
+      740,
+      160,
+      90
+    ],
+    "ddr-S2": [
+      2670,
+      740,
+      160,
+      90
+    ],
+    "ddr-arbitration": [
+      1860,
+      890,
+      960,
+      140
+    ],
+    "ddr-qos": [
+      1880,
+      919,
+      275,
+      82
+    ],
+    "ddr-rw": [
+      2195,
+      919,
+      210,
+      82
+    ],
+    "ddr-command": [
+      2445,
+      919,
+      355,
+      82
+    ],
+    "phy": [
+      2890,
+      900,
+      210,
+      130
+    ],
+    "tag-C3-206": [
+      3040,
+      987,
+      48,
+      31
+    ],
+    "dram-chip": [
+      3180,
+      906,
+      180,
+      120
+    ],
+    "reg-peripherals": [
+      60,
+      1125,
+      3260,
+      355
+    ],
+    "regbus": [
+      80,
+      1295,
+      3210,
+      50
+    ],
+    "bootrom": [
+      80,
+      1200,
+      300,
+      75
+    ],
+    "clint": [
+      400,
+      1200,
+      300,
+      75
+    ],
+    "soc-regs": [
+      720,
+      1200,
+      300,
+      75
+    ],
+    "plic": [
+      1040,
+      1200,
+      300,
+      75
+    ],
+    "llc-regs": [
+      1360,
+      1200,
+      300,
+      75
+    ],
+    "uart": [
+      1680,
+      1200,
+      300,
+      75
+    ],
+    "i2c": [
+      2000,
+      1200,
+      300,
+      75
+    ],
+    "spi": [
+      2320,
+      1200,
+      300,
+      75
+    ],
+    "gpio": [
+      2640,
+      1200,
+      300,
+      75
+    ],
+    "slink-regs": [
+      2960,
+      1200,
+      300,
+      75
+    ],
+    "vga-regs": [
+      80,
+      1380,
+      300,
+      75
+    ],
+    "usb-regs": [
+      400,
+      1380,
+      300,
+      75
+    ],
+    "err-vga": [
+      720,
+      1380,
+      300,
+      75
+    ],
+    "err-dma": [
+      1040,
+      1380,
+      300,
+      75
+    ],
+    "err-cpu": [
+      1360,
+      1380,
+      300,
+      75
+    ],
+    "irq-router": [
+      1680,
+      1380,
+      300,
+      75
+    ],
+    "axi-rt-regs": [
+      2000,
+      1380,
+      300,
+      75
+    ],
+    "clic": [
+      2320,
+      1380,
+      300,
+      75
+    ],
+    "reg-error": [
+      2640,
+      1380,
+      300,
+      75
+    ],
+    "reg-ext": [
+      2960,
+      1380,
+      300,
+      75
+    ],
+    "config-C1": [
+      80,
+      1580,
+      310,
+      135
+    ],
+    "tag-C1-309": [
+      92,
+      1592,
+      48,
+      31
+    ],
+    "config-C2": [
+      440,
+      1580,
+      310,
+      135
+    ],
+    "tag-C2-315": [
+      452,
+      1592,
+      48,
+      31
+    ],
+    "config-C3": [
+      800,
+      1580,
+      310,
+      135
+    ],
+    "tag-C3-321": [
+      812,
+      1592,
+      48,
+      31
+    ],
+    "config-C4": [
+      1160,
+      1580,
+      310,
+      135
+    ],
+    "tag-C4-327": [
+      1172,
+      1592,
+      48,
+      31
+    ],
+    "config-C5": [
+      1520,
+      1580,
+      310,
+      135
+    ],
+    "tag-C5-333": [
+      1532,
+      1592,
+      48,
+      31
+    ],
+    "config-C6": [
+      1880,
+      1580,
+      310,
+      135
+    ],
+    "tag-C6-339": [
+      1892,
+      1592,
+      48,
+      31
+    ],
+    "config-C7": [
+      2240,
+      1580,
+      310,
+      135
+    ],
+    "tag-C7-345": [
+      2252,
+      1592,
+      48,
+      31
+    ],
+    "config-C8": [
+      2600,
+      1580,
+      310,
+      135
+    ],
+    "tag-C8-351": [
+      2612,
+      1592,
+      48,
+      31
+    ],
+    "config-C9": [
+      2960,
+      1580,
+      310,
+      135
+    ],
+    "tag-C9-357": [
+      2972,
+      1592,
+      48,
+      31
+    ]
+  },
+  "texts": [
+    {
+      "id": "obj-002",
+      "text": "Cheshire + CVA6 + Ara · SoC 扩展架构",
+      "x": 55,
+      "y": 65,
+      "size": 46,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-003",
+      "text": "版本 2 · 原版配色与结构重排",
+      "x": 60,
+      "y": 108,
+      "size": 27,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-006",
+      "text": "CVA6–Ara 处理子系统",
+      "x": 86,
+      "y": 203,
+      "size": 30,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-008",
+      "text": "CVA6 core 0",
+      "x": 230.0,
+      "y": 293.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "cpu"
+    },
+    {
+      "id": "obj-009",
+      "text": "L1 I / D · MMU",
+      "x": 230.0,
+      "y": 324.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cpu"
+    },
+    {
+      "id": "obj-010",
+      "text": "AXI 适配",
+      "x": 230.0,
+      "y": 355.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "cpu"
+    },
+    {
+      "id": "obj-012",
+      "text": "Ara · VLSU / AXI 32 × lanes",
+      "x": 785,
+      "y": 280,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "ara"
+    },
+    {
+      "id": "obj-014",
+      "text": "失效过滤",
+      "x": 555.0,
+      "y": 338.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ara-filter"
+    },
+    {
+      "id": "obj-015",
+      "text": "现有 filter",
+      "x": 555.0,
+      "y": 369.4,
+      "size": 21,
+      "anchor": "middle",
+      "owner": "ara-filter"
+    },
+    {
+      "id": "obj-017",
+      "text": "地址分流",
+      "x": 742.5,
+      "y": 338.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "ara-split"
+    },
+    {
+      "id": "obj-018",
+      "text": "GB 分支",
+      "x": 742.5,
+      "y": 369.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "ara-split"
+    },
+    {
+      "id": "obj-020",
+      "text": "位宽适配",
+      "x": 970.0,
+      "y": 338.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "ara-width"
+    },
+    {
+      "id": "obj-021",
+      "text": "普通路径 → 64 bit",
+      "x": 970.0,
+      "y": 369.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "ara-width"
+    },
+    {
+      "id": "obj-025",
+      "text": "指令",
+      "x": 415,
+      "y": 268,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-026",
+      "text": "MMU",
+      "x": 415,
+      "y": 312,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-028",
+      "text": "NPU / 独立 Global Buffer",
+      "x": 1195,
+      "y": 203,
+      "size": 30,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-030",
+      "text": "NPU 计算引擎",
+      "x": 1310.0,
+      "y": 294.45,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "npu-compute"
+    },
+    {
+      "id": "obj-031",
+      "text": "GB 数据访问",
+      "x": 1310.0,
+      "y": 325.45,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "npu-compute"
+    },
+    {
+      "id": "obj-033",
+      "text": "C6",
+      "x": 1384,
+      "y": 364,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-035",
+      "text": "GB 访问适配",
+      "x": 1570.0,
+      "y": 311.45,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "gb-adapter"
+    },
+    {
+      "id": "obj-036",
+      "text": "仲裁 / bank 冲突",
+      "x": 1570.0,
+      "y": 342.45,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "gb-adapter"
+    },
+    {
+      "id": "obj-038",
+      "text": "Global Buffer",
+      "x": 1855.0,
+      "y": 295.15,
+      "size": 29,
+      "anchor": "middle",
+      "owner": "global-buffer"
+    },
+    {
+      "id": "obj-039",
+      "text": "独立分 bank SRAM",
+      "x": 1855.0,
+      "y": 326.15,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "global-buffer"
+    },
+    {
+      "id": "obj-041",
+      "text": "C9",
+      "x": 1954,
+      "y": 364,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-043",
+      "text": "NPU / GB",
+      "x": 2125.0,
+      "y": 284.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "npu-transfer"
+    },
+    {
+      "id": "obj-044",
+      "text": "搬运引擎",
+      "x": 2125.0,
+      "y": 315.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "npu-transfer"
+    },
+    {
+      "id": "obj-045",
+      "text": "DDR ↔ GB",
+      "x": 2125.0,
+      "y": 346.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "npu-transfer"
+    },
+    {
+      "id": "obj-047",
+      "text": "C7",
+      "x": 2194,
+      "y": 391,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-052",
+      "text": "GB 分支",
+      "x": 1300,
+      "y": 244,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-054",
+      "text": "LVDS / ISP / 图像帧写入",
+      "x": 2315,
+      "y": 203,
+      "size": 30,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-056",
+      "text": "LVDS 接收",
+      "x": 2400.0,
+      "y": 341.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "lvds"
+    },
+    {
+      "id": "obj-057",
+      "text": "解串 / 帧行",
+      "x": 2400.0,
+      "y": 372.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "lvds"
+    },
+    {
+      "id": "obj-059",
+      "text": "CDC / FIFO",
+      "x": 2575.0,
+      "y": 340.05,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "pixel-cdc"
+    },
+    {
+      "id": "obj-060",
+      "text": "像素缓冲",
+      "x": 2575.0,
+      "y": 371.05,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "pixel-cdc"
+    },
+    {
+      "id": "obj-062",
+      "text": "ISP",
+      "x": 2745.0,
+      "y": 340.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "isp"
+    },
+    {
+      "id": "obj-063",
+      "text": "行缓冲 / 处理",
+      "x": 2745.0,
+      "y": 371.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "isp"
+    },
+    {
+      "id": "obj-065",
+      "text": "帧边界选择",
+      "x": 2920.0,
+      "y": 340.05,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "frame-select"
+    },
+    {
+      "id": "obj-066",
+      "text": "RAW / ISP",
+      "x": 2920.0,
+      "y": 371.05,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "frame-select"
+    },
+    {
+      "id": "obj-068",
+      "text": "图像帧写入 DMA",
+      "x": 3155.0,
+      "y": 341.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "frame-dma"
+    },
+    {
+      "id": "obj-069",
+      "text": "地址 / stride / 打包",
+      "x": 3155.0,
+      "y": 372.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "frame-dma"
+    },
+    {
+      "id": "obj-071",
+      "text": "C4",
+      "x": 2444,
+      "y": 404,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-073",
+      "text": "C5",
+      "x": 2784,
+      "y": 404,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-075",
+      "text": "C8",
+      "x": 3254,
+      "y": 404,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-082",
+      "text": "RAW 旁路",
+      "x": 2930,
+      "y": 271,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-084",
+      "text": "ISP 中间数据 ↔ GB",
+      "x": 2510,
+      "y": 250,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-085",
+      "text": "AXI master / 发起端",
+      "x": 1190,
+      "y": 520,
+      "size": 24,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-087",
+      "text": "Debug / SBA",
+      "x": 370.0,
+      "y": 592.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "debug-master"
+    },
+    {
+      "id": "obj-090",
+      "text": "iDMA 数据",
+      "x": 900.0,
+      "y": 592.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "idma-master"
+    },
+    {
+      "id": "obj-093",
+      "text": "Serial Link RX",
+      "x": 1120.0,
+      "y": 592.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "slink-master"
+    },
+    {
+      "id": "obj-096",
+      "text": "VGA 取帧",
+      "x": 1330.0,
+      "y": 592.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "vga-master"
+    },
+    {
+      "id": "obj-099",
+      "text": "USB DMA",
+      "x": 1520.0,
+      "y": 592.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "usb-master"
+    },
+    {
+      "id": "obj-102",
+      "text": "AXI 扩展",
+      "x": 1700.0,
+      "y": 576.9,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "axi-ext-master"
+    },
+    {
+      "id": "obj-103",
+      "text": "master",
+      "x": 1700.0,
+      "y": 607.9,
+      "size": 21,
+      "anchor": "middle",
+      "owner": "axi-ext-master"
+    },
+    {
+      "id": "obj-107",
+      "text": "Ara 普通地址",
+      "x": 550,
+      "y": 524,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-109",
+      "text": "AXI Crossbar",
+      "x": 920,
+      "y": 720,
+      "size": 38,
+      "anchor": "middle",
+      "owner": "xbar"
+    },
+    {
+      "id": "obj-110",
+      "text": "64 bit / 48 bit 地址 · 7 × 5 基础端口 + 扩展",
+      "x": 920,
+      "y": 760,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "xbar"
+    },
+    {
+      "id": "obj-111",
+      "text": "地址译码 / 目标仲裁 / 响应返回",
+      "x": 95,
+      "y": 787,
+      "size": 19,
+      "anchor": "start",
+      "owner": "xbar"
+    },
+    {
+      "id": "obj-112",
+      "text": "AXI RT 可选 · 空洞返回 DECERR",
+      "x": 1745,
+      "y": 787,
+      "size": 19,
+      "anchor": "end",
+      "owner": "xbar"
+    },
+    {
+      "id": "obj-114",
+      "text": "S0",
+      "x": 170,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-116",
+      "text": "S1",
+      "x": 370,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-118",
+      "text": "S2",
+      "x": 650,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-120",
+      "text": "S3",
+      "x": 900,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-122",
+      "text": "S4",
+      "x": 1120,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-124",
+      "text": "S5",
+      "x": 1330,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-126",
+      "text": "S6",
+      "x": 1520,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-128",
+      "text": "S_EXT",
+      "x": 1700,
+      "y": 673,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-131",
+      "text": "M0",
+      "x": 190,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-133",
+      "text": "Debug 目标",
+      "x": 190.0,
+      "y": 946.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "debug-target"
+    },
+    {
+      "id": "obj-134",
+      "text": "调试地址窗口",
+      "x": 190.0,
+      "y": 977.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "debug-target"
+    },
+    {
+      "id": "obj-137",
+      "text": "M1",
+      "x": 442,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-139",
+      "text": "AXI → Regbus",
+      "x": 442.5,
+      "y": 946.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "reg-bridge"
+    },
+    {
+      "id": "obj-140",
+      "text": "原子适配 / 桥接",
+      "x": 442.5,
+      "y": 977.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "reg-bridge"
+    },
+    {
+      "id": "obj-143",
+      "text": "M3",
+      "x": 722,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-145",
+      "text": "iDMA 配置",
+      "x": 722.5,
+      "y": 946.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "idma-target"
+    },
+    {
+      "id": "obj-146",
+      "text": "原子适配 → AXI→Reg",
+      "x": 722.5,
+      "y": 977.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "idma-target"
+    },
+    {
+      "id": "obj-149",
+      "text": "M4",
+      "x": 1015,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-151",
+      "text": "Serial Link TX",
+      "x": 1015.0,
+      "y": 946.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "slink-target"
+    },
+    {
+      "id": "obj-152",
+      "text": "远端数据窗口",
+      "x": 1015.0,
+      "y": 977.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "slink-target"
+    },
+    {
+      "id": "obj-155",
+      "text": "M_EXT",
+      "x": 1285,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-157",
+      "text": "AXI 扩展目标",
+      "x": 1285.0,
+      "y": 946.1,
+      "size": 26,
+      "anchor": "middle",
+      "owner": "axi-ext-target"
+    },
+    {
+      "id": "obj-158",
+      "text": "CPU 直访 GB 待定",
+      "x": 1285.0,
+      "y": 977.1,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "axi-ext-target"
+    },
+    {
+      "id": "obj-161",
+      "text": "M2",
+      "x": 1600,
+      "y": 815,
+      "size": 21,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-163",
+      "text": "主存 / SPM 共用目标",
+      "x": 1600,
+      "y": 919,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "memory-target"
+    },
+    {
+      "id": "obj-165",
+      "text": "AMO / LRSC",
+      "x": 1507.0,
+      "y": 975.0,
+      "size": 20,
+      "anchor": "middle",
+      "owner": "memory-atomics"
+    },
+    {
+      "id": "obj-167",
+      "text": "LLC / SPM",
+      "x": 1685.5,
+      "y": 976.4,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "llc"
+    },
+    {
+      "id": "obj-169",
+      "text": "AXI slave / 目标端",
+      "x": 1145,
+      "y": 852,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-171",
+      "text": "PLL / 时钟与复位",
+      "x": 2025.0,
+      "y": 524.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "platform-clock"
+    },
+    {
+      "id": "obj-172",
+      "text": "RefClk / POR → 系统分发",
+      "x": 2025.0,
+      "y": 555.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "platform-clock"
+    },
+    {
+      "id": "obj-174",
+      "text": "C1",
+      "x": 2174,
+      "y": 586,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-177",
+      "text": "DDR Controller · 三 AXI slave 端口",
+      "x": 1845,
+      "y": 694,
+      "size": 29,
+      "anchor": "start",
+      "owner": "ddr-controller"
+    },
+    {
+      "id": "obj-179",
+      "text": "C2",
+      "x": 2822,
+      "y": 689,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-181",
+      "text": "S0",
+      "x": 1950.0,
+      "y": 778.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-S0"
+    },
+    {
+      "id": "obj-182",
+      "text": "LLC 下游",
+      "x": 1950.0,
+      "y": 809.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ddr-S0"
+    },
+    {
+      "id": "obj-185",
+      "text": "S1",
+      "x": 2350.0,
+      "y": 778.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-S1"
+    },
+    {
+      "id": "obj-186",
+      "text": "NPU / GB",
+      "x": 2350.0,
+      "y": 809.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ddr-S1"
+    },
+    {
+      "id": "obj-189",
+      "text": "S2",
+      "x": 2750.0,
+      "y": 778.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-S2"
+    },
+    {
+      "id": "obj-190",
+      "text": "图像帧写入",
+      "x": 2750.0,
+      "y": 809.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ddr-S2"
+    },
+    {
+      "id": "obj-195",
+      "text": "端口仲裁 / QoS",
+      "x": 2017.5,
+      "y": 969.45,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-qos"
+    },
+    {
+      "id": "obj-197",
+      "text": "读写调度",
+      "x": 2300.0,
+      "y": 969.45,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-rw"
+    },
+    {
+      "id": "obj-199",
+      "text": "Bank / Row",
+      "x": 2622.5,
+      "y": 953.95,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "ddr-command"
+    },
+    {
+      "id": "obj-200",
+      "text": "命令调度",
+      "x": 2622.5,
+      "y": 984.95,
+      "size": 24,
+      "anchor": "middle",
+      "owner": "ddr-command"
+    },
+    {
+      "id": "obj-205",
+      "text": "PHY",
+      "x": 2995.0,
+      "y": 943.0,
+      "size": 30,
+      "anchor": "middle",
+      "owner": "phy"
+    },
+    {
+      "id": "obj-206",
+      "text": "训练 / 校准",
+      "x": 2995.0,
+      "y": 974.0,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "phy"
+    },
+    {
+      "id": "obj-208",
+      "text": "C3",
+      "x": 3064,
+      "y": 1010,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-210",
+      "text": "DDR 器件",
+      "x": 3270.0,
+      "y": 960.3,
+      "size": 28,
+      "anchor": "middle",
+      "owner": "dram-chip"
+    },
+    {
+      "id": "obj-211",
+      "text": "片外存储",
+      "x": 3270.0,
+      "y": 991.3,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "dram-chip"
+    },
+    {
+      "id": "obj-215",
+      "text": "LLC 外存出口",
+      "x": 1640,
+      "y": 1054,
+      "size": 22,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-217",
+      "text": "NPU / GB 统一 DDR 主口",
+      "x": 2470,
+      "y": 588,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-219",
+      "text": "帧写事务",
+      "x": 3000,
+      "y": 587,
+      "size": 23,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-221",
+      "text": "Regbus 外设 / 配置目标",
+      "x": 88,
+      "y": 1167,
+      "size": 28,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-223",
+      "text": "Regbus · 32 bit · 地址译码 / demux",
+      "x": 1685,
+      "y": 1330,
+      "size": 27,
+      "anchor": "middle",
+      "owner": "regbus"
+    },
+    {
+      "id": "obj-226",
+      "text": "Boot ROM",
+      "x": 230.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "bootrom"
+    },
+    {
+      "id": "obj-227",
+      "text": "启动代码",
+      "x": 230.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "bootrom"
+    },
+    {
+      "id": "obj-230",
+      "text": "CLINT",
+      "x": 550.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "clint"
+    },
+    {
+      "id": "obj-231",
+      "text": "软件 / 定时中断",
+      "x": 550.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "clint"
+    },
+    {
+      "id": "obj-234",
+      "text": "SoC 寄存器",
+      "x": 870.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "soc-regs"
+    },
+    {
+      "id": "obj-235",
+      "text": "平台信息 / scratch",
+      "x": 870.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "soc-regs"
+    },
+    {
+      "id": "obj-238",
+      "text": "PLIC",
+      "x": 1190.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "plic"
+    },
+    {
+      "id": "obj-239",
+      "text": "外部中断控制",
+      "x": 1190.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "plic"
+    },
+    {
+      "id": "obj-242",
+      "text": "LLC 配置",
+      "x": 1510.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "llc-regs"
+    },
+    {
+      "id": "obj-243",
+      "text": "SPM way / cache",
+      "x": 1510.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "llc-regs"
+    },
+    {
+      "id": "obj-246",
+      "text": "UART",
+      "x": 1830.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "uart"
+    },
+    {
+      "id": "obj-247",
+      "text": "串口控制",
+      "x": 1830.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "uart"
+    },
+    {
+      "id": "obj-250",
+      "text": "I2C",
+      "x": 2150.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "i2c"
+    },
+    {
+      "id": "obj-251",
+      "text": "两线串行控制",
+      "x": 2150.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "i2c"
+    },
+    {
+      "id": "obj-254",
+      "text": "SPI host",
+      "x": 2470.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "spi"
+    },
+    {
+      "id": "obj-255",
+      "text": "Flash / SD 访问",
+      "x": 2470.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "spi"
+    },
+    {
+      "id": "obj-258",
+      "text": "GPIO",
+      "x": 2790.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "gpio"
+    },
+    {
+      "id": "obj-259",
+      "text": "通用 IO",
+      "x": 2790.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "gpio"
+    },
+    {
+      "id": "obj-262",
+      "text": "Serial Link 配置",
+      "x": 3110.0,
+      "y": 1230.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "slink-regs"
+    },
+    {
+      "id": "obj-263",
+      "text": "链路控制",
+      "x": 3110.0,
+      "y": 1261.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "slink-regs"
+    },
+    {
+      "id": "obj-266",
+      "text": "VGA 配置",
+      "x": 230.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "vga-regs"
+    },
+    {
+      "id": "obj-267",
+      "text": "时序 / 帧缓冲",
+      "x": 230.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "vga-regs"
+    },
+    {
+      "id": "obj-270",
+      "text": "USB 配置",
+      "x": 550.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "usb-regs"
+    },
+    {
+      "id": "obj-271",
+      "text": "OHCI 寄存器",
+      "x": 550.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "usb-regs"
+    },
+    {
+      "id": "obj-274",
+      "text": "Bus-error · VGA",
+      "x": 870.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "err-vga"
+    },
+    {
+      "id": "obj-275",
+      "text": "错误记录",
+      "x": 870.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "err-vga"
+    },
+    {
+      "id": "obj-278",
+      "text": "Bus-error · iDMA",
+      "x": 1190.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "err-dma"
+    },
+    {
+      "id": "obj-279",
+      "text": "错误记录",
+      "x": 1190.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "err-dma"
+    },
+    {
+      "id": "obj-282",
+      "text": "Bus-error · CPU",
+      "x": 1510.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "err-cpu"
+    },
+    {
+      "id": "obj-283",
+      "text": "每核错误记录",
+      "x": 1510.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "err-cpu"
+    },
+    {
+      "id": "obj-286",
+      "text": "IRQ router",
+      "x": 1830.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "irq-router"
+    },
+    {
+      "id": "obj-287",
+      "text": "可选中断路由",
+      "x": 1830.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "irq-router"
+    },
+    {
+      "id": "obj-290",
+      "text": "AXI RT 配置",
+      "x": 2150.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "axi-rt-regs"
+    },
+    {
+      "id": "obj-291",
+      "text": "可选流量调节",
+      "x": 2150.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "axi-rt-regs"
+    },
+    {
+      "id": "obj-294",
+      "text": "CLIC",
+      "x": 2470.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "clic"
+    },
+    {
+      "id": "obj-295",
+      "text": "可选每核中断控制",
+      "x": 2470.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "clic"
+    },
+    {
+      "id": "obj-298",
+      "text": "reg_err_slv",
+      "x": 2790.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "reg-error"
+    },
+    {
+      "id": "obj-299",
+      "text": "未匹配地址错误响应",
+      "x": 2790.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "reg-error"
+    },
+    {
+      "id": "obj-302",
+      "text": "RegExt 扩展",
+      "x": 3110.0,
+      "y": 1410.75,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "reg-ext"
+    },
+    {
+      "id": "obj-303",
+      "text": "新增 IP 配置出口",
+      "x": 3110.0,
+      "y": 1441.75,
+      "size": 22,
+      "anchor": "middle",
+      "owner": "reg-ext"
+    },
+    {
+      "id": "obj-305",
+      "text": "RegExt · 新增配置端",
+      "x": 82,
+      "y": 1520,
+      "size": 27,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-311",
+      "text": "C1",
+      "x": 116,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-312",
+      "text": "PLL / 时钟复位",
+      "x": 254,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C1"
+    },
+    {
+      "id": "obj-313",
+      "text": "配置 / 锁定 / 切换",
+      "x": 235,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C1"
+    },
+    {
+      "id": "obj-317",
+      "text": "C2",
+      "x": 476,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-318",
+      "text": "DDR Controller",
+      "x": 614,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C2"
+    },
+    {
+      "id": "obj-319",
+      "text": "初始化 / QoS / 状态",
+      "x": 595,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C2"
+    },
+    {
+      "id": "obj-323",
+      "text": "C3",
+      "x": 836,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-324",
+      "text": "DDR PHY",
+      "x": 974,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C3"
+    },
+    {
+      "id": "obj-325",
+      "text": "training / 校准",
+      "x": 955,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C3"
+    },
+    {
+      "id": "obj-329",
+      "text": "C4",
+      "x": 1196,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-330",
+      "text": "LVDS",
+      "x": 1334,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C4"
+    },
+    {
+      "id": "obj-331",
+      "text": "通道 / 对齐 / 帧行",
+      "x": 1315,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C4"
+    },
+    {
+      "id": "obj-335",
+      "text": "C5",
+      "x": 1556,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-336",
+      "text": "ISP",
+      "x": 1694,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C5"
+    },
+    {
+      "id": "obj-337",
+      "text": "尺寸 / 模式 / 参数",
+      "x": 1675,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C5"
+    },
+    {
+      "id": "obj-341",
+      "text": "C6",
+      "x": 1916,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-342",
+      "text": "NPU 计算",
+      "x": 2054,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C6"
+    },
+    {
+      "id": "obj-343",
+      "text": "命令 / GB 数据位置",
+      "x": 2035,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C6"
+    },
+    {
+      "id": "obj-347",
+      "text": "C7",
+      "x": 2276,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-348",
+      "text": "NPU / GB 搬运",
+      "x": 2414,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C7"
+    },
+    {
+      "id": "obj-349",
+      "text": "地址 / 长度 / stride",
+      "x": 2395,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C7"
+    },
+    {
+      "id": "obj-353",
+      "text": "C8",
+      "x": 2636,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-354",
+      "text": "帧写入 DMA",
+      "x": 2774,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C8"
+    },
+    {
+      "id": "obj-355",
+      "text": "缓冲区 / 格式 / 帧状态",
+      "x": 2755,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C8"
+    },
+    {
+      "id": "obj-359",
+      "text": "C9",
+      "x": 2996,
+      "y": 1615,
+      "size": 20,
+      "anchor": "middle",
+      "owner": null
+    },
+    {
+      "id": "obj-360",
+      "text": "GB 管理",
+      "x": 3134,
+      "y": 1627,
+      "size": 25,
+      "anchor": "middle",
+      "owner": "config-C9"
+    },
+    {
+      "id": "obj-361",
+      "text": "能力 / bank / 错误",
+      "x": 3115,
+      "y": 1683,
+      "size": 23,
+      "anchor": "middle",
+      "owner": "config-C9"
+    },
+    {
+      "id": "obj-363",
+      "text": "AXI 请求",
+      "x": 135,
+      "y": 1804,
+      "size": 25,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-365",
+      "text": "GB 读写",
+      "x": 480,
+      "y": 1804,
+      "size": 25,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-367",
+      "text": "像素流",
+      "x": 825,
+      "y": 1804,
+      "size": 25,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-369",
+      "text": "配置 / 专用控制",
+      "x": 1170,
+      "y": 1804,
+      "size": 25,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-370",
+      "text": "灰虚线：可选模块   彩色虚线：新增候选",
+      "x": 1650,
+      "y": 1804,
+      "size": 24,
+      "anchor": "start",
+      "owner": null
+    },
+    {
+      "id": "obj-371",
+      "text": "C1–C9：对应同一 IP 配置端",
+      "x": 2590,
+      "y": 1804,
+      "size": 23,
+      "anchor": "start",
+      "owner": null
+    }
+  ]
+}

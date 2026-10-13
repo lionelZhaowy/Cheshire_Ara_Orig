@@ -1,0 +1,933 @@
+{
+  "figures": [
+    {
+      "name": "17_axi_extension",
+      "title": "外部 IP 的 AXI 数据口与 Reg 控制口",
+      "doc": "17_axi_extension.md",
+      "caption": "已有扩展逻辑默认端口数为 0。规划模块尚未接入；AXI 双箭头概括请求和响应，master 由边说明指定。",
+      "nodes": [
+        {
+          "id": "ip_mst",
+          "lines": [
+            "新增数据 master",
+            "NPU / DMA（规划）"
+          ],
+          "kind": "data",
+          "group": "external",
+          "status": "planned"
+        },
+        {
+          "id": "adapter",
+          "lines": [
+            "DW / ID / CDC",
+            "按接口差异选配"
+          ],
+          "kind": "data",
+          "group": "external",
+          "status": "planned"
+        },
+        {
+          "id": "rt",
+          "lines": [
+            "AXI RT / 直连",
+            "已有；默认 RT 关闭"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "xbar",
+          "lines": [
+            "i_axi_xbar",
+            "规则选择目标"
+          ],
+          "kind": "data",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "axi_out",
+          "lines": [
+            "AXI 外部 slave 口",
+            "默认数量 0"
+          ],
+          "kind": "boundary",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "axi_ip",
+          "lines": [
+            "新增 AXI slave",
+            "存储 / IP 窗口"
+          ],
+          "kind": "memory",
+          "group": "external",
+          "status": "planned"
+        },
+        {
+          "id": "reg_bridge",
+          "lines": [
+            "axi_to_reg_v2",
+            "64 → 32（默认）"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "reg_demux",
+          "lines": [
+            "Reg decode / demux",
+            "第二级地址选择"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "reg_out",
+          "lines": [
+            "Reg 外部 slave 口",
+            "默认数量 0"
+          ],
+          "kind": "boundary",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "reg_ip",
+          "lines": [
+            "新增配置寄存器",
+            "IP 控制 / 状态"
+          ],
+          "kind": "control",
+          "group": "external",
+          "status": "planned"
+        }
+      ],
+      "edges": [
+        {
+          "source": "ip_mst",
+          "target": "adapter",
+          "label": "IP AXI",
+          "detail": "新增设备发起 AW/AR/W，适配器返回 B/R；位宽、ID、时钟子集待该 IP 接口确定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md#4-axi-数据面双方逐项填一致",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "adapter",
+          "target": "rt",
+          "label": "axi_ext_mst",
+          "detail": "拟接 axi_ext_mst_req_i / axi_ext_mst_rsp_o，经 AxiIn.ext_base 进入 axi_in_req；端口数需要显式启用。",
+          "source_ref": "hw/cheshire_soc.sv#L279",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "rt",
+          "target": "xbar",
+          "label": "AXI 请求 / 响应",
+          "detail": "gen_axi_rt 在启用时生成 i_axi_rt_unit_top；默认 gen_no_axi_rt 直连 axi_in_req 与 axi_rt_in_req。",
+          "source_ref": "hw/cheshire_soc.sv#L1246",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "xbar",
+          "target": "axi_out",
+          "label": "AxiExtRegion*",
+          "detail": "gen_axi_out 的外部 AXI 规则将请求路由到 AxiOut.ext_base；输出 ID 包含输入端口编号。",
+          "source_ref": "hw/cheshire_pkg.sv#L353",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "axi_out",
+          "target": "axi_ip",
+          "label": "axi_ext_slv",
+          "detail": "拟接 axi_ext_slv_req_o / axi_ext_slv_rsp_i；外部 IP 是被访问端，AW/AR/W 由 SoC 侧发起。",
+          "source_ref": "hw/cheshire_soc.sv#L287",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "xbar",
+          "target": "reg_bridge",
+          "label": "AXI 控制访问",
+          "detail": "Reg 窗口先进入 AxiOut.reg_demux，经过现有原子适配和 cut（此处合并）后到 axi_to_reg_v2。",
+          "source_ref": "hw/cheshire_soc.sv#L314",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "reg_bridge",
+          "target": "reg_demux",
+          "label": "Reg req / rsp",
+          "detail": "reg_req / reg_rsp 包含 addr、write、wdata、wstrb、valid / rdata、error、ready；默认数据 32-bit。",
+          "source_ref": "hw/cheshire_soc.sv#L380",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "reg_demux",
+          "target": "reg_out",
+          "label": "RegExtRegion*",
+          "detail": "gen_reg_out 外部规则二次译码；demux 不自动从地址中减去设备基址。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "reg_out",
+          "target": "reg_ip",
+          "label": "Reg32 配置",
+          "detail": "拟接 reg_ext_slv_req_o / reg_ext_slv_rsp_i；新寄存器块及时钟域适配需要额外实现。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "planned",
+          "direction": "both"
+        }
+      ],
+      "groups": [
+        {
+          "id": "soc",
+          "label": "已有 Cheshire 扩展结构"
+        },
+        {
+          "id": "external",
+          "label": "新增 IP 与必要适配（规划）"
+        }
+      ]
+    },
+    {
+      "name": "18_clock_reset_startup",
+      "title": "异域 IP 的配置、时钟复位与 IRQ 边界",
+      "doc": "18_clock_reset_startup.md",
+      "caption": "候选接法：寄存器银行位于 IP 域。reg_cdc 源码已有，图中接入实例未实现；本图不规定 PLL 频率或域划分。",
+      "nodes": [
+        {
+          "id": "soc_clock",
+          "lines": [
+            "clk_i / rst_ni",
+            "SoC 外部输入"
+          ],
+          "kind": "boundary",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "regbus",
+          "lines": [
+            "AXI → Reg / demux",
+            "现有配置通路"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "cdc",
+          "lines": [
+            "reg_cdc（拟增实例）",
+            "请求与响应成组跨域"
+          ],
+          "kind": "control",
+          "group": "cross",
+          "status": "planned"
+        },
+        {
+          "id": "ip_regs",
+          "lines": [
+            "IP 配置寄存器",
+            "命令 / 状态（规划）"
+          ],
+          "kind": "control",
+          "group": "ip",
+          "status": "planned"
+        },
+        {
+          "id": "ip_engine",
+          "lines": [
+            "IP 工作逻辑",
+            "计算 / 搬运（规划）"
+          ],
+          "kind": "data",
+          "group": "ip",
+          "status": "planned"
+        },
+        {
+          "id": "ip_clock",
+          "lines": [
+            "IP 时钟 / 复位",
+            "平台域划分待定"
+          ],
+          "kind": "boundary",
+          "group": "ip",
+          "status": "tbd"
+        },
+        {
+          "id": "irq_sync",
+          "lines": [
+            "i_ext_intr_sync",
+            "外部 IRQ 同步"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "irq_target",
+          "lines": [
+            "Router / PLIC / CLIC",
+            "按 Cfg 选择目标"
+          ],
+          "kind": "control",
+          "group": "soc",
+          "status": "implemented"
+        },
+        {
+          "id": "irq_state",
+          "lines": [
+            "IP IRQ 状态保持",
+            "原因记录 / 软件清除"
+          ],
+          "kind": "control",
+          "group": "ip",
+          "status": "planned"
+        }
+      ],
+      "edges": [
+        {
+          "source": "soc_clock",
+          "target": "regbus",
+          "label": "clk_i / rst_ni",
+          "detail": "当前 AXI-to-Reg 与 Reg demux 直接使用 SoC clk_i/rst_ni；Regbus 自身没有固定分频。",
+          "source_ref": "hw/cheshire_soc.sv#L380",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "forward"
+        },
+        {
+          "source": "regbus",
+          "target": "cdc",
+          "label": "Reg req / rsp",
+          "detail": "拟从 reg_ext_slv_req_o/reg_ext_slv_rsp_i 接 reg_cdc 的 src_req_i/src_rsp_o；外部 Reg 端口需启用。",
+          "source_ref": "hw/cheshire_soc.sv#L432",
+          "kind": "control",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "soc_clock",
+          "target": "cdc",
+          "label": "src_clk / rst",
+          "detail": "拟接 reg_cdc 的 src_clk_i/src_rst_ni 到 SoC 域；这只解决源侧时钟复位。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "cdc",
+          "target": "ip_regs",
+          "label": "Reg req / rsp",
+          "detail": "拟由 reg_cdc dst_req_o/dst_rsp_i 访问 IP 域寄存器；目标响应跨回源域之后才使源 ready 完成。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "ip_clock",
+          "target": "cdc",
+          "label": "dst_clk / rst",
+          "detail": "目标域时钟复位接 reg_cdc dst_clk_i/dst_rst_ni；未运行的目标域不能默认完成访问。",
+          "source_ref": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv#L19",
+          "kind": "control",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "ip_clock",
+          "target": "ip_regs",
+          "label": "IP 域 clk / rst",
+          "detail": "候选接法中配置银行与 IP 逻辑同域；具体信号名、频率、复位释放条件待 IP/平台确认。",
+          "source_ref": "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+          "kind": "control",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "ip_clock",
+          "target": "ip_engine",
+          "label": "IP 域 clk / rst",
+          "detail": "IP 工作逻辑时钟/复位输入待定义；局部停钟和复位须处理在途事务。",
+          "source_ref": "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+          "kind": "control",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "ip_regs",
+          "target": "ip_engine",
+          "label": "配置 / 状态",
+          "detail": "拟由同域寄存器发布配置、启动命令并读取状态；接收、生效、完成的区分由 IP 契约规定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "control",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "ip_engine",
+          "target": "irq_state",
+          "label": "完成 / 错误",
+          "detail": "规划的事件记录和 IRQ 保持；具体状态位和清除方式尚未定义。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "irq",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "irq_state",
+          "target": "irq_sync",
+          "label": "intr_ext_i",
+          "detail": "拟将保持到确认的 IRQ 接 intr_ext_i；当前 SoC 用 Cfg.NumExtIntrSyncs 级同步，不保证捕获任意短脉冲。",
+          "source_ref": "hw/cheshire_soc.sv#L161",
+          "kind": "irq",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "irq_sync",
+          "target": "irq_target",
+          "label": "intr.ext / routed",
+          "detail": "现有同步输出进入 intr.ext，经可选 Router 或 fanout 送中断目标；不是 IRQ 同步器直接发 trap。",
+          "source_ref": "hw/cheshire_soc.sv#L161",
+          "kind": "irq",
+          "status": "implemented",
+          "direction": "forward"
+        }
+      ],
+      "groups": [
+        {
+          "id": "soc",
+          "label": "SoC 控制域（已有）"
+        },
+        {
+          "id": "cross",
+          "label": "可复用 CDC 的拟新增实例"
+        },
+        {
+          "id": "ip",
+          "label": "新 IP 域（规划 / 参数待定）"
+        }
+      ]
+    },
+    {
+      "name": "19_ddr_lvds_pipeline",
+      "title": "规划图像链与 DDR / GB 搬运职责",
+      "doc": "19_ddr_lvds_pipeline.md",
+      "caption": "除 LLC 出口外均为规划或待确认边界；像素流向与 AXI 事务方向分别标注。端口数、宽度、地址和 IRQ 未冻结。",
+      "nodes": [
+        {
+          "id": "lvds",
+          "lines": [
+            "LVDS 接收前端",
+            "解串 / 字行帧对齐"
+          ],
+          "kind": "data",
+          "group": "image",
+          "status": "planned"
+        },
+        {
+          "id": "fifo",
+          "lines": [
+            "打包 / CDC FIFO",
+            "像素与同步标志配对"
+          ],
+          "kind": "data",
+          "group": "image",
+          "status": "planned"
+        },
+        {
+          "id": "isp",
+          "lines": [
+            "ISP / RAW 选择组",
+            "帧边界选择一路输出"
+          ],
+          "kind": "data",
+          "group": "image",
+          "status": "planned"
+        },
+        {
+          "id": "frame_dma",
+          "lines": [
+            "帧写入 DMA",
+            "地址 / W打包 / B计数"
+          ],
+          "kind": "data",
+          "group": "image",
+          "status": "planned"
+        },
+        {
+          "id": "ddr",
+          "lines": [
+            "DDR Controller / PHY",
+            "端口 / 训练 / 仲裁待定"
+          ],
+          "kind": "boundary",
+          "group": "memory",
+          "status": "tbd"
+        },
+        {
+          "id": "llc_out",
+          "lines": [
+            "现有 LLC 外存出口",
+            "axi_llc_mst_*"
+          ],
+          "kind": "boundary",
+          "group": "memory",
+          "status": "implemented"
+        },
+        {
+          "id": "move",
+          "lines": [
+            "NPU / GB 搬运器",
+            "DDR ↔ GB 显式搬运"
+          ],
+          "kind": "data",
+          "group": "compute",
+          "status": "planned"
+        },
+        {
+          "id": "gb_adapt",
+          "lines": [
+            "GB 访问适配",
+            "局部仲裁 / bank 路由"
+          ],
+          "kind": "data",
+          "group": "compute",
+          "status": "planned"
+        },
+        {
+          "id": "gb",
+          "lines": [
+            "Global Buffer",
+            "独立 SRAM；容量待定"
+          ],
+          "kind": "memory",
+          "group": "compute",
+          "status": "planned"
+        },
+        {
+          "id": "npu",
+          "lines": [
+            "NPU 计算引擎",
+            "消费 / 产生局部数据"
+          ],
+          "kind": "data",
+          "group": "compute",
+          "status": "planned"
+        }
+      ],
+      "edges": [
+        {
+          "source": "lvds",
+          "target": "fifo",
+          "label": "像素 + 行帧标志",
+          "detail": "规划接收数据和字/行/帧状态成组交付打包与跨域；传感器协议、lane 组织和背压能力待确认。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "fifo",
+          "target": "isp",
+          "label": "RAW 像素流",
+          "detail": "规划从 FIFO 向 ISP/选择组交付 RAW；组内可经 ISP 或 RAW 旁路，在帧边界选择；不是同时输出两路。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "isp",
+          "target": "frame_dma",
+          "label": "选定像素 + 标志",
+          "detail": "规划把选定的一路 RAW 或 ISP 结果交给帧 DMA；格式、有效字节和丢帧标志须明确定义。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "forward"
+        },
+        {
+          "source": "frame_dma",
+          "target": "ddr",
+          "label": "AXI 写；B 返回",
+          "detail": "帧 DMA 作为 master 产生 AW/W，DDR 端返回 B；完成需等待该帧相关响应并处理错误。所需适配与目标端口待定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "llc_out",
+          "target": "ddr",
+          "label": "AXI 读写（拟接）",
+          "detail": "已有 axi_llc_mst_req_o/rsp_i 拟接新的 DDR 合流/控制器端口；当前 FPGA 实际连接是 dram_wrapper_xilinx/MIG。",
+          "source_ref": "hw/cheshire_soc.sv#L531",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "move",
+          "target": "ddr",
+          "label": "AXI 读写（拟接）",
+          "detail": "NPU/GB 搬运器作为 DDR master；绕过 LLC。是否与独立 NPU master 合流、是否需要额外端口尚待确定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "move",
+          "target": "gb_adapt",
+          "label": "GB 局部读写",
+          "detail": "搬运器将 DDR 返回写进 GB，或从 GB 读出再写 DDR；本地接口协议/位宽尚未冻结。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "npu",
+          "target": "gb_adapt",
+          "label": "GB 计算读写",
+          "detail": "NPU 计算引擎经局部适配访问 GB；与搬运器竞争 bank/端口，不能将逻辑双向线理解成无限带宽。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "isp",
+          "target": "gb_adapt",
+          "label": "可选中间数据",
+          "detail": "规划保留 ISP 工作区访问 GB 的候选；是否需要、接口和并行能力取决于算法及 bank 预算。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        },
+        {
+          "source": "gb_adapt",
+          "target": "gb",
+          "label": "bank 请求 / 返回",
+          "detail": "规划把多个局部访问者仲裁到实际 SRAM bank/端口；SRAM 延迟、掩码、容量与冲突语义待定。",
+          "source_ref": "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+          "kind": "data",
+          "status": "planned",
+          "direction": "both"
+        }
+      ],
+      "groups": [
+        {
+          "id": "image",
+          "label": "图像采集与帧写入（规划）"
+        },
+        {
+          "id": "compute",
+          "label": "计算 / 局部工作存储（规划）"
+        },
+        {
+          "id": "memory",
+          "label": "外存集成边界"
+        }
+      ]
+    },
+    {
+      "name": "20_accelerator_memory",
+      "title": "Ara 访存和 CPU 失效请求的实际边界",
+      "doc": "20_accelerator_memory.md",
+      "caption": "表示 Cfg.Ara=1 分支；默认配置未启用 Ara。失效反馈经 acc_resp_pack 与 CVA6 dispatcher；不覆盖新 NPU/ISP 旁路写。",
+      "nodes": [
+        {
+          "id": "dispatch",
+          "lines": [
+            "CVA6 acc_dispatcher",
+            "指令 / MMU / 状态"
+          ],
+          "kind": "control",
+          "group": "cpu",
+          "status": "implemented"
+        },
+        {
+          "id": "ara",
+          "lines": [
+            "i_ara",
+            "RVV 执行与访存"
+          ],
+          "kind": "data",
+          "group": "ara",
+          "status": "implemented"
+        },
+        {
+          "id": "filter",
+          "lines": [
+            "axi_inval_filter",
+            "AW FIFO / 行失效"
+          ],
+          "kind": "control",
+          "group": "ara",
+          "status": "implemented"
+        },
+        {
+          "id": "cache",
+          "lines": [
+            "CVA6 L1D 路径",
+            "当前向量 profile：WT"
+          ],
+          "kind": "memory",
+          "group": "cpu",
+          "status": "implemented"
+        },
+        {
+          "id": "dw",
+          "lines": [
+            "axi_dw_converter",
+            "Ara 宽度 → 系统宽度"
+          ],
+          "kind": "data",
+          "group": "ara",
+          "status": "implemented"
+        },
+        {
+          "id": "cpu_axi",
+          "lines": [
+            "CPU AXI / ID 适配",
+            "i_axi_id_serialize"
+          ],
+          "kind": "data",
+          "group": "cpu",
+          "status": "implemented"
+        },
+        {
+          "id": "xbar",
+          "lines": [
+            "主 AXI Xbar",
+            "普通数据访问"
+          ],
+          "kind": "boundary",
+          "group": "memory",
+          "status": "implemented"
+        },
+        {
+          "id": "llc",
+          "lines": [
+            "原子适配 → LLC",
+            "当前普通主存路径"
+          ],
+          "kind": "memory",
+          "group": "memory",
+          "status": "implemented"
+        },
+        {
+          "id": "out",
+          "lines": [
+            "LLC 外存 AXI",
+            "axi_llc_mst_*"
+          ],
+          "kind": "boundary",
+          "group": "memory",
+          "status": "implemented"
+        }
+      ],
+      "edges": [
+        {
+          "source": "dispatch",
+          "target": "ara",
+          "label": "acc_req / acc_resp",
+          "detail": "CVA6 向 Ara 发送指令/相关 MMU 信息，Ara 返回执行状态；SoC 同时通过 acc_resp_pack 包装失效状态。",
+          "source_ref": "hw/cheshire_soc.sv#L625",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "ara",
+          "target": "filter",
+          "label": "Ara AXI",
+          "detail": "axi_ara_wide_req/rsp；默认按 32*AraNrLanes 决定数据位宽，2 lanes 为 64-bit。",
+          "source_ref": "hw/cheshire_soc.sv#L818",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "filter",
+          "target": "dispatch",
+          "label": "inval 地址 / 握手",
+          "detail": "inval_addr/valid 经 acc_resp_pack.acc_resp 返回 CVA6；inval_ready/acc_cons_en 经 acc_req.acc_req 反馈到过滤器。并非直接额外 snoop 端口。",
+          "source_ref": "hw/cheshire_soc.sv#L625",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "dispatch",
+          "target": "cache",
+          "label": "inval_addr / valid",
+          "detail": "CVA6 acc_dispatcher 转出 inval_addr_o/inval_valid_o 并接收 inval_ready_i；相应 D-cache 分支接收失效，必须匹配最终 profile。",
+          "source_ref": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv#L301",
+          "kind": "control",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "filter",
+          "target": "dw",
+          "label": "AXI 贯通",
+          "detail": "axi_ara_wide_req_inval/rsp_inval 进入现有 DW 转换器；当前没有 GB 地址分流实例。",
+          "source_ref": "hw/cheshire_soc.sv#L861",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "dw",
+          "target": "xbar",
+          "label": "AxiIn.ara",
+          "detail": "axi_ara_narrow_req/rsp 接主 Xbar 输入（可选 AXI RT 合并表示）；访问 LLC 地址仍走普通主存路径。",
+          "source_ref": "hw/cheshire_soc.sv#L889",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "cache",
+          "target": "cpu_axi",
+          "label": "CPU 数据访问",
+          "detail": "L1D 属于 CPU 内部访存子系统，随 CPU AXI 汇合输出后由 i_axi_id_serialize 映射 ID；图省略 I-cache/MMU 等其他 CPU 请求源。",
+          "source_ref": "hw/cheshire_soc.sv#L775",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "cpu_axi",
+          "target": "xbar",
+          "label": "AxiIn.cores[i]",
+          "detail": "经核心用户信号分配与 ID serialize 的 CPU AXI 接入主 Xbar（可选 AXI RT 合并表示）。",
+          "source_ref": "hw/cheshire_soc.sv#L793",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "xbar",
+          "target": "llc",
+          "label": "LLC 目标 AXI",
+          "detail": "axi_out_req[AxiOut.llc] 经 i_llc_atomics 与 cut 到 LLC；图合并已在16章展开的内部结构。",
+          "source_ref": "hw/cheshire_soc.sv#L448",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        },
+        {
+          "source": "llc",
+          "target": "out",
+          "label": "外存请求 / 响应",
+          "detail": "LLC miss/refill、evict/writeback 和旁路最终使用 axi_llc_mst_req_o/rsp_i；接入 AXI/LLC 不自动等于新设备缓存一致。",
+          "source_ref": "hw/cheshire_soc.sv#L531",
+          "kind": "data",
+          "status": "implemented",
+          "direction": "both"
+        }
+      ],
+      "groups": [
+        {
+          "id": "cpu",
+          "label": "CVA6 控制与私有缓存"
+        },
+        {
+          "id": "ara",
+          "label": "已有 Ara 分支（Cfg.Ara=1）"
+        },
+        {
+          "id": "memory",
+          "label": "当前共享主存路径"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "doc": "17_axi_extension.md",
+      "reviewed": true,
+      "fixes": [
+        "新增主从方向与两级译码说明",
+        "区分已有扩展机制和默认零端口",
+        "说明ID扩展、适配、限流和BusErr实际覆盖"
+      ],
+      "sources": [
+        "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+        "hw/cheshire_pkg.sv",
+        "hw/cheshire_soc.sv"
+      ]
+    },
+    {
+      "doc": "18_clock_reset_startup.md",
+      "reviewed": true,
+      "fixes": [
+        "新增完整Reg事务CDC与目标停钟风险",
+        "补启动/DDR ready的独立条件",
+        "保留PlatformROM返回及栈对齐待核查项"
+      ],
+      "sources": [
+        ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_cdc.sv",
+        "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+        "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+        "hw/cheshire_soc.sv"
+      ]
+    },
+    {
+      "doc": "19_ddr_lvds_pipeline.md",
+      "reviewed": true,
+      "fixes": [
+        "明确全部新增图像/DDR合流模块的规划状态",
+        "区分像素流、帧写入、系统DMA、NPU搬运与独立GB",
+        "补帧尾与AXI完成区别及供应商缺失输入"
+      ],
+      "sources": [
+        "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+        "hw/cheshire_soc.sv"
+      ]
+    },
+    {
+      "doc": "20_accelerator_memory.md",
+      "reviewed": true,
+      "fixes": [
+        "区分Ara指令协作与NPU MMIO",
+        "逐路径解释PMA、cache、LLC和所有权",
+        "标出失效过滤及原子适配的观察范围"
+      ],
+      "sources": [
+        ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv",
+        "hw/cheshire_soc.sv"
+      ]
+    }
+  ]
+}

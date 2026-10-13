@@ -1,0 +1,500 @@
+{
+  "labels": [
+    {
+      "x": 40,
+      "y": 49,
+      "text": "14  iDMA：AXI 控制入口、任务前端与独立搬运后端",
+      "size": 32,
+      "anchor": "start"
+    },
+    {
+      "x": 172.5,
+      "y": 227.5,
+      "text": "AXI slave 控制口",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 172.5,
+      "y": 259.5,
+      "text": "AxiOut.dma",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 172.5,
+      "y": 291.5,
+      "text": "atomics / cut",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 172.5,
+      "y": 323.5,
+      "text": "CPU 发起配置访问",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 580.0,
+      "y": 227.5,
+      "text": "1  axi_to_reg",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 580.0,
+      "y": 259.5,
+      "text": "i_axi_translate",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 580.0,
+      "y": 291.5,
+      "text": "内部 Reg 数据宽度",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 580.0,
+      "y": 323.5,
+      "text": "随 AxiDataWidth",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1052.5,
+      "y": 214.0,
+      "text": "2  idma_reg64_1d / 2d",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1052.5,
+      "y": 246.0,
+      "text": "SRC / DST / LENGTH",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1052.5,
+      "y": 278.0,
+      "text": "STRIDE / REPS（2D）",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1052.5,
+      "y": 310.0,
+      "text": "NEXT_ID / DONE_ID",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1052.5,
+      "y": 342.0,
+      "text": "访问触发任务提交",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 230.0,
+      "text": "3  Job FIFO + midend",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 262.0,
+      "text": "队列缓冲传输请求",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 294.0,
+      "text": "2D：idma_nd_midend",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1572.5,
+      "y": 326.0,
+      "text": "展开为一维传输",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1292.5,
+      "y": 624.0,
+      "text": "4  idma_backend_rw_axi",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 1292.5,
+      "y": 656.0,
+      "text": "legalizer：长度 / 地址 / burst 合法化",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1292.5,
+      "y": 688.0,
+      "text": "transport：读数据、移位 / 缓冲、写数据",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1292.5,
+      "y": 720.0,
+      "text": "独立 AXI read / write 通道",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 1292.5,
+      "y": 752.0,
+      "text": "当前 ErrorCap = NO_ERROR_HANDLING",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 617.5,
+      "y": 653.5,
+      "text": "5  axi_rw_join",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 617.5,
+      "y": 685.5,
+      "text": "合并 AXI 读写端口",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 617.5,
+      "y": 717.5,
+      "text": "AXI master → AxiIn.dma",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 50,
+      "y": 637,
+      "text": "AXI ↔ SRC / DST 内存",
+      "size": 23,
+      "anchor": "start"
+    },
+    {
+      "x": 625.0,
+      "y": 467.0,
+      "text": "6  transfer_id_gen",
+      "size": 24,
+      "anchor": "middle"
+    },
+    {
+      "x": 625.0,
+      "y": 499.0,
+      "text": "issue / retire → ID",
+      "size": 22,
+      "anchor": "middle"
+    },
+    {
+      "x": 45,
+      "y": 865,
+      "text": "既有控制宽度缺口未关闭；wrapper 未导出任务完成 IRQ；总线错误 IRQ 是另一路。",
+      "size": 24,
+      "anchor": "start"
+    },
+    {
+      "x": 130,
+      "y": 946,
+      "text": "数据 / 请求；双箭头含返回",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 667,
+      "y": 946,
+      "text": "配置 / 控制（标注 IRQ、使能时按标签）",
+      "size": 22,
+      "anchor": "start"
+    },
+    {
+      "x": 1270,
+      "y": 946,
+      "text": "编号与正文逐块对应",
+      "size": 22,
+      "anchor": "start"
+    }
+  ],
+  "boxes": [
+    {
+      "x": 35,
+      "y": 185,
+      "w": 275,
+      "h": 165,
+      "lines": [
+        "AXI slave 控制口",
+        "AxiOut.dma",
+        "atomics / cut",
+        "CPU 发起配置访问"
+      ]
+    },
+    {
+      "x": 420,
+      "y": 185,
+      "w": 320,
+      "h": 165,
+      "lines": [
+        "1  axi_to_reg",
+        "i_axi_translate",
+        "内部 Reg 数据宽度",
+        "随 AxiDataWidth"
+      ]
+    },
+    {
+      "x": 850,
+      "y": 175,
+      "w": 405,
+      "h": 190,
+      "lines": [
+        "2  idma_reg64_1d / 2d",
+        "SRC / DST / LENGTH",
+        "STRIDE / REPS（2D）",
+        "NEXT_ID / DONE_ID",
+        "访问触发任务提交"
+      ]
+    },
+    {
+      "x": 1390,
+      "y": 175,
+      "w": 365,
+      "h": 190,
+      "lines": [
+        "3  Job FIFO + midend",
+        "队列缓冲传输请求",
+        "2D：idma_nd_midend",
+        "展开为一维传输"
+      ]
+    },
+    {
+      "x": 995,
+      "y": 575,
+      "w": 595,
+      "h": 210,
+      "lines": [
+        "4  idma_backend_rw_axi",
+        "legalizer：长度 / 地址 / burst 合法化",
+        "transport：读数据、移位 / 缓冲、写数据",
+        "独立 AXI read / write 通道",
+        "当前 ErrorCap = NO_ERROR_HANDLING"
+      ]
+    },
+    {
+      "x": 420,
+      "y": 610,
+      "w": 395,
+      "h": 135,
+      "lines": [
+        "5  axi_rw_join",
+        "合并 AXI 读写端口",
+        "AXI master → AxiIn.dma"
+      ]
+    },
+    {
+      "x": 455,
+      "y": 420,
+      "w": 340,
+      "h": 110,
+      "lines": [
+        "6  transfer_id_gen",
+        "issue / retire → ID"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "points": [
+        [
+          310,
+          270
+        ],
+        [
+          420,
+          270
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          740,
+          270
+        ],
+        [
+          850,
+          270
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1255,
+          270
+        ],
+        [
+          1390,
+          270
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1570,
+          365
+        ],
+        [
+          1570,
+          575
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          995,
+          665
+        ],
+        [
+          815,
+          665
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          420,
+          675
+        ],
+        [
+          55,
+          675
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          1390,
+          315
+        ],
+        [
+          1330,
+          315
+        ],
+        [
+          1330,
+          470
+        ],
+        [
+          795,
+          470
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          1120,
+          575
+        ],
+        [
+          1120,
+          530
+        ],
+        [
+          795,
+          530
+        ],
+        [
+          795,
+          505
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    },
+    {
+      "points": [
+        [
+          625,
+          420
+        ],
+        [
+          625,
+          395
+        ],
+        [
+          970,
+          395
+        ],
+        [
+          970,
+          365
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          42,
+          940
+        ],
+        [
+          118,
+          940
+        ]
+      ],
+      "color": "#28699B",
+      "dash": false
+    },
+    {
+      "points": [
+        [
+          575,
+          940
+        ],
+        [
+          655,
+          940
+        ]
+      ],
+      "color": "#9C5B25",
+      "dash": true
+    }
+  ]
+}
