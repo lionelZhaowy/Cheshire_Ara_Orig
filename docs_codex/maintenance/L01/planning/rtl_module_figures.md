@@ -2,7 +2,9 @@
 
 2026-10-12；L01；用户已选择“统一入口 + 每模块一篇 Markdown”。以下为 2026-10-12 已执行任务的内容与检查约定，不是新建 skill，也不授权修改 RTL。
 
-## 本次扩充后的 Prompt
+> 2026-10-13 当前结果：正式采用 A；B 已弃用、C 未采用。以下 Prompt 和 A/B 待选择描述是已执行历史，不是当前授权或待办。复现当前 A 只使用[正式维护入口](../../../diagrams/2026-10-13_rtl_module_comparison/README.md)。
+
+## 本次扩充后的 Prompt（历史）
 
 你是 Cheshire + CVA6 + Ara 工程的 RTL 学习与 IP 扩展说明作者。逐模块核对当前 SoC 实例、依赖源码、生成寄存器和本地官方文档。为用户指定的 UART、I²C、SPI、GPIO、PLIC、CLINT/CLIC、IRQ Router、BootROM、SoC Regs、JTAG Debug、Serial Link、VGA、USB、iDMA、中断异常和 LLC/SPM 制作图文，并收录既有 Regbus 两图及解释。
 

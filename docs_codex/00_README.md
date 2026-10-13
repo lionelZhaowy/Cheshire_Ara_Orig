@@ -22,6 +22,7 @@
 | 职责 | 入口 | 使用方式 |
 | --- | --- | --- |
 | 主教程 | [HTML](learning/index.html) / [Markdown](learning/markdown/index.md) | 连续理解原理、过程和本地源码，二者由同一正文源生成 |
+| RTL模块机制 | [21篇模块指南](rtl_modules/README.md) | 24张正式A连续走线图、信号表和源码定位；风格选择已完成 |
 | 配置参考 | [configuration/README.md](configuration/README.md) | 按 Cheshire/CVA6/Ara/外设查参数，结合目标覆盖和修改验证 |
 | 软件操作参考 | [software/README.md](software/README.md) / [实验手册](learning/labs.html) | 工具链、构建、装载、库/驱动和排错；预期结果与已执行证据分开 |
 | 分层与工具查询 | [软硬件层次与工具索引](software/LAYERS_AND_TOOLS.md) | 对照结构图定位各层源码、脚本、主机工具及流程产物 |

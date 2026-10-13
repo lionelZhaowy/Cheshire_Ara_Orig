@@ -8,13 +8,13 @@
 
 ![10  JTAG Debug：DMI 控制、hart 调试与系统总线访问](../diagrams/2026-10-13_rtl_module_comparison/A/10_jtag_debug.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/10_jtag_debug.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/10_jtag_debug.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#10_jtag_debug)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/10_jtag_debug.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/10_jtag_debug.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#10_jtag_debug)
 
 <!-- CONNECTIONS:10_jtag_debug -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

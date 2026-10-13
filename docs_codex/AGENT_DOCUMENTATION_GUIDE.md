@@ -1,6 +1,6 @@
 # Agent 文档定位与历史检索指南
 
-本页用于快速找到有效结论和历史依据，不替代[根 AGENTS](../AGENTS.md)、源码或测试。更新：2026-10-11。
+本页用于快速找到有效结论和历史依据，不替代[根 AGENTS](../AGENTS.md)、源码或测试。更新：2026-10-13。
 
 ## 1. 最短接手路线
 
@@ -14,6 +14,7 @@
 | 要找什么 | 首选入口 | 必要时追溯 |
 | --- | --- | --- |
 | 学习顺序、教程 | [00_README](00_README.md)、[Markdown 教材](learning/markdown/index.md) | [教材维护说明](learning/README.md)，了解源文件与生成关系 |
+| RTL 模块内部机制、信号与源码 | [21篇模块指南](rtl_modules/README.md) → 对应章节 | [主题交接](handoffs/L01_rtl_module_guide.md)；正式采用 A，B/C 不进入阅读路线 |
 | 参数和配置 | [配置参考](configuration/README.md) | 当前 package、选中的 CPU profile、目标构建覆盖 |
 | 软件/工具/API | [软件参考](software/README.md)、[层次工具索引](software/LAYERS_AND_TOOLS.md) | HAL/DIF、sw.mk、crt0、链接脚本 |
 | 器件、接口、仿真对端 | [接口实现参考](EXTERNAL_DEVICES_AND_INTERFACES.md) | SoC、VIP、fixture、TB、FPGA top，避免把模型存在当通过 |
@@ -46,6 +47,7 @@ git status --short
 
 - [handoff 名称迁移](handoffs/name_migrations.json)：日期前缀 → 任务主题名。
 - [教材维护报告迁移](maintenance/L01/path_migrations.json)：原顶层 L01/03–08 文件 → 分类目录。
+- [本次图稿与入口精简](maintenance/L01/archive/documentation_organization/manifest.json)：B/C 资产的原路径、哈希、归档成员和恢复来源。原始检查中的路径通过该清单追溯。
 - [工程参考迁移](engineering/path_migrations.json)：原 M01/P01 顶层文件 → engineering。
 
 原始日志/哈希快照里的旧路径是当时记录，不能为匹配新目录而改写验证输入。映射只解释“今天文件在哪里”，不证明当前内容仍等于历史被测版本。三个 handoff 旧名符号链接仅为归档导航兼容，新文档不要继续引用旧名。

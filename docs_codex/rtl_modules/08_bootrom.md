@@ -8,13 +8,13 @@ BootROM（启动只读存储器）让 CPU 在外部 DDR 尚未可用时也能取
 
 ![08  BootROM：组合 ROM 内容与 Regbus 应答延迟](../diagrams/2026-10-13_rtl_module_comparison/A/08_bootrom.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/08_bootrom.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/08_bootrom.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#08_bootrom)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/08_bootrom.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/08_bootrom.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#08_bootrom)
 
 <!-- CONNECTIONS:08_bootrom -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

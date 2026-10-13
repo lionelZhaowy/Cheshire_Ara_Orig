@@ -1,5 +1,7 @@
 # 2026-10-10_llc_cache_spm · 新版图稿
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 publication-figures；旧目录原样保留。所有图宽182 mm，英文短标签/中文图注。源图、PDF和PNG各自保持比例；PPT页宽182 mm，组内统一页面高度。
 
 [可编辑 PPTX](export/diagrams.pptx) · [导出报告](export/export_report.json)
@@ -14,7 +16,7 @@
 
 内容映射：地址字段/索引/Tag+Valid比较/way选择/独立阵列→本图；用途位图与SPM寻址→llc_spm_mapping；转换→llc_mode_transition。
 
-原图：[旧母版](../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
+原图：[旧母版](../../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
 
 ## llc_spm_mapping
 
@@ -26,7 +28,7 @@
 
 内容映射：0x00/0x0F/0xFF、容量守恒、固定地址槽、0x10008AAB示例→本图；别名/L1/错误返回→图注。
 
-原图：[旧母版](../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
+原图：[旧母版](../../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
 
 ## llc_mode_transition
 
@@ -38,7 +40,7 @@
 
 内容映射：软件准备/配置提交/硬件协调/完成确认→本图；容量非复制、反向转换、全SPM外存旁路→图注。
 
-原图：[旧母版](../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
+原图：[旧母版](../../2026-10-10_llc_cache_spm/source_final/llc_cache_spm.svg)
 
 ## 随图补充
 

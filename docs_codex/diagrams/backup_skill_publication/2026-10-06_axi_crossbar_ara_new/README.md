@@ -1,5 +1,7 @@
 # 2026-10-06_axi_crossbar_ara · 新版图稿
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 publication-figures；旧目录原样保留。所有图宽182 mm，英文短标签/中文图注。源图、PDF和PNG各自保持比例；PPT页宽182 mm，组内统一页面高度。
 
 [可编辑 PPTX](export/diagrams.pptx) · [导出报告](export/export_report.json)
@@ -14,7 +16,7 @@
 
 内容映射：7个输入、5个输出、每输入DEMUX/每输出MUX、全连接→本图；配置、地址窗口、RT与FPGA差异→图注补充。
 
-原图：[旧母版](../2026-10-06_axi_crossbar_ara/ppt_editable_final/crossbar_ara_ppt.svg)
+原图：[旧母版](../../2026-10-06_axi_crossbar_ara/ppt_editable_final/crossbar_ara_ppt.svg)
 
 ## ddr_qos_proposal
 
@@ -26,7 +28,7 @@
 
 内容映射：三个请求源、LLC旁路、端口仲裁与命令调度→本图；供应商约束和一致性边界→图注。
 
-原图：[旧母版](../2026-10-06_axi_crossbar_ara/ppt_editable_final/ddr_qos_proposal_ppt.svg)
+原图：[旧母版](../../2026-10-06_axi_crossbar_ara/ppt_editable_final/ddr_qos_proposal_ppt.svg)
 
 ## 随图补充
 

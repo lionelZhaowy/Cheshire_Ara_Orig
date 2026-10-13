@@ -12,13 +12,13 @@ UART（通用异步收发器）负责将软件字节变成串行引脚波形，�
 
 ![01  UART：寄存器访问与独立收发通路](../diagrams/2026-10-13_rtl_module_comparison/A/01_uart.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/01_uart.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/01_uart.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#01_uart)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/01_uart.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/01_uart.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#01_uart)
 
 <!-- CONNECTIONS:01_uart -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

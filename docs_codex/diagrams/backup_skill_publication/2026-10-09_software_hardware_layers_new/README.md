@@ -1,5 +1,7 @@
 # 2026-10-09_software_hardware_layers · 新版图稿
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 publication-figures；旧目录原样保留。所有图宽182 mm，英文短标签/中文图注。源图、PDF和PNG各自保持比例；PPT页宽182 mm，组内统一页面高度。
 
 [可编辑 PPTX](export/diagrams.pptx) · [导出报告](export/export_report.json)
@@ -14,7 +16,7 @@
 
 内容映射：通用功能/器件HAL/DIF/MMIO→本图；执行接口/硬件→hardware_paths；构建与启动侧栏→build_and_execution；OS与规划→图注。
 
-原图：[旧母版](../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
+原图：[旧母版](../../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
 
 ## hardware_paths
 
@@ -26,7 +28,7 @@
 
 内容映射：CVA6/Ara专用接口、独立访存、主存/寄存器/片外器件→本图；规划扩展与FPGA/ASIC边界→图注。
 
-原图：[旧母版](../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
+原图：[旧母版](../../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
 
 ## build_and_execution
 
@@ -38,7 +40,7 @@
 
 内容映射：工具链、链接/归档、Boot/CRT0、四类软硬件契约→本图；可选OS/ASIC实现维度→图注。
 
-原图：[旧母版](../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
+原图：[旧母版](../../2026-10-09_software_hardware_layers/cheshire_software_hardware.svg)
 
 ## 随图补充
 

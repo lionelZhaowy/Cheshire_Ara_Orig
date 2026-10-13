@@ -14,9 +14,11 @@
 | M01 DDR 旁路与存储一致性 | M01-D文档完成；工程未实施 | [IP/DDR接口契约](engineering/IP_DDR_Interface_Contract.md)、输入责任与验证矩阵 | 待供应商/I01真实接口及E01基线；top/config/address map修改须另行授权并协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
 | P01 ASIC 工艺与实现准备 | P01文档盘点完成；工艺适配未实施 | [ASIC适配与证据手册](engineering/ASIC_Adaptation_and_Evidence.md)、资源语义与资料责任 | 实际宏/PLL/PAD/DFT/时序签核等待工艺/IP输入和工程授权 |
-| L01 学习与源码问答 | 既有文档审查、知识顺序重构与双格式验收完成；新增分层工具参考（2026-10-11） | [九篇42章](learning/index.html)、[分层与工具索引](software/LAYERS_AND_TOOLS.md)、[主管验收](maintenance/L01/reports/system_acceptance.md)、[HTML/Markdown同步交接](handoffs/L01_documentation_restructure.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
+| L01 学习与源码问答 | 文档交付与整理完成（2026-10-13）；工程验证缺口保留 | [教材](learning/index.html)、[21篇RTL模块指南](rtl_modules/README.md)、[RTL指南交接](handoffs/L01_rtl_module_guide.md)、[组织交接](handoffs/L01_documentation_organization.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
+
+2026-10-13 RTL 指南：正式采用 A 连续走线；B/C 试绘已归档，活动生成与检查只依赖 A。源代码和工程验证状态未变。
 
 2026-10-11 文档清理：用户已授权删除 learning_backup，728 文件移出仓库，现行教材入口及检查规则同步；其他备份/图稿/独立证据不在此次删除范围，勿据旧“保留旧站”描述重新生成该目录。
 
@@ -44,35 +46,9 @@
 
 2026-10-06 用户已确认平台启动方向：沿官方 Platform ROM 钩子配置安全启动 PLL，并按需求安排其他 IP 初始化；保留运行软件可重复配置的接口。外部配置、受控调频和异常回退的具体实现需在 IP 契约确定后交付。此记录不表示已实现 PLL/DDR、运行时调频或 Linux 驱动，也不授予修复源码权限。
 
-## 3. 可复制到新对话的提示词
+## 3. 启动任务与历史指令
 
-### E01：开始实施源码提取
-
-> 请读取根 AGENTS.md、docs_codex/PROJECT_STATE.md 和 02_Cheshire_Ara_ASIC_Extraction_Handoff.md，承担 E01。现在授权你在仓库内新建 cheshire_ara_asic/，实施固定向量配置的源码提取、静态 filelist、通用 wrapper、最小软件/仿真入口。保护旧工程，不升级依赖、不修改 DDR 拓扑、不自行裁切未确认的外设。先检查当前目录和最新交接，明确本轮可交付范围；记录真实验证结果，结束时写独立交接文件。不要把维护 Bender 变成主要工作。
-
-### V01：先做验收计划和现状检查
-
-> 请按 AGENTS.md 接手 V01。阅读共享状态及 E01 最新交接，制定并检查固定配置的编译、启动、RVV、AMO/LRSC 和基本 DDR 模型访存验收。先做只读检查和测试计划，说明哪些测试当前可运行；本轮不改共享 filelist/top，若需要新增测试代码请先列出最小范围。不要把已有 ELF 当成新回归通过。
-
-### S01：启动和软件迁移方案
-
-> 请按 AGENTS.md 接手 S01。围绕固定 Ara 配置梳理 Boot ROM、SPM、crt0、链接脚本、向量 ISA/VS/FS 和程序加载路径。结合 E01 已交付内容给出最小软件迁移方案，本轮先分析并写交接，不改旧 sw/ 或启动 RTL。GPT/Flash 自主启动与 ELF 直载分别说明，不展开 Linux 全套移植。
-
-### M01：设计 DDR 旁路契约
-
-> 请按 AGENTS.md 接手 M01，重点阅读 02 文档第 8 节。需求是 CPU/Ara 保留 LLC 路径，NPU/ISP 数据通路绕过 LLC 接 AXI4 DDR。请核对本地路由、缓存属性、原子适配器和 LR/SC 边界，提出共享缓冲区/所有权/通知协议及验证矩阵。先写设计文档，不改 RTL，不凭空决定 DMA 区地址、控制器位宽或共享原子支持。
-
-### I01：明确图像与加速器接口
-
-> 请按 AGENTS.md 接手 I01，梳理 LVDS 图像输入、ISP、脉动阵列/NPU 的接口和带宽需求。先列必须由传感器/自有 IP 提供的资料，再给出控制总线、数据通路、中断、时钟复位和缓冲区契约。与 M01 保持一致，本轮不实现未知协议或修改 CPU/DDR 顶层。
-
-### P01：ASIC 适配盘点
-
-> 请按 AGENTS.md 接手 P01，根据当前源码盘点 FPGA 专用单元、SRAM/ROM、clock gating/reset/CDC、DDR PHY、PAD 和 DFT/MBIST 边界。交付来源明确的适配清单、待提供资料和验收条件。没有工艺资料的项标为未决；本轮不编造宏模型、频率/时序约束或签核结果。
-
-### C00：汇总交接
-
-> 请读取 AGENTS.md、PROJECT_STATE.md、AGENT_TASKS.md 和 handoffs/ 中尚未汇总的记录。只核对并更新共享状态、任务状态和文档索引，指出互相冲突的配置/地址/文件修改，区分建议与用户确认。不要在此对话顺手实施其他技术任务。
+任务表只提供路由；按当前用户请求确定范围，不自动执行旧 Prompt。原可复制任务指令已退出主入口，整理前全文保存在[维护归档](maintenance/L01/archive/documentation_organization/README.md)。E01 用现行02规格，其他任务按上表和最新主题交接接手。
 
 ## 4. 并行工作的实际约定
 

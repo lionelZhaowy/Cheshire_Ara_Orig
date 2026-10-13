@@ -1,6 +1,6 @@
 # Cheshire RTL 模块阅读与扩展指南
 
-更新：2026-10-13。任务：L01。输入提交：`c4162204cfee0c48b81158b4296860a678d92bec`，实现结论以本次读取的工作区源码为准；逐文件 SHA-256 与代码定位见[源码清单](../diagrams/2026-10-13_rtl_module_comparison/source_manifest.json)。
+更新：2026-10-13（本次仅整理导航，技术输入版本保持）。任务：L01。输入提交：`c4162204cfee0c48b81158b4296860a678d92bec`，实现结论以本次读取的工作区源码为准；逐文件 SHA-256 与代码定位见[源码清单](../diagrams/2026-10-13_rtl_module_comparison/source_manifest.json)。
 
 这份指南回答：**寄存器写入后，模块内部哪些电路开始工作；数据怎样流动；状态怎样回到软件；接入自己的 IP 时必须保留哪些约定。** 它承接 Regbus 讨论，不重画 CPU—Crossbar—DDR 的 SoC 全景图。
 
@@ -32,13 +32,11 @@
 | [19 DDR 与 LVDS/ISP 搬运](19_ddr_lvds_pipeline.md) | 控制器/PHY 边界、帧 DMA、NPU 搬运器与 GB 分工 | 1 |
 | [20 CPU/Ara 与共享数据](20_accelerator_memory.md) | PMA、实际失效路径、WT/LLC 可见性与所有权交接 | 1 |
 
-共 **21 篇文档、24 张当前采用的 A 图和 24 张 C 版试绘**。原有 17 篇已逐篇复核并修复；新增 4 篇围绕实际集成路径补缺。各图的 **213 条连接**由统一清单生成编号和连接表，协议/信号组、方向与用途可在图下查到。
+共 **21 篇正文、24 张正式 A 图、213 条连接**。连接编号和信号表来自同一清单；协议/信号组、方向与用途可在图下查到。
 
-打开 [A/C 连续走线对比页](../diagrams/2026-10-13_rtl_modules_native_c/index.html)：可按模块跳转、并排或上下比较、打开原尺寸。**用户比较 C 后已确认继续采用 A，后续补图与修订沿用 A**；C 使用 `svg-pptx-diagrams-native` 的彩色标题带、浅色主体及柔和边框，保留 A 的布局和全部连线。两版技术内容相同，C 仅保留为试绘记录，风格选择已完成。[C 图源、PPT 与检查说明](../diagrams/2026-10-13_rtl_modules_native_c/README.md)。
+[正式 A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html) · [24 页可编辑 PPTX](../diagrams/2026-10-13_rtl_module_comparison/A/editable/diagrams.pptx) · [图源、PDF 与维护检查](../diagrams/2026-10-13_rtl_module_comparison/README.md)。
 
-**2026-10-13：B 配对端口版已被用户明确弃用。**离散模块不能靠文字名或编号表达连接；后续主图必须用连线/箭头组成结构。B 历史资产保留存档，不再展示为候选或自动生成。
-
-两版均有 SVG、PNG、矢量 PDF 和原生可编辑 PPTX：[A 合辑](../diagrams/2026-10-13_rtl_module_comparison/A/editable/diagrams.pptx) · [C 合辑](../diagrams/2026-10-13_rtl_modules_native_c/C/editable/diagrams.pptx)。复现与检查见[图稿入口](../diagrams/2026-10-13_rtl_modules_native_c/README.md)。2026-10-12 原图保持不变，修改前的未提交文档也已归档备份。
+2026-10-13 用户最终确认采用 **A 连续走线**，后续补图与修订沿用 A。B 配对端口版已弃用，C 未采用；两者退出正式阅读与生成流程。选择经过及历史材料见[主题交接](../handoffs/L01_rtl_module_guide.md)，不再作为待选方案。
 
 ## 本轮复核后，先留意这些区别
 
@@ -61,6 +59,6 @@ NPU/ISP/PLL/DDR/LVDS 的**配置寄存器**首先按 Regbus 章设计：地址�
 - 源码路径后给出本次快照的行号和可搜索符号。`#L` 跳转适用于支持源码行锚点的查看器；IDE 不识别时按表内行号或符号定位。
 - 图内实线表示连接表定义的数据/请求路径，双箭头合并请求与返回；单箭头可表示主数据方向，反向 ready 在连接表说明。虚线连线是控制/事件或明确标注的逻辑关系，虚线模块是规划。交叉而无圆点不表示相连。矩形左侧细竖线表示存储/队列，不暗示它必定映射成 SRAM 宏。
 - MMIO 的合法访问宽度由设备约定。32-bit Regbus、64-bit AXI 数据总线、RV64 的 XLEN 是三件事。尤其要检查读 FIFO、读清除、读触发提交等副作用。
-- 本轮覆盖全部 21 篇、48 张预览；依据本地项目/依赖官方文档与当前 RTL 的静态对应、图稿与链接检查；未新跑 RTL 仿真、外设板测或 ASIC 签核。原生 PPT 对象已由脚本检查，未在 Microsoft Office 中验收外观。
+- 2026-10-13 原技术复核覆盖全部 21 篇及当时 A/B 共 48 张预览；依据本地项目/依赖官方文档与当前 RTL 的静态对应、图稿与链接检查；未新跑 RTL 仿真、外设板测或 ASIC 签核。原生 PPT 对象已由脚本检查，未在 Microsoft Office 中验收外观。
 
 当前工程曾由用户报告 VCU118 HelloWorld 成功；这不扩大为其他外设、DMA、Ara、DDR、USB 等已验证。对文中指出的现有缺口，只解释其影响，不在本次修改 RTL 或软件。

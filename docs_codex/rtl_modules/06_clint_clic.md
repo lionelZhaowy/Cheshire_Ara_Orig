@@ -12,13 +12,13 @@ CLINT（Core-Local Interruptor）产生计时器和软件中断；CLIC（Core-Lo
 
 ![06A  CLINT：RTC 边沿变为计数使能；比较器产生定时中断](../diagrams/2026-10-13_rtl_module_comparison/A/06a_clint.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/06a_clint.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/06a_clint.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#06a_clint)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/06a_clint.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/06a_clint.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#06a_clint)
 
 <!-- CONNECTIONS:06a_clint -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|
@@ -53,13 +53,13 @@ MTIME 和 MTIMECMP 在电路中是 64-bit，软件接口分成 LOW/HIGH。读两
 
 ![06B  CLIC：每个 hart 的中断选择器与 CPU 握手接口](../diagrams/2026-10-13_rtl_module_comparison/A/06b_clic.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/06b_clic.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/06b_clic.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#06b_clic)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/06b_clic.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/06b_clic.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#06b_clic)
 
 <!-- CONNECTIONS:06b_clic -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

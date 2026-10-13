@@ -1,5 +1,7 @@
 # L01 / PPTX 自动排除画布背景矩形
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 > 记录日期：2026-10-11。2026-10-11 按任务/主题命名迁移；下方保留原始内容与验证边界。后续同主题变更在文件头追加修改记录。
 
 ## 基本信息
@@ -16,7 +18,7 @@
 - 图内白色模块、异色边框、圆角框，以及覆盖在其他内容之上的矩形保持独立对象。SVG 数据不变；导出与重读校验使用过滤后的 PPT 对象列表，报告明确记录省略的背景 ID。
 - 45 张图：42 张白底、3 张浅色底，全部省略背景矩形。45 个单图 PPTX 与合辑均已更新；合辑从 3154 降至 3109 个对象，1653 个文本、306 个完整箭头、4 个虚线框保持。示例 PPT 从 26 降至 25 个对象。
 - 新版 skill 安装目录、源码快照及 ZIP 同步；旧 `svg-pptx-diagrams` 的 12 个源文件哈希不变。背景修正无需用户另行切换 skill。
-- [交付说明](../diagrams/native_reconstruction/README.md)、[合辑](../diagrams/native_reconstruction/all_diagrams.pptx)、[修正验证报告](../diagrams/native_reconstruction/background_update_report.json)。新目录仍为单层，无子目录。
+- [交付说明](../diagrams/2026-10-11_native_reconstruction/README.md)、[合辑](../diagrams/2026-10-11_native_reconstruction/all_diagrams.pptx)、[修正验证报告](../diagrams/2026-10-11_native_reconstruction/background_update_report.json)。新目录仍为单层，无子目录。
 
 ## 验证证据
 

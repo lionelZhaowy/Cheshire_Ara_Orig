@@ -16,13 +16,13 @@ SoC 提供 `axi_llc_mst_req_o / axi_llc_mst_rsp_i`，包含 AXI 请求与响应�
 
 ![规划图像链与 DDR / GB 搬运职责](../diagrams/2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#19_ddr_lvds_pipeline)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/19_ddr_lvds_pipeline.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#19_ddr_lvds_pipeline)
 
 <!-- CONNECTIONS:19_ddr_lvds_pipeline -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

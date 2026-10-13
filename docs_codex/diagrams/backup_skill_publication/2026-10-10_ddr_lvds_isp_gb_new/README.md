@@ -1,5 +1,7 @@
 # 2026-10-10_ddr_lvds_isp_gb · 新版图稿
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 publication-figures；旧目录原样保留。所有图宽182 mm，英文短标签/中文图注。源图、PDF和PNG各自保持比例；PPT页宽182 mm，组内统一页面高度。
 
 [可编辑 PPTX](export/diagrams.pptx) · [导出报告](export/export_report.json)
@@ -14,7 +16,7 @@
 
 内容映射：系统主路径/Ara新增分流/GB客户端/DDR三口→本图；RAW/ISP/CDC与帧选择→image_gb_dataflow；三口条件和缓存维护→图注。
 
-原图：[旧母版](../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg)
+原图：[旧母版](../../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg)
 
 ## image_gb_dataflow
 
@@ -26,7 +28,7 @@
 
 内容映射：RAW旁路、ISP行缓冲、帧选择、DMA、GB与各客户端→本图；具体容量与带宽假设→图注。
 
-原图：[旧母版](../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg)
+原图：[旧母版](../../2026-10-10_ddr_lvds_isp_gb/ddr_interconnect.svg)
 
 ## 随图补充
 

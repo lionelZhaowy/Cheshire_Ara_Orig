@@ -1,0 +1,298 @@
+{
+  "date": "2026-10-13",
+  "input_head": "5a1338e0a0bf115ddd54c19e0ae367ac2d541892",
+  "archived_files": 224,
+  "redundant_files_removed": 2,
+  "archive_members_verified": 288,
+  "preserved_files_verified": 2925,
+  "chapter_content_comparisons": 21,
+  "modified_html_links": 287,
+  "non_document_changes": [],
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "docs_codex/learning/scripts/check_site.py"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: 71 HTML pages, 5078 local links/resources, anchors, 108 SVG XML, alt text, offline assets, shell syntax, whitespace\nPASS: page titles/H1/sidebar/TOC/previous-next, heading levels; 4433 Markdown links and fragments\nPASS: 51 Markdown documents match canonical HTML content and page metadata\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/zhaowenyao/.codex/skills/publication-figures/.venv/bin/python",
+        "-B",
+        "docs_codex/diagrams/2026-10-13_rtl_module_comparison/verify_a.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"check\": \"current_A\",\n  \"head\": \"5a1338e0a0bf115ddd54c19e0ae367ac2d541892\",\n  \"chapters\": 21,\n  \"figures\": 24,\n  \"connections\": 213,\n  \"source_hashes\": 78,\n  \"links\": 537,\n  \"source_line_refs\": 176,\n  \"unchanged_historical_visual_hashes\": 24,\n  \"new_visual_review\": false,\n  \"vector_pdfs\": 24,\n  \"ppt_slides\": 24,\n  \"ppt_native_objects\": 1548,\n  \"errors\": [],\n  \"geometry_findings\": [],\n  \"rtl_simulated\": false,\n  \"board_tested\": false,\n  \"office_tested\": false,\n  \"browser_interaction_tested\": false\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "errors": [],
+  "rtl_simulated": false,
+  "board_tested": false,
+  "office_tested": false,
+  "earlier_checks": [
+    {
+      "stage": "A checker first run",
+      "result": {
+        "check": "current_A",
+        "head": "5a1338e0a0bf115ddd54c19e0ae367ac2d541892",
+        "chapters": 21,
+        "figures": 24,
+        "connections": 213,
+        "source_hashes": 78,
+        "links": 537,
+        "source_line_refs": 176,
+        "unchanged_historical_visual_hashes": 24,
+        "new_visual_review": false,
+        "vector_pdfs": 24,
+        "ppt_slides": 24,
+        "ppt_native_objects": 1548,
+        "errors": [
+          [
+            "retired variant in active navigation",
+            "11_serial_link.md"
+          ]
+        ],
+        "geometry_findings": [],
+        "rtl_simulated": false,
+        "board_tested": false,
+        "office_tested": false,
+        "browser_interaction_tested": false
+      },
+      "resolution": "Narrowed rejected-variant check to actual figure path; AW/W/B/AR/R is protocol prose."
+    },
+    {
+      "stage": "Organization checker first run",
+      "errors": [
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/14_idma.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/03_spi.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/05_plic.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/16b_spm.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/09_soc_regs.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/02_i2c.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/01_uart.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/11_serial_link.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/04_gpio.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/13_usb.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/17_axi_extension.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/06b_clic.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/16a_llc.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/00b_ip_contract.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/15_interrupt_exception.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/00a_regbus.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/20_accelerator_memory.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/08_bootrom.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/07_irq_router.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/12_vga.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/19_ddr_lvds_pipeline.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/10_jtag_debug.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/06a_clint.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/18_clock_reset_startup.layout.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_module_comparison/B/editable/export_report.json"
+        ],
+        [
+          "preserved file changed",
+          "docs_codex/diagrams/2026-10-13_rtl_modules_native_c/C/editable/export_report.json"
+        ]
+      ],
+      "resolution": "Classified 26 archived JSON artifacts under archive-member hash checks instead of requiring their old live paths. Original bytes verified in tar."
+    },
+    {
+      "stage": "site and link repair iterations",
+      "findings": [
+        "Existing renamed/relocated document links were broken.",
+        "Three local official Markdown source #L references were mistaken for heading anchors.",
+        "Repeated replacement of duplicate links added extra ../ segments in first repair attempt."
+      ],
+      "resolution": "Repaired exact existing targets from backup using unique mappings; added actual source-line range checks; full site validation passed with no exemptions."
+    }
+  ],
+  "targeted_generation": {
+    "graph_inventories_equal": 24,
+    "temporary_svg_equal": [
+      "00a_regbus",
+      "19_ddr_lvds_pipeline"
+    ],
+    "navigation_idempotent": true,
+    "chapter_count": 21,
+    "python_syntax_files": 5,
+    "formal_assets_regenerated": false,
+    "temporary_output": "/tmp/rtl-a-navigation-smoke-fm6um7wv"
+  },
+  "safe_entrypoints": {
+    "compatibility_checks_only_A": true,
+    "existing_report_rejected": true,
+    "existing_export_directory_rejected": true
+  },
+  "tracked_changes": {
+    "M": 53,
+    "D": 224,
+    "A": 0
+  },
+  "scope": "Only docs_codex. External Office lock files were not manipulated; their observed lifetime changes are recorded in manifest.json. No implementation changes or hardware builds.",
+  "residual_retired_references": {
+    "active_reader_and_generator_dependencies": 0,
+    "retained_categories": [
+      "original visual/render/export evidence JSON",
+      "archive manifest member paths",
+      "dated historical handoff descriptions",
+      "active checker rejection patterns"
+    ],
+    "note": "Retained old paths are traceability records, not current dependencies; B/C artifacts are restored by archive member name."
+  },
+  "external_office_lock_observation": {
+    "initial_git_status_lock": "docs_codex/diagrams/2026-10-12_rtl_modules/export/~$diagrams.pptx",
+    "final_git_status_lock": "docs_codex/diagrams/2026-10-13_rtl_module_comparison/A/editable/~$diagrams.pptx",
+    "note": "Observed external lock lifetime change during task. Locks were neither edited nor deleted by this task. Excluded from immutable artifact assertions.",
+    "excluded_starting_hashes": {
+      "docs_codex/diagrams/2026-10-13_rtl_module_comparison/A/editable/~$diagrams.pptx": "7833e02b9891923387fe2d1e1d5653954b967055a00acfb2cca3522adc9ba71e"
+    }
+  },
+  "checked_document_sha256": {
+    "docs_codex/00_README.md": "b275421eb39ae485976791855a9ca34ef9069b514d56c28a5dda25992ff4b0f9",
+    "docs_codex/01_Cheshire_Ara_Quick_Start.md": "99766ff63d48b0695f13f8def06b5ebb6a6d424a4c109b88fda8a66f3a358372",
+    "docs_codex/AGENT_DOCUMENTATION_GUIDE.md": "10a50ea3d3ef82141b001f3ad99ebb65309d4a80e44ad5fd65dc80d297714051",
+    "docs_codex/AGENT_TASKS.md": "20fa36e38c815426599e9afd22e2a95ca197a73002674ec704fed75e367cc14c",
+    "docs_codex/PROJECT_STATE.md": "dfdd891411d74fc027ca98f3418b4edb9c3f536c26b7e10ea90c35f417bbf586",
+    "docs_codex/diagrams/2026-10-11_native_pptx_validation/README.md": "1ca0b5720f015d7e3091050000cb856d17600cf63f4285e4f515c727d62cfad9",
+    "docs_codex/diagrams/2026-10-11_native_reconstruction/README.md": "9e83dd7175ebea824b3e3455c5cf89a03e247d23eb1bb96f1ed4ac855fdc00dc",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/README.md": "33caec52dc471cf3f700bec8173e1298b41d78adce6f357ab1309462c9002839",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/build_comparison.py": "5d4f7fca8465ca6122110034392aa1693f4d98551e2e509eb884043e7814496e",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/export_editable.py": "acce1a9deb93f6c22f8bc4b62989fa7bfe9315d0e3c582233eb7a670590a72fd",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/index.html": "7e5d7af1f315bb089f04253e439e5ee842ef5f9be6502fef8fb1c2fe7c4aa081",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/verify_comparison.py": "86d6412a44dff47b5bb48541f1ade83144bf5c59e8aeda68ac6ab0d38ab77275",
+    "docs_codex/diagrams/2026-10-13_rtl_modules_native_c/README.md": "2da7c43c5e8681848fe5be4cf026ba31759311f96bb4f5693597e25bcf783e77",
+    "docs_codex/diagrams/2026-10-13_rtl_modules_native_c/index.html": "383653227087a18db65ff9349e02dccb3a1351e174811e86e71eee7f82a2a2db",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-06_axi_crossbar_ara_new/README.md": "5894cdc807118573395bf2da3ee336dd90a8f4ac028edb1f89368ea475e6415a",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-06_svg_pptx_skill_validation_new/README.md": "6d86b249e081d9b2d5d2be1050f59e6dd59c886a9d899e25548943502da4c486",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-08_boot_initialization_new/README.md": "762760419195f101d278eb03b60f4712979aafdb60d27023c90e48a18c6b26de",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-09_software_hardware_layers_new/README.md": "d56e3180a8e9d4e6690bcb6469a00cea198c3b630330f5b8b8fa3a5ee89a82e8",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-10_ddr_lvds_isp_gb_new/README.md": "bf362ed316cc89a2f353856cd91e6470d34406fa84614f390e8a1429e7a7755d",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-10_llc_cache_spm_new/README.md": "8f5b1686efb24aac1cd1b7882bdf643a628c81b602e5db35d6212a872b6dc6a5",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-10_publication_figure_research_new/README.md": "a809e1162a216ca12cc6fd10e017bcf30c80d321f905ea9b1231125410a86eb7",
+    "docs_codex/diagrams/backup_skill_publication/2026-10-10_publication_figure_research_new/index.html": "8e4d55631131e57c27b76aa7f990b2e49af6204899b246b5398166cb93f51c4e",
+    "docs_codex/handoffs/L01_documentation_organization.md": "1760523b50a1d244854aefad724c2f35c072d148f4478ec69ae1f258e4de457b",
+    "docs_codex/handoffs/L01_native_background_fix.md": "30ca19caa04e05d186020826aaf16e75028a90b32f6188a68ac6adce5d9690b2",
+    "docs_codex/handoffs/L01_publication_figures_implementation.md": "13b48ad037faa7530d1f28bb6a05af76efca02d9fbc0e752943d4b9c2e889128",
+    "docs_codex/handoffs/L01_rtl_module_guide.md": "ebea3db5bcf9a6819501d94b1511e2593037132185674ca33773d28182e547d6",
+    "docs_codex/handoffs/README.md": "62f1f3a0aefa900ebcdb6be927d43286f98bbbfb3b21ff8957db6dcabf438046",
+    "docs_codex/learning/scripts/check_site.py": "8beb0113d3be4fe28605643407fb088df977482bc4d1481ae0f22a460b5dc9c8",
+    "docs_codex/learning/scripts/known_link_gaps.json": "6fd79accb06a195c65b4e2e1a5aba3717e28086e129b469f49b57140c350c3eb",
+    "docs_codex/maintenance/L01/README.md": "b197cf6d2f400f45601e6c324dafeab0d87d3c1b9f638ce48ec9bd50ffcecc7d",
+    "docs_codex/maintenance/L01/planning/rtl_module_figures.md": "5bdf9a46e7193e3ff201c649af19706af5f81ddbeeb1f1ea3ded141238af6f79",
+    "docs_codex/rtl_modules/00_regbus.md": "57ab027fb24d5645df427de5432513674de478ae89041f07909e39cd7ae1542a",
+    "docs_codex/rtl_modules/01_uart.md": "01e4f1105aa403df1ee4e59275dc70b9ad5abda9fa50fce9cb064337de09f461",
+    "docs_codex/rtl_modules/02_i2c.md": "0e43a409da7ed4182d24943f0963931f6bb040bc7ac8b14f4d62d66bdf1ce22a",
+    "docs_codex/rtl_modules/03_spi.md": "ac5ed394c0433b4bc4aa9e96d7573feb2c6f0f3c36f8cff43af4c74234560165",
+    "docs_codex/rtl_modules/04_gpio.md": "d67ebf2ab790f00b84c93a8dd79cb8a44039a6889fa37d54bc4f8ace141234eb",
+    "docs_codex/rtl_modules/05_plic.md": "80bb521819db84802385b0a7499cf8c4509a82f21ae360d2406af6a204bd5ed7",
+    "docs_codex/rtl_modules/06_clint_clic.md": "054a08a459d2f91d485f7193c309b08ad0a08ed3bc50d187d7bdabc315838962",
+    "docs_codex/rtl_modules/07_irq_router.md": "ea90fb9408a212632e5914ea1d5cc87c7abc38a5a5d4abab434c152c81232df6",
+    "docs_codex/rtl_modules/08_bootrom.md": "ac497444e8867e6bba6b5d7a4d090b57a0061778972cd13a8761be10b4ff8d92",
+    "docs_codex/rtl_modules/09_soc_regs.md": "2be29f35f9d4bfada54142eb8e9e0b36c6b006beae7bed82b4228d04f8a42c62",
+    "docs_codex/rtl_modules/10_jtag_debug.md": "e9daea5c25f7d7908721412e6aa0768fcd40b24b6ac1d276ea041d63b5e7f0e8",
+    "docs_codex/rtl_modules/11_serial_link.md": "d4510dc2567a1cc4ea211ecc41f6baec1df7b7914ad6eb1ecc94b5de0675fbc2",
+    "docs_codex/rtl_modules/12_vga.md": "c6b03085a4f90eee111685ec48320e6d59fd5c4af326bd036f9c1d4b3b978a85",
+    "docs_codex/rtl_modules/13_usb.md": "528d45665bdc45bc91b60cf3db178c40f511e07d9f9b9b981f23bbfd0a4d07d3",
+    "docs_codex/rtl_modules/14_idma.md": "c71707c4940472ef01185c8c71fd65802d73c80691f4f302b5592d284fda68b7",
+    "docs_codex/rtl_modules/15_interrupt_exception.md": "5c6454543ed3fa53e10d986ff70546d01d99a56263e77539090af2cd16ae4395",
+    "docs_codex/rtl_modules/16_llc_spm.md": "242e2a8c578121746e45c650e8f64cd39c5ba924d20c9cd8a76236322839b1f3",
+    "docs_codex/rtl_modules/17_axi_extension.md": "59d3fff513fab700824f60ad4030e71a205ea7c08717708965dcd2da89c4c5cb",
+    "docs_codex/rtl_modules/18_clock_reset_startup.md": "212b08632e4ce66d070473386cfab9711f680618cb3f6b10b9f59c4b30062b5a",
+    "docs_codex/rtl_modules/19_ddr_lvds_pipeline.md": "d97a1b9beee74667e326927258ab8d6e02ade17fa14648ba73308a10e6991536",
+    "docs_codex/rtl_modules/20_accelerator_memory.md": "8fefb75972028911b378f7aaaa63c490dcd578dd695d582ccb98b124b2744e2d",
+    "docs_codex/rtl_modules/README.md": "64ade628fd45c9d1280710d72b4a2617384c11043e5b4dc332e021573bc5dc34",
+    "docs_codex/diagrams/2026-10-13_rtl_module_comparison/verify_a.py": "c7c3bbe4aefe09f571b9b7308912a4d553965f803292b9c23cf46eec98ee6659",
+    "docs_codex/maintenance/L01/archive/documentation_organization/verify_organization.py": "452b55b09b38f76b8db08ada63eca5bad34796f757f107c40361678a8fa252c0",
+    "docs_codex/maintenance/L01/archive/documentation_organization/README.md": "5deb43429ef61efaa65dd5f42b45ea26019d792134938462f1a162d9922cd0a8",
+    "docs_codex/maintenance/L01/archive/documentation_organization/manifest.json": "ae0b4da09dbbb5544e03ea846d58194d32db2e3aa2cf8fdb7535f4e041f2fa1f"
+  }
+}

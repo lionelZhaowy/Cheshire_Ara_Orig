@@ -1,8 +1,4 @@
-"""Reproducible A/B RTL diagrams from a shared, reviewed connection inventory.
-A preserves the previous wiring layout; B uses industrial functional regions and
-paired net labels (E##), a circuit-diagram convention avoiding long cross wires.
-Neither the baseline diagrams nor RTL are modified.
-"""
+"""Generate the adopted A diagrams and guide navigation. B/C are historical only."""
 from pathlib import Path
 from html import escape
 import importlib.util
@@ -177,82 +173,6 @@ def render_a(f,path):
  svg.text(40,y+28,'虚线连线表示控制/事件；虚线模块表示规划。交叉无圆点不连接。A：连续走线。',22,'#56697F')
  svg.save(path)
  return dict(labels=svg.labels,boxes=svg.boxes,edge_labels=placements)
-
-def node_kind(n):
- if n.get('port'):return 'boundary'
- if n.get('kind'):return n['kind']
- if n.get('fill') in ['#E8F2EA','#EDF5EB']:return 'control'
- if n.get('memory') or n.get('fill')=='#F2EEF8':return 'memory'
- return 'data'
-
-B_COLOR={'control':'#E8DFED','data':'#D8E8F4','memory':'#D9EEE8','boundary':'#F5E1C9'}
-
-B_NOTES={
- '00a_regbus':[
-  '现有配置通路使用 clk_i / rst_ni；64/32/48 为当前默认参数。',
-  'RegExtNumSlv / RegExtNumRules；RegExtRegionStart / End / Idx 定义扩展。',
-  'gen_axi_out + gen_reg_out 生成两级规则；默认外部端口数为 0，开启后需顶层接线。',
-  '请求：addr[47:0] / write / wdata[31:0] / wstrb[3:0] / valid；响应：rdata[31:0] / error / ready。',
-  '同域可直连；异域需 reg_cdc。图像/权重等批量搬运使用独立数据接口。'],
- '00b_ip_contract':[
-  '建议结构，尚未接入；示例寄存器和工作逻辑在同一个 clk_i 域。',
-  '合法 Regbus 写握手与 wstrb 共同定义写使能；是否使用 addr - BASE 由 IP 封装约定。',
-  'START 提交参数；ready 结束寄存器访问，长任务完成通过 busy / done / error 或 IRQ 报告。',
-  '完成/错误保持为可读状态；事件位建议 W1C，由合法写访问译码生成清除使能。',
-  'IRQ 另接 SoC；异域配置/状态需明确 CDC 与复位方案。可手写或用 reggen 生成寄存器封装。']
-}
-
-def render_b(f,path):
- raise RuntimeError("B 配对端口版已弃用；禁止再生成，请使用 A 或连续连线的 C。")
- # Circuit net-label view: E## at two ports is one net group, not two copies of
- # an IP or a hidden crossbar. Node / edge IDs and details are identical to A.
- slots=[[],[],[]];hs=[145]*3
- for n in f.nodes:
-  ins=[e for e in f.edges if e['target']==n['id']]
-  outs=[e for e in f.edges if e['source']==n['id']]
-  nr=max(len(ins),len(outs),1)
-  height=64+len(n['lines'])*32+nr*35+26
-  col=min(range(3),key=lambda c:hs[c]);slots[col].append((n,hs[col],height,ins,outs));hs[col]+=height+40
- notes=B_NOTES.get(f.name,[t['text'] for t in f.texts if t['size']<30])
- note_lines=[]
- for note in notes:
-  line='';units=0
-  for ch in note:
-   units+=1 if ord(ch)>127 else .55
-   if units>95:note_lines.append(line);line='';units=0
-   line+=ch
-  if line:note_lines.append(line)
- note_y=max(hs)+10
- height=note_y+len(note_lines)*31+100;svg=SVG(2400,height)
- svg.text(40,46,f.title,32,bold=True)
- svg.text(40,90,'B  工业端口图：同一 E 编号的两端相连；完整信号组、方向与用途见共用连接表。',25,'#606773')
- for col,entries in enumerate(slots):
-  x=40+col*795
-  for n,y,h,ins,outs in entries:
-   kind=node_kind(n);fill=B_COLOR.get(kind,'#D8E8F4')
-   svg.rect(x,y,730,h,fill,'#29292D',n.get('status') in ['planned','tbd'])
-   tag='外部/组边界' if kind=='boundary' else '接口与配置' if kind=='control' else '状态/存储' if kind=='memory' else '内部工作逻辑'
-   if n.get('status') in ['planned','tbd']:tag+=' · 规划/待确认'
-   svg.text(x+18,y+29,f'{n["id"]}  {tag}',22,'#606773')
-   for i,line in enumerate(n['lines']):svg.text(x+365,y+64+i*32,line,25 if i==0 else 23,anchor='middle',bold=i==0)
-   py=y+72+len(n['lines'])*32
-   svg.rect(x+15,py-9,700,h-(py-y)-5,'#FFFFFF','#B8BDC5',width=1)
-   for side,es in [('input',ins),('output',outs)]:
-    for i,e in enumerate(es):
-     yy=py+16+i*35;color='#765489' if e['dash'] else '#314D66'
-     if side=='input':
-      svg.line([(x-15,yy),(x+36,yy)],color,e['dash'],e['both'],id=f'{e["id"]}-target')
-      label=f'{e["id"]} ← {e["source"]}' if not e['both'] else f'{e["id"]} ↔ {e["source"]}'
-      svg.text(x+49,yy+8,label,23,color)
-     else:
-      svg.line([(x+694,yy),(x+745,yy)],color,e['dash'],e['both'],id=f'{e["id"]}-source')
-      label=f'{e["id"]} → {e["target"]}' if not e['both'] else f'{e["id"]} ↔ {e["target"]}'
-      svg.text(x+680,yy+8,label,23,color,anchor='end')
-   if not ins and not outs:svg.text(x+365,py+24,'存储分区示意；包含关系见所属组',23,'#606773',anchor='middle')
- for i,line in enumerate(note_lines):svg.text(40,note_y+i*31,line,23,'#606773')
- svg.text(40,height-27,'配对端口表示图示连接；已有/规划状态见模块和连接表。方向与 A 版一致。虚线模块表示规划。',24,'#606773')
- svg.save(path)
- return dict(labels=svg.labels,boxes=svg.boxes)
 
 def new_figure(g):
  import heapq
@@ -437,33 +357,41 @@ def update_docs(graphs):
   for g in gs:
    name=g['name'];old={'00a_regbus':'01_regbus_whole','00b_ip_contract':'02_ip_register_contract'}.get(name,name)
    prefix='../diagrams/'+ROOT.name
-   image=f'![{g["title"]}]({prefix}/A/{name}.png)\n\n[SVG]({prefix}/A/{name}.svg) · [PDF]({prefix}/A/{name}.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#{name})'
+   image=f'![{g["title"]}]({prefix}/A/{name}.png)\n\n[SVG]({prefix}/A/{name}.svg) · [PDF]({prefix}/A/{name}.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#{name})'
    pat=r'!\[[^\]]*\]\([^\n]*\/'+old+r'\.png\)\s*\n\s*\[SVG\][^\n]*'
    if re.search(pat,s):s=re.sub(pat,lambda _:image,s)
    elif 'FIGURE_PLACEHOLDER' in s:s=s.replace('FIGURE_PLACEHOLDER',image,1)
    elif f'/A/{name}.png' not in s:raise ValueError(('missing figure position',doc,name))
    ns={n['id']:n for n in g['nodes']}
    def title(id):return ns[id]['lines'][0].replace('|','\\|')
-   block=f'\n\n<!-- CONNECTIONS:{name} -->\n\n### 图中连线与信号组\n\n编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。\n\n| 连线 | 端点与方向 | 信号、用途和需要保留的约定 |\n|---|---|---|\n'
+   block=f'\n\n<!-- CONNECTIONS:{name} -->\n\n### 图中连线与信号组\n\n编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。\n\n| 连线 | 端点与方向 | 信号、用途和需要保留的约定 |\n|---|---|---|\n'
    for e in g['edges']:
     direction='↔' if e.get('both') else '→'
     detail=e.get('detail',e.get('label','')).replace('|','\\|').replace('\n',' ')
     block+=f'| {e["id"]} | {title(e["source"])} {direction} {title(e["target"])} | {detail} |\n'
    block+='\n<!-- /CONNECTIONS -->\n'
-   anchor=f'[A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#{name})';s=s.replace(anchor,anchor+block,1)
+   anchor=f'[A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#{name})';s=s.replace(anchor,anchor+block,1)
   p.write_text(re.sub(r'\n{3,}','\n\n',s))
 
 def gallery(graphs):
- # B was rejected on 2026-10-13. Keep files as history, never present it as a candidate.
- target='../2026-10-13_rtl_modules_native_c/index.html'
- out=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>图稿入口已迁移</title><h1>B 版已弃用；请使用 A/C 连续走线对比</h1><p>原 B 配对端口表达不再作为候选或模板。历史文件仅留档；文档当前采用 A。</p><p><a href="'+target+'">打开 A/C 比较页</a></p>']
+ out=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RTL 模块正式 A 图</title><style>body{font-family:sans-serif;max-width:1500px;margin:2em auto;padding:0 1em;color:#23354b;background:#fafbfd}img{width:100%;height:auto}section{margin:3em 0}nav a{display:inline-block;margin:.5em}a{color:#28699b}</style><h1>RTL 模块正式 A 图</h1><p>21 篇正文，24 张图，213 条连续连接。2026-10-13 用户最终确认采用 A；后续补图与修订沿用此版本。</p><nav><a href="../../rtl_modules/README.md">模块指南</a><a href="A/editable/diagrams.pptx">可编辑 PPTX</a><a href="README.md">图源与维护</a></nav>']
+ out.append('<nav>'+''.join(f'<a href="#{g["name"]}">{escape(g["name"])}</a>' for g in graphs)+'</nav>')
  for g in graphs:
-  out.append(f'<p id="{g["name"]}"><a href="{target}#{g["name"]}">{escape(g["title"])}</a></p>')
+  name=g['name'];title=escape(g['title'])
+  out.append(f'<section id="{name}"><h2>{title}</h2><p><a href="../../rtl_modules/{g["doc"]}">正文与信号表</a> · <a href="A/{name}.svg">SVG</a> · <a href="A/{name}.pdf">PDF</a> · <a href="A/{name}.png">原尺寸 PNG</a></p><img loading="lazy" src="A/{name}.png" alt="{title}"></section>')
  out.append('</html>')
  (ROOT/'index.html').write_text('\n'.join(out))
 
 
 def main():
+ import argparse
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--navigation-only',action='store_true',help='Update guide links/tables and gallery from the existing connection inventory; do not redraw')
+ args=parser.parse_args()
+ if args.navigation_only:
+  graphs=json.loads((ROOT/'connections.json').read_text())['figures']
+  update_docs(graphs);gallery(graphs)
+  return
  capture();apply_review();resolve_all()
  for f in GRAPHS.values():
   assert not any(n['lines'][0].startswith('待核对') for n in f.nodes),f.name

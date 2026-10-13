@@ -1,5 +1,7 @@
 # Publication figures：新 skill 与重绘交付
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 2026-10-10。用户在调研完成后明确授权创建新 skill，并按原子目录名加 `_new` 保存重绘结果。旧 skill、原图和历史导出保持原样；不修改 RTL、软件、配置、依赖清单或现有教材引用。
 
 ## 查看与使用
@@ -7,7 +9,7 @@
 - [新旧对照页](index.html)：同显示宽度查看原图与重绘图，可调宽度、切换灰度，并查看图注与内容映射。
 - 已安装 skill：[publication-figures](/home/zhaowenyao/.codex/skills/publication-figures/SKILL.md)。可用 `$publication-figures` 调用；本次安装位于 Linux/WSL 用户技能目录，未另外部署 Windows 用户目录。
 - [可搬迁的 skill 源码快照](skill/publication-figures/SKILL.md)：包含入口、领域图式、图面内容规则、场所资料、导出说明、审查规则与独立后端。和安装版内容一致，不依赖旧 skill。
-- [上一轮调研](../2026-10-10_publication_figure_research/README.md)仍保留为当时的规划记录；其中“尚未实施”描述的是上一轮状态，本轮实施结果以本文为准。
+- [上一轮调研](../../2026-10-10_publication_figure_research/README.md)仍保留为当时的规划记录；其中“尚未实施”描述的是上一轮状态，本轮实施结果以本文为准。
 
 ## 目录和内容
 

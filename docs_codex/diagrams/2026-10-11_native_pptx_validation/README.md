@@ -1,5 +1,7 @@
 # 独立修正版：SVG 与原生箭头 PPTX
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 2026-10-11。根据用户最新选择，从旧 `svg-pptx-diagrams` 独立派生 `svg-pptx-diagrams-native`。**没有修改旧 skill**；`publication-figures` 与已归档图稿也保持原样。本次只交付新 skill 和验证示例，没有重新生成全部工程图。
 
 ## 使用与切换
@@ -59,4 +61,4 @@ python scripts/run.py --input assets/native_example.svg --out-dir /tmp/native-ex
 
 ## 2026-10-11 背景处理修正
 
-新版导出自动省略底层全画布普通背景矩形：白色使用 PPT 默认背景，其他实色转为页面背景；内部白色模块和有边框/圆角的图形保留。SVG/PNG 不变。安装版、源码快照、ZIP 和示例 PPT 已同步，10 项回归测试通过；原版 `svg-pptx-diagrams` 未修改。此前的全图重建也已应用修正，见 [native_reconstruction](../native_reconstruction/README.md)。
+新版导出自动省略底层全画布普通背景矩形：白色使用 PPT 默认背景，其他实色转为页面背景；内部白色模块和有边框/圆角的图形保留。SVG/PNG 不变。安装版、源码快照、ZIP 和示例 PPT 已同步，10 项回归测试通过；原版 `svg-pptx-diagrams` 未修改。此前的全图重建也已应用修正，见 [native_reconstruction](../2026-10-11_native_reconstruction/README.md)。

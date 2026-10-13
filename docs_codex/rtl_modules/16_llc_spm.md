@@ -8,13 +8,13 @@ LLC（Last Level Cache，末级缓存）减少外存访问；SPM（Scratchpad Me
 
 ![16A  LLC：描述符命中 / 缺失路径与共享数据 SRAM](../diagrams/2026-10-13_rtl_module_comparison/A/16a_llc.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/16a_llc.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/16a_llc.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#16a_llc)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/16a_llc.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/16a_llc.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#16a_llc)
 
 <!-- CONNECTIONS:16a_llc -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|
@@ -49,13 +49,13 @@ LLC 是 AXI 路径上的末级缓存，SPM 是把其中部分 way 锁定为软�
 
 ![16B  LLC / SPM：相同 SRAM 的 way 分配与配置提交](../diagrams/2026-10-13_rtl_module_comparison/A/16b_spm.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/16b_spm.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/16b_spm.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#16b_spm)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/16b_spm.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/16b_spm.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#16b_spm)
 
 <!-- CONNECTIONS:16b_spm -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

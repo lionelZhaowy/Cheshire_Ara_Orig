@@ -63,6 +63,12 @@ def check_local_link(p,link):
         else:errors.append(f'missing {p}: {link}')
         return
     if u.fragment:
+        # Repository source/local official docs use viewer line anchors, including .md.
+        repo=ROOT.parent.parent
+        source_target=any(target.is_relative_to(repo/name) for name in ('docs','.bender','hw','sw','target'))
+        if source_target and re.fullmatch(r'L[1-9][0-9]*',u.fragment):
+            if int(u.fragment[1:])>len(target.read_text().splitlines()):errors.append(f'bad source line {p}: {link}')
+            return
         if target.suffix=='.md':ids=markdown_ids(target.read_text())
         elif target.suffix=='.html':ids=(pages.get(target) or Page(target.read_text())).ids
         else:return

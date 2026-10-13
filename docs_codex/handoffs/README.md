@@ -4,6 +4,8 @@
 
 ## 当前主题入口
 
+- [RTL模块指南](L01_rtl_module_guide.md)：21篇正文、24张正式A图；B弃用、C未采用，历史试绘已归档。
+
 - [文档目录分类与精简](L01_documentation_organization.md)：顶层 L01 过程资料迁入维护目录，旧 Prompt 与当前任务入口分开。
 
 - [接口参考文档与交接整理](L01_interface_reference.md)：正式内容见[片外器件与接口实现参考](../EXTERNAL_DEVICES_AND_INTERFACES.md)。

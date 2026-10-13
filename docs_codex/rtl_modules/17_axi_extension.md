@@ -16,13 +16,13 @@
 
 ![外部 IP 的 AXI 数据口与 Reg 控制口](../diagrams/2026-10-13_rtl_module_comparison/A/17_axi_extension.png)
 
-[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/17_axi_extension.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/17_axi_extension.pdf) · [A/C 对比](../diagrams/2026-10-13_rtl_modules_native_c/index.html#17_axi_extension)
+[SVG](../diagrams/2026-10-13_rtl_module_comparison/A/17_axi_extension.svg) · [PDF](../diagrams/2026-10-13_rtl_module_comparison/A/17_axi_extension.pdf) · [A 图总览](../diagrams/2026-10-13_rtl_module_comparison/index.html#17_axi_extension)
 
 <!-- CONNECTIONS:17_axi_extension -->
 
 ### 图中连线与信号组
 
-编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。A/C 均以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
+编号仅在本图内有效。总线双箭头合并请求与响应；单箭头表示表内说明的主数据、控制或逻辑方向，握手返回不能据箭头省略。主图以连续连线表达连接，编号只用于查表。源码依据见本章代码对应。
 
 | 连线 | 端点与方向 | 信号、用途和需要保留的约定 |
 |---|---|---|

@@ -1,5 +1,7 @@
 # 原版图稿的原生对象重建
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 `svg-pptx-diagrams-native`，共 **45 张图：diagrams 下 8 张，教材结构图 37 张**。所有图稿和配套文件平铺在本目录，没有下级目录；原文件和旧 skill 保留。
 
 直接打开 [图稿总览](index.html)，或下载 [45 页可编辑 PPT 合辑](all_diagrams.pptx)。每张另有同名 `.svg` 母版、原尺寸 `.png` 预览和单页 `.pptx`。`learning_` 前缀表示教材图。
@@ -23,14 +25,14 @@
 
 ```sh
 ~/.codex/skills/svg-pptx-diagrams-native/.venv/bin/python -B \
-  docs_codex/diagrams/native_reconstruction/build_soc_full_architecture.py \
+  docs_codex/diagrams/2026-10-11_native_reconstruction/build_soc_full_architecture.py \
   --out-dir /tmp/soc-overview-new
 
 ~/.codex/skills/publication-figures/.venv/bin/python -c \
   "import cairosvg; cairosvg.svg2png(url='/tmp/soc-overview-new/soc_full_architecture.svg', write_to='/tmp/soc-overview-new/soc_full_architecture.png')"
 
 ~/.codex/skills/svg-pptx-diagrams-native/.venv/bin/python -B \
-  docs_codex/diagrams/native_reconstruction/verify_soc_full_architecture.py \
+  docs_codex/diagrams/2026-10-11_native_reconstruction/verify_soc_full_architecture.py \
   --directory /tmp/soc-overview-new \
   --report /tmp/soc-overview-new/soc_full_architecture.validation.json
 ```
@@ -73,7 +75,7 @@
 
 ```sh
 ~/.codex/skills/svg-pptx-diagrams-native/.venv/bin/python -B \
-  docs_codex/diagrams/native_reconstruction/rebuild.py \
+  docs_codex/diagrams/2026-10-11_native_reconstruction/rebuild.py \
   --out-dir /tmp/native-reconstruction-repeat
 ```
 
@@ -83,7 +85,7 @@
 
 ```sh
 ~/.codex/skills/svg-pptx-diagrams-native/.venv/bin/python -B \
-  docs_codex/diagrams/native_reconstruction/verify_outputs.py
+  docs_codex/diagrams/2026-10-11_native_reconstruction/verify_outputs.py
 ```
 
 ## 图稿列表

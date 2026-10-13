@@ -1,5 +1,7 @@
 # 2026-10-08_boot_initialization · 新版图稿
 
+> 2026-10-13 仅修复归档后的导航路径；下文验证记录仍对应原日期与输入，未重新验收图稿。
+
 使用 publication-figures；旧目录原样保留。所有图宽182 mm，英文短标签/中文图注。源图、PDF和PNG各自保持比例；PPT页宽182 mm，组内统一页面高度。
 
 [可编辑 PPTX](export/diagrams.pptx) · [导出报告](export/export_report.json)
@@ -14,7 +16,7 @@ Bootrom=1、PlatformRom=0、内部 LLC 启用时的初始化对应关系。左�
 
 内容映射：硬件/软件对应关系→本图；ROM与CRT0具体顺序→program_execution_flow；测试边界、平台钩子→图注。
 
-原图：[旧母版](../2026-10-08_boot_initialization/initialization_hw_sw.svg)
+原图：[旧母版](../../2026-10-08_boot_initialization/initialization_hw_sw.svg)
 
 ## program_execution_flow
 
@@ -26,7 +28,7 @@ SPI NOR 自主启动（boot_mode=2）的代表控制流。ROM 经 GPT/raw 装载
 
 内容映射：ROM→GPT/raw→载荷CRT0→main→_exit→ROM返回点→本图；观察者、返回契约区别→图注。
 
-原图：[旧母版](../2026-10-08_boot_initialization/program_execution_flow.svg)
+原图：[旧母版](../../2026-10-08_boot_initialization/program_execution_flow.svg)
 
 ## 随图补充
 
