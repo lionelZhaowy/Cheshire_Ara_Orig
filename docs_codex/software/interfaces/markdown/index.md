@@ -11,12 +11,15 @@
 
 本专题负责五层结构中的**软硬件接口层**，借助必要的基础软件和 SoC RTL，把程序的一次操作追到硬件，再追到软件观察到的结果。适合有 RTL/NPU 经验、正在学习 RISC-V 启动和驱动的读者。
 
+新增[基础软件与BSP](foundation-software.md)：从HAL/DIF、MMIO辅助代码、库归档和开发工具理解接口的使用。推荐先读本章，再进入构建启动与四类接口；[两层区别与联系](foundation-software.md#layers)用UART实例对照。
+
 <a id="route"></a>
 
 ## 阅读顺序与使用方法
 
 | 顺序 | 章节 | 阅读后能回答的问题 |
 | --- | --- | --- |
+| 前置 | [基础软件与BSP](foundation-software.md) | 哪些是软件实现、接口契约、构建工具，怎样定位代码 |
 | 1 | [构建、加载与启动](build-boot.md) | ELF 放在哪里，CPU 怎样到达 main，谁清 BSS、准备栈 |
 | 2 | [指令、Ara 与 CSR](instructions.md) | 普通计算、向量请求、CSR 分别走哪条接口 |
 | 3 | [内存、MMIO 与数据交接](memory-mmio.md) | 一条 load/store 如何命中实际存储或产生寄存器副作用 |
@@ -28,6 +31,8 @@
 第一次按顺序阅读；定位问题时从案例表跳到相应机制。每个案例采用“目标/前提—软件—访问—RTL—完成—观察—排错”的顺序。本专题的图是静态源码关系图，不是仿真波形。
 
 分层文档将构建、启动与运行支持另列为横向支撑。本专题沿用用户的五层框架：主机工具、crt0 和驱动归入基础软件的讨论范围，但不把编译器画成目标端每次 MMIO 都经过的调用层。软硬件接口本身是语义契约，不是一个必须被链接的库。[分层索引](../../LAYERS_AND_TOOLS.md)提供全局分类。
+
+基础软件扩充按当前 `bf1b4198`核对，证据见[本次BSP记录](foundation-software.md#evidence)。下面保留初版接口教程的输入身份，不把两批验证合成一次。
 
 <a id="baseline"></a>
 
@@ -91,6 +96,8 @@ DIF（Device Interface Function，设备接口函数）主要操作控制器寄�
 
 本专题中“源码事实”表示已核对引用源；“分析推断”表示根据该配置推演；“设计建议”表示后续需要实现与验证。编译结果、目标运行和板测分别记录在[实践页](labs.md#evidence)。
 
+软件组件整体定位见[全组件软件栈](foundation-software.md#complete-stack)及[源码索引](foundation-software.md#component-index)；UART和GPT/Flash逐步调用链仍保留在同章。
+
 ---
 
-[下一页：构建、加载与启动](build-boot.md)
+[下一页：基础软件与BSP](foundation-software.md)

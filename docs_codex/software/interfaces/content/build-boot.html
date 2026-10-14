@@ -139,3 +139,5 @@ make sw/tests/helloworld.dram.elf
 </table>
 <p>仿真从 <a href="../../../target/sim/src/tb_cheshire_soc.sv">tb_cheshire_soc</a> 的 BOOTMODE/PRELMODE/BINARY/IMAGE 选择开始：PRELMODE 0 JTAG、1 Serial Link、2 UART；SD boot在当前TB明确 fatal。VIP经 <a href="../../../target/sim/src/elfloader.cpp">elfloader.cpp</a>读取ELF段和入口，使用选定协议装载，不是CPU自行解析 ELF。</p>
 <p><a href="../../../target/sim/src/vip_cheshire_soc.sv">JTAG VIP</a> <code>jtag_elf_halt_load</code> 先等待相关LLC配置条件再halt/load；这不代表它等待ROM C完整执行。<code>jtag_elf_run</code>写DPC并恢复hart，随后<code>jtag_wait_for_eoc</code>读取SCRATCH2。FPGA可用既有OpenOCD/GDB流程加载ELF；烧入bitstream与装载程序是两件事。可复现命令和前提见<a href="labs.html#run">实践页</a>。</p>
+
+<h2 id="bsp-build">构建规则把BSP实现和平台布局组成应用</h2><p><code>sw.mk</code>将本地启动/驱动/HAL与依赖库代码归档，链接脚本提供布局，装载工具把产物送到目标；三者共同支撑程序运行。库不包含板级连接和全部初始化条件。新增<a href="foundation-software.html#libraries">库归档说明</a>及<a href="foundation-software.html#tools">主机工具表</a>逐项解释头文件、对象、静态库、运行库和工具的职责。</p>

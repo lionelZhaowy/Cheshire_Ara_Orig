@@ -14,6 +14,8 @@
 
 ## 1. 阅读路线
 
+[基础软件与BSP（Markdown）](interfaces/markdown/foundation-software.md)／[HTML](interfaces/foundation-software.html)：HAL/DIF、MMIO辅助代码、库和运行支持、编译链接与调试工具，以及与软硬件接口层的区别。2026-10-13按`bf1b4198`补充，本批次只做源码/工具查询和图文验证。
+
 新增[软硬件接口源码专题（HTML）](interfaces/index.html)／[Markdown](interfaces/markdown/index.md)：按构建启动→四类接口→UART/计时/DMA/PLIC/Ara案例→自定义IP/Linux→最小实践连续阅读。该专题于2026-10-13独立核对，并保存本轮软件编译及文档检查证据；与本页上方2026-10-11的历史验证边界分开。
 
 先沿上述主教材建立原理，执行具体任务时再按下表查阅。驱动、库和 HAL 的关系主要解释在[软件组成](../learning/runtime.html#software-stack)，这里保留原工程的接口和使用条件。
@@ -79,3 +81,5 @@
 ## 5. 与工程任务的关系
 
 本轮是 L01 文档审查，不实施 S01 软件迁移、E01 独立工程提取或 V01 回归。最新状态与交接入口见[PROJECT_STATE](../PROJECT_STATE.md)，初始软件手册检查保留在 [2026-09-20 交接](../handoffs/L01_software_guide.md)。后续迁移时保留当前软件作为对照，建立独立输出目录和明确的工具链版本。
+
+[当前工程全组件软件栈](interfaces/markdown/foundation-software.md#complete-stack)补齐裸机BSP、Ara、主机工具及可选Linux/SDK分路，附39类组件源码索引和[可编辑图稿](../diagrams/2026-10-13_complete_software_stack/README.md)；原调用链案例图保留。

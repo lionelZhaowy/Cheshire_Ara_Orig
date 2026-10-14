@@ -147,3 +147,5 @@
 </tbody>
 </table>
 <p>仅让CPU地址“不可缓存”不保证经过的LLC也不分配，必须按实际路径检查。已有RVV教学例使用独占高别名SPM缓冲，避免同一程序混用低别名；这是实验条件，不是最终DDR缓存策略。</p>
+
+<h2 id="bsp-access">MMIO机制和访问辅助代码处于不同观察层次</h2><p>地址、字段、访问宽度、读写副作用和顺序是软硬件契约；<code>reg8/reg32</code>和<code>mmio_region_read/write</code>是基础软件对这些契约的使用。<code>params.h</code>声明链接符号、<code>common.ldh</code>赋地址、寄存器头定义偏移，辅助函数最后产生访存。具体代码与对齐限制见<a href="foundation-software.html#mmio-code">基础软件访问实现</a>；改函数类型并不会改变硬件宽度或消除副作用。</p>

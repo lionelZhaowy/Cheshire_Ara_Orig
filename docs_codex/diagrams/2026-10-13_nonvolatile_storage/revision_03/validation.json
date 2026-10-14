@@ -1,0 +1,607 @@
+{
+  "revision": 3,
+  "slides": [
+    {
+      "page": 1,
+      "objects": 88,
+      "links": [
+        "https://www.mouser.com/datasheet/2/198/ISSI_6_8_22_IS21_22TF08G__Rev_A_0426_2022-3132334.pdf",
+        "https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/791/JESD84_2D00_B51-_2800_1_2900_.pdf",
+        "https://www.swissbit.com/files/public/Documents/Flyer/Product_Profile_Swissbit_eMMC.pdf",
+        "https://www.synopsys.com/designware-ip/interface-ip/mobile-storage/sd-emmc-phy.html"
+      ],
+      "arrows": 5,
+      "notes_chars": 1655
+    },
+    {
+      "page": 2,
+      "objects": 96,
+      "links": [
+        "https://www.winbond.com/hq/product/code-storage-flash/qspi-nand/w25n-lv/?__locale=en",
+        "https://winbond.com/hq/product/code-storage-flash/qspi-nand/w25n-lv/?__locale=en&partNo=W25N04LVCEIG",
+        "https://www.micron.com/products/storage/nand-flash/choosing-the-right-nand"
+      ],
+      "arrows": 7,
+      "notes_chars": 1556
+    }
+  ],
+  "text_metrics": [
+    [
+      {
+        "text": "eMMC：3.3 V I/O，8-bit SDR / 50 MHz，优先评估",
+        "width": 904.18,
+        "allocated": 1480,
+        "size_pt": 28.799999999999997
+      },
+      {
+        "text": "平台输入：1.2 V 内核、3.3 V PAD（25OD33）、WB 封装；500 MiB 参数开机装入 DDR，允许 30 秒。",
+        "width": 1050.22,
+        "allocated": 1480,
+        "size_pt": 16.56
+      },
+      {
+        "text": "建议：8 GB 工业级 eMMC，VCC / VCCQ 均取 3.3 V  |  ≤400 kHz 初始化 → 8-bit High Speed SDR / 50 MHz",
+        "width": 1194.95,
+        "allocated": 1470,
+        "size_pt": 18.0
+      },
+      {
+        "text": "接口与协议：命令、响应、数据分开传输",
+        "width": 432.0,
+        "allocated": 711,
+        "size_pt": 17.28
+      },
+      {
+        "text": "信号 / 引脚",
+        "width": 112.62,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "CLK：主机输出；CMD：双向命令与响应。",
+        "width": 414.39,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "DAT[7:0]：双向数据；RST_n：按器件配置使用。",
+        "width": 475.09,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "数据规则",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "按逻辑块读写；主机检查响应、CRC 与超时。",
+        "width": 443.46,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "DAT0 可指示忙；无 AXI 式逐拍 VALID / READY。",
+        "width": 472.79,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "初始化",
+        "width": 66.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "识别器件 → 读取能力 → CMD6 配置总线与模式。",
+        "width": 488.32,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "先低速初始化，再切 8-bit / High Speed 并提高 CLK。",
+        "width": 522.87,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "连续读取",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "CMD18 多块读 → 接收数据 → DMA 写 DDR。",
+        "width": 448.16,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "命令响应 ≠ 搬运完成；检查错误后校验参数包。",
+        "width": 471.5,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "模式边界",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "当前建议 SDR：每周期每根数据线传 1 bit。",
+        "width": 428.87,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "3.3 V 不采用 HS200 / HS400；本方案不使用 DS。",
+        "width": 501.82,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "器件选型与 ASIC 实现：控制器、I/O、时序分层",
+        "width": 506.3,
+        "allocated": 716,
+        "size_pt": 17.28
+      },
+      {
+        "text": "候选器件",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "ISSI IS21TF08G-JCLI：8 GB、eMMC 5.1。",
+        "width": 414.16,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "工业级 -40～85°C，153-ball FBGA；非采购冻结。",
+        "width": 490.37,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "频率 / 带宽",
+        "width": 112.62,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "50 MHz × 8 bit = 50 MB/s ≈ 47.7 MiB/s 线速。",
+        "width": 474.75,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "SDR 规格上限 52 MHz；50 MHz 是建议工作点。",
+        "width": 475.02,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "电气 / PHY",
+        "width": 107.74,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "VCC：存储供电 2.7–3.6 V；VCCQ：I/O 取 3.3 V。",
+        "width": 492.02,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "该工业级支持 3.3 V；不要误选仅 1.8 V 的 A2 款。",
+        "width": 492.25,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "实现边界",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "SDR 可用数字收发 + 合适 PAD，非必需混合 PHY。",
+        "width": 496.16,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "仍需核对输入阈值、采样、驱动、WB / PCB 时序。",
+        "width": 498.42,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "工程改动",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "新增主机 / DMA、驱动及 PAD 适配；保留 NOR 启动。",
+        "width": 529.59,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "同为 3.3 V 可评估直连，须验证电气与上电兼容。",
+        "width": 483.08,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "预算：500 MiB ÷ 30 s = 16.7 MiB/s 下限；建议有效搬运 ≥25 MiB/s，20 s 搬运 + 约 10 s 初始化 / 校验。",
+        "width": 1108.85,
+        "allocated": 1470,
+        "size_pt": 16.56
+      },
+      {
+        "text": "容量：可建议 A/B 两份参数（约 1000 MiB），保留增长余量；更新须完成落盘、校验与版本切换，并验证掉电恢复。",
+        "width": 1143.42,
+        "allocated": 1470,
+        "size_pt": 15.84
+      },
+      {
+        "text": "ISSI 原厂手册（Mouser 托管）",
+        "width": 245.4,
+        "allocated": 405,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "JEDEC 5.1（TI 托管）",
+        "width": 173.8,
+        "allocated": 325,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "备选系列：Swissbit EM-30",
+        "width": 212.98,
+        "allocated": 380,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "PHY 实现示例",
+        "width": 109.41,
+        "allocated": 220,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "公开资料选型示例；频率为建议评估值，非当前工程已达标结果。  |  2026-10-13 · 修订 3",
+        "width": 633.5,
+        "allocated": 1450,
+        "size_pt": 11.52
+      },
+      {
+        "text": "1/2",
+        "width": 27.5,
+        "allocated": 60,
+        "size_pt": 11.52
+      }
+    ],
+    [
+      {
+        "text": "SPI NAND：改选 3 V 系列，Quad SDR / 100 MHz 待验证",
+        "width": 1008.95,
+        "allocated": 1480,
+        "size_pt": 28.799999999999997
+      },
+      {
+        "text": "适配 3.3 V PAD：改评估 W25N-LV；原 W25N-MW 为 1.8 V 方案，不再作为直接连接候选。",
+        "width": 925.68,
+        "allocated": 1480,
+        "size_pt": 16.56
+      },
+      {
+        "text": "候选：W25N08LV，8 Gbit（1 GiB）、3 V 档  |  10 MHz 联调 → 50 MHz 验证 → 条件满足后评估 100 MHz",
+        "width": 1177.96,
+        "allocated": 1470,
+        "size_pt": 18.0
+      },
+      {
+        "text": "接口与协议：SPI 命令 + NAND 页访问",
+        "width": 402.59,
+        "allocated": 711,
+        "size_pt": 17.28
+      },
+      {
+        "text": "信号 / 模式",
+        "width": 112.62,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "CS#、SCK：主机输出；IO[3:0]：按事务改变方向。",
+        "width": 499.69,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "Quad 为四线数据阶段，不等于所有命令均为四线。",
+        "width": 496.68,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "一次页读取",
+        "width": 110.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "发页地址 / 读页命令 → 等待就绪并检查 ECC。",
+        "width": 457.96,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "再发读缓存命令，按列地址 / dummy 周期接收数据。",
+        "width": 518.22,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "软件职责",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "识别器件、配置 ECC / Quad、管理坏块与预留块。",
+        "width": 494.85,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "检查不可纠错错误；CPU 排空 FIFO 并写入 DDR。",
+        "width": 480.32,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "候选容量",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "8 Gbit = 1 GiB；页为 4096 B + 256 B 备用区。",
+        "width": 464.35,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "双份 500 MiB 仅余 24 MiB，坏块预留空间过紧。",
+        "width": 480.76,
+        "allocated": 585,
+        "size_pt": 15.84
+      },
+      {
+        "text": "频率、I/O 与系统吞吐：复用存在约束",
+        "width": 401.72,
+        "allocated": 716,
+        "size_pt": 17.28
+      },
+      {
+        "text": "工作频率",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "10 / 50 MHz 逐步联调，Quad 100 MHz 为目标。",
+        "width": 481.55,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "LV 系列标称 STR 最高 133 MHz，非系统保证。",
+        "width": 461.87,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "时钟前提",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "当前 SCK = clk_i / [2 × (CLKDIV + 1)]。",
+        "width": 383.84,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "100 MHz SCK 要求 clk_i ≥200 MHz 且分频匹配。",
+        "width": 487.1,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "物理实现",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "LV 系列确认 3 V 档；8 Gbit 后缀电气表待确认。",
+        "width": 470.23,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "按 3.3 V PAD / WB 评估；100 MHz 须校核裕量。",
+        "width": 481.6,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "主要风险",
+        "width": 88.0,
+        "allocated": 124,
+        "size_pt": 15.84
+      },
+      {
+        "text": "现有控制器无独立 DMA；Regbus / CPU 可能限速。",
+        "width": 502.28,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "不能只换 Flash：需 NAND 驱动与错误 / 掉电验证。",
+        "width": 503.18,
+        "allocated": 590,
+        "size_pt": 15.84
+      },
+      {
+        "text": "方案 / 建议数据模式",
+        "width": 200.62,
+        "allocated": 302,
+        "size_pt": 15.84
+      },
+      {
+        "text": "纯线速（不含开销）",
+        "width": 198.0,
+        "allocated": 277,
+        "size_pt": 15.84
+      },
+      {
+        "text": "500 MiB 线速下限",
+        "width": 177.68,
+        "allocated": 297,
+        "size_pt": 15.84
+      },
+      {
+        "text": "评估结论",
+        "width": 88.0,
+        "allocated": 552,
+        "size_pt": 15.84
+      },
+      {
+        "text": "eMMC · 8-bit SDR 50 MHz",
+        "width": 242.07,
+        "allocated": 302,
+        "size_pt": 15.12
+      },
+      {
+        "text": "50 MB/s ≈ 47.7 MiB/s",
+        "width": 220.22,
+        "allocated": 277,
+        "size_pt": 15.12
+      },
+      {
+        "text": "约 10.5 秒",
+        "width": 98.66,
+        "allocated": 297,
+        "size_pt": 15.12
+      },
+      {
+        "text": "优先评估：新增主机 / DMA 与 I/O",
+        "width": 319.1,
+        "allocated": 552,
+        "size_pt": 15.12
+      },
+      {
+        "text": "SPI NAND · Quad SDR 100 MHz",
+        "width": 291.57,
+        "allocated": 302,
+        "size_pt": 15.12
+      },
+      {
+        "text": "50 MB/s ≈ 47.7 MiB/s",
+        "width": 220.22,
+        "allocated": 277,
+        "size_pt": 15.12
+      },
+      {
+        "text": "约 10.5 秒",
+        "width": 98.66,
+        "allocated": 297,
+        "size_pt": 15.12
+      },
+      {
+        "text": "备选：时钟、页读取、软件搬运须达标",
+        "width": 357.0,
+        "allocated": 552,
+        "size_pt": 15.12
+      },
+      {
+        "text": "验收口径：完整 500 MiB 初始化 + 加载 + 校验 ≤30 秒；SPI Quad 50 MHz 仅 23.8 MiB/s 线速，低于 25 MiB/s 设计目标。",
+        "width": 1098.97,
+        "allocated": 1500,
+        "size_pt": 14.399999999999999
+      },
+      {
+        "text": "Winbond W25N-LV：3 V / 8 Gbit",
+        "width": 257.86,
+        "allocated": 435,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "同系列 4 Gbit：2.7–3.6 V 详情",
+        "width": 246.05,
+        "allocated": 430,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "NAND 管理职责：Micron",
+        "width": 193.91,
+        "allocated": 400,
+        "size_pt": 12.959999999999999
+      },
+      {
+        "text": "公开资料选型示例；频率为建议评估值，非当前工程已达标结果。  |  2026-10-13 · 修订 3",
+        "width": 633.5,
+        "allocated": 1450,
+        "size_pt": 11.52
+      },
+      {
+        "text": "2/2",
+        "width": 27.5,
+        "allocated": 60,
+        "size_pt": 11.52
+      }
+    ]
+  ],
+  "native_diagram_report": [
+    {
+      "objects": 29,
+      "text_objects": 17,
+      "omitted_canvas_background_ids": [],
+      "slide_background_color": null,
+      "min_text_pt": 14.4,
+      "native_arrow_objects": 5,
+      "native_dashed_objects": 2
+    },
+    {
+      "objects": 33,
+      "text_objects": 18,
+      "omitted_canvas_background_ids": [],
+      "slide_background_color": null,
+      "min_text_pt": 12.96,
+      "native_arrow_objects": 7,
+      "native_dashed_objects": 1
+    }
+  ],
+  "office_verified": false,
+  "preview": "CairoSVG from shared layout; not Office rendering",
+  "files": {
+    "slide_01.svg": "ef7579a73e3eec32df2f266a47c893a8c055afa0b3f969bf7635d335a1ece7cd",
+    "slide_02.png": "3e675ca861b59596f97b601c3c9a71e92cac91a60978f8bd6b16937a3de12e7b",
+    "spi_nand_v3.svg": "7f81b0ed19da0d52a169e45b3ad986685ad4159fead35c069ea4829e044fa983",
+    "emmc_v3.svg": "76764779caf08d08a65acd9db883cfd8c8b4be8bc3ce396b1a5a854b3cae8356",
+    "slide_02.svg": "4b2a5af1aeffc916cc6030d02cc14c953c0e6841ce70764d7ba28cd2a4f2782f",
+    "nonvolatile_storage_options_v3.pptx": "39d4ff360d190573b60c3dbc9edcea8fd53dadc5627595f198ab55c8008b90ef",
+    "source_manifest.json": "8e438884a5fe86945785d10b37b42ee41cbaf41fd4e9fe01b6ff0b5c3f289402",
+    "slide_01.png": "094678f483a1d743c6044f6deb7770a781f1411ec2b0b767c19f75deb461991b",
+    "diagrams.pptx": "103c3101c39150824123369c7f552198c88879ab119ebc3e5efdd2c028b8955e"
+  }
+}

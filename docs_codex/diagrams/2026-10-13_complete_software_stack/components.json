@@ -1,0 +1,409 @@
+{
+  "head": "bf1b4198dfd74cc78291c152b8b682d523e785c5",
+  "scope": "functional components, not every API or optional package",
+  "components": [
+    {
+      "component": "裸机应用 / 外设测试",
+      "responsibility": "main、外设操作和返回值校验；包含标量、RVV和配置专用测试",
+      "sources": [
+        "sw/tests",
+        "sw/sw.mk"
+      ],
+      "consumer": "应用 crt0 进入 main；Make 选择链接模式",
+      "status": "源码存在；本轮未重编/运行。旧 tests_wo_ara 不作为独立软件层"
+    },
+    {
+      "component": "Ara 应用 / RiVec benchmark",
+      "responsibility": "向量算法与标量对照；裸机和 Linux 构建入口不同",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/apps",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/Makefile",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/rivec.mk"
+      ],
+      "consumer": "sw/tests 中复制的测试、%-linux、rivec-bmark-*",
+      "status": "构建规则/部分源码可查；可选数据及子模块完整性须逐项确认"
+    },
+    {
+      "component": "printf",
+      "responsibility": "printf_/_vsnprintf 格式化，通过 _putchar 输出",
+      "sources": [
+        "sw/deps/printf/printf.c",
+        "sw/lib/dif/uart.c"
+      ],
+      "consumer": "HelloWorld、ZSL、其他应用",
+      "status": "源码与初版 HelloWorld 编译证据；本批次未运行"
+    },
+    {
+      "component": "GPT",
+      "responsibility": "gpt_find_partition / gpt_boot_part_else_raw 解析分区并调用 gpt_read_t",
+      "sources": [
+        "sw/lib/gpt.c",
+        "sw/include/gpt.h"
+      ],
+      "consumer": "Boot ROM、ZSL",
+      "status": "回调连接可确认；本地通用 GPT 测试镜像生成规则已注释"
+    },
+    {
+      "component": "Ara / RVV 辅助代码",
+      "responsibility": "向量准备、计时、数据检查；不构成设备调度运行时",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/include/cheshire_util.h",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/include/vector_util.h",
+        "sw/tests/rvv_test.h"
+      ],
+      "consumer": "向量测试、向量算法",
+      "status": "源码存在；须匹配 CPU profile、Ara 参数、ISA 和 VS/FS"
+    },
+    {
+      "component": "UART debug HAL",
+      "responsibility": "uart_debug_init/check/serve：串口命令、内存读写与执行",
+      "sources": [
+        "sw/lib/hal/uart_debug.c",
+        "sw/include/hal/uart_debug.h"
+      ],
+      "consumer": "Boot ROM boot_debug",
+      "status": "调用本地 UART；与主机 GDB/OpenOCD 的 JTAG 调试不同"
+    },
+    {
+      "component": "SPI Flash HAL",
+      "responsibility": "spi_s25fs512s_init/single_read/single_flash：器件命令与页/扇区操作",
+      "sources": [
+        "sw/lib/hal/spi_s25fs512s.c",
+        "sw/include/hal/spi_s25fs512s.h"
+      ],
+      "consumer": "Boot ROM、flash.c；GPT 读回调",
+      "status": "调用 SPI Host DIF；器件/模式/时序需匹配，不代表所有 Flash 通用"
+    },
+    {
+      "component": "SPI SD HAL",
+      "responsibility": "spi_sdcard_init/read_checkcrc/write_blocks：SPI 模式 SD 协议",
+      "sources": [
+        "sw/lib/hal/spi_sdcard.c",
+        "sw/include/hal/spi_sdcard.h"
+      ],
+      "consumer": "Boot ROM、flash.c；GPT 读回调",
+      "status": "调用 SPI Host DIF；不是原生 SD/MMC 总线驱动；板级引脚待核对"
+    },
+    {
+      "component": "I²C EEPROM HAL",
+      "responsibility": "i2c_24fc1025_init/read/write：器件寻址和分块",
+      "sources": [
+        "sw/lib/hal/i2c_24fc1025.c",
+        "sw/include/hal/i2c_24fc1025.h"
+      ],
+      "consumer": "Boot ROM、flash.c；GPT 读回调",
+      "status": "调用 I²C DIF；分块推进等已有静态疑点，未关闭"
+    },
+    {
+      "component": "UART DIF",
+      "responsibility": "uart_init/read/write/flush 和 printf 字符钩子",
+      "sources": [
+        "sw/lib/dif/uart.c",
+        "sw/include/dif/uart.h"
+      ],
+      "consumer": "printf、UART debug、应用",
+      "status": "MMIO 字节访问；有初版编译证据，不据此推及本轮板测"
+    },
+    {
+      "component": "CLINT DIF",
+      "responsibility": "mtime、mtimecmp、频率测量、忙等/休眠",
+      "sources": [
+        "sw/lib/dif/clint.c",
+        "sw/include/dif/clint.h"
+      ],
+      "consumer": "Boot ROM、器件 HAL、应用",
+      "status": "MMIO + CSR 辅助；sleep/read/compare 已有静态疑点"
+    },
+    {
+      "component": "DMA 接口",
+      "responsibility": "头文件宏生成 sys_dma_*：提交、查询、等待",
+      "sources": [
+        "sw/include/dif/dma.h",
+        "sw/tests/dma_2d.spm.c"
+      ],
+      "consumer": "DMA 测试、AXI RT 测试",
+      "status": "无独立 dma.c；控制宽度、拆读及 reps=0 门槛仍在，不标成已可用"
+    },
+    {
+      "component": "SPI Host DIF",
+      "responsibility": "控制器配置、FIFO 和事务",
+      "sources": [
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_spi_host.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_spi_host_autogen.c"
+      ],
+      "consumer": "Flash / SD HAL",
+      "status": "本地依赖源码被 sw.mk 收集；不代表已初始化、使能或运行验收"
+    },
+    {
+      "component": "I²C DIF",
+      "responsibility": "控制器时序、格式 FIFO、收发和状态",
+      "sources": [
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_i2c_autogen.c"
+      ],
+      "consumer": "EEPROM HAL",
+      "status": "本地依赖源码被 sw.mk 收集；不代表已初始化、使能或运行验收"
+    },
+    {
+      "component": "GPIO DIF",
+      "responsibility": "方向、输入输出及中断配置",
+      "sources": [
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_gpio.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_gpio_autogen.c"
+      ],
+      "consumer": "调用者需编写板级 GPIO/ISR 逻辑",
+      "status": "本地依赖源码被 sw.mk 收集；不代表已初始化、使能或运行验收"
+    },
+    {
+      "component": "PLIC DIF",
+      "responsibility": "优先级、使能、claim/complete",
+      "sources": [
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_rv_plic.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_rv_plic_autogen.c"
+      ],
+      "consumer": "平台初始化与外部中断处理者",
+      "status": "本地依赖源码被 sw.mk 收集；不代表已初始化、使能或运行验收"
+    },
+    {
+      "component": "DIF 公共定义",
+      "responsibility": "dif_base 与 autogen 公共返回值/句柄约定",
+      "sources": [
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_base.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_base.h"
+      ],
+      "consumer": "OpenTitan DIF 与其调用者",
+      "status": "源码/头文件存在；错误传播须沿具体调用链确认"
+    },
+    {
+      "component": "LLC 支持",
+      "responsibility": "axi_llc_reg32_*：SPM way、flush、BIST 状态等",
+      "sources": [
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/lib/axi_llc_reg32.c",
+        ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/include/axi_llc_reg32.h"
+      ],
+      "consumer": "启动/平台管理程序；Boot ROM 汇编也直接操作 LLC",
+      "status": "库源被收集；不能因此认定缓存维护及所有权协议完整"
+    },
+    {
+      "component": "AXI RT 支持",
+      "responsibility": "__axirt_*：region、budget、period、enable、isolation 查询",
+      "sources": [
+        ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.c",
+        ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.h",
+        "sw/tests/axirt_budget.spm.c"
+      ],
+      "consumer": "AXI RT 测试、平台管理",
+      "status": "依赖驱动被收集；测试依赖 DMA，存在运行门槛"
+    },
+    {
+      "component": "MMIO / 位域 / 内存辅助",
+      "responsibility": "reg8/reg32、mmio_region_*、bitfield、memory 辅助",
+      "sources": [
+        "sw/include/util.h",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/mmio.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/bitfield.c",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/memory.c"
+      ],
+      "consumer": "本地 DIF、OpenTitan DIF、应用",
+      "status": "辅助代码不替代寄存器副作用、宽度与顺序契约"
+    },
+    {
+      "component": "CSR / 屏障辅助",
+      "responsibility": "set_mie/set_mtie/get_mcycle、fence/fencei、wfi 等",
+      "sources": [
+        "sw/include/util.h"
+      ],
+      "consumer": "启动、CLINT、应用及向量辅助",
+      "status": "执行权限和硬件支持需匹配；mtime 的 MMIO 与 mcycle 的 CSR 分开"
+    },
+    {
+      "component": "平台参数 / 生成寄存器头",
+      "responsibility": "地址、启动参数、偏移和位定义",
+      "sources": [
+        "sw/include/params.h",
+        "sw/link/common.ldh",
+        "sw/include/regs",
+        "sw/sw.mk"
+      ],
+      "consumer": "启动、HAL/DIF、应用",
+      "status": "头文件提供定义，不等于为每个 IP 实现完整驱动"
+    },
+    {
+      "component": "Boot ROM",
+      "responsibility": "复位、LLC/SPM、栈、启动介质选择和跳转",
+      "sources": [
+        "hw/bootrom/cheshire_bootrom.S",
+        "hw/bootrom/cheshire_bootrom.c"
+      ],
+      "consumer": "复位入口/下一阶段装载",
+      "status": "Platform ROM 返回及 ROM 栈对齐等既有缺口仍待验收"
+    },
+    {
+      "component": "应用启动 / trap / hart 辅助",
+      "responsibility": "crt0：sp/gp、BSS、FS、trap 包装；smp.h：暂停/恢复 hart",
+      "sources": [
+        "sw/lib/crt0.S",
+        "sw/include/smp.h",
+        "sw/link"
+      ],
+      "consumer": "链接选入 crt0 后进入应用；smp.h 被 Boot ROM 汇编使用",
+      "status": "smp 宏不等于完整 SMP OS；默认 trap 不是 OS 向量上下文实现"
+    },
+    {
+      "component": "ZSL / 目标侧写盘工具",
+      "responsibility": "ZSL 装载 DTB/firmware；flash.spm.elf 写入介质",
+      "sources": [
+        "sw/boot/zsl.c",
+        "sw/boot/flash.c"
+      ],
+      "consumer": "ROM 启动链；主机 flash_disk 脚本",
+      "status": "源码/构建规则存在；DRAM、介质、分区与镜像布局须匹配"
+    },
+    {
+      "component": "libcheshire.a / libgcc / libc",
+      "responsibility": "前者归档工程支持对象；后两者按工具链链接需求提供目标代码",
+      "sources": [
+        "sw/sw.mk"
+      ],
+      "consumer": "GCC 驱动链接器；最终 ELF 选入需要的实现",
+      "status": "C/S 归档与头文件内联分开；libc 文件存在不证明系统调用/堆支持完整"
+    },
+    {
+      "component": "Make / Bender 路径入口",
+      "responsibility": "构建编排与定位依赖；不在目标运行链中",
+      "sources": [
+        "Makefile",
+        "cheshire.mk",
+        "sw/sw.mk",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/Makefile"
+      ],
+      "consumer": "开发主机",
+      "status": "本轮只读；不升级/清理依赖，不改变固定配置/静态清单方向"
+    },
+    {
+      "component": "GCC / as / ld / ar",
+      "responsibility": "C/汇编 → 对象；归档支持对象；按链接脚本生成 ELF/map",
+      "sources": [
+        "sw/sw.mk",
+        "sw/link"
+      ],
+      "consumer": "主机 Make；GCC 驱动汇编/链接",
+      "status": "裸机 riscv64-unknown-elf-*；工具版本见先前 foundation 批次，不冒充本轮查询"
+    },
+    {
+      "component": "objcopy / objdump / readelf / nm / size",
+      "responsibility": "转换 bin/memh，查看指令、段、符号和大小",
+      "sources": [
+        "sw/sw.mk"
+      ],
+      "consumer": "开发主机检查与装载准备",
+      "status": "objcopy/objdump 有 Make 规则；readelf/nm/size 是诊断入口，非目标组件"
+    },
+    {
+      "component": "regtool / Python / dtc",
+      "responsibility": "HJSON → C 宏/RTL；DTS → DTB",
+      "sources": [
+        "cheshire.mk",
+        "sw/sw.mk",
+        "sw/boot/cheshire.dtsi"
+      ],
+      "consumer": "主机生成规则",
+      "status": "C 宏与 RTL 应匹配生成源；DTS 不会自动随 RTL 配置同步"
+    },
+    {
+      "component": "GDB / OpenOCD / 装载脚本",
+      "responsibility": "ELF 装载、断点、JTAG；借助目标 flash 程序写介质",
+      "sources": [
+        "util/openocd.common.tcl",
+        "util/openocd.hs2.tcl",
+        "util/flash_disk.sh",
+        "util/flash_disk.gdb"
+      ],
+      "consumer": "主机操作者/脚本",
+      "status": "须匹配板卡、调试器及可访问内存；本轮未连接目标"
+    },
+    {
+      "component": "Ara Linux / SDK 构建入口",
+      "responsibility": "%-linux / linux-img / rivec-* 生成用户程序和镜像",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk.mk",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/rivec.mk",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile"
+      ],
+      "consumer": "开发主机 Make",
+      "status": "Ara 路径 RVV_LINUX=1；SDK 自身 RVV 默认0；需核对实际调用输入"
+    },
+    {
+      "component": "Buildroot / Linux 工具链 / BusyBox",
+      "responsibility": "构建 Linux 交叉工具链、内核和 rootfs；BusyBox 在目标用户空间运行",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/buildroot64_V_defconfig",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/busybox64.config"
+      ],
+      "consumer": "主机 SDK；目标 Linux 用户空间",
+      "status": "riscv64-buildroot-linux-gnu-* 与裸机工具链分开；配置存在不等于镜像可启动"
+    },
+    {
+      "component": "Linux / 设备树",
+      "responsibility": "目标 OS 调度、内存、系统调用及平台驱动；DTS 描述资源",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/configs/linux64_V_defconfig",
+        "sw/boot/cheshire.dtsi"
+      ],
+      "consumer": "用户进程；启动时接收固件/设备树",
+      "status": "内核版本、DTS、ISA、驱动绑定和向量上下文尚未运行验收"
+    },
+    {
+      "component": "OpenSBI",
+      "responsibility": "M 模式 SBI 服务，Cheshire 平台适配；fw_payload 含 U-Boot",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/opensbi/platform/fpga/cheshire/platform.c"
+      ],
+      "consumer": "ZSL 启动进入；S 模式软件调用 SBI",
+      "status": "该 Makefile 设置 fpga/cheshire；不能混同 Spike 的 Linux payload 规则"
+    },
+    {
+      "component": "U-Boot / mkimage",
+      "responsibility": "U-Boot 为目标启动程序；mkimage 是主机镜像打包工具",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/u-boot/configs/pulp-platform_cheshire_defconfig",
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/u-boot/include/configs/pulp-platform_cheshire.h"
+      ],
+      "consumer": "OpenSBI payload → U-Boot；主机 SDK 制作 uImage",
+      "status": "源码和构建连接可确认；实际介质/env/镜像、U-Boot→Linux 路径待运行验证"
+    },
+    {
+      "component": "Spike / riscv-tests",
+      "responsibility": "SDK 可选 ISA 仿真器构建入口与 ISA 测试构建入口",
+      "sources": [
+        ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile"
+      ],
+      "consumer": "主机验证与目标测试程序",
+      "status": "构建入口存在；不等于 SoC 仿真或本轮已执行"
+    },
+    {
+      "component": "VGA / Serial Link / USB / CLIC 覆盖边界",
+      "responsibility": "VGA/Link 有寄存器头；CLIC 有配置专用汇编测试；USB 未见纳入本地 BSP 的同级完整驱动",
+      "sources": [
+        "sw/include/regs/axi_vga.h",
+        "sw/include/regs/serial_link.h",
+        "sw/tests/clic_basic.spm.S",
+        "sw/sw.mk"
+      ],
+      "consumer": "直接寄存器调用者或专用测试",
+      "status": "不将硬件模块存在补画为已具备驱动；CLIC 测试不能套用于默认 PLIC 配置"
+    },
+    {
+      "component": "RTOS 与新增 IP",
+      "responsibility": "职责及移植缺口的边界说明；不作为当前组件实现",
+      "sources": [
+        "docs_codex/software/LAYERS_AND_TOOLS.md"
+      ],
+      "consumer": "后续平台移植工作",
+      "status": "RTOS 待移植；NPU/ISP/LVDS/GB 等未来软件不纳入现有栈"
+    }
+  ]
+}

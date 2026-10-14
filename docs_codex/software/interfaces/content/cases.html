@@ -82,3 +82,5 @@
 <p><strong>准备与执行。</strong> a/b/c高别名分别为<code>0x14010000/0x14010400/0x14010800</code>；N=137，每槽使用548字节加一个守卫。CPU填a[i]=i、b[i]=2*i+1、c哨值→fence→置VS→调用learn_vadd。每轮vsetvli按剩余数量给vl；CVA6把指令/rs1等交给Ara，VLSU沿独立AXI加载两个数组，lane执行vadd，再写c。</p>
 <p><strong>完成与消费。</strong> 专用响应/在途计数及barrier配合函数返回后的fence；CPU从同一高别名读c，逐元素比较<code>3*i+1</code>，核对输入未改和边界守卫，总和应为28085。开启JOURNEY_DEPTH还运行长度0/1/63/64/65/137和归约，覆盖部分尾部边界；这不是全部RVV ISA验证。</p>
 <p><strong>运行、观察与排错。</strong> 本轮已重编RVV ELF并看到vsetvli/vle32/vadd/vse32，不代表Ara执行通过。目标运行应记录 <code>RVV_DEPTH cases=6 errors=0</code>、<code>LEARN sum=28085 errors=0</code>及退出码，检查无访问/非法指令异常。非法指令先查profile/stub/VS/FS，挂起查专用ready和pending，坏结果查物理别名、vl指针增量、缓冲所有权与AXI响应；只有日志而无逐元素断言不算算法验收。</p>
+
+<h2 id="bsp-services">从接口行为回到可复用的软件服务</h2><p>本页关注软件操作到RTL的链条。新增基础软件章用同一UART实例解释<a href="foundation-software.html#uart-service">printf、控制台回调与DIF的分工</a>，并以<a href="foundation-software.html#flash-service">GPT回调、Flash HAL和SPI DIF</a>说明初始化、参数单位及错误传播。HAL/DIF是实现接口使用的代码，不是每次操作都必须经过的统一阶梯。</p>

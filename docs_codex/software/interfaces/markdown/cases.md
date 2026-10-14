@@ -9,6 +9,7 @@ UART、计时、DMA、GPIO 中断与向量加法
 - [二维 DMA 从配置提交到结果校验](#dma)
 - [GPIO 事件经过 PLIC 进入处理程序](#gpio-irq)
 - [最小 Ara 加法与标量结果核对](#ara)
+- [从接口行为回到可复用的软件服务](#bsp-services)
 
 以下每个案例都沿软件操作追到实际RTL再返回观察点。图中实线箭头按标签分别表示调用、访存和数据传输，事件虚线另标IRQ；不存在用一根箭头把“调用驱动”直接变成“设备已完成”的省略。
 
@@ -118,6 +119,12 @@ DMA参数、传输、完成与CPU取回。图中箭头分别标注软件调用�
 **完成与消费。** 专用响应/在途计数及barrier配合函数返回后的fence；CPU从同一高别名读c，逐元素比较`3*i+1`，核对输入未改和边界守卫，总和应为28085。开启JOURNEY\_DEPTH还运行长度0/1/63/64/65/137和归约，覆盖部分尾部边界；这不是全部RVV ISA验证。
 
 **运行、观察与排错。** 本轮已重编RVV ELF并看到vsetvli/vle32/vadd/vse32，不代表Ara执行通过。目标运行应记录 `RVV_DEPTH cases=6 errors=0`、`LEARN sum=28085 errors=0`及退出码，检查无访问/非法指令异常。非法指令先查profile/stub/VS/FS，挂起查专用ready和pending，坏结果查物理别名、vl指针增量、缓冲所有权与AXI响应；只有日志而无逐元素断言不算算法验收。
+
+<a id="bsp-services"></a>
+
+## 从接口行为回到可复用的软件服务
+
+本页关注软件操作到RTL的链条。新增基础软件章用同一UART实例解释[printf、控制台回调与DIF的分工](foundation-software.md#uart-service)，并以[GPT回调、Flash HAL和SPI DIF](foundation-software.md#flash-service)说明初始化、参数单位及错误传播。HAL/DIF是实现接口使用的代码，不是每次操作都必须经过的统一阶梯。
 
 ---
 

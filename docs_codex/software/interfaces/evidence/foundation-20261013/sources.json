@@ -1,0 +1,204 @@
+{
+  "date": "2026-10-13",
+  "head": "bf1b4198dfd74cc78291c152b8b682d523e785c5",
+  "scope": "Foundation chapter source review plus unchanged previously traced production inputs. Existing code hashes compared with historical batch; no target execution.",
+  "dependency_sources": [
+    {
+      "path": ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1",
+      "upstream_HEAD": "6c7dde3d749ac8274377745c105da8c8b8cd27c6",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87",
+      "upstream_HEAD": "2895ba907e9eb14b3464609dc791a969d159a7c3",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk",
+      "upstream_HEAD": "44fdb08ea0d44563ebfc2d5447c5b7e03ea5ea68",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot",
+      "upstream_HEAD": "0473a9b521f13b56ee0745e7364e392e8740110b",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa",
+      "upstream_HEAD": "559bcbd09a5a884dbe31e2d72fd95d024e357f39",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb",
+      "upstream_HEAD": "641ea950e24722af747033f2ab85f0e48ea8d7f8",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/clint-de4a234303f657d0",
+      "upstream_HEAD": "d5390a805c20f9226758a152ba1645f61da73349",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5",
+      "upstream_HEAD": "13f28aa0021fc22c0d01a12d618fda58d2c93239",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995",
+      "upstream_HEAD": "99eac9a649001bdf5b8f9da52e0ca73d5c48db1c",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/idma-77bf7fa56d324e6a",
+      "upstream_HEAD": "c12caf59bb482fe44b27361f6924ad346b2d22fe",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a",
+      "upstream_HEAD": "cd3153de2783abd3d03d0595e6c4b32413c62f14",
+      "availability": "present"
+    },
+    {
+      "path": ".bender/git/checkouts/register_interface-902ad5bfde7bb98c",
+      "upstream_HEAD": "ae616e5a1ec2b41e72d200e5ab09c65e94aebd3d",
+      "availability": "present"
+    }
+  ],
+  "files": {
+    ".bender/SNAPSHOT.tsv": "72edcae457328050840fce5d035a83fd790c36ee75c53ecb51c5d8707068af3f",
+    ".bender/UPSTREAM.lock": "2c55e325c304ee4a10b8db3bae35b37ddd8e6d3ad8551b9e8ba79d880ea15fa8",
+    ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/apb_uart.sv": "95a020ecfd87d028db2f9aa0c958bc3bd300e8a45a4f3446d20a3ee9cddf51cc",
+    ".bender/git/checkouts/apb_uart-38dcfab592cbc1a1/src/reg_uart_wrap.sv": "49e4f5c48e76c23242fe0714089446b8f5334b91c468c8f49f8eda9992f18c2e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/Makefile": "d8461cdcbed03584edc4c823c5b0bb60501a8e1a86e7f7e3662d77953cb08c8a",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/Makefile": "c64e2caa490e08a83c097a43dcddc970e5bdd83e7529a0ad1729b9364069514a",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/Makefile": "9243115952194f8bba8eeeb747339c34020883ed93e8fe4dbf601cd1fa975569",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk/buildroot/output/build/linux-v6.5/Makefile": "48423aa9d0109ce36b2e58fe466a81737e83cfe1c2ee251c38d9ad911ec476ea",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/config/2_lanes.mk": "a51801baed89dd3bd34319d2729966fd7d580797917a1493d8ebf27a42a4585b",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/include/ara/intf_typedef.svh": "36d1efd90b8f8fe5d0217e5160c605581231a9907d04d3ee8bed82020147d81e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara.sv": "5e35d557f5b213242cc2508cb70f50b1b88200c90762d9f63248cb6814a1643e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_dispatcher.sv": "f5108be10340ca3b6d1090ba343152e88f9214364ac14b0e9ec50a062954d0c1",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv": "d809d7cfe3c060a61b98fde45dc549ee6a1d8b3247f3a5f54bce9011bcb5453e",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/cva6_accel_first_pass_decoder.sv": "52125b674dd7d84e2ea6c87aa7f0e224c611c0dc6f081ef029a17eca141f4b94",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/addrgen.sv": "a2952c89a2ba381702494588db218ab9e49dea454ad64c852b5113de4f355099",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vldu.sv": "a0e883faf3265d3d7be173e82cab3093811fa31542ab4439541edf471786b18a",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv": "df1fbfee134eb0617b250777e188aa9f62c3530c5f88e5ed354566b438fc635f",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/include/axi_llc_reg32.h": "fe916281da62ef389b9674dd2e428d6eb4c06ee08dac128468c49ecdb8197398",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/sw/lib/axi_llc_reg32.c": "76c68e04dc9e7cfc12059d00e443ced3c1ff121aabbb562236c64a1bb5e2e364",
+    ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.c": "ff331060206488b18005ee659a12b2e0aadf2a8490b748f14f08ed6a7663690b",
+    ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/sw/lib/axirt.h": "4a08e478dab1d5b36c800bf8f86d2c480687750c9424ced5b8d6816d6b461346",
+    ".bender/git/checkouts/clint-de4a234303f657d0/src/clint.sv": "72c767583ba83e4cec3ddff93ee183bd0a2c0c6169e1d5bbb2166cedb67ad75f",
+    ".bender/git/checkouts/clint-de4a234303f657d0/src/clint_reg_top.sv": "b026971822488a342b4b93f69c2a9b66a6b911d58b1a85feaeb0837335226f85",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv": "555bc9a6053afb91d0c0f2e5e630ed44d5dbe261bdc256c7116d813ed0e10584",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv": "4e6cdb3c14e1f8507a7669ba9c70382f38816e76be0b1d00bd91d754c586855e",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/commit_stage.sv": "632c4174335156a691b61bd8adf7ba0cf7a97f9cccc2204bcf256d33b0d5a91b",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv": "0ed3e6638cd36abb518c44d4507073daeef93bd11ceb3494d89f88fc74259a3c",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/csr_regfile.sv": "f27f4dc265a73206a44a241415720f000edc00959054636e42d8df0dec7ec27c",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/decoder.sv": "7a49f7001c2adf7a4b644a11e0beb0a6ff9378e33688cfe27aa2d173cc15f04a",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/frontend.sv": "d0961037ed299d138f6e22380e41d2fdff7550855cffc5b76e4d1f6954eafd7d",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/id_stage.sv": "7440e97d4b3535ac4563c9e632ac4e5a015747ff9f1c46d15bbf4298ad666122",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/config_pkg.sv": "155381698551e4d631b09561ec58b1bfef752b30588bc5f09e59eedf246e436a",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/riscv_pkg.sv": "bcf1a173795f227536b962b495ea0b93e5eee065749d80e648c89dd7bc367495",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_stage.sv": "284a210d95644ba91215dae931aa04d32a1bd6a456bd2f7c2bc4612b0cba1aca",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_store_unit.sv": "a375bf00ad89feb659df761b2e690e0d8cb207b502e5a15b68d404c3dd9dc3e4",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/load_unit.sv": "5b058ba5559c426983f61b355d010a77713043942a577eb2e86bb68c72e1748d",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/Bender.yml": "df4c6ed8019420de1fce10bf9327c06c273de4e2af92eb13c77482ac92528475",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/midend/idma_nd_midend.sv": "4ce42cf2b9f6c2baf12f7f941534752b270e84e41f082c5a2923b3d4377005b3",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv": "8af0d7c124194b0788f1a5157c569f5fadd902caef5f20269beda9d79db79798",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv": "b6b899718ec030928e9d6fdd2187151a8e0cd81ad513fb98e1ff759de78ee0fb",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv": "61a0e3bfa04d815dfd5bec3511b6d0e2b155f6320de16d6aa13f3a3f1988b607",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/gpio/rtl/gpio.sv": "978072a85fdaeeb72bd6112bb1f3b2d7555c342d72033b3e1cc3e6d85dd24129",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic.sv": "14191f0bf3fc3ed8d9f439c614c43e84572b13699902bc361317122b5b52a25b",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/src/rv_plic/rtl/rv_plic_gateway.sv": "c9d86f32bd218d3641cdac73656e6ac776b01e72041b98b5f509d3c4956078ff",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/base/mmio.h": "0992e649099a1e8ba7cd210577bf5cd4f320886d74c502e48050b608faa61519",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_gpio_autogen.c": "184cf860d72dff4922785520b594283482f0f65aec1377e26d40cb81e1ce6e0c",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/autogen/dif_spi_host_autogen.c": "489707679be5c11173ba7a0b8c8685fa52088c9e6a04a1477d57dbc99caeaacb",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_gpio.c": "048f0e02de768a1092fb4a944620ab8b5e2f7f02c46d3b9ba7c45f5e9cda45e3",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_i2c.c": "7f01c11cb1686a2d7bdfd3428953c08f7b716a0b573640555ae580be19001c03",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_rv_plic.c": "debad074532185f37205ed213ccfa75c9ac2b45e1f6c252f26c40036bc4c8d2a",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/device/lib/dif/dif_spi_host.c": "0bf970c7a76fa40c8357010c275cdd5a79d803c6f525b9d6afa59676e4263a65",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/gpio_regs.h": "849fb7705fedb019dc5e25ddfffe38baac59a15eec5686813102f607ce1563ac",
+    ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/sw/include/rv_plic_regs.h": "4f8c87f9da046fc5bb3a1f8fc27da950cefd726230d0cd6232a74c0292ab905e",
+    ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv": "df090ca44a38464c16cb88fb859e23e8dc192609a059e0c12f7325e7c87170cb",
+    ".bender/git/checkouts/register_interface-902ad5bfde7bb98c/vendor/lowrisc_opentitan/util/regtool.py": "7f19ec98494ec7d47546752d8527701544071776de956084f6bf307ab8ec8155",
+    "Bender.local": "6392bfa821082b849ca1ffbd2738d9d7384e882371f05532ac1536e187612fbb",
+    "Bender.lock": "ecadfdff8d237a1abdbe75153ab77b17f874191bbfd5703f4fcc00c46105776c",
+    "cheshire.mk": "f5be8363b13e75a2a2f8324449cecedc7723fede4d485198a346175d6baef063",
+    "docs/tg/integr.md": "9a705e7449fa6922917a0f9cf1cec8f7a6fb0dd91e99d36551ce888fc570e853",
+    "docs/um/arch.md": "736b2b0445c41d19d88725ff86888be83344650c270f31a320088d6536924cb6",
+    "docs/um/sw.md": "3c42fb12a6b1b4de24098d838daa468ed53269469ef913d64509e301fd4d33a0",
+    "docs_codex/learning/assets/site.css": "0de29d794c9153298f4269865f713faa37a0c77a01c60038fba9bf9d458be9ad",
+    "docs_codex/learning/assets/site.js": "63d9045c344db8474323b0665834cf51d6c6f9d8eebfa5c749173c712dc912c0",
+    "docs_codex/learning/scripts/build_site.py": "d4a0a4fe94b7140e6a484bc10a57f7de86658a4692e12d663b300aa108218742",
+    "docs_codex/learning/scripts/markdown_export.py": "d3eab66f1ca4b64dcf530861b5f91a1a5385047b9a43d0a0130bab310a33ac1a",
+    "docs_codex/learning/scripts/preview_structure_site.py": "164e48bc17eae1b87ec342d1051297d8b1bee60520743f598cb28e161f812da8",
+    "hw/bootrom/cheshire_bootrom.S": "6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0",
+    "hw/bootrom/cheshire_bootrom.c": "87b3f670359b5352f13a348ab1d9ebf13be04de6286cced7356861dcdc5b51ae",
+    "hw/cheshire_idma_wrap.sv": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd",
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/regs/cheshire_reg_pkg.sv": "9b6c8c0df01ed56b18f2843992d5e0dfe70363083879182568918df6deec180e",
+    "hw/regs/cheshire_reg_top.sv": "8e872dabe2ac5a78eb0f7921310251bd2335a80ac465fb428dcbd834f9ddc4ea",
+    "hw/regs/cheshire_regs.hjson": "19dcf3e4a35575f82b8cb3276309a83893216700c51091c1d47f0220da38d0f6",
+    "sw/boot/cheshire.dtsi": "1eb693216234d412109fc0c4eb1c8fe11c5902d29a0da2ccd6a29e5f634c9858",
+    "sw/deps/printf/printf.c": "d724a61385687a383c3d8b9cc56f314aa31a065375ad53242bfe398edbfeb1f5",
+    "sw/deps/printf/printf.h": "d5e13c54dc707089a1fbeecc28c3f942e958e7f68f16493d11a3189ebbdd3c04",
+    "sw/include/dif/dma.h": "613bc1ba6e053aefde079b5e676920245948fe4071fa3394806a1a3bdc8039e9",
+    "sw/include/dif/uart.h": "37afa3b555582e5b404044660cdae43d44d08a49586eac507646e23122a974f1",
+    "sw/include/gpt.h": "ea66769b5f23355ce72ec108df0c634601e0e118f4e60a8d526b38f87fcf98d0",
+    "sw/include/hal/spi_s25fs512s.h": "a0e38f86d481afa7cac0c373668efc11af337e2fe5fc92be77923ff1e5c8d133",
+    "sw/include/params.h": "1fda153d779c2b0cdf59369ffb82a08e2e662bea44e250b2d652c5507eda01ef",
+    "sw/include/regs/clint.h": "7b288e38c732a9c9b64017be86c087076b7637f2f9bf5d63488e3abd0038b431",
+    "sw/include/regs/idma.h": "34b32a63cca4593c335e6055a43876802acbae158997aea4629b5ec15c7ded0d",
+    "sw/include/util.h": "2f534f4f2ca6b4ca6990f7d03e477d2868576028d9fc292ac8332a9a80ed009e",
+    "sw/lib/crt0.S": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+    "sw/lib/dif/clint.c": "dce8762f055c69873c344f747b795884f3f87cdffd84a28412f83dd6cf7706bc",
+    "sw/lib/dif/uart.c": "5334e85af6f2d7deb99bfc25a403c4a8cf39dedb33e292510bcbf736b83210a2",
+    "sw/lib/gpt.c": "bf0e29f209c04ad6c55215c149dc3752b5699feb9bbf38c9c25acc077352713c",
+    "sw/lib/hal/i2c_24fc1025.c": "d253cf7b236a09872b85e33559bcf5e746b6ff56535e10c3f719403d53ff2a93",
+    "sw/lib/hal/spi_s25fs512s.c": "028ecf636770cfff2e111fa8f3d11135325178b4e7e8f5e8034f95a5b2ca5ece",
+    "sw/lib/hal/spi_sdcard.c": "ff368e8e115e70add8096b6be11e7231ae53b5fd07fd62c5ebc8019f04e6bbbf",
+    "sw/lib/hal/uart_debug.c": "738b72a13f5497832258830b6da089a1137a5e572a8acfa265f1688533208696",
+    "sw/link/common.ldh": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620",
+    "sw/link/dram.ld": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2",
+    "sw/link/rom.ld": "b03af6a441bf8104a936490bfb5b9e95fada51f5aa629e13fcf2a144c585331a",
+    "sw/link/spm.ld": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106",
+    "sw/sw.mk": "99a8ecaf13936bf9a1401b936c2f622e8728c907674e05697db2c244a19082a7",
+    "sw/tests/axirt_hello.spm.c": "a0b512c378a3934b94e901f02ad1849b3d4bc3765b96876bc8bfcd16e5c978f1",
+    "sw/tests/clic_basic.spm.S": "77830ddb4cdf102943351672095f96bc379b26c7ca050cdfe211015698eebc95",
+    "sw/tests/dma_2d.spm.c": "07da92ee214c2b1b817395d73f3199197fa54fb6d82a3bfd57e75a2374f51d36",
+    "sw/tests/fmatmul_test_4x4.c": "673938c85af98a1438a3323b008f684e912976a3523fed91b9afcb72abad24c0",
+    "sw/tests/helloworld.c": "c3d20c9c06bf2259a898e53fb66fa6469d9b73d01388dbc99a6780b8daf6dd83",
+    "target/sim/src/elfloader.cpp": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6",
+    "target/sim/src/tb_cheshire_pkg.sv": "b5cd577a695ab44329b6b7aebfb29474abb39e1b4a6daeef270d3626ce006dab",
+    "target/sim/src/tb_cheshire_soc.sv": "e07858e23eb8dc1521188019c98b25d819cdb3e61d096326de2a49a964137108",
+    "target/sim/src/vip_cheshire_soc.sv": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+    "target/sim/vsim/compile.cheshire_soc.tcl": "f1c11680793f6f88b5e8bffbd3360cd198f223a43df82975d65913b5c7c415a2",
+    "target/sim/vsim/start.cheshire_soc.tcl": "77f69e395c3b273b6d3df9e7d3a31d2fb3c1cd7a10713302b8175656ef61934f",
+    "target/xilinx/scripts/add_sources.vcu118.tcl": "a4ad6c0991f57320426cbae55775a49b7ca7b4ddce6daafa695100acda01457a",
+    "target/xilinx/src/cheshire_top_xilinx.sv": "83af7df70728f901a3cf648ee1da25bef6e7eb29aee07449d08254c3a72465c2",
+    "target/xilinx/src/dram_wrapper_xilinx.sv": "fa8a22e9a7e30885605cecacbc41459cf060828ffbc7995189ff80ba1c9adf6e",
+    "util/flash_disk.sh": "aae124bd51e53616c5a9b072c1522b86b1e7ce85c62706f2de7d28ca2133a629",
+    "util/openocd.common.tcl": "5549afb4c7a8bf2769c62d99eb1df3b68e6c68b267b093fa26d2d51ab71e83d6",
+    "util/openocd.hs2.tcl": "83f344a2815877c8c5fed4a3eefcbc544c978695b6599deeb879a72c65d0ffbc"
+  },
+  "module_equivalence": [
+    {
+      "module": "idma_reg64_2d",
+      "files": [
+        ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv",
+        ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv"
+      ]
+    },
+    {
+      "module": "idma_backend_rw_axi",
+      "files": [
+        ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv",
+        ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv"
+      ]
+    }
+  ],
+  "external_references": [
+    "https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/Link-Options.html",
+    "https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/RISC-V-Options.html"
+  ]
+}

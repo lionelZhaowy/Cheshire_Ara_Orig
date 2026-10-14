@@ -1,0 +1,155 @@
+[
+  {
+    "command": [
+      "riscv64-unknown-elf-gcc",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-gcc",
+    "exit_code": 0,
+    "output": "riscv64-unknown-elf-gcc (g5115c7e44) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-as",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-as",
+    "exit_code": 0,
+    "output": "GNU assembler (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or later.\nThis program has absolutely no warranty.\nThis assembler was configured for a target of `riscv64-unknown-elf'.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-ld",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-ld",
+    "exit_code": 0,
+    "output": "GNU ld (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-ar",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-ar",
+    "exit_code": 0,
+    "output": "GNU ar (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-objcopy",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-objcopy",
+    "exit_code": 0,
+    "output": "GNU objcopy (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-objdump",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-objdump",
+    "exit_code": 0,
+    "output": "GNU objdump (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-readelf",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-readelf",
+    "exit_code": 0,
+    "output": "GNU readelf (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-nm",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-nm",
+    "exit_code": 0,
+    "output": "GNU nm (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-size",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-size",
+    "exit_code": 0,
+    "output": "GNU size (GNU Binutils) 2.46\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-gdb",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-gdb",
+    "exit_code": 0,
+    "output": "GNU gdb (GDB) 17.1\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+  },
+  {
+    "command": [
+      "make",
+      "--version"
+    ],
+    "path": "/usr/bin/make",
+    "exit_code": 0,
+    "output": "GNU Make 4.3\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n"
+  },
+  {
+    "command": [
+      "dtc",
+      "--version"
+    ],
+    "path": "/usr/bin/dtc",
+    "exit_code": 0,
+    "output": "Version: DTC 1.7.0\n"
+  },
+  {
+    "command": [
+      "openocd",
+      "--version"
+    ],
+    "path": "/usr/bin/openocd",
+    "exit_code": 0,
+    "output": "Open On-Chip Debugger 0.12.0\nLicensed under GNU GPL v2\nFor bug reports, read\n\thttp://openocd.org/doc/doxygen/bugs.html\n"
+  },
+  {
+    "command": [
+      "python3",
+      "--version"
+    ],
+    "path": "/home/zhaowenyao/miniconda3/bin/python3",
+    "exit_code": 0,
+    "output": "Python 3.13.5\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-gcc",
+      "-dumpmachine"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-gcc",
+    "exit_code": 0,
+    "output": "riscv64-unknown-elf\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-gcc",
+      "-print-file-name=libc.a"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-gcc",
+    "exit_code": 0,
+    "output": "/home/zhaowenyao/riscv_toolchain/bin/../lib/gcc/riscv64-unknown-elf/15.2.0/../../../../riscv64-unknown-elf/lib/libc.a\n"
+  },
+  {
+    "command": [
+      "riscv64-unknown-elf-gcc",
+      "-print-libgcc-file-name"
+    ],
+    "path": "/home/zhaowenyao/riscv_toolchain/bin/riscv64-unknown-elf-gcc",
+    "exit_code": 0,
+    "output": "/home/zhaowenyao/riscv_toolchain/bin/../lib/gcc/riscv64-unknown-elf/15.2.0/libgcc.a\n"
+  }
+]

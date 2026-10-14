@@ -9,6 +9,7 @@
 - [复位到应用的实际顺序](#boot)
 - [加载协议与介质读取](#loaders)
 - [资源可用时刻与平台运行](#ready)
+- [构建规则把BSP实现和平台布局组成应用](#bsp-build)
 
 程序启动要区分三个入口：CPU 复位地址、被加载 ELF 的 `_start`、C 的 `main`。它们可以属于两个甚至多个不同程序。先用已有 `journey.c` 观察数据和 BSS，再对照生产 `helloworld.c` 的 UART 输出链。
 
@@ -100,6 +101,12 @@ GPT（GUID Partition Table）是软件解析器：`gpt_check_signature`通过回
 
 [JTAG VIP](../../../../target/sim/src/vip_cheshire_soc.sv) `jtag_elf_halt_load` 先等待相关LLC配置条件再halt/load；这不代表它等待ROM C完整执行。`jtag_elf_run`写DPC并恢复hart，随后`jtag_wait_for_eoc`读取SCRATCH2。FPGA可用既有OpenOCD/GDB流程加载ELF；烧入bitstream与装载程序是两件事。可复现命令和前提见[实践页](labs.md#run)。
 
+<a id="bsp-build"></a>
+
+## 构建规则把BSP实现和平台布局组成应用
+
+`sw.mk`将本地启动/驱动/HAL与依赖库代码归档，链接脚本提供布局，装载工具把产物送到目标；三者共同支撑程序运行。库不包含板级连接和全部初始化条件。新增[库归档说明](foundation-software.md#libraries)及[主机工具表](foundation-software.md#tools)逐项解释头文件、对象、静态库、运行库和工具的职责。
+
 ---
 
-[上一页：软硬件接口专题](index.md) · [下一页：指令、Ara 与 CSR](instructions.md)
+[上一页：基础软件与BSP](foundation-software.md) · [下一页：指令、Ara 与 CSR](instructions.md)

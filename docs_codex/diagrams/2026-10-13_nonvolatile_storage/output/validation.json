@@ -1,0 +1,310 @@
+{
+  "slides": [
+    {
+      "slide": 1,
+      "shapes": 59,
+      "hyperlinks": [
+        "https://www.micron.com/products/storage/managed-nand/emmc"
+      ],
+      "notes_chars": 685,
+      "native_arrowheads": 5
+    },
+    {
+      "slide": 2,
+      "shapes": 57,
+      "hyperlinks": [
+        "https://www.winbond.com/hq/product/code-storage-flash/qspi-nand/w25n-mw/index.html?__locale=en"
+      ],
+      "notes_chars": 1072,
+      "native_arrowheads": 6
+    }
+  ],
+  "diagram_export": [
+    {
+      "objects": 31,
+      "text_objects": 19,
+      "omitted_canvas_background_ids": [],
+      "slide_background_color": null,
+      "min_text_pt": 15.84,
+      "native_arrow_objects": 5,
+      "native_dashed_objects": 2
+    },
+    {
+      "objects": 31,
+      "text_objects": 18,
+      "omitted_canvas_background_ids": [],
+      "slide_background_color": null,
+      "min_text_pt": 15.12,
+      "native_arrow_objects": 6,
+      "native_dashed_objects": 1
+    }
+  ],
+  "text_width_checks": [
+    [
+      {
+        "text": "eMMC：内置管理控制器的大容量参数存储",
+        "width": 864.66,
+        "allocated": 1450,
+        "size_pt": 33.12
+      },
+      {
+        "text": "推荐优先评估 4 GB / 8 GB 工业级器件；保留现有 NOR 承担启动。",
+        "width": 829.13,
+        "allocated": 1450,
+        "size_pt": 20.16
+      },
+      {
+        "text": "500 MiB",
+        "width": 128.4,
+        "allocated": 470,
+        "size_pt": 24.48
+      },
+      {
+        "text": "盲元补偿 / 非均匀性校正参数",
+        "width": 301.74,
+        "allocated": 470,
+        "size_pt": 16.56
+      },
+      {
+        "text": "30 秒",
+        "width": 84.97,
+        "allocated": 470,
+        "size_pt": 24.48
+      },
+      {
+        "text": "初始化、加载与校验的预算",
+        "width": 276.0,
+        "allocated": 470,
+        "size_pt": 16.56
+      },
+      {
+        "text": "DDR 常驻",
+        "width": 144.07,
+        "allocated": 470,
+        "size_pt": 24.48
+      },
+      {
+        "text": "运行时 ISP 读取参数",
+        "width": 207.88,
+        "allocated": 470,
+        "size_pt": 16.56
+      },
+      {
+        "text": "器件内部完成管理",
+        "width": 232.0,
+        "allocated": 460,
+        "size_pt": 20.88
+      },
+      {
+        "text": "纠错、坏块管理与磨损均衡",
+        "width": 324.0,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "主机按逻辑数据块读写",
+        "width": 270.0,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "断电后参数仍保留",
+        "width": 216.0,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "工程需新增主机通路",
+        "width": 261.0,
+        "allocated": 470,
+        "size_pt": 20.88
+      },
+      {
+        "text": "新增控制器 IP、PAD 与驱动",
+        "width": 329.33,
+        "allocated": 470,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "CPU 配置，DMA 批量写 DDR",
+        "width": 342.72,
+        "allocated": 470,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "完成后检查错误并校验参数",
+        "width": 324.0,
+        "allocated": 470,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "容量与可靠更新建议",
+        "width": 261.0,
+        "allocated": 460,
+        "size_pt": 20.88
+      },
+      {
+        "text": "4 GB / 8 GB 为选型档位",
+        "width": 290.91,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "可预留 A/B 两份参数",
+        "width": 251.04,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "写备用区 → 校验 → 切换版本",
+        "width": 356.38,
+        "allocated": 460,
+        "size_pt": 19.439999999999998
+      },
+      {
+        "text": "官方资料：Micron eMMC  ·  点击打开产品与文档",
+        "width": 407.95,
+        "allocated": 1040,
+        "size_pt": 13.68
+      },
+      {
+        "text": "方案评估 · 2026.10.13   1/2",
+        "width": 231.37,
+        "allocated": 340,
+        "size_pt": 12.959999999999999
+      }
+    ],
+    [
+      {
+        "text": "SPI NAND：复用 SPI Host 的扩容候选",
+        "width": 765.92,
+        "allocated": 1450,
+        "size_pt": 33.12
+      },
+      {
+        "text": "W25N-MW 示例：最高 8 Gbit = 1 GiB；NAND 驱动需新增，NOR 驱动不能直接复用。",
+        "width": 1051.77,
+        "allocated": 1450,
+        "size_pt": 20.16
+      },
+      {
+        "text": "比较项",
+        "width": 78.0,
+        "allocated": 235,
+        "size_pt": 18.72
+      },
+      {
+        "text": "eMMC",
+        "width": 72.72,
+        "allocated": 555,
+        "size_pt": 18.72
+      },
+      {
+        "text": "SPI NAND",
+        "width": 111.16,
+        "allocated": 600,
+        "size_pt": 18.72
+      },
+      {
+        "text": "容量选择",
+        "width": 100.0,
+        "allocated": 235,
+        "size_pt": 18.0
+      },
+      {
+        "text": "建议 4 GB / 8 GB，方便扩展",
+        "width": 319.36,
+        "allocated": 555,
+        "size_pt": 18.0
+      },
+      {
+        "text": "示例 1 GiB；双份 500 MiB 余量紧",
+        "width": 377.32,
+        "allocated": 600,
+        "size_pt": 18.0
+      },
+      {
+        "text": "硬件与软件",
+        "width": 125.0,
+        "allocated": 235,
+        "size_pt": 18.0
+      },
+      {
+        "text": "新增主机 / DMA；器件管理介质",
+        "width": 353.93,
+        "allocated": 555,
+        "size_pt": 18.0
+      },
+      {
+        "text": "评估复用 SPI；驱动处理页、ECC、坏块",
+        "width": 438.4,
+        "allocated": 600,
+        "size_pt": 18.0
+      },
+      {
+        "text": "性能验收",
+        "width": 100.0,
+        "allocated": 235,
+        "size_pt": 18.0
+      },
+      {
+        "text": "测量主机 DMA 至 DDR 有效吞吐",
+        "width": 354.37,
+        "allocated": 555,
+        "size_pt": 18.0
+      },
+      {
+        "text": "核对 Quad、时钟、FIFO 与软件搬运",
+        "width": 393.85,
+        "allocated": 600,
+        "size_pt": 18.0
+      },
+      {
+        "text": "带宽下限：500 ÷ 30 = 16.7 MiB/s     建议有效搬运目标：≥25 MiB/s",
+        "width": 900.7,
+        "allocated": 1410,
+        "size_pt": 20.88
+      },
+      {
+        "text": "25 MiB/s 对应约 20 秒搬运，另留约 10 秒初始化与校验；器件标称速度不等于系统吞吐。",
+        "width": 962.72,
+        "allocated": 1410,
+        "size_pt": 17.28
+      },
+      {
+        "text": "选择建议：优先评估 eMMC；SPI NAND 在 Quad 读取与端到端性能达标后，可作为备选。",
+        "width": 1107.35,
+        "allocated": 1480,
+        "size_pt": 20.16
+      },
+      {
+        "text": "官方资料：Winbond W25N-MW  ·  点击打开规格与文档",
+        "width": 458.06,
+        "allocated": 1040,
+        "size_pt": 13.68
+      },
+      {
+        "text": "方案评估 · 2026.10.13   2/2",
+        "width": 231.37,
+        "allocated": 340,
+        "size_pt": 12.959999999999999
+      }
+    ]
+  ],
+  "editable_native_objects": true,
+  "whole_slide_raster_images": false,
+  "preview_renderer": "CairoSVG from shared SVG/PPT layout; not an Office render",
+  "office_verified": false,
+  "input_head": "bf1b4198dfd74cc78291c152b8b682d523e785c5",
+  "sha256": {
+    "slide_01.svg": "9e72249fdc4b220d61e22d76578d1b8e1139b98f918d6351caf42edbe0f1dd66",
+    "slide_02.png": "79da02cc9f3de89f207115703ab72d68e658f19427018b1457e8a80b010ff34c",
+    "slide_02.svg": "182344241e41cd594e405ceb89c747622292739e5b95ed2b4c78ce43acdf25c3",
+    "emmc.svg": "ab2ff6292ea819f052dc606d0fba113f03be6b831b2fb2ef7ecc8a2ec357f415",
+    "source_manifest.json": "08f1cf676ebd41ea7a28c2ccda1fb5f5961d33a5f233497583311b04eb17d6f8",
+    "slide_01.png": "ced7c3ef81eeb894c52ca2cbedf460661545eb713b18e7a4889ce1ef94b4e7df",
+    "diagrams.pptx": "2855b2addafe08c22d5c1111286352a6e5e7417c36c5023252cddfa7ec6a8062",
+    "nonvolatile_storage_options.pptx": "6e5e1a0903316851b93f70b02c5178b04158244f6404c357d166f32eb015d852",
+    "spi_nand.svg": "80abca5657163e16eae25aa8e93e11b51ee3803582829a0dd9e44ea6d7b9ba46"
+  }
+}

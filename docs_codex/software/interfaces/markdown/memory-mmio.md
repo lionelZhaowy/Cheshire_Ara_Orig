@@ -10,6 +10,7 @@
 - [寄存器字段如何改变电路](#registers)
 - [volatile、屏障与缓存维护](#visibility)
 - [LLC、SPM、DDR 和 Global Buffer](#storage)
+- [MMIO机制和访问辅助代码处于不同观察层次](#bsp-access)
 
 RAM变量和MMIO寄存器都可以由load/store访问，但允许的重排、缓存、重复读取和访问宽度可能完全不同。地址数值相邻不表示语义相同。
 
@@ -107,6 +108,12 @@ LLC下游的NPU旁路写也可能绕过当前AMO/LRSC监视器，因此不仅cac
 | 独立GB | 用户确认是新的共享片上SRAM；当前没有GB地址译码、仲裁或软件分配器；Ara宽侧分流、CPU是否直接访问及NPU搬运接口待定 |
 
 仅让CPU地址“不可缓存”不保证经过的LLC也不分配，必须按实际路径检查。已有RVV教学例使用独占高别名SPM缓冲，避免同一程序混用低别名；这是实验条件，不是最终DDR缓存策略。
+
+<a id="bsp-access"></a>
+
+## MMIO机制和访问辅助代码处于不同观察层次
+
+地址、字段、访问宽度、读写副作用和顺序是软硬件契约；`reg8/reg32`和`mmio_region_read/write`是基础软件对这些契约的使用。`params.h`声明链接符号、`common.ldh`赋地址、寄存器头定义偏移，辅助函数最后产生访存。具体代码与对齐限制见[基础软件访问实现](foundation-software.md#mmio-code)；改函数类型并不会改变硬件宽度或消除副作用。
 
 ---
 

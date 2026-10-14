@@ -1,4 +1,5 @@
 <p>本专题负责五层结构中的<strong>软硬件接口层</strong>，借助必要的基础软件和 SoC RTL，把程序的一次操作追到硬件，再追到软件观察到的结果。适合有 RTL/NPU 经验、正在学习 RISC-V 启动和驱动的读者。</p>
+<p>新增<a href="foundation-software.html">基础软件与BSP</a>：从HAL/DIF、MMIO辅助代码、库归档和开发工具理解接口的使用。推荐先读本章，再进入构建启动与四类接口；<a href="foundation-software.html#layers">两层区别与联系</a>用UART实例对照。</p>
 <h2 id="route">阅读顺序与使用方法</h2>
 <table>
 <thead>
@@ -9,6 +10,7 @@
 </tr>
 </thead>
 <tbody>
+<tr><td>前置</td><td><a href="foundation-software.html">基础软件与BSP</a></td><td>哪些是软件实现、接口契约、构建工具，怎样定位代码</td></tr>
 <tr>
 <td>1</td>
 <td><a href="build-boot.html">构建、加载与启动</a></td>
@@ -48,6 +50,7 @@
 </table>
 <p>第一次按顺序阅读；定位问题时从案例表跳到相应机制。每个案例采用“目标/前提—软件—访问—RTL—完成—观察—排错”的顺序。本专题的图是静态源码关系图，不是仿真波形。</p>
 <p>分层文档将构建、启动与运行支持另列为横向支撑。本专题沿用用户的五层框架：主机工具、crt0 和驱动归入基础软件的讨论范围，但不把编译器画成目标端每次 MMIO 都经过的调用层。软硬件接口本身是语义契约，不是一个必须被链接的库。<a href="../LAYERS_AND_TOOLS.md">分层索引</a>提供全局分类。</p>
+<p>基础软件扩充按当前 <code>bf1b4198</code>核对，证据见<a href="foundation-software.html#evidence">本次BSP记录</a>。下面保留初版接口教程的输入身份，不把两批验证合成一次。</p>
 <h2 id="baseline">输入版本与配置基线</h2>
 <p>本次核对日期 <strong>2026-10-13</strong>，分支 <code>mp/ara-pulp-v2</code>，主仓库 HEAD <code>c4162204cfee0c48b81158b4296860a678d92bec</code>。工作区已有文档、图稿迁移和其他对话的未跟踪文件；本次未改生产 RTL、软件或依赖。输入状态见 <a href="evidence/input.json">input.json</a>，引用源的 SHA-256 见 <a href="evidence/sources.json">sources.json</a>。上游来源由 <a href="../../../.bender/SNAPSHOT.tsv">.bender/SNAPSHOT.tsv</a>和 <a href="../../../.bender/UPSTREAM.lock">UPSTREAM.lock</a>记录；目录名后缀不是 commit。</p>
 <table>
@@ -217,3 +220,5 @@
 <p><a href="../../rtl_modules/README.md">RTL 模块指南</a>负责模块内部电路；<a href="../README.md">软件手册</a>负责命令/API 查阅；本专题负责贯穿它们的执行场景，避免重建整份 SoC 地址表。详细地址和 C/I/E 条件继续查 <a href="../../01_Cheshire_Ara_Quick_Start.md#81-cie-attributes">01 §8.1</a>。</p>
 <p>本轮附件只有文本，没有可直接核验的两张附图；已经找到<a href="../LAYERS_AND_TOOLS.md">分层参考</a>和 <a href="../../diagrams/2026-10-12_soc_landscape/README.md">SoC 规划图说明</a>。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 <a href="../../engineering/IP_DDR_Interface_Contract.md">IP/DDR 契约 §12</a>为准，不从图中冻结新地址、宽度或频率。</p>
 <p>本专题中“源码事实”表示已核对引用源；“分析推断”表示根据该配置推演；“设计建议”表示后续需要实现与验证。编译结果、目标运行和板测分别记录在<a href="labs.html#evidence">实践页</a>。</p>
+
+<p>软件组件整体定位见<a href="foundation-software.html#complete-stack">全组件软件栈</a>及<a href="foundation-software.html#component-index">源码索引</a>；UART和GPT/Flash逐步调用链仍保留在同章。</p>

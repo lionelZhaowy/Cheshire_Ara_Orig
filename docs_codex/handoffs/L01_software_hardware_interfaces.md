@@ -5,6 +5,14 @@
 | 日期 | 角色 | 输入版本 | 修改与验证摘要 |
 |---|---|---|---|
 | 2026-10-13 | 专题作者 | `mp/ara-pulp-v2` / `c4162204cfee0c48b81158b4296860a678d92bec`；既有未提交状态见输入记录 | 新增8页HTML/Markdown、4张可编辑案例图；独立重编标量/RVV/HelloWorld及DMA编译探针；文档验证见下方证据 |
+| 2026-10-13 | BSP扩充作者 | `bf1b4198dfd74cc78291c152b8b682d523e785c5`；既有未跟踪nonvolatile_storage图稿保留 | 新增基础软件章，专题9对页面；新增1张SVG/PNG/原生PPTX；18组浏览器视口及独立新批次检查；未构建/运行应用 |
+| 2026-10-13 | 全组件软件栈作者 | `bf1b4198dfd74cc78291c152b8b682d523e785c5` 加已有文档改动 | 保留调用链图，新增全组件总览、39类源码索引及SVG/PNG/原生PPTX；独立complete-stack批次验证，未编译/运行目标 |
+
+## 最新扩充入口
+
+全组件总览现已补入[基础软件章](../software/interfaces/markdown/foundation-software.md#complete-stack)，附[独立新图稿](../diagrams/2026-10-13_complete_software_stack/README.md)和39类源码索引。当前页面验证以[complete-stack批次](../software/interfaces/evidence/complete-stack-20261013/validation.json)为准；旧foundation及初版证据继续保留原输入身份。
+
+2026-10-13基础软件/BSP扩充已完成，当前专题9对页面；[Markdown正文](../software/interfaces/markdown/foundation-software.md)、[HTML正文](../software/interfaces/foundation-software.html)、[软件栈图](../diagrams/2026-10-13_foundation_software/README.md)。本次基线`bf1b4198`，只查询源码/工具并验证图文，没有重编或运行应用。下方原始8页交付保留其`c4162204c`输入身份；本次详情见文末。
 
 ## 基本信息
 
@@ -73,3 +81,54 @@ python3 docs_codex/software/interfaces/scripts/preview.py --out-dir 新证据目
 终检观察到`AGENTS.md`、`L01_rtl_module_guide.md`及`maintenance/L01/planning/rtl_module_figures.md`在本轮期间出现外部修改；已重新读取AGENTS新增的RTL指南A版走线偏好，其明确不要求重绘其他系列。本轮未写这三个文件，保留输入哈希和终检差异，不恢复、不刷新原基线。
 
 另核对实际清单选择的`idma_generated.sv`：其中`idma_reg64_2d`和`idma_backend_rw_axi`模块正文，与教程引用的独立top/backend文件逐字相同；确认以上DMA静态结论适用于清单中的拼接文件。首次文档检查发现Markdown导出器引用`scripts/pages.json`而专题尚缺该元数据，已补齐并作为唯一页面清单；失败记录保存在`evidence/validation-initial.json`。
+
+
+## 2026-10-13：基础软件与BSP初次扩充
+
+用户已确认裸机BSP为主、RTOS/Linux只比较职责变化，并明确要求实施规划。沿用L01；负责原接口专题、软件手册导航、本交接和独立新图目录，未扩展为BSP源码重构。
+
+- 正文新增BSP职责、启动支持、HAL/DIF/MMIO、驱动/库/运行库、主机工具、UART与GPT/Flash两条链、扩展导航及只读练习；明确MMIO机制与辅助代码分属不同观察层次。
+- 新章节放在总览之后；构建、MMIO、案例页补软件实现侧解释，原页名/锚点保留。`pages.json`是9页清单，单一HTML正文继续生成Markdown。
+- 本轮实际只读查询GCC15.2.0、Binutils2.46、GDB17.1、Make4.3、DTC1.7.0和OpenOCD0.12.0，见[tools.json](../software/interfaces/evidence/foundation-20261013/tools.json)。`libc.a`可定位不表示平台系统调用支持完整。
+- 原引用生产源码与历史哈希相比无变化，见[对照记录](../software/interfaces/evidence/foundation-20261013/historical-source-comparison.json)；文档有后续整理差异，因此不沿用旧文档哈希作为当前快照。
+- 新图只有一个正式版本，15个连续原生箭头，PNG为实际Chrome渲染，PPTX为原生对象；Office未运行。旧四张图未修改。
+- `check.py`按指定证据批次校验，默认只打印；`--out`必须指定不存在的文件，避免覆盖旧结果。`preview.py`按章节清单、页面SVG及viewBox检查，不再固定8页/16视口/1400×900。
+
+新批次证据位于`software/interfaces/evidence/foundation-20261013/`，原有93份证据文件的哈希保持不变。复现命令在仓库根执行：
+
+```sh
+python3 docs_codex/software/interfaces/scripts/build.py
+python3 docs_codex/software/interfaces/scripts/preview.py --out-dir 新浏览器证据目录
+python3 docs_codex/software/interfaces/scripts/check.py
+# 需要保存新检查结果时：check.py --out 新报告文件
+```
+
+实际结果：[浏览器](../software/interfaces/evidence/foundation-20261013/browser-final/browser.json)为9页×桌面/手机=18组视口，5张SVG正常渲染且文字未出画布；[最终检查](../software/interfaces/evidence/foundation-20261013/validation.json)记录双格式、链接/锚点、115个源码/工具输入和历史证据保护。第一次预览通过自动检查后，作者视觉查看发现新图两处标签间距不足，已修正；保留`browser/`首次截图，最终以`browser-final/`为准。
+
+**本轮没有应用编译、SoC仿真、FPGA板测或Linux启动。** 既有DMA/CLINT/Platform ROM/中断与DDR缺口继续引用原记录，未因文档扩充关闭。生产RTL/sw、依赖、地址/IRQ/位宽、FPGA脚本无修改，无Git提交。
+
+工作区另有其他对话的`2026-10-13_nonvolatile_storage/`图稿；未读取、移动或修改。共享状态/任务表本轮保持不动，请协调者在L01下补充“基础软件BSP章和单张软件栈图已交付；当前专题9页；仅工具查询及图文验证”。用户尚未确认任何新IP地址、OS方案或功能修复。
+
+## 2026-10-13：全组件软件栈追加
+
+用户要求保留UART/SPI/Flash案例图，再补完整组件总览；已确认覆盖当前裸机BSP、Ara、主机工具，Linux/OpenSBI/SDK单列可选分路。本轮仅修改L01专题正文/生成页、软件导航、维护脚本、新图稿及本交接；未自动启动子Agent。
+
+- 正式入口：[正文](../software/interfaces/foundation-software.html#complete-stack)、[组件源码索引](../software/interfaces/foundation-software.html#component-index)、[图稿](../diagrams/2026-10-13_complete_software_stack/README.md)。纵向分层、横向五路；启动支撑旁置，MMIO与RVV分开。39类组件给出职责、真实源码、消费者和状态，库归档与函数调用分开。
+- 源码核对：本地全部HAL/DIF、OpenTitan base/DIF/autogen、LLC/AXI RT、启动与装载、Ara Makefile及SDK配方。SDK的fw_payload包含U-Boot；mkimage在主机生成uImage，OpenSBI→U-Boot→Linux标为启动关系，不能与系统调用混同。源码/配方存在不等于OS启动验收；不同镜像打包布局仍须匹配。
+- 正式图只有一个版本，SVG/PNG/原生PPTX及脚本位于本日独立目录；旧图未修改。PPTX结构检查241个对象，其中162个文本、41个原生箭头（含6条图例）、1个完整虚线边界；未运行Office。
+- 检查入口默认切到complete-stack批次。`preview.py`增加全组件图/索引的锚点截图；强制即时滚动并断言位置，避免CSS平滑滚动未完成时截到页首。此前截图保留，最终以browser-release为准。
+- [输入与历史保护](../software/interfaces/evidence/complete-stack-20261013/input.json)、[源码身份](../software/interfaces/evidence/complete-stack-20261013/sources.json)、[与上批源码对照](../software/interfaces/evidence/complete-stack-20261013/source-comparison.json)、[最终浏览器](../software/interfaces/evidence/complete-stack-20261013/browser-release/browser.json)、[文档验收](../software/interfaces/evidence/complete-stack-20261013/validation.json)。首次Chrome因沙箱socket限制退出，经自动审批允许本机预览后完成；失败日志保留。
+
+复现（仓库根；浏览器输出和检查报告必须选择新路径）：
+
+```sh
+python3 docs_codex/software/interfaces/scripts/build.py
+python3 docs_codex/software/interfaces/scripts/preview.py --out-dir 新浏览器证据目录
+python3 docs_codex/software/interfaces/scripts/check.py
+```
+
+当前检查覆盖9对HTML/Markdown、18组桌面/手机视口、6张SVG；原有133份证据保留。与foundation批次相比110个生产源码引用哈希不变。没有重查编译器版本、重建应用、SoC仿真、板测、Linux启动或BSP功能修复。原有DMA/CLINT/Platform ROM/DDR等缺口继续保留。
+
+其他对话的nonvolatile_storage图稿与交接未修改。未取得共享状态文件的独占编辑依据，因此只更新本主题交接，供协调者按需合并L01进展；不将任务表视作文件锁。未新增IP、OS、地址或硬件参数决策。
+
+终检通过：1223处本地链接、166个引用输入、9对双格式页面、18组视口和6张SVG；原有133份证据哈希保持不变。放大阅读控件在1440/390宽度下均通过检查，新图无文字/箭头路径交叉遮挡，手机源码索引改为横向滚动。终检发现其他工作修改了`diagrams/2026-10-13_nonvolatile_storage/README.md`及`handoffs/L01_nonvolatile_storage.md`；本Agent未写入或恢复它们，差异保存在本批次validation的`external_input_changes`，不刷新原保护基线。
