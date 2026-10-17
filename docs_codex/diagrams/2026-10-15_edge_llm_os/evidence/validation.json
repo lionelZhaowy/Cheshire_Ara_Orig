@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-15",
+  "head": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8",
+  "status": "fail",
+  "checks": [
+    {
+      "name": "protected_input_files",
+      "passed": false,
+      "detail": {
+        "checked": 91,
+        "changed": [
+          "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/build_figures.py"
+        ]
+      }
+    },
+    {
+      "name": "index_only_adds_one_entry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "local_links",
+      "passed": true,
+      "detail": {
+        "count": 52,
+        "broken": []
+      }
+    },
+    {
+      "name": "official_sources_retained",
+      "passed": true,
+      "detail": [
+        "https://arm-software.github.io/CMSIS-Ethos-U/main/driver/index.html",
+        "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/",
+        "https://developer.nvidia.com/embedded/jetpack-sdk-514",
+        "https://docs.kernel.org/6.5/core-api/dma-api-howto.html",
+        "https://docs.kernel.org/core-api/real-time/theory.html",
+        "https://github.com/NVIDIA/TensorRT-Edge-LLM",
+        "https://github.com/ggml-org/llama.cpp",
+        "https://github.com/ucb-bar/gemmini",
+        "https://huggingface.co/blog/kv-cache-quantization",
+        "https://www.freertos.org/Documentation/02-Kernel/02-Kernel-features/01-Tasks-and-co-routines/04-Task-scheduling"
+      ]
+    },
+    {
+      "name": "document_topics_and_boundaries",
+      "passed": true,
+      "detail": [
+        "## 1.",
+        "## 2.",
+        "## 3.",
+        "## 4.",
+        "## 5.",
+        "## 6.",
+        "## 7.",
+        "用户尚未冻结",
+        "192 MiB",
+        "500,000,000",
+        "201,326,592",
+        "不是同一个已选模型",
+        "v5.10.7",
+        "v6.5",
+        "未仿真"
+      ]
+    },
+    {
+      "name": "memory_examples",
+      "passed": true,
+      "detail": {
+        "weight_bytes": 500000000,
+        "weight_MiB": 476.837158203125,
+        "kv_bytes": 201326592,
+        "kv_MiB": 192.0
+      }
+    },
+    {
+      "name": "browser_layout",
+      "passed": true,
+      "detail": {
+        "browser": "Google Chrome 151.0.7922.108",
+        "figures": 2
+      }
+    },
+    {
+      "name": "author_visual_review",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pptx_two_pages_and_no_images",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "software-stacks_native_text_and_lines",
+      "passed": true,
+      "detail": {
+        "text_objects": 73,
+        "arrow_objects": 18,
+        "arrow_endpoints": 21,
+        "dashed_objects": 3
+      }
+    },
+    {
+      "name": "software-stacks_svg_semantics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "software-stacks_same_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "software-stacks_png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "inference-flow_native_text_and_lines",
+      "passed": true,
+      "detail": {
+        "text_objects": 46,
+        "arrow_objects": 10,
+        "arrow_endpoints": 16,
+        "dashed_objects": 5
+      }
+    },
+    {
+      "name": "inference-flow_svg_semantics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "inference-flow_same_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "inference-flow_png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "export_readback_report",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "generator_reproducibility",
+      "passed": true,
+      "detail": {
+        "returncode": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "name": "whitespace_and_git_diff_check",
+      "passed": true,
+      "detail": {
+        "new_file_trailing_whitespace": [],
+        "git_diff_returncode": 0,
+        "output": ""
+      }
+    }
+  ],
+  "totals": {
+    "text_objects": 119,
+    "arrow_objects": 28,
+    "dashed_objects": 8
+  },
+  "files": {
+    "docs_codex/engineering/Edge_LLM_OS_Selection.md": "212c4138c56193c67005b50284a0ab8875a47b088042cf54b910aaafca3287de",
+    "docs_codex/handoffs/L01_edge_llm_os_architecture.md": "aba69c71ce41793cdd1ea010048cc17025f793f13b328ce958cb1528fb50e7d6",
+    "docs_codex/engineering/README.md": "7fd9f1adea3c07dbe8a99780b01101555f145922b2c4f91aceae50b9106424db",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/README.md": "b803091c4700cd7bb1ed3ac756853e57aeb0fd29d24c237ee65c7eece32245ee",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/build_figures.py": "04aec7b10d7dc49ab36bfe10af630f6ccac38f212638c94f2667ba6a04dc545d",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/render.py": "cc2ebe2db0026f7cad1ffe6930a796534390c7bf6425bfc6b013af49cb313759",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/validate.py": "e9864ce367c2dd79cbb2c7c8a1671ffff183212c981eddd7b61aabaa9cd983f5",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/inference-flow.svg": "67f1781dbf6214cdc03e92c8312ff1be7d56fffa6d1b73a246c4a8ba069f52ba",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/software-stacks.svg": "a5154e256c6e5a36746986acb7fa4448d11173486eb5921c6f357698c70b35e1",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/software-stacks.png": "12c29acc41fb2c41a4098ecfbe2f22cdab2e84288c509912ca196df540058a76",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/inference-flow.png": "e791b3297cfbfc2c5b88772d79e543e293b0a06172fea3e3451216b5d41806b5",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/diagrams.pptx": "ace66b7ea1286c77b57de02c96d82a712407559ba2ba11910dc37db76b9f099f",
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/export_report.json": "0c5a6c2d9f2de2a794e35aa071c24667424c3c3652ef18a6d4aed2e34e84c5ec"
+  },
+  "status_after": " M docs_codex/engineering/README.md\n M docs_codex/handoffs/L01_software_hardware_interfaces.md\n?? docs_codex/diagrams/2026-10-14_software_stack_industrial/\n?? docs_codex/diagrams/2026-10-15_cache_coherence/\n?? docs_codex/diagrams/2026-10-15_edge_llm_os/\n?? docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/\n?? docs_codex/engineering/Cache_Coherence_Architecture.md\n?? docs_codex/engineering/Edge_LLM_OS_Selection.md\n?? docs_codex/engineering/Global_Buffer_CPU_Access.md\n?? docs_codex/handoffs/L01_cache_coherence_architecture.md\n?? docs_codex/handoffs/L01_edge_llm_os_architecture.md\n?? docs_codex/handoffs/L01_global_buffer_cpu_access.md\n",
+  "office_application_tested": false,
+  "target_build_or_run": false
+}

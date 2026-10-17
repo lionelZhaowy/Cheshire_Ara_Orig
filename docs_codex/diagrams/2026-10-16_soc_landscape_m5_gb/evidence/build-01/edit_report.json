@@ -1,0 +1,87 @@
+{
+  "input": "docs_codex/diagrams/2026-10-16_soc_landscape_shared_gb/soc_landscape_shared_gb.pptx",
+  "input_sha256": "9080ab142e19910ba0d2bc50298d9fb66800aeceefec28bb7382e6250e73f8a0",
+  "output_sha256": "3aeb085a47c843dbaa101d5e4dc85abb8b52d15c135402468c0cdb0b13608a57",
+  "removed_shape_ids": [
+    1201,
+    1202,
+    1203,
+    1204,
+    1205
+  ],
+  "changed_shape_ids": [
+    886,
+    936,
+    937,
+    938,
+    939,
+    940,
+    941,
+    942,
+    943,
+    944,
+    945,
+    946,
+    947
+  ],
+  "new_objects": [
+    {
+      "id": 1300,
+      "name": "m5-target-drop"
+    },
+    {
+      "id": 1301,
+      "name": "gb-interface-to-controller"
+    },
+    {
+      "id": 1302,
+      "name": "target-port-m5"
+    },
+    {
+      "id": 1303,
+      "name": "target-label-m5: M5"
+    },
+    {
+      "id": 1304,
+      "name": "gb-axi-interface"
+    },
+    {
+      "id": 1305,
+      "name": "gb-interface-title: GB AXI 接口"
+    },
+    {
+      "id": 1306,
+      "name": "gb-interface-clients: CPU / Ara 共用"
+    },
+    {
+      "id": 1307,
+      "name": "gb-interface-width: 64-bit 数据窗口"
+    }
+  ],
+  "changed_package_parts": [
+    "ppt/slides/slide2.xml"
+  ],
+  "slide1_and_all_other_parts_unchanged": true,
+  "target_order": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M_EXT"
+  ],
+  "route_bridges": [
+    {
+      "over": "M_EXT target drop",
+      "x": 2748.75,
+      "y": 1068.1
+    },
+    {
+      "over": "ISP to GB",
+      "x": 1506.25,
+      "y": 716.1
+    }
+  ],
+  "office_application_tested": false
+}

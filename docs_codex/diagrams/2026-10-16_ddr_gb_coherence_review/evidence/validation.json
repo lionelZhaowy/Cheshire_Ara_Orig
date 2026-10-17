@@ -1,0 +1,736 @@
+{
+  "status": "pass",
+  "date": "2026-10-16",
+  "head": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8",
+  "chinese_characters": {
+    "DDR_GB_Coherence_Design.md": 6383
+  },
+  "local_links_checked": 114,
+  "links": [
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "README.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/README.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/system.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/system.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "IP_DDR_Interface_Contract.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/versions.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/versions.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/timeline.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/timeline.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/lib/crt0.S"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/include/dif/dma.h"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/tests/dma_2d.spm.c"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/eviction_refill/axi_llc_w_master.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../hw/cheshire_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../hw/cheshire_soc.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_mem.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "CPU_NPU_Cache_Coherence_Survey.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../handoffs/L01_cache_coherence_architecture.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "README.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/README.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/system.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/system.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "IP_DDR_Interface_Contract.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/versions.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/versions.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/timeline.png"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/figures/timeline.svg"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/lib/crt0.S"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/include/dif/dma.h"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../sw/tests/dma_2d.spm.c"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/eviction_refill/axi_llc_w_master.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../hw/cheshire_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../hw/cheshire_soc.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_mem.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "CPU_NPU_Cache_Coherence_Survey.md"
+    },
+    {
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "target": "../handoffs/L01_cache_coherence_architecture.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/Cache_Coherence_Architecture.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/evidence/input.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-12_industrial_redraw/ddr_interconnect.pptx"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/system.png"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/evidence/minimal-validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/CPU_NPU_Cache_Coherence_Survey.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_survey/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_survey/evidence/local-source-check.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_survey/evidence/browser.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_survey/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_comparison/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_comparison/previews/browser.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_comparison/evidence/browser.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_comparison/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/Cache_Coherence_Architecture.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/CPU_NPU_Cache_Coherence_Survey.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_hybrid/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_hybrid/evidence/input.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_hybrid/validate.py"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_coherence_hybrid/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/DDR_GB_Coherence_Design.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_design/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_design/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_design/evidence/input.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/DDR_GB_Coherence_Design.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../maintenance/L01/reviews/ddr_gb_coherence_review_prompt.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_ddr_gb_coherence_review/evidence/input.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "../../engineering/DDR_GB_Coherence_Design.md"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "figures/system.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "previews/system.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "figures/versions.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "previews/versions.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "figures/timeline.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "previews/timeline.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "design-preview.html"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "build.py"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "../../maintenance/L01/reviews/ddr_gb_coherence_review_prompt.md"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "../2026-10-16_ddr_gb_coherence_design/README.md"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "evidence/input.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "validate.py"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "previews/browser.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "evidence/document-browser.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_review/README.md",
+      "target": "evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/maintenance/L01/reviews/ddr_gb_coherence_review_prompt.md",
+      "target": "../../../handoffs/L01_cache_coherence_architecture.md"
+    }
+  ],
+  "slides": [
+    {
+      "name": "system",
+      "texts": 68,
+      "native_arrows": 33,
+      "native_dashed_shapes": 5,
+      "pictures": 0
+    },
+    {
+      "name": "versions",
+      "texts": 55,
+      "native_arrows": 6,
+      "native_dashed_shapes": 1,
+      "pictures": 0
+    },
+    {
+      "name": "timeline",
+      "texts": 33,
+      "native_arrows": 16,
+      "native_dashed_shapes": 6,
+      "pictures": 0
+    }
+  ],
+  "protected_files_unchanged": 172,
+  "protected_files": [
+    "docs_codex/AGENT_TASKS.md",
+    "docs_codex/PROJECT_STATE.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/README.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/build.py",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/design-preview.html",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/before/docs_codex/engineering/Cache_Coherence_Architecture.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/before/docs_codex/engineering/README.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/before/docs_codex/handoffs/L01_cache_coherence_architecture.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/design-preview.html",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/document-browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/validation.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-1.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-2.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-3.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-top.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/engineering/DDR_GB_Coherence_Design.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/before/docs_codex/handoffs/L01_cache_coherence_architecture.md",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/buffer-terminology/input.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/document-browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/document-chrome.log",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/export-01/diagrams.pptx",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/export-01/export_report.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/export-01/system.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/export-01/timeline.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/export-01/versions.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/input.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-01/browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-01/chrome.log",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-02/browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-02/chrome.log",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-02/system.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-02/timeline.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-02/versions.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-03/browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-03/chrome.log",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-03/system.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-03/timeline.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/render-03/versions.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-01/layout.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-01/system.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-01/timeline.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-01/versions.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-02/layout.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-02/system.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-02/timeline.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/source-02/versions.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/evidence/validation.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/export/diagrams.pptx",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/export/export_report.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/export/system.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/export/timeline.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/export/versions.editable.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/figures/layout.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/figures/system.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/figures/timeline.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/figures/versions.svg",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/browser.json",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/chrome.log",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-1.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-2.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-figure-3.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/design-top.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/system.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/timeline.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/previews/versions.png",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/render_document.py",
+    "docs_codex/diagrams/2026-10-16_ddr_gb_coherence_design/validate.py",
+    "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md",
+    "docs_codex/engineering/CPU_NPU_Cache_Coherence_Survey.md",
+    "docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md",
+    "docs_codex/engineering/Cache_Coherence_Architecture.md",
+    "docs_codex/engineering/Edge_LLM_OS_Selection.md",
+    "docs_codex/engineering/Global_Buffer_CPU_Access.md",
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+    "docs_codex/engineering/README.md",
+    "docs_codex/engineering/path_migrations.json",
+    "docs_codex/handoffs/2026-09-23_L01_editorial_revision.md",
+    "docs_codex/handoffs/2026-10-06_L01_platform_rom_boot_review.md",
+    "docs_codex/handoffs/2026-10-08_L01_title_style_revision.md",
+    "docs_codex/handoffs/AR_architecture_review.md",
+    "docs_codex/handoffs/C00_initial_handoff.md",
+    "docs_codex/handoffs/ENV01_codex_gpu_auth.md",
+    "docs_codex/handoffs/L01_OS_implementation.md",
+    "docs_codex/handoffs/L01_advanced_peripherals.md",
+    "docs_codex/handoffs/L01_apb3_ddr_configuration_qa.md",
+    "docs_codex/handoffs/L01_ara2_tc24_axi_width_qa.md",
+    "docs_codex/handoffs/L01_ara_global_buffer_feasibility.md",
+    "docs_codex/handoffs/L01_ara_parameter_linkage_baseline.md",
+    "docs_codex/handoffs/L01_asic_mechanisms_implementation.md",
+    "docs_codex/handoffs/L01_axi128_functional_review.md",
+    "docs_codex/handoffs/L01_axi_crossbar_ara_rt_qa.md",
+    "docs_codex/handoffs/L01_axi_crossbar_parallelism_qa.md",
+    "docs_codex/handoffs/L01_axi_data_address_width_qa.md",
+    "docs_codex/handoffs/L01_boot_clock_source_confirmation.md",
+    "docs_codex/handoffs/L01_boot_initialization_diagrams.md",
+    "docs_codex/handoffs/L01_bootrom_crt0_execution_qa.md",
+    "docs_codex/handoffs/L01_clic_function_hardware_qa.md",
+    "docs_codex/handoffs/L01_configuration_reference.md",
+    "docs_codex/handoffs/L01_configuration_teaching_depth_review.md",
+    "docs_codex/handoffs/L01_cpu_npu_inference_survey.md",
+    "docs_codex/handoffs/L01_ddr_interconnect_diagram.md",
+    "docs_codex/handoffs/L01_depth_asic_vector.md",
+    "docs_codex/handoffs/L01_documentation_organization.md",
+    "docs_codex/handoffs/L01_documentation_restructure.md",
+    "docs_codex/handoffs/L01_edge_llm_os_architecture.md",
+    "docs_codex/handoffs/L01_editorial_revision.md",
+    "docs_codex/handoffs/L01_four_lane_change_scope.md",
+    "docs_codex/handoffs/L01_four_lane_xbar128_scope.md",
+    "docs_codex/handoffs/L01_global_buffer_cpu_access.md",
+    "docs_codex/handoffs/L01_hal_dif_lib_mmio_qa.md",
+    "docs_codex/handoffs/L01_hardware_track.md",
+    "docs_codex/handoffs/L01_independent_system_review.md",
+    "docs_codex/handoffs/L01_interface_reference.md",
+    "docs_codex/handoffs/L01_layer_tools_mapping.md",
+    "docs_codex/handoffs/L01_layer_tools_user_reference.md",
+    "docs_codex/handoffs/L01_learning_site.md",
+    "docs_codex/handoffs/L01_llc_bist_crt0_labels_exit_qa.md",
+    "docs_codex/handoffs/L01_llc_cache_spm_diagram.md",
+    "docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md",
+    "docs_codex/handoffs/L01_mechanism_refinement.md",
+    "docs_codex/handoffs/L01_mechanism_review.md",
+    "docs_codex/handoffs/L01_native_arrow_skill.md",
+    "docs_codex/handoffs/L01_native_background_fix.md",
+    "docs_codex/handoffs/L01_native_reconstruction.md",
+    "docs_codex/handoffs/L01_native_reconstruction_regbus_rtl.md",
+    "docs_codex/handoffs/L01_nonvolatile_storage.md",
+    "docs_codex/handoffs/L01_official_source_teaching_extension.md",
+    "docs_codex/handoffs/L01_official_source_teaching_extension_review.md",
+    "docs_codex/handoffs/L01_platform_rom_boot_review.md",
+    "docs_codex/handoffs/L01_platform_rom_decision_tracking.md",
+    "docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md",
+    "docs_codex/handoffs/L01_pll_integration_boundary_qa.md",
+    "docs_codex/handoffs/L01_ppt_editable_diagrams.md",
+    "docs_codex/handoffs/L01_publication_figure_research.md",
+    "docs_codex/handoffs/L01_publication_figures_implementation.md",
+    "docs_codex/handoffs/L01_research_figure_redraw.md",
+    "docs_codex/handoffs/L01_restore_wavedrom.md",
+    "docs_codex/handoffs/L01_review_fixes.md",
+    "docs_codex/handoffs/L01_rtl_module_guide.md",
+    "docs_codex/handoffs/L01_single_path_textbook.md",
+    "docs_codex/handoffs/L01_small_float_c_types_qa.md",
+    "docs_codex/handoffs/L01_small_float_formats_qa.md",
+    "docs_codex/handoffs/L01_software_guide.md",
+    "docs_codex/handoffs/L01_software_hardware_interfaces.md",
+    "docs_codex/handoffs/L01_software_hardware_layer_figure.md",
+    "docs_codex/handoffs/L01_software_hardware_layer_plan_review.md",
+    "docs_codex/handoffs/L01_software_implementation.md",
+    "docs_codex/handoffs/L01_spm_dram_rom_link_modes_qa.md",
+    "docs_codex/handoffs/L01_structure_review.md",
+    "docs_codex/handoffs/L01_structure_revision.md",
+    "docs_codex/handoffs/L01_structure_revision_review.md",
+    "docs_codex/handoffs/L01_svg_pptx_skill.md",
+    "docs_codex/handoffs/L01_svg_pptx_windows_gpu_sync.md",
+    "docs_codex/handoffs/L01_system_curriculum_plan.md",
+    "docs_codex/handoffs/L01_system_implementation_acceptance.md",
+    "docs_codex/handoffs/L01_targeted_closeout.md",
+    "docs_codex/handoffs/L01_teaching_review_peripherals_ara.md",
+    "docs_codex/handoffs/L01_title_polish.md",
+    "docs_codex/handoffs/L01_title_style_independent_review.md",
+    "docs_codex/handoffs/L01_title_style_revision.md",
+    "docs_codex/handoffs/L01_usb_phy_55nm_qa.md",
+    "docs_codex/handoffs/L01_vcu118_clock_lock_confirmation.md",
+    "docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md",
+    "docs_codex/handoffs/M01_CPU_Ara_AXI_width_recommendation.md",
+    "docs_codex/handoffs/M01_DDR2133_SoC_bandwidth_review.md",
+    "docs_codex/handoffs/M01_DDR_GB_requirements_update.md",
+    "docs_codex/handoffs/M01_DDR_interface_feasibility.md",
+    "docs_codex/handoffs/M01_DDR_requirements_recommendation.md",
+    "docs_codex/handoffs/M01_interface_contract_document.md",
+    "docs_codex/handoffs/M01_mixed_AXI_technology_review.md",
+    "docs_codex/handoffs/README.md",
+    "docs_codex/handoffs/name_migrations.json"
+  ],
+  "source_files_unchanged": [
+    "hw/cheshire_pkg.sv",
+    "hw/cheshire_soc.sv",
+    "sw/lib/crt0.S",
+    "sw/include/dif/dma.h",
+    "sw/tests/dma_2d.spm.c",
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md",
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.svg",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_mem.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/eviction_refill/axi_llc_w_master.sv",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv",
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6.sv"
+  ],
+  "approved_base_objects_preserved": 123,
+  "required_data_paths": [
+    [
+      "cpu",
+      "xbar",
+      "atomics",
+      "llc",
+      "ddr-port0"
+    ],
+    [
+      "ara",
+      "filter",
+      "split",
+      "width",
+      "xbar"
+    ],
+    [
+      "split",
+      "router",
+      "gb"
+    ],
+    [
+      "npu",
+      "router",
+      "gb"
+    ],
+    [
+      "isp",
+      "router",
+      "gb"
+    ],
+    [
+      "mover",
+      "router",
+      "gb"
+    ],
+    [
+      "mover",
+      "ddr-port1"
+    ],
+    [
+      "frame",
+      "ddr-port2"
+    ]
+  ],
+  "base_geometry_and_data_lines": "unchanged",
+  "diagram_browser": "previews/browser.json",
+  "document_browser": "evidence/document-browser.json",
+  "visual_review": "All three PNGs inspected; timeline updated; no clipping, text overlap or broken connections.",
+  "office_application_tested": false,
+  "hardware_execution": false,
+  "git_diff_check": "pass"
+}

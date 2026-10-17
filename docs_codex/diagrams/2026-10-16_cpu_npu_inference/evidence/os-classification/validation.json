@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-16",
+  "status": "pass",
+  "command": "python3 inline standard-library documentation, link, anchor and SHA-256 validation; git diff --check; git rev-parse HEAD",
+  "checks": [
+    {
+      "name": "local links",
+      "passed": true,
+      "detail": {
+        "checked": 45,
+        "missing": []
+      }
+    },
+    {
+      "name": "local heading anchors",
+      "passed": true,
+      "detail": {
+        "checked": 2,
+        "invalid": []
+      }
+    },
+    {
+      "name": "document size",
+      "passed": true,
+      "detail": {
+        "CJK_characters": 7564
+      }
+    },
+    {
+      "name": "seven environment rows",
+      "passed": true,
+      "detail": {
+        "rows": 7
+      }
+    },
+    {
+      "name": "four original embedded figures",
+      "passed": true,
+      "detail": [
+        "../diagrams/2026-10-16_cpu_npu_inference/deployment-chain.png",
+        "../diagrams/2026-10-16_cpu_npu_inference/invocation-paths.png",
+        "../diagrams/2026-10-16_cpu_npu_inference/deeploy-siracusa.png",
+        "../diagrams/2026-10-16_cpu_npu_inference/llm-phases.png"
+      ]
+    },
+    {
+      "name": "existing file modification scope",
+      "passed": true,
+      "detail": {
+        "input_files": 337,
+        "unchanged": 335,
+        "changed": [
+          "docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md",
+          "docs_codex/handoffs/L01_cpu_npu_inference_survey.md"
+        ]
+      }
+    },
+    {
+      "name": "figure and editable artifact preservation",
+      "passed": true,
+      "detail": {
+        "files": 37
+      }
+    },
+    {
+      "name": "added external sources recorded",
+      "passed": true,
+      "detail": {
+        "new_urls": [
+          "https://developer.android.com/guide/platform",
+          "https://developers.google.com/edge/litert/microcontrollers/overview",
+          "https://github.com/riscv-software-src/riscv-pk",
+          "https://nvdla.org/sw/test_application.html"
+        ],
+        "validation_method": "网页工具逐页打开、人工核对；未独立测量 HTTP 状态码"
+      }
+    },
+    {
+      "name": "document whitespace",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "git diff check",
+      "passed": true,
+      "detail": {
+        "exit_code": 0,
+        "output": ""
+      }
+    },
+    {
+      "name": "input HEAD preserved",
+      "passed": true,
+      "detail": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8"
+    }
+  ],
+  "manual_review": "七组环境分类与来源对应；llm.npu 正文、表格和图注区分 CPU＋NPU 实测与 GPU 模拟；未重绘图。",
+  "target_execution": false,
+  "office_application_tested": false
+}

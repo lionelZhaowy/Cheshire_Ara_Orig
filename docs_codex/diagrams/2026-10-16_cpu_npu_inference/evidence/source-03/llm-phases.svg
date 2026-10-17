@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>LLM 推理：阶段、状态与异构分工</title>
+<defs>
+<marker id="marker-control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="marker-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="marker-local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="marker-artifact" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+</defs>
+<rect id="page" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="1200" y="68" font-family="WenQuanYi Zen Hei" font-size="42" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">LLM 推理：阶段、状态与异构分工</text>
+<text x="1200" y="117" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">上部是通用执行关系；下部是 llm.npu 的 prefill 特有优化，不能等同于 decode 加速</text>
+<rect id="general" x="50" y="170" width="2300" height="570" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="80" y="213" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">通用自回归推理</text>
+<rect id="input" x="100" y="265" width="340" height="130" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="270.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="input">CPU 输入准备</text>
+<text x="270.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="input">分词 / 输入张量</text>
+<rect id="prefill" x="640" y="265" width="470" height="130" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="875.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="prefill">Prefill</text>
+<text x="875.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="prefill">处理输入 token / 计算 logits</text>
+<rect id="decode" x="1330" y="265" width="380" height="130" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1520.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="decode">Decode</text>
+<text x="1520.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="decode">逐 token 推进</text>
+<rect id="sample" x="1910" y="265" width="340" height="130" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="2080.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="sample">采样与终止判断</text>
+<text x="2080.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="sample">按实现分配到 CPU 等</text>
+<polyline id="tokens" points="440,330 640,330" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="540" y="306" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">tokens</text>
+<polyline id="logits0" points="875,265 875,230 2080,230 2080,265" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="1520" y="209" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">首轮 logits</text>
+<polyline id="next-token" points="1910,300 1710,300" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="1810" y="277" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">下一 token</text>
+<polyline id="logits-loop" points="1710,365 1910,365" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="1810" y="406" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">后续 logits</text>
+<rect id="kv" x="670" y="550" width="1040" height="130" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="1190.0" y="606.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="kv">KV cache：跨步保留的算法张量</text>
+<text x="1190.0" y="644.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="kv">本步追加 / 后续读取；容量依上下文增长</text>
+<rect id="out" x="1910" y="550" width="340" height="130" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="2080.0" y="606.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="out">应用输出</text>
+<text x="2080.0" y="644.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="out">首 token / 持续输出</text>
+<polyline id="create-kv" points="875,395 875,550" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)"/>
+<text x="895" y="479" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#187C78" data-owner="">生成 KV</text>
+<polyline id="update-kv" points="1520,395 1520,550" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)" marker-start="url(#marker-local)"/>
+<text x="1540" y="479" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#187C78" data-owner="">读取 / 追加 KV</text>
+<polyline id="emit" points="2080,395 2080,550" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="2100" y="479" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">输出 token</text>
+<rect id="special" x="50" y="805" width="2300" height="400" fill="#FAF6F0" stroke="#29292D" stroke-width="2" stroke-dasharray="10 6"/>
+<text x="80" y="850" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">llm.npu 案例：移动平台上的 prefill 优化</text>
+<rect id="chunks" x="100" y="930" width="410" height="180" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="305.0" y="992.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="chunks">固定大小的 prompt 块</text>
+<text x="305.0" y="1030.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="chunks">保持因果依赖</text>
+<text x="305.0" y="1068.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="chunks">复用预编译子图</text>
+<rect id="split" x="700" y="930" width="430" height="180" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="915.0" y="992.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="split">张量 / 块级分配</text>
+<text x="915.0" y="1030.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="split">识别离群值与硬件适配</text>
+<text x="915.0" y="1068.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="split">按依赖安排执行</text>
+<rect id="npu" x="1390" y="900" width="400" height="100" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1590.0" y="941.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="npu">NPU 主计算</text>
+<text x="1590.0" y="979.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="npu">适配的整数运算</text>
+<rect id="cpu-gpu" x="1390" y="1070" width="400" height="100" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1590.0" y="1111.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="cpu-gpu">CPU / GPU</text>
+<text x="1590.0" y="1149.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="cpu-gpu">离群值与其他必要工作</text>
+<rect id="merge" x="1980" y="980" width="300" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="2"/>
+<text x="2130.0" y="1041.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="merge">同步与合并</text>
+<text x="2130.0" y="1079.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="merge">交给后续计算</text>
+<polyline id="chunk-schedule" points="510,1020 700,1020" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="605" y="996" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#765489" data-owner="">调度</text>
+<polyline id="offload" points="1130,975 1260,975 1260,950 1390,950" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<polyline id="shadow" points="1130,1065 1210,1065 1210,1120 1390,1120" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<polyline id="partial-npu" points="1790,950 1890,950 1890,1010 1980,1010" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<polyline id="partial-cpu" points="1790,1120 1900,1120 1900,1090 1980,1090" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="1200" y="1258" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="">紫：调用 / 调度    蓝灰：token / 结果    绿：KV 数据    虚线区：特定论文机制</text>
+<text x="1200" y="1310" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">本工程没有已确认的 GPU 路径；Ara 能否承担相关算子，需要另行适配与验证。</text>
+</svg>

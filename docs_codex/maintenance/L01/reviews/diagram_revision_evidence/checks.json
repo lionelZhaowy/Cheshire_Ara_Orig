@@ -1,0 +1,91 @@
+{
+  "status": "pass",
+  "date": "2026-10-17",
+  "task": "L01",
+  "input_head": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8",
+  "changed_documents": {
+    "AGENTS.md": "7b28fe923ccd0fad5e4b8135f5cbc4d21a65c8bd2501d5a776240f62353f6fa8",
+    "docs_codex/AGENT_DOCUMENTATION_GUIDE.md": "cade629af4de44a7c9ee9016f9695033caf48e0617599b379eb3a8855a27ea5d",
+    "docs_codex/handoffs/L01_global_buffer_cpu_access.md": "d3dfa07395e03dfcbd85ae3c3d39c4c4b16cc44303c1432961dc4221a89b1f16"
+  },
+  "change_ranges": {
+    "AGENTS.md": [
+      {
+        "kind": "insert",
+        "before_line": 13,
+        "after_line": 13,
+        "removed": 0,
+        "added": 1
+      },
+      {
+        "kind": "insert",
+        "before_line": 37,
+        "after_line": 38,
+        "removed": 0,
+        "added": 9
+      }
+    ],
+    "docs_codex/AGENT_DOCUMENTATION_GUIDE.md": [
+      {
+        "kind": "replace",
+        "before_line": 3,
+        "after_line": 3,
+        "removed": 1,
+        "added": 1
+      },
+      {
+        "kind": "insert",
+        "before_line": 24,
+        "after_line": 24,
+        "removed": 0,
+        "added": 1
+      },
+      {
+        "kind": "insert",
+        "before_line": 75,
+        "after_line": 76,
+        "removed": 0,
+        "added": 41
+      }
+    ],
+    "docs_codex/handoffs/L01_global_buffer_cpu_access.md": [
+      {
+        "kind": "insert",
+        "before_line": 7,
+        "after_line": 7,
+        "removed": 0,
+        "added": 1
+      },
+      {
+        "kind": "insert",
+        "before_line": 18,
+        "after_line": 19,
+        "removed": 0,
+        "added": 12
+      }
+    ]
+  },
+  "original_content_preserved": "only additions, except guide update-date sentence",
+  "protected_file_count": 486,
+  "protected_files_unchanged": true,
+  "preexisting_shared_document_edits_preserved": true,
+  "input_backups_unchanged": true,
+  "local_links_checked": 69,
+  "new_explicit_anchor_links": [
+    [
+      "AGENTS.md",
+      "docs_codex/AGENT_DOCUMENTATION_GUIDE.md#diagram-revision"
+    ],
+    [
+      "docs_codex/AGENT_DOCUMENTATION_GUIDE.md",
+      "#diagram-revision"
+    ],
+    [
+      "docs_codex/handoffs/L01_global_buffer_cpu_access.md",
+      "../AGENT_DOCUMENTATION_GUIDE.md#diagram-revision"
+    ]
+  ],
+  "missing_links": [],
+  "scope": "documentation rules and existing L01 handoff only",
+  "diagram_or_hardware_validation_rerun": false
+}

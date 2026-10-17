@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<title>GB 数据写入 DDR：先协调，再发布新版本</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="1920" height="1080" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">GB 数据写入 DDR：先协调，再发布新版本</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">完整覆盖与部分更新都需处理在途冲突、失效确认及任务完成；下图为逻辑阶段</text>
+<rect id="full-panel" x="40" y="150" width="1840" height="350" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="65" y="194" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="700" text-anchor="start" fill="#29292D">A  完整覆盖所有相关一致性粒度</text>
+<rect id="full-0" x="60" y="235" width="300" height="150" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="210.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="full-0">GB 数据（经代理）</text>
+<text x="210.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-0">全行备妥</text>
+<text x="210.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-0">全部字节有效</text>
+<rect id="full-1" x="430" y="235" width="300" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="580.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="full-1">目标行协调</text>
+<text x="580.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-1">排序在途访问</text>
+<text x="580.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-1">取得本次写权限</text>
+<rect id="full-2" x="800" y="235" width="300" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="950.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="full-2">L1D / LLC</text>
+<text x="950.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-2">失效并确认</text>
+<text x="950.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-2">完整覆盖可省回写</text>
+<rect id="full-3" x="1170" y="235" width="300" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1320.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="full-3">DDR 写入</text>
+<text x="1320.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-3">写入完整新行</text>
+<text x="1320.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-3">保持约定访问次序</text>
+<rect id="full-4" x="1540" y="235" width="300" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1690.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="full-4">完成 / 释放</text>
+<text x="1690.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-4">达到约定可见点</text>
+<text x="1690.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="full-4">再发布任务状态</text>
+<polyline id="full-flow-0" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="360,310 430,310"/>
+<polyline id="full-flow-1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="730,310 800,310"/>
+<polyline id="full-flow-2" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1100,310 1170,310"/>
+<polyline id="full-flow-3" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1470,310 1540,310"/>
+<text x="70" y="443" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#29292D">“完整”按实际缓存粒度判断：满 WSTRB 的一个 beat，可能仍只覆盖缓存行的一部分。</text>
+<rect id="partial-panel" x="40" y="545" width="1840" height="435" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="65" y="589" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="700" text-anchor="start" fill="#29292D">B  部分行更新：先保护未覆盖字节的最新值</text>
+<rect id="part-0" x="60" y="630" width="300" height="150" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="210.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="part-0">GB 数据（经代理）</text>
+<text x="210.0" y="716.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-0">地址 / 长度</text>
+<text x="210.0" y="751.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-0">字节有效掩码</text>
+<rect id="part-1" x="430" y="630" width="300" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="580.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="part-1">目标行协调</text>
+<text x="580.0" y="716.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-1">安排冲突访问次序</text>
+<text x="580.0" y="751.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-1">协调回填 / 替换</text>
+<rect id="part-2" x="800" y="630" width="300" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="950.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="part-2">L1D / LLC</text>
+<text x="950.0" y="716.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-2">clean 或取数暂存</text>
+<text x="950.0" y="751.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-2">失效旧副本并确认</text>
+<rect id="part-3" x="1170" y="630" width="300" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1320.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="part-3">DDR 更新</text>
+<text x="1320.0" y="716.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-3">按 WSTRB 更新</text>
+<text x="1320.0" y="751.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-3">或写入已合并新行</text>
+<rect id="part-4" x="1540" y="630" width="300" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1690.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="part-4">完成 / 释放</text>
+<text x="1690.0" y="716.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-4">等待写入与确认</text>
+<text x="1690.0" y="751.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="part-4">再发布任务状态</text>
+<polyline id="part-flow-0" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="360,705 430,705"/>
+<polyline id="part-flow-1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="730,705 800,705"/>
+<polyline id="part-flow-2" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1100,705 1170,705"/>
+<polyline id="part-flow-3" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1470,705 1540,705"/>
+<text x="75" y="850" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#29292D">最新旧行</text>
+<rect id="old-0" x="225" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="264.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="old-0">A</text>
+<rect id="old-1" x="310" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="349.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="old-1">B</text>
+<rect id="old-2" x="395" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="434.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="old-2">C</text>
+<rect id="old-3" x="480" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="519.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="old-3">D</text>
+<text x="610" y="850" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#187C78">+ GB 仅更新第二段 X</text>
+<polyline id="merge-example" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="910,840 1080,840"/>
+<rect id="new-0" x="1120" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1159.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="new-0">A</text>
+<rect id="new-1" x="1205" y="805" width="78" height="70" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1244.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="new-1">X</text>
+<rect id="new-2" x="1290" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1329.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="new-2">C</text>
+<rect id="new-3" x="1375" y="805" width="78" height="70" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1414.0" y="850.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="new-3">D</text>
+<text x="1515" y="850" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#29292D">保留 A / C / D</text>
+<text x="70" y="934" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#29292D">出错时记录部分完成范围，暂停复用缓冲；排空迟到事务或受控复位后恢复。</text>
+<text x="55" y="1030" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#29292D">需要整帧一致视图时，用版本、所有权或双缓冲组织跨行数据交接。</text>
+</svg>

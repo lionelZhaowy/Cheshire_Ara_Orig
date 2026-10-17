@@ -1,0 +1,429 @@
+{
+  "date": "2026-10-14",
+  "status": "pass",
+  "head": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8",
+  "scope": "industrial diagram and comparison page only",
+  "canvas": [
+    2880,
+    1620
+  ],
+  "aspect_ratio": "16:9",
+  "component_groups": 34,
+  "arrows": 41,
+  "same_endpoint_relationships": [
+    {
+      "id": "host_build",
+      "same_source_and_destination": true,
+      "source": [
+        "make"
+      ],
+      "destination": [
+        "compile"
+      ]
+    },
+    {
+      "id": "link_elf",
+      "same_source_and_destination": true,
+      "source": [
+        "compile"
+      ],
+      "destination": [
+        "apps"
+      ]
+    },
+    {
+      "id": "elf_inspect",
+      "same_source_and_destination": true,
+      "source": [
+        "compile"
+      ],
+      "destination": [
+        "inspect"
+      ]
+    },
+    {
+      "id": "headers",
+      "same_source_and_destination": true,
+      "source": [
+        "gen"
+      ],
+      "destination": [
+        "base"
+      ]
+    },
+    {
+      "id": "load",
+      "same_source_and_destination": true,
+      "source": [
+        "debug"
+      ],
+      "destination": [
+        "peripherals"
+      ]
+    },
+    {
+      "id": "use_printf",
+      "same_source_and_destination": true,
+      "source": [
+        "apps"
+      ],
+      "destination": [
+        "printf"
+      ]
+    },
+    {
+      "id": "use_gpt",
+      "same_source_and_destination": true,
+      "source": [
+        "apps"
+      ],
+      "destination": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "direct_event",
+      "same_source_and_destination": true,
+      "source": [
+        "apps"
+      ],
+      "destination": [
+        "event"
+      ]
+    },
+    {
+      "id": "direct_memory",
+      "same_source_and_destination": true,
+      "source": [
+        "apps"
+      ],
+      "destination": [
+        "memory"
+      ]
+    },
+    {
+      "id": "debug_protocol",
+      "same_source_and_destination": true,
+      "source": [
+        "apps"
+      ],
+      "destination": [
+        "uart_debug"
+      ]
+    },
+    {
+      "id": "printf_callback",
+      "same_source_and_destination": true,
+      "source": [
+        "printf"
+      ],
+      "destination": [
+        "uart"
+      ]
+    },
+    {
+      "id": "debug_uart",
+      "same_source_and_destination": true,
+      "source": [
+        "uart_debug"
+      ],
+      "destination": [
+        "uart"
+      ]
+    },
+    {
+      "id": "gpt_read",
+      "same_source_and_destination": true,
+      "source": [
+        "gpt"
+      ],
+      "destination": [
+        "media"
+      ]
+    },
+    {
+      "id": "hal_dif",
+      "same_source_and_destination": true,
+      "source": [
+        "media"
+      ],
+      "destination": [
+        "spi_i2c"
+      ]
+    },
+    {
+      "id": "regs_560",
+      "same_source_and_destination": true,
+      "source": [
+        "uart"
+      ],
+      "destination": [
+        "base"
+      ]
+    },
+    {
+      "id": "regs_850",
+      "same_source_and_destination": true,
+      "source": [
+        "spi_i2c"
+      ],
+      "destination": [
+        "base"
+      ]
+    },
+    {
+      "id": "regs_1140",
+      "same_source_and_destination": true,
+      "source": [
+        "event"
+      ],
+      "destination": [
+        "base"
+      ]
+    },
+    {
+      "id": "regs_1430",
+      "same_source_and_destination": true,
+      "source": [
+        "memory"
+      ],
+      "destination": [
+        "base"
+      ]
+    },
+    {
+      "id": "vector_helpers",
+      "same_source_and_destination": true,
+      "source": [
+        "vector_apps"
+      ],
+      "destination": [
+        "vector_util"
+      ]
+    },
+    {
+      "id": "vector_kernel",
+      "same_source_and_destination": true,
+      "source": [
+        "vector_util"
+      ],
+      "destination": [
+        "rvv"
+      ]
+    },
+    {
+      "id": "rvv_execute",
+      "same_source_and_destination": true,
+      "source": [
+        "rvv"
+      ],
+      "destination": [
+        "isa_contract"
+      ]
+    },
+    {
+      "id": "csr_use",
+      "same_source_and_destination": true,
+      "source": [
+        "rvv"
+      ],
+      "destination": [
+        "csr"
+      ]
+    },
+    {
+      "id": "csr_execute",
+      "same_source_and_destination": true,
+      "source": [
+        "csr"
+      ],
+      "destination": [
+        "isa_contract"
+      ]
+    },
+    {
+      "id": "mmio_access",
+      "same_source_and_destination": true,
+      "source": [
+        "base"
+      ],
+      "destination": [
+        "mmio_contract"
+      ]
+    },
+    {
+      "id": "bus_transaction",
+      "same_source_and_destination": true,
+      "source": [
+        "mmio_contract"
+      ],
+      "destination": [
+        "peripherals"
+      ]
+    },
+    {
+      "id": "core_instruction",
+      "same_source_and_destination": true,
+      "source": [
+        "isa_contract"
+      ],
+      "destination": [
+        "core"
+      ]
+    },
+    {
+      "id": "rom_crt",
+      "same_source_and_destination": true,
+      "source": [
+        "rom"
+      ],
+      "destination": [
+        "crt"
+      ]
+    },
+    {
+      "id": "crt_main",
+      "same_source_and_destination": true,
+      "source": [
+        "crt"
+      ],
+      "destination": [
+        "apps"
+      ]
+    },
+    {
+      "id": "rom_zsl",
+      "same_source_and_destination": true,
+      "source": [
+        "rom"
+      ],
+      "destination": [
+        "zsl"
+      ]
+    },
+    {
+      "id": "zsl_firmware",
+      "same_source_and_destination": true,
+      "source": [
+        "zsl"
+      ],
+      "destination": [
+        "opensbi"
+      ]
+    },
+    {
+      "id": "sdk_build",
+      "same_source_and_destination": true,
+      "source": [
+        "sdk"
+      ],
+      "destination": [
+        "userspace"
+      ]
+    },
+    {
+      "id": "syscall",
+      "same_source_and_destination": true,
+      "source": [
+        "userspace"
+      ],
+      "destination": [
+        "linux"
+      ]
+    },
+    {
+      "id": "sbi",
+      "same_source_and_destination": true,
+      "source": [
+        "linux"
+      ],
+      "destination": [
+        "opensbi"
+      ]
+    },
+    {
+      "id": "payload",
+      "same_source_and_destination": true,
+      "source": [
+        "opensbi"
+      ],
+      "destination": [
+        "uboot"
+      ]
+    },
+    {
+      "id": "boot_linux",
+      "same_source_and_destination": true,
+      "source": [
+        "uboot"
+      ],
+      "destination": [
+        "linux"
+      ]
+    },
+    {
+      "id": "legend_call",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    },
+    {
+      "id": "legend_host",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    },
+    {
+      "id": "legend_device",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    },
+    {
+      "id": "legend_isa",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    },
+    {
+      "id": "legend_start",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    },
+    {
+      "id": "legend_os",
+      "same_source_and_destination": true,
+      "source": [],
+      "destination": []
+    }
+  ],
+  "all_old_artifacts_and_chapter_inputs_unchanged": true,
+  "unchanged_source_references": 157,
+  "local_links_checked": 23,
+  "browser_status": "pass",
+  "visual_review": "Author inspected final 1920x1080 diagram and desktop/mobile comparison previews; no clipping or text/line overlap",
+  "pptx_native_structure": {
+    "objects": 243,
+    "text_objects": 163,
+    "omitted_canvas_background_ids": [
+      "rect-001"
+    ],
+    "slide_background_color": null,
+    "min_text_pt": 8.0,
+    "native_arrow_objects": 41,
+    "native_dashed_objects": 2
+  },
+  "pptx_whole_image_media": false,
+  "office_application_tested": false,
+  "software_build_or_target_run": false,
+  "artifacts": {
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/software-stack-industrial.svg": "9b3e3f6cda3cdae7442decceaf9c1d183144c99ea421a7fe4c8edff59b958d9d",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/software-stack-industrial.png": "6c53e655cba35f5b73a4208f6955e70e4e4c3d436eb10e067e6d464eaee2c5e2",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/export/diagrams.pptx": "52bd12bb00856668e419a3a97f13af3ffed326a596dd140f755cdc8c615a1dfb",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/index.html": "51d7c4749558a9d6d4b342eb144206683aa325965c01d44732f5400b0eae29d8",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/build_figure.py": "0ca089508f28e2d8f9fb384cd3ab4678ffc18ff26187f98731090f6c9a827ef0",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/preview.py": "7142decce930aaa29895f2dc18aedbb55fac1e9f72113391e67775f1f03189ed",
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/validate.py": "c54b4b215b58f85dcc47b1d3c829e282a1add42de5bb546bb11313f346a96f37"
+  }
+}

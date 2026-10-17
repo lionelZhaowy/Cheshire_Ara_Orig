@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025" viewBox="0 0 3600 2025">
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<line id="filter-width-direct" x1="606.25197" y1="541.13996" x2="826.25197" y2="541.13996" stroke="#314D66" stroke-width="7.68" fill="none" marker-end="url(#data)"/>
+<path id="xbar-shared-gb" d="M 1040 878.13996 L 1040 615 L 1391.25197 615" fill="none" stroke="#187C78" stroke-width="7.68" stroke-linejoin="miter" marker-end="url(#gb)"/>
+<rect id="gb-target-port" x="985" y="878.13996" width="110" height="29" fill="#D9EEE8" stroke="#187C78" stroke-width="4.8"/>
+<text id="gb-target-label" x="1040" y="900.13996" font-family="Microsoft YaHei" font-size="24" font-weight="bold" text-anchor="middle" fill="#187C78">M_GB</text>
+<text id="shared-gb-label" x="1220" y="568" font-family="Microsoft YaHei" font-size="30" text-anchor="middle" fill="#187C78">CPU / Ara 共享出口</text>
+<text id="shared-gb-width" x="1220" y="604" font-family="Microsoft YaHei" font-size="28" text-anchor="middle" fill="#187C78">AXI64 → GB 适配</text>
+</svg>

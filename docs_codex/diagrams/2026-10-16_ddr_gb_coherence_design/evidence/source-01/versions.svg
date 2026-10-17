@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>缺少同步时，同一地址会出现不同数据版本</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">缺少同步时，同一地址会出现不同数据版本</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">三个独立场景：输入过期、输出旧副本、迟到脏写回。数值表示所示时刻的状态。</text>
+<rect id="panel0" x="35" y="145" width="2330" height="320" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="192" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">① 输入：CPU 写 x = 2，设备却搬到 x = 1</text>
+<rect id="r0b0" x="60" y="235" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b0">CPU / L1D</text>
+<text x="260.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b0">命中副本 x = 2</text>
+<text x="260.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b0">CPU 已执行 store</text>
+<rect id="r0b1" x="525" y="235" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b1">写缓冲</text>
+<text x="725.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b1">待推进 x = 2</text>
+<text x="725.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b1">下层尚未收到</text>
+<rect id="r0b2" x="990" y="235" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b2">WB LLC</text>
+<text x="1190.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b2">当前仍为 x = 1</text>
+<text x="1190.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b2">收到新写后可持脏值 2</text>
+<rect id="r0b3" x="1455" y="235" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b3">DDR</text>
+<text x="1655.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b3">x = 1</text>
+<text x="1655.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b3">设备可见的旧输入</text>
+<rect id="r0b4" x="1920" y="235" width="400" height="150" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="286.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b4">GB</text>
+<text x="2120.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b4">搬入 x = 1</text>
+<text x="2120.0" y="356.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b4">NPU 使用了旧输入</text>
+<text x="60" y="432" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">写缓冲排空之后，新值还可能只到达 WB LLC；输入 clean 继续把它推进 DDR。</text>
+<rect id="panel1" x="35" y="510" width="2330" height="320" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="557" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">② 输出：设备已写 y = 9，CPU 仍命中 y = 0</text>
+<rect id="r1b0" x="60" y="600" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="651.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b0">CPU / L1D</text>
+<text x="260.0" y="686.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b0">缓存副本 y = 0</text>
+<text x="260.0" y="721.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b0">CPU 读取命中旧值</text>
+<rect id="r1b1" x="525" y="600" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="651.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b1">写缓冲</text>
+<text x="725.0" y="686.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b1">没有待完成写</text>
+<text x="725.0" y="721.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b1">仍有过期的读副本</text>
+<rect id="r1b2" x="990" y="600" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="651.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b2">LLC</text>
+<text x="1190.0" y="686.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b2">干净旧副本 y = 0</text>
+<text x="1190.0" y="721.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b2">下次回填也可能取旧值</text>
+<rect id="r1b3" x="1455" y="600" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="651.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b3">DDR</text>
+<text x="1655.0" y="686.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b3">y = 9</text>
+<text x="1655.0" y="721.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b3">已收到设备结果</text>
+<rect id="r1b4" x="1920" y="600" width="400" height="150" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="651.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b4">GB</text>
+<text x="2120.0" y="686.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b4">结果 y = 9</text>
+<text x="2120.0" y="721.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b4">设备向 DDR 搬出</text>
+<text x="60" y="797" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">输出交还 CPU 前，对 L1D 与 LLC 执行失效，并协调此前尚未完成的旧回填。</text>
+<rect id="panel2" x="35" y="875" width="2330" height="320" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="922" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">③ 输出：设备先写 y = 9，LLC 的旧脏行随后覆盖它</text>
+<rect id="r2b0" x="60" y="965" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="1016.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b0">CPU / L1D</text>
+<text x="260.0" y="1051.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b0">先前写过 y = 3</text>
+<text x="260.0" y="1086.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b0">此时 CPU 已停止访问</text>
+<rect id="r2b1" x="525" y="965" width="400" height="150" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="1016.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b1">写缓冲</text>
+<text x="725.0" y="1051.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b1">先前的写已推进</text>
+<text x="725.0" y="1086.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b1">LLC 尚有脏数据</text>
+<rect id="r2b2" x="990" y="965" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="1016.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b2">WB LLC</text>
+<text x="1190.0" y="1051.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b2">旧脏副本 y = 3</text>
+<text x="1190.0" y="1086.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b2">稍后替换并写回</text>
+<rect id="r2b3" x="1455" y="965" width="400" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="1016.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b3">DDR</text>
+<text x="1655.0" y="1051.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b3">y = 9 → y = 3</text>
+<text x="1655.0" y="1086.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b3">设备结果被覆盖</text>
+<rect id="r2b4" x="1920" y="965" width="400" height="150" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="1016.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b4">GB</text>
+<text x="2120.0" y="1051.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b4">结果 y = 9</text>
+<text x="2120.0" y="1086.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b4">此前已完成搬出</text>
+<text x="60" y="1162" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">输出写入前先排空旧写、clean + invalidate；写入后再失效旧读副本。</text>
+<polyline id="cpu-store" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" points="460,310 525,310"/>
+<polyline id="pending-store" fill="none" stroke="#314D66" stroke-width="2.8" stroke-dasharray="7 5" stroke-linejoin="miter" marker-end="url(#data)" points="925,310 990,310"/>
+<polyline id="stale-input" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1855,310 1920,310"/>
+<polyline id="output-write" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1920,675 1855,675"/>
+<polyline id="late-old-write" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" points="1390,1040 1455,1040"/>
+<polyline id="earlier-device-write" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1920,1040 1855,1040"/>
+<text x="60" y="1260" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">蓝色：CPU / 缓存写入    绿色：设备搬运（经过共享数据代理）    虚线：待完成写入</text>
+<text x="60" y="1310" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">三个场景共同指向：输入先清理到 DDR，输出写前保护旧数据、写后清除旧副本。</text>
+</svg>

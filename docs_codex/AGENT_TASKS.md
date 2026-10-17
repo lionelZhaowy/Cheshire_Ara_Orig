@@ -14,7 +14,9 @@
 | M01 DDR 旁路与存储一致性 | M01-D文档完成；工程未实施 | [IP/DDR接口契约](engineering/IP_DDR_Interface_Contract.md)、输入责任与验证矩阵 | 待供应商/I01真实接口及E01基线；top/config/address map修改须另行授权并协调 |
 | I01 LVDS、ISP 与 NPU 集成 | 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
 | P01 ASIC 工艺与实现准备 | P01文档盘点完成；工艺适配未实施 | [ASIC适配与证据手册](engineering/ASIC_Adaptation_and_Evidence.md)、资源语义与资料责任 | 实际宏/PLL/PAD/DFT/时序签核等待工艺/IP输入和工程授权 |
-| L01 学习与源码问答 | 文档交付与整理完成（2026-10-13）；工程验证缺口保留 | [教材](learning/index.html)、[21篇RTL模块指南](rtl_modules/README.md)、[RTL指南交接](handoffs/L01_rtl_module_guide.md)、[组织交接](handoffs/L01_documentation_organization.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
+| L01 学习与源码问答 | 教材整理完成；DDR–GB 评审答疑与文档修订完成（2026-10-16），工程未实施 | [教材](learning/index.html)、[21篇RTL模块指南](rtl_modules/README.md)、[RTL指南交接](handoffs/L01_rtl_module_guide.md)、[组织交接](handoffs/L01_documentation_organization.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
+
+2026-10-16 L01：DDR–GB 独立评审已由用户转交并完成文档处理，见[主题交接](handoffs/L01_cache_coherence_architecture.md)、[评审 Q&A](maintenance/L01/reviews/ddr_gb_coherence_review_qa.md)及[供应商会议问题](engineering/DDR_Supplier_Coherence_Questions.md)。供应商会议问题已对照 Datasheet V2.1 更新，区分手册已知能力和跨口／错误／恢复未决项。维护窗口／握手列为用户确认的实现要求；本轮仅修改 Markdown，接口与恢复硬件尚未实施。
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
 

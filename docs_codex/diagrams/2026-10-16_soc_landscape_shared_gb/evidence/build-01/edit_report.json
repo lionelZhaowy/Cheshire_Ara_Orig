@@ -1,0 +1,64 @@
+{
+  "input": "docs_codex/diagrams/soc_landscape.pptx",
+  "input_sha256": "ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b",
+  "output_sha256": "93d5a828aea7411abf1300591f8957feb2a0d1c6375e21c4e876094720af1da6",
+  "removed_shape_ids": [
+    793,
+    794,
+    795,
+    800,
+    801,
+    827,
+    828
+  ],
+  "changed_shape_ids": [
+    778,
+    787,
+    797,
+    798,
+    816,
+    883,
+    886,
+    947
+  ],
+  "new_objects": [
+    {
+      "id": "1200",
+      "name": "filter-width-direct"
+    },
+    {
+      "id": "1201",
+      "name": "xbar-shared-gb"
+    },
+    {
+      "id": "1202",
+      "name": "gb-target-port"
+    },
+    {
+      "id": "1203",
+      "name": "gb-target-label: M_GB"
+    },
+    {
+      "id": "1204",
+      "name": "shared-gb-label: CPU / Ara 共享出口"
+    },
+    {
+      "id": "1205",
+      "name": "shared-gb-width: AXI64 → GB 适配"
+    }
+  ],
+  "changed_existing_package_parts": [
+    "ppt/presentation.xml",
+    "ppt/_rels/presentation.xml.rels",
+    "[Content_Types].xml",
+    "docProps/app.xml"
+  ],
+  "new_package_parts": [
+    "ppt/slides/slide2.xml",
+    "ppt/slides/_rels/slide2.xml.rels",
+    "ppt/notesSlides/notesSlide2.xml",
+    "ppt/notesSlides/_rels/notesSlide2.xml.rels"
+  ],
+  "original_slide_xml_unchanged": true,
+  "office_application_tested": false
+}

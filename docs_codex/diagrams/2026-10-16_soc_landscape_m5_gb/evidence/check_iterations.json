@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-16",
+  "iterations": [
+    {"step": "build-01", "exit_code": 0, "result": "Generated the corrected two-page native deck from the previous two-page deck."},
+    {"step": "preview-01", "exit_code": 0, "result": "Rendered both pages and two detail crops; inspected M4-M5-M_EXT, the shared GB route and original page."},
+    {"step": "validation first attempt", "exit_code": 1, "result": "Port-label checker mixed the main Crossbar S0/S1/S2 with the independent DDR Controller port labels."},
+    {"step": "validation second attempt", "exit_code": 1, "result": "Filtering by vertical region alone still included DDR S1/S2 route labels outside the Crossbar's right edge."},
+    {"step": "validation final attempt", "exit_code": 0, "result": "Scoped port-label inspection to the main Crossbar boundary. All acceptance checks pass. Deck content was unchanged during these checker corrections."}
+  ],
+  "office_application_tested": false,
+  "hardware_tested": false
+}

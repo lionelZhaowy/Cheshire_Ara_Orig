@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>Deeploy / Siracusa：编译安排计算与显式搬运</title>
+<defs>
+<marker id="marker-control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="marker-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="marker-local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="marker-artifact" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+</defs>
+<rect id="page" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="1200" y="68" font-family="WenQuanYi Zen Hei" font-size="42" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">Deeploy / Siracusa：编译安排计算与显式搬运</text>
+<text x="1200" y="117" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">依据论文的部署机制归纳；图中 L1 / L2 为软件管理的片上存储，不是 CVA6 缓存</text>
+<rect id="host" x="50" y="175" width="2300" height="235" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="80" y="215" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">开发主机</text>
+<rect id="onnx" x="100" y="250" width="440" height="110" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="320.0" y="296.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="onnx">量化 ONNX</text>
+<text x="320.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="onnx">模型 / 形状 / 数据类型</text>
+<rect id="planner" x="760" y="250" width="810" height="110" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1165.0" y="296.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="planner">Deeploy 编译</text>
+<text x="1165.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="planner">算子映射 / 分块约束 / 静态内存规划</text>
+<rect id="code" x="1790" y="250" width="460" height="110" fill="#F5E1C9" stroke="#29292D" stroke-width="2"/>
+<text x="2020.0" y="296.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="code">生成 C 代码</text>
+<text x="2020.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="code">算子调用 / DMA / 同步</text>
+<polyline id="parse" points="540,305 760,305" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<polyline id="generate" points="1570,305 1790,305" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<rect id="chip" x="50" y="515" width="2300" height="690" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="80" y="555" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">Siracusa：主控与异构计算集群</text>
+<rect id="controller" x="100" y="620" width="390" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="295.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="controller">主控核</text>
+<text x="295.0" y="719.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="controller">启动计算集群 / 应用控制</text>
+<rect id="cluster" x="780" y="620" width="540" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1050.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="cluster">8 核 RISC-V 集群</text>
+<text x="1050.0" y="719.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="cluster">执行 CPU kernels / 管理分块</text>
+<rect id="npu" x="1740" y="620" width="510" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1995.0" y="681.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="npu">N-Eureka NPU</text>
+<text x="1995.0" y="719.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="npu">常量权重线性层 → 1×1 卷积</text>
+<polyline id="deploy" points="2020,360 2020,460 680,460 680,590 295,590 295,620" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<text x="1170" y="440" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#B96043" data-owner="">交叉编译与加载到目标程序</text>
+<polyline id="launch" points="490,690 780,690" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="635" y="667" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#765489" data-owner="">任务派发</text>
+<polyline id="configure" points="1320,690 1740,690" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="1530" y="666" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#765489" data-owner="">配置 / 等待 / 同步</text>
+<rect id="arbiter" x="900" y="865" width="1020" height="80" fill="#F5E1C9" stroke="#29292D" stroke-width="2"/>
+<text x="1410.0" y="915.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="arbiter">TCDM 访问互连 / 仲裁</text>
+<polyline id="core-access" points="1070,760 1070,865" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)" marker-start="url(#marker-local)"/>
+<text x="1090" y="819" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#187C78" data-owner="">CPU 读写</text>
+<polyline id="npu-access" points="1840,760 1840,865" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)" marker-start="url(#marker-local)"/>
+<text x="1820" y="819" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="end" fill="#187C78" data-owner="">NPU 激活读写</text>
+<rect id="l2" x="100" y="1035" width="390" height="125" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="295.0" y="1088.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="l2">L2 片上存储</text>
+<text x="295.0" y="1126.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="l2">输入 / 激活 / KV / 其他权重</text>
+<rect id="dma" x="640" y="1035" width="300" height="125" fill="#F5E1C9" stroke="#29292D" stroke-width="2"/>
+<text x="790.0" y="1088.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="dma">集群 DMA</text>
+<text x="790.0" y="1126.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="dma">L2 ↔ L1 分块</text>
+<rect id="l1" x="1110" y="1035" width="600" height="125" fill="#D9EEE8" stroke="#29292D" stroke-width="2"/>
+<text x="1410.0" y="1088.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="l1">L1 TCDM</text>
+<text x="1410.0" y="1126.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="l1">CPU 与 NPU 共享的数据块</text>
+<rect id="nms" x="1900" y="1035" width="350" height="125" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="2075.0" y="1088.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nms">NMS 权重存储</text>
+<text x="2075.0" y="1126.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nms">SRAM / MRAM</text>
+<polyline id="l2-dma" points="490,1098 640,1098" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)" marker-start="url(#marker-data)"/>
+<text x="565" y="1075" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">AXI</text>
+<polyline id="dma-l1" points="940,1098 1020,1098 1020,945" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)" marker-start="url(#marker-local)"/>
+<polyline id="tcdm" points="1410,945 1410,1035" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-local)" marker-start="url(#marker-local)"/>
+<text x="1430" y="998" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#187C78" data-owner="">访问 bank</text>
+<polyline id="weights" points="2090,1035 2090,760" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="2110" y="930" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">专用供权重</text>
+<polyline id="dma-control" points="860,760 860,825 790,825 790,1035" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="770" y="930" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="end" fill="#765489" data-owner="">搬运控制</text>
+<text x="1200" y="1255" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="">紫：控制与同步    蓝灰：主存 / 权重数据    绿：共享 TCDM 数据    棕：编译产物</text>
+<text x="1200" y="1310" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">静态权重映射到 NPU；其他算子由集群执行。数据驻留、分块和搬运由部署方案共同决定。</text>
+</svg>

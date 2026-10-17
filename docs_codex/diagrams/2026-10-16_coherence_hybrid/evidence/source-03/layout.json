@@ -1,0 +1,3298 @@
+[
+  {
+    "name": "system",
+    "canvas": [
+      2800.0,
+      1575.0
+    ],
+    "boxes": {
+      "cpu-domain": {
+        "x": 60,
+        "y": 200,
+        "width": 840,
+        "height": 430
+      },
+      "cpu": {
+        "x": 90,
+        "y": 290,
+        "width": 220,
+        "height": 135
+      },
+      "ara": {
+        "x": 400,
+        "y": 290,
+        "width": 465,
+        "height": 110
+      },
+      "filter": {
+        "x": 400,
+        "y": 455,
+        "width": 125,
+        "height": 100
+      },
+      "split": {
+        "x": 550,
+        "y": 455,
+        "width": 125,
+        "height": 100
+      },
+      "width": {
+        "x": 700,
+        "y": 455,
+        "width": 165,
+        "height": 100
+      },
+      "gb-domain": {
+        "x": 930,
+        "y": 200,
+        "width": 900,
+        "height": 430
+      },
+      "npu": {
+        "x": 960,
+        "y": 305,
+        "width": 220,
+        "height": 140
+      },
+      "router": {
+        "x": 1215,
+        "y": 305,
+        "width": 250,
+        "height": 140
+      },
+      "gb": {
+        "x": 1500,
+        "y": 305,
+        "width": 290,
+        "height": 140
+      },
+      "mover": {
+        "x": 1500,
+        "y": 495,
+        "width": 290,
+        "height": 100
+      },
+      "image-domain": {
+        "x": 1860,
+        "y": 200,
+        "width": 880,
+        "height": 430
+      },
+      "lvds": {
+        "x": 1895,
+        "y": 370,
+        "width": 140,
+        "height": 125
+      },
+      "cdc": {
+        "x": 2055,
+        "y": 370,
+        "width": 140,
+        "height": 125
+      },
+      "isp": {
+        "x": 2215,
+        "y": 370,
+        "width": 140,
+        "height": 125
+      },
+      "select": {
+        "x": 2375,
+        "y": 370,
+        "width": 140,
+        "height": 125
+      },
+      "frame": {
+        "x": 2535,
+        "y": 370,
+        "width": 160,
+        "height": 125
+      },
+      "xbar": {
+        "x": 70,
+        "y": 800,
+        "width": 1260,
+        "height": 120
+      },
+      "atomics": {
+        "x": 400,
+        "y": 1050,
+        "width": 260,
+        "height": 135
+      },
+      "llc": {
+        "x": 780,
+        "y": 1050,
+        "width": 290,
+        "height": 135
+      },
+      "ddr": {
+        "x": 1400,
+        "y": 800,
+        "width": 1050,
+        "height": 535
+      },
+      "ddr-port0": {
+        "x": 1460,
+        "y": 930,
+        "width": 160,
+        "height": 100
+      },
+      "ddr-port1": {
+        "x": 1850,
+        "y": 930,
+        "width": 160,
+        "height": 100
+      },
+      "ddr-port2": {
+        "x": 2240,
+        "y": 930,
+        "width": 160,
+        "height": 100
+      },
+      "qos": {
+        "x": 1460,
+        "y": 1140,
+        "width": 310,
+        "height": 130
+      },
+      "scheduler": {
+        "x": 1840,
+        "y": 1140,
+        "width": 550,
+        "height": 130
+      },
+      "phy-ddr": {
+        "x": 2500,
+        "y": 1140,
+        "width": 230,
+        "height": 130
+      },
+      "coh-coordinator": {
+        "x": 960,
+        "y": 650,
+        "width": 850,
+        "height": 125
+      }
+    },
+    "arrows": [
+      {
+        "id": "ara-filter",
+        "points": [
+          [
+            462.0,
+            400.0
+          ],
+          [
+            462.0,
+            455.0
+          ]
+        ],
+        "source": "ara",
+        "target": "filter",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "filter-split",
+        "points": [
+          [
+            525.0,
+            505.0
+          ],
+          [
+            550.0,
+            505.0
+          ]
+        ],
+        "source": "filter",
+        "target": "split",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "split-width",
+        "points": [
+          [
+            675.0,
+            505.0
+          ],
+          [
+            700.0,
+            505.0
+          ]
+        ],
+        "source": "split",
+        "target": "width",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "npu-router",
+        "points": [
+          [
+            1180.0,
+            375.0
+          ],
+          [
+            1215.0,
+            375.0
+          ]
+        ],
+        "source": "npu",
+        "target": "router",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "router-gb",
+        "points": [
+          [
+            1465.0,
+            375.0
+          ],
+          [
+            1500.0,
+            375.0
+          ]
+        ],
+        "source": "router",
+        "target": "gb",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "mover-router",
+        "points": [
+          [
+            1500.0,
+            545.0
+          ],
+          [
+            1340.0,
+            545.0
+          ],
+          [
+            1340.0,
+            445.0
+          ]
+        ],
+        "source": "mover",
+        "target": "router",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "ara-gb",
+        "points": [
+          [
+            675.0,
+            475.0
+          ],
+          [
+            686.0,
+            475.0
+          ],
+          [
+            686.0,
+            425.0
+          ],
+          [
+            913.0,
+            425.0
+          ],
+          [
+            913.0,
+            280.0
+          ],
+          [
+            1260.0,
+            280.0
+          ],
+          [
+            1260.0,
+            305.0
+          ]
+        ],
+        "source": "split",
+        "target": "router",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "pixel0",
+        "points": [
+          [
+            2035.0,
+            420.0
+          ],
+          [
+            2055.0,
+            420.0
+          ]
+        ],
+        "source": "lvds",
+        "target": "cdc",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "pixel1",
+        "points": [
+          [
+            2195.0,
+            420.0
+          ],
+          [
+            2215.0,
+            420.0
+          ]
+        ],
+        "source": "cdc",
+        "target": "isp",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "pixel2",
+        "points": [
+          [
+            2355.0,
+            420.0
+          ],
+          [
+            2375.0,
+            420.0
+          ]
+        ],
+        "source": "isp",
+        "target": "select",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "pixel3",
+        "points": [
+          [
+            2515.0,
+            420.0
+          ],
+          [
+            2535.0,
+            420.0
+          ]
+        ],
+        "source": "select",
+        "target": "frame",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "raw",
+        "points": [
+          [
+            2205.0,
+            420.0
+          ],
+          [
+            2205.0,
+            330.0
+          ],
+          [
+            2445.0,
+            330.0
+          ],
+          [
+            2445.0,
+            370.0
+          ]
+        ],
+        "source": "",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "isp-gb",
+        "points": [
+          [
+            2285,
+            370
+          ],
+          [
+            2285,
+            280
+          ],
+          [
+            1400,
+            280
+          ],
+          [
+            1400,
+            305
+          ]
+        ],
+        "source": "isp",
+        "target": "router",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": true
+      },
+      {
+        "id": "cpu-xbar",
+        "points": [
+          [
+            200.0,
+            425.0
+          ],
+          [
+            200.0,
+            700.0
+          ],
+          [
+            250.0,
+            700.0
+          ],
+          [
+            250.0,
+            800.0
+          ]
+        ],
+        "source": "cpu",
+        "target": "xbar",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "ara-xbar",
+        "points": [
+          [
+            782.0,
+            555.0
+          ],
+          [
+            782.0,
+            720.0
+          ],
+          [
+            700.0,
+            720.0
+          ],
+          [
+            700.0,
+            800.0
+          ]
+        ],
+        "source": "width",
+        "target": "xbar",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "xbar-atomics",
+        "points": [
+          [
+            530.0,
+            920.0
+          ],
+          [
+            530.0,
+            1050.0
+          ]
+        ],
+        "source": "xbar",
+        "target": "atomics",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "atomics-llc",
+        "points": [
+          [
+            660.0,
+            1117.0
+          ],
+          [
+            780.0,
+            1117.0
+          ]
+        ],
+        "source": "atomics",
+        "target": "llc",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "join0",
+        "points": [
+          [
+            1540.0,
+            1030.0
+          ],
+          [
+            1540.0,
+            1075.0
+          ]
+        ],
+        "source": "ddr-port0",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": false,
+        "jump": false
+      },
+      {
+        "id": "join1",
+        "points": [
+          [
+            1930.0,
+            1030.0
+          ],
+          [
+            1930.0,
+            1075.0
+          ]
+        ],
+        "source": "ddr-port1",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": false,
+        "jump": false
+      },
+      {
+        "id": "join2",
+        "points": [
+          [
+            2320.0,
+            1030.0
+          ],
+          [
+            2320.0,
+            1075.0
+          ]
+        ],
+        "source": "ddr-port2",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": false,
+        "jump": false
+      },
+      {
+        "id": "llc-ddr",
+        "points": [
+          [
+            1070.0,
+            1117.0
+          ],
+          [
+            1360.0,
+            1117.0
+          ],
+          [
+            1360.0,
+            895.0
+          ],
+          [
+            1540.0,
+            895.0
+          ],
+          [
+            1540.0,
+            930.0
+          ]
+        ],
+        "source": "llc",
+        "target": "ddr-port0",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "mover-ddr",
+        "points": [
+          [
+            1790.0,
+            545.0
+          ],
+          [
+            1840.0,
+            545.0
+          ],
+          [
+            1840.0,
+            730.0
+          ],
+          [
+            1930.0,
+            730.0
+          ],
+          [
+            1930.0,
+            930.0
+          ]
+        ],
+        "source": "mover",
+        "target": "ddr-port1",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "frame-ddr",
+        "points": [
+          [
+            2615.0,
+            495.0
+          ],
+          [
+            2615.0,
+            730.0
+          ],
+          [
+            2320.0,
+            730.0
+          ],
+          [
+            2320.0,
+            930.0
+          ]
+        ],
+        "source": "frame",
+        "target": "ddr-port2",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "ports-merge",
+        "points": [
+          [
+            1540.0,
+            1075.0
+          ],
+          [
+            2320.0,
+            1075.0
+          ]
+        ],
+        "source": "",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": false,
+        "jump": false
+      },
+      {
+        "id": "qos-in",
+        "points": [
+          [
+            1615.0,
+            1075.0
+          ],
+          [
+            1615.0,
+            1140.0
+          ]
+        ],
+        "source": "",
+        "target": "qos",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "qos-core",
+        "points": [
+          [
+            1770.0,
+            1205.0
+          ],
+          [
+            1840.0,
+            1205.0
+          ]
+        ],
+        "source": "qos",
+        "target": "scheduler",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "ddr-phy",
+        "points": [
+          [
+            2390.0,
+            1205.0
+          ],
+          [
+            2500.0,
+            1205.0
+          ]
+        ],
+        "source": "scheduler",
+        "target": "phy-ddr",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "legend0",
+        "points": [
+          [
+            55.0,
+            1530.0
+          ],
+          [
+            120.0,
+            1530.0
+          ]
+        ],
+        "source": "",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "legend1",
+        "points": [
+          [
+            585.0,
+            1530.0
+          ],
+          [
+            650.0,
+            1530.0
+          ]
+        ],
+        "source": "",
+        "target": "",
+        "kind": "original",
+        "bidirectional": true,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "legend2",
+        "points": [
+          [
+            1115.0,
+            1530.0
+          ],
+          [
+            1180.0,
+            1530.0
+          ]
+        ],
+        "source": "",
+        "target": "",
+        "kind": "original",
+        "bidirectional": false,
+        "arrowed": true,
+        "jump": false
+      },
+      {
+        "id": "coh-cpu",
+        "points": [
+          [
+            960,
+            680
+          ],
+          [
+            925,
+            680
+          ],
+          [
+            925,
+            160
+          ],
+          [
+            200,
+            160
+          ],
+          [
+            200,
+            290
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "cpu",
+        "jump": true
+      },
+      {
+        "id": "coh-atomics",
+        "points": [
+          [
+            960,
+            735
+          ],
+          [
+            40,
+            735
+          ],
+          [
+            40,
+            1240
+          ],
+          [
+            530,
+            1240
+          ],
+          [
+            530,
+            1185
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "atomics",
+        "jump": true
+      },
+      {
+        "id": "coh-llc",
+        "points": [
+          [
+            1340,
+            775
+          ],
+          [
+            1340,
+            1220
+          ],
+          [
+            925,
+            1220
+          ],
+          [
+            925,
+            1185
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "llc",
+        "jump": true
+      },
+      {
+        "id": "coh-s1",
+        "points": [
+          [
+            1810,
+            700
+          ],
+          [
+            2050,
+            700
+          ],
+          [
+            2050,
+            980
+          ],
+          [
+            2010,
+            980
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "ddr-port1",
+        "jump": true
+      },
+      {
+        "id": "coh-s2",
+        "points": [
+          [
+            1810,
+            745
+          ],
+          [
+            2100,
+            745
+          ],
+          [
+            2100,
+            900
+          ],
+          [
+            2420,
+            900
+          ],
+          [
+            2420,
+            980
+          ],
+          [
+            2400,
+            980
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "ddr-port2",
+        "jump": true
+      },
+      {
+        "id": "coh-ddr",
+        "points": [
+          [
+            1730,
+            775
+          ],
+          [
+            1730,
+            1140
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "coh-coordinator",
+        "target": "qos",
+        "jump": true
+      },
+      {
+        "id": "coh-legend",
+        "points": [
+          [
+            1720,
+            1530
+          ],
+          [
+            1790,
+            1530
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "ownership",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "panel0": {
+        "x": 35,
+        "y": 140,
+        "width": 2330,
+        "height": 310
+      },
+      "r0b0": {
+        "x": 60,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b1": {
+        "x": 525,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b2": {
+        "x": 990,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b3": {
+        "x": 1455,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b4": {
+        "x": 1920,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "panel1": {
+        "x": 35,
+        "y": 510,
+        "width": 2330,
+        "height": 310
+      },
+      "r1b0": {
+        "x": 60,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b1": {
+        "x": 525,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b2": {
+        "x": 990,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b3": {
+        "x": 1455,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b4": {
+        "x": 1920,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "panel2": {
+        "x": 35,
+        "y": 880,
+        "width": 2330,
+        "height": 310
+      },
+      "r2b0": {
+        "x": 60,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b1": {
+        "x": 525,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b2": {
+        "x": 990,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b3": {
+        "x": 1455,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b4": {
+        "x": 1920,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      }
+    },
+    "arrows": [
+      {
+        "id": "r0e1",
+        "points": [
+          [
+            460,
+            295
+          ],
+          [
+            525,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b0",
+        "target": "r0b1",
+        "jump": false
+      },
+      {
+        "id": "r0e2",
+        "points": [
+          [
+            925,
+            295
+          ],
+          [
+            990,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b1",
+        "target": "r0b2",
+        "jump": false
+      },
+      {
+        "id": "r0e3",
+        "points": [
+          [
+            1390,
+            295
+          ],
+          [
+            1455,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b2",
+        "target": "r0b3",
+        "jump": false
+      },
+      {
+        "id": "r0e4",
+        "points": [
+          [
+            1855,
+            295
+          ],
+          [
+            1920,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b3",
+        "target": "r0b4",
+        "jump": false
+      },
+      {
+        "id": "next0",
+        "points": [
+          [
+            2320,
+            295
+          ],
+          [
+            2345,
+            295
+          ],
+          [
+            2345,
+            480
+          ],
+          [
+            45,
+            480
+          ],
+          [
+            45,
+            665
+          ],
+          [
+            60,
+            665
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b4",
+        "target": "r1b0",
+        "jump": false
+      },
+      {
+        "id": "r1e1",
+        "points": [
+          [
+            460,
+            665
+          ],
+          [
+            525,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b0",
+        "target": "r1b1",
+        "jump": false
+      },
+      {
+        "id": "r1e2",
+        "points": [
+          [
+            925,
+            665
+          ],
+          [
+            990,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b1",
+        "target": "r1b2",
+        "jump": false
+      },
+      {
+        "id": "r1e3",
+        "points": [
+          [
+            1390,
+            665
+          ],
+          [
+            1455,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b2",
+        "target": "r1b3",
+        "jump": false
+      },
+      {
+        "id": "r1e4",
+        "points": [
+          [
+            1855,
+            665
+          ],
+          [
+            1920,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b3",
+        "target": "r1b4",
+        "jump": false
+      },
+      {
+        "id": "next1",
+        "points": [
+          [
+            2320,
+            665
+          ],
+          [
+            2345,
+            665
+          ],
+          [
+            2345,
+            850
+          ],
+          [
+            45,
+            850
+          ],
+          [
+            45,
+            1035
+          ],
+          [
+            60,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r1b4",
+        "target": "r2b0",
+        "jump": false
+      },
+      {
+        "id": "r2e1",
+        "points": [
+          [
+            460,
+            1035
+          ],
+          [
+            525,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b0",
+        "target": "r2b1",
+        "jump": false
+      },
+      {
+        "id": "r2e2",
+        "points": [
+          [
+            925,
+            1035
+          ],
+          [
+            990,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b1",
+        "target": "r2b2",
+        "jump": false
+      },
+      {
+        "id": "r2e3",
+        "points": [
+          [
+            1390,
+            1035
+          ],
+          [
+            1455,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b2",
+        "target": "r2b3",
+        "jump": false
+      },
+      {
+        "id": "r2e4",
+        "points": [
+          [
+            1855,
+            1035
+          ],
+          [
+            1920,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b3",
+        "target": "r2b4",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "data-paths",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "cleanpanel": {
+        "x": 50,
+        "y": 145,
+        "width": 1120,
+        "height": 790
+      },
+      "cleanprivate": {
+        "x": 90,
+        "y": 295,
+        "width": 240,
+        "height": 90
+      },
+      "cleanllc": {
+        "x": 90,
+        "y": 485,
+        "width": 240,
+        "height": 100
+      },
+      "cleancoord": {
+        "x": 450,
+        "y": 295,
+        "width": 600,
+        "height": 90
+      },
+      "cleanddr": {
+        "x": 90,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "cleandma": {
+        "x": 450,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "cleanproxy": {
+        "x": 810,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "cleangb": {
+        "x": 810,
+        "y": 485,
+        "width": 240,
+        "height": 100
+      },
+      "supplypanel": {
+        "x": 1230,
+        "y": 145,
+        "width": 1120,
+        "height": 790
+      },
+      "supplyprivate": {
+        "x": 1270,
+        "y": 295,
+        "width": 240,
+        "height": 90
+      },
+      "supplyllc": {
+        "x": 1270,
+        "y": 485,
+        "width": 240,
+        "height": 100
+      },
+      "supplycoord": {
+        "x": 1630,
+        "y": 295,
+        "width": 600,
+        "height": 90
+      },
+      "supplyddr": {
+        "x": 1270,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "supplydma": {
+        "x": 1630,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "supplyproxy": {
+        "x": 1990,
+        "y": 725,
+        "width": 240,
+        "height": 90
+      },
+      "supplygb": {
+        "x": 1990,
+        "y": 485,
+        "width": 240,
+        "height": 100
+      },
+      "write0": {
+        "x": 55,
+        "y": 1040,
+        "width": 405,
+        "height": 90
+      },
+      "write1": {
+        "x": 520,
+        "y": 1040,
+        "width": 405,
+        "height": 90
+      },
+      "write2": {
+        "x": 985,
+        "y": 1040,
+        "width": 405,
+        "height": 90
+      },
+      "write3": {
+        "x": 1450,
+        "y": 1040,
+        "width": 405,
+        "height": 90
+      },
+      "write4": {
+        "x": 1915,
+        "y": 1040,
+        "width": 405,
+        "height": 90
+      }
+    },
+    "arrows": [
+      {
+        "id": "cleanprivate-llc",
+        "points": [
+          [
+            210,
+            385
+          ],
+          [
+            210,
+            485
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanllc-ddr",
+        "points": [
+          [
+            210,
+            585
+          ],
+          [
+            210,
+            725
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanprobe-private",
+        "points": [
+          [
+            450,
+            320
+          ],
+          [
+            330,
+            320
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanprobe-llc",
+        "points": [
+          [
+            450,
+            360
+          ],
+          [
+            370,
+            360
+          ],
+          [
+            370,
+            520
+          ],
+          [
+            330,
+            520
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanadmit",
+        "points": [
+          [
+            650,
+            385
+          ],
+          [
+            650,
+            725
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanclean-data",
+        "points": [
+          [
+            270,
+            585
+          ],
+          [
+            270,
+            725
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanddr-data",
+        "points": [
+          [
+            330,
+            770
+          ],
+          [
+            450,
+            770
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleandma-proxy",
+        "points": [
+          [
+            690,
+            770
+          ],
+          [
+            810,
+            770
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "cleanproxy-gb",
+        "points": [
+          [
+            930,
+            725
+          ],
+          [
+            930,
+            585
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyprivate-llc",
+        "points": [
+          [
+            1390,
+            385
+          ],
+          [
+            1390,
+            485
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyllc-ddr",
+        "points": [
+          [
+            1390,
+            585
+          ],
+          [
+            1390,
+            725
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyprobe-private",
+        "points": [
+          [
+            1630,
+            320
+          ],
+          [
+            1510,
+            320
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyprobe-llc",
+        "points": [
+          [
+            1630,
+            360
+          ],
+          [
+            1550,
+            360
+          ],
+          [
+            1550,
+            520
+          ],
+          [
+            1510,
+            520
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyadmit",
+        "points": [
+          [
+            1830,
+            385
+          ],
+          [
+            1830,
+            725
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyddr-fallback",
+        "points": [
+          [
+            1510,
+            795
+          ],
+          [
+            1630,
+            795
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplycache-data",
+        "points": [
+          [
+            1510,
+            555
+          ],
+          [
+            1590,
+            555
+          ],
+          [
+            1590,
+            665
+          ],
+          [
+            1750,
+            665
+          ],
+          [
+            1750,
+            725
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplydma-proxy",
+        "points": [
+          [
+            1870,
+            770
+          ],
+          [
+            1990,
+            770
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "supplyproxy-gb",
+        "points": [
+          [
+            2110,
+            725
+          ],
+          [
+            2110,
+            585
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "write-seq1",
+        "points": [
+          [
+            460,
+            1085
+          ],
+          [
+            520,
+            1085
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "write-seq2",
+        "points": [
+          [
+            925,
+            1085
+          ],
+          [
+            985,
+            1085
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "write-seq3",
+        "points": [
+          [
+            1390,
+            1085
+          ],
+          [
+            1450,
+            1085
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "write-seq4",
+        "points": [
+          [
+            1855,
+            1085
+          ],
+          [
+            1915,
+            1085
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "",
+        "target": "",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "handover",
+    "canvas": [
+      1680,
+      945
+    ],
+    "boxes": {
+      "Apanel": {
+        "x": 25,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Acpu": {
+        "x": 85,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Aprivate": {
+        "x": 85,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Allc": {
+        "x": 85,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Addr": {
+        "x": 85,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Adevice": {
+        "x": 545,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Adma": {
+        "x": 545,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Afabric": {
+        "x": 465,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      },
+      "Adriver": {
+        "x": 330,
+        "y": 240,
+        "width": 170,
+        "height": 55
+      },
+      "Bpanel": {
+        "x": 855,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Bcpu": {
+        "x": 915,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Bprivate": {
+        "x": 915,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Bllc": {
+        "x": 915,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Bddr": {
+        "x": 915,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Bdevice": {
+        "x": 1375,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Bdma": {
+        "x": 1375,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Bfabric": {
+        "x": 1295,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      },
+      "Bdriver": {
+        "x": 1160,
+        "y": 240,
+        "width": 170,
+        "height": 55
+      }
+    },
+    "arrows": [
+      {
+        "id": "Acpu-private",
+        "points": [
+          [
+            185,
+            295
+          ],
+          [
+            185,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Aprivate-llc",
+        "points": [
+          [
+            185,
+            435
+          ],
+          [
+            185,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Allc-ddr",
+        "points": [
+          [
+            185,
+            645
+          ],
+          [
+            185,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Alocal-dma",
+        "points": [
+          [
+            655,
+            335
+          ],
+          [
+            655,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Adma-fabric",
+        "points": [
+          [
+            655,
+            430
+          ],
+          [
+            655,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Adevice-ddr",
+        "points": [
+          [
+            615,
+            645
+          ],
+          [
+            615,
+            710
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Asw-private",
+        "points": [
+          [
+            330,
+            267
+          ],
+          [
+            310,
+            267
+          ],
+          [
+            310,
+            378
+          ],
+          [
+            285,
+            378
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Asw-llc",
+        "points": [
+          [
+            415,
+            295
+          ],
+          [
+            415,
+            620
+          ],
+          [
+            285,
+            620
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bcpu-private",
+        "points": [
+          [
+            1015,
+            295
+          ],
+          [
+            1015,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bprivate-llc",
+        "points": [
+          [
+            1015,
+            435
+          ],
+          [
+            1015,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bllc-ddr",
+        "points": [
+          [
+            1015,
+            645
+          ],
+          [
+            1015,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Blocal-dma",
+        "points": [
+          [
+            1485,
+            335
+          ],
+          [
+            1485,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bdma-fabric",
+        "points": [
+          [
+            1485,
+            430
+          ],
+          [
+            1485,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bdevice-ddr",
+        "points": [
+          [
+            1445,
+            645
+          ],
+          [
+            1445,
+            710
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bprobe-private",
+        "points": [
+          [
+            1295,
+            575
+          ],
+          [
+            1180,
+            575
+          ],
+          [
+            1180,
+            400
+          ],
+          [
+            1115,
+            400
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bprobe-llc",
+        "points": [
+          [
+            1295,
+            622
+          ],
+          [
+            1115,
+            622
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Bsoftware-submit",
+        "points": [
+          [
+            1245,
+            295
+          ],
+          [
+            1245,
+            525
+          ],
+          [
+            1445,
+            525
+          ],
+          [
+            1445,
+            560
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "Bdriver",
+        "target": "Bfabric",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "coverage",
+    "canvas": [
+      1680,
+      945
+    ],
+    "boxes": {
+      "Cpanel": {
+        "x": 25,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Ccpu": {
+        "x": 85,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Cprivate": {
+        "x": 85,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Cllc": {
+        "x": 85,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Cddr": {
+        "x": 85,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Cdevice": {
+        "x": 545,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Cdma": {
+        "x": 545,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Cfabric": {
+        "x": 465,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      },
+      "Cdriver": {
+        "x": 330,
+        "y": 240,
+        "width": 170,
+        "height": 55
+      },
+      "Dpanel": {
+        "x": 855,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Dcpu": {
+        "x": 915,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Dprivate": {
+        "x": 915,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Dllc": {
+        "x": 915,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Dddr": {
+        "x": 915,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Ddevice": {
+        "x": 1375,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Ddma": {
+        "x": 1375,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Dfabric": {
+        "x": 1295,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      }
+    },
+    "arrows": [
+      {
+        "id": "Ccpu-private",
+        "points": [
+          [
+            185,
+            295
+          ],
+          [
+            185,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Cprivate-llc",
+        "points": [
+          [
+            185,
+            435
+          ],
+          [
+            185,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Cllc-ddr",
+        "points": [
+          [
+            185,
+            645
+          ],
+          [
+            185,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Clocal-dma",
+        "points": [
+          [
+            655,
+            335
+          ],
+          [
+            655,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Cdma-fabric",
+        "points": [
+          [
+            655,
+            430
+          ],
+          [
+            655,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Cdevice-llc",
+        "points": [
+          [
+            465,
+            587
+          ],
+          [
+            285,
+            587
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Csw-private",
+        "points": [
+          [
+            330,
+            267
+          ],
+          [
+            310,
+            267
+          ],
+          [
+            310,
+            378
+          ],
+          [
+            285,
+            378
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dcpu-private",
+        "points": [
+          [
+            1015,
+            295
+          ],
+          [
+            1015,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dprivate-llc",
+        "points": [
+          [
+            1015,
+            435
+          ],
+          [
+            1015,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dllc-ddr",
+        "points": [
+          [
+            1015,
+            645
+          ],
+          [
+            1015,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dlocal-dma",
+        "points": [
+          [
+            1485,
+            335
+          ],
+          [
+            1485,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Ddma-fabric",
+        "points": [
+          [
+            1485,
+            430
+          ],
+          [
+            1485,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Ddevice-llc",
+        "points": [
+          [
+            1295,
+            587
+          ],
+          [
+            1115,
+            587
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dprobe-private",
+        "points": [
+          [
+            1295,
+            575
+          ],
+          [
+            1180,
+            575
+          ],
+          [
+            1180,
+            400
+          ],
+          [
+            1115,
+            400
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Dprobe-llc",
+        "points": [
+          [
+            1295,
+            622
+          ],
+          [
+            1115,
+            622
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "agent-types",
+    "canvas": [
+      1680,
+      945
+    ],
+    "boxes": {
+      "Epanel": {
+        "x": 25,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Ecpu": {
+        "x": 85,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Eprivate": {
+        "x": 85,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Ellc": {
+        "x": 85,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Eddr": {
+        "x": 85,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Edevice": {
+        "x": 545,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Edma": {
+        "x": 545,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Efabric": {
+        "x": 465,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      },
+      "Fpanel": {
+        "x": 855,
+        "y": 130,
+        "width": 800,
+        "height": 740
+      },
+      "Fcpu": {
+        "x": 915,
+        "y": 240,
+        "width": 200,
+        "height": 55
+      },
+      "Fprivate": {
+        "x": 915,
+        "y": 350,
+        "width": 200,
+        "height": 85
+      },
+      "Fllc": {
+        "x": 915,
+        "y": 560,
+        "width": 200,
+        "height": 85
+      },
+      "Fddr": {
+        "x": 915,
+        "y": 710,
+        "width": 680,
+        "height": 60
+      },
+      "Fdevice": {
+        "x": 1375,
+        "y": 240,
+        "width": 220,
+        "height": 95
+      },
+      "Fdma": {
+        "x": 1375,
+        "y": 375,
+        "width": 220,
+        "height": 55
+      },
+      "Fdevcache": {
+        "x": 1375,
+        "y": 470,
+        "width": 220,
+        "height": 55
+      },
+      "Ffabric": {
+        "x": 1295,
+        "y": 560,
+        "width": 300,
+        "height": 85
+      }
+    },
+    "arrows": [
+      {
+        "id": "Ecpu-private",
+        "points": [
+          [
+            185,
+            295
+          ],
+          [
+            185,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Eprivate-llc",
+        "points": [
+          [
+            185,
+            435
+          ],
+          [
+            185,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Ellc-ddr",
+        "points": [
+          [
+            185,
+            645
+          ],
+          [
+            185,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Elocal-dma",
+        "points": [
+          [
+            655,
+            335
+          ],
+          [
+            655,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Edma-fabric",
+        "points": [
+          [
+            655,
+            430
+          ],
+          [
+            655,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Edevice-ddr",
+        "points": [
+          [
+            615,
+            645
+          ],
+          [
+            615,
+            710
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Eprobe-private",
+        "points": [
+          [
+            465,
+            575
+          ],
+          [
+            350,
+            575
+          ],
+          [
+            350,
+            400
+          ],
+          [
+            285,
+            400
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Eprobe-llc",
+        "points": [
+          [
+            465,
+            622
+          ],
+          [
+            285,
+            622
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fcpu-private",
+        "points": [
+          [
+            1015,
+            295
+          ],
+          [
+            1015,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fprivate-llc",
+        "points": [
+          [
+            1015,
+            435
+          ],
+          [
+            1015,
+            560
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fllc-ddr",
+        "points": [
+          [
+            1015,
+            645
+          ],
+          [
+            1015,
+            710
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Flocal-dma",
+        "points": [
+          [
+            1485,
+            335
+          ],
+          [
+            1485,
+            375
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fdma-cache",
+        "points": [
+          [
+            1485,
+            430
+          ],
+          [
+            1485,
+            470
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fcache-fabric",
+        "points": [
+          [
+            1485,
+            525
+          ],
+          [
+            1485,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fdevice-llc",
+        "points": [
+          [
+            1295,
+            587
+          ],
+          [
+            1115,
+            587
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fprobe-private",
+        "points": [
+          [
+            1295,
+            575
+          ],
+          [
+            1180,
+            575
+          ],
+          [
+            1180,
+            400
+          ],
+          [
+            1115,
+            400
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fprobe-llc",
+        "points": [
+          [
+            1295,
+            622
+          ],
+          [
+            1115,
+            622
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      },
+      {
+        "id": "Fprobe-devcache",
+        "points": [
+          [
+            1595,
+            620
+          ],
+          [
+            1630,
+            620
+          ],
+          [
+            1630,
+            498
+          ],
+          [
+            1595,
+            498
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "",
+        "target": "",
+        "jump": false
+      }
+    ]
+  }
+]

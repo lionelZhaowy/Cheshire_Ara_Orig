@@ -7,6 +7,7 @@
 | 2026-10-13 | 专题作者 | `mp/ara-pulp-v2` / `c4162204cfee0c48b81158b4296860a678d92bec`；既有未提交状态见输入记录 | 新增8页HTML/Markdown、4张可编辑案例图；独立重编标量/RVV/HelloWorld及DMA编译探针；文档验证见下方证据 |
 | 2026-10-13 | BSP扩充作者 | `bf1b4198dfd74cc78291c152b8b682d523e785c5`；既有未跟踪nonvolatile_storage图稿保留 | 新增基础软件章，专题9对页面；新增1张SVG/PNG/原生PPTX；18组浏览器视口及独立新批次检查；未构建/运行应用 |
 | 2026-10-13 | 全组件软件栈作者 | `bf1b4198dfd74cc78291c152b8b682d523e785c5` 加已有文档改动 | 保留调用链图，新增全组件总览、39类源码索引及SVG/PNG/原生PPTX；独立complete-stack批次验证，未编译/运行目标 |
+| 2026-10-14 | 工业版图稿作者 | `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，工作区干净 | 按用户指定工业风格新增16:9软件栈候选，保留原版；34组件组、41箭头端点关系一致，新旧对照页及原生PPTX已检查 |
 
 ## 最新扩充入口
 
@@ -132,3 +133,14 @@ python3 docs_codex/software/interfaces/scripts/check.py
 其他对话的nonvolatile_storage图稿与交接未修改。未取得共享状态文件的独占编辑依据，因此只更新本主题交接，供协调者按需合并L01进展；不将任务表视作文件锁。未新增IP、OS、地址或硬件参数决策。
 
 终检通过：1223处本地链接、166个引用输入、9对双格式页面、18组视口和6张SVG；原有133份证据哈希保持不变。放大阅读控件在1440/390宽度下均通过检查，新图无文字/箭头路径交叉遮挡，手机源码索引改为横向滚动。终检发现其他工作修改了`diagrams/2026-10-13_nonvolatile_storage/README.md`及`handoffs/L01_nonvolatile_storage.md`；本Agent未写入或恢复它们，差异保存在本批次validation的`external_input_changes`，不刷新原保护基线。
+
+## 2026-10-14：软件栈工业风格候选
+
+用户明确调用`industrial-svg-pptx`，要求重新绘制软件栈供汇报选择。沿用L01；本轮只负责`diagrams/2026-10-14_software_stack_industrial/`及本主题交接，没有改变正文采用版本、软件组件范围或工程实现。
+
+- [新旧对照页](../diagrams/2026-10-14_software_stack_industrial/index.html) · [SVG/PNG/原生PPTX](../diagrams/2026-10-14_software_stack_industrial/README.md)。新图白底、方角、深色细边框、浅色嵌套区域、连续正交箭头；16:9横向画布。
+- 复用原图34个组件组及35条关系箭头，另有6条图例；所有边的起止组件一致。省略/缩短少量长标签，完整定义继续引用原39类源码索引。157个旧批次非文档源码引用哈希未改变，未重新编译/运行目标。
+- [验证记录](../diagrams/2026-10-14_software_stack_industrial/evidence/validation.json)：旧图/正文保护哈希、端点关系、链接、文字边界和连线遮挡均通过。实际查看1920×1080预览、新旧对照页1440/390视口；首次Chrome沙箱socket受限，审批后完成本机预览。失败/调整过程保留在新目录evidence。
+- PPTX单页243个原生对象，163个文本、41个箭头、2个完整虚线边界；没有整图图片嵌入。Office显示/编辑未验证，连接器不保证移动模块自动跟随。
+
+原版SVG/PNG/PPTX、基础软件HTML/Markdown和历史证据保持不变。用户尚未选择正式汇报采用哪一版；后续按明确选择更新引用。本轮无项目实现事实或架构决策变化，不更新共享状态和任务表。

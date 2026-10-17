@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025" viewBox="0 0 3600 2025">
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<line id="m5-target-drop" x1="2436.25" y1="1042.1" x2="2436.25" y2="1093.1" stroke="#314D66" stroke-width="7.68" fill="none" marker-end="url(#data)"/>
+<path id="gb-interface-to-controller" d="M 2566.25 1170 L 2581.25 1170 L 2581.25 1068.1 L 2736.75 1068.1 C 2736.75 1050.1 2760.75 1050.1 2760.75 1068.1 L 2940 1068.1 L 2940 730 L 1506.25 730 L 1506.25 726.1 Q 1526.25 716.1 1506.25 706.1 L 1506.25 638.1" fill="none" stroke="#187C78" stroke-width="7.68" stroke-linejoin="miter" marker-end="url(#gb)"/>
+<rect id="target-port-m5" x="2388.25" y="1013.1" width="96" height="29" fill="#FFFFFF" stroke="#29292D" stroke-width="4.8"/>
+<text id="target-label-m5" x="2436.25" y="1040" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M5</text>
+<rect id="gb-axi-interface" x="2306.25" y="1093.1" width="260" height="155" fill="#D9EEE8" stroke="#29292D" stroke-width="4.8"/>
+<text id="gb-interface-title" x="2436.25" y="1151" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">GB AXI 接口</text>
+<text id="gb-interface-clients" x="2436.25" y="1190" font-family="Microsoft YaHei" font-size="30" text-anchor="middle" fill="#29292D">CPU / Ara 共用</text>
+<text id="gb-interface-width" x="2436.25" y="1228" font-family="Microsoft YaHei" font-size="30" text-anchor="middle" fill="#29292D">64-bit 数据窗口</text>
+</svg>

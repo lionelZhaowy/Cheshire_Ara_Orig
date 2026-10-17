@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<title>DDR–GB：逐行 I/O 一致性候选</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="1920" height="1080" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">DDR–GB：逐行 I/O 一致性候选</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">设备数据不分配 LLC 行；缓存探测、在途事务与访问次序仍需协调</text>
+<rect id="cva6" x="60" y="210" width="440" height="270" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="280" y="260" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="middle" fill="#29292D">CVA6</text>
+<text x="280" y="298" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="middle" fill="#29292D">缓存侧需扩展探测与冲突处理</text>
+<rect id="l1d" x="90" y="330" width="170" height="110" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="175.0" y="378.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="l1d">L1D</text>
+<text x="175.0" y="413.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="l1d">WT / 读副本</text>
+<rect id="wbuffer" x="290" y="330" width="180" height="110" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="380.0" y="378.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="wbuffer">写缓冲</text>
+<text x="380.0" y="413.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="wbuffer">在途标量写</text>
+<rect id="ara" x="620" y="250" width="250" height="160" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="745.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="ara">Ara</text>
+<text x="745.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="ara">独立 AXI 访存</text>
+<text x="745.0" y="376.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="ara">保留现有协作机制</text>
+<rect id="device" x="1090" y="250" width="300" height="160" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7" stroke-dasharray="9 6"/>
+<text x="1240.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="device">NPU / ISP 数据代理</text>
+<text x="1240.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="device">任务 / 搬运事务</text>
+<text x="1240.0" y="376.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="device">候选一致性入口</text>
+<rect id="gb" x="1530" y="250" width="300" height="160" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1680.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="gb">GB 独立 SRAM</text>
+<text x="1680.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="gb">显式搬运 / 分块所有权</text>
+<text x="1680.0" y="376.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="gb">不跟踪 DDR 后续修改</text>
+<rect id="xbar" x="60" y="570" width="810" height="110" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="465.0" y="618.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="xbar">主 Xbar / 原子适配</text>
+<text x="465.0" y="653.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="xbar">普通内存路径；reservation 观察域需重审</text>
+<rect id="llc" x="110" y="770" width="600" height="130" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="410.0" y="828.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="llc">LLC</text>
+<text x="410.0" y="863.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="llc">WB 数据阵列 + 候选逐行探测 / 供数接口</text>
+<rect id="coord" x="1000" y="570" width="480" height="250" fill="#E8DFED" stroke="#29292D" stroke-width="1.7" stroke-dasharray="9 6"/>
+<text x="1240.0" y="654.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="coord">一致性协调点（候选职责）</text>
+<text x="1240.0" y="689.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="coord">逐行串行化 / 在途跟踪</text>
+<text x="1240.0" y="724.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="coord">探测、失效确认与数据来源选择</text>
+<text x="1240.0" y="759.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="coord">缓存侧与各访存入口共同配合</text>
+<rect id="controller" x="1600" y="630" width="260" height="120" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1730.0" y="683.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="controller">DDR Controller</text>
+<text x="1730.0" y="718.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="controller">AXI4 下游接口</text>
+<rect id="ddr" x="1600" y="850" width="260" height="120" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1730.0" y="903.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="ddr">DDR</text>
+<text x="1730.0" y="938.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="ddr">外部主存</text>
+<polyline id="cpu-path" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="280,480 280,570"/>
+<polyline id="ara-path" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="745,410 745,570"/>
+<polyline id="xbar-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="400,680 400,770"/>
+<text x="420" y="733" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#314D66">普通请求 / 返回</text>
+<polyline id="llc-path" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="710,835 900,835 900,740 1000,740"/>
+<text x="730" y="878" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#314D66">普通数据路径</text>
+<polyline id="device-path" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1240,410 1240,570"/>
+<text x="1260" y="490" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#314D66">不分配 LLC 行</text>
+<polyline id="device-gb" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1390,330 1530,330"/>
+<text x="1460" y="302" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#187C78">搬运</text>
+<polyline id="ara-gb" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="870,285 930,285 930,170 1680,170 1680,250"/>
+<text x="1210" y="154" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#187C78">Ara→GB 候选支路</text>
+<polyline id="coord-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1480,690 1600,690"/>
+<polyline id="controller-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1730,750 1730,850"/>
+<path id="probe-l1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" d="M 1000 600 L 950 600 L 950 515 L 755 515 Q 745 500 735 515 L 290 515 Q 280 500 270 515 L 175 515 L 175 440"/>
+<text x="480" y="500" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#765489">L1 探测 / 确认</text>
+<polyline id="probe-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1000,785 955,785 955,947 400,947 400,900"/>
+<text x="485" y="932" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#765489">LLC 探测 / 确认 / 必要时供数</text>
+<text x="55" y="1020" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#29292D">蓝灰：数据访问（请求 / 返回合并画）    紫：候选一致性接口    绿：GB 访问</text>
+<text x="55" y="1055" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#606773">虚线框：新增职责。缓存直接供数为待评审路径；不是仅在 LLC 出口增加一个桥。</text>
+</svg>

@@ -1,0 +1,510 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025" viewBox="0 0 3600 2025">
+  <defs>
+    <marker id="arr-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66"/>
+    </marker>
+    <marker id="arr-gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78"/>
+    </marker>
+    <marker id="arr-pixel" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043"/>
+    </marker>
+    <marker id="arr-cfg" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489"/>
+    </marker>
+    <marker id="arr-irq" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#A54D5D"/>
+    </marker>
+    <marker id="arr-optional" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#93939D"/>
+    </marker>
+  </defs>
+  <rect id="canvas" x="0" y="0" width="3600" height="2025" fill="#FFFFFF" stroke="none"/>
+  <rect id="soc-boundary" x="21.25" y="20" width="3325" height="1983.1" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="compute" x="71.25" y="60" width="935" height="425" fill="#F1D7D9" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="gb-region" x="1061.25" y="60" width="1135" height="425" fill="#D9EEE8" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="image-rx" x="2246.25" y="60" width="1065" height="425" fill="#F5E1C9" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="reg-region" x="51.25" y="1115" width="1720" height="625" fill="#FAF8FB" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="compression-front" x="1810" y="1170" width="1120" height="350" fill="#D9EEE8" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="ddr-controller" x="1810" y="1565" width="1120" height="170" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="roi-region" x="3000" y="1115" width="320" height="530" fill="#F5E1C9" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <path id="cpu-ara-command" d="M 346.25 200 L 396.25 200" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)" marker-start="url(#arr-cfg)"/>
+  <path id="ara-filter-edge" d="M 511.25 265 L 511.25 310" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="filter-width" d="M 606.25 353 L 826.25 353" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="npu-gb" d="M 1356.25 250 L 1391.25 250" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="adapter-sram" d="M 1621.25 270 L 1661.25 270" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="mover-gb" d="M 1661.25 405 L 1621.25 405" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="lvds-rx-to-rx-cdc" d="M 2436.25 290 L 2466.25 290" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="rx-cdc-to-isp" d="M 2626.25 290 L 2656.25 290" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="isp-to-frame-select" d="M 2821.25 290 L 2851.25 290" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="frame-select-to-frame-dma" d="M 3031.25 290 L 3066.25 290" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="raw-bypass" d="M 2546.25 200 L 2546.25 155 L 2941.25 155 L 2941.25 200" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="isp-gb" d="M 2656.25 345 L 2640 345 L 2640 500 L 1506.25 500 L 1506.25 450" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)" stroke-dasharray="18 11"/>
+  <path id="master-1" d="M 542.9166666666667 655 L 542.9166666666667 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-3" d="M 1171.8055555555557 655 L 1171.8055555555557 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-4" d="M 1486.25 655 L 1486.25 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-5" d="M 1800.6944444444443 655 L 1800.6944444444443 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-6" d="M 2115.1388888888887 655 L 2115.1388888888887 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-7" d="M 2429.5833333333335 655 L 2429.5833333333335 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-8" d="M 2744.027777777778 655 L 2744.027777777778 686" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)"/>
+  <path id="cpu-xbar" d="M 228.47222222222223 355 L 228.47222222222223 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ara-xbar" d="M 901.25 396 L 901.25 530 L 857.3611111111111 530 L 857.3611111111111 686" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-0" d="M 273.3928571428571 849 L 273.3928571428571 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-1" d="M 677.6785714285714 849 L 677.6785714285714 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-2" d="M 1081.9642857142858 849 L 1081.9642857142858 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="atomics-llc" d="M 1076.9642857142858 1002 L 1101.9642857142858 1002" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-3" d="M 1486.25 849 L 1486.25 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-4" d="M 1890.5357142857142 849 L 1890.5357142857142 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-5" d="M 2294.8214285714284 849 L 2294.8214285714284 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-6" d="M 2699.1071428571427 849 L 2699.1071428571427 900" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="m5-gb" d="M 2474.8214285714284 975 L 2495 975 L 2495 870 L 2693.1071428571427 870 Q 2699.1071428571427 862 2705.1071428571427 870 L 2945 870 L 2945 520 L 1450 520 L 1450 450" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)"/>
+  <path id="emmc-physical" d="M 3370 605 L 3350 605 L 3350 535 L 2951 535 Q 2945 527 2939 535 L 2584 535 L 2584 605 L 2572.5833333333335 605" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)" marker-start="url(#arr-pixel)"/>
+  <path id="bridge-regbus" d="M 677.6785714285714 1055 L 677.6785714285714 1135" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-0" d="M 84.25 1200 L 84.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="bootrom-cfg" d="M 84.25 1269 L 106.25 1269" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="uart-cfg" d="M 84.25 1369 L 106.25 1369" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="vga-regs-cfg" d="M 84.25 1469 L 106.25 1469" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="irq-router-cfg" d="M 84.25 1569 L 106.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-1" d="M 414.25 1200 L 414.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="clint-cfg" d="M 414.25 1269 L 436.25 1269" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="i2c-cfg" d="M 414.25 1369 L 436.25 1369" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="usb-regs-cfg" d="M 414.25 1469 L 436.25 1469" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="axi-rt-config-cfg" d="M 414.25 1569 L 436.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-2" d="M 744.25 1200 L 744.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="soc-regs-cfg" d="M 744.25 1269 L 766.25 1269" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="spi-cfg" d="M 744.25 1369 L 766.25 1369" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-vga-cfg" d="M 744.25 1469 L 766.25 1469" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="clic-cfg" d="M 744.25 1569 L 766.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-3" d="M 1074.25 1200 L 1074.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="plic-cfg" d="M 1074.25 1269 L 1096.25 1269" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="gpio-cfg" d="M 1074.25 1369 L 1096.25 1369" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-dma-cfg" d="M 1074.25 1469 L 1096.25 1469" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-error-cfg" d="M 1074.25 1569 L 1096.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-4" d="M 1404.25 1200 L 1404.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="llc-regs-cfg" d="M 1404.25 1269 L 1426.25 1269" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="slink-regs-cfg" d="M 1404.25 1369 L 1426.25 1369" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-cpu-cfg" d="M 1404.25 1469 L 1426.25 1469" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-ext-cfg" d="M 1404.25 1569 L 1426.25 1569" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="new-reg-config" d="M 1576.25 1608 L 1576.25 1624 L 356.25 1624" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="cfg-C10" d="M 356.25 1624 L 356.25 1640" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C11" d="M 906.25 1624 L 906.25 1640" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C12" d="M 1456.25 1624 L 1456.25 1640" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="front-input-0" d="M 1950 1184 L 1950 1210" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-1" d="M 2225 1184 L 2225 1210" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-2" d="M 2500 1184 L 2500 1210" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-3" d="M 2775 1184 L 2775 1210" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="adapt-compressor" d="M 1957.5 1270 L 1957.5 1300" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="compressor-route" d="M 1957.5 1420 L 1957.5 1450" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="decoder-up" d="M 2232.5 1300 L 2232.5 1270" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)"/>
+  <path id="read-to-decoder" d="M 2232.5 1450 L 2232.5 1420" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)"/>
+  <path id="adapt-plain-bypass" d="M 2507.5 1270 L 2507.5 1300" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="plain-bypass-route" d="M 2507.5 1420 L 2507.5 1450" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="adapt-metadata" d="M 2782.5 1270 L 2782.5 1300" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)" marker-start="url(#arr-cfg)"/>
+  <path id="metadata-route" d="M 2782.5 1420 L 2782.5 1450" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)" marker-start="url(#arr-cfg)"/>
+  <path id="front-ddr-0" d="M 1950 1500 L 1950 1551" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ddr-arb-0" d="M 1950 1579 L 1950 1595" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-ddr-1" d="M 2225 1500 L 2225 1551" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ddr-arb-1" d="M 2225 1579 L 2225 1595" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-ddr-2" d="M 2500 1500 L 2500 1551" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ddr-arb-2" d="M 2500 1579 L 2500 1595" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-ddr-3" d="M 2775 1500 L 2775 1551" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ddr-arb-3" d="M 2775 1579 L 2775 1595" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="arb-rw" d="M 2067.5 1635 L 2067.5 1645" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="rw-command" d="M 2305 1670 L 2425 1670" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="controller-phy" d="M 2910 1670 L 2970 1670 L 2970 1710 L 3030 1710" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="phy-ddr" d="M 3285 1710 L 3396.25 1710" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="roi-vdma-control" d="M 3160 1295 L 3160 1320" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="vdma-pixels" d="M 3160 1400 L 3160 1425" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="fifo-lvds" d="M 3160 1505 L 3160 1530" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="llc-f0" d="M 1186.9642857142858 1044 L 1186.9642857142858 1095 L 1950 1095 L 1950 1156" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="mover-f1" d="M 2166.25 405 L 2215 405 L 2215 494 Q 2223 500 2215 506 L 2215 514 Q 2223 520 2215 526 L 2215 540 L 2578 540 Q 2584 532 2590 540 L 2939 540 Q 2945 532 2951 540 L 2960 540 L 2960 1075 L 2225 1075 L 2225 1156" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" stroke-dasharray="18 11"/>
+  <path id="frame-f2" d="M 3281.25 340 L 3300 340 L 3300 529 Q 3308 535 3300 541 L 3300 1060 L 2966 1060 Q 2960 1052 2954 1060 L 2500 1060 L 2500 1069 Q 2508 1075 2500 1081 L 2500 1156" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" stroke-dasharray="18 11"/>
+  <path id="roi-f3-request" d="M 3030 1345 L 2975 1345 L 2975 1105 L 2760 1105 L 2760 1156" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="f3-roi-read-data" d="M 2790 1156 L 2790 1120 L 2969 1120 Q 2975 1112 2981 1120 L 2987 1120 L 2987 1339 Q 2995 1345 2987 1351 L 2987 1375 L 3030 1375" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)"/>
+  <path id="regext-old-config" d="M 1726.25 1569 L 1785 1569 L 1785 1853.1 L 236.25 1853.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="old-config-trunk" d="M 236.25 1853.1 L 3156.25 1853.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="old-cfg-C1" d="M 238.75 1853.1 L 238.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C2" d="M 603.75 1853.1 L 603.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C3" d="M 968.75 1853.1 L 968.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C4" d="M 1333.75 1853.1 L 1333.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C5" d="M 1698.75 1853.1 L 1698.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C6" d="M 2063.75 1853.1 L 2063.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C7" d="M 2428.75 1853.1 L 2428.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C8" d="M 2793.75 1853.1 L 2793.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="old-cfg-C9" d="M 3158.75 1853.1 L 3158.75 1878.1" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="legend-data" d="M 3020 720 L 3070 720" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="legend-gb" d="M 3020 795 L 3070 795" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="legend-pixel" d="M 3020 870 L 3070 870" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="legend-cfg" d="M 3020 945 L 3070 945" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <circle id="junction-84.25-1269" cx="84.25" cy="1269" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-84.25-1369" cx="84.25" cy="1369" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-84.25-1469" cx="84.25" cy="1469" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-84.25-1569" cx="84.25" cy="1569" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-414.25-1269" cx="414.25" cy="1269" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-414.25-1369" cx="414.25" cy="1369" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-414.25-1469" cx="414.25" cy="1469" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-414.25-1569" cx="414.25" cy="1569" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-744.25-1269" cx="744.25" cy="1269" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-744.25-1369" cx="744.25" cy="1369" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-744.25-1469" cx="744.25" cy="1469" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-744.25-1569" cx="744.25" cy="1569" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1074.25-1269" cx="1074.25" cy="1269" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1074.25-1369" cx="1074.25" cy="1369" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1074.25-1469" cx="1074.25" cy="1469" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1074.25-1569" cx="1074.25" cy="1569" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1404.25-1269" cx="1404.25" cy="1269" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1404.25-1369" cx="1404.25" cy="1369" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1404.25-1469" cx="1404.25" cy="1469" r="5" fill="#765489" stroke="none"/>
+  <circle id="junction-1404.25-1569" cx="1404.25" cy="1569" r="5" fill="#765489" stroke="none"/>
+  <rect id="cva6" x="96.25" y="140" width="250" height="215" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ara" x="396.25" y="140" width="580" height="125" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ara-filter" x="416.25" y="310" width="190" height="86" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ara-width" x="826.25" y="310" width="150" height="86" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="npu" x="1086.25" y="140" width="270" height="175" fill="#F1D7D9" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C6" x="1296.25" y="273" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="gb-adapter" x="1391.25" y="215" width="230" height="235" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="global-buffer" x="1661.25" y="140" width="505" height="170" fill="#D9EEE8" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C9" x="2106.25" y="270" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="gb-mover" x="1661.25" y="345" width="505" height="120" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C7" x="2106.25" y="427" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="lvds-rx" x="2271.25" y="200" width="165" height="185" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="rx-cdc" x="2466.25" y="200" width="160" height="185" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="isp" x="2656.25" y="200" width="165" height="185" fill="#F1D7D9" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="frame-select" x="2851.25" y="200" width="180" height="185" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="frame-dma" x="3066.25" y="200" width="215" height="185" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C4" x="2376.25" y="343" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C5" x="2761.25" y="343" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C8" x="3221.25" y="343" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="axi-crossbar" x="71.25" y="700" width="2830" height="135" fill="#DAE3F3" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S0" x="180.47222222222223" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S1" x="494.91666666666674" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S2" x="809.3611111111111" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S3" x="1123.8055555555557" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S4" x="1438.25" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S5" x="1752.6944444444443" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S6" x="2067.1388888888887" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S7" x="2381.5833333333335" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-in-S_EXT" x="2696.027777777778" y="686" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="debug-sba" x="399.91666666666674" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="idma-master" x="1028.8055555555557" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="slink-rx" x="1343.25" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="vga" x="1657.6944444444443" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="usb-dma" x="1972.1388888888887" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="emmc-host" x="2286.5833333333335" y="555" width="286" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ext-master" x="2601.027777777778" y="555" width="286" height="100" fill="#F5F5F7" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C10" x="2511.5833333333335" y="624" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M0" x="225.3928571428571" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="debug-target" x="93.39285714285711" y="900" width="360" height="155" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M1" x="629.6785714285714" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="reg-bridge" x="497.67857142857144" y="900" width="360" height="155" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M2" x="1033.9642857142858" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="memory-target" x="881.9642857142858" y="900" width="400" height="155" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="atomics" x="891.9642857142858" y="960" width="185" height="84" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="llc-spm" x="1101.9642857142858" y="960" width="170" height="84" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M3" x="1438.25" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="idma-config" x="1306.25" y="900" width="360" height="155" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M4" x="1842.5357142857142" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="slink-tx" x="1710.5357142857142" y="900" width="360" height="155" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M5" x="2246.8214285714284" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="gb-interface" x="2114.8214285714284" y="900" width="360" height="155" fill="#D9EEE8" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="xbar-out-M_EXT" x="2651.1071428571427" y="821" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ext-target" x="2519.1071428571427" y="900" width="360" height="155" fill="#F5F5F7" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="emmc-device" x="3370" y="555" width="210" height="100" fill="#EAECEE" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="regbus" x="71.25" y="1135" width="1680" height="65" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="bootrom" x="106.25" y="1230" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="uart" x="106.25" y="1330" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="vga-regs" x="106.25" y="1430" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="irq-router" x="106.25" y="1530" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="clint" x="436.25" y="1230" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="i2c" x="436.25" y="1330" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="usb-regs" x="436.25" y="1430" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="axi-rt-config" x="436.25" y="1530" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="soc-regs" x="766.25" y="1230" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="spi" x="766.25" y="1330" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="err-vga" x="766.25" y="1430" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="clic" x="766.25" y="1530" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="plic" x="1096.25" y="1230" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="gpio" x="1096.25" y="1330" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="err-dma" x="1096.25" y="1430" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="reg-error" x="1096.25" y="1530" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="llc-regs" x="1426.25" y="1230" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="slink-regs" x="1426.25" y="1330" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="err-cpu" x="1426.25" y="1430" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="reg-ext" x="1426.25" y="1530" width="300" height="78" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="config-C10" x="106.25" y="1640" width="500" height="78" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C10" x="113.25" y="1643" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C11" x="656.25" y="1640" width="500" height="78" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C11" x="663.25" y="1643" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C12" x="1206.25" y="1640" width="500" height="78" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C12" x="1213.25" y="1643" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-F0" x="1902" y="1156" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-F1" x="2177" y="1156" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-F2" x="2452" y="1156" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-F3" x="2727" y="1156" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-adapt" x="1830" y="1210" width="1080" height="60" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="compressor" x="1830" y="1300" width="255" height="120" fill="#F5E1C9" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="decompressor" x="2105" y="1300" width="255" height="120" fill="#F5E1C9" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="plain-bypass" x="2380" y="1300" width="255" height="120" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="metadata" x="2655" y="1300" width="255" height="120" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="front-route" x="1830" y="1450" width="1080" height="50" fill="#D8E8F4" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C12" x="2850" y="1179" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-S0" x="1902" y="1551" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-S1" x="2177" y="1551" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-S2" x="2452" y="1551" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-S3" x="2727" y="1551" width="96" height="28" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-arb" x="1830" y="1595" width="1080" height="40" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-rw" x="1830" y="1645" width="475" height="50" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-command" x="2425" y="1645" width="485" height="50" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C2" x="2850" y="1700" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-phy" x="3030" y="1670" width="255" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C3" x="3220" y="1738" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="ddr-device" x="3396.25" y="1670" width="150" height="100" fill="#EAECEE" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="roi-scheduler" x="3030" y="1215" width="260" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="roi-vdma" x="3030" y="1320" width="260" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="roi-fifo" x="3030" y="1425" width="260" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="lvds-tx" x="3030" y="1530" width="260" height="80" fill="#FFFFFF" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="badge-C11" x="3250" y="1615" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="pll" x="2126.25" y="1753.1" width="525" height="74" fill="#F5E1C9" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C1" x="2580.25" y="1774.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C1" x="71.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C1" x="79.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C2" x="436.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C2" x="444.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C3" x="801.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C3" x="809.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C4" x="1166.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C4" x="1174.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C5" x="1531.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C5" x="1539.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C6" x="1896.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C6" x="1904.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C7" x="2261.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C7" x="2269.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C8" x="2626.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C8" x="2634.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <rect id="config-C9" x="2991.25" y="1878.1" width="335" height="100" fill="#E8DFED" stroke="#29292D" stroke-width="3.8" stroke-dasharray="14 9"/>
+  <rect id="badge-C9" x="2999.25" y="1887.1" width="53" height="25" fill="#E8DFED" stroke="#29292D" stroke-width="3.8"/>
+  <text id="compute-title" x="538.75" y="96" font-family="Microsoft YaHei" font-size="36" font-weight="bold" text-anchor="middle" fill="#29292D">CVA6–Ara 计算平台</text>
+  <text id="gb-region-title" x="1628.75" y="96" font-family="Microsoft YaHei" font-size="36" font-weight="bold" text-anchor="middle" fill="#29292D">NPU / 独立 Global Buffer 子系统</text>
+  <text id="image-rx-title" x="2778.75" y="96" font-family="Microsoft YaHei" font-size="36" font-weight="bold" text-anchor="middle" fill="#29292D">图像采集与 ISP</text>
+  <text id="cva6-t0" x="221.25" y="223.57999999999998" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">CVA6 core 0</text>
+  <text id="cva6-t1" x="221.25" y="260.1" font-family="Microsoft YaHei" font-size="30" font-weight="normal" text-anchor="middle" fill="#29292D">L1 I / D cache</text>
+  <text id="cva6-t2" x="221.25" y="294.21999999999997" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">MMU / AXI 适配</text>
+  <text id="ara-t0" x="686.25" y="195.38" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">Ara 向量处理器</text>
+  <text id="ara-t1" x="686.25" y="231.9" font-family="Microsoft YaHei" font-size="30" font-weight="normal" text-anchor="middle" fill="#29292D">2 lanes · VLSU / AXI：64 bit</text>
+  <text id="ara-filter-t0" x="511.25" y="347.59999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">失效过滤</text>
+  <text id="ara-filter-t1" x="511.25" y="379.84" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">现有 filter</text>
+  <text id="ara-width-t0" x="901.25" y="347.59999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">等宽透传</text>
+  <text id="ara-width-t1" x="901.25" y="379.84" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">64 → 64 bit</text>
+  <text id="command-label" x="370" y="130" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#765489">指令 / MMU</text>
+  <text id="npu-t0" x="1221.25" y="222.1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">NPU 计算引擎</text>
+  <text id="npu-t1" x="1221.25" y="254.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">GB 数据读写</text>
+  <text id="badge-C6-text" x="1322.75" y="293" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C6</text>
+  <text id="gb-adapter-t0" x="1506.25" y="311.5" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">GB 访问适配</text>
+  <text id="gb-adapter-t1" x="1506.25" y="343.74" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">局部仲裁 / 路由</text>
+  <text id="gb-adapter-t2" x="1506.25" y="374.94" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">bank 冲突处理</text>
+  <text id="global-buffer-t0" x="1913.75" y="202.27999999999997" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">Global Buffer</text>
+  <text id="global-buffer-t1" x="1913.75" y="236.92" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">独立 SRAM · 分 bank</text>
+  <text id="global-buffer-t2" x="1913.75" y="270.52" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">CPU / Ara / NPU / ISP</text>
+  <text id="badge-C9-text" x="2132.75" y="290" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C9</text>
+  <text id="gb-mover-t0" x="1913.75" y="399.59999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">NPU / GB 搬运引擎</text>
+  <text id="gb-mover-t1" x="1913.75" y="431.84" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">DDR ↔ GB · AXI 主口</text>
+  <text id="badge-C7-text" x="2132.75" y="447" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C7</text>
+  <text id="lvds-rx-t0" x="2353.75" y="287.09999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">LVDS 接收</text>
+  <text id="lvds-rx-t1" x="2353.75" y="319.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">解串 / 帧行</text>
+  <text id="rx-cdc-t0" x="2546.25" y="287.09999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">CDC / FIFO</text>
+  <text id="rx-cdc-t1" x="2546.25" y="319.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">像素流缓冲</text>
+  <text id="isp-t0" x="2738.75" y="287.09999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">ISP</text>
+  <text id="isp-t1" x="2738.75" y="319.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">行缓存 / 处理</text>
+  <text id="frame-select-t0" x="2941.25" y="287.09999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">帧边界选择</text>
+  <text id="frame-select-t1" x="2941.25" y="319.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">RAW / ISP</text>
+  <text id="frame-dma-t0" x="3173.75" y="287.09999999999997" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">帧写入 DMA</text>
+  <text id="frame-dma-t1" x="3173.75" y="319.34" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">地址 / stride</text>
+  <text id="raw-bypass-label" x="2740" y="143" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#B96043">RAW 旁路</text>
+  <text id="badge-C4-text" x="2402.75" y="363" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C4</text>
+  <text id="badge-C5-text" x="2787.75" y="363" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C5</text>
+  <text id="badge-C8-text" x="3247.75" y="363" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C8</text>
+  <text id="isp-gb-label" x="2490" y="480" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#187C78">ISP 中间数据 ↔ GB</text>
+  <text id="crossbar-title" x="1486.25" y="750" font-family="Microsoft YaHei" font-size="36" font-weight="bold" text-anchor="middle" fill="#29292D">AXI Crossbar</text>
+  <text id="crossbar-caption" x="1486.25" y="790" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">8 × 6 固定端口 + 扩展 | 64 bit 数据 / 48 bit 地址 | 地址译码 / 各目标仲裁</text>
+  <text id="crossbar-rt-note" x="290" y="815" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="middle" fill="#606773">输入侧 AXI RT · 按配置可选</text>
+  <text id="crossbar-error-note" x="2710" y="815" font-family="Microsoft YaHei" font-size="24" font-weight="normal" text-anchor="middle" fill="#606773">未映射请求：DECERR</text>
+  <text id="xbar-in-S0-t0" x="228.47222222222223" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S0</text>
+  <text id="xbar-in-S1-t0" x="542.9166666666667" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S1</text>
+  <text id="xbar-in-S2-t0" x="857.3611111111111" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S2</text>
+  <text id="xbar-in-S3-t0" x="1171.8055555555557" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S3</text>
+  <text id="xbar-in-S4-t0" x="1486.25" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S4</text>
+  <text id="xbar-in-S5-t0" x="1800.6944444444443" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S5</text>
+  <text id="xbar-in-S6-t0" x="2115.1388888888887" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S6</text>
+  <text id="xbar-in-S7-t0" x="2429.5833333333335" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S7</text>
+  <text id="xbar-in-S_EXT-t0" x="2744.027777777778" y="707.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S_EXT</text>
+  <text id="debug-sba-t0" x="542.9166666666667" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Debug / SBA</text>
+  <text id="debug-sba-t1" x="542.9166666666667" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">JTAG 总线访问</text>
+  <text id="idma-master-t0" x="1171.8055555555557" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">iDMA 数据主口</text>
+  <text id="idma-master-t1" x="1171.8055555555557" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">内存 → 内存</text>
+  <text id="slink-rx-t0" x="1486.25" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Serial Link RX</text>
+  <text id="slink-rx-t1" x="1486.25" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">远端请求入口</text>
+  <text id="vga-t0" x="1800.6944444444443" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">VGA</text>
+  <text id="vga-t1" x="1800.6944444444443" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">帧缓冲读取</text>
+  <text id="usb-dma-t0" x="2115.1388888888887" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">USB DMA</text>
+  <text id="usb-dma-t1" x="2115.1388888888887" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">OHCI 主口</text>
+  <text id="emmc-host-t0" x="2429.5833333333335" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">eMMC Host / DMA</text>
+  <text id="emmc-host-t1" x="2429.5833333333335" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">存储块 ↔ 内存</text>
+  <text id="ext-master-t0" x="2744.027777777778" y="599.6" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">AXI 外部 master</text>
+  <text id="ext-master-t1" x="2744.027777777778" y="631.8399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">可选扩展入口</text>
+  <text id="badge-C10-text" x="2538.0833333333335" y="644" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C10</text>
+  <text id="xbar-out-M0-t0" x="273.3928571428571" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M0</text>
+  <text id="debug-target-t0" x="273.3928571428571" y="972.1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Debug 目标</text>
+  <text id="debug-target-t1" x="273.3928571428571" y="1004.3399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">调试模块窗口</text>
+  <text id="xbar-out-M1-t0" x="677.6785714285714" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M1</text>
+  <text id="reg-bridge-t0" x="677.6785714285714" y="972.1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">AXI → Regbus</text>
+  <text id="reg-bridge-t1" x="677.6785714285714" y="1004.3399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">原子适配 / 32 bit 桥</text>
+  <text id="xbar-out-M2-t0" x="1081.9642857142858" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M2</text>
+  <text id="memory-title" x="1081.9642857142858" y="934" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">主存 / SPM 共用目标</text>
+  <text id="atomics-t0" x="984.4642857142858" y="992.925" font-family="Microsoft YaHei" font-size="26.25" font-weight="bold" text-anchor="middle" fill="#29292D">原子适配</text>
+  <text id="atomics-t1" x="984.4642857142858" y="1027.95" font-family="Microsoft YaHei" font-size="30" font-weight="normal" text-anchor="middle" fill="#29292D">AMO / LRSC</text>
+  <text id="llc-spm-t0" x="1186.9642857142858" y="994.125" font-family="Microsoft YaHei" font-size="26.25" font-weight="bold" text-anchor="middle" fill="#29292D">LLC / SPM</text>
+  <text id="llc-spm-t1" x="1186.9642857142858" y="1027.27" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">SRAM 阵列</text>
+  <text id="xbar-out-M3-t0" x="1486.25" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M3</text>
+  <text id="idma-config-t0" x="1486.25" y="956.5" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">iDMA 配置</text>
+  <text id="idma-config-t1" x="1486.25" y="988.74" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">原子适配 → AXI→Reg</text>
+  <text id="idma-config-t2" x="1486.25" y="1019.94" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">wrapper 内部寄存器</text>
+  <text id="xbar-out-M4-t0" x="1890.5357142857142" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M4</text>
+  <text id="slink-tx-t0" x="1890.5357142857142" y="972.1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Serial Link TX</text>
+  <text id="slink-tx-t1" x="1890.5357142857142" y="1004.3399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">远端目标窗口</text>
+  <text id="xbar-out-M5-t0" x="2294.8214285714284" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M5</text>
+  <text id="gb-interface-t0" x="2294.8214285714284" y="956.5" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">GB AXI 接口</text>
+  <text id="gb-interface-t1" x="2294.8214285714284" y="988.74" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">CPU / Ara / eMMC DMA</text>
+  <text id="gb-interface-t2" x="2294.8214285714284" y="1019.94" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">64-bit 数据窗口 · 共用</text>
+  <text id="xbar-out-M_EXT-t0" x="2699.1071428571427" y="842.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">M_EXT</text>
+  <text id="ext-target-t0" x="2699.1071428571427" y="972.1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">AXI 外部 slave</text>
+  <text id="ext-target-t1" x="2699.1071428571427" y="1004.3399999999999" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">可选外部目标扩展</text>
+  <text id="emmc-device-t0" x="3475.0" y="600.96" font-family="Microsoft YaHei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D">eMMC</text>
+  <text id="emmc-device-t1" x="3475.0" y="634.24" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">模型 / 校正参数</text>
+  <text id="regbus-t0" x="911.25" y="1179.06" font-family="Microsoft YaHei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D">Regbus decode / demux · 32 bit</text>
+  <text id="bootrom-t0" x="256.25" y="1263.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Boot ROM</text>
+  <text id="bootrom-t1" x="256.25" y="1295.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">启动代码</text>
+  <text id="uart-t0" x="256.25" y="1363.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">UART</text>
+  <text id="uart-t1" x="256.25" y="1395.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">串口控制</text>
+  <text id="vga-regs-t0" x="256.25" y="1463.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">VGA 配置</text>
+  <text id="vga-regs-t1" x="256.25" y="1495.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">时序 / 帧地址</text>
+  <text id="irq-router-t0" x="256.25" y="1563.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">IRQ router</text>
+  <text id="irq-router-t1" x="256.25" y="1595.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">可选中断路由</text>
+  <text id="clint-t0" x="586.25" y="1263.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">CLINT</text>
+  <text id="clint-t1" x="586.25" y="1295.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">软件 / 定时中断</text>
+  <text id="i2c-t0" x="586.25" y="1363.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">I²C</text>
+  <text id="i2c-t1" x="586.25" y="1395.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">两线串行接口</text>
+  <text id="usb-regs-t0" x="586.25" y="1463.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">USB 配置</text>
+  <text id="usb-regs-t1" x="586.25" y="1495.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">OHCI 寄存器</text>
+  <text id="axi-rt-config-t0" x="586.25" y="1563.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">AXI RT 配置</text>
+  <text id="axi-rt-config-t1" x="586.25" y="1595.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">可选流量调节</text>
+  <text id="soc-regs-t0" x="916.25" y="1263.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">SoC 寄存器</text>
+  <text id="soc-regs-t1" x="916.25" y="1295.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">平台信息 / scratch</text>
+  <text id="spi-t0" x="916.25" y="1363.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">SPI Host</text>
+  <text id="spi-t1" x="916.25" y="1395.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">Flash / SD</text>
+  <text id="err-vga-t0" x="916.25" y="1463.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Bus-error · VGA</text>
+  <text id="err-vga-t1" x="916.25" y="1495.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">错误记录</text>
+  <text id="clic-t0" x="916.25" y="1563.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">CLIC</text>
+  <text id="clic-t1" x="916.25" y="1595.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">可选每核中断控制</text>
+  <text id="plic-t0" x="1246.25" y="1263.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">PLIC</text>
+  <text id="plic-t1" x="1246.25" y="1295.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">外部中断控制</text>
+  <text id="gpio-t0" x="1246.25" y="1363.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">GPIO</text>
+  <text id="gpio-t1" x="1246.25" y="1395.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">通用 IO</text>
+  <text id="err-dma-t0" x="1246.25" y="1463.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Bus-error · iDMA</text>
+  <text id="err-dma-t1" x="1246.25" y="1495.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">每传输错误记录</text>
+  <text id="reg-error-t0" x="1246.25" y="1563.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">reg_err_slv</text>
+  <text id="reg-error-t1" x="1246.25" y="1595.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">未匹配地址</text>
+  <text id="llc-regs-t0" x="1576.25" y="1263.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">LLC 配置</text>
+  <text id="llc-regs-t1" x="1576.25" y="1295.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">SPM way / cache</text>
+  <text id="slink-regs-t0" x="1576.25" y="1363.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Serial Link 配置</text>
+  <text id="slink-regs-t1" x="1576.25" y="1395.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">链路控制</text>
+  <text id="err-cpu-t0" x="1576.25" y="1463.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">Bus-error · CPU</text>
+  <text id="err-cpu-t1" x="1576.25" y="1495.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">每核错误记录</text>
+  <text id="reg-ext-t0" x="1576.25" y="1563.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">RegExt 扩展</text>
+  <text id="reg-ext-t1" x="1576.25" y="1595.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">新增 IP 配置出口</text>
+  <text id="config-C10-t0" x="356.25" y="1673.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">eMMC 配置 / 状态</text>
+  <text id="config-C10-t1" x="356.25" y="1705.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">DMA / 完成与错误</text>
+  <text id="badge-C10-text" x="139.75" y="1663" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C10</text>
+  <text id="config-C11-t0" x="906.25" y="1673.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">ROI / VDMA / LVDS TX</text>
+  <text id="config-C11-t1" x="906.25" y="1705.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">任务表 / 完成与错误</text>
+  <text id="badge-C11-text" x="689.75" y="1663" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C11</text>
+  <text id="config-C12-t0" x="1456.25" y="1673.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">压缩存储前端配置</text>
+  <text id="config-C12-t1" x="1456.25" y="1705.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">区域 / 状态 / 错误</text>
+  <text id="badge-C12-text" x="1239.75" y="1663" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C12</text>
+  <text id="front-F0-t0" x="1950.0" y="1177.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">F0</text>
+  <text id="front-F1-t0" x="2225.0" y="1177.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">F1</text>
+  <text id="front-F2-t0" x="2500.0" y="1177.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">F2</text>
+  <text id="front-F3-t0" x="2775.0" y="1177.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">F3</text>
+  <text id="front-adapt-t0" x="2370.0" y="1250.2" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">共享压缩存储前端 · 四口适配 / 区域选择</text>
+  <text id="compressor-t0" x="1957.5" y="1354.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">四口共享压缩器</text>
+  <text id="compressor-t1" x="1957.5" y="1386.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">写 W ↓ · 无损按块</text>
+  <text id="decompressor-t0" x="2232.5" y="1354.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">四口共享解压器</text>
+  <text id="decompressor-t1" x="2232.5" y="1386.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">读 R ↑ · 独立解码</text>
+  <text id="plain-bypass-t0" x="2507.5" y="1354.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">普通数据旁路</text>
+  <text id="plain-bypass-t1" x="2507.5" y="1386.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">未压缩区域 · 读写</text>
+  <text id="metadata-t0" x="2782.5" y="1354.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">块地址 / 元数据</text>
+  <text id="metadata-t1" x="2782.5" y="1386.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">格式 / 长度 / 状态</text>
+  <text id="front-route-t0" x="2370.0" y="1484.52" font-family="Microsoft YaHei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D">端口 / 返回路由 · F0↔S0，F1↔S1，F2↔S2，F3↔S3</text>
+  <text id="badge-C12-text" x="2876.5" y="1199" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C12</text>
+  <text id="ddr-S0-t0" x="1950.0" y="1572.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S0</text>
+  <text id="ddr-S1-t0" x="2225.0" y="1572.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S1</text>
+  <text id="ddr-S2-t0" x="2500.0" y="1572.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S2</text>
+  <text id="ddr-S3-t0" x="2775.0" y="1572.65" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" text-anchor="middle" fill="#29292D">S3</text>
+  <text id="ddr-arb-t0" x="2370.0" y="1624.52" font-family="Microsoft YaHei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D">四口仲裁 / QoS · 共享 DDR 带宽</text>
+  <text id="ddr-rw-t0" x="2067.5" y="1680.2" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">读写调度 · Bank / Row</text>
+  <text id="ddr-command-t0" x="2667.5" y="1679.52" font-family="Microsoft YaHei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D">命令调度 · Controller → PHY</text>
+  <text id="ddr-title" x="2370" y="1725" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">DDR Controller · 4 个 AXI slave</text>
+  <text id="badge-C2-text" x="2876.5" y="1720" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C2</text>
+  <text id="ddr-phy-t0" x="3157.5" y="1713.4" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">DDR PHY</text>
+  <text id="ddr-phy-t1" x="3157.5" y="1747.52" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">训练 / 校准</text>
+  <text id="badge-C3-text" x="3246.5" y="1758" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C3</text>
+  <text id="ddr-device-t0" x="3471.25" y="1714.76" font-family="Microsoft YaHei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D">DDR</text>
+  <text id="ddr-device-t1" x="3471.25" y="1749.9199999999998" font-family="Microsoft YaHei" font-size="28" font-weight="normal" text-anchor="middle" fill="#29292D">片外器件</text>
+  <text id="roi-title" x="3160" y="1150" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">图像裁切输出</text>
+  <text id="roi-count" x="3160" y="1178" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">≤256 ROI / 帧</text>
+  <text id="roi-no-scale" x="3160" y="1204" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">纯裁切 · 不缩放</text>
+  <text id="roi-scheduler-t0" x="3160.0" y="1249.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">ROI 任务表</text>
+  <text id="roi-scheduler-t1" x="3160.0" y="1281.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">顺序调度</text>
+  <text id="roi-vdma-t0" x="3160.0" y="1354.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">二维读 VDMA</text>
+  <text id="roi-vdma-t1" x="3160.0" y="1386.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">起址 / 行跨度</text>
+  <text id="roi-fifo-t0" x="3160.0" y="1459.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">像素整理</text>
+  <text id="roi-fifo-t1" x="3160.0" y="1491.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">输出 FIFO</text>
+  <text id="lvds-tx-t0" x="3160.0" y="1564.6000000000001" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">LVDS TX</text>
+  <text id="lvds-tx-t1" x="3160.0" y="1596.8400000000001" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">子图帧行封装</text>
+  <text id="badge-C11-text" x="3276.5" y="1635" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C11</text>
+  <text id="pll-title" x="2350" y="1800" font-family="Microsoft YaHei" font-size="32" font-weight="bold" text-anchor="middle" fill="#29292D">PLL / 时钟与复位分发</text>
+  <text id="badge-C1-text" x="2606.75" y="1794.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C1</text>
+  <text id="pll-interface" x="2930" y="1800" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#765489">RefClk / POR → clk_i / rst_ni</text>
+  <text id="config-C1-title" x="256.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">PLL / 时钟复位</text>
+  <text id="config-C1-desc" x="238.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">配置 / 锁定 / 切换</text>
+  <text id="badge-C1-text" x="105.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C1</text>
+  <text id="config-C2-title" x="621.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">DDR Controller</text>
+  <text id="config-C2-desc" x="603.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">初始化 / QoS / 状态</text>
+  <text id="badge-C2-text" x="470.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C2</text>
+  <text id="config-C3-title" x="986.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">DDR PHY</text>
+  <text id="config-C3-desc" x="968.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">training / 校准</text>
+  <text id="badge-C3-text" x="835.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C3</text>
+  <text id="config-C4-title" x="1351.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">LVDS RX</text>
+  <text id="config-C4-desc" x="1333.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">通道 / 对齐 / 帧行</text>
+  <text id="badge-C4-text" x="1200.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C4</text>
+  <text id="config-C5-title" x="1716.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">ISP</text>
+  <text id="config-C5-desc" x="1698.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">尺寸 / 模式 / 参数</text>
+  <text id="badge-C5-text" x="1565.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C5</text>
+  <text id="config-C6-title" x="2081.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">NPU 计算</text>
+  <text id="config-C6-desc" x="2063.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">命令 / GB 数据位置</text>
+  <text id="badge-C6-text" x="1930.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C6</text>
+  <text id="config-C7-title" x="2446.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">NPU / GB 搬运</text>
+  <text id="config-C7-desc" x="2428.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">地址 / 长度 / stride</text>
+  <text id="badge-C7-text" x="2295.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C7</text>
+  <text id="config-C8-title" x="2811.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">帧写入 DMA</text>
+  <text id="config-C8-desc" x="2793.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">缓冲区 / 格式 / 帧状态</text>
+  <text id="badge-C8-text" x="2660.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C8</text>
+  <text id="config-C9-title" x="3176.25" y="1920" font-family="Microsoft YaHei" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">GB 管理</text>
+  <text id="config-C9-desc" x="3158.75" y="1960" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#29292D">能力 / bank / 错误</text>
+  <text id="badge-C9-text" x="3025.75" y="1907.1" font-family="Microsoft YaHei" font-size="21" font-weight="bold" text-anchor="middle" fill="#765489">C9</text>
+  <text id="legend-data-text" x="3210" y="730" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#314D66">AXI 请求 / 返回</text>
+  <text id="legend-gb-text" x="3210" y="805" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#187C78">GB / 读返回</text>
+  <text id="legend-pixel-text" x="3210" y="880" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#B96043">像素 / eMMC</text>
+  <text id="legend-cfg-text" x="3210" y="955" font-family="Microsoft YaHei" font-size="26" font-weight="normal" text-anchor="middle" fill="#765489">配置 / 控制</text>
+</svg>

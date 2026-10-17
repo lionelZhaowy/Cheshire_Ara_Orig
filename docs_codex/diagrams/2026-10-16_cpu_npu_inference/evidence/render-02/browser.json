@@ -1,0 +1,1315 @@
+{
+  "date": "2026-10-16",
+  "chrome": "Google Chrome 151.0.7922.108",
+  "office_application_tested": false,
+  "figures": [
+    {
+      "name": "deployment-chain",
+      "svg_sha256": "5fc82a47f80ed2724fa05ef6a0918cee4c9586808c587bb01bc4da0601103fad",
+      "text_count": 34,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [
+        [
+          "deploy",
+          "目标 SoC：加载、调度与执行"
+        ]
+      ],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "CPU＋NPU 推理：从模型到一次设备任务",
+          "owner": "",
+          "x": 822.4921875,
+          "y": 28,
+          "width": 755.015625,
+          "height": 52
+        },
+        {
+          "text": "通用职责归纳；离线编译与目标执行分开，具体 API 和算子覆盖依平台实现",
+          "owner": "",
+          "x": 771.2734375,
+          "y": 92,
+          "width": 857.453125,
+          "height": 33
+        },
+        {
+          "text": "开发主机：转换与编译",
+          "owner": "",
+          "x": 80,
+          "y": 186,
+          "width": 300,
+          "height": 38
+        },
+        {
+          "text": "模型与输入约束",
+          "owner": "model",
+          "x": 248.5,
+          "y": 293,
+          "width": 203,
+          "height": 37
+        },
+        {
+          "text": "图 / 权重 / 校准数据 / 形状",
+          "owner": "model",
+          "x": 195.53125,
+          "y": 335,
+          "width": 308.9375,
+          "height": 31
+        },
+        {
+          "text": "面向目标的编译",
+          "owner": "compiler",
+          "x": 1023.5,
+          "y": 293,
+          "width": 203,
+          "height": 37
+        },
+        {
+          "text": "量化 / 划分 / 布局 / 分块 / 内存规划",
+          "owner": "compiler",
+          "x": 919.0390625,
+          "y": 335,
+          "width": 411.921875,
+          "height": 31
+        },
+        {
+          "text": "部署产物",
+          "owner": "artifact",
+          "x": 1942,
+          "y": 293,
+          "width": 116,
+          "height": 37
+        },
+        {
+          "text": "模型包 / 命令流 / 生成代码",
+          "owner": "artifact",
+          "x": 1847.015625,
+          "y": 335,
+          "width": 305.96875,
+          "height": 31
+        },
+        {
+          "text": "解析",
+          "owner": "",
+          "x": 676,
+          "y": 284,
+          "width": 48,
+          "height": 30
+        },
+        {
+          "text": "目标相关产物",
+          "owner": "",
+          "x": 1528,
+          "y": 284,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "目标 SoC：加载、调度与执行",
+          "owner": "",
+          "x": 80,
+          "y": 584,
+          "width": 392.328125,
+          "height": 38
+        },
+        {
+          "text": "CPU 应用 / 推理运行时",
+          "owner": "runtime",
+          "x": 211.5546875,
+          "y": 698,
+          "width": 296.890625,
+          "height": 37
+        },
+        {
+          "text": "加载模型 / 准备张量 / 调度子图",
+          "owner": "runtime",
+          "x": 182.015625,
+          "y": 740,
+          "width": 355.96875,
+          "height": 31
+        },
+        {
+          "text": "CPU 算子与后处理",
+          "owner": "cpu",
+          "x": 982.28125,
+          "y": 698,
+          "width": 235.4375,
+          "height": 37
+        },
+        {
+          "text": "后端选择的 CPU 工作",
+          "owner": "cpu",
+          "x": 982.2734375,
+          "y": 740,
+          "width": 235.453125,
+          "height": 31
+        },
+        {
+          "text": "应用消费结果",
+          "owner": "result",
+          "x": 1923,
+          "y": 698,
+          "width": 174,
+          "height": 37
+        },
+        {
+          "text": "检查状态 / 后处理 / 输出",
+          "owner": "result",
+          "x": 1869.515625,
+          "y": 740,
+          "width": 280.96875,
+          "height": 31
+        },
+        {
+          "text": "设备与平台适配",
+          "owner": "driver",
+          "x": 258.5,
+          "y": 1013,
+          "width": 203,
+          "height": 37
+        },
+        {
+          "text": "地址 / 同步 / 提交 / 等待 / 恢复",
+          "owner": "driver",
+          "x": 178.0390625,
+          "y": 1055,
+          "width": 362.921875,
+          "height": 31
+        },
+        {
+          "text": "NPU 执行资源",
+          "owner": "npu",
+          "x": 1010.703125,
+          "y": 1013,
+          "width": 178.59375,
+          "height": 37
+        },
+        {
+          "text": "命令控制 / 搬运 / 计算",
+          "owner": "npu",
+          "x": 972.015625,
+          "y": 1055,
+          "width": 255.96875,
+          "height": 31
+        },
+        {
+          "text": "张量存储与工作区",
+          "owner": "buffers",
+          "x": 1894,
+          "y": 1013,
+          "width": 232,
+          "height": 37
+        },
+        {
+          "text": "外存 / 片上 SRAM；按平台规划",
+          "owner": "buffers",
+          "x": 1834.546875,
+          "y": 1055,
+          "width": 350.90625,
+          "height": 31
+        },
+        {
+          "text": "部署与加载",
+          "owner": "",
+          "x": 1210,
+          "y": 464,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "函数调用",
+          "owner": "",
+          "x": 687,
+          "y": 688,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "CPU 路径结果",
+          "owner": "",
+          "x": 1486.578125,
+          "y": 688,
+          "width": 146.84375,
+          "height": 30
+        },
+        {
+          "text": "设备任务",
+          "owner": "",
+          "x": 380,
+          "y": 877,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "提交 / 完成",
+          "owner": "",
+          "x": 673.5703125,
+          "y": 1003,
+          "width": 122.859375,
+          "height": 30
+        },
+        {
+          "text": "张量读写 / 搬运",
+          "owner": "",
+          "x": 1474.5703125,
+          "y": 1003,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "CPU 与设备交接缓冲区",
+          "owner": "",
+          "x": 1318.578125,
+          "y": 834,
+          "width": 242.84375,
+          "height": 30
+        },
+        {
+          "text": "同步后消费",
+          "owner": "",
+          "x": 2170,
+          "y": 887,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "棕：编译产物流转    紫：调用、控制与状态    蓝灰：张量与结果",
+          "owner": "",
+          "x": 840.8984375,
+          "y": 1206,
+          "width": 718.203125,
+          "height": 34
+        },
+        {
+          "text": "图中的边界是软件职责；CPU 回退、内存共享和任务完成都需要明确实现。",
+          "owner": "",
+          "x": 769.4609375,
+          "y": 1265,
+          "width": 861.078125,
+          "height": 33
+        }
+      ]
+    },
+    {
+      "name": "invocation-paths",
+      "svg_sha256": "1d1bb5f1cf49543e1c36cdffe9b2fcb81f0ff3f18aa41a32c1892e9d9a9dc14e",
+      "text_count": 48,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "三种加速器调用方式：相似目标，不同接口",
+          "owner": "",
+          "x": 801,
+          "y": 28,
+          "width": 798,
+          "height": 52
+        },
+        {
+          "text": "分别取 NVDLA headless Linux、Ethos-U Cortex-M、Gemmini RoCC 路径",
+          "owner": "",
+          "x": 790.125,
+          "y": 92,
+          "width": 819.75,
+          "height": 33
+        },
+        {
+          "text": "NVDLA",
+          "owner": "",
+          "x": 365.0625,
+          "y": 197,
+          "width": 99.875,
+          "height": 43
+        },
+        {
+          "text": "应用加载 loadable",
+          "owner": "nvdlaapp",
+          "x": 298.8125,
+          "y": 285.5,
+          "width": 232.375,
+          "height": 37
+        },
+        {
+          "text": "绑定输入与输出",
+          "owner": "nvdlaapp",
+          "x": 327.5,
+          "y": 327.5,
+          "width": 175,
+          "height": 31
+        },
+        {
+          "text": "用户态运行时 UMD",
+          "owner": "nvdlarun",
+          "x": 292.9375,
+          "y": 480.5,
+          "width": 244.125,
+          "height": 37
+        },
+        {
+          "text": "构造 DLA task",
+          "owner": "nvdlarun",
+          "x": 336.5390625,
+          "y": 522.5,
+          "width": 156.4072265625,
+          "height": 31
+        },
+        {
+          "text": "内核驱动 KMD",
+          "owner": "nvdlaif",
+          "x": 325.4296875,
+          "y": 691.5,
+          "width": 179.140625,
+          "height": 35
+        },
+        {
+          "text": "engine scheduler / 寄存器 / IRQ",
+          "owner": "nvdlaif",
+          "x": 237.1875,
+          "y": 732.5,
+          "width": 355.625,
+          "height": 31
+        },
+        {
+          "text": "NVDLA 功能块",
+          "owner": "nvdlahw",
+          "x": 324.5546875,
+          "y": 928,
+          "width": 180.890625,
+          "height": 37
+        },
+        {
+          "text": "DMA / 卷积 / 后处理",
+          "owner": "nvdlahw",
+          "x": 299.0390625,
+          "y": 970,
+          "width": 231.921875,
+          "height": 31
+        },
+        {
+          "text": "DRAM / 可选片上 SRAM",
+          "owner": "nvdlamem",
+          "x": 265.2890625,
+          "y": 1149,
+          "width": 299.421875,
+          "height": 35
+        },
+        {
+          "text": "张量缓冲区",
+          "owner": "nvdlamem",
+          "x": 352.5,
+          "y": 1190,
+          "width": 125,
+          "height": 31
+        },
+        {
+          "text": "运行时 API",
+          "owner": "",
+          "x": 440,
+          "y": 399,
+          "width": 112.296875,
+          "height": 30
+        },
+        {
+          "text": "提交任务",
+          "owner": "",
+          "x": 440,
+          "y": 606.5,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "配置 / 完成",
+          "owner": "",
+          "x": 440,
+          "y": 829,
+          "width": 122.859375,
+          "height": 30
+        },
+        {
+          "text": "数据访问",
+          "owner": "",
+          "x": 440,
+          "y": 1071,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "Arm Ethos-U",
+          "owner": "",
+          "x": 1107.9609375,
+          "y": 197,
+          "width": 184.078125,
+          "height": 43
+        },
+        {
+          "text": "应用执行 TFLite 模型",
+          "owner": "armapp",
+          "x": 1066.9296875,
+          "y": 285.5,
+          "width": 266.140625,
+          "height": 37
+        },
+        {
+          "text": "Vela 生成 NPU 子图",
+          "owner": "armapp",
+          "x": 1092.0625,
+          "y": 327.5,
+          "width": 215.875,
+          "height": 31
+        },
+        {
+          "text": "TFLM 与 CPU kernels",
+          "owner": "armrun",
+          "x": 1066.421875,
+          "y": 480.5,
+          "width": 267.15625,
+          "height": 37
+        },
+        {
+          "text": "CPU 算子 / Ethos-U custom op",
+          "owner": "armrun",
+          "x": 1030.6640625,
+          "y": 522.5,
+          "width": 338.671875,
+          "height": 31
+        },
+        {
+          "text": "Ethos-U core driver",
+          "owner": "armif",
+          "x": 1083.9609375,
+          "y": 691.5,
+          "width": 233.125,
+          "height": 35
+        },
+        {
+          "text": "命令流 / 区域基址 / 中断处理",
+          "owner": "armif",
+          "x": 1034.515625,
+          "y": 732.5,
+          "width": 330.96875,
+          "height": 31
+        },
+        {
+          "text": "Ethos-U NPU",
+          "owner": "armhw",
+          "x": 1119.171875,
+          "y": 928,
+          "width": 161.65625,
+          "height": 37
+        },
+        {
+          "text": "执行已编译的命令流",
+          "owner": "armhw",
+          "x": 1087.5,
+          "y": 970,
+          "width": 225,
+          "height": 31
+        },
+        {
+          "text": "平台内存 / tensor arena",
+          "owner": "armmem",
+          "x": 1050.6171875,
+          "y": 1149,
+          "width": 298.765625,
+          "height": 35
+        },
+        {
+          "text": "常量 / 激活 / scratch",
+          "owner": "armmem",
+          "x": 1082.078125,
+          "y": 1190,
+          "width": 235.84375,
+          "height": 31
+        },
+        {
+          "text": "Invoke",
+          "owner": "",
+          "x": 1225,
+          "y": 399,
+          "width": 67.59375,
+          "height": 30
+        },
+        {
+          "text": "custom op 调用",
+          "owner": "",
+          "x": 1225,
+          "y": 606.5,
+          "width": 165.453125,
+          "height": 30
+        },
+        {
+          "text": "启动 / 完成",
+          "owner": "",
+          "x": 1225,
+          "y": 829,
+          "width": 122.859375,
+          "height": 30
+        },
+        {
+          "text": "数据访问",
+          "owner": "",
+          "x": 1225,
+          "y": 1071,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "Gemmini",
+          "owner": "",
+          "x": 1919.46875,
+          "y": 197,
+          "width": 131.0625,
+          "height": 43
+        },
+        {
+          "text": "RISC-V 应用 / 算子库",
+          "owner": "gemminiapp",
+          "x": 1848.7578125,
+          "y": 285.5,
+          "width": 272.484375,
+          "height": 37
+        },
+        {
+          "text": "矩阵 / 卷积 / 可选框架适配",
+          "owner": "gemminiapp",
+          "x": 1832.015625,
+          "y": 327.5,
+          "width": 305.96875,
+          "height": 31
+        },
+        {
+          "text": "C 宏与分块算子",
+          "owner": "gemminirun",
+          "x": 1884.671875,
+          "y": 480.5,
+          "width": 200.65625,
+          "height": 37
+        },
+        {
+          "text": "配置 / mvin / compute / mvout",
+          "owner": "gemminirun",
+          "x": 1812.1796875,
+          "y": 522.5,
+          "width": 345.646484375,
+          "height": 31
+        },
+        {
+          "text": "CPU 自定义指令 → RoCC",
+          "owner": "gemminiif",
+          "x": 1829.3984375,
+          "y": 691.5,
+          "width": 311.203125,
+          "height": 35
+        },
+        {
+          "text": "Gemmini 命令与同步",
+          "owner": "gemminiif",
+          "x": 1870.5703125,
+          "y": 732.5,
+          "width": 228.859375,
+          "height": 31
+        },
+        {
+          "text": "Gemmini 阵列与本地存储",
+          "owner": "gemminihw",
+          "x": 1823.2578125,
+          "y": 928,
+          "width": 323.484375,
+          "height": 37
+        },
+        {
+          "text": "scratchpad / accumulator",
+          "owner": "gemminihw",
+          "x": 1843.953125,
+          "y": 970,
+          "width": 283.0966796875,
+          "height": 31
+        },
+        {
+          "text": "SoC 主存层次",
+          "owner": "gemminimem",
+          "x": 1899.9140625,
+          "y": 1149,
+          "width": 170.171875,
+          "height": 35
+        },
+        {
+          "text": "经 DMA 与 TileLink 访问",
+          "owner": "gemminimem",
+          "x": 1853.328125,
+          "y": 1190,
+          "width": 263.34375,
+          "height": 31
+        },
+        {
+          "text": "库函数",
+          "owner": "",
+          "x": 2010,
+          "y": 399,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "发射指令",
+          "owner": "",
+          "x": 2010,
+          "y": 606.5,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "执行命令",
+          "owner": "",
+          "x": 2010,
+          "y": 829,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "数据访问",
+          "owner": "",
+          "x": 2010,
+          "y": 1071,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "紫：调用 / 指令 / 控制    蓝灰：数据；各列省略 CPU 的普通访存，三者不是同一总线接口。",
+          "owner": "",
+          "x": 680.5703125,
+          "y": 1285,
+          "width": 1038.859375,
+          "height": 33
+        }
+      ]
+    },
+    {
+      "name": "deeploy-siracusa",
+      "svg_sha256": "a91595193bb66906a3e49349a1999fcf86d4c55c687f288c85b7c3313d30620b",
+      "text_count": 36,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [
+        [
+          "deploy",
+          "Siracusa：主控与异构计算集群"
+        ]
+      ],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "Deeploy / Siracusa：编译安排计算与显式搬运",
+          "owner": "",
+          "x": 771.8515625,
+          "y": 28,
+          "width": 856.296875,
+          "height": 52
+        },
+        {
+          "text": "依据论文的部署机制归纳；图中 L1 / L2 为软件管理的片上存储，不是 CVA6 缓存",
+          "owner": "",
+          "x": 733.875,
+          "y": 92,
+          "width": 932.25,
+          "height": 33
+        },
+        {
+          "text": "开发主机",
+          "owner": "",
+          "x": 80,
+          "y": 187,
+          "width": 116,
+          "height": 37
+        },
+        {
+          "text": "量化 ONNX",
+          "owner": "onnx",
+          "x": 250.15625,
+          "y": 268,
+          "width": 140.04296875,
+          "height": 37
+        },
+        {
+          "text": "模型 / 形状 / 数据类型",
+          "owner": "onnx",
+          "x": 192.015625,
+          "y": 310,
+          "width": 255.96875,
+          "height": 31
+        },
+        {
+          "text": "Deeploy 编译",
+          "owner": "planner",
+          "x": 1081.265625,
+          "y": 268,
+          "width": 167.46875,
+          "height": 37
+        },
+        {
+          "text": "算子映射 / 分块约束 / 静态内存规划",
+          "owner": "planner",
+          "x": 962.015625,
+          "y": 310,
+          "width": 405.96875,
+          "height": 31
+        },
+        {
+          "text": "生成 C 代码",
+          "owner": "code",
+          "x": 1944.328125,
+          "y": 268,
+          "width": 151.34375,
+          "height": 37
+        },
+        {
+          "text": "算子调用 / DMA / 同步",
+          "owner": "code",
+          "x": 1891.5390625,
+          "y": 310,
+          "width": 256.921875,
+          "height": 31
+        },
+        {
+          "text": "Siracusa：主控与异构计算集群",
+          "owner": "",
+          "x": 80,
+          "y": 527,
+          "width": 400.03125,
+          "height": 37
+        },
+        {
+          "text": "主控核",
+          "owner": "controller",
+          "x": 251.5,
+          "y": 653,
+          "width": 87,
+          "height": 37
+        },
+        {
+          "text": "启动计算集群 / 应用控制",
+          "owner": "controller",
+          "x": 156.0078125,
+          "y": 695,
+          "width": 277.984375,
+          "height": 31
+        },
+        {
+          "text": "8 核 RISC-V 集群",
+          "owner": "cluster",
+          "x": 941.6015625,
+          "y": 653,
+          "width": 216.796875,
+          "height": 37
+        },
+        {
+          "text": "执行 CPU kernels / 管理分块",
+          "owner": "cluster",
+          "x": 890.84375,
+          "y": 695,
+          "width": 318.3125,
+          "height": 31
+        },
+        {
+          "text": "N-Eureka NPU",
+          "owner": "npu",
+          "x": 1906.3515625,
+          "y": 653,
+          "width": 177.296875,
+          "height": 37
+        },
+        {
+          "text": "常量权重线性层 → 1×1 卷积",
+          "owner": "npu",
+          "x": 1836.265625,
+          "y": 695,
+          "width": 317.46875,
+          "height": 31
+        },
+        {
+          "text": "交叉编译与加载到目标程序",
+          "owner": "",
+          "x": 1026,
+          "y": 417,
+          "width": 288,
+          "height": 30
+        },
+        {
+          "text": "任务派发",
+          "owner": "",
+          "x": 586,
+          "y": 644,
+          "width": 97,
+          "height": 30
+        },
+        {
+          "text": "配置 / 等待 / 同步",
+          "owner": "",
+          "x": 1431.140625,
+          "y": 643,
+          "width": 197.71875,
+          "height": 30
+        },
+        {
+          "text": "TCDM 访问互连 / 仲裁",
+          "owner": "arbiter",
+          "x": 1264.7578125,
+          "y": 887,
+          "width": 290.484375,
+          "height": 37
+        },
+        {
+          "text": "CPU 读写",
+          "owner": "",
+          "x": 1090,
+          "y": 796,
+          "width": 98.84375,
+          "height": 30
+        },
+        {
+          "text": "NPU 激活读写",
+          "owner": "",
+          "x": 1672.203125,
+          "y": 796,
+          "width": 147.796875,
+          "height": 30
+        },
+        {
+          "text": "L2 片上存储",
+          "owner": "l2",
+          "x": 216.703125,
+          "y": 1060.5,
+          "width": 156.59375,
+          "height": 37
+        },
+        {
+          "text": "输入 / 激活 / KV / 其他权重",
+          "owner": "l2",
+          "x": 138.296875,
+          "y": 1102.5,
+          "width": 313.40625,
+          "height": 31
+        },
+        {
+          "text": "集群 DMA",
+          "owner": "dma",
+          "x": 727.09375,
+          "y": 1060.5,
+          "width": 126.5712890625,
+          "height": 37
+        },
+        {
+          "text": "L2 ↔ L1 分块",
+          "owner": "dma",
+          "x": 713.765625,
+          "y": 1102.5,
+          "width": 152.46875,
+          "height": 31
+        },
+        {
+          "text": "L1 TCDM",
+          "owner": "l1",
+          "x": 1352.0390625,
+          "y": 1060.5,
+          "width": 115.921875,
+          "height": 37
+        },
+        {
+          "text": "CPU 与 NPU 共享的数据块",
+          "owner": "l1",
+          "x": 1265.296875,
+          "y": 1102.5,
+          "width": 289.40625,
+          "height": 31
+        },
+        {
+          "text": "NMS 权重存储",
+          "owner": "nms",
+          "x": 1982.234375,
+          "y": 1060.5,
+          "width": 185.53125,
+          "height": 37
+        },
+        {
+          "text": "SRAM / MRAM",
+          "owner": "nms",
+          "x": 1993.078125,
+          "y": 1102.5,
+          "width": 163.84375,
+          "height": 31
+        },
+        {
+          "text": "AXI",
+          "owner": "",
+          "x": 548.6953125,
+          "y": 1052,
+          "width": 32.609375,
+          "height": 30
+        },
+        {
+          "text": "访问 bank",
+          "owner": "",
+          "x": 1430,
+          "y": 975,
+          "width": 106.015625,
+          "height": 30
+        },
+        {
+          "text": "专用供权重",
+          "owner": "",
+          "x": 2110,
+          "y": 907,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "搬运控制",
+          "owner": "",
+          "x": 674,
+          "y": 907,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "紫：控制与同步    蓝灰：主存 / 权重数据    绿：共享 TCDM 数据    棕：编译产物",
+          "owner": "",
+          "x": 768.1875,
+          "y": 1230,
+          "width": 863.625,
+          "height": 33
+        },
+        {
+          "text": "静态权重映射到 NPU；其他算子由集群执行。数据驻留、分块和搬运由部署方案共同决定。",
+          "owner": "",
+          "x": 677.9375,
+          "y": 1285,
+          "width": 1044.125,
+          "height": 33
+        }
+      ]
+    },
+    {
+      "name": "llm-phases",
+      "svg_sha256": "4a26678436fee9301a1a4cfb1d9a73a403a14b01b858bddaf22beae1912730f5",
+      "text_count": 38,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [
+        [
+          "emit",
+          "读取历史 / 追加本步 KV"
+        ]
+      ],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "LLM 推理：阶段、状态与异构分工",
+          "owner": "",
+          "x": 882.4921875,
+          "y": 28,
+          "width": 635.015625,
+          "height": 52
+        },
+        {
+          "text": "上部是通用执行关系；下部是 llm.npu 的 prefill 特有优化，不能等同于 decode 加速",
+          "owner": "",
+          "x": 724.1484375,
+          "y": 92,
+          "width": 951.703125,
+          "height": 33
+        },
+        {
+          "text": "通用自回归推理",
+          "owner": "",
+          "x": 80,
+          "y": 184,
+          "width": 210,
+          "height": 38
+        },
+        {
+          "text": "CPU 输入准备",
+          "owner": "input",
+          "x": 181.28125,
+          "y": 293,
+          "width": 177.4375,
+          "height": 37
+        },
+        {
+          "text": "分词 / 输入张量",
+          "owner": "input",
+          "x": 181.0078125,
+          "y": 335,
+          "width": 177.984375,
+          "height": 31
+        },
+        {
+          "text": "Prefill",
+          "owner": "prefill",
+          "x": 839.6796875,
+          "y": 293,
+          "width": 70.640625,
+          "height": 37
+        },
+        {
+          "text": "处理输入 token / 计算 logits",
+          "owner": "prefill",
+          "x": 718.6015625,
+          "y": 335,
+          "width": 312.796875,
+          "height": 31
+        },
+        {
+          "text": "采样与终止判断",
+          "owner": "sample",
+          "x": 1418.5,
+          "y": 293,
+          "width": 203,
+          "height": 37
+        },
+        {
+          "text": "按实现分配到 CPU 等",
+          "owner": "sample",
+          "x": 1402.2734375,
+          "y": 335,
+          "width": 235.453125,
+          "height": 31
+        },
+        {
+          "text": "Decode",
+          "owner": "decode",
+          "x": 2032.21875,
+          "y": 293,
+          "width": 95.5625,
+          "height": 37
+        },
+        {
+          "text": "逐 token 推进",
+          "owner": "decode",
+          "x": 2004.546875,
+          "y": 335,
+          "width": 150.90625,
+          "height": 31
+        },
+        {
+          "text": "tokens",
+          "owner": "",
+          "x": 504.5234375,
+          "y": 283,
+          "width": 70.953125,
+          "height": 30
+        },
+        {
+          "text": "首轮 logits",
+          "owner": "",
+          "x": 1164.125,
+          "y": 283,
+          "width": 111.75,
+          "height": 30
+        },
+        {
+          "text": "下一 token",
+          "owner": "",
+          "x": 1753.1640625,
+          "y": 254,
+          "width": 113.671875,
+          "height": 30
+        },
+        {
+          "text": "后续 logits",
+          "owner": "",
+          "x": 1754.125,
+          "y": 383,
+          "width": 111.75,
+          "height": 30
+        },
+        {
+          "text": "KV cache：跨步保留的算法张量",
+          "owner": "kv",
+          "x": 841.203125,
+          "y": 578,
+          "width": 407.59375,
+          "height": 37
+        },
+        {
+          "text": "本步追加 / 后续读取；容量依上下文增长",
+          "owner": "kv",
+          "x": 818.5078125,
+          "y": 620,
+          "width": 452.984375,
+          "height": 31
+        },
+        {
+          "text": "应用输出",
+          "owner": "out",
+          "x": 1932,
+          "y": 578,
+          "width": 116,
+          "height": 37
+        },
+        {
+          "text": "首 token / 持续输出 / 结束",
+          "owner": "out",
+          "x": 1840.3125,
+          "y": 620,
+          "width": 299.375,
+          "height": 31
+        },
+        {
+          "text": "生成 KV",
+          "owner": "",
+          "x": 895,
+          "y": 456,
+          "width": 84.0546875,
+          "height": 30
+        },
+        {
+          "text": "读取历史 / 追加本步 KV",
+          "owner": "",
+          "x": 1507.828125,
+          "y": 440,
+          "width": 254.9140625,
+          "height": 30
+        },
+        {
+          "text": "输出 token",
+          "owner": "",
+          "x": 1540,
+          "y": 543,
+          "width": 113.671875,
+          "height": 30
+        },
+        {
+          "text": "llm.npu 案例：移动平台上的 prefill 优化",
+          "owner": "",
+          "x": 80,
+          "y": 821,
+          "width": 525.890625,
+          "height": 38
+        },
+        {
+          "text": "固定大小的 prompt 块",
+          "owner": "chunks",
+          "x": 164.7109375,
+          "y": 964,
+          "width": 280.578125,
+          "height": 37
+        },
+        {
+          "text": "保持因果依赖",
+          "owner": "chunks",
+          "x": 230,
+          "y": 1006,
+          "width": 150,
+          "height": 31
+        },
+        {
+          "text": "复用预编译子图",
+          "owner": "chunks",
+          "x": 217.5,
+          "y": 1044,
+          "width": 175,
+          "height": 31
+        },
+        {
+          "text": "张量 / 块级分配",
+          "owner": "split",
+          "x": 811.765625,
+          "y": 964,
+          "width": 206.46875,
+          "height": 37
+        },
+        {
+          "text": "识别离群值与硬件适配",
+          "owner": "split",
+          "x": 790,
+          "y": 1006,
+          "width": 250,
+          "height": 31
+        },
+        {
+          "text": "按依赖安排执行",
+          "owner": "split",
+          "x": 827.5,
+          "y": 1044,
+          "width": 175,
+          "height": 31
+        },
+        {
+          "text": "NPU 主计算",
+          "owner": "npu",
+          "x": 1515.203125,
+          "y": 913,
+          "width": 149.59375,
+          "height": 37
+        },
+        {
+          "text": "适配的整数运算",
+          "owner": "npu",
+          "x": 1502.5,
+          "y": 955,
+          "width": 175,
+          "height": 31
+        },
+        {
+          "text": "CPU / GPU",
+          "owner": "cpu-gpu",
+          "x": 1520.453125,
+          "y": 1083,
+          "width": 139.09375,
+          "height": 37
+        },
+        {
+          "text": "离群值与其他必要工作",
+          "owner": "cpu-gpu",
+          "x": 1465,
+          "y": 1125,
+          "width": 250,
+          "height": 31
+        },
+        {
+          "text": "同步与合并",
+          "owner": "merge",
+          "x": 2057.5,
+          "y": 1013,
+          "width": 145,
+          "height": 37
+        },
+        {
+          "text": "交给后续计算",
+          "owner": "merge",
+          "x": 2055,
+          "y": 1055,
+          "width": 150,
+          "height": 31
+        },
+        {
+          "text": "调度",
+          "owner": "",
+          "x": 581,
+          "y": 973,
+          "width": 48,
+          "height": 30
+        },
+        {
+          "text": "紫：调用 / 调度    蓝灰：token / 结果    绿：KV 数据    虚线区：特定论文机制",
+          "owner": "",
+          "x": 783.3125,
+          "y": 1233,
+          "width": 833.375,
+          "height": 33
+        },
+        {
+          "text": "本工程没有已确认的 GPU 路径；Ara 能否承担相关算子，需要另行适配与验证。",
+          "owner": "",
+          "x": 742.7109375,
+          "y": 1285,
+          "width": 914.578125,
+          "height": 33
+        }
+      ]
+    }
+  ],
+  "status": "needs-layout-adjustment"
+}

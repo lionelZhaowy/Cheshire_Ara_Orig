@@ -1,0 +1,1201 @@
+{
+  "date": "2026-10-16",
+  "chrome": "Google Chrome 151.0.7922.108",
+  "office_application_tested": false,
+  "figures": [
+    {
+      "name": "system",
+      "svg_sha256": "bb3bea3e519761b4c2d22a0a2efcca9a2434267388d0226a28a475f4206fa642",
+      "text_count": 64,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "DDR–GB：数据存储互连与一致性协调",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 603.78125,
+          "height": 46
+        },
+        {
+          "text": "普通主存、GB 访问与 DDR 搬运分路；虚线表示新增或待扩展职责",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 698.765625,
+          "height": 30
+        },
+        {
+          "text": "CVA6–Ara 普通主存路径与 GB 分流",
+          "owner": "",
+          "x": 75,
+          "y": 147,
+          "width": 449.203125,
+          "height": 37
+        },
+        {
+          "text": "共享 GB：计算访问与显式搬运",
+          "owner": "",
+          "x": 75,
+          "y": 707,
+          "width": 393.765625,
+          "height": 37
+        },
+        {
+          "text": "DDR 控制器",
+          "owner": "",
+          "x": 2156.671875,
+          "y": 168,
+          "width": 146.65625,
+          "height": 35
+        },
+        {
+          "text": "合流位置示意",
+          "owner": "",
+          "x": 2158,
+          "y": 215,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "CVA6",
+          "owner": "",
+          "x": 237.265625,
+          "y": 221,
+          "width": 65.46875,
+          "height": 35
+        },
+        {
+          "text": "L1D",
+          "owner": "l1d",
+          "x": 146.25,
+          "y": 297,
+          "width": 47.5,
+          "height": 34
+        },
+        {
+          "text": "WT / 读副本",
+          "owner": "l1d",
+          "x": 104.734375,
+          "y": 335,
+          "width": 130.53125,
+          "height": 30
+        },
+        {
+          "text": "写缓冲",
+          "owner": "wbuffer",
+          "x": 324.5,
+          "y": 297,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "在途标量写",
+          "owner": "wbuffer",
+          "x": 305,
+          "y": 335,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "Ara",
+          "owner": "ara",
+          "x": 160.8515625,
+          "y": 512,
+          "width": 38.296875,
+          "height": 34
+        },
+        {
+          "text": "单一 AXI 出口",
+          "owner": "ara",
+          "x": 108.5,
+          "y": 550,
+          "width": 143,
+          "height": 30
+        },
+        {
+          "text": "失效过滤",
+          "owner": "filter",
+          "x": 411,
+          "y": 512,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "现有 Ara 机制",
+          "owner": "filter",
+          "x": 392.7890625,
+          "y": 550,
+          "width": 144.421875,
+          "height": 30
+        },
+        {
+          "text": "地址分流",
+          "owner": "split",
+          "x": 720,
+          "y": 512,
+          "width": 109,
+          "height": 34
+        },
+        {
+          "text": "普通地址 / GB",
+          "owner": "split",
+          "x": 698.2265625,
+          "y": 550,
+          "width": 153.546875,
+          "height": 30
+        },
+        {
+          "text": "位宽适配",
+          "owner": "width",
+          "x": 1136,
+          "y": 507,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "普通地址 → 64-bit",
+          "owner": "width",
+          "x": 1091.640625,
+          "y": 545,
+          "width": 197.046875,
+          "height": 30
+        },
+        {
+          "text": "主 AXI Xbar",
+          "owner": "xbar",
+          "x": 1123.921875,
+          "y": 242,
+          "width": 132.5302734375,
+          "height": 34
+        },
+        {
+          "text": "系统 64-bit",
+          "owner": "xbar",
+          "x": 1131.2421875,
+          "y": 280,
+          "width": 117.8515625,
+          "height": 30
+        },
+        {
+          "text": "原子适配",
+          "owner": "atomics",
+          "x": 1526,
+          "y": 242,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "AMO / LRSC",
+          "owner": "atomics",
+          "x": 1513.8203125,
+          "y": 280,
+          "width": 132.359375,
+          "height": 30
+        },
+        {
+          "text": "LLC / SPM",
+          "owner": "llc",
+          "x": 1516.0546875,
+          "y": 470,
+          "width": 127.890625,
+          "height": 34
+        },
+        {
+          "text": "WB 缓存 / 片上 SPM",
+          "owner": "llc",
+          "x": 1470.1328125,
+          "y": 508,
+          "width": 219.734375,
+          "height": 30
+        },
+        {
+          "text": "逐行协调接口待扩展",
+          "owner": "llc",
+          "x": 1472,
+          "y": 543,
+          "width": 216,
+          "height": 30
+        },
+        {
+          "text": "NPU 计算",
+          "owner": "npu",
+          "x": 148.859375,
+          "y": 782,
+          "width": 112.28125,
+          "height": 34
+        },
+        {
+          "text": "GB 数据读写",
+          "owner": "npu",
+          "x": 138.0625,
+          "y": 820,
+          "width": 133.875,
+          "height": 30
+        },
+        {
+          "text": "ISP / 帧写入器",
+          "owner": "isp",
+          "x": 116.46875,
+          "y": 922,
+          "width": 177.0625,
+          "height": 34
+        },
+        {
+          "text": "GB 工作区 / DDR 帧",
+          "owner": "isp",
+          "x": 97.78125,
+          "y": 960,
+          "width": 214.4375,
+          "height": 30
+        },
+        {
+          "text": "共享数据代理",
+          "owner": "proxy",
+          "x": 699,
+          "y": 815,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "Ara / NPU / ISP / 搬运器",
+          "owner": "proxy",
+          "x": 647.1328125,
+          "y": 853,
+          "width": 265.734375,
+          "height": 30
+        },
+        {
+          "text": "GB 适配 / 仲裁 / bank",
+          "owner": "proxy",
+          "x": 660.796875,
+          "y": 888,
+          "width": 238.40625,
+          "height": 30
+        },
+        {
+          "text": "Global Buffer",
+          "owner": "gb",
+          "x": 1133.4375,
+          "y": 805,
+          "width": 153.4921875,
+          "height": 34
+        },
+        {
+          "text": "独立 SRAM",
+          "owner": "gb",
+          "x": 1150.9921875,
+          "y": 843,
+          "width": 118.015625,
+          "height": 30
+        },
+        {
+          "text": "工作区 / 双缓冲",
+          "owner": "gb",
+          "x": 1124.5703125,
+          "y": 878,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "DDR–GB 搬运器",
+          "owner": "mover",
+          "x": 1504.53125,
+          "y": 805,
+          "width": 190.9375,
+          "height": 34
+        },
+        {
+          "text": "显式搬入 / 写回",
+          "owner": "mover",
+          "x": 1514.5703125,
+          "y": 843,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "独立于计算访问",
+          "owner": "mover",
+          "x": 1516,
+          "y": 878,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "设备一致性入口",
+          "owner": "entry",
+          "x": 1845.5,
+          "y": 815,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "请求准入 / 完成",
+          "owner": "entry",
+          "x": 1854.5703125,
+          "y": 853,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "不分配 LLC 行",
+          "owner": "entry",
+          "x": 1865.375,
+          "y": 888,
+          "width": 149.25,
+          "height": 30
+        },
+        {
+          "text": "合流 / 仲裁",
+          "owner": "arb",
+          "x": 2160.890625,
+          "y": 623,
+          "width": 138.21875,
+          "height": 34
+        },
+        {
+          "text": "读写调度",
+          "owner": "arb",
+          "x": 2182,
+          "y": 661,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "在途跟踪",
+          "owner": "arb",
+          "x": 2182,
+          "y": 696,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "共享 DDR 带宽",
+          "owner": "arb",
+          "x": 2151.5546875,
+          "y": 731,
+          "width": 156.890625,
+          "height": 30
+        },
+        {
+          "text": "PHY / DDR",
+          "owner": "ddr",
+          "x": 2169.7265625,
+          "y": 1187,
+          "width": 130.546875,
+          "height": 34
+        },
+        {
+          "text": "外部主存",
+          "owner": "ddr",
+          "x": 2187,
+          "y": 1225,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "一致性协调（候选职责）",
+          "owner": "coord",
+          "x": 1026.5,
+          "y": 1165,
+          "width": 297,
+          "height": 34
+        },
+        {
+          "text": "逐行排序 / 副本与写权限 / 冲突访问",
+          "owner": "coord",
+          "x": 980.140625,
+          "y": 1203,
+          "width": 389.71875,
+          "height": 30
+        },
+        {
+          "text": "汇合探测响应、失效确认、在途状态与完成事件",
+          "owner": "coord",
+          "x": 923,
+          "y": 1238,
+          "width": 504,
+          "height": 30
+        },
+        {
+          "text": "标量内存访问",
+          "owner": "",
+          "x": 699,
+          "y": 235,
+          "width": 145,
+          "height": 30
+        },
+        {
+          "text": "pending / barrier",
+          "owner": "",
+          "x": 195,
+          "y": 433,
+          "width": 170.123046875,
+          "height": 29
+        },
+        {
+          "text": "写失效",
+          "owner": "",
+          "x": 410,
+          "y": 413,
+          "width": 69,
+          "height": 29
+        },
+        {
+          "text": "回填 / 写回 / 透传",
+          "owner": "",
+          "x": 1805,
+          "y": 474,
+          "width": 197.71875,
+          "height": 30
+        },
+        {
+          "text": "GB 地址分支",
+          "owner": "",
+          "x": 795,
+          "y": 662,
+          "width": 133.875,
+          "height": 30
+        },
+        {
+          "text": "搬运器的 GB 端",
+          "owner": "",
+          "x": 1070,
+          "y": 953,
+          "width": 158.203125,
+          "height": 29
+        },
+        {
+          "text": "图像帧写入：独立设备事务",
+          "owner": "",
+          "x": 970,
+          "y": 1036,
+          "width": 276,
+          "height": 29
+        },
+        {
+          "text": "缓存直接供数（候选）",
+          "owner": "",
+          "x": 1810,
+          "y": 628,
+          "width": 230,
+          "height": 29
+        },
+        {
+          "text": "L1D / 写缓冲探测与排空",
+          "owner": "",
+          "x": 75,
+          "y": 1042,
+          "width": 250.203125,
+          "height": 29
+        },
+        {
+          "text": "原子冲突协调",
+          "owner": "",
+          "x": 790,
+          "y": 398,
+          "width": 138,
+          "height": 29
+        },
+        {
+          "text": "LLC 探测 / 确认",
+          "owner": "",
+          "x": 1440,
+          "y": 1042,
+          "width": 161.890625,
+          "height": 29
+        },
+        {
+          "text": "DDR 在途协调",
+          "owner": "",
+          "x": 1775,
+          "y": 1188,
+          "width": 143.46875,
+          "height": 29
+        },
+        {
+          "text": "蓝灰：AXI / 数据返回    绿：GB 本地读写    紫：一致性接口    跳线处交叉而无连接；双向线合并请求与返回。",
+          "owner": "",
+          "x": 50,
+          "y": 1308,
+          "width": 1056.96875,
+          "height": 29
+        }
+      ]
+    },
+    {
+      "name": "read-to-gb",
+      "svg_sha256": "75647be01478d94fd2b386553bef4d1431f9b1b51f0abc64e02588e858f86029",
+      "text_count": 33,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "DDR 地址数据搬入 GB：最新版本从哪里来",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 677.359375,
+          "height": 46
+        },
+        {
+          "text": "先发布输入并协调目标行，再由 DDR 或持有最新数据的缓存供数",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 684.890625,
+          "height": 30
+        },
+        {
+          "text": "A  DDR 已最新，无冲突在途事务",
+          "owner": "",
+          "x": 65,
+          "y": 164,
+          "width": 380.625,
+          "height": 34
+        },
+        {
+          "text": "DDR",
+          "owner": "r0-0",
+          "x": 233.84375,
+          "y": 244,
+          "width": 52.3125,
+          "height": 34
+        },
+        {
+          "text": "最新版本可读",
+          "owner": "r0-0",
+          "x": 188,
+          "y": 282,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "设备一致性入口",
+          "owner": "r0-1",
+          "x": 665.5,
+          "y": 244,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "确认 DDR 版本已最新",
+          "owner": "r0-1",
+          "x": 644.5546875,
+          "y": 282,
+          "width": 229.890625,
+          "height": 30
+        },
+        {
+          "text": "搬运器",
+          "owner": "r0-2",
+          "x": 1204.5,
+          "y": 244,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "接收本次读取结果",
+          "owner": "r0-2",
+          "x": 1149,
+          "y": 282,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "GB（经共享代理）",
+          "owner": "r0-3",
+          "x": 1583.2421875,
+          "y": 244,
+          "width": 223.515625,
+          "height": 34
+        },
+        {
+          "text": "写入后发布 ready",
+          "owner": "r0-3",
+          "x": 1603.125,
+          "y": 282,
+          "width": 184.671875,
+          "height": 30
+        },
+        {
+          "text": "DDR 已保存最新版本，L1D / LLC 的干净副本可以继续使用。",
+          "owner": "",
+          "x": 70,
+          "y": 349,
+          "width": 648.828125,
+          "height": 30
+        },
+        {
+          "text": "B  LLC 持有最新脏数据",
+          "owner": "",
+          "x": 65,
+          "y": 449,
+          "width": 265.625,
+          "height": 34
+        },
+        {
+          "text": "LLC 脏行",
+          "owner": "r1-0",
+          "x": 207.09375,
+          "y": 529,
+          "width": 105.8125,
+          "height": 34
+        },
+        {
+          "text": "比 DDR 更新",
+          "owner": "r1-0",
+          "x": 193.5546875,
+          "y": 567,
+          "width": 132.890625,
+          "height": 30
+        },
+        {
+          "text": "设备一致性入口",
+          "owner": "r1-1",
+          "x": 665.5,
+          "y": 529,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "取得缓存数据",
+          "owner": "r1-1",
+          "x": 688,
+          "y": 567,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "搬运器",
+          "owner": "r1-2",
+          "x": 1204.5,
+          "y": 529,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "接收最新版本",
+          "owner": "r1-2",
+          "x": 1173,
+          "y": 567,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "GB（经共享代理）",
+          "owner": "r1-3",
+          "x": 1583.2421875,
+          "y": 529,
+          "width": 223.515625,
+          "height": 34
+        },
+        {
+          "text": "保存本次读取版本",
+          "owner": "r1-3",
+          "x": 1599,
+          "y": 567,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "缓存可直接供数（候选）；采用 DDR 供数路径时，先 clean 到 DDR 再读取。",
+          "owner": "",
+          "x": 70,
+          "y": 634,
+          "width": 816.234375,
+          "height": 30
+        },
+        {
+          "text": "C  CPU 有按顺序必须先完成的写",
+          "owner": "",
+          "x": 65,
+          "y": 734,
+          "width": 379.015625,
+          "height": 34
+        },
+        {
+          "text": "CPU 写缓冲",
+          "owner": "r2-0",
+          "x": 190.8984375,
+          "y": 814,
+          "width": 138.203125,
+          "height": 34
+        },
+        {
+          "text": "建立发布顺序 / 排空",
+          "owner": "r2-0",
+          "x": 149.5703125,
+          "y": 852,
+          "width": 219.859375,
+          "height": 30
+        },
+        {
+          "text": "LLC / 共享点",
+          "owner": "r2-1",
+          "x": 682.53125,
+          "y": 814,
+          "width": 154.9375,
+          "height": 34
+        },
+        {
+          "text": "接收已排序的更新",
+          "owner": "r2-1",
+          "x": 664,
+          "y": 852,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "协调后搬运",
+          "owner": "r2-2",
+          "x": 1177.5,
+          "y": 814,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "等待先行写可见",
+          "owner": "r2-2",
+          "x": 1161,
+          "y": 852,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "GB（经共享代理）",
+          "owner": "r2-3",
+          "x": 1583.2421875,
+          "y": 814,
+          "width": 223.515625,
+          "height": 34
+        },
+        {
+          "text": "数据完整后才 ready",
+          "owner": "r2-3",
+          "x": 1591.125,
+          "y": 852,
+          "width": 208.671875,
+          "height": 30
+        },
+        {
+          "text": "CPU 先发布输入；协调点等待相关写完成，并处理同址回填与替换。",
+          "owner": "",
+          "x": 70,
+          "y": 919,
+          "width": 722.84375,
+          "height": 30
+        },
+        {
+          "text": "GB 保存本次搬入的数据版本；后续计算需要更新后的源数据时，重新搬运。",
+          "owner": "",
+          "x": 55,
+          "y": 1006,
+          "width": 839.453125,
+          "height": 31
+        }
+      ]
+    },
+    {
+      "name": "write-to-ddr",
+      "svg_sha256": "ae21d74d47ccfc926f95d2aaf8f443e5a258592d253020244eb83d5c60b6c9b6",
+      "text_count": 48,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "GB 数据写入 DDR：先协调，再发布新版本",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 677.359375,
+          "height": 46
+        },
+        {
+          "text": "完整覆盖与部分更新都需处理在途冲突、失效确认及任务完成；下图为逻辑阶段",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 840,
+          "height": 30
+        },
+        {
+          "text": "A  完整覆盖所有相关一致性粒度",
+          "owner": "",
+          "x": 65,
+          "y": 167,
+          "width": 388.0625,
+          "height": 35
+        },
+        {
+          "text": "GB 数据（经代理）",
+          "owner": "full-0",
+          "x": 94.1953125,
+          "y": 260,
+          "width": 231.609375,
+          "height": 34
+        },
+        {
+          "text": "全行备妥",
+          "owner": "full-0",
+          "x": 162,
+          "y": 298,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "全部字节有效",
+          "owner": "full-0",
+          "x": 138,
+          "y": 333,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "目标行协调",
+          "owner": "full-1",
+          "x": 512.5,
+          "y": 260,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "排序在途访问",
+          "owner": "full-1",
+          "x": 508,
+          "y": 298,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "取得本次写权限",
+          "owner": "full-1",
+          "x": 496,
+          "y": 333,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "L1D / LLC",
+          "owner": "full-2",
+          "x": 889.2890625,
+          "y": 260,
+          "width": 121.421875,
+          "height": 34
+        },
+        {
+          "text": "失效并确认",
+          "owner": "full-2",
+          "x": 890,
+          "y": 298,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "完整覆盖可省回写",
+          "owner": "full-2",
+          "x": 854,
+          "y": 333,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "DDR 写入",
+          "owner": "full-3",
+          "x": 1262.7890625,
+          "y": 260,
+          "width": 114.421875,
+          "height": 34
+        },
+        {
+          "text": "写入完整新行",
+          "owner": "full-3",
+          "x": 1248,
+          "y": 298,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "保持约定访问次序",
+          "owner": "full-3",
+          "x": 1224,
+          "y": 333,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "完成 / 释放",
+          "owner": "full-4",
+          "x": 1620.890625,
+          "y": 260,
+          "width": 138.21875,
+          "height": 34
+        },
+        {
+          "text": "达到约定可见点",
+          "owner": "full-4",
+          "x": 1606,
+          "y": 298,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "再发布任务状态",
+          "owner": "full-4",
+          "x": 1606,
+          "y": 333,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "“完整”按实际缓存粒度判断：满 WSTRB 的一个 beat，可能仍只覆盖缓存行的一部分。",
+          "owner": "",
+          "x": 70,
+          "y": 419,
+          "width": 941.921875,
+          "height": 31
+        },
+        {
+          "text": "B  部分行更新：先保护未覆盖字节的最新值",
+          "owner": "",
+          "x": 65,
+          "y": 562,
+          "width": 529.734375,
+          "height": 35
+        },
+        {
+          "text": "GB 数据（经代理）",
+          "owner": "part-0",
+          "x": 94.1953125,
+          "y": 655,
+          "width": 231.609375,
+          "height": 34
+        },
+        {
+          "text": "地址 / 长度",
+          "owner": "part-0",
+          "x": 147.5703125,
+          "y": 693,
+          "width": 123.859375,
+          "height": 30
+        },
+        {
+          "text": "字节有效掩码",
+          "owner": "part-0",
+          "x": 138,
+          "y": 728,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "目标行协调",
+          "owner": "part-1",
+          "x": 512.5,
+          "y": 655,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "安排冲突访问次序",
+          "owner": "part-1",
+          "x": 484,
+          "y": 693,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "协调回填 / 替换",
+          "owner": "part-1",
+          "x": 494.5703125,
+          "y": 728,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "L1D / LLC",
+          "owner": "part-2",
+          "x": 889.2890625,
+          "y": 655,
+          "width": 121.421875,
+          "height": 34
+        },
+        {
+          "text": "clean 或取数暂存",
+          "owner": "part-2",
+          "x": 858.3671875,
+          "y": 693,
+          "width": 183.265625,
+          "height": 30
+        },
+        {
+          "text": "失效旧副本并确认",
+          "owner": "part-2",
+          "x": 854,
+          "y": 728,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "DDR 更新",
+          "owner": "part-3",
+          "x": 1262.7890625,
+          "y": 655,
+          "width": 114.421875,
+          "height": 34
+        },
+        {
+          "text": "按 WSTRB 更新",
+          "owner": "part-3",
+          "x": 1238.6796875,
+          "y": 693,
+          "width": 162.640625,
+          "height": 30
+        },
+        {
+          "text": "或写入已合并新行",
+          "owner": "part-3",
+          "x": 1224,
+          "y": 728,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "完成 / 释放",
+          "owner": "part-4",
+          "x": 1620.890625,
+          "y": 655,
+          "width": 138.21875,
+          "height": 34
+        },
+        {
+          "text": "等待写入与确认",
+          "owner": "part-4",
+          "x": 1606,
+          "y": 693,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "再发布任务状态",
+          "owner": "part-4",
+          "x": 1606,
+          "y": 728,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "最新旧行",
+          "owner": "",
+          "x": 75,
+          "y": 827,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "A",
+          "owner": "old-0",
+          "x": 256.4453125,
+          "y": 824,
+          "width": 15.109375,
+          "height": 34
+        },
+        {
+          "text": "B",
+          "owner": "old-1",
+          "x": 340.640625,
+          "y": 824,
+          "width": 16.71875,
+          "height": 34
+        },
+        {
+          "text": "C",
+          "owner": "old-2",
+          "x": 425.640625,
+          "y": 824,
+          "width": 16.71875,
+          "height": 34
+        },
+        {
+          "text": "D",
+          "owner": "old-3",
+          "x": 510.09375,
+          "y": 824,
+          "width": 17.8125,
+          "height": 34
+        },
+        {
+          "text": "+ GB 仅更新第二段 X",
+          "owner": "",
+          "x": 610,
+          "y": 826,
+          "width": 233.43359375,
+          "height": 31
+        },
+        {
+          "text": "A",
+          "owner": "new-0",
+          "x": 1151.4453125,
+          "y": 824,
+          "width": 15.109375,
+          "height": 34
+        },
+        {
+          "text": "X",
+          "owner": "new-1",
+          "x": 1236.71875,
+          "y": 824,
+          "width": 15,
+          "height": 34
+        },
+        {
+          "text": "C",
+          "owner": "new-2",
+          "x": 1320.640625,
+          "y": 824,
+          "width": 16.71875,
+          "height": 34
+        },
+        {
+          "text": "D",
+          "owner": "new-3",
+          "x": 1405.09375,
+          "y": 824,
+          "width": 17.8125,
+          "height": 34
+        },
+        {
+          "text": "保留 A / C / D",
+          "owner": "",
+          "x": 1515,
+          "y": 826,
+          "width": 159.40625,
+          "height": 31
+        },
+        {
+          "text": "出错时记录部分完成范围，暂停复用缓冲；排空迟到事务或受控复位后恢复。",
+          "owner": "",
+          "x": 70,
+          "y": 910,
+          "width": 850,
+          "height": 31
+        },
+        {
+          "text": "需要整帧一致视图时，用版本、所有权或双缓冲组织跨行数据交接。",
+          "owner": "",
+          "x": 55,
+          "y": 1006,
+          "width": 750,
+          "height": 31
+        }
+      ]
+    }
+  ],
+  "status": "pass"
+}

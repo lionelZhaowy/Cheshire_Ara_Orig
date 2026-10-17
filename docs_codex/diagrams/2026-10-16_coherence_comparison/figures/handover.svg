@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="945" viewBox="0 0 1680 945">
+<title>① 交接方式：谁在什么时候维护缓存</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="1680" height="945" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">① 交接方式：谁在什么时候维护缓存</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。</text>
+<rect id="Apanel" x="25" y="130" width="800" height="740" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="50" y="167" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">A  软件维护 + 非一致性 DMA</text>
+<text x="50" y="206" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#606773">软件维护全层次；硬件直接访问内存</text>
+<rect id="Acpu" x="85" y="240" width="200" height="55" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Acpu">CPU</text>
+<rect id="Aprivate" x="85" y="350" width="200" height="85" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="385.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Aprivate">L1 / L2</text>
+<text x="185.0" y="420.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Aprivate">写缓冲</text>
+<rect id="Allc" x="85" y="560" width="200" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Allc">LLC</text>
+<text x="185.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Allc">系统侧缓存</text>
+<rect id="Addr" x="85" y="710" width="680" height="60" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="425.0" y="750.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Addr">内存接入 / DDR</text>
+<rect id="Adevice" x="545" y="240" width="220" height="95" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="655.0" y="280.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Adevice">加速器</text>
+<text x="655.0" y="315.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Adevice">独立本地 SRAM</text>
+<rect id="Adma" x="545" y="375" width="220" height="55" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="655.0" y="412.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Adma">DMA</text>
+<polyline id="Acpu-private" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,295 185,350"/>
+<polyline id="Aprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,435 185,560"/>
+<polyline id="Allc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,645 185,710"/>
+<polyline id="Alocal-dma" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="655,335 655,375"/>
+<polyline id="Adma-fabric" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="655,430 655,560"/>
+<rect id="Afabric" x="465" y="560" width="300" height="85" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="615.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Afabric">普通互连</text>
+<text x="615.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Afabric">软件交接</text>
+<polyline id="Adevice-ddr" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="615,645 615,710"/>
+<rect id="Adriver" x="330" y="240" width="170" height="55" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="415.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Adriver">驱动</text>
+<polyline id="Asw-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="330,267 310,267 310,378 285,378"/>
+<polyline id="Asw-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="415,295 415,620 285,620"/>
+<text x="50" y="813" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">交接前后由软件 clean / invalidate</text>
+<text x="50" y="845" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">设备直访 DDR；交接区限制冲突访问</text>
+<rect id="Bpanel" x="855" y="130" width="800" height="740" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="880" y="167" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">B  搬运边界硬件维护</text>
+<text x="880" y="206" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#606773">由硬件执行范围维护；传输期间范围排他</text>
+<rect id="Bcpu" x="915" y="240" width="200" height="55" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bcpu">CPU</text>
+<rect id="Bprivate" x="915" y="350" width="200" height="85" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="385.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bprivate">L1 / L2</text>
+<text x="1015.0" y="420.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Bprivate">写缓冲</text>
+<rect id="Bllc" x="915" y="560" width="200" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bllc">LLC</text>
+<text x="1015.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Bllc">系统侧缓存</text>
+<rect id="Bddr" x="915" y="710" width="680" height="60" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1255.0" y="750.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bddr">内存接入 / DDR</text>
+<rect id="Bdevice" x="1375" y="240" width="220" height="95" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1485.0" y="280.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bdevice">加速器</text>
+<text x="1485.0" y="315.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Bdevice">独立本地 SRAM</text>
+<rect id="Bdma" x="1375" y="375" width="220" height="55" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1485.0" y="412.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bdma">DMA</text>
+<polyline id="Bcpu-private" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,295 1015,350"/>
+<polyline id="Bprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,435 1015,560"/>
+<polyline id="Bllc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,645 1015,710"/>
+<polyline id="Blocal-dma" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1485,335 1485,375"/>
+<polyline id="Bdma-fabric" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1485,430 1485,560"/>
+<rect id="Bfabric" x="1295" y="560" width="300" height="85" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7" stroke-dasharray="9 6"/>
+<text x="1445.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Bfabric">维护 / 准入引擎</text>
+<text x="1445.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Bfabric">搬运边界</text>
+<polyline id="Bdevice-ddr" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1445,645 1445,710"/>
+<polyline id="Bprobe-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1295,575 1180,575 1180,400 1115,400"/>
+<polyline id="Bprobe-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1295,622 1115,622"/>
+<text x="880" y="813" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">硬件排空、维护并确认；传输期范围排他</text>
+<text x="880" y="845" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">项目低成本候选：以块 / 任务为边界</text>
+<text x="30" y="916" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）</text>
+</svg>

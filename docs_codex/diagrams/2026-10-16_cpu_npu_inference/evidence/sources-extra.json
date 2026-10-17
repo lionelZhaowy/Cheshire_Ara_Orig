@@ -1,0 +1,45 @@
+{
+  "access_date": "2026-10-16",
+  "sources": [
+    {
+      "id": "rknn-api",
+      "url": "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/2c723177a94fac65cbc036d722907ddbc91980cf/rknpu2/runtime/Linux/librknn_api/include/rknn_api.h",
+      "sha256": "2d4160cd868efd7b83a72587e411c16d6972da5876e067bd73665cea778ce666"
+    },
+    {
+      "id": "rkllm-api",
+      "url": "https://raw.githubusercontent.com/airockchip/rknn-llm/f7390530443bf84f0394255a449d7cbe81e69d1c/rkllm-runtime/Linux/librkllm_api/include/rkllm.h",
+      "sha256": "4ad19442de58df1b7d1ed0884ed75b8d4b5107cc4e75b7e44900b1f95a32c57c"
+    },
+    {
+      "id": "qnn-partition-code",
+      "url": "https://raw.githubusercontent.com/pytorch/executorch/8c84780911e7f4e9eb19395181b04761392a4b56/backends/qualcomm/partition/qnn_partitioner.py",
+      "sha256": "e9ab81dd64afc047e583023eaa6f06fb1840544487b4ce07cb0ea399f4f5cb4f"
+    },
+    {
+      "id": "qnn-backend-code",
+      "url": "https://raw.githubusercontent.com/pytorch/executorch/8c84780911e7f4e9eb19395181b04761392a4b56/backends/qualcomm/runtime/QnnBackend.cpp",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "gemmini-library",
+      "url": "https://raw.githubusercontent.com/ucb-bar/gemmini-rocc-tests/master/include/gemmini.h",
+      "sha256": "5bf291ce9055fc15db74fab72fde04d464dab49daae420e730478f2de1b06a27"
+    },
+    {
+      "id": "deeploy-readme",
+      "url": "https://raw.githubusercontent.com/pulp-platform/Deeploy/main/README.md",
+      "sha256": "2fd8d0a28b91efc0f49b10e39c4c1fb4b5c610c852066a4df322eb20eed8304c"
+    },
+    {
+      "id": "siracusa-paper",
+      "url": "https://arxiv.org/html/2312.14750v2",
+      "sha256": "a4d75e5f33a193bbd336c365c80f9e4ee9f96eb258ac81cc85262c9e62f8e580"
+    },
+    {
+      "id": "deeploy-head",
+      "url": "https://github.com/pulp-platform/Deeploy/tree/0d6d4e2ae1adebcf72ab5d0e2621b9f51e080718",
+      "commit": "0d6d4e2ae1adebcf72ab5d0e2621b9f51e080718"
+    }
+  ]
+}

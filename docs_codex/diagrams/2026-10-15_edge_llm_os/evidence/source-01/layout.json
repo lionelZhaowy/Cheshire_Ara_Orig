@@ -1,0 +1,740 @@
+[
+  {
+    "name": "software-stacks",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "c0": {
+        "x": 60,
+        "y": 160,
+        "width": 740,
+        "height": 1000
+      },
+      "c0app": {
+        "x": 90,
+        "y": 260,
+        "width": 680,
+        "height": 90
+      },
+      "c0runtime": {
+        "x": 90,
+        "y": 410,
+        "width": 680,
+        "height": 110
+      },
+      "c0env": {
+        "x": 90,
+        "y": 585,
+        "width": 420,
+        "height": 110
+      },
+      "c0driver": {
+        "x": 90,
+        "y": 770,
+        "width": 420,
+        "height": 115
+      },
+      "c0rvv": {
+        "x": 545,
+        "y": 585,
+        "width": 225,
+        "height": 300
+      },
+      "c0npu": {
+        "x": 90,
+        "y": 985,
+        "width": 420,
+        "height": 110
+      },
+      "c0cpuara": {
+        "x": 545,
+        "y": 985,
+        "width": 225,
+        "height": 110
+      },
+      "c1": {
+        "x": 830,
+        "y": 160,
+        "width": 740,
+        "height": 1000
+      },
+      "c1app": {
+        "x": 860,
+        "y": 260,
+        "width": 680,
+        "height": 90
+      },
+      "c1runtime": {
+        "x": 860,
+        "y": 410,
+        "width": 680,
+        "height": 110
+      },
+      "c1env": {
+        "x": 860,
+        "y": 585,
+        "width": 420,
+        "height": 110
+      },
+      "c1driver": {
+        "x": 860,
+        "y": 770,
+        "width": 420,
+        "height": 115
+      },
+      "c1rvv": {
+        "x": 1315,
+        "y": 585,
+        "width": 225,
+        "height": 300
+      },
+      "c1npu": {
+        "x": 860,
+        "y": 985,
+        "width": 420,
+        "height": 110
+      },
+      "c1cpuara": {
+        "x": 1315,
+        "y": 985,
+        "width": 225,
+        "height": 110
+      },
+      "c2": {
+        "x": 1600,
+        "y": 160,
+        "width": 740,
+        "height": 1000
+      },
+      "c2app": {
+        "x": 1630,
+        "y": 260,
+        "width": 680,
+        "height": 90
+      },
+      "c2runtime": {
+        "x": 1630,
+        "y": 410,
+        "width": 680,
+        "height": 110
+      },
+      "c2env": {
+        "x": 1630,
+        "y": 585,
+        "width": 420,
+        "height": 110
+      },
+      "c2driver": {
+        "x": 1630,
+        "y": 770,
+        "width": 420,
+        "height": 115
+      },
+      "c2rvv": {
+        "x": 2085,
+        "y": 585,
+        "width": 225,
+        "height": 300
+      },
+      "c2npu": {
+        "x": 1630,
+        "y": 985,
+        "width": 420,
+        "height": 110
+      },
+      "c2cpuara": {
+        "x": 2085,
+        "y": 985,
+        "width": 225,
+        "height": 110
+      }
+    },
+    "arrows": [
+      {
+        "id": "c0a",
+        "points": [
+          [
+            430,
+            350
+          ],
+          [
+            430,
+            410
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c0app",
+        "target": "c0runtime"
+      },
+      {
+        "id": "c0service",
+        "points": [
+          [
+            300,
+            520
+          ],
+          [
+            300,
+            585
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c0runtime",
+        "target": "c0env"
+      },
+      {
+        "id": "c0device",
+        "points": [
+          [
+            300,
+            695
+          ],
+          [
+            300,
+            770
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c0env",
+        "target": "c0driver"
+      },
+      {
+        "id": "c0rvvcode",
+        "points": [
+          [
+            657,
+            520
+          ],
+          [
+            657,
+            585
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c0runtime",
+        "target": "c0rvv"
+      },
+      {
+        "id": "c0submit",
+        "points": [
+          [
+            300,
+            885
+          ],
+          [
+            300,
+            985
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "c0driver",
+        "target": "c0npu"
+      },
+      {
+        "id": "c0execute",
+        "points": [
+          [
+            657,
+            885
+          ],
+          [
+            657,
+            985
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c0rvv",
+        "target": "c0cpuara"
+      },
+      {
+        "id": "c1a",
+        "points": [
+          [
+            1200,
+            350
+          ],
+          [
+            1200,
+            410
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c1app",
+        "target": "c1runtime"
+      },
+      {
+        "id": "c1service",
+        "points": [
+          [
+            1070,
+            520
+          ],
+          [
+            1070,
+            585
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c1runtime",
+        "target": "c1env"
+      },
+      {
+        "id": "c1device",
+        "points": [
+          [
+            1070,
+            695
+          ],
+          [
+            1070,
+            770
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c1env",
+        "target": "c1driver"
+      },
+      {
+        "id": "c1rvvcode",
+        "points": [
+          [
+            1427,
+            520
+          ],
+          [
+            1427,
+            585
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c1runtime",
+        "target": "c1rvv"
+      },
+      {
+        "id": "c1submit",
+        "points": [
+          [
+            1070,
+            885
+          ],
+          [
+            1070,
+            985
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "c1driver",
+        "target": "c1npu"
+      },
+      {
+        "id": "c1execute",
+        "points": [
+          [
+            1427,
+            885
+          ],
+          [
+            1427,
+            985
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c1rvv",
+        "target": "c1cpuara"
+      },
+      {
+        "id": "c2a",
+        "points": [
+          [
+            1970,
+            350
+          ],
+          [
+            1970,
+            410
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c2app",
+        "target": "c2runtime"
+      },
+      {
+        "id": "c2service",
+        "points": [
+          [
+            1840,
+            520
+          ],
+          [
+            1840,
+            585
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c2runtime",
+        "target": "c2env"
+      },
+      {
+        "id": "c2device",
+        "points": [
+          [
+            1840,
+            695
+          ],
+          [
+            1840,
+            770
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "c2env",
+        "target": "c2driver"
+      },
+      {
+        "id": "c2rvvcode",
+        "points": [
+          [
+            2197,
+            520
+          ],
+          [
+            2197,
+            585
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c2runtime",
+        "target": "c2rvv"
+      },
+      {
+        "id": "c2submit",
+        "points": [
+          [
+            1840,
+            885
+          ],
+          [
+            1840,
+            985
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "c2driver",
+        "target": "c2npu"
+      },
+      {
+        "id": "c2execute",
+        "points": [
+          [
+            2197,
+            885
+          ],
+          [
+            2197,
+            985
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": false,
+        "source": "c2rvv",
+        "target": "c2cpuara"
+      }
+    ]
+  },
+  {
+    "name": "inference-flow",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "control-region": {
+        "x": 50,
+        "y": 200,
+        "width": 2300,
+        "height": 235
+      },
+      "app": {
+        "x": 80,
+        "y": 255,
+        "width": 420,
+        "height": 130
+      },
+      "driver": {
+        "x": 650,
+        "y": 255,
+        "width": 450,
+        "height": 130
+      },
+      "task": {
+        "x": 1320,
+        "y": 255,
+        "width": 440,
+        "height": 130
+      },
+      "done": {
+        "x": 1930,
+        "y": 255,
+        "width": 350,
+        "height": 130
+      },
+      "data-region": {
+        "x": 50,
+        "y": 540,
+        "width": 2300,
+        "height": 595
+      },
+      "ddr": {
+        "x": 80,
+        "y": 680,
+        "width": 380,
+        "height": 180
+      },
+      "mover": {
+        "x": 650,
+        "y": 680,
+        "width": 400,
+        "height": 180
+      },
+      "gb": {
+        "x": 1250,
+        "y": 680,
+        "width": 400,
+        "height": 180
+      },
+      "npu": {
+        "x": 1900,
+        "y": 680,
+        "width": 380,
+        "height": 180
+      }
+    },
+    "arrows": [
+      {
+        "id": "app-driver",
+        "points": [
+          [
+            500,
+            320
+          ],
+          [
+            650,
+            320
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "app",
+        "target": "driver"
+      },
+      {
+        "id": "driver-task",
+        "points": [
+          [
+            1100,
+            320
+          ],
+          [
+            1320,
+            320
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "driver",
+        "target": "task"
+      },
+      {
+        "id": "task-done",
+        "points": [
+          [
+            1760,
+            320
+          ],
+          [
+            1930,
+            320
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "task",
+        "target": "done"
+      },
+      {
+        "id": "completion",
+        "points": [
+          [
+            2105,
+            255
+          ],
+          [
+            2105,
+            175
+          ],
+          [
+            875,
+            175
+          ],
+          [
+            875,
+            255
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "done",
+        "target": "driver"
+      },
+      {
+        "id": "cpu-memory",
+        "points": [
+          [
+            290,
+            385
+          ],
+          [
+            290,
+            680
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "app",
+        "target": "ddr"
+      },
+      {
+        "id": "move-control",
+        "points": [
+          [
+            1430,
+            385
+          ],
+          [
+            1430,
+            475
+          ],
+          [
+            850,
+            475
+          ],
+          [
+            850,
+            680
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "task",
+        "target": "mover"
+      },
+      {
+        "id": "compute-control",
+        "points": [
+          [
+            1550,
+            385
+          ],
+          [
+            1550,
+            490
+          ],
+          [
+            2090,
+            490
+          ],
+          [
+            2090,
+            680
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "task",
+        "target": "npu"
+      },
+      {
+        "id": "ddr-move",
+        "points": [
+          [
+            460,
+            770
+          ],
+          [
+            650,
+            770
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "ddr",
+        "target": "mover"
+      },
+      {
+        "id": "move-gb",
+        "points": [
+          [
+            1050,
+            770
+          ],
+          [
+            1250,
+            770
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": true,
+        "source": "mover",
+        "target": "gb"
+      },
+      {
+        "id": "gb-npu",
+        "points": [
+          [
+            1650,
+            770
+          ],
+          [
+            1900,
+            770
+          ]
+        ],
+        "kind": "vector",
+        "bidirectional": true,
+        "source": "gb",
+        "target": "npu"
+      }
+    ]
+  }
+]

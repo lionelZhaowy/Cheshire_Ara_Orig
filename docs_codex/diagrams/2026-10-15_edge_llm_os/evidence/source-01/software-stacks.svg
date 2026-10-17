@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>裸机、RTOS 与 Embedded Linux：推理软件栈</title>
+<defs>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="vector" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="page" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="1200.0" y="68" font-family="WenQuanYi Zen Hei" font-size="43" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="">裸机、RTOS 与 Embedded Linux：推理软件栈</text>
+<text x="1200.0" y="115" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="normal" fill="#606773" text-anchor="middle" data-owner="">三种替代执行环境；计算算法可复用，资源管理与设备交接分别适配</text>
+<rect id="c0" x="60" y="160" width="740" height="1000" fill="#EAF2FA" stroke="#5C83AE" stroke-width="2" rx="14"/>
+<text x="430" y="220" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" fill="#5C83AE" text-anchor="middle" data-owner="">裸机</text>
+<rect id="c0app" x="90" y="260" width="680" height="90" fill="#FFFFFF" stroke="#5C83AE" stroke-width="2" rx="14"/>
+<text x="430.0" y="297.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0app">模型应用</text>
+<text x="430.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0app">输入处理 / 分词 / 采样 / 输出</text>
+<rect id="c0runtime" x="90" y="410" width="680" height="110" fill="#FFFFFF" stroke="#5C83AE" stroke-width="2" rx="14"/>
+<text x="430.0" y="457.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0runtime">推理运行时 / 算子后端</text>
+<text x="430.0" y="494.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0runtime">模型与张量 / 执行计划 / 工作区与 KV</text>
+<polyline id="c0a" points="430,350 430,410" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<rect id="c0env" x="90" y="585" width="420" height="110" fill="#FFFFFF" stroke="#5C83AE" stroke-width="2" rx="14"/>
+<text x="300.0" y="632.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0env">主循环 / 中断 / 状态机</text>
+<text x="300.0" y="669.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0env">手动组织资源、事件与错误</text>
+<rect id="c0driver" x="90" y="770" width="420" height="115" fill="#FFFFFF" stroke="#5C83AE" stroke-width="2" rx="14"/>
+<text x="300.0" y="819.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0driver">裸机设备驱动</text>
+<text x="300.0" y="856.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0driver">平台地址 / 同步 / 轮询或 IRQ</text>
+<rect id="c0rvv" x="545" y="585" width="225" height="300" fill="#F5FBF8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="657.5" y="690.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0rvv">向量算子代码</text>
+<text x="657.5" y="727.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0rvv">RVV 指令</text>
+<text x="657.5" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0rvv">显式配置</text>
+<text x="657.5" y="801.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0rvv">VS / FS 状态</text>
+<polyline id="c0service" points="300,520 300,585" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="319" y="559" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">调用 / 事件</text>
+<polyline id="c0device" points="300,695 300,770" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="319" y="739" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">设备请求</text>
+<polyline id="c0rvvcode" points="657,520 657,585" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="675" y="559" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">算子执行</text>
+<rect id="c0npu" x="90" y="985" width="420" height="110" fill="#F8F3EB" stroke="#5C83AE" stroke-width="2" rx="14" stroke-dasharray="10 6"/>
+<text x="300.0" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0npu">NPU 设备（候选）</text>
+<text x="300.0" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0npu">命令 / 数据搬运 / 完成状态</text>
+<rect id="c0cpuara" x="545" y="985" width="225" height="110" fill="#E0F0E8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="657.5" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c0cpuara">CVA6 / Ara</text>
+<text x="657.5" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c0cpuara">RVV 执行路径</text>
+<polyline id="c0submit" points="300,885 300,985" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)"/>
+<text x="319" y="944" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">提交 / 完成</text>
+<polyline id="c0execute" points="657,885 657,985" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="675" y="944" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">指令执行</text>
+<text x="430" y="1134" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#5C83AE" text-anchor="middle" data-owner="">共享平台资源：主存 / 缓存 / 中断</text>
+<rect id="c1" x="830" y="160" width="740" height="1000" fill="#F0EAF6" stroke="#9076AC" stroke-width="2" rx="14"/>
+<text x="1200" y="220" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" fill="#9076AC" text-anchor="middle" data-owner="">RTOS</text>
+<rect id="c1app" x="860" y="260" width="680" height="90" fill="#FFFFFF" stroke="#9076AC" stroke-width="2" rx="14"/>
+<text x="1200.0" y="297.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1app">模型应用</text>
+<text x="1200.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1app">输入处理 / 分词 / 采样 / 输出</text>
+<rect id="c1runtime" x="860" y="410" width="680" height="110" fill="#FFFFFF" stroke="#9076AC" stroke-width="2" rx="14"/>
+<text x="1200.0" y="457.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1runtime">推理运行时 / 算子后端</text>
+<text x="1200.0" y="494.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1runtime">模型与张量 / 执行计划 / 工作区与 KV</text>
+<polyline id="c1a" points="1200,350 1200,410" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<rect id="c1env" x="860" y="585" width="420" height="110" fill="#FFFFFF" stroke="#9076AC" stroke-width="2" rx="14"/>
+<text x="1070.0" y="632.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1env">任务 / 队列 / 信号量</text>
+<text x="1070.0" y="669.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1env">按优先级调度与同步</text>
+<rect id="c1driver" x="860" y="770" width="420" height="115" fill="#FFFFFF" stroke="#9076AC" stroke-width="2" rx="14"/>
+<text x="1070.0" y="819.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1driver">RTOS 设备驱动</text>
+<text x="1070.0" y="856.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1driver">互斥 / 提交 / ISR 唤醒</text>
+<rect id="c1rvv" x="1315" y="585" width="225" height="300" fill="#F5FBF8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="1427.5" y="690.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1rvv">向量算子代码</text>
+<text x="1427.5" y="727.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1rvv">RVV 指令</text>
+<text x="1427.5" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1rvv">FP / RVV 上下文</text>
+<text x="1427.5" y="801.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1rvv">需适配与验收</text>
+<polyline id="c1service" points="1070,520 1070,585" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1089" y="559" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">服务 / 等待</text>
+<polyline id="c1device" points="1070,695 1070,770" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1089" y="739" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">设备请求</text>
+<polyline id="c1rvvcode" points="1427,520 1427,585" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="1445" y="559" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">算子执行</text>
+<rect id="c1npu" x="860" y="985" width="420" height="110" fill="#F8F3EB" stroke="#9076AC" stroke-width="2" rx="14" stroke-dasharray="10 6"/>
+<text x="1070.0" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1npu">NPU 设备（候选）</text>
+<text x="1070.0" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1npu">命令 / 数据搬运 / 完成状态</text>
+<rect id="c1cpuara" x="1315" y="985" width="225" height="110" fill="#E0F0E8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="1427.5" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c1cpuara">CVA6 / Ara</text>
+<text x="1427.5" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c1cpuara">RVV 执行路径</text>
+<polyline id="c1submit" points="1070,885 1070,985" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)"/>
+<text x="1089" y="944" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">提交 / 完成</text>
+<polyline id="c1execute" points="1427,885 1427,985" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="1445" y="944" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">指令执行</text>
+<text x="1200" y="1134" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#9076AC" text-anchor="middle" data-owner="">共享平台资源：主存 / 缓存 / 中断</text>
+<rect id="c2" x="1600" y="160" width="740" height="1000" fill="#E8F3ED" stroke="#679980" stroke-width="2" rx="14"/>
+<text x="1970" y="220" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="bold" fill="#679980" text-anchor="middle" data-owner="">Embedded Linux</text>
+<rect id="c2app" x="1630" y="260" width="680" height="90" fill="#FFFFFF" stroke="#679980" stroke-width="2" rx="14"/>
+<text x="1970.0" y="297.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2app">模型应用</text>
+<text x="1970.0" y="334.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2app">输入处理 / 分词 / 采样 / 输出</text>
+<rect id="c2runtime" x="1630" y="410" width="680" height="110" fill="#FFFFFF" stroke="#679980" stroke-width="2" rx="14"/>
+<text x="1970.0" y="457.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2runtime">推理运行时 / 算子后端</text>
+<text x="1970.0" y="494.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2runtime">模型与张量 / 执行计划 / 工作区与 KV</text>
+<polyline id="c2a" points="1970,350 1970,410" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<rect id="c2env" x="1630" y="585" width="420" height="110" fill="#FFFFFF" stroke="#679980" stroke-width="2" rx="14"/>
+<text x="1840.0" y="632.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2env">进程 / 线程 / 系统服务</text>
+<text x="1840.0" y="669.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2env">文件、内存与生命周期管理</text>
+<rect id="c2driver" x="1630" y="770" width="420" height="115" fill="#FFFFFF" stroke="#679980" stroke-width="2" rx="14"/>
+<text x="1840.0" y="819.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2driver">Linux 内核设备驱动</text>
+<text x="1840.0" y="856.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2driver">DMA 映射 / 同步 / IRQ</text>
+<rect id="c2rvv" x="2085" y="585" width="225" height="300" fill="#F5FBF8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="2197.5" y="690.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2rvv">向量算子代码</text>
+<text x="2197.5" y="727.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2rvv">RVV 指令</text>
+<text x="2197.5" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2rvv">用户态 RVV</text>
+<text x="2197.5" y="801.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2rvv">上下文需验收</text>
+<polyline id="c2service" points="1840,520 1840,585" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1859" y="559" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">系统服务</text>
+<polyline id="c2device" points="1840,695 1840,770" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1859" y="739" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">设备请求</text>
+<polyline id="c2rvvcode" points="2197,520 2197,585" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="2215" y="559" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">算子执行</text>
+<rect id="c2npu" x="1630" y="985" width="420" height="110" fill="#F8F3EB" stroke="#679980" stroke-width="2" rx="14" stroke-dasharray="10 6"/>
+<text x="1840.0" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2npu">NPU 设备（候选）</text>
+<text x="1840.0" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2npu">命令 / 数据搬运 / 完成状态</text>
+<rect id="c2cpuara" x="2085" y="985" width="225" height="110" fill="#E0F0E8" stroke="#187C78" stroke-width="2" rx="14"/>
+<text x="2197.5" y="1032.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="c2cpuara">CVA6 / Ara</text>
+<text x="2197.5" y="1069.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#29292D" text-anchor="middle" data-owner="c2cpuara">RVV 执行路径</text>
+<polyline id="c2submit" points="1840,885 1840,985" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)"/>
+<text x="1859" y="944" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="normal" fill="#765489" text-anchor="start" data-owner="">提交 / 完成</text>
+<polyline id="c2execute" points="2197,885 2197,985" fill="none" stroke="#187C78" stroke-width="3" stroke-linejoin="miter" marker-end="url(#vector)"/>
+<text x="2215" y="944" font-family="WenQuanYi Zen Hei" font-size="22" font-weight="normal" fill="#187C78" text-anchor="start" data-owner="">指令执行</text>
+<text x="1970" y="1134" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" fill="#679980" text-anchor="middle" data-owner="">共享平台资源：主存 / 缓存 / 中断</text>
+<text x="1200" y="1225" font-family="WenQuanYi Zen Hei" font-size="31" font-weight="bold" fill="#29292D" text-anchor="middle" data-owner="">共同契约：张量布局 · 设备地址 · 缓存交接 · 缓冲区所有权 · 完成与错误恢复</text>
+<text x="1200" y="1295" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" fill="#606773" text-anchor="middle" data-owner="">紫色箭头：服务与设备控制    绿色箭头：RVV 指令路径    虚线设备框：未来候选</text>
+</svg>

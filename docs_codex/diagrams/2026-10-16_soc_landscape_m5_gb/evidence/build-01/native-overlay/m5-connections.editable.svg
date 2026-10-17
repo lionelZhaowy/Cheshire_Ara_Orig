@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="3600.0" height="2025.0" viewBox="0.0 0.0 3600.0 2025.0">
+  <defs>
+    <marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66" />
+    </marker>
+    <marker id="gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78" />
+    </marker>
+  </defs>
+  <line fill="none" stroke="#314D66" stroke-width="7.68" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#data)" id="m5-target-drop" x1="2436.25" y1="1042.1" x2="2436.25" y2="1093.1" />
+  <path fill="none" stroke="#187C78" stroke-width="7.68" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#gb)" id="gb-interface-to-controller" d="M 2566.25 1170 L 2581.25 1170 L 2581.25 1068.1 L 2736.75 1068.1 C 2736.75 1050.1 2760.75 1050.1 2760.75 1068.1 L 2940 1068.1 L 2940 730 L 1506.25 730 L 1506.25 726.1 Q 1526.25 716.1 1506.25 706.1 L 1506.25 638.1" stroke-linejoin="miter" />
+  <rect fill="#FFFFFF" stroke="#29292D" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="none" id="target-port-m5" x="2388.25" y="1013.1" width="96" height="29" rx="0.0" ry="0.0" />
+  <text fill="#29292D" stroke="none" stroke-width="1" font-family="Microsoft YaHei" font-size="22.5" font-weight="bold" font-style="normal" text-anchor="middle" stroke-dasharray="none" marker-start="none" marker-end="none" id="target-label-m5" x="2436.25" y="1040">M5</text>
+  <rect fill="#D9EEE8" stroke="#29292D" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="none" id="gb-axi-interface" x="2306.25" y="1093.1" width="260" height="155" rx="0.0" ry="0.0" />
+  <text fill="#29292D" stroke="none" stroke-width="1" font-family="Microsoft YaHei" font-size="30" font-weight="bold" font-style="normal" text-anchor="middle" stroke-dasharray="none" marker-start="none" marker-end="none" id="gb-interface-title" x="2436.25" y="1151">GB AXI 接口</text>
+  <text fill="#29292D" stroke="none" stroke-width="1" font-family="Microsoft YaHei" font-size="30" font-weight="normal" font-style="normal" text-anchor="middle" stroke-dasharray="none" marker-start="none" marker-end="none" id="gb-interface-clients" x="2436.25" y="1190">CPU / Ara 共用</text>
+  <text fill="#29292D" stroke="none" stroke-width="1" font-family="Microsoft YaHei" font-size="30" font-weight="normal" font-style="normal" text-anchor="middle" stroke-dasharray="none" marker-start="none" marker-end="none" id="gb-interface-width" x="2436.25" y="1228">64-bit 数据窗口</text>
+</svg>

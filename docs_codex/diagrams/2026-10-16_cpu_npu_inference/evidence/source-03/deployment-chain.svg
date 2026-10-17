@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>CPU＋NPU 推理：从模型到一次设备任务</title>
+<defs>
+<marker id="marker-control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="marker-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="marker-local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="marker-artifact" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+</defs>
+<rect id="page" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="1200" y="68" font-family="WenQuanYi Zen Hei" font-size="42" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">CPU＋NPU 推理：从模型到一次设备任务</text>
+<text x="1200" y="117" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">通用职责归纳；离线编译与目标执行分开，具体 API 和算子覆盖依平台实现</text>
+<rect id="host" x="50" y="170" width="2300" height="280" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="80" y="215" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">开发主机：转换与编译</text>
+<rect id="model" x="100" y="265" width="500" height="130" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="350.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="model">模型与输入约束</text>
+<text x="350.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="model">图 / 权重 / 校准数据 / 形状</text>
+<rect id="compiler" x="800" y="265" width="650" height="130" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1125.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="compiler">面向目标的编译</text>
+<text x="1125.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="compiler">量化 / 划分 / 布局 / 分块 / 内存规划</text>
+<rect id="artifact" x="1750" y="265" width="500" height="130" fill="#F5E1C9" stroke="#29292D" stroke-width="2"/>
+<text x="2000.0" y="321.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="artifact">部署产物</text>
+<text x="2000.0" y="359.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="artifact">模型包 / 命令流 / 生成代码</text>
+<polyline id="compile" points="600,330 800,330" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<polyline id="emit" points="1450,330 1750,330" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<text x="700" y="307" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#B96043" data-owner="">解析</text>
+<text x="1600" y="307" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#B96043" data-owner="">目标相关产物</text>
+<rect id="soc" x="50" y="570" width="2300" height="600" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="80" y="613" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="bold" text-anchor="start" fill="#29292D" data-owner="">目标 SoC：加载、调度与执行</text>
+<rect id="runtime" x="100" y="665" width="520" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="360.0" y="726.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="runtime">CPU 应用 / 推理运行时</text>
+<text x="360.0" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="runtime">加载模型 / 准备张量 / 调度子图</text>
+<rect id="cpu" x="850" y="665" width="500" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1100.0" y="726.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="cpu">CPU 算子与后处理</text>
+<text x="1100.0" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="cpu">后端选择的 CPU 工作</text>
+<rect id="result" x="1770" y="665" width="480" height="140" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="2010.0" y="726.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="result">应用消费结果</text>
+<text x="2010.0" y="764.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="result">检查状态 / 后处理 / 输出</text>
+<rect id="driver" x="100" y="980" width="520" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="360.0" y="1041.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="driver">设备与平台适配</text>
+<text x="360.0" y="1079.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="driver">地址 / 同步 / 提交 / 等待 / 恢复</text>
+<rect id="npu" x="850" y="980" width="500" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1100.0" y="1041.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="npu">NPU 执行资源</text>
+<text x="1100.0" y="1079.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="npu">命令控制 / 搬运 / 计算</text>
+<rect id="buffers" x="1770" y="980" width="480" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="2010.0" y="1041.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="buffers">张量存储与工作区</text>
+<text x="2010.0" y="1079.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="buffers">外存 / 片上 SRAM；按平台规划</text>
+<polyline id="deploy" points="2000,395 2000,510 560,510 560,665" fill="none" stroke="#B96043" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-artifact)"/>
+<text x="1270" y="487" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#B96043" data-owner="">部署与加载</text>
+<polyline id="cpu-call" points="620,735 850,735" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="735" y="711" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#765489" data-owner="">函数调用</text>
+<polyline id="cpu-result" points="1350,735 1770,735" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="1560" y="711" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">CPU 路径结果</text>
+<polyline id="submit" points="360,805 360,980" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)"/>
+<text x="380" y="900" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">设备任务</text>
+<polyline id="device-control" points="620,1050 850,1050" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-control)" marker-start="url(#marker-control)"/>
+<text x="735" y="1026" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#765489" data-owner="">提交 / 完成</text>
+<polyline id="tensor-access" points="1350,1050 1770,1050" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)" marker-start="url(#marker-data)"/>
+<text x="1560" y="1026" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">张量读写 / 搬运</text>
+<polyline id="cpu-buffers" points="1100,805 1100,880 1880,880 1880,980" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)" marker-start="url(#marker-data)"/>
+<text x="1440" y="857" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="middle" fill="#314D66" data-owner="">CPU 与设备交接缓冲区</text>
+<polyline id="consume" points="2150,980 2150,805" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#marker-data)"/>
+<text x="2170" y="910" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">同步后消费</text>
+<text x="1200" y="1232" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="">棕：编译产物流转    紫：调用、控制与状态    蓝灰：张量与结果</text>
+<text x="1200" y="1290" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">图中的边界是软件职责；CPU 回退、内存共享和任务完成都需要明确实现。</text>
+</svg>

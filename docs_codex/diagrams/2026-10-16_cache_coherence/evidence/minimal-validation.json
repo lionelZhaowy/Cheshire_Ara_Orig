@@ -1,0 +1,643 @@
+{
+  "date": "2026-10-16",
+  "status": "pass",
+  "head": "322bd6ce964c96cd4337ceb98e5ce89d1bb478d8",
+  "scope": "Documentation and diagrams only",
+  "chinese_characters": 2779,
+  "local_links_checked": 61,
+  "links": [
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "README.md"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "IP_DDR_Interface_Contract.md"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "#evidence"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/system.png"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/system.svg"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/read-to-gb.png"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/read-to-gb.svg"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/write-to-ddr.png"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/write-to-ddr.svg"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/README.md"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/SNAPSHOT.tsv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../hw/cheshire_soc.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../hw/cheshire_pkg.sv"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../../.bender/git/checkouts/axi_riscv_atomics-40ad8d2d0e0daa8b/README.md"
+    },
+    {
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "target": "../handoffs/L01_cache_coherence_architecture.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "../00_README.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "../AGENT_DOCUMENTATION_GUIDE.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "IP_DDR_Interface_Contract.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "Cache_Coherence_Architecture.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "Edge_LLM_OS_Selection.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "ASIC_Adaptation_and_Evidence.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "path_migrations.json"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "../02_Cheshire_Ara_ASIC_Extraction_Handoff.md"
+    },
+    {
+      "source": "docs_codex/engineering/README.md",
+      "target": "../03_Platform_ROM_Clock_IP_Configuration.md"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "../../engineering/Cache_Coherence_Architecture.md"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/system.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/system.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/read-to-gb.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/read-to-gb.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/write-to-ddr.svg"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/write-to-ddr.png"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "industrial-base/export/export_report.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "evidence/minimal-validation.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "../2026-10-12_industrial_redraw/ddr_interconnect.pptx"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "build_figures.py"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "render.py"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "evidence/minimal-input.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "evidence/minimal-source-01/layout.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "evidence/minimal-render-01/browser.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "evidence/minimal-validation.json"
+    },
+    {
+      "source": "docs_codex/diagrams/2026-10-16_cache_coherence/README.md",
+      "target": "../../handoffs/L01_cache_coherence_architecture.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../engineering/Cache_Coherence_Architecture.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/evidence/input.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-15_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-12_industrial_redraw/ddr_interconnect.pptx"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/evidence/validation.json"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/README.md"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/system.png"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/industrial-base/export/diagrams.pptx"
+    },
+    {
+      "source": "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "target": "../diagrams/2026-10-16_cache_coherence/evidence/minimal-validation.json"
+    }
+  ],
+  "slides": [
+    {
+      "name": "system",
+      "text_objects": 68,
+      "native_arrows": 33,
+      "native_dashed_shapes": 5,
+      "whole_image_media": false,
+      "endpoint_geometry": "pass"
+    },
+    {
+      "name": "read-to-gb",
+      "text_objects": 33,
+      "native_arrows": 9,
+      "native_dashed_shapes": 0,
+      "whole_image_media": false,
+      "endpoint_geometry": "pass"
+    },
+    {
+      "name": "write-to-ddr",
+      "text_objects": 48,
+      "native_arrows": 9,
+      "native_dashed_shapes": 0,
+      "whole_image_media": false,
+      "endpoint_geometry": "pass"
+    }
+  ],
+  "protected_files": {
+    "docs_codex/AGENT_TASKS.md": true,
+    "docs_codex/PROJECT_STATE.md": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/README.md": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/build_figure.py": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/input.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-01/browser.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-01/chrome.log": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-02/browser.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-02/chrome.log": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-02/presentation-1920.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-02/software-stack-industrial.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/browser.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/chrome.log": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/comparison-1440.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/comparison-390.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/presentation-1920.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/render-final/software-stack-industrial.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/evidence/validation.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/export/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/export/export_report.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/export/software-stack-industrial.editable.svg": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/index.html": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/layout.json": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/preview.py": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/software-stack-industrial.png": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/software-stack-industrial.svg": true,
+    "docs_codex/diagrams/2026-10-14_software_stack_industrial/validate.py": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/README.md": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/build_figures.py": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/input.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-01/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-01/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-02/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-02/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-02/read-to-gb.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-02/system.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-02/write-to-ddr.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-03/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-03/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-03/read-to-gb.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-03/system.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/render-03/write-to-ddr.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-01/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-01/read-to-gb.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-01/system.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-01/write-to-ddr.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-02/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-02/read-to-gb.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-02/system.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/source-02/write-to-ddr.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/evidence/validation.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/export/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/export/export_report.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/export/read-to-gb.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/export/system.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/export/write-to-ddr.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/read-to-gb.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/read-to-gb.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/render.py": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/system.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/system.svg": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/validate.py": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/write-to-ddr.png": true,
+    "docs_codex/diagrams/2026-10-15_cache_coherence/write-to-ddr.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/README.md": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/build_figures.py": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/engineering_readme_before.md": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/external_change.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/input.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-01/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-01/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-02/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-02/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-02/inference-flow.png": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/render-02/software-stacks.png": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/source-01/inference-flow.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/source-01/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/source-01/software-stacks.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/validation-final.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/validation.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/evidence/visual_review.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/export_report.json": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/inference-flow.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/export/software-stacks.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/inference-flow.png": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/inference-flow.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/render.py": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/software-stacks.png": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/software-stacks.svg": true,
+    "docs_codex/diagrams/2026-10-15_edge_llm_os/validate.py": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/README.md": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/build_figures.py": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/cpu-accessible.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/cpu-accessible.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/cpu-isolated.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/cpu-isolated.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/input.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-01/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-01/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-02/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-02/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-02/cpu-accessible.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-02/cpu-isolated.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-03/browser.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-03/chrome.log": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-03/cpu-accessible.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/render-03/cpu-isolated.png": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-01/cpu-accessible.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-01/cpu-isolated.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-01/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-02/cpu-accessible.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-02/cpu-isolated.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/source-02/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/evidence/validation.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/export/cpu-accessible.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/export/cpu-isolated.editable.svg": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/export/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/export/export_report.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/layout.json": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/render.py": true,
+    "docs_codex/diagrams/2026-10-15_global_buffer_cpu_access/validate.py": true,
+    "docs_codex/engineering/Edge_LLM_OS_Selection.md": true,
+    "docs_codex/engineering/Global_Buffer_CPU_Access.md": true,
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md": true,
+    "docs_codex/engineering/README.md": true,
+    "docs_codex/handoffs/L01_edge_llm_os_architecture.md": true,
+    "docs_codex/handoffs/L01_global_buffer_cpu_access.md": true,
+    "docs_codex/handoffs/L01_software_hardware_interfaces.md": true,
+    "docs_codex/software/interfaces/markdown/memory-mmio.md": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/system.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/write-to-ddr.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/read-to-gb.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/system.png": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/read-to-gb.png": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/write-to-ddr.png": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/layout.json": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/export/read-to-gb.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/export/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/export/write-to-ddr.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/export/system.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/export/diagrams.pptx": true
+  },
+  "source_inputs": {
+    "hw/cheshire_soc.sv": true,
+    "hw/cheshire_pkg.sv": true,
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv": true,
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv": true,
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv": true,
+    ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv": true,
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv": true,
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv": true
+  },
+  "reference_inputs": {
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.export.json": true,
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.pptx": true,
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.svg": true,
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.png": true,
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/ddr_interconnect.layout.json": true
+  },
+  "original_backups": {
+    "docs_codex/engineering/Cache_Coherence_Architecture.md": true,
+    "docs_codex/handoffs/L01_cache_coherence_architecture.md": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/README.md": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/build_figures.py": true,
+    "docs_codex/diagrams/2026-10-16_cache_coherence/validate.py": true
+  },
+  "required_data_paths": [
+    [
+      "cpu",
+      "xbar",
+      "atomics",
+      "llc",
+      "ddr-port0"
+    ],
+    [
+      "ara",
+      "filter",
+      "split",
+      "width",
+      "xbar"
+    ],
+    [
+      "split",
+      "router",
+      "gb"
+    ],
+    [
+      "npu",
+      "router",
+      "gb"
+    ],
+    [
+      "isp",
+      "router",
+      "gb"
+    ],
+    [
+      "mover",
+      "router",
+      "gb"
+    ],
+    [
+      "mover",
+      "ddr-port1"
+    ],
+    [
+      "frame",
+      "ddr-port2"
+    ]
+  ],
+  "original_svg_objects_preserved": [
+    "a314D66",
+    "a187C78",
+    "aB96043",
+    "a765489",
+    "a93939D",
+    "background",
+    "o2",
+    "o3",
+    "cpu-domain",
+    "o5",
+    "cpu",
+    "o7",
+    "o8",
+    "ara",
+    "o10",
+    "o11",
+    "filter",
+    "o13",
+    "o14",
+    "split",
+    "o16",
+    "o17",
+    "width",
+    "o19",
+    "o20",
+    "ara-filter",
+    "filter-split",
+    "split-width",
+    "gb-domain",
+    "o25",
+    "npu",
+    "o27",
+    "o28",
+    "router",
+    "o30",
+    "o31",
+    "gb",
+    "o33",
+    "o34",
+    "o35",
+    "mover",
+    "o37",
+    "o38",
+    "npu-router",
+    "router-gb",
+    "mover-router",
+    "ara-gb",
+    "image-domain",
+    "o44",
+    "lvds",
+    "o46",
+    "o47",
+    "cdc",
+    "o49",
+    "o50",
+    "isp",
+    "o52",
+    "o53",
+    "select",
+    "o55",
+    "o56",
+    "frame",
+    "o58",
+    "o59",
+    "pixel0",
+    "pixel1",
+    "pixel2",
+    "pixel3",
+    "raw",
+    "branch",
+    "o66",
+    "isp-gb",
+    "o68",
+    "xbar",
+    "o70",
+    "o71",
+    "cpu-xbar",
+    "ara-xbar",
+    "atomics",
+    "o75",
+    "o76",
+    "llc",
+    "o78",
+    "o79",
+    "xbar-atomics",
+    "atomics-llc",
+    "ddr",
+    "o83",
+    "ddr-port0",
+    "o85",
+    "o86",
+    "join0",
+    "ddr-port1",
+    "o89",
+    "o90",
+    "join1",
+    "ddr-port2",
+    "o93",
+    "o94",
+    "join2",
+    "llc-ddr",
+    "mover-ddr",
+    "frame-ddr",
+    "ports-merge",
+    "qos",
+    "o101",
+    "o102",
+    "scheduler",
+    "o104",
+    "qos-in",
+    "qos-core",
+    "phy-ddr",
+    "o108",
+    "o109",
+    "ddr-phy",
+    "o111",
+    "o112",
+    "legend0",
+    "o114",
+    "legend1",
+    "o116",
+    "legend2",
+    "o118"
+  ],
+  "base_geometry_and_data_routes": "unchanged",
+  "sole_base": "2026-10-12_industrial_redraw/ddr_interconnect.svg",
+  "browser_report": "evidence/minimal-render-01/browser.json",
+  "visual_review": "Author inspected the revised system PNG; the other two SVGs and PNGs match the previously inspected delivery. No clipping, text overlap, or broken connections.",
+  "office_application_tested": false,
+  "software_or_rtl_execution": false,
+  "git_diff_check": "pass",
+  "artifacts": {
+    "docs_codex/engineering/Cache_Coherence_Architecture.md": "4dc5ff8ac55a1e45f22cb988dd6dd372c4b14ca13026e0837622ef80c338411c",
+    "docs_codex/engineering/README.md": "7fd9f1adea3c07dbe8a99780b01101555f145922b2c4f91aceae50b9106424db",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/README.md": "b0d4277d498887e29182500150dc5a22ce3c79045edb40f3a155ac08bafa7560",
+    "docs_codex/handoffs/L01_cache_coherence_architecture.md": "f76ee167c54a2aec5b06a2e348890cf7c641471578388ca2c1b5c8e93c1430fd",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/system.svg": "5df93273ff058591d5787f22e7ef21dca6d7cc6df2bfc8f30fdea317924ac20b",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/write-to-ddr.svg": "ae21d74d47ccfc926f95d2aaf8f443e5a258592d253020244eb83d5c60b6c9b6",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/read-to-gb.svg": "75647be01478d94fd2b386553bef4d1431f9b1b51f0abc64e02588e858f86029",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/system.png": "e4474d5f17be4d3ef6e476ad21c6c44ab96f760ccf3473b6b9ee06cede3c7489",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/read-to-gb.png": "bd345a214924a347e5bb571d3ad550180443cadc976fa6b244b59b0584df336f",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/write-to-ddr.png": "5f26c5964526159f489f70344dd372c2e5cb01d305d221ad9cf98324feca0ae3",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/build_figures.py": "aeed2e045d8ee380e11a72ee8deb37694ec3f9b33d62e7227fbe79023f286da7",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/render.py": "e036de8f3dade4f0538a6a2ac2d6d4348224f1c7d11a0beb1772fcd28604aea3",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/validate.py": "db92cce6aec565e2958629306b909e0aa5dc53df11df92396ec1cb0eab3c485b",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/layout.json": "8f94ae50a37f690943497ead8596b87f4ed7c1c6138aab5217874793cbadef63",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/export/diagrams.pptx": "d0b68246d14df4e190600c4ae7ab4fb919ed40a47fc64e02f2c54143c34b7b12",
+    "docs_codex/diagrams/2026-10-16_cache_coherence/industrial-base/export/export_report.json": "07aaa1ffcb7932986651f80e800a6c5cdaa7e0e93e14043342d476078b1bbb1e"
+  }
+}

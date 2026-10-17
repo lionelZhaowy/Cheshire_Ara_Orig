@@ -1,0 +1,499 @@
+{
+  "date": "2026-10-16",
+  "chrome": "Google Chrome 151.0.7922.108",
+  "office_application_tested": false,
+  "figures": [
+    {
+      "name": "shared-xbar",
+      "svg_sha256": "39fdd5d825398933320c1192a5cac821811060d312124c54365ae4a0284c4762",
+      "text_count": 60,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "已选拓扑：CPU / Ara 共用主 Xbar 的 GB 出口",
+          "owner": "",
+          "x": 60,
+          "y": 23,
+          "width": 842.921875,
+          "height": 52
+        },
+        {
+          "text": "Ara 保持 2 lanes / AXI64；不新增 Ara 直达 GB 支路。拓扑已确认，硬件尚未实施。",
+          "owner": "",
+          "x": 60,
+          "y": 85,
+          "width": 1032.234375,
+          "height": 35
+        },
+        {
+          "text": "CVA6 / Ara 计算与访存",
+          "owner": "",
+          "x": 85,
+          "y": 173,
+          "width": 305.25,
+          "height": 38
+        },
+        {
+          "text": "NPU 与显式搬运（规划）",
+          "owner": "",
+          "x": 1805,
+          "y": 173,
+          "width": 334.75,
+          "height": 38
+        },
+        {
+          "text": "独立片上共享存储（规划）",
+          "owner": "",
+          "x": 1967,
+          "y": 634,
+          "width": 336,
+          "height": 35
+        },
+        {
+          "text": "CVA6",
+          "owner": "cpu",
+          "x": 224.9296875,
+          "y": 258,
+          "width": 70.140625,
+          "height": 38
+        },
+        {
+          "text": "标量 load / store",
+          "owner": "cpu",
+          "x": 161.34375,
+          "y": 300,
+          "width": 196.3125,
+          "height": 33
+        },
+        {
+          "text": "GB 访问属性单独配置",
+          "owner": "cpu",
+          "x": 135.484375,
+          "y": 338,
+          "width": 249.03125,
+          "height": 33
+        },
+        {
+          "text": "Ara · 2 lanes",
+          "owner": "ara",
+          "x": 617.015625,
+          "y": 277,
+          "width": 165.96875,
+          "height": 38
+        },
+        {
+          "text": "单一 AXI64 出口",
+          "owner": "ara",
+          "x": 606.953125,
+          "y": 319,
+          "width": 186.09375,
+          "height": 33
+        },
+        {
+          "text": "现有失效过滤",
+          "owner": "filter",
+          "x": 980,
+          "y": 277,
+          "width": 180,
+          "height": 38
+        },
+        {
+          "text": "关联 CVA6 L1D",
+          "owner": "filter",
+          "x": 982.9453125,
+          "y": 319,
+          "width": 174.109375,
+          "height": 33
+        },
+        {
+          "text": "2 × 32 = 64-bit",
+          "owner": "",
+          "x": 1280,
+          "y": 265,
+          "width": 190.2890625,
+          "height": 35
+        },
+        {
+          "text": "不增加 GB 分流",
+          "owner": "",
+          "x": 1280,
+          "y": 311,
+          "width": 185.71875,
+          "height": 34
+        },
+        {
+          "text": "既有宽度转换器",
+          "owner": "converter",
+          "x": 795,
+          "y": 452,
+          "width": 210,
+          "height": 38
+        },
+        {
+          "text": "64 → 64：等宽直接透传",
+          "owner": "converter",
+          "x": 757.0234375,
+          "y": 494,
+          "width": 285.953125,
+          "height": 33
+        },
+        {
+          "text": "外部中断",
+          "owner": "interrupt",
+          "x": 475,
+          "y": 477,
+          "width": 120,
+          "height": 38
+        },
+        {
+          "text": "PLIC / CLIC",
+          "owner": "interrupt",
+          "x": 469.2734375,
+          "y": 519,
+          "width": 131.453125,
+          "height": 33
+        },
+        {
+          "text": "NPU 计算",
+          "owner": "npu",
+          "x": 1897.625,
+          "y": 272,
+          "width": 124.75,
+          "height": 38
+        },
+        {
+          "text": "GB 数据读写",
+          "owner": "npu",
+          "x": 1887.484375,
+          "y": 314,
+          "width": 145.03125,
+          "height": 33
+        },
+        {
+          "text": "DDR ↔ GB 搬运器",
+          "owner": "mover",
+          "x": 2198.265625,
+          "y": 272,
+          "width": 243.46875,
+          "height": 38
+        },
+        {
+          "text": "引擎实现待定",
+          "owner": "mover",
+          "x": 2242,
+          "y": 314,
+          "width": 156,
+          "height": 33
+        },
+        {
+          "text": "NPU / 搬运器控制与完成状态",
+          "owner": "device-regs",
+          "x": 1945.3359375,
+          "y": 501,
+          "width": 389.328125,
+          "height": 38
+        },
+        {
+          "text": "主 AXI Xbar · 64-bit",
+          "owner": "xbar",
+          "x": 700.046875,
+          "y": 712,
+          "width": 250.322265625,
+          "height": 38
+        },
+        {
+          "text": "普通内存、寄存器与外部存储目标",
+          "owner": "xbar",
+          "x": 630,
+          "y": 754,
+          "width": 390,
+          "height": 33
+        },
+        {
+          "text": "GB 多入口适配 / 仲裁 / bank 调度",
+          "owner": "arbiter",
+          "x": 1906.4921875,
+          "y": 698,
+          "width": 457.015625,
+          "height": 38
+        },
+        {
+          "text": "位宽、ID、字节选通；按需 CDC",
+          "owner": "arbiter",
+          "x": 1951.484375,
+          "y": 740,
+          "width": 367.03125,
+          "height": 33
+        },
+        {
+          "text": "逻辑入口数不等于 SRAM 物理端口数",
+          "owner": "arbiter",
+          "x": 1924.1796875,
+          "y": 778,
+          "width": 421.640625,
+          "height": 33
+        },
+        {
+          "text": "GB SRAM",
+          "owner": "sram",
+          "x": 2082.0703125,
+          "y": 983,
+          "width": 125.859375,
+          "height": 38
+        },
+        {
+          "text": "独立物理存储 · 容量 / bank / 端口待定",
+          "owner": "sram",
+          "x": 1921.46875,
+          "y": 1025,
+          "width": 447.0625,
+          "height": 33
+        },
+        {
+          "text": "CPU 可达时建议不缓存、不可执行",
+          "owner": "sram",
+          "x": 1948.4609375,
+          "y": 1063,
+          "width": 393.078125,
+          "height": 33
+        },
+        {
+          "text": "Reg 扩展配置路径",
+          "owner": "regext",
+          "x": 150.625,
+          "y": 982,
+          "width": 238.75,
+          "height": 38
+        },
+        {
+          "text": "AXI → Reg → RegExt",
+          "owner": "regext",
+          "x": 150.4921875,
+          "y": 1024,
+          "width": 239.69921875,
+          "height": 33
+        },
+        {
+          "text": "现有原子适配",
+          "owner": "atomics",
+          "x": 710,
+          "y": 952,
+          "width": 180,
+          "height": 38
+        },
+        {
+          "text": "普通内存路径",
+          "owner": "atomics",
+          "x": 722,
+          "y": 994,
+          "width": 156,
+          "height": 33
+        },
+        {
+          "text": "LLC / SPM",
+          "owner": "llc",
+          "x": 728.953125,
+          "y": 1152,
+          "width": 142.09375,
+          "height": 38
+        },
+        {
+          "text": "预留 SPM 可作结果暂存",
+          "owner": "llc",
+          "x": 662.2265625,
+          "y": 1194,
+          "width": 275.546875,
+          "height": 33
+        },
+        {
+          "text": "DDR 合流边界",
+          "owner": "merge",
+          "x": 1091.4375,
+          "y": 1152,
+          "width": 187.125,
+          "height": 38
+        },
+        {
+          "text": "端口 / 适配待定",
+          "owner": "merge",
+          "x": 1092.4453125,
+          "y": 1194,
+          "width": 185.109375,
+          "height": 33
+        },
+        {
+          "text": "Controller / PHY",
+          "owner": "ddr-controller",
+          "x": 1463.359375,
+          "y": 1152,
+          "width": 213.494140625,
+          "height": 38
+        },
+        {
+          "text": "AXI4 接入",
+          "owner": "ddr-controller",
+          "x": 1514.6484375,
+          "y": 1194,
+          "width": 110.703125,
+          "height": 33
+        },
+        {
+          "text": "DDR",
+          "owner": "ddr",
+          "x": 1940.9375,
+          "y": 1202,
+          "width": 58.125,
+          "height": 38
+        },
+        {
+          "text": "外部主存",
+          "owner": "ddr",
+          "x": 1918,
+          "y": 1244,
+          "width": 104,
+          "height": 33
+        },
+        {
+          "text": "CPU / Ara 共享 GB 出口",
+          "owner": "host-port",
+          "x": 1177,
+          "y": 872,
+          "width": 316,
+          "height": 38
+        },
+        {
+          "text": "AXI64 出口 / GB 适配",
+          "owner": "host-port",
+          "x": 1210.7890625,
+          "y": 914,
+          "width": 248.421875,
+          "height": 33
+        },
+        {
+          "text": "64-bit",
+          "owner": "",
+          "x": 280,
+          "y": 423,
+          "width": 70.48828125,
+          "height": 34
+        },
+        {
+          "text": "RVV",
+          "owner": "",
+          "x": 461.53125,
+          "y": 238,
+          "width": 46.9375,
+          "height": 34
+        },
+        {
+          "text": "指令 / 结果",
+          "owner": "",
+          "x": 427.6875,
+          "y": 303,
+          "width": 113.625,
+          "height": 28
+        },
+        {
+          "text": "L1D 失效请求",
+          "owner": "",
+          "x": 800,
+          "y": 179,
+          "width": 139.359375,
+          "height": 29
+        },
+        {
+          "text": "64-bit",
+          "owner": "",
+          "x": 1100,
+          "y": 393,
+          "width": 64.93359375,
+          "height": 31
+        },
+        {
+          "text": "64-bit",
+          "owner": "",
+          "x": 920,
+          "y": 555,
+          "width": 64.93359375,
+          "height": 31
+        },
+        {
+          "text": "bank 读写服务",
+          "owner": "",
+          "x": 2160,
+          "y": 874,
+          "width": 173.265625,
+          "height": 34
+        },
+        {
+          "text": "主存 / SPM",
+          "owner": "",
+          "x": 820,
+          "y": 858,
+          "width": 138.171875,
+          "height": 34
+        },
+        {
+          "text": "搬运器 DDR 主口 · 绕过 LLC",
+          "owner": "",
+          "x": 1740,
+          "y": 1297,
+          "width": 331.96875,
+          "height": 34
+        },
+        {
+          "text": "配置访问",
+          "owner": "",
+          "x": 280,
+          "y": 879,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "RegExt 配置 / 状态访问",
+          "owner": "",
+          "x": 1120,
+          "y": 607,
+          "width": 270.296875,
+          "height": 33
+        },
+        {
+          "text": "完成 / 错误 IRQ",
+          "owner": "",
+          "x": 1120,
+          "y": 560,
+          "width": 180.890625,
+          "height": 33
+        },
+        {
+          "text": "CPU / Ara → GB",
+          "owner": "",
+          "x": 1530,
+          "y": 920,
+          "width": 195.3125,
+          "height": 34
+        },
+        {
+          "text": "蓝灰：普通访存    绿：GB 访存    紫：指令 / 配置    暗红：完成通知    橙：CPU / Ara 共享 GB 通路",
+          "owner": "",
+          "x": 60,
+          "y": 1353,
+          "width": 1051.171875,
+          "height": 33
+        },
+        {
+          "text": "箭头表示请求方向，存储响应省略；RVV 双向线含结果。跳线处不连接。虚线框标示尚未实施的规划部件。",
+          "owner": "",
+          "x": 60,
+          "y": 1394,
+          "width": 1175.953125,
+          "height": 31
+        }
+      ]
+    }
+  ],
+  "status": "pass"
+}

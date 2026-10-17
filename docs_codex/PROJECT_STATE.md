@@ -1,6 +1,6 @@
 # 项目共享状态
 
-更新：2026-10-13，L01 文档整理。输入：`mp/ara-pulp-v2` / `5a1338e0a0bf115ddd54c19e0ae367ac2d541892`。这是当前事实与未验证项索引，不是测试报告或实施授权。新对话再核对实际 HEAD 和工作区；按[任务表](AGENT_TASKS.md)、[定位指南](AGENT_DOCUMENTATION_GUIDE.md)及对应主题交接接手。
+更新：2026-10-16，补充 L01 DDR–GB 评审文档状态；其余条目保留 2026-10-13 文档整理快照。原整理输入：`mp/ara-pulp-v2` / `5a1338e0a0bf115ddd54c19e0ae367ac2d541892`。这是当前事实与未验证项索引，不是测试报告或实施授权。新对话再核对实际 HEAD 和工作区；按[任务表](AGENT_TASKS.md)、[定位指南](AGENT_DOCUMENTATION_GUIDE.md)及对应主题交接接手。
 
 ## 1. 最终目标与近期目标
 
@@ -45,6 +45,7 @@
 | 查询参考 | [配置](configuration/README.md)、[软件](software/README.md)、[层次与工具](software/LAYERS_AND_TOOLS.md)、[片外接口](EXTERNAL_DEVICES_AND_INTERFACES.md)，按问题查阅 |
 | RTL 模块指南 | [21 篇正文、24 张 A 图、213 条连接](rtl_modules/README.md)；2026-10-13 最终采用 A 连续走线，B 弃用、C 未采用；[技术交接](handoffs/L01_rtl_module_guide.md)保留审阅与缺口 |
 | 工程契约 | [IP/DDR/GB](engineering/IP_DDR_Interface_Contract.md)、[ASIC适配](engineering/ASIC_Adaptation_and_Evidence.md)是正式参考，工程尚未实施 |
+| DDR–GB 同步说明（2026-10-16） | [主说明](engineering/DDR_GB_Coherence_Design.md)已纳入用户转交的独立评审及答疑；[供应商会议问题](engineering/DDR_Supplier_Coherence_Questions.md)已按用户提供的 Datasheet V2.1 核对能力、页码及待澄清项，尚无会议答复；保存[评审 Q&A](maintenance/L01/reviews/ddr_gb_coherence_review_qa.md)。输入 `322bd6ce9`；用户确认维护窗口／握手需实现，当前仅修订文档，硬件与故障恢复未验收 |
 | 历史检查 | 软件构建、独立教学 Reg 单元、浏览器/图稿检查均只对各次记录的输入有效；按[交接索引](handoffs/README.md)追溯，不合并成一次生产 SoC 验证 |
 
 OS/RTOS 具体平台、镜像溯源、系统启动和向量抢占仍未验收。教材中的 Linux 6.5 源码、SDK 配方版本与 OpenSBI 头声明不是运行证据；RTOS/Linux 教学已交付，OS 不是裸机 ASIC 提取前置。

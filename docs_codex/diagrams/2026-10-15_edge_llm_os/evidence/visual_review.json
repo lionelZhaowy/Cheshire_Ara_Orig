@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "L01 author",
+  "renderer": "Chrome local SVG",
+  "figures": [
+    "software-stacks",
+    "inference-flow"
+  ],
+  "checks": [
+    "Viewed both actual PNGs with view_image",
+    "Chinese text readable; no clipped labels or overlapping text",
+    "Continuous arrows terminate at intended objects",
+    "RVV instruction path separated from NPU driver submission",
+    "NPU/GB candidate responsibilities marked; no CPU-to-GB path introduced"
+  ],
+  "office_application_tested": false,
+  "status": "pass"
+}

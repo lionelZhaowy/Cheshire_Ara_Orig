@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-16",
+  "iterations": [
+    {
+      "step": "build-01 / preview-01",
+      "exit_code": 0,
+      "result": "Native edit and preview generated. Visual review identified a now-unnecessary ISP-GB crossing jump over the deleted Ara branch."
+    },
+    {
+      "step": "build-02 / preview-02",
+      "exit_code": 0,
+      "result": "Removed only the obsolete ISP-GB jump. Final delivered PPTX and preview generated."
+    },
+    {
+      "step": "validate.py first run",
+      "exit_code": 1,
+      "result": "M_GB label flagged by full line-height bounds at the port endpoint; package and save/reopen checks completed before this assertion."
+    },
+    {
+      "step": "preview-03 / validate.py second run",
+      "exit_code": 1,
+      "result": "Glyph bounds were measured, but the overlap test still padded flat line caps beyond their endpoints. No deck content changed."
+    },
+    {
+      "step": "validate.py final run",
+      "exit_code": 0,
+      "result": "Applied the actual flat-cap geometry. Final structural, text and path checks pass; see validation.json."
+    }
+  ],
+  "office_application_tested": false
+}

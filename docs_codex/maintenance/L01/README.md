@@ -19,6 +19,7 @@
 | 历史规划 | [旧任务 Prompt](planning/historical_prompts.md) | 原 L01_Next_Tasks_Prompts，给不同 Agent 分配范围/文件/验收的指令草案；相关文档任务已执行，不再作为可直接启动入口 |
 | 历史规划 | [系统教材深化规划](planning/system_revision_plan.md) | 软件→OS→ASIC 的内容与分工方案，已有后续实施 |
 | 历史规划 | [03–08 专题条件评估](planning/topic_readiness.md) | 解释旧编号专题为什么整合进教材/M01/P01；不是缺少六篇教程的待办 |
+| 审查与答疑 | [DDR–GB 评审 Q&A](reviews/ddr_gb_coherence_review_qa.md) | 保存本轮评审全文、用户追问、作者更正及文档处理结果；待实现项保持未验收 |
 | 审查 | [教学质量审查](reviews/teaching_quality.md) | 修改前的问题、改进依据及边界 |
 | 审查 | [系统独立复审](reviews/system_independent.md) | 独立审读范围和问题；保留作者自查与独立评审的区分 |
 | 实施 | [主管验收](reports/system_acceptance.md) | 汇总分工、修改、实际网页验证及尚未执行的目标验证 |

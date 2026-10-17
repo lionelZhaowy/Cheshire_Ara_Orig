@@ -1,0 +1,2239 @@
+{
+  "date": "2026-10-16",
+  "chrome": "Google Chrome 151.0.7922.108",
+  "office_application_tested": false,
+  "figures": [
+    {
+      "name": "system",
+      "svg_sha256": "265ca508ad4955b3417de3a668872b8a8cbf9d65433c2965ea468c82a762a140",
+      "text_count": 68,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [
+        [
+          "cpu-xbar",
+          "原子域接口（评审项）"
+        ]
+      ],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "DDR 互联候选结构 · 共享 Global Buffer",
+          "owner": "",
+          "x": 45,
+          "y": 24,
+          "width": 733.2841796875,
+          "height": 54
+        },
+        {
+          "text": "S0 = SoC / LLC · S1 = 统一 NPU / GB 搬运 · S2 = 图像帧写入",
+          "owner": "",
+          "x": 48,
+          "y": 89,
+          "width": 655.265625,
+          "height": 30
+        },
+        {
+          "text": "CVA6–Ara 系统路径",
+          "owner": "cpu-domain",
+          "x": 350.828125,
+          "y": 214,
+          "width": 258.34375,
+          "height": 38
+        },
+        {
+          "text": "CVA6",
+          "owner": "cpu",
+          "x": 167.265625,
+          "y": 323.0199890136719,
+          "width": 65.46875,
+          "height": 35
+        },
+        {
+          "text": "L1D / 写缓冲",
+          "owner": "cpu",
+          "x": 129.4609375,
+          "y": 361.0199890136719,
+          "width": 141.078125,
+          "height": 30
+        },
+        {
+          "text": "Ara",
+          "owner": "ara",
+          "x": 612.6484375,
+          "y": 310.5199890136719,
+          "width": 39.703125,
+          "height": 35
+        },
+        {
+          "text": "单一 AXI 访存出口",
+          "owner": "ara",
+          "x": 537,
+          "y": 348.5199890136719,
+          "width": 191,
+          "height": 30
+        },
+        {
+          "text": "失效过滤",
+          "owner": "filter",
+          "x": 412.5,
+          "y": 472.5,
+          "width": 100,
+          "height": 31
+        },
+        {
+          "text": "现有",
+          "owner": "filter",
+          "x": 440.5,
+          "y": 509.5,
+          "width": 44,
+          "height": 28
+        },
+        {
+          "text": "地址分流",
+          "owner": "split",
+          "x": 561.5,
+          "y": 472.5,
+          "width": 101,
+          "height": 31
+        },
+        {
+          "text": "新增",
+          "owner": "split",
+          "x": 590.5,
+          "y": 509.5,
+          "width": 44,
+          "height": 28
+        },
+        {
+          "text": "位宽适配",
+          "owner": "width",
+          "x": 732.5,
+          "y": 472.5,
+          "width": 100,
+          "height": 31
+        },
+        {
+          "text": "普通地址",
+          "owner": "width",
+          "x": 738.5,
+          "y": 509.5,
+          "width": 88,
+          "height": 28
+        },
+        {
+          "text": "独立 GB / NPU 子系统",
+          "owner": "gb-domain",
+          "x": 1232.1640625,
+          "y": 214,
+          "width": 295.671875,
+          "height": 38
+        },
+        {
+          "text": "NPU 计算",
+          "owner": "npu",
+          "x": 1011.78125,
+          "y": 340.5199890136719,
+          "width": 116.4375,
+          "height": 35
+        },
+        {
+          "text": "独立于搬运器",
+          "owner": "npu",
+          "x": 998,
+          "y": 378.5199890136719,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "共享数据代理",
+          "owner": "router",
+          "x": 1256,
+          "y": 340.5199890136719,
+          "width": 168,
+          "height": 35
+        },
+        {
+          "text": "仲裁 / bank 冲突",
+          "owner": "router",
+          "x": 1249.5625,
+          "y": 378.5199890136719,
+          "width": 180.875,
+          "height": 30
+        },
+        {
+          "text": "Global Buffer",
+          "owner": "gb",
+          "x": 1565.6015625,
+          "y": 323.5199890136719,
+          "width": 159.84375,
+          "height": 35
+        },
+        {
+          "text": "独立分 bank SRAM",
+          "owner": "gb",
+          "x": 1544.9921875,
+          "y": 361.5199890136719,
+          "width": 200.015625,
+          "height": 30
+        },
+        {
+          "text": "工作区 / 双缓冲",
+          "owner": "gb",
+          "x": 1559.5703125,
+          "y": 395.5199890136719,
+          "width": 170.859375,
+          "height": 30
+        },
+        {
+          "text": "NPU / GB 搬运",
+          "owner": "mover",
+          "x": 1553.21875,
+          "y": 510.52001953125,
+          "width": 183.5625,
+          "height": 35
+        },
+        {
+          "text": "DDR ↔ GB",
+          "owner": "mover",
+          "x": 1587.2109375,
+          "y": 548.52001953125,
+          "width": 115.578125,
+          "height": 30
+        },
+        {
+          "text": "图像接收 / ISP / 帧写入",
+          "owner": "image-domain",
+          "x": 2139.84375,
+          "y": 214,
+          "width": 320.3125,
+          "height": 38
+        },
+        {
+          "text": "LVDS",
+          "owner": "lvds",
+          "x": 1934.6015625,
+          "y": 399.3399963378906,
+          "width": 60.796875,
+          "height": 33
+        },
+        {
+          "text": "解串 / 帧行",
+          "owner": "lvds",
+          "x": 1913.8046875,
+          "y": 439.3399963378906,
+          "width": 102.390625,
+          "height": 25
+        },
+        {
+          "text": "CDC/FIFO",
+          "owner": "cdc",
+          "x": 2069.1640625,
+          "y": 399.3399963378906,
+          "width": 111.671875,
+          "height": 33
+        },
+        {
+          "text": "像素缓冲",
+          "owner": "cdc",
+          "x": 2085,
+          "y": 439.3399963378906,
+          "width": 80,
+          "height": 25
+        },
+        {
+          "text": "ISP",
+          "owner": "isp",
+          "x": 2266.296875,
+          "y": 399.3399963378906,
+          "width": 37.40625,
+          "height": 33
+        },
+        {
+          "text": "处理/行缓冲",
+          "owner": "isp",
+          "x": 2229.8046875,
+          "y": 439.3399963378906,
+          "width": 110.390625,
+          "height": 25
+        },
+        {
+          "text": "帧选择",
+          "owner": "select",
+          "x": 2406,
+          "y": 399.3399963378906,
+          "width": 78,
+          "height": 33
+        },
+        {
+          "text": "RAW / ISP",
+          "owner": "select",
+          "x": 2399.4375,
+          "y": 439.3399963378906,
+          "width": 91.125,
+          "height": 25
+        },
+        {
+          "text": "帧 DMA",
+          "owner": "frame",
+          "x": 2571.6015625,
+          "y": 399.3399963378906,
+          "width": 87.236328125,
+          "height": 33
+        },
+        {
+          "text": "地址/stride",
+          "owner": "frame",
+          "x": 2564.046875,
+          "y": 439.3399963378906,
+          "width": 100.90625,
+          "height": 25
+        },
+        {
+          "text": "RAW 旁路",
+          "owner": "",
+          "x": 2452.71875,
+          "y": 297,
+          "width": 94.5625,
+          "height": 28
+        },
+        {
+          "text": "ISP 中间数据",
+          "owner": "",
+          "x": 1849.7421875,
+          "y": 253,
+          "width": 120.515625,
+          "height": 26
+        },
+        {
+          "text": "主 AXI Crossbar",
+          "owner": "xbar",
+          "x": 579.734375,
+          "y": 820.9000244140625,
+          "width": 241.345703125,
+          "height": 44
+        },
+        {
+          "text": "系统 64 bit",
+          "owner": "xbar",
+          "x": 641.2421875,
+          "y": 865.9000244140625,
+          "width": 117.8515625,
+          "height": 30
+        },
+        {
+          "text": "原子适配",
+          "owner": "atomics",
+          "x": 474,
+          "y": 1083.02001953125,
+          "width": 112,
+          "height": 35
+        },
+        {
+          "text": "AMO / LRSC",
+          "owner": "atomics",
+          "x": 463.8203125,
+          "y": 1121.02001953125,
+          "width": 132.359375,
+          "height": 30
+        },
+        {
+          "text": "LLC / SPM",
+          "owner": "llc",
+          "x": 858.6875,
+          "y": 1083.02001953125,
+          "width": 132.625,
+          "height": 35
+        },
+        {
+          "text": "WB 缓存 / 片上 SPM",
+          "owner": "llc",
+          "x": 815.1328125,
+          "y": 1121.02001953125,
+          "width": 219.734375,
+          "height": 30
+        },
+        {
+          "text": "DDR Controller · 多 AXI slave",
+          "owner": "",
+          "x": 1743.421875,
+          "y": 1287,
+          "width": 363.15625,
+          "height": 37
+        },
+        {
+          "text": "S0",
+          "owner": "ddr-port0",
+          "x": 1522.9375,
+          "y": 945.52001953125,
+          "width": 34.125,
+          "height": 35
+        },
+        {
+          "text": "SoC / LLC",
+          "owner": "ddr-port0",
+          "x": 1490.328125,
+          "y": 985.52001953125,
+          "width": 99.34375,
+          "height": 28
+        },
+        {
+          "text": "S1",
+          "owner": "ddr-port1",
+          "x": 1912.9375,
+          "y": 945.52001953125,
+          "width": 34.125,
+          "height": 35
+        },
+        {
+          "text": "NPU / GB",
+          "owner": "ddr-port1",
+          "x": 1883.1796875,
+          "y": 985.52001953125,
+          "width": 93.640625,
+          "height": 28
+        },
+        {
+          "text": "S2",
+          "owner": "ddr-port2",
+          "x": 2302.9375,
+          "y": 945.52001953125,
+          "width": 34.125,
+          "height": 35
+        },
+        {
+          "text": "帧写入",
+          "owner": "ddr-port2",
+          "x": 2287,
+          "y": 985.52001953125,
+          "width": 66,
+          "height": 28
+        },
+        {
+          "text": "端口仲裁 / QoS",
+          "owner": "qos",
+          "x": 1517.8828125,
+          "y": 1170.52001953125,
+          "width": 194.234375,
+          "height": 35
+        },
+        {
+          "text": "共享 DDR 带宽",
+          "owner": "qos",
+          "x": 1536.5546875,
+          "y": 1208.52001953125,
+          "width": 156.890625,
+          "height": 30
+        },
+        {
+          "text": "读写 / Bank / Row / 命令调度",
+          "owner": "scheduler",
+          "x": 1941.15625,
+          "y": 1188.8399658203125,
+          "width": 347.6875,
+          "height": 33
+        },
+        {
+          "text": "PHY / DDR",
+          "owner": "phy-ddr",
+          "x": 2547.3046875,
+          "y": 1170.52001953125,
+          "width": 135.390625,
+          "height": 35
+        },
+        {
+          "text": "外存器件",
+          "owner": "phy-ddr",
+          "x": 2567,
+          "y": 1208.52001953125,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "GB 容量、bank、位宽及频率待定",
+          "owner": "",
+          "x": 516.609375,
+          "y": 1314,
+          "width": 396.78125,
+          "height": 34
+        },
+        {
+          "text": "并行能力取决于 SRAM 带宽与分区",
+          "owner": "",
+          "x": 509.5703125,
+          "y": 1359,
+          "width": 410.859375,
+          "height": 34
+        },
+        {
+          "text": "AXI / 外存通路",
+          "owner": "",
+          "x": 135,
+          "y": 1517,
+          "width": 142.515625,
+          "height": 28
+        },
+        {
+          "text": "GB 本地读写",
+          "owner": "",
+          "x": 665,
+          "y": 1517,
+          "width": 122.71875,
+          "height": 28
+        },
+        {
+          "text": "像素流",
+          "owner": "",
+          "x": 1195,
+          "y": 1517,
+          "width": 66,
+          "height": 28
+        },
+        {
+          "text": "范围维护引擎（规划）",
+          "owner": "coh-coordinator",
+          "x": 1250,
+          "y": 679.5,
+          "width": 270,
+          "height": 34
+        },
+        {
+          "text": "软件触发 / L1D 与 LLC 维护 / 搬运准入 / 完成确认",
+          "owner": "coh-coordinator",
+          "x": 1113.3828125,
+          "y": 717.5,
+          "width": 543.234375,
+          "height": 30
+        },
+        {
+          "text": "软件请求 / L1D 排空与失效",
+          "owner": "",
+          "x": 250,
+          "y": 128,
+          "width": 280.09375,
+          "height": 29
+        },
+        {
+          "text": "原子域接口（评审项）",
+          "owner": "",
+          "x": 70,
+          "y": 743,
+          "width": 230,
+          "height": 29
+        },
+        {
+          "text": "LLC 范围清理 / 失效确认",
+          "owner": "",
+          "x": 1000,
+          "y": 1228,
+          "width": 253.890625,
+          "height": 29
+        },
+        {
+          "text": "S1 维护后准入 / 完成",
+          "owner": "",
+          "x": 2065,
+          "y": 663,
+          "width": 221.671875,
+          "height": 29
+        },
+        {
+          "text": "S2 维护后准入 / 完成",
+          "owner": "",
+          "x": 2435,
+          "y": 873,
+          "width": 221.671875,
+          "height": 29
+        },
+        {
+          "text": "跨口可见 / 完成",
+          "owner": "",
+          "x": 1750,
+          "y": 1088,
+          "width": 163.75,
+          "height": 29
+        },
+        {
+          "text": "软件交接与硬件维护（规划）",
+          "owner": "",
+          "x": 1805,
+          "y": 1517,
+          "width": 286,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "name": "ownership",
+      "svg_sha256": "d70aa655e2532537916249a4a681def6108fe0e7c24e8b55aca3b259d91f3cd2",
+      "text_count": 55,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "软件交接、硬件维护：一次推理的数据生命周期",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 756,
+          "height": 46
+        },
+        {
+          "text": "按缓冲区或计算分块同步；交接范围由软件保持所有权，CPU 可并行处理其他缓冲区。",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 914.84375,
+          "height": 30
+        },
+        {
+          "text": "① 提交前：软件交出 DDR 输入与输出范围",
+          "owner": "",
+          "x": 60,
+          "y": 158,
+          "width": 565.109375,
+          "height": 38
+        },
+        {
+          "text": "软件提交",
+          "owner": "r0b0",
+          "x": 206,
+          "y": 245,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "地址 / 长度 / 方向",
+          "owner": "r0b0",
+          "x": 160.140625,
+          "y": 283,
+          "width": 198.71875,
+          "height": 30
+        },
+        {
+          "text": "确认各生产者完成",
+          "owner": "r0b0",
+          "x": 163,
+          "y": 318,
+          "width": 193,
+          "height": 30
+        },
+        {
+          "text": "L1D / 写缓冲",
+          "owner": "r0b1",
+          "x": 645.640625,
+          "y": 245,
+          "width": 158.71875,
+          "height": 34
+        },
+        {
+          "text": "排空相关旧写",
+          "owner": "r0b1",
+          "x": 653,
+          "y": 283,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "协调在途回填",
+          "owner": "r0b1",
+          "x": 653,
+          "y": 318,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "LLC 范围维护",
+          "owner": "r0b2",
+          "x": 1110.09375,
+          "y": 245,
+          "width": 159.8125,
+          "height": 34
+        },
+        {
+          "text": "输入：clean",
+          "owner": "r0b2",
+          "x": 1125.96875,
+          "y": 283,
+          "width": 128.0625,
+          "height": 30
+        },
+        {
+          "text": "输出：clean + invalidate",
+          "owner": "r0b2",
+          "x": 1061.515625,
+          "y": 318,
+          "width": 256.96875,
+          "height": 30
+        },
+        {
+          "text": "DDR 共享点",
+          "owner": "r0b3",
+          "x": 1584.2890625,
+          "y": 245,
+          "width": 141.421875,
+          "height": 34
+        },
+        {
+          "text": "确认写回跨端口可见",
+          "owner": "r0b3",
+          "x": 1546,
+          "y": 283,
+          "width": 217,
+          "height": 30
+        },
+        {
+          "text": "汇合缓存维护确认",
+          "owner": "r0b3",
+          "x": 1559,
+          "y": 318,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "允许启动",
+          "owner": "r0b4",
+          "x": 2066,
+          "y": 245,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "返回维护完成",
+          "owner": "r0b4",
+          "x": 2048,
+          "y": 283,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "软件发布 DMA 任务",
+          "owner": "r0b4",
+          "x": 2016.34375,
+          "y": 318,
+          "width": 207.3125,
+          "height": 30
+        },
+        {
+          "text": "输入的干净副本可保留；输出预清理保护未覆盖字节，预失效清除旧副本。",
+          "owner": "",
+          "x": 65,
+          "y": 390,
+          "width": 858,
+          "height": 33
+        },
+        {
+          "text": "② 设备持有期间：DDR 与 GB 显式搬运",
+          "owner": "",
+          "x": 60,
+          "y": 528,
+          "width": 522.453125,
+          "height": 38
+        },
+        {
+          "text": "DDR → GB",
+          "owner": "r1b0",
+          "x": 194.984375,
+          "y": 615,
+          "width": 130.03125,
+          "height": 34
+        },
+        {
+          "text": "搬运器读取输入",
+          "owner": "r1b0",
+          "x": 176,
+          "y": 653,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "经共享数据代理写 GB",
+          "owner": "r1b0",
+          "x": 145.0625,
+          "y": 688,
+          "width": 229.875,
+          "height": 30
+        },
+        {
+          "text": "GB ready",
+          "owner": "r1b1",
+          "x": 671.8828125,
+          "y": 615,
+          "width": 106.8955078125,
+          "height": 34
+        },
+        {
+          "text": "数据完整后交给",
+          "owner": "r1b1",
+          "x": 641,
+          "y": 653,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "NPU / Ara 消费",
+          "owner": "r1b1",
+          "x": 644.65625,
+          "y": 688,
+          "width": 160.6875,
+          "height": 30
+        },
+        {
+          "text": "计算与分块复用",
+          "owner": "r1b2",
+          "x": 1095.5,
+          "y": 615,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "独立 SRAM 保存",
+          "owner": "r1b2",
+          "x": 1103.3984375,
+          "y": 653,
+          "width": 173.203125,
+          "height": 30
+        },
+        {
+          "text": "当前任务的数据",
+          "owner": "r1b2",
+          "x": 1106,
+          "y": 688,
+          "width": 168,
+          "height": 30
+        },
+        {
+          "text": "GB → DDR",
+          "owner": "r1b3",
+          "x": 1589.984375,
+          "y": 615,
+          "width": 130.03125,
+          "height": 34
+        },
+        {
+          "text": "共享代理 → 搬运器",
+          "owner": "r1b3",
+          "x": 1551.8046875,
+          "y": 653,
+          "width": 206.390625,
+          "height": 30
+        },
+        {
+          "text": "按 WSTRB 更新输出",
+          "owner": "r1b3",
+          "x": 1549.6796875,
+          "y": 688,
+          "width": 210.640625,
+          "height": 30
+        },
+        {
+          "text": "设备完成",
+          "owner": "r1b4",
+          "x": 2066,
+          "y": 615,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "DDR 跨口可见",
+          "owner": "r1b4",
+          "x": 2045.1484375,
+          "y": 653,
+          "width": 149.703125,
+          "height": 30
+        },
+        {
+          "text": "返回任务身份与状态",
+          "owner": "r1b4",
+          "x": 2012,
+          "y": 688,
+          "width": 216,
+          "height": 30
+        },
+        {
+          "text": "CPU / Ara 的 DDR 冲突访问由任务协议限制；GB 内部交接由其独立的分块调度负责。",
+          "owner": "",
+          "x": 65,
+          "y": 760,
+          "width": 982.046875,
+          "height": 33
+        },
+        {
+          "text": "③ 消费前：硬件清除旧读副本，软件收回输出",
+          "owner": "",
+          "x": 60,
+          "y": 898,
+          "width": 609,
+          "height": 38
+        },
+        {
+          "text": "软件等待完成",
+          "owner": "r2b0",
+          "x": 179,
+          "y": 985,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "核对任务与错误",
+          "owner": "r2b0",
+          "x": 175,
+          "y": 1023,
+          "width": 169,
+          "height": 30
+        },
+        {
+          "text": "请求输出范围同步",
+          "owner": "r2b0",
+          "x": 164,
+          "y": 1058,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "处理旧回填",
+          "owner": "r2b1",
+          "x": 657.5,
+          "y": 985,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "排空 / 作废旧响应",
+          "owner": "r2b1",
+          "x": 627.5703125,
+          "y": 1023,
+          "width": 194.859375,
+          "height": 30
+        },
+        {
+          "text": "保护失效过程",
+          "owner": "r2b1",
+          "x": 653,
+          "y": 1058,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "L1D + LLC",
+          "owner": "r2b2",
+          "x": 1128.203125,
+          "y": 985,
+          "width": 123.59375,
+          "height": 34
+        },
+        {
+          "text": "输出 invalidate",
+          "owner": "r2b2",
+          "x": 1112.3359375,
+          "y": 1023,
+          "width": 155.328125,
+          "height": 30
+        },
+        {
+          "text": "收齐实际完成确认",
+          "owner": "r2b2",
+          "x": 1094,
+          "y": 1058,
+          "width": 192,
+          "height": 30
+        },
+        {
+          "text": "交还所有权",
+          "owner": "r2b3",
+          "x": 1587.5,
+          "y": 985,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "建立完成到读取顺序",
+          "owner": "r2b3",
+          "x": 1546,
+          "y": 1023,
+          "width": 217,
+          "height": 30
+        },
+        {
+          "text": "输出可由 CPU 访问",
+          "owner": "r2b3",
+          "x": 1553.984375,
+          "y": 1058,
+          "width": 202.03125,
+          "height": 30
+        },
+        {
+          "text": "消费 / 复用",
+          "owner": "r2b4",
+          "x": 2050.890625,
+          "y": 985,
+          "width": 138.21875,
+          "height": 34
+        },
+        {
+          "text": "CPU 重新加载结果",
+          "owner": "r2b4",
+          "x": 2022.578125,
+          "y": 1023,
+          "width": 194.84375,
+          "height": 30
+        },
+        {
+          "text": "最后消费者释放缓冲",
+          "owner": "r2b4",
+          "x": 2012,
+          "y": 1058,
+          "width": 216,
+          "height": 30
+        },
+        {
+          "text": "超时或写错误时保留缓冲区；确认迟到事务排空或受控恢复完成后，再允许复用。",
+          "owner": "",
+          "x": 65,
+          "y": 1130,
+          "width": 936,
+          "height": 33
+        },
+        {
+          "text": "紫色箭头：阶段顺序与完成依赖    绿色箭头：设备搬运与计算阶段    维护动作以目标物理范围为单位",
+          "owner": "",
+          "x": 55,
+          "y": 1234,
+          "width": 1150.203125,
+          "height": 34
+        },
+        {
+          "text": "仅整模型前后交接时，同步集中在推理两端；CPU 与设备交替处理分块时，同步放在实际交接点。",
+          "owner": "",
+          "x": 55,
+          "y": 1284,
+          "width": 1164.203125,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "name": "data-paths",
+      "svg_sha256": "1190465549d0a313164913c5ec062126cdf24577f0c1bc30af08709731faa5e7",
+      "text_count": 44,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "经 DDR 与缓存直供：数据路径和代价",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 595.34375,
+          "height": 46
+        },
+        {
+          "text": "比较场景：CPU 的最新数据在 LLC 脏行中，DMA 将该行搬入独立 GB。",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 750.078125,
+          "height": 30
+        },
+        {
+          "text": "本方案：先清理到 DDR，再搬运",
+          "owner": "",
+          "x": 75,
+          "y": 160,
+          "width": 484.078125,
+          "height": 43
+        },
+        {
+          "text": "L1D / 写缓冲",
+          "owner": "cleanprivate",
+          "x": 130.640625,
+          "y": 324,
+          "width": 158.71875,
+          "height": 34
+        },
+        {
+          "text": "LLC",
+          "owner": "cleanllc",
+          "x": 188.140625,
+          "y": 502,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "持有最新脏行",
+          "owner": "cleanllc",
+          "x": 138,
+          "y": 540,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "缓存维护与协调",
+          "owner": "cleancoord",
+          "x": 655.5,
+          "y": 307,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "软件交接 / 缓存维护 / 搬运准入与完成",
+          "owner": "cleancoord",
+          "x": 543.140625,
+          "y": 345,
+          "width": 413.71875,
+          "height": 30
+        },
+        {
+          "text": "DDR",
+          "owner": "cleanddr",
+          "x": 183.84375,
+          "y": 754,
+          "width": 52.3125,
+          "height": 34
+        },
+        {
+          "text": "搬运器 / DMA",
+          "owner": "cleandma",
+          "x": 486.875,
+          "y": 754,
+          "width": 166.25,
+          "height": 34
+        },
+        {
+          "text": "共享数据代理",
+          "owner": "cleanproxy",
+          "x": 849,
+          "y": 754,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "GB",
+          "owner": "cleangb",
+          "x": 912.7421875,
+          "y": 502,
+          "width": 34.515625,
+          "height": 34
+        },
+        {
+          "text": "独立 SRAM",
+          "owner": "cleangb",
+          "x": 870.9921875,
+          "y": 540,
+          "width": 118.015625,
+          "height": 30
+        },
+        {
+          "text": "② clean",
+          "owner": "",
+          "x": 335,
+          "y": 611,
+          "width": 98.171875,
+          "height": 34
+        },
+        {
+          "text": "等待 DDR 可见",
+          "owner": "",
+          "x": 335,
+          "y": 650,
+          "width": 176.515625,
+          "height": 34
+        },
+        {
+          "text": "① 交接与缓存维护",
+          "owner": "",
+          "x": 700,
+          "y": 417,
+          "width": 224.109375,
+          "height": 34
+        },
+        {
+          "text": "③ 写入 GB",
+          "owner": "",
+          "x": 960,
+          "y": 623,
+          "width": 131.71875,
+          "height": 34
+        },
+        {
+          "text": "保留 DDR 供数路径；脏数据经历写回与再次读取。",
+          "owner": "",
+          "x": 75,
+          "y": 846,
+          "width": 585.96875,
+          "height": 33
+        },
+        {
+          "text": "设备不分配 LLC 行；GB 按任务显式管理。",
+          "owner": "",
+          "x": 75,
+          "y": 887,
+          "width": 488.71875,
+          "height": 33
+        },
+        {
+          "text": "比较项：缓存直供（本方案不采用）",
+          "owner": "",
+          "x": 1255,
+          "y": 160,
+          "width": 544,
+          "height": 43
+        },
+        {
+          "text": "L1D / 写缓冲",
+          "owner": "supplyprivate",
+          "x": 1310.640625,
+          "y": 324,
+          "width": 158.71875,
+          "height": 34
+        },
+        {
+          "text": "LLC",
+          "owner": "supplyllc",
+          "x": 1368.140625,
+          "y": 502,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "持有最新脏行",
+          "owner": "supplyllc",
+          "x": 1318,
+          "y": 540,
+          "width": 144,
+          "height": 30
+        },
+        {
+          "text": "缓存维护与协调",
+          "owner": "supplycoord",
+          "x": 1835.5,
+          "y": 307,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "软件交接 / 缓存维护 / 搬运准入与完成",
+          "owner": "supplycoord",
+          "x": 1723.140625,
+          "y": 345,
+          "width": 413.71875,
+          "height": 30
+        },
+        {
+          "text": "DDR",
+          "owner": "supplyddr",
+          "x": 1363.84375,
+          "y": 754,
+          "width": 52.3125,
+          "height": 34
+        },
+        {
+          "text": "搬运器 / DMA",
+          "owner": "supplydma",
+          "x": 1666.875,
+          "y": 754,
+          "width": 166.25,
+          "height": 34
+        },
+        {
+          "text": "共享数据代理",
+          "owner": "supplyproxy",
+          "x": 2029,
+          "y": 754,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "GB",
+          "owner": "supplygb",
+          "x": 2092.7421875,
+          "y": 502,
+          "width": 34.515625,
+          "height": 34
+        },
+        {
+          "text": "独立 SRAM",
+          "owner": "supplygb",
+          "x": 2050.9921875,
+          "y": 540,
+          "width": 118.015625,
+          "height": 30
+        },
+        {
+          "text": "② 最新数据",
+          "owner": "",
+          "x": 1610,
+          "y": 605,
+          "width": 143.109375,
+          "height": 34
+        },
+        {
+          "text": "DDR 可暂时保留旧值；由 LLC 提供本次读数据。",
+          "owner": "",
+          "x": 1255,
+          "y": 846,
+          "width": 557.859375,
+          "height": 33
+        },
+        {
+          "text": "① 交接与缓存维护",
+          "owner": "",
+          "x": 1880,
+          "y": 417,
+          "width": 224.109375,
+          "height": 34
+        },
+        {
+          "text": "③ 写入 GB",
+          "owner": "",
+          "x": 2140,
+          "y": 623,
+          "width": 131.71875,
+          "height": 34
+        },
+        {
+          "text": "设备不分配 LLC 行；GB 按任务显式管理。",
+          "owner": "",
+          "x": 1255,
+          "y": 887,
+          "width": 488.71875,
+          "height": 33
+        },
+        {
+          "text": "本方案的输出交接：先保护旧字节，最后清除旧读副本",
+          "owner": "",
+          "x": 55,
+          "y": 965,
+          "width": 768,
+          "height": 41
+        },
+        {
+          "text": "交接目标范围",
+          "owner": "write0",
+          "x": 176.5,
+          "y": 1069,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "写前清理与失效",
+          "owner": "write1",
+          "x": 628,
+          "y": 1069,
+          "width": 189,
+          "height": 34
+        },
+        {
+          "text": "GB → DDR",
+          "owner": "write2",
+          "x": 1122.484375,
+          "y": 1069,
+          "width": 130.03125,
+          "height": 34
+        },
+        {
+          "text": "写后失效确认",
+          "owner": "write3",
+          "x": 1571.5,
+          "y": 1069,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "CPU 获取结果",
+          "owner": "write4",
+          "x": 2034.8984375,
+          "y": 1069,
+          "width": 165.203125,
+          "height": 34
+        },
+        {
+          "text": "脏行经 DDR 需写回后重读；缓存直供减少当次 DDR 往返，同时增加片上数据响应通路。",
+          "owner": "",
+          "x": 55,
+          "y": 1163,
+          "width": 1172.234375,
+          "height": 38
+        },
+        {
+          "text": "当前规划采用左侧路径；右侧用于成本比较。软件保持交接范围的所有权，硬件完成维护。",
+          "owner": "",
+          "x": 55,
+          "y": 1211,
+          "width": 1200,
+          "height": 38
+        },
+        {
+          "text": "蓝灰：常规访存 / 后备路径    绿色：本场景的数据    紫色：控制与确认    虚线框：待实现的维护职责",
+          "owner": "",
+          "x": 55,
+          "y": 1276,
+          "width": 1050.46875,
+          "height": 31
+        }
+      ]
+    },
+    {
+      "name": "handover",
+      "svg_sha256": "ebfdbdfd5d7291f047a05b8bcda6e344703574dd4bfa7e3cf0742fa2609b0221",
+      "text_count": 35,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "① 交接方式：软件发起，缓存维护由谁执行",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 694.796875,
+          "height": 46
+        },
+        {
+          "text": "同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 802.03125,
+          "height": 30
+        },
+        {
+          "text": "A  软件维护 + 非一致性 DMA",
+          "owner": "",
+          "x": 50,
+          "y": 138,
+          "width": 372.107421875,
+          "height": 38
+        },
+        {
+          "text": "软件维护全层次；硬件直接访问内存",
+          "owner": "",
+          "x": 50,
+          "y": 184,
+          "width": 368,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Acpu",
+          "x": 160.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Aprivate",
+          "x": 140.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Aprivate",
+          "x": 149,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Allc",
+          "x": 163.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Allc",
+          "x": 125,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Addr",
+          "x": 329.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Adevice",
+          "x": 614.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Adevice",
+          "x": 571.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Adma",
+          "x": 627.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "普通互连",
+          "owner": "Afabric",
+          "x": 561,
+          "y": 569.5,
+          "width": 108,
+          "height": 34
+        },
+        {
+          "text": "软件交接",
+          "owner": "Afabric",
+          "x": 567,
+          "y": 607.5,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "驱动",
+          "owner": "Adriver",
+          "x": 388,
+          "y": 251.5,
+          "width": 54,
+          "height": 34
+        },
+        {
+          "text": "交接前后由软件 clean / invalidate",
+          "owner": "",
+          "x": 50,
+          "y": 791,
+          "width": 343.328125,
+          "height": 29
+        },
+        {
+          "text": "设备直访 DDR；交接区限制冲突访问",
+          "owner": "",
+          "x": 50,
+          "y": 823,
+          "width": 373.46875,
+          "height": 29
+        },
+        {
+          "text": "B  软硬件协同范围维护",
+          "owner": "",
+          "x": 880,
+          "y": 138,
+          "width": 297.578125,
+          "height": 38
+        },
+        {
+          "text": "软件触发批量维护；传输期保持范围所有权",
+          "owner": "",
+          "x": 880,
+          "y": 184,
+          "width": 437,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Bcpu",
+          "x": 990.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Bprivate",
+          "x": 970.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Bprivate",
+          "x": 979,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Bllc",
+          "x": 993.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Bllc",
+          "x": 955,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Bddr",
+          "x": 1159.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Bdevice",
+          "x": 1444.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Bdevice",
+          "x": 1401.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Bdma",
+          "x": 1457.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "维护 / 准入引擎",
+          "owner": "Bfabric",
+          "x": 1348.890625,
+          "y": 569.5,
+          "width": 192.21875,
+          "height": 34
+        },
+        {
+          "text": "搬运边界",
+          "owner": "Bfabric",
+          "x": 1397,
+          "y": 607.5,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "软件交接所有权；硬件排空、维护并确认",
+          "owner": "",
+          "x": 880,
+          "y": 791,
+          "width": 414,
+          "height": 29
+        },
+        {
+          "text": "本项目方向：按缓冲区 / 分块批量同步",
+          "owner": "",
+          "x": 880,
+          "y": 823,
+          "width": 393.75,
+          "height": 29
+        },
+        {
+          "text": "蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）",
+          "owner": "",
+          "x": 30,
+          "y": 894,
+          "width": 850,
+          "height": 29
+        },
+        {
+          "text": "驱动",
+          "owner": "Bdriver",
+          "x": 1218,
+          "y": 251.5,
+          "width": 54,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "name": "coverage",
+      "svg_sha256": "b17947e11989505d830b80519dae31cff6809308d702b88341076be0f1632f04",
+      "text_count": 34,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "② 协调范围：只到 LLC，还是覆盖 CPU 私有缓存",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 778.921875,
+          "height": 46
+        },
+        {
+          "text": "同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 802.03125,
+          "height": 30
+        },
+        {
+          "text": "C  LLC-coherent DMA",
+          "owner": "",
+          "x": 50,
+          "y": 138,
+          "width": 269.890625,
+          "height": 38
+        },
+        {
+          "text": "LLC 硬件协调；CPU 私有缓存仍需软件维护",
+          "owner": "",
+          "x": 50,
+          "y": 184,
+          "width": 437.859375,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Ccpu",
+          "x": 160.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Cprivate",
+          "x": 140.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Cprivate",
+          "x": 149,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Cllc",
+          "x": 163.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Cllc",
+          "x": 125,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Cddr",
+          "x": 329.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Cdevice",
+          "x": 614.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Cdevice",
+          "x": 571.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Cdma",
+          "x": 627.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "LLC 接入",
+          "owner": "Cfabric",
+          "x": 562.09375,
+          "y": 569.5,
+          "width": 105.8125,
+          "height": 34
+        },
+        {
+          "text": "局部协调",
+          "owner": "Cfabric",
+          "x": 567,
+          "y": 607.5,
+          "width": 96,
+          "height": 30
+        },
+        {
+          "text": "驱动",
+          "owner": "Cdriver",
+          "x": 388,
+          "y": 251.5,
+          "width": 54,
+          "height": 34
+        },
+        {
+          "text": "CPU 私有缓存由软件维护",
+          "owner": "",
+          "x": 50,
+          "y": 791,
+          "width": 255.71875,
+          "height": 29
+        },
+        {
+          "text": "LLC 可供数；设备访问经过 LLC",
+          "owner": "",
+          "x": 50,
+          "y": 823,
+          "width": 318.28125,
+          "height": 29
+        },
+        {
+          "text": "D  I/O 一致性 · 分配缓存行",
+          "owner": "",
+          "x": 880,
+          "y": 138,
+          "width": 346.09375,
+          "height": 38
+        },
+        {
+          "text": "CPU 缓存由硬件协调；允许设备分配 LLC",
+          "owner": "",
+          "x": 880,
+          "y": 184,
+          "width": 414.859375,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Dcpu",
+          "x": 990.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Dprivate",
+          "x": 970.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Dprivate",
+          "x": 979,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Dllc",
+          "x": 993.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Dllc",
+          "x": 955,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Dddr",
+          "x": 1159.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Ddevice",
+          "x": 1444.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Ddevice",
+          "x": 1401.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Ddma",
+          "x": 1457.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "一致性协调点",
+          "owner": "Dfabric",
+          "x": 1364,
+          "y": 569.5,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "含缓存分配",
+          "owner": "Dfabric",
+          "x": 1385,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "硬件协调 CPU 私有缓存和 LLC",
+          "owner": "",
+          "x": 880,
+          "y": 791,
+          "width": 306.75,
+          "height": 29
+        },
+        {
+          "text": "设备可分配 LLC 行，利用片上复用",
+          "owner": "",
+          "x": 880,
+          "y": 823,
+          "width": 350.03125,
+          "height": 29
+        },
+        {
+          "text": "蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）",
+          "owner": "",
+          "x": 30,
+          "y": 894,
+          "width": 850,
+          "height": 29
+        }
+      ]
+    },
+    {
+      "name": "agent-types",
+      "svg_sha256": "dda9aa8510a148e42bd2a879641178e09f7f5be5dd9cd76752d9979385c86994",
+      "text_count": 34,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "③ 分配策略与设备缓存：区分两个分类维度",
+          "owner": "",
+          "x": 50,
+          "y": 19,
+          "width": 694.796875,
+          "height": 46
+        },
+        {
+          "text": "同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。",
+          "owner": "",
+          "x": 50,
+          "y": 73,
+          "width": 802.03125,
+          "height": 30
+        },
+        {
+          "text": "E  I/O 一致性 · 不分配 LLC",
+          "owner": "",
+          "x": 50,
+          "y": 138,
+          "width": 340.671875,
+          "height": 38
+        },
+        {
+          "text": "逐事务协调机制；供文献比较",
+          "owner": "",
+          "x": 50,
+          "y": 184,
+          "width": 299,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Ecpu",
+          "x": 160.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Eprivate",
+          "x": 140.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Eprivate",
+          "x": 149,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Ellc",
+          "x": 163.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Ellc",
+          "x": 125,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Eddr",
+          "x": 329.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Edevice",
+          "x": 614.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Edevice",
+          "x": 571.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Edma",
+          "x": 627.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "一致性协调点",
+          "owner": "Efabric",
+          "x": 534,
+          "y": 569.5,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "设备不分配 LLC",
+          "owner": "Efabric",
+          "x": 531.96875,
+          "y": 607.5,
+          "width": 166.0625,
+          "height": 30
+        },
+        {
+          "text": "逐事务协调；设备不分配 LLC 行",
+          "owner": "",
+          "x": 50,
+          "y": 791,
+          "width": 327.03125,
+          "height": 29
+        },
+        {
+          "text": "本项目沿用旁路拓扑，采用软件范围交接",
+          "owner": "",
+          "x": 50,
+          "y": 823,
+          "width": 414,
+          "height": 29
+        },
+        {
+          "text": "F  完整缓存代理一致性",
+          "owner": "",
+          "x": 880,
+          "y": 138,
+          "width": 293.390625,
+          "height": 38
+        },
+        {
+          "text": "设备持有可探测的私有缓存；本项目不采用",
+          "owner": "",
+          "x": 880,
+          "y": 184,
+          "width": 437,
+          "height": 29
+        },
+        {
+          "text": "CPU",
+          "owner": "Fcpu",
+          "x": 990.4453125,
+          "y": 251.5,
+          "width": 49.109375,
+          "height": 34
+        },
+        {
+          "text": "L1 / L2",
+          "owner": "Fprivate",
+          "x": 970.1953125,
+          "y": 359.5,
+          "width": 89.609375,
+          "height": 34
+        },
+        {
+          "text": "写缓冲",
+          "owner": "Fprivate",
+          "x": 979,
+          "y": 397.5,
+          "width": 72,
+          "height": 30
+        },
+        {
+          "text": "LLC",
+          "owner": "Fllc",
+          "x": 993.140625,
+          "y": 569.5,
+          "width": 43.71875,
+          "height": 34
+        },
+        {
+          "text": "系统侧缓存",
+          "owner": "Fllc",
+          "x": 955,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "内存接入 / DDR",
+          "owner": "Fddr",
+          "x": 1159.734375,
+          "y": 724,
+          "width": 190.53125,
+          "height": 34
+        },
+        {
+          "text": "加速器",
+          "owner": "Fdevice",
+          "x": 1444.5,
+          "y": 254.5,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "text": "独立本地 SRAM",
+          "owner": "Fdevice",
+          "x": 1401.9921875,
+          "y": 292.5,
+          "width": 166.015625,
+          "height": 30
+        },
+        {
+          "text": "DMA",
+          "owner": "Fdma",
+          "x": 1457.484375,
+          "y": 386.5,
+          "width": 55.03125,
+          "height": 34
+        },
+        {
+          "text": "设备私有缓存",
+          "owner": "Fdevcache",
+          "x": 1404,
+          "y": 481.5,
+          "width": 162,
+          "height": 34
+        },
+        {
+          "text": "一致性互连",
+          "owner": "Ffabric",
+          "x": 1377.5,
+          "y": 569.5,
+          "width": 135,
+          "height": 34
+        },
+        {
+          "text": "多缓存代理",
+          "owner": "Ffabric",
+          "x": 1385,
+          "y": 607.5,
+          "width": 120,
+          "height": 30
+        },
+        {
+          "text": "设备私有缓存也接收探测并返回数据",
+          "owner": "",
+          "x": 880,
+          "y": 791,
+          "width": 368,
+          "height": 29
+        },
+        {
+          "text": "本地 SRAM 仍显式管理；分配策略另设",
+          "owner": "",
+          "x": 880,
+          "y": 823,
+          "width": 396,
+          "height": 29
+        },
+        {
+          "text": "蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）",
+          "owner": "",
+          "x": 30,
+          "y": 894,
+          "width": 850,
+          "height": 29
+        }
+      ]
+    }
+  ],
+  "status": "needs-layout-adjustment"
+}

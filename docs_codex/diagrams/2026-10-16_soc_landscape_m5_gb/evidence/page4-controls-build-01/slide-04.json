@@ -1,0 +1,6571 @@
+{
+  "regions": [
+    {
+      "id": "soc-boundary",
+      "x": 21.25,
+      "y": 20,
+      "w": 3325,
+      "h": 1983.1,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "compute",
+      "x": 71.25,
+      "y": 60,
+      "w": 935,
+      "h": 425,
+      "fill": "#F1D7D9",
+      "dash": false
+    },
+    {
+      "id": "gb-region",
+      "x": 1061.25,
+      "y": 60,
+      "w": 1135,
+      "h": 425,
+      "fill": "#D9EEE8",
+      "dash": true
+    },
+    {
+      "id": "image-rx",
+      "x": 2246.25,
+      "y": 60,
+      "w": 1065,
+      "h": 425,
+      "fill": "#F5E1C9",
+      "dash": true
+    },
+    {
+      "id": "reg-region",
+      "x": 51.25,
+      "y": 1115,
+      "w": 1720,
+      "h": 520,
+      "fill": "#FAF8FB",
+      "dash": false
+    },
+    {
+      "id": "ddr-controller",
+      "x": 1810,
+      "y": 1565,
+      "w": 1120,
+      "h": 170,
+      "fill": "#D8E8F4",
+      "dash": true
+    },
+    {
+      "id": "roi-region",
+      "x": 3000,
+      "y": 1115,
+      "w": 320,
+      "h": 530,
+      "fill": "#F5E1C9",
+      "dash": true
+    },
+    {
+      "id": "compression-front",
+      "x": 1810,
+      "y": 1134,
+      "w": 1120,
+      "h": 406,
+      "fill": "#D9EEE8",
+      "dash": true
+    },
+    {
+      "id": "shared-payload-services",
+      "x": 2095,
+      "y": 1250,
+      "w": 815,
+      "h": 195,
+      "fill": "white",
+      "dash": false
+    }
+  ],
+  "boxes": [
+    {
+      "id": "cva6",
+      "x": 96.25,
+      "y": 140,
+      "w": 250,
+      "h": 215,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "ara",
+      "x": 396.25,
+      "y": 140,
+      "w": 580,
+      "h": 125,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "ara-filter",
+      "x": 416.25,
+      "y": 310,
+      "w": 190,
+      "h": 86,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "ara-width",
+      "x": 826.25,
+      "y": 310,
+      "w": 150,
+      "h": 86,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "npu",
+      "x": 1086.25,
+      "y": 140,
+      "w": 270,
+      "h": 175,
+      "fill": "#F1D7D9",
+      "dash": false
+    },
+    {
+      "id": "badge-C6",
+      "x": 1296.25,
+      "y": 273,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "gb-adapter",
+      "x": 1391.25,
+      "y": 215,
+      "w": 230,
+      "h": 235,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "global-buffer",
+      "x": 1661.25,
+      "y": 140,
+      "w": 505,
+      "h": 170,
+      "fill": "#D9EEE8",
+      "dash": false
+    },
+    {
+      "id": "badge-C9",
+      "x": 2106.25,
+      "y": 270,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "gb-mover",
+      "x": 1661.25,
+      "y": 345,
+      "w": 505,
+      "h": 120,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "badge-C7",
+      "x": 2106.25,
+      "y": 427,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "lvds-rx",
+      "x": 2271.25,
+      "y": 200,
+      "w": 165,
+      "h": 185,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "rx-cdc",
+      "x": 2466.25,
+      "y": 200,
+      "w": 160,
+      "h": 185,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "isp",
+      "x": 2656.25,
+      "y": 200,
+      "w": 165,
+      "h": 185,
+      "fill": "#F1D7D9",
+      "dash": false
+    },
+    {
+      "id": "frame-select",
+      "x": 2851.25,
+      "y": 200,
+      "w": 180,
+      "h": 185,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "frame-dma",
+      "x": 3066.25,
+      "y": 200,
+      "w": 215,
+      "h": 185,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "badge-C4",
+      "x": 2376.25,
+      "y": 343,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "badge-C5",
+      "x": 2761.25,
+      "y": 343,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "badge-C8",
+      "x": 3221.25,
+      "y": 343,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "axi-crossbar",
+      "x": 71.25,
+      "y": 700,
+      "w": 2830,
+      "h": 135,
+      "fill": "#DAE3F3",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S0",
+      "x": 180.47222222222223,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S1",
+      "x": 494.91666666666674,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S2",
+      "x": 809.3611111111111,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S3",
+      "x": 1123.8055555555557,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S4",
+      "x": 1438.25,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S5",
+      "x": 1752.6944444444443,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S6",
+      "x": 2067.1388888888887,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S7",
+      "x": 2381.5833333333335,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "xbar-in-S_EXT",
+      "x": 2696.027777777778,
+      "y": 686,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "debug-sba",
+      "x": 399.91666666666674,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "idma-master",
+      "x": 1028.8055555555557,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "slink-rx",
+      "x": 1343.25,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "vga",
+      "x": 1657.6944444444443,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "usb-dma",
+      "x": 1972.1388888888887,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "emmc-host",
+      "x": 2286.5833333333335,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "ext-master",
+      "x": 2601.027777777778,
+      "y": 555,
+      "w": 286,
+      "h": 100,
+      "fill": "#F5F5F7",
+      "dash": true
+    },
+    {
+      "id": "badge-C10",
+      "x": 2511.5833333333335,
+      "y": 624,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M0",
+      "x": 225.3928571428571,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "debug-target",
+      "x": 93.39285714285711,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M1",
+      "x": 629.6785714285714,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "reg-bridge",
+      "x": 497.67857142857144,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M2",
+      "x": 1033.9642857142858,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "memory-target",
+      "x": 881.9642857142858,
+      "y": 900,
+      "w": 400,
+      "h": 155,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "atomics",
+      "x": 891.9642857142858,
+      "y": 960,
+      "w": 185,
+      "h": 84,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "llc-spm",
+      "x": 1101.9642857142858,
+      "y": 960,
+      "w": 170,
+      "h": 84,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M3",
+      "x": 1438.25,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "idma-config",
+      "x": 1306.25,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M4",
+      "x": 1842.5357142857142,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "slink-tx",
+      "x": 1710.5357142857142,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M5",
+      "x": 2246.8214285714284,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "gb-interface",
+      "x": 2114.8214285714284,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#D9EEE8",
+      "dash": false
+    },
+    {
+      "id": "xbar-out-M_EXT",
+      "x": 2651.1071428571427,
+      "y": 821,
+      "w": 96,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ext-target",
+      "x": 2519.1071428571427,
+      "y": 900,
+      "w": 360,
+      "h": 155,
+      "fill": "#F5F5F7",
+      "dash": true
+    },
+    {
+      "id": "emmc-device",
+      "x": 3370,
+      "y": 555,
+      "w": 210,
+      "h": 100,
+      "fill": "#EAECEE",
+      "dash": false
+    },
+    {
+      "id": "regbus",
+      "x": 71.25,
+      "y": 1135,
+      "w": 1680,
+      "h": 65,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "bootrom",
+      "x": 106.25,
+      "y": 1230,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "uart",
+      "x": 106.25,
+      "y": 1330,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "vga-regs",
+      "x": 106.25,
+      "y": 1430,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "irq-router",
+      "x": 106.25,
+      "y": 1530,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": true
+    },
+    {
+      "id": "clint",
+      "x": 436.25,
+      "y": 1230,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "i2c",
+      "x": 436.25,
+      "y": 1330,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "usb-regs",
+      "x": 436.25,
+      "y": 1430,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "axi-rt-config",
+      "x": 436.25,
+      "y": 1530,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": true
+    },
+    {
+      "id": "soc-regs",
+      "x": 766.25,
+      "y": 1230,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "spi",
+      "x": 766.25,
+      "y": 1330,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "err-vga",
+      "x": 766.25,
+      "y": 1430,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "clic",
+      "x": 766.25,
+      "y": 1530,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": true
+    },
+    {
+      "id": "plic",
+      "x": 1096.25,
+      "y": 1230,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "gpio",
+      "x": 1096.25,
+      "y": 1330,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "err-dma",
+      "x": 1096.25,
+      "y": 1430,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "reg-error",
+      "x": 1096.25,
+      "y": 1530,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "llc-regs",
+      "x": 1426.25,
+      "y": 1230,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "slink-regs",
+      "x": 1426.25,
+      "y": 1330,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "err-cpu",
+      "x": 1426.25,
+      "y": 1430,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": false
+    },
+    {
+      "id": "reg-ext",
+      "x": 1426.25,
+      "y": 1530,
+      "w": 300,
+      "h": 78,
+      "fill": "#FFFFFF",
+      "dash": true
+    },
+    {
+      "id": "ddr-S0",
+      "x": 1875,
+      "y": 1551,
+      "w": 150,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-S1",
+      "x": 2150,
+      "y": 1551,
+      "w": 150,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-S2",
+      "x": 2425,
+      "y": 1551,
+      "w": 150,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-S3",
+      "x": 2700,
+      "y": 1551,
+      "w": 150,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-arb",
+      "x": 1830,
+      "y": 1595,
+      "w": 1080,
+      "h": 40,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-rw",
+      "x": 1830,
+      "y": 1645,
+      "w": 475,
+      "h": 50,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "ddr-command",
+      "x": 2425,
+      "y": 1645,
+      "w": 485,
+      "h": 50,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "badge-C2",
+      "x": 2850,
+      "y": 1700,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "ddr-phy",
+      "x": 3030,
+      "y": 1670,
+      "w": 255,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "badge-C3",
+      "x": 3220,
+      "y": 1738,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "ddr-device",
+      "x": 3396.25,
+      "y": 1670,
+      "w": 150,
+      "h": 100,
+      "fill": "#EAECEE",
+      "dash": false
+    },
+    {
+      "id": "pll",
+      "x": 2126.25,
+      "y": 1753.1,
+      "w": 525,
+      "h": 74,
+      "fill": "#F5E1C9",
+      "dash": true
+    },
+    {
+      "id": "badge-C1",
+      "x": 2580.25,
+      "y": 1774.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C1",
+      "x": 71.25,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C1",
+      "x": 78.25,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C2",
+      "x": 275.5625,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C2",
+      "x": 282.5625,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C3",
+      "x": 479.875,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C3",
+      "x": 486.875,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C4",
+      "x": 684.1875,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C4",
+      "x": 691.1875,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C5",
+      "x": 888.5,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C5",
+      "x": 895.5,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C6",
+      "x": 1092.8125,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C6",
+      "x": 1099.8125,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C7",
+      "x": 1297.125,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C7",
+      "x": 1304.125,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C8",
+      "x": 1501.4375,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C8",
+      "x": 1508.4375,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C9",
+      "x": 1705.75,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C9",
+      "x": 1712.75,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C10",
+      "x": 1910.0625,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C10",
+      "x": 1917.0625,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C11",
+      "x": 2114.375,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C11",
+      "x": 2121.375,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C12",
+      "x": 2318.6875,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C12",
+      "x": 2325.6875,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C13",
+      "x": 2523.0,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C13",
+      "x": 2530.0,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C14",
+      "x": 2727.3125,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C14",
+      "x": 2734.3125,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C15",
+      "x": 2931.625,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C15",
+      "x": 2938.625,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "config-C16",
+      "x": 3135.9375,
+      "y": 1878.1,
+      "w": 190.3125,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": true
+    },
+    {
+      "id": "reg-badge-C16",
+      "x": 3142.9375,
+      "y": 1883.1,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "front-F0",
+      "x": 1865,
+      "y": 1120,
+      "w": 170,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "front-F1",
+      "x": 2140,
+      "y": 1120,
+      "w": 170,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "front-F2",
+      "x": 2415,
+      "y": 1120,
+      "w": 170,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "front-F3",
+      "x": 2690,
+      "y": 1120,
+      "w": 170,
+      "h": 28,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "front-adapt",
+      "x": 1830,
+      "y": 1168,
+      "w": 1080,
+      "h": 52,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "badge-C12",
+      "x": 2850,
+      "y": 1181,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "address-control",
+      "x": 1830,
+      "y": 1250,
+      "w": 230,
+      "h": 100,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "metadata",
+      "x": 1830,
+      "y": 1380,
+      "w": 230,
+      "h": 65,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "compressor",
+      "x": 2120,
+      "y": 1290,
+      "w": 235,
+      "h": 115,
+      "fill": "#F5E1C9",
+      "dash": false
+    },
+    {
+      "id": "badge-C15",
+      "x": 2128,
+      "y": 1294,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "decompressor",
+      "x": 2387.5,
+      "y": 1290,
+      "w": 235,
+      "h": 115,
+      "fill": "#F5E1C9",
+      "dash": false
+    },
+    {
+      "id": "badge-C16",
+      "x": 2395.5,
+      "y": 1294,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "plain-bypass",
+      "x": 2655,
+      "y": 1290,
+      "w": 235,
+      "h": 115,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "front-route",
+      "x": 1830,
+      "y": 1475,
+      "w": 1080,
+      "h": 50,
+      "fill": "#D8E8F4",
+      "dash": false
+    },
+    {
+      "id": "roi-scheduler",
+      "x": 3030,
+      "y": 1210,
+      "w": 260,
+      "h": 95,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "badge-C11",
+      "x": 3230,
+      "y": 1214,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "roi-vdma",
+      "x": 3030,
+      "y": 1320,
+      "w": 260,
+      "h": 95,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "badge-C13",
+      "x": 3230,
+      "y": 1324,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    },
+    {
+      "id": "roi-fifo",
+      "x": 3030,
+      "y": 1430,
+      "w": 260,
+      "h": 75,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "lvds-tx",
+      "x": 3030,
+      "y": 1520,
+      "w": 260,
+      "h": 100,
+      "fill": "white",
+      "dash": false
+    },
+    {
+      "id": "badge-C14",
+      "x": 3230,
+      "y": 1524,
+      "w": 53,
+      "h": 25,
+      "fill": "#E8DFED",
+      "dash": false
+    }
+  ],
+  "texts": [
+    {
+      "id": "compute-title",
+      "x": 538.75,
+      "y": 96,
+      "text": "CVA6–Ara 计算平台",
+      "size": 36,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "compute",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-region-title",
+      "x": 1628.75,
+      "y": 96,
+      "text": "NPU / 独立 Global Buffer 子系统",
+      "size": 36,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "gb-region",
+      "anchor": "middle"
+    },
+    {
+      "id": "image-rx-title",
+      "x": 2778.75,
+      "y": 96,
+      "text": "图像采集与 ISP",
+      "size": 36,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "image-rx",
+      "anchor": "middle"
+    },
+    {
+      "id": "cva6-t0",
+      "x": 221.25,
+      "y": 223.57999999999998,
+      "text": "CVA6 core 0",
+      "size": 32,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "cva6",
+      "anchor": "middle"
+    },
+    {
+      "id": "cva6-t1",
+      "x": 221.25,
+      "y": 260.1,
+      "text": "L1 I / D cache",
+      "size": 30,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "cva6",
+      "anchor": "middle"
+    },
+    {
+      "id": "cva6-t2",
+      "x": 221.25,
+      "y": 294.21999999999997,
+      "text": "MMU / AXI 适配",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "cva6",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-t0",
+      "x": 686.25,
+      "y": 195.38,
+      "text": "Ara 向量处理器",
+      "size": 32,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ara",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-t1",
+      "x": 686.25,
+      "y": 231.9,
+      "text": "2 lanes · VLSU / AXI：64 bit",
+      "size": 30,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ara",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-filter-t0",
+      "x": 511.25,
+      "y": 347.59999999999997,
+      "text": "失效过滤",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ara-filter",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-filter-t1",
+      "x": 511.25,
+      "y": 379.84,
+      "text": "现有 filter",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ara-filter",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-width-t0",
+      "x": 901.25,
+      "y": 347.59999999999997,
+      "text": "等宽透传",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ara-width",
+      "anchor": "middle"
+    },
+    {
+      "id": "ara-width-t1",
+      "x": 901.25,
+      "y": 379.84,
+      "text": "64 → 64 bit",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ara-width",
+      "anchor": "middle"
+    },
+    {
+      "id": "command-label",
+      "x": 370,
+      "y": 130,
+      "text": "指令 / MMU",
+      "size": 26,
+      "bold": false,
+      "color": "#765489",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "npu-t0",
+      "x": 1221.25,
+      "y": 222.1,
+      "text": "NPU 计算引擎",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "npu",
+      "anchor": "middle"
+    },
+    {
+      "id": "npu-t1",
+      "x": 1221.25,
+      "y": 254.34,
+      "text": "GB 数据读写",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "npu",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C6-text",
+      "x": 1322.75,
+      "y": 293,
+      "text": "C6",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C6",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-adapter-t0",
+      "x": 1506.25,
+      "y": 311.5,
+      "text": "GB 访问适配",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "gb-adapter",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-adapter-t1",
+      "x": 1506.25,
+      "y": 343.74,
+      "text": "局部仲裁 / 路由",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gb-adapter",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-adapter-t2",
+      "x": 1506.25,
+      "y": 374.94,
+      "text": "bank 冲突处理",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gb-adapter",
+      "anchor": "middle"
+    },
+    {
+      "id": "global-buffer-t0",
+      "x": 1913.75,
+      "y": 202.27999999999997,
+      "text": "Global Buffer",
+      "size": 32,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "global-buffer",
+      "anchor": "middle"
+    },
+    {
+      "id": "global-buffer-t1",
+      "x": 1913.75,
+      "y": 236.92,
+      "text": "独立 SRAM · 分 bank",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "global-buffer",
+      "anchor": "middle"
+    },
+    {
+      "id": "global-buffer-t2",
+      "x": 1913.75,
+      "y": 270.52,
+      "text": "CPU / Ara / NPU / ISP",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "global-buffer",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C9-text",
+      "x": 2132.75,
+      "y": 290,
+      "text": "C9",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C9",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-mover-t0",
+      "x": 1913.75,
+      "y": 399.59999999999997,
+      "text": "NPU / GB 搬运引擎",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "gb-mover",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-mover-t1",
+      "x": 1913.75,
+      "y": 431.84,
+      "text": "DDR ↔ GB · AXI 主口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gb-mover",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C7-text",
+      "x": 2132.75,
+      "y": 447,
+      "text": "C7",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C7",
+      "anchor": "middle"
+    },
+    {
+      "id": "lvds-rx-t0",
+      "x": 2353.75,
+      "y": 287.09999999999997,
+      "text": "LVDS 接收",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "lvds-rx",
+      "anchor": "middle"
+    },
+    {
+      "id": "lvds-rx-t1",
+      "x": 2353.75,
+      "y": 319.34,
+      "text": "解串 / 帧行",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "lvds-rx",
+      "anchor": "middle"
+    },
+    {
+      "id": "rx-cdc-t0",
+      "x": 2546.25,
+      "y": 287.09999999999997,
+      "text": "CDC / FIFO",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "rx-cdc",
+      "anchor": "middle"
+    },
+    {
+      "id": "rx-cdc-t1",
+      "x": 2546.25,
+      "y": 319.34,
+      "text": "像素流缓冲",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "rx-cdc",
+      "anchor": "middle"
+    },
+    {
+      "id": "isp-t0",
+      "x": 2738.75,
+      "y": 287.09999999999997,
+      "text": "ISP",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "isp",
+      "anchor": "middle"
+    },
+    {
+      "id": "isp-t1",
+      "x": 2738.75,
+      "y": 319.34,
+      "text": "行缓存 / 处理",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "isp",
+      "anchor": "middle"
+    },
+    {
+      "id": "frame-select-t0",
+      "x": 2941.25,
+      "y": 287.09999999999997,
+      "text": "帧边界选择",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "frame-select",
+      "anchor": "middle"
+    },
+    {
+      "id": "frame-select-t1",
+      "x": 2941.25,
+      "y": 319.34,
+      "text": "RAW / ISP",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "frame-select",
+      "anchor": "middle"
+    },
+    {
+      "id": "frame-dma-t0",
+      "x": 3173.75,
+      "y": 287.09999999999997,
+      "text": "帧写入 DMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "frame-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "frame-dma-t1",
+      "x": 3173.75,
+      "y": 319.34,
+      "text": "地址 / stride",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "frame-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "raw-bypass-label",
+      "x": 2740,
+      "y": 143,
+      "text": "RAW 旁路",
+      "size": 26,
+      "bold": false,
+      "color": "#B96043",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C4-text",
+      "x": 2402.75,
+      "y": 363,
+      "text": "C4",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C4",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C5-text",
+      "x": 2787.75,
+      "y": 363,
+      "text": "C5",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C5",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C8-text",
+      "x": 3247.75,
+      "y": 363,
+      "text": "C8",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C8",
+      "anchor": "middle"
+    },
+    {
+      "id": "isp-gb-label",
+      "x": 2490,
+      "y": 480,
+      "text": "ISP 中间数据 ↔ GB",
+      "size": 26,
+      "bold": false,
+      "color": "#187C78",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "crossbar-title",
+      "x": 1486.25,
+      "y": 750,
+      "text": "AXI Crossbar",
+      "size": 36,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "axi-crossbar",
+      "anchor": "middle"
+    },
+    {
+      "id": "crossbar-caption",
+      "x": 1486.25,
+      "y": 790,
+      "text": "8 × 6 固定端口 + 扩展 | 64 bit 数据 / 48 bit 地址 | 地址译码 / 各目标仲裁",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "axi-crossbar",
+      "anchor": "middle"
+    },
+    {
+      "id": "crossbar-rt-note",
+      "x": 290,
+      "y": 815,
+      "text": "输入侧 AXI RT · 按配置可选",
+      "size": 24,
+      "bold": false,
+      "color": "#606773",
+      "owner": "axi-crossbar",
+      "anchor": "middle"
+    },
+    {
+      "id": "crossbar-error-note",
+      "x": 2710,
+      "y": 815,
+      "text": "未映射请求：DECERR",
+      "size": 24,
+      "bold": false,
+      "color": "#606773",
+      "owner": "axi-crossbar",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S0-t0",
+      "x": 228.47222222222223,
+      "y": 707.65,
+      "text": "S0",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S0",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S1-t0",
+      "x": 542.9166666666667,
+      "y": 707.65,
+      "text": "S1",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S1",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S2-t0",
+      "x": 857.3611111111111,
+      "y": 707.65,
+      "text": "S2",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S2",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S3-t0",
+      "x": 1171.8055555555557,
+      "y": 707.65,
+      "text": "S3",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S3",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S4-t0",
+      "x": 1486.25,
+      "y": 707.65,
+      "text": "S4",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S4",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S5-t0",
+      "x": 1800.6944444444443,
+      "y": 707.65,
+      "text": "S5",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S5",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S6-t0",
+      "x": 2115.1388888888887,
+      "y": 707.65,
+      "text": "S6",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S6",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S7-t0",
+      "x": 2429.5833333333335,
+      "y": 707.65,
+      "text": "S7",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S7",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-in-S_EXT-t0",
+      "x": 2744.027777777778,
+      "y": 707.65,
+      "text": "S_EXT",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-in-S_EXT",
+      "anchor": "middle"
+    },
+    {
+      "id": "debug-sba-t0",
+      "x": 542.9166666666667,
+      "y": 599.6,
+      "text": "Debug / SBA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "debug-sba",
+      "anchor": "middle"
+    },
+    {
+      "id": "debug-sba-t1",
+      "x": 542.9166666666667,
+      "y": 631.8399999999999,
+      "text": "JTAG 总线访问",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "debug-sba",
+      "anchor": "middle"
+    },
+    {
+      "id": "idma-master-t0",
+      "x": 1171.8055555555557,
+      "y": 599.6,
+      "text": "iDMA 数据主口",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "idma-master",
+      "anchor": "middle"
+    },
+    {
+      "id": "idma-master-t1",
+      "x": 1171.8055555555557,
+      "y": 631.8399999999999,
+      "text": "内存 → 内存",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "idma-master",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-rx-t0",
+      "x": 1486.25,
+      "y": 599.6,
+      "text": "Serial Link RX",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "slink-rx",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-rx-t1",
+      "x": 1486.25,
+      "y": 631.8399999999999,
+      "text": "远端请求入口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "slink-rx",
+      "anchor": "middle"
+    },
+    {
+      "id": "vga-t0",
+      "x": 1800.6944444444443,
+      "y": 599.6,
+      "text": "VGA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "vga",
+      "anchor": "middle"
+    },
+    {
+      "id": "vga-t1",
+      "x": 1800.6944444444443,
+      "y": 631.8399999999999,
+      "text": "帧缓冲读取",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "vga",
+      "anchor": "middle"
+    },
+    {
+      "id": "usb-dma-t0",
+      "x": 2115.1388888888887,
+      "y": 599.6,
+      "text": "USB DMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "usb-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "usb-dma-t1",
+      "x": 2115.1388888888887,
+      "y": 631.8399999999999,
+      "text": "OHCI 主口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "usb-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "emmc-host-t0",
+      "x": 2429.5833333333335,
+      "y": 599.6,
+      "text": "eMMC Host / DMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "emmc-host",
+      "anchor": "middle"
+    },
+    {
+      "id": "emmc-host-t1",
+      "x": 2429.5833333333335,
+      "y": 631.8399999999999,
+      "text": "存储块 ↔ 内存",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "emmc-host",
+      "anchor": "middle"
+    },
+    {
+      "id": "ext-master-t0",
+      "x": 2744.027777777778,
+      "y": 599.6,
+      "text": "AXI 外部 master",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ext-master",
+      "anchor": "middle"
+    },
+    {
+      "id": "ext-master-t1",
+      "x": 2744.027777777778,
+      "y": 631.8399999999999,
+      "text": "可选扩展入口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ext-master",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C10-text",
+      "x": 2538.0833333333335,
+      "y": 644,
+      "text": "C10",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C10",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M0-t0",
+      "x": 273.3928571428571,
+      "y": 842.65,
+      "text": "M0",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M0",
+      "anchor": "middle"
+    },
+    {
+      "id": "debug-target-t0",
+      "x": 273.3928571428571,
+      "y": 972.1,
+      "text": "Debug 目标",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "debug-target",
+      "anchor": "middle"
+    },
+    {
+      "id": "debug-target-t1",
+      "x": 273.3928571428571,
+      "y": 1004.3399999999999,
+      "text": "调试模块窗口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "debug-target",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M1-t0",
+      "x": 677.6785714285714,
+      "y": 842.65,
+      "text": "M1",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M1",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-bridge-t0",
+      "x": 677.6785714285714,
+      "y": 972.1,
+      "text": "AXI → Regbus",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "reg-bridge",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-bridge-t1",
+      "x": 677.6785714285714,
+      "y": 1004.3399999999999,
+      "text": "原子适配 / 32 bit 桥",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "reg-bridge",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M2-t0",
+      "x": 1081.9642857142858,
+      "y": 842.65,
+      "text": "M2",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M2",
+      "anchor": "middle"
+    },
+    {
+      "id": "memory-title",
+      "x": 1081.9642857142858,
+      "y": 934,
+      "text": "主存 / SPM 共用目标",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "memory-target",
+      "anchor": "middle"
+    },
+    {
+      "id": "atomics-t0",
+      "x": 984.4642857142858,
+      "y": 992.925,
+      "text": "原子适配",
+      "size": 26.25,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "atomics",
+      "anchor": "middle"
+    },
+    {
+      "id": "atomics-t1",
+      "x": 984.4642857142858,
+      "y": 1027.95,
+      "text": "AMO / LRSC",
+      "size": 30,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "atomics",
+      "anchor": "middle"
+    },
+    {
+      "id": "llc-spm-t0",
+      "x": 1186.9642857142858,
+      "y": 994.125,
+      "text": "LLC / SPM",
+      "size": 26.25,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "llc-spm",
+      "anchor": "middle"
+    },
+    {
+      "id": "llc-spm-t1",
+      "x": 1186.9642857142858,
+      "y": 1027.27,
+      "text": "SRAM 阵列",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "llc-spm",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M3-t0",
+      "x": 1486.25,
+      "y": 842.65,
+      "text": "M3",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M3",
+      "anchor": "middle"
+    },
+    {
+      "id": "idma-config-t0",
+      "x": 1486.25,
+      "y": 956.5,
+      "text": "iDMA 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "idma-config",
+      "anchor": "middle"
+    },
+    {
+      "id": "idma-config-t1",
+      "x": 1486.25,
+      "y": 988.74,
+      "text": "原子适配 → AXI→Reg",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "idma-config",
+      "anchor": "middle"
+    },
+    {
+      "id": "idma-config-t2",
+      "x": 1486.25,
+      "y": 1019.94,
+      "text": "wrapper 内部寄存器",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "idma-config",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M4-t0",
+      "x": 1890.5357142857142,
+      "y": 842.65,
+      "text": "M4",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M4",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-tx-t0",
+      "x": 1890.5357142857142,
+      "y": 972.1,
+      "text": "Serial Link TX",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "slink-tx",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-tx-t1",
+      "x": 1890.5357142857142,
+      "y": 1004.3399999999999,
+      "text": "远端目标窗口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "slink-tx",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M5-t0",
+      "x": 2294.8214285714284,
+      "y": 842.65,
+      "text": "M5",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M5",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-interface-t0",
+      "x": 2294.8214285714284,
+      "y": 956.5,
+      "text": "GB AXI 接口",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "gb-interface",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-interface-t1",
+      "x": 2294.8214285714284,
+      "y": 988.74,
+      "text": "CPU / Ara / eMMC DMA",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gb-interface",
+      "anchor": "middle"
+    },
+    {
+      "id": "gb-interface-t2",
+      "x": 2294.8214285714284,
+      "y": 1019.94,
+      "text": "64-bit 数据窗口 · 共用",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gb-interface",
+      "anchor": "middle"
+    },
+    {
+      "id": "xbar-out-M_EXT-t0",
+      "x": 2699.1071428571427,
+      "y": 842.65,
+      "text": "M_EXT",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "xbar-out-M_EXT",
+      "anchor": "middle"
+    },
+    {
+      "id": "ext-target-t0",
+      "x": 2699.1071428571427,
+      "y": 972.1,
+      "text": "AXI 外部 slave",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ext-target",
+      "anchor": "middle"
+    },
+    {
+      "id": "ext-target-t1",
+      "x": 2699.1071428571427,
+      "y": 1004.3399999999999,
+      "text": "可选外部目标扩展",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ext-target",
+      "anchor": "middle"
+    },
+    {
+      "id": "emmc-device-t0",
+      "x": 3475.0,
+      "y": 600.96,
+      "text": "eMMC",
+      "size": 34,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "emmc-device",
+      "anchor": "middle"
+    },
+    {
+      "id": "emmc-device-t1",
+      "x": 3475.0,
+      "y": 634.24,
+      "text": "模型 / 校正参数",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "emmc-device",
+      "anchor": "middle"
+    },
+    {
+      "id": "regbus-t0",
+      "x": 911.25,
+      "y": 1179.06,
+      "text": "Regbus decode / demux · 32 bit",
+      "size": 34,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "regbus",
+      "anchor": "middle"
+    },
+    {
+      "id": "bootrom-t0",
+      "x": 256.25,
+      "y": 1263.6000000000001,
+      "text": "Boot ROM",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "bootrom",
+      "anchor": "middle"
+    },
+    {
+      "id": "bootrom-t1",
+      "x": 256.25,
+      "y": 1295.8400000000001,
+      "text": "启动代码",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "bootrom",
+      "anchor": "middle"
+    },
+    {
+      "id": "uart-t0",
+      "x": 256.25,
+      "y": 1363.6000000000001,
+      "text": "UART",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "uart",
+      "anchor": "middle"
+    },
+    {
+      "id": "uart-t1",
+      "x": 256.25,
+      "y": 1395.8400000000001,
+      "text": "串口控制",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "uart",
+      "anchor": "middle"
+    },
+    {
+      "id": "vga-regs-t0",
+      "x": 256.25,
+      "y": 1463.6000000000001,
+      "text": "VGA 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "vga-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "vga-regs-t1",
+      "x": 256.25,
+      "y": 1495.8400000000001,
+      "text": "时序 / 帧地址",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "vga-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "irq-router-t0",
+      "x": 256.25,
+      "y": 1563.6000000000001,
+      "text": "IRQ router",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "irq-router",
+      "anchor": "middle"
+    },
+    {
+      "id": "irq-router-t1",
+      "x": 256.25,
+      "y": 1595.8400000000001,
+      "text": "可选中断路由",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "irq-router",
+      "anchor": "middle"
+    },
+    {
+      "id": "clint-t0",
+      "x": 586.25,
+      "y": 1263.6000000000001,
+      "text": "CLINT",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "clint",
+      "anchor": "middle"
+    },
+    {
+      "id": "clint-t1",
+      "x": 586.25,
+      "y": 1295.8400000000001,
+      "text": "软件 / 定时中断",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "clint",
+      "anchor": "middle"
+    },
+    {
+      "id": "i2c-t0",
+      "x": 586.25,
+      "y": 1363.6000000000001,
+      "text": "I²C",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "i2c",
+      "anchor": "middle"
+    },
+    {
+      "id": "i2c-t1",
+      "x": 586.25,
+      "y": 1395.8400000000001,
+      "text": "两线串行接口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "i2c",
+      "anchor": "middle"
+    },
+    {
+      "id": "usb-regs-t0",
+      "x": 586.25,
+      "y": 1463.6000000000001,
+      "text": "USB 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "usb-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "usb-regs-t1",
+      "x": 586.25,
+      "y": 1495.8400000000001,
+      "text": "OHCI 寄存器",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "usb-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "axi-rt-config-t0",
+      "x": 586.25,
+      "y": 1563.6000000000001,
+      "text": "AXI RT 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "axi-rt-config",
+      "anchor": "middle"
+    },
+    {
+      "id": "axi-rt-config-t1",
+      "x": 586.25,
+      "y": 1595.8400000000001,
+      "text": "可选流量调节",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "axi-rt-config",
+      "anchor": "middle"
+    },
+    {
+      "id": "soc-regs-t0",
+      "x": 916.25,
+      "y": 1263.6000000000001,
+      "text": "SoC 寄存器",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "soc-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "soc-regs-t1",
+      "x": 916.25,
+      "y": 1295.8400000000001,
+      "text": "平台信息 / scratch",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "soc-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "spi-t0",
+      "x": 916.25,
+      "y": 1363.6000000000001,
+      "text": "SPI Host",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "spi",
+      "anchor": "middle"
+    },
+    {
+      "id": "spi-t1",
+      "x": 916.25,
+      "y": 1395.8400000000001,
+      "text": "Flash / SD",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "spi",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-vga-t0",
+      "x": 916.25,
+      "y": 1463.6000000000001,
+      "text": "Bus-error · VGA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "err-vga",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-vga-t1",
+      "x": 916.25,
+      "y": 1495.8400000000001,
+      "text": "错误记录",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "err-vga",
+      "anchor": "middle"
+    },
+    {
+      "id": "clic-t0",
+      "x": 916.25,
+      "y": 1563.6000000000001,
+      "text": "CLIC",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "clic",
+      "anchor": "middle"
+    },
+    {
+      "id": "clic-t1",
+      "x": 916.25,
+      "y": 1595.8400000000001,
+      "text": "可选每核中断控制",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "clic",
+      "anchor": "middle"
+    },
+    {
+      "id": "plic-t0",
+      "x": 1246.25,
+      "y": 1263.6000000000001,
+      "text": "PLIC",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "plic",
+      "anchor": "middle"
+    },
+    {
+      "id": "plic-t1",
+      "x": 1246.25,
+      "y": 1295.8400000000001,
+      "text": "外部中断控制",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "plic",
+      "anchor": "middle"
+    },
+    {
+      "id": "gpio-t0",
+      "x": 1246.25,
+      "y": 1363.6000000000001,
+      "text": "GPIO",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "gpio",
+      "anchor": "middle"
+    },
+    {
+      "id": "gpio-t1",
+      "x": 1246.25,
+      "y": 1395.8400000000001,
+      "text": "通用 IO",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "gpio",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-dma-t0",
+      "x": 1246.25,
+      "y": 1463.6000000000001,
+      "text": "Bus-error · iDMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "err-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-dma-t1",
+      "x": 1246.25,
+      "y": 1495.8400000000001,
+      "text": "每传输错误记录",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "err-dma",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-error-t0",
+      "x": 1246.25,
+      "y": 1563.6000000000001,
+      "text": "reg_err_slv",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "reg-error",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-error-t1",
+      "x": 1246.25,
+      "y": 1595.8400000000001,
+      "text": "未匹配地址",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "reg-error",
+      "anchor": "middle"
+    },
+    {
+      "id": "llc-regs-t0",
+      "x": 1576.25,
+      "y": 1263.6000000000001,
+      "text": "LLC 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "llc-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "llc-regs-t1",
+      "x": 1576.25,
+      "y": 1295.8400000000001,
+      "text": "SPM way / cache",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "llc-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-regs-t0",
+      "x": 1576.25,
+      "y": 1363.6000000000001,
+      "text": "Serial Link 配置",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "slink-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "slink-regs-t1",
+      "x": 1576.25,
+      "y": 1395.8400000000001,
+      "text": "链路控制",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "slink-regs",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-cpu-t0",
+      "x": 1576.25,
+      "y": 1463.6000000000001,
+      "text": "Bus-error · CPU",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "err-cpu",
+      "anchor": "middle"
+    },
+    {
+      "id": "err-cpu-t1",
+      "x": 1576.25,
+      "y": 1495.8400000000001,
+      "text": "每核错误记录",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "err-cpu",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-ext-t0",
+      "x": 1576.25,
+      "y": 1563.6000000000001,
+      "text": "RegExt 扩展",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "reg-ext",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-ext-t1",
+      "x": 1576.25,
+      "y": 1595.8400000000001,
+      "text": "新增 IP 配置出口",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "reg-ext",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-S0-t0",
+      "x": 1950.0,
+      "y": 1572.65,
+      "text": "DDR.S0",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-S0",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-S1-t0",
+      "x": 2225.0,
+      "y": 1572.65,
+      "text": "DDR.S1",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-S1",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-S2-t0",
+      "x": 2500.0,
+      "y": 1572.65,
+      "text": "DDR.S2",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-S2",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-S3-t0",
+      "x": 2775.0,
+      "y": 1572.65,
+      "text": "DDR.S3",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-S3",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-arb-t0",
+      "x": 2370.0,
+      "y": 1624.52,
+      "text": "四口仲裁 / QoS · 共享 DDR 带宽",
+      "size": 28,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-arb",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-rw-t0",
+      "x": 2067.5,
+      "y": 1680.2,
+      "text": "读写调度 · Bank / Row",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-rw",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-command-t0",
+      "x": 2667.5,
+      "y": 1679.52,
+      "text": "命令调度 · Controller → PHY",
+      "size": 28,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-command",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-title",
+      "x": 2370,
+      "y": 1725,
+      "text": "DDR Controller · 4 个 AXI slave",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-controller",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C2-text",
+      "x": 2876.5,
+      "y": 1720,
+      "text": "C2",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C2",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-phy-t0",
+      "x": 3157.5,
+      "y": 1713.4,
+      "text": "DDR PHY",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-phy",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-phy-t1",
+      "x": 3157.5,
+      "y": 1747.52,
+      "text": "训练 / 校准",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ddr-phy",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C3-text",
+      "x": 3246.5,
+      "y": 1758,
+      "text": "C3",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C3",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-device-t0",
+      "x": 3471.25,
+      "y": 1714.76,
+      "text": "DDR",
+      "size": 34,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "ddr-device",
+      "anchor": "middle"
+    },
+    {
+      "id": "ddr-device-t1",
+      "x": 3471.25,
+      "y": 1749.9199999999998,
+      "text": "片外器件",
+      "size": 28,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "ddr-device",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-title",
+      "x": 3160,
+      "y": 1150,
+      "text": "图像裁切输出",
+      "size": 32,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "roi-region",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-count",
+      "x": 3160,
+      "y": 1178,
+      "text": "≤256 ROI / 帧",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "roi-region",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-no-scale",
+      "x": 3160,
+      "y": 1204,
+      "text": "纯裁切 · 不缩放",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "roi-region",
+      "anchor": "middle"
+    },
+    {
+      "id": "pll-title",
+      "x": 2350,
+      "y": 1800,
+      "text": "PLL / 时钟与复位分发",
+      "size": 32,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "pll",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C1-text",
+      "x": 2606.75,
+      "y": 1794.1,
+      "text": "C1",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C1",
+      "anchor": "middle"
+    },
+    {
+      "id": "pll-interface",
+      "x": 2930,
+      "y": 1800,
+      "text": "RefClk / POR → clk_i / rst_ni",
+      "size": 26,
+      "bold": false,
+      "color": "#765489",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C1-text",
+      "x": 104.75,
+      "y": 1903.1,
+      "text": "C1",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C1",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C1-title-0",
+      "x": 166.40625,
+      "y": 1929.1,
+      "text": "PLL / 时钟",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C1",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C1-title-1",
+      "x": 166.40625,
+      "y": 1964.1,
+      "text": "复位",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C1",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C2-text",
+      "x": 309.0625,
+      "y": 1903.1,
+      "text": "C2",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C2",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C2-title-0",
+      "x": 370.71875,
+      "y": 1929.1,
+      "text": "DDR",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C2",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C2-title-1",
+      "x": 370.71875,
+      "y": 1964.1,
+      "text": "Controller",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C2",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C3-text",
+      "x": 513.375,
+      "y": 1903.1,
+      "text": "C3",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C3",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C3-title-0",
+      "x": 575.03125,
+      "y": 1929.1,
+      "text": "DDR",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C3",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C3-title-1",
+      "x": 575.03125,
+      "y": 1964.1,
+      "text": "PHY",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C3",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C4-text",
+      "x": 717.6875,
+      "y": 1903.1,
+      "text": "C4",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C4",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C4-title-0",
+      "x": 779.34375,
+      "y": 1929.1,
+      "text": "LVDS",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C4",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C4-title-1",
+      "x": 779.34375,
+      "y": 1964.1,
+      "text": "RX",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C4",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C5-text",
+      "x": 922.0,
+      "y": 1903.1,
+      "text": "C5",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C5",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C5-title-0",
+      "x": 983.65625,
+      "y": 1947.1,
+      "text": "ISP",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C5",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C6-text",
+      "x": 1126.3125,
+      "y": 1903.1,
+      "text": "C6",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C6",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C6-title-0",
+      "x": 1187.96875,
+      "y": 1929.1,
+      "text": "NPU",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C6",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C6-title-1",
+      "x": 1187.96875,
+      "y": 1964.1,
+      "text": "计算",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C6",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C7-text",
+      "x": 1330.625,
+      "y": 1903.1,
+      "text": "C7",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C7",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C7-title-0",
+      "x": 1392.28125,
+      "y": 1929.1,
+      "text": "NPU / GB",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C7",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C7-title-1",
+      "x": 1392.28125,
+      "y": 1964.1,
+      "text": "搬运",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C7",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C8-text",
+      "x": 1534.9375,
+      "y": 1903.1,
+      "text": "C8",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C8",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C8-title-0",
+      "x": 1596.59375,
+      "y": 1929.1,
+      "text": "帧写入",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C8",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C8-title-1",
+      "x": 1596.59375,
+      "y": 1964.1,
+      "text": "DMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C8",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C9-text",
+      "x": 1739.25,
+      "y": 1903.1,
+      "text": "C9",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C9",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C9-title-0",
+      "x": 1800.90625,
+      "y": 1929.1,
+      "text": "GB",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C9",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C9-title-1",
+      "x": 1800.90625,
+      "y": 1964.1,
+      "text": "管理",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C9",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C10-text",
+      "x": 1943.5625,
+      "y": 1903.1,
+      "text": "C10",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C10",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C10-title-0",
+      "x": 2005.21875,
+      "y": 1929.1,
+      "text": "eMMC Host",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C10",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C10-title-1",
+      "x": 2005.21875,
+      "y": 1964.1,
+      "text": "/ DMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C10",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C11-text",
+      "x": 2147.875,
+      "y": 1903.1,
+      "text": "C11",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C11",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C11-title-0",
+      "x": 2209.53125,
+      "y": 1929.1,
+      "text": "ROI 任务",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C11",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C11-title-1",
+      "x": 2209.53125,
+      "y": 1964.1,
+      "text": "/ 调度",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C11",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C12-text",
+      "x": 2352.1875,
+      "y": 1903.1,
+      "text": "C12",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C12",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C12-title-0",
+      "x": 2413.84375,
+      "y": 1929.1,
+      "text": "前端公共",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C12",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C12-title-1",
+      "x": 2413.84375,
+      "y": 1964.1,
+      "text": "控制",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C12",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C13-text",
+      "x": 2556.5,
+      "y": 1903.1,
+      "text": "C13",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C13",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C13-title-0",
+      "x": 2618.15625,
+      "y": 1929.1,
+      "text": "帧输出",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C13",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C13-title-1",
+      "x": 2618.15625,
+      "y": 1964.1,
+      "text": "VDMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C13",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C14-text",
+      "x": 2760.8125,
+      "y": 1903.1,
+      "text": "C14",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C14",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C14-title-0",
+      "x": 2822.46875,
+      "y": 1929.1,
+      "text": "LVDS",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C14",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C14-title-1",
+      "x": 2822.46875,
+      "y": 1964.1,
+      "text": "TX",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C14",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C15-text",
+      "x": 2965.125,
+      "y": 1903.1,
+      "text": "C15",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C15",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C15-title-0",
+      "x": 3026.78125,
+      "y": 1947.1,
+      "text": "压缩器",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C15",
+      "anchor": "middle"
+    },
+    {
+      "id": "reg-badge-C16-text",
+      "x": 3169.4375,
+      "y": 1903.1,
+      "text": "C16",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "reg-badge-C16",
+      "anchor": "middle"
+    },
+    {
+      "id": "config-C16-title-0",
+      "x": 3231.09375,
+      "y": 1947.1,
+      "text": "解压器",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "config-C16",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-F0-t0",
+      "x": 1950.0,
+      "y": 1141.65,
+      "text": "F0 · LLC",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-F0",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-F1-t0",
+      "x": 2225.0,
+      "y": 1141.65,
+      "text": "F1 · GB 搬运",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-F1",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-F2-t0",
+      "x": 2500.0,
+      "y": 1141.65,
+      "text": "F2 · 帧写",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-F2",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-F3-t0",
+      "x": 2775.0,
+      "y": 1141.65,
+      "text": "F3 · 帧读",
+      "size": 22.5,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-F3",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-adapt-t0",
+      "x": 2370.0,
+      "y": 1204.2,
+      "text": "四口共享前端 · 区域选择 / 事务跟踪",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-adapt",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C12-text",
+      "x": 2876.5,
+      "y": 1201,
+      "text": "C12",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C12",
+      "anchor": "middle"
+    },
+    {
+      "id": "address-control-t0",
+      "x": 1945.0,
+      "y": 1294.6000000000001,
+      "text": "地址 / 事务",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "address-control",
+      "anchor": "middle"
+    },
+    {
+      "id": "address-control-t1",
+      "x": 1945.0,
+      "y": 1326.8400000000001,
+      "text": "AR / AW 映射",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "address-control",
+      "anchor": "middle"
+    },
+    {
+      "id": "metadata-t0",
+      "x": 1945.0,
+      "y": 1422.02,
+      "text": "块地址 / 元数据",
+      "size": 28,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "metadata",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C15-text",
+      "x": 2154.5,
+      "y": 1314,
+      "text": "C15",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C15",
+      "anchor": "middle"
+    },
+    {
+      "id": "compressor-title",
+      "x": 2237.5,
+      "y": 1345,
+      "text": "共享压缩器",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "compressor",
+      "anchor": "middle"
+    },
+    {
+      "id": "compressor-detail",
+      "x": 2237.5,
+      "y": 1375,
+      "text": "W 写数据",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "compressor",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C16-text",
+      "x": 2422.0,
+      "y": 1314,
+      "text": "C16",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C16",
+      "anchor": "middle"
+    },
+    {
+      "id": "decompressor-title",
+      "x": 2505.0,
+      "y": 1345,
+      "text": "共享解压器",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "decompressor",
+      "anchor": "middle"
+    },
+    {
+      "id": "decompressor-detail",
+      "x": 2505.0,
+      "y": 1375,
+      "text": "R 读数据",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "decompressor",
+      "anchor": "middle"
+    },
+    {
+      "id": "plain-bypass-title",
+      "x": 2772.5,
+      "y": 1345,
+      "text": "普通数据旁路",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "plain-bypass",
+      "anchor": "middle"
+    },
+    {
+      "id": "plain-bypass-detail",
+      "x": 2772.5,
+      "y": 1375,
+      "text": "W / R 原样",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "plain-bypass",
+      "anchor": "middle"
+    },
+    {
+      "id": "front-route-t0",
+      "x": 2370.0,
+      "y": 1510.2,
+      "text": "下游 AXI 路由 / R、B 响应匹配",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "front-route",
+      "anchor": "middle"
+    },
+    {
+      "id": "b-response-label",
+      "x": 1865,
+      "y": 1246,
+      "text": "B",
+      "size": 24,
+      "bold": false,
+      "color": "#314D66",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C11-text",
+      "x": 3256.5,
+      "y": 1234,
+      "text": "C11",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C11",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-scheduler-title",
+      "x": 3160,
+      "y": 1262,
+      "text": "ROI 任务表",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "roi-scheduler",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-scheduler-detail",
+      "x": 3160,
+      "y": 1292,
+      "text": "顺序调度",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "roi-scheduler",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C13-text",
+      "x": 3256.5,
+      "y": 1344,
+      "text": "C13",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C13",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-vdma-title",
+      "x": 3160,
+      "y": 1372,
+      "text": "帧输出 VDMA",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "roi-vdma",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-vdma-detail",
+      "x": 3160,
+      "y": 1402,
+      "text": "二维 AXI 读",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "roi-vdma",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-fifo-t0",
+      "x": 3160.0,
+      "y": 1462.1000000000001,
+      "text": "像素整理",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "roi-fifo",
+      "anchor": "middle"
+    },
+    {
+      "id": "roi-fifo-t1",
+      "x": 3160.0,
+      "y": 1494.3400000000001,
+      "text": "输出 FIFO",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "roi-fifo",
+      "anchor": "middle"
+    },
+    {
+      "id": "badge-C14-text",
+      "x": 3256.5,
+      "y": 1544,
+      "text": "C14",
+      "size": 21,
+      "bold": true,
+      "color": "#765489",
+      "owner": "badge-C14",
+      "anchor": "middle"
+    },
+    {
+      "id": "lvds-tx-title",
+      "x": 3160,
+      "y": 1572,
+      "text": "LVDS TX",
+      "size": 30,
+      "bold": true,
+      "color": "#29292D",
+      "owner": "lvds-tx",
+      "anchor": "middle"
+    },
+    {
+      "id": "lvds-tx-detail",
+      "x": 3160,
+      "y": 1602,
+      "text": "子图帧行封装",
+      "size": 26,
+      "bold": false,
+      "color": "#29292D",
+      "owner": "lvds-tx",
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-data-text",
+      "x": 3180,
+      "y": 730,
+      "text": "AXI 请求方向",
+      "size": 26,
+      "bold": false,
+      "color": "#314D66",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-gb-text",
+      "x": 3180,
+      "y": 797,
+      "text": "GB 局部读写",
+      "size": 26,
+      "bold": false,
+      "color": "#187C78",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-pixel-text",
+      "x": 3180,
+      "y": 864,
+      "text": "像素流",
+      "size": 26,
+      "bold": false,
+      "color": "#B96043",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-cfg-text",
+      "x": 3180,
+      "y": 931,
+      "text": "配置 / 控制",
+      "size": 26,
+      "bold": false,
+      "color": "#765489",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-optional-text",
+      "x": 3180,
+      "y": 998,
+      "text": "eMMC 接口",
+      "size": 26,
+      "bold": false,
+      "color": "#93939D",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-return",
+      "x": 3160,
+      "y": 1052,
+      "text": "AXI 响应：沿原接口返回",
+      "size": 24,
+      "bold": false,
+      "color": "#314D66",
+      "owner": null,
+      "anchor": "middle"
+    },
+    {
+      "id": "legend-status",
+      "x": 3160,
+      "y": 1085,
+      "text": "虚线框：规划 / 可选",
+      "size": 24,
+      "bold": false,
+      "color": "#606773",
+      "owner": null,
+      "anchor": "middle"
+    }
+  ],
+  "edges": [
+    {
+      "id": "cpu-ara-command",
+      "src": "cva6",
+      "dst": "ara",
+      "points": [
+        [
+          346.25,
+          200
+        ],
+        [
+          396.25,
+          200
+        ]
+      ],
+      "kind": "cfg",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "ara-filter-edge",
+      "src": "ara",
+      "dst": "ara-filter",
+      "points": [
+        [
+          511.25,
+          265
+        ],
+        [
+          511.25,
+          310
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "filter-width",
+      "src": "ara-filter",
+      "dst": "ara-width",
+      "points": [
+        [
+          606.25,
+          353
+        ],
+        [
+          826.25,
+          353
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "npu-gb",
+      "src": "npu",
+      "dst": "gb-adapter",
+      "points": [
+        [
+          1356.25,
+          250
+        ],
+        [
+          1391.25,
+          250
+        ]
+      ],
+      "kind": "gb",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "adapter-sram",
+      "src": "gb-adapter",
+      "dst": "global-buffer",
+      "points": [
+        [
+          1621.25,
+          270
+        ],
+        [
+          1661.25,
+          270
+        ]
+      ],
+      "kind": "gb",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "mover-gb",
+      "src": "gb-mover",
+      "dst": "gb-adapter",
+      "points": [
+        [
+          1661.25,
+          405
+        ],
+        [
+          1621.25,
+          405
+        ]
+      ],
+      "kind": "gb",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "lvds-rx-to-rx-cdc",
+      "src": "lvds-rx",
+      "dst": "rx-cdc",
+      "points": [
+        [
+          2436.25,
+          290
+        ],
+        [
+          2466.25,
+          290
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "rx-cdc-to-isp",
+      "src": "rx-cdc",
+      "dst": "isp",
+      "points": [
+        [
+          2626.25,
+          290
+        ],
+        [
+          2656.25,
+          290
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "isp-to-frame-select",
+      "src": "isp",
+      "dst": "frame-select",
+      "points": [
+        [
+          2821.25,
+          290
+        ],
+        [
+          2851.25,
+          290
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "frame-select-to-frame-dma",
+      "src": "frame-select",
+      "dst": "frame-dma",
+      "points": [
+        [
+          3031.25,
+          290
+        ],
+        [
+          3066.25,
+          290
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "raw-bypass",
+      "src": "rx-cdc",
+      "dst": "frame-select",
+      "points": [
+        [
+          2546.25,
+          200
+        ],
+        [
+          2546.25,
+          155
+        ],
+        [
+          2941.25,
+          155
+        ],
+        [
+          2941.25,
+          200
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "isp-gb",
+      "src": "isp",
+      "dst": "gb-adapter",
+      "points": [
+        [
+          2656.25,
+          345
+        ],
+        [
+          2640,
+          345
+        ],
+        [
+          2640,
+          500
+        ],
+        [
+          1506.25,
+          500
+        ],
+        [
+          1506.25,
+          450
+        ]
+      ],
+      "kind": "gb",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-1",
+      "src": "debug-sba",
+      "dst": "xbar-in-S1",
+      "points": [
+        [
+          542.9166666666667,
+          655
+        ],
+        [
+          542.9166666666667,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-3",
+      "src": "idma-master",
+      "dst": "xbar-in-S3",
+      "points": [
+        [
+          1171.8055555555557,
+          655
+        ],
+        [
+          1171.8055555555557,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-4",
+      "src": "slink-rx",
+      "dst": "xbar-in-S4",
+      "points": [
+        [
+          1486.25,
+          655
+        ],
+        [
+          1486.25,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-5",
+      "src": "vga",
+      "dst": "xbar-in-S5",
+      "points": [
+        [
+          1800.6944444444443,
+          655
+        ],
+        [
+          1800.6944444444443,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-6",
+      "src": "usb-dma",
+      "dst": "xbar-in-S6",
+      "points": [
+        [
+          2115.1388888888887,
+          655
+        ],
+        [
+          2115.1388888888887,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-7",
+      "src": "emmc-host",
+      "dst": "xbar-in-S7",
+      "points": [
+        [
+          2429.5833333333335,
+          655
+        ],
+        [
+          2429.5833333333335,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "master-8",
+      "src": "ext-master",
+      "dst": "xbar-in-S_EXT",
+      "points": [
+        [
+          2744.027777777778,
+          655
+        ],
+        [
+          2744.027777777778,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cpu-xbar",
+      "src": "cva6",
+      "dst": "xbar-in-S0",
+      "points": [
+        [
+          228.47222222222223,
+          355
+        ],
+        [
+          228.47222222222223,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "ara-xbar",
+      "src": "ara-width",
+      "dst": "xbar-in-S2",
+      "points": [
+        [
+          901.25,
+          396
+        ],
+        [
+          901.25,
+          530
+        ],
+        [
+          857.3611111111111,
+          530
+        ],
+        [
+          857.3611111111111,
+          686
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-0",
+      "src": "xbar-out-M0",
+      "dst": "debug-target",
+      "points": [
+        [
+          273.3928571428571,
+          849
+        ],
+        [
+          273.3928571428571,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-1",
+      "src": "xbar-out-M1",
+      "dst": "reg-bridge",
+      "points": [
+        [
+          677.6785714285714,
+          849
+        ],
+        [
+          677.6785714285714,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-2",
+      "src": "xbar-out-M2",
+      "dst": "memory-target",
+      "points": [
+        [
+          1081.9642857142858,
+          849
+        ],
+        [
+          1081.9642857142858,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "atomics-llc",
+      "src": "atomics",
+      "dst": "llc-spm",
+      "points": [
+        [
+          1076.9642857142858,
+          1002
+        ],
+        [
+          1101.9642857142858,
+          1002
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-3",
+      "src": "xbar-out-M3",
+      "dst": "idma-config",
+      "points": [
+        [
+          1486.25,
+          849
+        ],
+        [
+          1486.25,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-4",
+      "src": "xbar-out-M4",
+      "dst": "slink-tx",
+      "points": [
+        [
+          1890.5357142857142,
+          849
+        ],
+        [
+          1890.5357142857142,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-5",
+      "src": "xbar-out-M5",
+      "dst": "gb-interface",
+      "points": [
+        [
+          2294.8214285714284,
+          849
+        ],
+        [
+          2294.8214285714284,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "target-6",
+      "src": "xbar-out-M_EXT",
+      "dst": "ext-target",
+      "points": [
+        [
+          2699.1071428571427,
+          849
+        ],
+        [
+          2699.1071428571427,
+          900
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "m5-gb",
+      "src": "gb-interface",
+      "dst": "gb-adapter",
+      "points": [
+        [
+          2474.8214285714284,
+          975
+        ],
+        [
+          2495,
+          975
+        ],
+        [
+          2495,
+          870
+        ],
+        [
+          2945,
+          870
+        ],
+        [
+          2945,
+          520
+        ],
+        [
+          1450,
+          520
+        ],
+        [
+          1450,
+          450
+        ]
+      ],
+      "kind": "gb",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "emmc-physical",
+      "src": "emmc-device",
+      "dst": "emmc-host",
+      "points": [
+        [
+          3370,
+          605
+        ],
+        [
+          3350,
+          605
+        ],
+        [
+          3350,
+          535
+        ],
+        [
+          2584,
+          535
+        ],
+        [
+          2584,
+          605
+        ],
+        [
+          2572.5833333333335,
+          605
+        ]
+      ],
+      "kind": "optional",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "bridge-regbus",
+      "src": "reg-bridge",
+      "dst": "regbus",
+      "points": [
+        [
+          677.6785714285714,
+          1055
+        ],
+        [
+          677.6785714285714,
+          1135
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-column-0",
+      "src": "regbus",
+      "dst": "reg-column-0",
+      "points": [
+        [
+          84.25,
+          1200
+        ],
+        [
+          84.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "bootrom-cfg",
+      "src": "reg-column-0",
+      "dst": "bootrom",
+      "points": [
+        [
+          84.25,
+          1269
+        ],
+        [
+          106.25,
+          1269
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "uart-cfg",
+      "src": "reg-column-0",
+      "dst": "uart",
+      "points": [
+        [
+          84.25,
+          1369
+        ],
+        [
+          106.25,
+          1369
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "vga-regs-cfg",
+      "src": "reg-column-0",
+      "dst": "vga-regs",
+      "points": [
+        [
+          84.25,
+          1469
+        ],
+        [
+          106.25,
+          1469
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "irq-router-cfg",
+      "src": "reg-column-0",
+      "dst": "irq-router",
+      "points": [
+        [
+          84.25,
+          1569
+        ],
+        [
+          106.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-column-1",
+      "src": "regbus",
+      "dst": "reg-column-1",
+      "points": [
+        [
+          414.25,
+          1200
+        ],
+        [
+          414.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "clint-cfg",
+      "src": "reg-column-1",
+      "dst": "clint",
+      "points": [
+        [
+          414.25,
+          1269
+        ],
+        [
+          436.25,
+          1269
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "i2c-cfg",
+      "src": "reg-column-1",
+      "dst": "i2c",
+      "points": [
+        [
+          414.25,
+          1369
+        ],
+        [
+          436.25,
+          1369
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "usb-regs-cfg",
+      "src": "reg-column-1",
+      "dst": "usb-regs",
+      "points": [
+        [
+          414.25,
+          1469
+        ],
+        [
+          436.25,
+          1469
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "axi-rt-config-cfg",
+      "src": "reg-column-1",
+      "dst": "axi-rt-config",
+      "points": [
+        [
+          414.25,
+          1569
+        ],
+        [
+          436.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-column-2",
+      "src": "regbus",
+      "dst": "reg-column-2",
+      "points": [
+        [
+          744.25,
+          1200
+        ],
+        [
+          744.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "soc-regs-cfg",
+      "src": "reg-column-2",
+      "dst": "soc-regs",
+      "points": [
+        [
+          744.25,
+          1269
+        ],
+        [
+          766.25,
+          1269
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "spi-cfg",
+      "src": "reg-column-2",
+      "dst": "spi",
+      "points": [
+        [
+          744.25,
+          1369
+        ],
+        [
+          766.25,
+          1369
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "err-vga-cfg",
+      "src": "reg-column-2",
+      "dst": "err-vga",
+      "points": [
+        [
+          744.25,
+          1469
+        ],
+        [
+          766.25,
+          1469
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "clic-cfg",
+      "src": "reg-column-2",
+      "dst": "clic",
+      "points": [
+        [
+          744.25,
+          1569
+        ],
+        [
+          766.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-column-3",
+      "src": "regbus",
+      "dst": "reg-column-3",
+      "points": [
+        [
+          1074.25,
+          1200
+        ],
+        [
+          1074.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "plic-cfg",
+      "src": "reg-column-3",
+      "dst": "plic",
+      "points": [
+        [
+          1074.25,
+          1269
+        ],
+        [
+          1096.25,
+          1269
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "gpio-cfg",
+      "src": "reg-column-3",
+      "dst": "gpio",
+      "points": [
+        [
+          1074.25,
+          1369
+        ],
+        [
+          1096.25,
+          1369
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "err-dma-cfg",
+      "src": "reg-column-3",
+      "dst": "err-dma",
+      "points": [
+        [
+          1074.25,
+          1469
+        ],
+        [
+          1096.25,
+          1469
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-error-cfg",
+      "src": "reg-column-3",
+      "dst": "reg-error",
+      "points": [
+        [
+          1074.25,
+          1569
+        ],
+        [
+          1096.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-column-4",
+      "src": "regbus",
+      "dst": "reg-column-4",
+      "points": [
+        [
+          1404.25,
+          1200
+        ],
+        [
+          1404.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "llc-regs-cfg",
+      "src": "reg-column-4",
+      "dst": "llc-regs",
+      "points": [
+        [
+          1404.25,
+          1269
+        ],
+        [
+          1426.25,
+          1269
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "slink-regs-cfg",
+      "src": "reg-column-4",
+      "dst": "slink-regs",
+      "points": [
+        [
+          1404.25,
+          1369
+        ],
+        [
+          1426.25,
+          1369
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "err-cpu-cfg",
+      "src": "reg-column-4",
+      "dst": "err-cpu",
+      "points": [
+        [
+          1404.25,
+          1469
+        ],
+        [
+          1426.25,
+          1469
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "reg-ext-cfg",
+      "src": "reg-column-4",
+      "dst": "reg-ext",
+      "points": [
+        [
+          1404.25,
+          1569
+        ],
+        [
+          1426.25,
+          1569
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "ddr-arb-0",
+      "src": "ddr-S0",
+      "dst": "ddr-arb",
+      "points": [
+        [
+          1950,
+          1579
+        ],
+        [
+          1950,
+          1595
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "ddr-arb-1",
+      "src": "ddr-S1",
+      "dst": "ddr-arb",
+      "points": [
+        [
+          2225,
+          1579
+        ],
+        [
+          2225,
+          1595
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "ddr-arb-2",
+      "src": "ddr-S2",
+      "dst": "ddr-arb",
+      "points": [
+        [
+          2500,
+          1579
+        ],
+        [
+          2500,
+          1595
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "ddr-arb-3",
+      "src": "ddr-S3",
+      "dst": "ddr-arb",
+      "points": [
+        [
+          2775,
+          1579
+        ],
+        [
+          2775,
+          1595
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "arb-rw",
+      "src": "ddr-arb",
+      "dst": "ddr-rw",
+      "points": [
+        [
+          2067.5,
+          1635
+        ],
+        [
+          2067.5,
+          1645
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "rw-command",
+      "src": "ddr-rw",
+      "dst": "ddr-command",
+      "points": [
+        [
+          2305,
+          1670
+        ],
+        [
+          2425,
+          1670
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "controller-phy",
+      "src": "ddr-command",
+      "dst": "ddr-phy",
+      "points": [
+        [
+          2910,
+          1670
+        ],
+        [
+          2970,
+          1670
+        ],
+        [
+          2970,
+          1710
+        ],
+        [
+          3030,
+          1710
+        ]
+      ],
+      "kind": "data",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "phy-ddr",
+      "src": "ddr-phy",
+      "dst": "ddr-device",
+      "points": [
+        [
+          3285,
+          1710
+        ],
+        [
+          3396.25,
+          1710
+        ]
+      ],
+      "kind": "data",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "roi-vdma-control",
+      "src": "roi-scheduler",
+      "dst": "roi-vdma",
+      "points": [
+        [
+          3160,
+          1305
+        ],
+        [
+          3160,
+          1320
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "vdma-pixels",
+      "src": "roi-vdma",
+      "dst": "roi-fifo",
+      "points": [
+        [
+          3160,
+          1415
+        ],
+        [
+          3160,
+          1430
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "fifo-lvds",
+      "src": "roi-fifo",
+      "dst": "lvds-tx",
+      "points": [
+        [
+          3160,
+          1505
+        ],
+        [
+          3160,
+          1520
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "llc-f0",
+      "src": "llc-spm",
+      "dst": "front-F0",
+      "points": [
+        [
+          1186.9642857142858,
+          1044
+        ],
+        [
+          1186.9642857142858,
+          1095
+        ],
+        [
+          1950,
+          1095
+        ],
+        [
+          1950,
+          1120
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "mover-f1",
+      "src": "gb-mover",
+      "dst": "front-F1",
+      "points": [
+        [
+          2166.25,
+          405
+        ],
+        [
+          2215,
+          405
+        ],
+        [
+          2215,
+          540
+        ],
+        [
+          2960,
+          540
+        ],
+        [
+          2960,
+          1075
+        ],
+        [
+          2225,
+          1075
+        ],
+        [
+          2225,
+          1120
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "frame-f2",
+      "src": "frame-dma",
+      "dst": "front-F2",
+      "points": [
+        [
+          3281.25,
+          340
+        ],
+        [
+          3300,
+          340
+        ],
+        [
+          3300,
+          1060
+        ],
+        [
+          2500,
+          1060
+        ],
+        [
+          2500,
+          1120
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "roi-f3-request",
+      "src": "roi-vdma",
+      "dst": "front-F3",
+      "points": [
+        [
+          3030,
+          1345
+        ],
+        [
+          2975,
+          1345
+        ],
+        [
+          2975,
+          1105
+        ],
+        [
+          2775,
+          1105
+        ],
+        [
+          2775,
+          1120
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "regext-config",
+      "src": "reg-ext",
+      "dst": "config-trunk",
+      "points": [
+        [
+          1726.25,
+          1569
+        ],
+        [
+          1785,
+          1569
+        ],
+        [
+          1785,
+          1853.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "config-trunk",
+      "src": "config-trunk",
+      "dst": "config-trunk",
+      "points": [
+        [
+          166.40625,
+          1853.1
+        ],
+        [
+          3231.09375,
+          1853.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "cfg-C1",
+      "src": "config-trunk",
+      "dst": "config-C1",
+      "points": [
+        [
+          166.40625,
+          1853.1
+        ],
+        [
+          166.40625,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C2",
+      "src": "config-trunk",
+      "dst": "config-C2",
+      "points": [
+        [
+          370.71875,
+          1853.1
+        ],
+        [
+          370.71875,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C3",
+      "src": "config-trunk",
+      "dst": "config-C3",
+      "points": [
+        [
+          575.03125,
+          1853.1
+        ],
+        [
+          575.03125,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C4",
+      "src": "config-trunk",
+      "dst": "config-C4",
+      "points": [
+        [
+          779.34375,
+          1853.1
+        ],
+        [
+          779.34375,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C5",
+      "src": "config-trunk",
+      "dst": "config-C5",
+      "points": [
+        [
+          983.65625,
+          1853.1
+        ],
+        [
+          983.65625,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C6",
+      "src": "config-trunk",
+      "dst": "config-C6",
+      "points": [
+        [
+          1187.96875,
+          1853.1
+        ],
+        [
+          1187.96875,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C7",
+      "src": "config-trunk",
+      "dst": "config-C7",
+      "points": [
+        [
+          1392.28125,
+          1853.1
+        ],
+        [
+          1392.28125,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C8",
+      "src": "config-trunk",
+      "dst": "config-C8",
+      "points": [
+        [
+          1596.59375,
+          1853.1
+        ],
+        [
+          1596.59375,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C9",
+      "src": "config-trunk",
+      "dst": "config-C9",
+      "points": [
+        [
+          1800.90625,
+          1853.1
+        ],
+        [
+          1800.90625,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C10",
+      "src": "config-trunk",
+      "dst": "config-C10",
+      "points": [
+        [
+          2005.21875,
+          1853.1
+        ],
+        [
+          2005.21875,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C11",
+      "src": "config-trunk",
+      "dst": "config-C11",
+      "points": [
+        [
+          2209.53125,
+          1853.1
+        ],
+        [
+          2209.53125,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C12",
+      "src": "config-trunk",
+      "dst": "config-C12",
+      "points": [
+        [
+          2413.84375,
+          1853.1
+        ],
+        [
+          2413.84375,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C13",
+      "src": "config-trunk",
+      "dst": "config-C13",
+      "points": [
+        [
+          2618.15625,
+          1853.1
+        ],
+        [
+          2618.15625,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C14",
+      "src": "config-trunk",
+      "dst": "config-C14",
+      "points": [
+        [
+          2822.46875,
+          1853.1
+        ],
+        [
+          2822.46875,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C15",
+      "src": "config-trunk",
+      "dst": "config-C15",
+      "points": [
+        [
+          3026.78125,
+          1853.1
+        ],
+        [
+          3026.78125,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "cfg-C16",
+      "src": "config-trunk",
+      "dst": "config-C16",
+      "points": [
+        [
+          3231.09375,
+          1853.1
+        ],
+        [
+          3231.09375,
+          1878.1
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "front-input-0",
+      "src": "front-F0",
+      "dst": "front-adapt",
+      "points": [
+        [
+          1950,
+          1148
+        ],
+        [
+          1950,
+          1168
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "front-input-1",
+      "src": "front-F1",
+      "dst": "front-adapt",
+      "points": [
+        [
+          2225,
+          1148
+        ],
+        [
+          2225,
+          1168
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "front-input-2",
+      "src": "front-F2",
+      "dst": "front-adapt",
+      "points": [
+        [
+          2500,
+          1148
+        ],
+        [
+          2500,
+          1168
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "front-input-3",
+      "src": "front-F3",
+      "dst": "front-adapt",
+      "points": [
+        [
+          2775,
+          1148
+        ],
+        [
+          2775,
+          1168
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": false,
+      "dash": false
+    },
+    {
+      "id": "adapt-address",
+      "src": "front-adapt",
+      "dst": "address-control",
+      "points": [
+        [
+          1945,
+          1220
+        ],
+        [
+          1945,
+          1250
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "address-downstream",
+      "src": "address-control",
+      "dst": "front-route",
+      "points": [
+        [
+          2060,
+          1300
+        ],
+        [
+          2072,
+          1300
+        ],
+        [
+          2072,
+          1475
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "b-response",
+      "src": "front-route",
+      "dst": "front-adapt",
+      "points": [
+        [
+          1830,
+          1500
+        ],
+        [
+          1820,
+          1500
+        ],
+        [
+          1820,
+          1240
+        ],
+        [
+          1845,
+          1240
+        ],
+        [
+          1845,
+          1220
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "metadata-control",
+      "src": "address-control",
+      "dst": "metadata",
+      "points": [
+        [
+          1945,
+          1350
+        ],
+        [
+          1945,
+          1380
+        ]
+      ],
+      "kind": "cfg",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "metadata-storage",
+      "src": "metadata",
+      "dst": "front-route",
+      "points": [
+        [
+          1945,
+          1445
+        ],
+        [
+          1945,
+          1475
+        ]
+      ],
+      "kind": "data",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "adapt-compressor",
+      "src": "front-adapt",
+      "dst": "compressor",
+      "points": [
+        [
+          2237.5,
+          1220
+        ],
+        [
+          2237.5,
+          1290
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "compressor-route",
+      "src": "compressor",
+      "dst": "front-route",
+      "points": [
+        [
+          2237.5,
+          1405
+        ],
+        [
+          2237.5,
+          1475
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "read-to-decoder",
+      "src": "front-route",
+      "dst": "decompressor",
+      "points": [
+        [
+          2505,
+          1475
+        ],
+        [
+          2505,
+          1405
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "decoder-up",
+      "src": "decompressor",
+      "dst": "front-adapt",
+      "points": [
+        [
+          2505,
+          1290
+        ],
+        [
+          2505,
+          1220
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "adapt-plain-bypass",
+      "src": "front-adapt",
+      "dst": "plain-bypass",
+      "points": [
+        [
+          2772.5,
+          1220
+        ],
+        [
+          2772.5,
+          1290
+        ]
+      ],
+      "kind": "data",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "plain-bypass-route",
+      "src": "plain-bypass",
+      "dst": "front-route",
+      "points": [
+        [
+          2772.5,
+          1405
+        ],
+        [
+          2772.5,
+          1475
+        ]
+      ],
+      "kind": "data",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "front-ddr-0",
+      "src": "front-route",
+      "dst": "ddr-S0",
+      "points": [
+        [
+          1950,
+          1525
+        ],
+        [
+          1950,
+          1551
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "front-ddr-1",
+      "src": "front-route",
+      "dst": "ddr-S1",
+      "points": [
+        [
+          2225,
+          1525
+        ],
+        [
+          2225,
+          1551
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "front-ddr-2",
+      "src": "front-route",
+      "dst": "ddr-S2",
+      "points": [
+        [
+          2500,
+          1525
+        ],
+        [
+          2500,
+          1551
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "front-ddr-3",
+      "src": "front-route",
+      "dst": "ddr-S3",
+      "points": [
+        [
+          2775,
+          1525
+        ],
+        [
+          2775,
+          1551
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "legend-data",
+      "src": "legend",
+      "dst": "legend",
+      "points": [
+        [
+          3010,
+          720
+        ],
+        [
+          3060,
+          720
+        ]
+      ],
+      "kind": "data",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "legend-gb",
+      "src": "legend",
+      "dst": "legend",
+      "points": [
+        [
+          3010,
+          787
+        ],
+        [
+          3060,
+          787
+        ]
+      ],
+      "kind": "gb",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "legend-pixel",
+      "src": "legend",
+      "dst": "legend",
+      "points": [
+        [
+          3010,
+          854
+        ],
+        [
+          3060,
+          854
+        ]
+      ],
+      "kind": "pixel",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "legend-cfg",
+      "src": "legend",
+      "dst": "legend",
+      "points": [
+        [
+          3010,
+          921
+        ],
+        [
+          3060,
+          921
+        ]
+      ],
+      "kind": "cfg",
+      "both": false,
+      "arrow": true,
+      "dash": false
+    },
+    {
+      "id": "legend-optional",
+      "src": "legend",
+      "dst": "legend",
+      "points": [
+        [
+          3010,
+          988
+        ],
+        [
+          3060,
+          988
+        ]
+      ],
+      "kind": "optional",
+      "both": true,
+      "arrow": true,
+      "dash": false
+    }
+  ],
+  "bridges": [
+    {
+      "edge": "m5-gb",
+      "over": "target-6",
+      "at": [
+        2699.1071428571427,
+        870
+      ]
+    },
+    {
+      "edge": "emmc-physical",
+      "over": "m5-gb",
+      "at": [
+        2945,
+        535
+      ]
+    },
+    {
+      "edge": "mover-f1",
+      "over": "isp-gb",
+      "at": [
+        2215,
+        500
+      ]
+    },
+    {
+      "edge": "mover-f1",
+      "over": "m5-gb",
+      "at": [
+        2215,
+        520
+      ]
+    },
+    {
+      "edge": "mover-f1",
+      "over": "emmc-physical",
+      "at": [
+        2584,
+        540
+      ]
+    },
+    {
+      "edge": "mover-f1",
+      "over": "m5-gb",
+      "at": [
+        2945,
+        540
+      ]
+    },
+    {
+      "edge": "frame-f2",
+      "over": "emmc-physical",
+      "at": [
+        3300,
+        535
+      ]
+    },
+    {
+      "edge": "frame-f2",
+      "over": "mover-f1",
+      "at": [
+        2960,
+        1060
+      ]
+    },
+    {
+      "edge": "frame-f2",
+      "over": "mover-f1",
+      "at": [
+        2500,
+        1075
+      ]
+    }
+  ],
+  "dots": [
+    [
+      84.25,
+      1269,
+      "cfg"
+    ],
+    [
+      84.25,
+      1369,
+      "cfg"
+    ],
+    [
+      84.25,
+      1469,
+      "cfg"
+    ],
+    [
+      84.25,
+      1569,
+      "cfg"
+    ],
+    [
+      414.25,
+      1269,
+      "cfg"
+    ],
+    [
+      414.25,
+      1369,
+      "cfg"
+    ],
+    [
+      414.25,
+      1469,
+      "cfg"
+    ],
+    [
+      414.25,
+      1569,
+      "cfg"
+    ],
+    [
+      744.25,
+      1269,
+      "cfg"
+    ],
+    [
+      744.25,
+      1369,
+      "cfg"
+    ],
+    [
+      744.25,
+      1469,
+      "cfg"
+    ],
+    [
+      744.25,
+      1569,
+      "cfg"
+    ],
+    [
+      1074.25,
+      1269,
+      "cfg"
+    ],
+    [
+      1074.25,
+      1369,
+      "cfg"
+    ],
+    [
+      1074.25,
+      1469,
+      "cfg"
+    ],
+    [
+      1074.25,
+      1569,
+      "cfg"
+    ],
+    [
+      1404.25,
+      1269,
+      "cfg"
+    ],
+    [
+      1404.25,
+      1369,
+      "cfg"
+    ],
+    [
+      1404.25,
+      1469,
+      "cfg"
+    ],
+    [
+      1404.25,
+      1569,
+      "cfg"
+    ],
+    [
+      1785,
+      1853.1,
+      "cfg"
+    ],
+    [
+      166.40625,
+      1853.1,
+      "cfg"
+    ],
+    [
+      370.71875,
+      1853.1,
+      "cfg"
+    ],
+    [
+      575.03125,
+      1853.1,
+      "cfg"
+    ],
+    [
+      779.34375,
+      1853.1,
+      "cfg"
+    ],
+    [
+      983.65625,
+      1853.1,
+      "cfg"
+    ],
+    [
+      1187.96875,
+      1853.1,
+      "cfg"
+    ],
+    [
+      1392.28125,
+      1853.1,
+      "cfg"
+    ],
+    [
+      1596.59375,
+      1853.1,
+      "cfg"
+    ],
+    [
+      1800.90625,
+      1853.1,
+      "cfg"
+    ],
+    [
+      2005.21875,
+      1853.1,
+      "cfg"
+    ],
+    [
+      2209.53125,
+      1853.1,
+      "cfg"
+    ],
+    [
+      2413.84375,
+      1853.1,
+      "cfg"
+    ],
+    [
+      2618.15625,
+      1853.1,
+      "cfg"
+    ],
+    [
+      2822.46875,
+      1853.1,
+      "cfg"
+    ],
+    [
+      3026.78125,
+      1853.1,
+      "cfg"
+    ],
+    [
+      3231.09375,
+      1853.1,
+      "cfg"
+    ]
+  ]
+}

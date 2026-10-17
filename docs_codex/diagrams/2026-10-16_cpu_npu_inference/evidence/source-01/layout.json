@@ -1,0 +1,1262 @@
+[
+  {
+    "name": "deployment-chain",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "host": {
+        "x": 50,
+        "y": 170,
+        "width": 2300,
+        "height": 280
+      },
+      "model": {
+        "x": 100,
+        "y": 265,
+        "width": 500,
+        "height": 130
+      },
+      "compiler": {
+        "x": 800,
+        "y": 265,
+        "width": 650,
+        "height": 130
+      },
+      "artifact": {
+        "x": 1750,
+        "y": 265,
+        "width": 500,
+        "height": 130
+      },
+      "soc": {
+        "x": 50,
+        "y": 570,
+        "width": 2300,
+        "height": 600
+      },
+      "runtime": {
+        "x": 100,
+        "y": 665,
+        "width": 520,
+        "height": 140
+      },
+      "cpu": {
+        "x": 850,
+        "y": 665,
+        "width": 500,
+        "height": 140
+      },
+      "result": {
+        "x": 1770,
+        "y": 665,
+        "width": 480,
+        "height": 140
+      },
+      "driver": {
+        "x": 100,
+        "y": 980,
+        "width": 520,
+        "height": 140
+      },
+      "npu": {
+        "x": 850,
+        "y": 980,
+        "width": 500,
+        "height": 140
+      },
+      "buffers": {
+        "x": 1770,
+        "y": 980,
+        "width": 480,
+        "height": 140
+      }
+    },
+    "arrows": [
+      {
+        "id": "compile",
+        "points": [
+          [
+            600,
+            330
+          ],
+          [
+            800,
+            330
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "model",
+        "target": "compiler"
+      },
+      {
+        "id": "emit",
+        "points": [
+          [
+            1450,
+            330
+          ],
+          [
+            1750,
+            330
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "compiler",
+        "target": "artifact"
+      },
+      {
+        "id": "deploy",
+        "points": [
+          [
+            2000,
+            395
+          ],
+          [
+            2000,
+            510
+          ],
+          [
+            360,
+            510
+          ],
+          [
+            360,
+            665
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "artifact",
+        "target": "runtime"
+      },
+      {
+        "id": "cpu-call",
+        "points": [
+          [
+            620,
+            735
+          ],
+          [
+            850,
+            735
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "runtime",
+        "target": "cpu"
+      },
+      {
+        "id": "cpu-result",
+        "points": [
+          [
+            1350,
+            735
+          ],
+          [
+            1770,
+            735
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "cpu",
+        "target": "result"
+      },
+      {
+        "id": "submit",
+        "points": [
+          [
+            360,
+            805
+          ],
+          [
+            360,
+            980
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "runtime",
+        "target": "driver"
+      },
+      {
+        "id": "device-control",
+        "points": [
+          [
+            620,
+            1050
+          ],
+          [
+            850,
+            1050
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "driver",
+        "target": "npu"
+      },
+      {
+        "id": "tensor-access",
+        "points": [
+          [
+            1350,
+            1050
+          ],
+          [
+            1770,
+            1050
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "npu",
+        "target": "buffers"
+      },
+      {
+        "id": "cpu-buffers",
+        "points": [
+          [
+            1100,
+            805
+          ],
+          [
+            1100,
+            880
+          ],
+          [
+            1880,
+            880
+          ],
+          [
+            1880,
+            980
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "cpu",
+        "target": "buffers"
+      },
+      {
+        "id": "consume",
+        "points": [
+          [
+            2150,
+            980
+          ],
+          [
+            2150,
+            805
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "buffers",
+        "target": "result"
+      }
+    ]
+  },
+  {
+    "name": "invocation-paths",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "nvdlaregion": {
+        "x": 50,
+        "y": 175,
+        "width": 730,
+        "height": 1080
+      },
+      "nvdlaapp": {
+        "x": 95,
+        "y": 270,
+        "width": 640,
+        "height": 105
+      },
+      "nvdlarun": {
+        "x": 95,
+        "y": 455,
+        "width": 640,
+        "height": 125
+      },
+      "nvdlaif": {
+        "x": 95,
+        "y": 665,
+        "width": 640,
+        "height": 125
+      },
+      "nvdlahw": {
+        "x": 95,
+        "y": 900,
+        "width": 640,
+        "height": 130
+      },
+      "nvdlamem": {
+        "x": 95,
+        "y": 1140,
+        "width": 640,
+        "height": 90
+      },
+      "armregion": {
+        "x": 835,
+        "y": 175,
+        "width": 730,
+        "height": 1080
+      },
+      "armapp": {
+        "x": 880,
+        "y": 270,
+        "width": 640,
+        "height": 105
+      },
+      "armrun": {
+        "x": 880,
+        "y": 455,
+        "width": 640,
+        "height": 125
+      },
+      "armif": {
+        "x": 880,
+        "y": 665,
+        "width": 640,
+        "height": 125
+      },
+      "armhw": {
+        "x": 880,
+        "y": 900,
+        "width": 640,
+        "height": 130
+      },
+      "armmem": {
+        "x": 880,
+        "y": 1140,
+        "width": 640,
+        "height": 90
+      },
+      "gemminiregion": {
+        "x": 1620,
+        "y": 175,
+        "width": 730,
+        "height": 1080
+      },
+      "gemminiapp": {
+        "x": 1665,
+        "y": 270,
+        "width": 640,
+        "height": 105
+      },
+      "gemminirun": {
+        "x": 1665,
+        "y": 455,
+        "width": 640,
+        "height": 125
+      },
+      "gemminiif": {
+        "x": 1665,
+        "y": 665,
+        "width": 640,
+        "height": 125
+      },
+      "gemminihw": {
+        "x": 1665,
+        "y": 900,
+        "width": 640,
+        "height": 130
+      },
+      "gemminimem": {
+        "x": 1665,
+        "y": 1140,
+        "width": 640,
+        "height": 90
+      }
+    },
+    "arrows": [
+      {
+        "id": "nvdla0",
+        "points": [
+          [
+            415,
+            375
+          ],
+          [
+            415,
+            455
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "nvdlaapp",
+        "target": "nvdlarun"
+      },
+      {
+        "id": "nvdla1",
+        "points": [
+          [
+            415,
+            580
+          ],
+          [
+            415,
+            665
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "nvdlarun",
+        "target": "nvdlaif"
+      },
+      {
+        "id": "nvdla2",
+        "points": [
+          [
+            415,
+            790
+          ],
+          [
+            415,
+            900
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "nvdlaif",
+        "target": "nvdlahw"
+      },
+      {
+        "id": "nvdladata",
+        "points": [
+          [
+            415,
+            1030
+          ],
+          [
+            415,
+            1140
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "nvdlahw",
+        "target": "nvdlamem"
+      },
+      {
+        "id": "arm0",
+        "points": [
+          [
+            1200,
+            375
+          ],
+          [
+            1200,
+            455
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "armapp",
+        "target": "armrun"
+      },
+      {
+        "id": "arm1",
+        "points": [
+          [
+            1200,
+            580
+          ],
+          [
+            1200,
+            665
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "armrun",
+        "target": "armif"
+      },
+      {
+        "id": "arm2",
+        "points": [
+          [
+            1200,
+            790
+          ],
+          [
+            1200,
+            900
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "armif",
+        "target": "armhw"
+      },
+      {
+        "id": "armdata",
+        "points": [
+          [
+            1200,
+            1030
+          ],
+          [
+            1200,
+            1140
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "armhw",
+        "target": "armmem"
+      },
+      {
+        "id": "gemmini0",
+        "points": [
+          [
+            1985,
+            375
+          ],
+          [
+            1985,
+            455
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "gemminiapp",
+        "target": "gemminirun"
+      },
+      {
+        "id": "gemmini1",
+        "points": [
+          [
+            1985,
+            580
+          ],
+          [
+            1985,
+            665
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "gemminirun",
+        "target": "gemminiif"
+      },
+      {
+        "id": "gemmini2",
+        "points": [
+          [
+            1985,
+            790
+          ],
+          [
+            1985,
+            900
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "gemminiif",
+        "target": "gemminihw"
+      },
+      {
+        "id": "gemminidata",
+        "points": [
+          [
+            1985,
+            1030
+          ],
+          [
+            1985,
+            1140
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "gemminihw",
+        "target": "gemminimem"
+      }
+    ]
+  },
+  {
+    "name": "deeploy-siracusa",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "host": {
+        "x": 50,
+        "y": 175,
+        "width": 2300,
+        "height": 235
+      },
+      "onnx": {
+        "x": 100,
+        "y": 250,
+        "width": 440,
+        "height": 110
+      },
+      "planner": {
+        "x": 760,
+        "y": 250,
+        "width": 810,
+        "height": 110
+      },
+      "code": {
+        "x": 1790,
+        "y": 250,
+        "width": 460,
+        "height": 110
+      },
+      "chip": {
+        "x": 50,
+        "y": 515,
+        "width": 2300,
+        "height": 690
+      },
+      "controller": {
+        "x": 100,
+        "y": 620,
+        "width": 390,
+        "height": 140
+      },
+      "cluster": {
+        "x": 780,
+        "y": 620,
+        "width": 540,
+        "height": 140
+      },
+      "npu": {
+        "x": 1740,
+        "y": 620,
+        "width": 510,
+        "height": 140
+      },
+      "arbiter": {
+        "x": 900,
+        "y": 865,
+        "width": 1020,
+        "height": 80
+      },
+      "l2": {
+        "x": 100,
+        "y": 1035,
+        "width": 390,
+        "height": 125
+      },
+      "dma": {
+        "x": 640,
+        "y": 1035,
+        "width": 300,
+        "height": 125
+      },
+      "l1": {
+        "x": 1110,
+        "y": 1035,
+        "width": 600,
+        "height": 125
+      },
+      "nms": {
+        "x": 1900,
+        "y": 1035,
+        "width": 350,
+        "height": 125
+      }
+    },
+    "arrows": [
+      {
+        "id": "parse",
+        "points": [
+          [
+            540,
+            305
+          ],
+          [
+            760,
+            305
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "onnx",
+        "target": "planner"
+      },
+      {
+        "id": "generate",
+        "points": [
+          [
+            1570,
+            305
+          ],
+          [
+            1790,
+            305
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "planner",
+        "target": "code"
+      },
+      {
+        "id": "deploy",
+        "points": [
+          [
+            2020,
+            360
+          ],
+          [
+            2020,
+            460
+          ],
+          [
+            295,
+            460
+          ],
+          [
+            295,
+            620
+          ]
+        ],
+        "kind": "artifact",
+        "bidirectional": false,
+        "source": "code",
+        "target": "controller"
+      },
+      {
+        "id": "launch",
+        "points": [
+          [
+            490,
+            690
+          ],
+          [
+            780,
+            690
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "controller",
+        "target": "cluster"
+      },
+      {
+        "id": "configure",
+        "points": [
+          [
+            1320,
+            690
+          ],
+          [
+            1740,
+            690
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "cluster",
+        "target": "npu"
+      },
+      {
+        "id": "core-access",
+        "points": [
+          [
+            1070,
+            760
+          ],
+          [
+            1070,
+            865
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "cluster",
+        "target": "arbiter"
+      },
+      {
+        "id": "npu-access",
+        "points": [
+          [
+            1840,
+            760
+          ],
+          [
+            1840,
+            865
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "npu",
+        "target": "arbiter"
+      },
+      {
+        "id": "l2-dma",
+        "points": [
+          [
+            490,
+            1098
+          ],
+          [
+            640,
+            1098
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "l2",
+        "target": "dma"
+      },
+      {
+        "id": "dma-l1",
+        "points": [
+          [
+            940,
+            1098
+          ],
+          [
+            1020,
+            1098
+          ],
+          [
+            1020,
+            945
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "dma",
+        "target": "arbiter"
+      },
+      {
+        "id": "tcdm",
+        "points": [
+          [
+            1410,
+            945
+          ],
+          [
+            1410,
+            1035
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "arbiter",
+        "target": "l1"
+      },
+      {
+        "id": "weights",
+        "points": [
+          [
+            2090,
+            1035
+          ],
+          [
+            2090,
+            760
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "nms",
+        "target": "npu"
+      },
+      {
+        "id": "dma-control",
+        "points": [
+          [
+            860,
+            760
+          ],
+          [
+            860,
+            825
+          ],
+          [
+            790,
+            825
+          ],
+          [
+            790,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "cluster",
+        "target": "dma"
+      }
+    ]
+  },
+  {
+    "name": "llm-phases",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "page": {
+        "x": 0,
+        "y": 0,
+        "width": 2400,
+        "height": 1350
+      },
+      "general": {
+        "x": 50,
+        "y": 170,
+        "width": 2300,
+        "height": 570
+      },
+      "input": {
+        "x": 100,
+        "y": 265,
+        "width": 340,
+        "height": 130
+      },
+      "prefill": {
+        "x": 640,
+        "y": 265,
+        "width": 470,
+        "height": 130
+      },
+      "sample": {
+        "x": 1330,
+        "y": 265,
+        "width": 380,
+        "height": 130
+      },
+      "decode": {
+        "x": 1910,
+        "y": 265,
+        "width": 340,
+        "height": 130
+      },
+      "kv": {
+        "x": 670,
+        "y": 550,
+        "width": 750,
+        "height": 130
+      },
+      "out": {
+        "x": 1730,
+        "y": 550,
+        "width": 520,
+        "height": 130
+      },
+      "special": {
+        "x": 50,
+        "y": 805,
+        "width": 2300,
+        "height": 400
+      },
+      "chunks": {
+        "x": 100,
+        "y": 930,
+        "width": 410,
+        "height": 180
+      },
+      "split": {
+        "x": 700,
+        "y": 930,
+        "width": 430,
+        "height": 180
+      },
+      "npu": {
+        "x": 1390,
+        "y": 900,
+        "width": 400,
+        "height": 100
+      },
+      "cpu-gpu": {
+        "x": 1390,
+        "y": 1070,
+        "width": 400,
+        "height": 100
+      },
+      "merge": {
+        "x": 1980,
+        "y": 980,
+        "width": 300,
+        "height": 140
+      }
+    },
+    "arrows": [
+      {
+        "id": "tokens",
+        "points": [
+          [
+            440,
+            330
+          ],
+          [
+            640,
+            330
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "input",
+        "target": "prefill"
+      },
+      {
+        "id": "logits0",
+        "points": [
+          [
+            1110,
+            330
+          ],
+          [
+            1330,
+            330
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "prefill",
+        "target": "sample"
+      },
+      {
+        "id": "next-token",
+        "points": [
+          [
+            1710,
+            300
+          ],
+          [
+            1910,
+            300
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "sample",
+        "target": "decode"
+      },
+      {
+        "id": "logits-loop",
+        "points": [
+          [
+            1910,
+            365
+          ],
+          [
+            1710,
+            365
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "decode",
+        "target": "sample"
+      },
+      {
+        "id": "create-kv",
+        "points": [
+          [
+            875,
+            395
+          ],
+          [
+            875,
+            550
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "prefill",
+        "target": "kv"
+      },
+      {
+        "id": "update-kv",
+        "points": [
+          [
+            2080,
+            395
+          ],
+          [
+            2080,
+            485
+          ],
+          [
+            1310,
+            485
+          ],
+          [
+            1310,
+            550
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "decode",
+        "target": "kv"
+      },
+      {
+        "id": "emit",
+        "points": [
+          [
+            1520,
+            395
+          ],
+          [
+            1520,
+            615
+          ],
+          [
+            1730,
+            615
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "sample",
+        "target": "out"
+      },
+      {
+        "id": "chunk-schedule",
+        "points": [
+          [
+            510,
+            1020
+          ],
+          [
+            700,
+            1020
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "chunks",
+        "target": "split"
+      },
+      {
+        "id": "offload",
+        "points": [
+          [
+            1130,
+            975
+          ],
+          [
+            1260,
+            975
+          ],
+          [
+            1260,
+            950
+          ],
+          [
+            1390,
+            950
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "split",
+        "target": "npu"
+      },
+      {
+        "id": "shadow",
+        "points": [
+          [
+            1130,
+            1065
+          ],
+          [
+            1210,
+            1065
+          ],
+          [
+            1210,
+            1120
+          ],
+          [
+            1390,
+            1120
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "split",
+        "target": "cpu-gpu"
+      },
+      {
+        "id": "partial-npu",
+        "points": [
+          [
+            1790,
+            950
+          ],
+          [
+            1890,
+            950
+          ],
+          [
+            1890,
+            1010
+          ],
+          [
+            1980,
+            1010
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "npu",
+        "target": "merge"
+      },
+      {
+        "id": "partial-cpu",
+        "points": [
+          [
+            1790,
+            1120
+          ],
+          [
+            1900,
+            1120
+          ],
+          [
+            1900,
+            1090
+          ],
+          [
+            1980,
+            1090
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": false,
+        "source": "cpu-gpu",
+        "target": "merge"
+      }
+    ]
+  }
+]

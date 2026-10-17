@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>三种加速器调用方式：相似目标，不同接口</title>
+<defs>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+<marker id="artifact" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#B96043"/></marker>
+</defs>
+<rect id="page" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="1200" y="68" font-family="WenQuanYi Zen Hei" font-size="42" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">三种加速器调用方式：相似目标，不同接口</text>
+<text x="1200" y="117" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">分别取 NVDLA headless Linux、Ethos-U Cortex-M、Gemmini RoCC 路径</text>
+<rect id="nvdlaregion" x="50" y="175" width="730" height="1080" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="415" y="230" font-family="WenQuanYi Zen Hei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">NVDLA</text>
+<rect id="nvdlaapp" x="95" y="270" width="640" height="105" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="415.0" y="313.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nvdlaapp">应用加载 loadable</text>
+<text x="415.0" y="351.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nvdlaapp">绑定输入与输出</text>
+<rect id="nvdlarun" x="95" y="455" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="415.0" y="508.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nvdlarun">用户态运行时 UMD</text>
+<text x="415.0" y="546.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nvdlarun">构造 DLA task</text>
+<rect id="nvdlaif" x="95" y="665" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="415.0" y="718.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nvdlaif">内核驱动 KMD</text>
+<text x="415.0" y="756.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nvdlaif">engine scheduler / 寄存器 / IRQ</text>
+<rect id="nvdlahw" x="95" y="900" width="640" height="130" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="415.0" y="956.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nvdlahw">NVDLA 功能块</text>
+<text x="415.0" y="994.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nvdlahw">DMA / 卷积 / 后处理</text>
+<rect id="nvdlamem" x="95" y="1140" width="640" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="415.0" y="1176.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="nvdlamem">DRAM / 可选片上 SRAM</text>
+<text x="415.0" y="1214.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="nvdlamem">张量缓冲区</text>
+<polyline id="nvdla0" points="415,375 415,455" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="440" y="422.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">运行时 API</text>
+<polyline id="nvdla1" points="415,580 415,665" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="440" y="629.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">提交任务</text>
+<polyline id="nvdla2" points="415,790 415,900" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)"/>
+<text x="440" y="852.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">配置 / 完成</text>
+<polyline id="nvdladata" points="415,1030 415,1140" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="440" y="1094" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">数据访问</text>
+<rect id="armregion" x="835" y="175" width="730" height="1080" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="1200" y="230" font-family="WenQuanYi Zen Hei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">Arm Ethos-U</text>
+<rect id="armapp" x="880" y="270" width="640" height="105" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="1200.0" y="313.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="armapp">应用执行 TFLite 模型</text>
+<text x="1200.0" y="351.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="armapp">Vela 生成 NPU 子图</text>
+<rect id="armrun" x="880" y="455" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1200.0" y="508.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="armrun">TFLM 与 CPU kernels</text>
+<text x="1200.0" y="546.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="armrun">CPU 算子 / Ethos-U custom op</text>
+<rect id="armif" x="880" y="665" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1200.0" y="718.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="armif">Ethos-U core driver</text>
+<text x="1200.0" y="756.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="armif">命令流 / 区域基址 / 中断处理</text>
+<rect id="armhw" x="880" y="900" width="640" height="130" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1200.0" y="956.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="armhw">Ethos-U NPU</text>
+<text x="1200.0" y="994.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="armhw">执行已编译的命令流</text>
+<rect id="armmem" x="880" y="1140" width="640" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="1200.0" y="1176.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="armmem">平台内存 / tensor arena</text>
+<text x="1200.0" y="1214.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="armmem">常量 / 激活 / scratch</text>
+<polyline id="arm0" points="1200,375 1200,455" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1225" y="422.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">Invoke</text>
+<polyline id="arm1" points="1200,580 1200,665" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="1225" y="629.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">custom op 调用</text>
+<polyline id="arm2" points="1200,790 1200,900" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)"/>
+<text x="1225" y="852.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">启动 / 完成</text>
+<polyline id="armdata" points="1200,1030 1200,1140" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="1225" y="1094" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">数据访问</text>
+<rect id="gemminiregion" x="1620" y="175" width="730" height="1080" fill="#F5F7F9" stroke="#29292D" stroke-width="2"/>
+<text x="1985" y="230" font-family="WenQuanYi Zen Hei" font-size="34" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="">Gemmini</text>
+<rect id="gemminiapp" x="1665" y="270" width="640" height="105" fill="#FFFFFF" stroke="#29292D" stroke-width="2"/>
+<text x="1985.0" y="313.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="gemminiapp">RISC-V 应用 / 算子库</text>
+<text x="1985.0" y="351.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="gemminiapp">矩阵 / 卷积 / 可选框架适配</text>
+<rect id="gemminirun" x="1665" y="455" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1985.0" y="508.5" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="gemminirun">C 宏与分块算子</text>
+<text x="1985.0" y="546.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="gemminirun">配置 / mvin / compute / mvout</text>
+<rect id="gemminiif" x="1665" y="665" width="640" height="125" fill="#E8DFED" stroke="#29292D" stroke-width="2"/>
+<text x="1985.0" y="718.5" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="gemminiif">CPU 自定义指令 → RoCC</text>
+<text x="1985.0" y="756.5" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="gemminiif">Gemmini 命令与同步</text>
+<rect id="gemminihw" x="1665" y="900" width="640" height="130" fill="#F1D7D9" stroke="#29292D" stroke-width="2"/>
+<text x="1985.0" y="956.0" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="gemminihw">Gemmini 阵列与本地存储</text>
+<text x="1985.0" y="994.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="gemminihw">scratchpad / accumulator</text>
+<rect id="gemminimem" x="1665" y="1140" width="640" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="2"/>
+<text x="1985.0" y="1176.0" font-family="WenQuanYi Zen Hei" font-size="28" font-weight="bold" text-anchor="middle" fill="#29292D" data-owner="gemminimem">SoC 主存层次</text>
+<text x="1985.0" y="1214.0" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="normal" text-anchor="middle" fill="#29292D" data-owner="gemminimem">经 DMA 与 TileLink 访问</text>
+<polyline id="gemmini0" points="1985,375 1985,455" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="2010" y="422.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">库函数</text>
+<polyline id="gemmini1" points="1985,580 1985,665" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="2010" y="629.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">发射指令</text>
+<polyline id="gemmini2" points="1985,790 1985,900" fill="none" stroke="#765489" stroke-width="3" stroke-linejoin="miter" marker-end="url(#control)"/>
+<text x="2010" y="852.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#765489" data-owner="">执行命令</text>
+<polyline id="gemminidata" points="1985,1030 1985,1140" fill="none" stroke="#314D66" stroke-width="3" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)"/>
+<text x="2010" y="1094" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="normal" text-anchor="start" fill="#314D66" data-owner="">数据访问</text>
+<text x="1200" y="1310" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="normal" text-anchor="middle" fill="#606773" data-owner="">紫：调用 / 指令 / 控制    蓝灰：数据；各列省略 CPU 的普通访存，三者不是同一总线接口。</text>
+</svg>

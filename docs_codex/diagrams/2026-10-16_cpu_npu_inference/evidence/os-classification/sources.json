@@ -1,0 +1,58 @@
+{
+  "access_date": "2026-10-16",
+  "method": "官方网页及论文定向阅读；未执行 SDK 或目标程序。版本未另列者继承正文对应案例版本。",
+  "sources": [
+    {
+      "url": "https://developers.google.com/edge/litert/microcontrollers/overview",
+      "version": "页面标注更新于 2026-05-28；用于说明框架职责，不替代 Ethos-U 案例版本",
+      "location": "概述、Workflow",
+      "finding": "微控制器运行库不要求 OS；以 C++ 库执行模型。"
+    },
+    {
+      "url": "https://developer.android.com/guide/platform",
+      "version": "页面标注更新于 2024-05-20",
+      "location": "Linux kernel、HAL、Native C/C++ libraries",
+      "finding": "Android 基于 Linux 内核；用户空间还有 Android 自身的软件层。"
+    },
+    {
+      "url": "https://github.com/riscv-software-src/riscv-pk",
+      "version": "访问日 README；只引用 pk 的定义，不主张其与本文 Gemmini 版本已匹配",
+      "location": "About",
+      "finding": "pk 为静态 RISC-V ELF 提供轻量执行环境并将 I/O 系统调用代理至主机；与用于承载 Linux 的 bbl 分开说明。"
+    },
+    {
+      "url": "https://nvdla.org/sw/test_application.html",
+      "location": "首段与 Runtime sample application",
+      "finding": "参考编译器和运行时测试程序经过 Linux 验证。"
+    },
+    {
+      "url": "https://nvdla.org/sw/runtime_environment.html",
+      "location": "Portability Layer、User Mode Driver、Kernel Mode Driver",
+      "finding": "平台层区分 Linux 系统接口与单进程环境下的函数调用，逻辑职责不等于固定 OS 实现。"
+    },
+    {
+      "url": "https://arm-software.github.io/CMSIS-Ethos-U/main/driver/index.html",
+      "location": "Mutex and semaphore",
+      "finding": "默认同步面向单线程裸机；CMSIS-RTOS2 与 FreeRTOS 提供模板，RTOS/多核需适配。"
+    },
+    {
+      "url": "https://docs.pytorch.org/executorch/1.0/backends-qualcomm.html",
+      "version": "ExecuTorch 1.0；沿用正文 QNN 2.37.0",
+      "location": "Prerequisites、Running on Android",
+      "finding": "本文采用的教程以 Ubuntu 为开发主机、Android 手机为目标；不能从主机 OS 推导目标为普通 Embedded Linux。"
+    },
+    {
+      "url": "https://arxiv.org/html/2408.04413v1",
+      "version": "2408.04413v1",
+      "location": "Abstract、Introduction 与部署流程",
+      "finding": "Deeploy 明确以生成裸机代码为目标；生成程序含调度与运行支持不构成 RTOS 的证据。"
+    },
+    {
+      "url": "https://arxiv.org/html/2407.05858v2",
+      "version": "2407.05858v2",
+      "location": "§4、§4.1、§4.6、§5",
+      "finding": "实现采用 MLLM 与 QNN，Android 13，CPU＋NPU；decode 用 MLLM CPU 后端。GPU 联合调度为模拟，非实际三处理器协同。"
+    }
+  ],
+  "correction": "旧正文将 llm.npu 的 CPU/GPU/NPU 设计兼容范围写成实际执行范围。现以论文实现与评估章节为准；图 4 保留设计归纳，图注明确实际 CPU＋NPU 和 GPU 模拟边界。"
+}

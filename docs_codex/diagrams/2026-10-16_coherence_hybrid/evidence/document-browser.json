@@ -1,0 +1,78 @@
+{
+  "status": "pass",
+  "documents": [
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/ownership.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/data-paths.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 方案定位与数据连接",
+        "2. 一次推理如何交接输入与输出",
+        "3. 软件接口与硬件完成协议",
+        "4. 维护开销与数据路径取舍",
+        "5. 源码依据、验收与待定接口"
+      ],
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "sha256": "fb5807e4c6de977a83f4427b86c8aecc0cd022487d28daa7c9e69ecc33b5b841"
+    },
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-16_coherence_survey/previews/cohmeleon-modes.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/handover.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/coverage.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/agent-types.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_survey/previews/nvdla-system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_survey/previews/gemmini-system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_survey/previews/cohmeleon-concurrency.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_coherence_hybrid/previews/data-paths.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 先沿一次推理看清问题",
+        "2. 用同一布局比较机制与项目候选",
+        "3. 工业界怎样落地",
+        "4. 开源与学术界怎样扩展这些方案",
+        "5. 对 Cheshire＋CVA6＋Ara＋GB 的启示"
+      ],
+      "source": "docs_codex/engineering/CPU_NPU_Cache_Coherence_Survey.md",
+      "sha256": "1d896d943537a67f40e99a483733679cf73f9fea19161fea6b37ab478a7a6c13"
+    }
+  ],
+  "chrome": "Google Chrome 151.0.7922.108"
+}

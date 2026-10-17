@@ -1,0 +1,592 @@
+{
+  "status": "pass",
+  "date": "2026-10-17",
+  "source_sha256": "92c80e25bc9bb5d444dfa3269997e1b0c78168885ac4d627fd92e9cebaa9dc8b",
+  "output_sha256": "8bcb29406be46434cf4b3429d560994145729627be61f6d051a455c6a33f4385",
+  "pages": 4,
+  "pages1_to3_and_dependencies_byte_identical": true,
+  "pages1_to3_svg_png_byte_identical": true,
+  "all_existing_theme_layout_master_parts_byte_identical": true,
+  "retained_box_fill_parity": {
+    "compute": "#F1D7D9",
+    "cva6": "#D8E8F4",
+    "ara": "#D8E8F4",
+    "ara-filter": "#D8E8F4",
+    "ara-width": "#D8E8F4",
+    "gb-region": "#D9EEE8",
+    "npu": "#F1D7D9",
+    "gb-adapter": "#FFFFFF",
+    "global-buffer": "#D9EEE8",
+    "gb-mover": "#D8E8F4",
+    "image-rx": "#F5E1C9",
+    "lvds-rx": "#FFFFFF",
+    "rx-cdc": "#FFFFFF",
+    "isp": "#F1D7D9",
+    "frame-select": "#FFFFFF",
+    "frame-dma": "#FFFFFF",
+    "axi-crossbar": "#DAE3F3",
+    "debug-sba": "#D8E8F4",
+    "idma-master": "#D8E8F4",
+    "slink-rx": "#D8E8F4",
+    "vga": "#D8E8F4",
+    "usb-dma": "#D8E8F4",
+    "ext-master": "#F5F5F7",
+    "debug-target": "#D8E8F4",
+    "reg-bridge": "#E8DFED",
+    "memory-target": "#D8E8F4",
+    "atomics": "#FFFFFF",
+    "llc-spm": "#FFFFFF",
+    "idma-config": "#D8E8F4",
+    "slink-tx": "#D8E8F4",
+    "gb-interface": "#D9EEE8",
+    "ext-target": "#F5F5F7",
+    "reg-region": "#FAF8FB",
+    "regbus": "#E8DFED",
+    "ddr-controller": "#D8E8F4",
+    "ddr-phy": "#E8DFED",
+    "ddr-device": "#EAECEE",
+    "pll": "#F5E1C9",
+    "config-C1": "#E8DFED",
+    "config-C2": "#E8DFED",
+    "config-C3": "#E8DFED",
+    "config-C4": "#E8DFED",
+    "config-C5": "#E8DFED",
+    "config-C6": "#E8DFED",
+    "config-C7": "#E8DFED",
+    "config-C8": "#E8DFED",
+    "config-C9": "#E8DFED",
+    "bootrom": "#FFFFFF",
+    "uart": "#FFFFFF",
+    "vga-regs": "#FFFFFF",
+    "irq-router": "#FFFFFF",
+    "clint": "#FFFFFF",
+    "i2c": "#FFFFFF",
+    "usb-regs": "#FFFFFF",
+    "axi-rt-config": "#FFFFFF",
+    "soc-regs": "#FFFFFF",
+    "spi": "#FFFFFF",
+    "err-vga": "#FFFFFF",
+    "clic": "#FFFFFF",
+    "plic": "#FFFFFF",
+    "gpio": "#FFFFFF",
+    "err-dma": "#FFFFFF",
+    "reg-error": "#FFFFFF",
+    "llc-regs": "#FFFFFF",
+    "slink-regs": "#FFFFFF",
+    "err-cpu": "#FFFFFF",
+    "reg-ext": "#FFFFFF"
+  },
+  "pll_position_matches_slide3": true,
+  "config_bindings": {
+    "C1": {
+      "module": "pll",
+      "label": [
+        "PLL / 时钟",
+        "复位"
+      ]
+    },
+    "C2": {
+      "module": "ddr-controller",
+      "label": [
+        "DDR",
+        "Controller"
+      ]
+    },
+    "C3": {
+      "module": "ddr-phy",
+      "label": [
+        "DDR",
+        "PHY"
+      ]
+    },
+    "C4": {
+      "module": "lvds-rx",
+      "label": [
+        "LVDS",
+        "RX"
+      ]
+    },
+    "C5": {
+      "module": "isp",
+      "label": [
+        "ISP"
+      ]
+    },
+    "C6": {
+      "module": "npu",
+      "label": [
+        "NPU",
+        "计算"
+      ]
+    },
+    "C7": {
+      "module": "gb-mover",
+      "label": [
+        "NPU / GB",
+        "搬运"
+      ]
+    },
+    "C8": {
+      "module": "frame-dma",
+      "label": [
+        "帧写入",
+        "DMA"
+      ]
+    },
+    "C9": {
+      "module": "global-buffer",
+      "label": [
+        "GB",
+        "管理"
+      ]
+    },
+    "C10": {
+      "module": "emmc-host",
+      "label": [
+        "eMMC Host",
+        "/ DMA"
+      ]
+    },
+    "C11": {
+      "module": "roi-scheduler",
+      "label": [
+        "ROI 任务",
+        "/ 调度"
+      ]
+    },
+    "C12": {
+      "module": "front-adapt",
+      "label": [
+        "前端公共",
+        "控制"
+      ]
+    },
+    "C13": {
+      "module": "roi-vdma",
+      "label": [
+        "帧输出",
+        "VDMA"
+      ]
+    },
+    "C14": {
+      "module": "lvds-tx",
+      "label": [
+        "LVDS",
+        "TX"
+      ]
+    },
+    "C15": {
+      "module": "compressor",
+      "label": [
+        "压缩器"
+      ]
+    },
+    "C16": {
+      "module": "decompressor",
+      "label": [
+        "解压器"
+      ]
+    }
+  },
+  "one_regext_trunk_C1_to_C16": true,
+  "channel_paths": {
+    "AR_AW": [
+      "front-adapt",
+      "address-control",
+      "front-route"
+    ],
+    "W_compressed": [
+      "front-adapt",
+      "compressor",
+      "front-route"
+    ],
+    "R_decoded": [
+      "front-route",
+      "decompressor",
+      "front-adapt"
+    ],
+    "B": [
+      "front-route",
+      "front-adapt"
+    ],
+    "raw_write": [
+      "front-adapt",
+      "plain-bypass",
+      "front-route"
+    ],
+    "raw_read": [
+      "front-route",
+      "plain-bypass",
+      "front-adapt"
+    ]
+  },
+  "F3_single_request_interface": true,
+  "removed_title_irq_external_config_lines": true,
+  "roi_vertical_chain": true,
+  "lvds_offchip_peers_both_omitted": true,
+  "changed_existing_package_parts": [
+    "ppt/slides/slide4.xml"
+  ],
+  "native_save_reopen": "pass",
+  "relationships": "pass",
+  "retained_functional_modules": [
+    "cva6",
+    "ara",
+    "ara-filter",
+    "ara-width",
+    "npu",
+    "gb-adapter",
+    "global-buffer",
+    "gb-mover",
+    "lvds-rx",
+    "rx-cdc",
+    "isp",
+    "frame-select",
+    "frame-dma",
+    "pll",
+    "axi-crossbar",
+    "debug-sba",
+    "idma-master",
+    "slink-rx",
+    "vga",
+    "usb-dma",
+    "ext-master",
+    "debug-target",
+    "reg-bridge",
+    "memory-target",
+    "atomics",
+    "llc-spm",
+    "idma-config",
+    "slink-tx",
+    "gb-interface",
+    "ext-target",
+    "regbus",
+    "ddr-controller",
+    "ddr-arb",
+    "ddr-rw",
+    "ddr-command",
+    "ddr-phy",
+    "ddr-device"
+  ],
+  "register_and_configuration_targets": 36,
+  "top_ports": [
+    "S0",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S_EXT"
+  ],
+  "bottom_ports": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M_EXT"
+  ],
+  "both_port_rows_uniform": true,
+  "critical_connections": {
+    "emmc-physical": [
+      "emmc-device",
+      "emmc-host"
+    ],
+    "master-7": [
+      "emmc-host",
+      "xbar-in-S7"
+    ],
+    "target-5": [
+      "xbar-out-M5",
+      "gb-interface"
+    ],
+    "m5-gb": [
+      "gb-interface",
+      "gb-adapter"
+    ],
+    "adapter-sram": [
+      "gb-adapter",
+      "global-buffer"
+    ],
+    "isp-gb": [
+      "isp",
+      "gb-adapter"
+    ],
+    "roi-vdma-control": [
+      "roi-scheduler",
+      "roi-vdma"
+    ],
+    "vdma-pixels": [
+      "roi-vdma",
+      "roi-fifo"
+    ],
+    "fifo-lvds": [
+      "roi-fifo",
+      "lvds-tx"
+    ],
+    "llc-f0": [
+      "llc-spm",
+      "front-F0"
+    ],
+    "mover-f1": [
+      "gb-mover",
+      "front-F1"
+    ],
+    "frame-f2": [
+      "frame-dma",
+      "front-F2"
+    ],
+    "roi-f3-request": [
+      "roi-vdma",
+      "front-F3"
+    ]
+  },
+  "four_independent_ddr_paths": "F0→DDR.S0 / F1→DDR.S1 / F2→DDR.S2 / F3→DDR.S3",
+  "shared_encoder_decoder_bypass": "pass",
+  "all_native_paths_continuous": "pass",
+  "all_module_endpoints": "pass",
+  "layout": {
+    "text_outside_owner": [],
+    "text_overlap": [],
+    "line_through_text": [],
+    "line_through_box": []
+  },
+  "explicit_crossing_bridges": 9,
+  "slides": [
+    {
+      "objects": 384,
+      "native_arrows": 71,
+      "native_dashes": 28,
+      "text_objects": 195
+    },
+    {
+      "objects": 386,
+      "native_arrows": 71,
+      "native_dashes": 26,
+      "text_objects": 196
+    },
+    {
+      "objects": 386,
+      "native_arrows": 71,
+      "native_dashes": 26,
+      "text_objects": 196
+    },
+    {
+      "objects": 541,
+      "native_arrows": 98,
+      "native_dashes": 29,
+      "text_objects": 240
+    }
+  ],
+  "protected_files": {
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/build.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/build_page4.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/inspect_page4.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/preview_deck.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/preview_deck_colours.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/validate_page4.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/append_uniform_page.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/validate_page3.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/revise_page4_layout.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/validate.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/validate_page4_layout.py": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-delivery.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-delivery.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/roundtrip.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-delivery.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/check_iterations.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-validation.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-validation.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/delivery_checks.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-input.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-validation.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-check-02.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-01.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-validation.roundtrip.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-03.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/input.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-validation.roundtrip.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-validation.roundtrip.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/validation.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-02.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-input.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-input.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/colour_map.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/extension-pll-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/crossbar-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/memory-roi-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/regbus-config-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-03/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-before/L01_global_buffer_cpu_access.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-before/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-before/README.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-preview-02/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-01/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-01/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/m4-m5-ext-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/gb-route-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/preview-01/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/page3-connections.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/compression-ddr-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/gb-adapter-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/emmc-roi-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/regbus-irq-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-04/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/page3-connections.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-01/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-before/L01_global_buffer_cpu_access.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-before/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-before/README.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/colour_map.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-03/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-03/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-03/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-03/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-03/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/compression-ddr-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/emmc-roi-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/regbus-irq-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-preview-02/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/slide-04.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-before/L01_global_buffer_cpu_access.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-before/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-before/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-before/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-before/README.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-01.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-02.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/gb-input-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/target-row-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-preview-01/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-03.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-03.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/extension-pll-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-04.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/crossbar-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/memory-roi-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/regbus-config-detail.png": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-01.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-02.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/slide-04.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-final-preview/preview_layout.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/before/L01_global_buffer_cpu_access.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/edit_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/m5-connections.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/native-overlay/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/native-overlay/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/build-01/native-overlay/m5-connections.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-04/native/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-01/native/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-02/native/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-02/native/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/native-overlay/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/native-overlay/page3-connections.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-02/native-overlay/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/native-overlay/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/native-overlay/page3-connections.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-build-01/native-overlay/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-build-03/native/diagrams.pptx": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/native/slide-04.editable.svg": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/native/export_report.json": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-build-03/native/diagrams.pptx": true,
+    "docs_codex/PROJECT_STATE.md": true,
+    "docs_codex/AGENT_TASKS.md": true,
+    "docs_codex/engineering/Global_Buffer_CPU_Access.md": true,
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md": true,
+    "docs_codex/engineering/DDR_GB_Coherence_Design.md": true,
+    "docs_codex/engineering/DDR_Supplier_Coherence_Questions.md": true,
+    "hw/cheshire_soc.sv": true,
+    "hw/cheshire_pkg.sv": true
+  },
+  "office_application_tested": false,
+  "hardware_tested": false,
+  "preview_type": "explicit DrawingML geometry and local font substitution, not Office screenshots"
+}

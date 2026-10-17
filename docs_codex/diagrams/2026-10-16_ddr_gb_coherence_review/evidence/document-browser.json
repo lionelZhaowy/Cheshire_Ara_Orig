@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "documents": [
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/versions.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-16_ddr_gb_coherence_review/previews/timeline.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 一次裸机推理由 CPU、搬运器和 NPU 共同完成",
+        "2. CPU 与设备可能读到同一地址的不同版本",
+        "3. 软件确定交接时机，硬件完成缓存维护",
+        "4. 输入维护使设备从 DDR 取得最新数据",
+        "5. 输出维护保护未覆盖字节，并让 CPU 读取新结果",
+        "6. 裸机程序用显式同步串起完整推理",
+        "7. 范围维护引擎连接现有缓存与搬运控制",
+        "8. 同步范围和交接频率决定维护开销"
+      ],
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "sha256": "487683bb133ddcf10584c1123baec3620910e64a5f6a4eddc0690f67e0cf1373"
+    }
+  ],
+  "chrome": "Google Chrome 151.0.7922.108"
+}
