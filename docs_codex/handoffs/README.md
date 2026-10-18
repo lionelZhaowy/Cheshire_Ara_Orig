@@ -4,6 +4,10 @@
 
 ## 当前主题入口
 
+- [实施难点专题与 13 幅图稿](L01_implementation_challenges.md)：已有讨论、当前未决项、责任和验收门槛；仅文档/图稿交付。
+
+- [三人团队分工与投片排期](C00_team_execution_plan.md)：正式分工、阶段门槛和进度对照见[工程文档](../engineering/Team_Responsibilities_and_Tapeout_Schedule.md)；日期为条件排期，工程未验收。
+
 - [RTL模块指南](L01_rtl_module_guide.md)：21篇正文、24张正式A图；B弃用、C未采用，历史试绘已归档。
 
 - [文档目录分类与精简](L01_documentation_organization.md)：顶层 L01 过程资料迁入维护目录，旧 Prompt 与当前任务入口分开。

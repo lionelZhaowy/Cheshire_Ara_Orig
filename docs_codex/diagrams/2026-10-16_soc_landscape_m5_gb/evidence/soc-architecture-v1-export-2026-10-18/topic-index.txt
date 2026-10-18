@@ -1,0 +1,318 @@
+docs_codex/EXTERNAL_DEVICES_AND_INTERFACES.md:41:| [impl_ip.tcl](../target/xilinx/scripts/impl_ip.tcl) | Vivado DDR IP 创建及板型参数；VCU118 为 MT40A256M16LY-062E，VCU128 为 MT40A512M16HA-075E |
+docs_codex/EXTERNAL_DEVICES_AND_INTERFACES.md:42:| [genesys2.mig7s.prj](../target/xilinx/src/ips/genesys2.mig7s.prj) | Genesys2 DDR3 配置 MT41J256m16XX-107 |
+docs_codex/EXTERNAL_DEVICES_AND_INTERFACES.md:71:4. 初始化代码及栈先位于可用 ROM/SPM，DDR 就绪并按要求检查后，才放行访问或往其中装程序、切栈。官方 Platform ROM 钩子适合平台早期配置；当前返回路径缺陷 S01-B01 及栈对齐复核仍需处理，见 [平台约定](03_Platform_ROM_Clock_IP_Configuration.md)。
+docs_codex/EXTERNAL_DEVICES_AND_INTERFACES.md:158:| Platform ROM | [官方随附集成说明](../docs/tg/integr.md)、[平台约定](03_Platform_ROM_Clock_IP_Configuration.md) | Cheshire 外围的平台启动入口，不必位于芯片外；当前返回路径缺陷及栈问题未验收 |
+docs_codex/EXTERNAL_DEVICES_AND_INTERFACES.md:178:- [Cheshire 官方系统集成](https://pulp-platform.github.io/cheshire/tg/integr/)：外部系统集成、VIP 与 Platform ROM。
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:1:# Platform ROM、安全启动时钟与 IP 配置约定
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:5:本文记录用户已确认的设计方向及待修复项，不是 RTL 或固件实现报告。当前输入为分支 `mp/ara-pulp-v2`、HEAD `5ddec4fb4`；实施前须重新核对源码、依赖、工作区和 IP 资料。
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:7:## 1. 用户确认与适用原则
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:12:2. 采用 Cheshire 官方 Platform ROM 钩子进行平台初始化：以安全启动频率配置 PLL，并考虑完成其他 IP 的必要配置。
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:14:4. 上轮发现的 Platform ROM 返回缺陷登记后续修复，本轮不实施代码修改。
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:22:官方 [SoC Integration / Platform ROM](https://pulp-platform.github.io/cheshire/tg/integr/#platform-rom) 允许在外部交互前初始化 clock sources、IO pads、memories、PHYs，以及扩展或改写启动流程。它提供钩子，没有给本项目交付具体 PLL、DDR 或 MIPI 初始化程序。
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:31:| 系统启动时钟 | `cheshire_soc.clk_i` 为外部输入；CVA6、互连、LLC、ROM 访问逻辑须先具备可用时钟，Platform ROM 由同一个 CPU 执行 |
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:44:  → Platform ROM：安全启动 PLL、必要 PAD/复位/IP 配置与检查
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:57:### 3.2 Platform ROM
+docs_codex/03_Platform_ROM_Clock_IP_Configuration.md:87:## 5. S01-B01：Platform ROM 普通返回缺陷
+docs_codex/configuration/README.md:95:本轮发现的消费者差异与待核查项集中在 [修改流程的已知缺口](RECIPES.md#6-本轮静态发现与待验证项)，包括仿真 profile/decoder、Serial Link 分频字段、SPM 执行属性、DMA 1D busy、VGA 错误追踪容量。没有顺手修改 RTL。
+docs_codex/02_Cheshire_Ara_ASIC_Extraction_Handoff.md:162:    source_manifest.tsv           # 新路径、原路径、组件、版本、SHA256、用途
+docs_codex/02_Cheshire_Ara_ASIC_Extraction_Handoff.md:249:**“不缓存”是待实现和验证的系统属性，不是写个 C 指针修饰符就成立。**必须检查 CVA6 的可缓存范围/属性产生、Ara 路径、LLC 地址规则和新 DDR 路由。Linux 以后也不能只设置 PTE 或 `volatile` 就默认整个系统都不缓存。
+docs_codex/02_Cheshire_Ara_ASIC_Extraction_Handoff.md:318:> 在保留当前工程不变的前提下，按本文在仓库内创建可独立搬迁的 `cheshire_ara_asic/`。第一阶段只实现固定 `cv64a6_imafdcv_sv39` + Ara 2 lanes / VLEN 2048 的源码剥离、静态 filelist、通用 SoC wrapper、最小软件与仿真闭环。允许把本地 Bender 当作一次性离线依赖解析器，不要升级依赖、修复旧工程所有脚本或新建包管理框架。保留来源/许可证/头文件/DPI/生成 RTL。不要把 VCU118 专用器件带进 ASIC RTL。不要同时改变 CPU profile、内存映射、缓存拓扑和启动协议。先给出新目录的实际编译/仿真结果，再进行用户确认的外设裁切与 NPU/ISP DDR 旁路改造；明确所有未验证项。
+docs_codex/software/LAYERS_AND_TOOLS.md:57:| 图像输入、ISP、NPU | 规划中的自定义模块与软件接口 | 当前没有完整的本工程集成、驱动和验收脚本；图中虚线表示待实现 |
+docs_codex/engineering/Edge_LLM_OS_Selection.md:142:| 官方启动组织 | [Cheshire 软件说明](../../docs/um/sw.md) 描述 ZSL→OpenSBI/U-Boot→Linux；[平台约定](../03_Platform_ROM_Clock_IP_Configuration.md)规定本项目早期初始化方向 | DDR 就绪、DTB、固件、根文件系统和完整启动仍待验收；Platform ROM 的既有缺口另行修复 |
+docs_codex/engineering/Cache_Coherence_Architecture.md:23:![DDR 三口互连与范围维护引擎](../diagrams/2026-10-16_coherence_hybrid/previews/system.png)
+docs_codex/engineering/Cache_Coherence_Architecture.md:29:这些连接表达既有规划；生产源码中的 GB 分支、范围维护引擎和通用探测服务仍待实现。主 Xbar 保持 64-bit 的既有要求，DDR IP 的实际端口能力、容量和时钟按原契约评审。
+docs_codex/engineering/Cache_Coherence_Architecture.md:84:当前向量 L1D 为 **8 KiB、4 路、32 B 行，共 256 条缓存行**。WT 减少了 L1D 脏行供数职责，但查询 tag、更新有效位、排空写缓冲仍会占用资源。当前行写／失效与读授权共享资源；已有 Ara 外部失效按索引清除该组全部 way，扩展时应评估 tag 匹配后的定向失效，以减少无关行被驱逐。
+docs_codex/engineering/Cache_Coherence_Architecture.md:94:1 MiB 范围包含 32768 个 32 B 块，而当前 L1D 只有 256 个驻留位置。扫描驻留 tag 可能减少大范围的检查量；实际周期还取决于 way 并行度、端口竞争和在途事务。LLC 当前按 way 维护并隔离入口，直接频繁调用这一机制可能成为主要停顿来源。上述为结构分析，面积、频率和性能比例需要综合与负载测量。
+docs_codex/engineering/ASIC_Adaptation_and_Evidence.md:11:- **用户确认**：迁移为独立静态清单工程；DDR 可提供 AXI4；NPU/ISP 要求绕过 LLC；沿 Platform ROM 钩子完成安全启动配置并保留运行时配置接口。具体工艺、宏、PLL/PAD、频率与域划分未冻结。
+docs_codex/engineering/ASIC_Adaptation_and_Evidence.md:50:平台硬件先建立安全时钟/复位和可取指路径；保留 LLC 时 Boot ROM 准备 SPM/栈；Platform ROM 才能配置依赖这些资源的 IP。运行时同一控制口需要支持再次配置，但任意参数重写是否允许、作用范围和完成状态必须由 IP 规定。详细教学在 [正常调频](../learning/clocks.html#normal-frequency-change)与 [域重启](../learning/reset.html#transaction-reset)。
+docs_codex/engineering/ASIC_Adaptation_and_Evidence.md:54:当前接线的三个边界必须保留：[FPGA top](../../target/xilinx/src/cheshire_top_xilinx.sv) 的 `i_clkwiz.locked()` 未接；[DDR wrapper](../../target/xilinx/src/dram_wrapper_xilinx.sv) 的两种 MIG `init_calib_complete()` 输出未接；[SoC](../../hw/cheshire_soc.sv) 的 `i_dbg_dm_top.ndmreset_o()` 未用。它们说明尚无相应完整控制闭环证据，**不是本轮观测到启动必然失败**。非零 Platform ROM 返回问题继续引用 [S01-B01](../03_Platform_ROM_Clock_IP_Configuration.md#s01-b01)。
+docs_codex/engineering/CPU_NPU_Cache_Coherence_Survey.md:114:图 4：Cohmeleon Fig. 3，蓝柱为执行时间，红柱为片外访问量，均越低越好。实验采用约 256 KB 负载，FFT、Night-vision、Sort、SPMV 各三个实例，比较 1／4／8／12 个并发；各类结果先相对各自“单实例、非一致性 DMA”归一化，再取平均。缓存配置为 32 KB 私有缓存、1 MB 分区 LLC。该图衡量混合加速器竞争。[原文 §3](https://arxiv.org/html/2109.06382v1#S3) · [原始 SVG](../diagrams/2026-10-16_coherence_survey/originals/cohmeleon-concurrency.svg)
+docs_codex/engineering/DDR_GB_Coherence_Design.md:7:2026-10-16，L01 设计说明，已纳入本轮独立评审及答疑修订；源码基准为 `mp/ara-pulp-v2` / `322bd6ce9`。连接方向沿用用户已确认需求，维护接口为待实现设计。当前源码提供部分缓存维护机制，GB、设备旁路和通用范围维护服务仍需集成与验证。正文中的裸机程序是说明接口语义的伪代码。 本轮修订 Markdown 与图注，图稿目录内原 HTML 阅读预览保留为修订前快照。
+docs_codex/engineering/DDR_GB_Coherence_Design.md:97:迟到响应的风险可用四步说明：①缓存读请求先取得 `y=0`；②响应受背压暂存；③设备把 DDR 改为 `y=9`；④旧响应随后到达，仍携带 0。这里指 CPU 缓存层次的回填响应，其数据在第①步已经确定。若先失效再允许第④步安装，就会恢复旧副本。这是需要防护的条件性竞争，当前路径是否允许该交错尚待验证；完整的写前排空会排除相应的交接前请求，写后维护则收束其余允许发生的在途访问。
+docs_codex/engineering/DDR_GB_Coherence_Design.md:192:`DRAIN` 排空后先返回 `IDLE`，再检查 flush 请求并进入 `FLUSH`，所以请求应保持有效或被可靠锁存。读控制器还有等待接受、取消后等待响应等状态；实现排空条件时须覆盖这些已接受请求，不能只检查 MSHR。用户已确认维护窗口和握手需要实现，具体职责如下，信号名称及编码留待接口规格确定：
+docs_codex/engineering/DDR_GB_Coherence_Design.md:218:L1D 纳入探测后，主要成本来自 tag 查询、有效位更新、写缓冲排空和冲突处理。当前缓存行写入／失效与读请求共享资源，维护可能使 CPU 等待。当前向量 L1D 为 8 KiB、4 路、32 B 行，共 256 个驻留位置；旧失效机制清除索引下全部 way，还可能驱逐无关数据。定向匹配可以减少这部分重填成本。
+docs_codex/engineering/DDR_GB_Coherence_Design.md:220:查询策略也影响大块同步。1 MiB 输入包含 32768 个 32 B 块，逐地址探测需要检查许多未驻留地址；扫描 256 个驻留 tag 再筛选范围，可能更经济。实际周期取决于 way 的并行度、端口仲裁和在途事务，扫描期间也必须协调新增驻留。小范围则可能直接逐行查询更简单。
+docs_codex/engineering/DDR_GB_Coherence_Design.md:234:**源码与进一步阅读。** 缓存配置见[向量 profile](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv)和[SoC 参数](../../hw/cheshire_pkg.sv)；FENCE 分支见[controller](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv)；Ara 失效链见[SoC 接线](../../hw/cheshire_soc.sv)、[WT AXI adapter](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv)与[missunit](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv)；端口争用见[cache memory](../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_mem.sv)，way 维护见[LLC config](../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv)。外部方案可继续阅读[工业与学术综述](CPU_NPU_Cache_Coherence_Survey.md)。前轮已进行源码及图稿核对，本轮仅更新 Markdown 并检查文档链接与文件保护；硬件性能与上述并发验收留待实现后执行，记录见[主题交接](../handoffs/L01_cache_coherence_architecture.md)。
+docs_codex/engineering/DDR_Supplier_Coherence_Questions.md:5:2026-10-16，L01 按用户要求整理，供 M01/S01/V01 开会使用。已核对用户提供的 INNOSILICON Controller Datasheet V2.1（September 2024，61 页）；以下区分手册已明确的能力、文档疑点和待供应商补充的行为。尚未取得会议答复或交付 RTL 验证结果。
+docs_codex/engineering/Global_Buffer_CPU_Access.md:3:2026-10-16 更新，L01 架构决策与图稿。输入：`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`。**用户已选择保持 Ara 2 lanes，CPU 与 Ara 通过主 AXI Xbar 的同一 GB 目标出口访问 GB，取消 Ara 独立分流支路。** 本页记录已确认的拓扑；生产 RTL、GB 地址/适配及性能验收尚未实施。2026-10-15 的两方案比较保留为历史依据。
+docs_codex/engineering/Global_Buffer_CPU_Access.md:72:GB 目标适配、仲裁及所有权仍是新增需求，尚无本工程完整实现或验收结果；Ara 独立分流已从近期方案取消。本次核对 [axi_dw_converter.sv](../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_dw_converter.sv) 的 `gen_no_dw_conversion`，以及 VCU118 加源脚本中的 `NR_LANES=2` / `VLEN=2048`。本次不改变 VLEN、CPU profile 或软件 ISA，也不把源码配置等同于当前板上镜像。NPU DDR 端的 256-bit 需求与 Controller 实际端口宽度分别填写，不能据图推断 GB 原生宽度。
+docs_codex/engineering/Global_Buffer_CPU_Access.md:140:例如 `256 条 × 16 B = 4096 B = 4 KiB`，适合用来说明“一次取走小表、私有区多次访问”。这不是容量配置、缓存命中保证或性能目标；真实阈值需要与 NPU/Ara 并发负载一起测量。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:13:| 外购 DDR 接口 | 用户已确认供应商可提供 AXI4 | 具体 Controller/PHY 修订、位宽、容量、频率与访问子集已冻结；无需默认增加 AXI3 桥 |
+docs_codex/engineering/IP_DDR_Interface_Contract.md:14:| 数据拓扑 | CPU及Ara普通内存访问保留原路径；Ara访问新增独立GB的支路拟直达片上SRAM；NPU的256-bit DDR数据通路按需求绕过LLC，ISP旁路方向保留 | GB、Ara分流或新的DDR旁路互连已实现；NPU256等于Controller端口或SRAM原生端口256 |
+docs_codex/engineering/IP_DDR_Interface_Contract.md:15:| 近期系统位宽 | 用户确认主AXI Xbar保持64-bit，以控制接口适配和验证工作量；接受参数联动容量增长，功能正确性优先 | 拒绝缓存扩容；已经实施Ara4-lane；固定ASIC提取基线已变 |
+docs_codex/engineering/IP_DDR_Interface_Contract.md:16:| GB性质 | 用户确认独立片上SRAM，供NPU与Ara共享中间数据，DDR与GB需显式搬运 | DDR共享区域别名、透明一致性缓存或天然多端口SRAM |
+docs_codex/engineering/IP_DDR_Interface_Contract.md:19:| 启动 | 用户选择官方 Platform ROM 钩子配置安全启动资源；详见 [现有03](../03_Platform_ROM_Clock_IP_Configuration.md) | S01-B01 已修复、DDR ready 已实现，或最终启动介质已选定 |
+docs_codex/engineering/IP_DDR_Interface_Contract.md:38:后续候选连接为：CPU及Ara普通内存访问→原系统互连64→原子适配→LLC→新增DDR前合流边界；NPU的256-bit DDR数据口绕过LLC，在该边界接入DDR。Ara若扩4 lanes，其单一128-bit AXI出口拟在128→64转换之前按物理地址分流，GB支路直达独立片上SRAM，普通支路继续原路径。ISP的独立端口与合流方式仍待预算。合流可由供应商多端口Controller承担，也可在必要时采用外部互连，模块和端口未定。这是用户需求引出的定制候选，非当前实现或官方完整参考方案；具体契约见§12。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:117:现有 `dram_wrapper_xilinx.sv` 的MIG/UI/CDC只作边界参考。尚缺外购DDR的完整端口、寄存器和初始化/模型交付；未知训练状态位、PLL倍频和频率不填成既定方案。Platform ROM 钩子若需正常返回，仍依赖 S01-B01 修复并验收；该修复不在本文授权范围。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:144:所有“通过”格当前都应待验证。以下可立即完成计划/用例设计，执行依赖匹配模型和另行工程授权。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:185:更新日期2026-10-09。以下区分用户确认、当前源码事实、设计候选、待输入与验收；优先于历史文档中“CPU/Ara均走LLC”的概括，但不改原固定ASIC提取基线。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:187:### 12.1 用户已确认的应用场景
+docs_codex/engineering/IP_DDR_Interface_Contract.md:189:NPU与Ara协同完成模型推理。近期主Xbar维持64-bit，后续根据性能再决定是否128-bit；选择64-bit是控制适配和验证工作量，不是要求缓存容量永远不增长。NPU计划通过256-bit AXI数据通路访问DDR并绕过LLC。GB已明确为独立片上SRAM，NPU搬运DDR数据，Ara另有通路访问GB并共享中间结果。模型、算子分工和实际性能目标待输入。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:211:NPU DDR主口256 ↔ 待定DDR合流边界 ↔ Controller/PHY ↔ DDR
+docs_codex/engineering/IP_DDR_Interface_Contract.md:218:NPU256是发起端需求，DDR Controller的实际端口宽度、数量、时钟和转换位置待供应商manifest与预算确认。优先利用厂商已有混合位宽/转换能力；若无法满足才评估现有适配模块。它也不证明GB有256-bit原生多端口SRAM。CPU是否需直接访问GB待确认，不能由Ara新支路推断CPU已可访问。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:234:GB带宽按bank和物理端口建服务预算：同一周期/时间窗内，NPU计算、搬运和Ara竞争同一bank时，需求不得超过实际可提供读写服务。128-bit与256-bit接口标称带宽不能直接相加当作SRAM能力；单双口语义、读写能否并行、冲突、CDC和最小服务保证需共同填写。双缓冲/tiling能帮助重叠，是否成立取决于容量、bank映射、所有权和调度。
+docs_codex/engineering/IP_DDR_Interface_Contract.md:248:| DDR01 | 发起端NPU256与Controller端口分列；实际端口数/宽度/频率/转换、ID映射、在途和AXI子集 | 供应商/M01待确认；优先厂商已有混合能力 |
+docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md:143:**适用边界：**论文报告的是 Siracusa 原型上的特定 TinyStories 模型，给出的结构为 8 个 decoder 层、隐藏维度 64、FFN 中间维度 256，并采用整数化路径；它不是本项目假设的 0.5B～3B 模型。本文不引用其 tokens/s 预测本项目，也不把后续仓库 HEAD 当作论文测量时的代码。可借鉴的是算子模板、存储层级和调度共同建模，尤其适合进一步评估 Ara/NPU/GB 的分工。
+docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md:198:| 外部机制 | 本工程已有基础与源码依据 | 候选新增职责 | 待验证事项 |
+docs_codex/handoffs/M01_interface_contract_document.md:16:- 用户确认：外购AXI4；CPU/Ara保留LLC、NPU/ISP旁路为需求。未把它写为现有拓扑，也未增加AXI3桥前置。
+docs_codex/handoffs/M01_interface_contract_document.md:27:- 未Git提交；不关闭Platform ROM/iDMA/Ara既有门槛。OS不是E01提取前置。
+docs_codex/engineering/README.md:10:| [DDR–GB 数据同步设计](DDR_GB_Coherence_Design.md) | L01 说明，供 M01/I01/S01/V01 评审 | 主要讲解入口：从裸机推理解释数据版本、输入输出维护、HAL 调用、硬件扩展与开销；接口及硬件待实现 |
+docs_codex/handoffs/L01_apb3_ddr_configuration_qa.md:9:- 保留既有 M01 契约修改及未跟踪图、交接。本轮仅新增此记录，未提交；分析完成，集成待验证。
+docs_codex/handoffs/L01_asic_mechanisms_implementation.md:43:- 用户确认范围按本轮多Agent实施与原保护边界；ASIC教学立即实施，具体资源和工程选择仍待输入。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:1:# L01 / 官方 Platform ROM 路线与本地返回缺陷核查
+docs_codex/handoffs/L01_platform_rom_boot_review.md:8:- 用户授权：分析官方 Platform ROM 初始化路线，纠正此前方案比较的遗漏；只读分析，不修复 RTL/启动源码。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:10:- 状态：分析完成；Platform ROM 集成及目标运行未验证。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:15:1. 官方 `docs/tg/integr.md:78` 与在线 [SoC Integration / Platform ROM](https://pulp-platform.github.io/cheshire/tg/integr/#platform-rom) 提供启动关键平台资源设置钩子，列举 clock sources、IO pads、memories、PHYs，也允许自定义引导流程。不是已交付 PLL/DDR 驱动或保证全套初始化都在该阶段的固定流程。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:18:4. `cheshire_bootrom.S:59` 先处理 LLC BIST/SPM/栈，80 行再调用 Platform ROM。它由同一个 CVA6 执行，不是独立 RefClk 初始化处理器；需要先提供有效系统启动时钟及可用的 CPU/互连/ROM/LLC，必要时采用 RefClk 旁路。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:23:## 本轮新发现：Platform ROM 返回路径缺陷
+docs_codex/handoffs/L01_platform_rom_boot_review.md:41:- 这是源码/已生成指令确认，未做 Platform ROM 目标仿真。默认地址为 0 时绕过该路径，不宣称所有已有启动失败。已有 PLL 答疑只检查钩子，没有核对返回控制流，现明确补充并修正。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:42:- 输入 SHA-256：S 为 `6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0`；SV 为 `c6a8f134c290ae8d2da3a0d9ac8c89cb231909f3db3adcb1b6ded40e5da8aa9d`。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:46:- Platform ROM 是 CPU 软件初始化的早期落点，属于此前方案 2 的一种安排；它与“Flash 加载 SPM 固件后初始化”区别主要在执行时机、代码存储和可更新性，而不是是否需要系统启动时钟或安全 PLL 切换。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:54:- 只读：git status/rev-parse/log/show/merge-base、rg、nl/sed、sha256sum；读取官方文档和上游启动源码。
+docs_codex/handoffs/L01_platform_rom_boot_review.md:64:3. C00 可将 Platform ROM 返回缺陷及上游修复依据合并到共享技术缺口；本轮独立记录，不把方案当已实施事实，也不覆盖共享状态。
+docs_codex/handoffs/L01_depth_asic_vector.md:65:用户已确认继续单线教材、保留可运行 FPGA 工程、NPU/ISP 绕过 LLC 的规划和 AXI4 DDR 方向。本轮将 WaveDrom JSON + 静态 SVG 作为教学时序维护方式。
+docs_codex/handoffs/README.md:20:| 2026-10-07 | L01 | 独立评审：Platform ROM栈前提、三配置案例两项P2 | [独立评审](L01_official_source_teaching_extension_review.md) |
+docs_codex/handoffs/README.md:25:| 2026-09-22 | L01 | 中文离线网站、10 图、独立示例与实验；软件轻量构建和浏览器预览通过，目标仿真待验证 | [教材网站交接](L01_learning_site.md) |
+docs_codex/handoffs/README.md:29:| 2026-09-28 | L01 | 重写为16章单线教材、6实验、16新图，完整旧站备份；四种新示例构建及离线网页检查通过，生产SoC待验证 | [单线教材重构交接](L01_single_path_textbook.md) |
+docs_codex/handoffs/README.md:38:| 2026-10-06 | L01 | 官方 Platform ROM 钩子、启动分层与本地返回缺陷；源码、历史补丁及现有 ROM 指令核对，未修复或运行目标 | [Platform ROM 核查](L01_platform_rom_boot_review.md) |
+docs_codex/handoffs/README.md:39:| 2026-10-06 | L01 | 用户确认安全启动 PLL 与运行软件重复配置方向；补充官方方案优先约定，登记 S01-B01 及验收要求，仅文档修改 | [决策与修复登记](L01_platform_rom_decision_tracking.md) |
+docs_codex/handoffs/L01_ara_global_buffer_feasibility.md:9:- 用户设想：Ara扩4 lanes，增加Global Buffer访问路径；NPU256-bit通路旁路LLC访问DDR。
+docs_codex/handoffs/L01_ara_global_buffer_feasibility.md:10:- 澄清答复：Global Buffer是独立片上SRAM，NPU通过256-bit AXI搬运DDR数据，Ara另有端口访问该SRAM。不是DDR逻辑区域，也不是透明一致性缓存。
+docs_codex/handoffs/L01_ara_global_buffer_feasibility.md:24:- NPU DDR master256必须在LLC下游DDR互连合流，不能经64位主Xbar。CPU LLC出口64经所需转换也接该DDR互连。DDR实际端口位宽待供应商规格，不假定256。
+docs_codex/handoffs/L01_ara_global_buffer_feasibility.md:25:- NPU的DDR AXI master256不能直接等同GB SRAM的访问口宽度；GB还需明确供NPU计算、本地DMA搬运、Ara访问的端口、bank和仲裁。可原生Ara128端口，也可128→256适配到GB统一AXI从端；不据此宣称SRAM原生多端口。
+docs_codex/handoffs/L01_ara_global_buffer_feasibility.md:51:- 如果单个256位SRAM口每周期32B已经全部供NPU使用，无法同时保证Ara再读16B；需要时间分配、更多bank/独立端口或不同频率，并用请求模式验证。双缓冲能帮助隔离生产消费，但映射必须避免落同bank。
+docs_codex/handoffs/L01_learning_site.md:9:- 状态：教材网站实现完成；软件轻量构建完成；Questa/VCS 实际编译展开与运行待验证。
+docs_codex/handoffs/L01_learning_site.md:30:7. **教学设计，功能待验证**：DMA/RVV 仅在单核全 128 KiB SPM 条件下，预约物理 [0x10010000,0x10011000)，仅经高别名访问；应用低 64 KiB，栈必须高于保留区。此约定仅属于独立实验，不是未来 DDR 共享区或生产地址图变更。
+docs_codex/handoffs/L01_learning_site.md:68:- 31 个定向读取的原始源码/脚本 SHA-256 前后相同；git diff --check 退出 0。
+docs_codex/handoffs/L01_learning_site.md:75:**没有执行 RTL 编译、展开或仿真；没有综合、板测或提取。** 目标程序预期输出均标为待验证。Questa 功能与许可未验收；VCS 服务器版本/许可/主机 C++/SV 兼容性未验收。
+docs_codex/handoffs/L01_ddr_interconnect_diagram.md:16:- 用户确认的是“先保留 ISP/NPU 并行能力”，不是已冻结资源预算。三口方案依赖共用 S1；独立 GB DMA 可另增 S3。图中分区、仲裁及数据流是设计建议，不是已实现能力。
+docs_codex/handoffs/L01_ddr_interconnect_diagram.md:29:- 最终母版 SHA-256：`512aa9578d5811b669e6f75cbd9a0fd381ea1a7409a78d1c4e87db1f79f6939b`。报告为 164 个对象、74 个文字对象，文字未转轮廓，PPTX 已生成。
+docs_codex/handoffs/L01_ddr_interconnect_diagram.md:37:2. M01/I01确认统一 S1 搬运出口是否可行，再冻结三口或四口。
+docs_codex/handoffs/L01_four_lane_xbar128_scope.md:17:- 向量WT profile Icache line128/Dcache line256；wt_axi_adapter.sv:62,65,450,485存在Icache line=AXI DW的单beat分支，128下I/D refill分别1/2拍，具备静态适配路径。不是已展开通过；不能套用标量WB profile。
+docs_codex/handoffs/L01_four_lane_xbar128_scope.md:18:- LLC容量get_llc_size=ways×lines×blocks×DW/8；默认8×256×8在DW128为256KiB，line128B（DW64时128KiB、line64B）。如保留原容量和line字节数，NumBlocks=4是可进一步验证的几何候选，不是已选方案；NumLines减半虽保容量但不保line字节数。官方固定版本LLC定义也明确block宽等于AXI宽，且支持128。
+docs_codex/handoffs/L01_four_lane_xbar128_scope.md:21:- 软件无需因系统DW128改成128位ISA/ABI；sw/link/common.ldh保守SPM64K并非等于硬件全部容量，不能机械改成256K。bootrom.S:76读取LLC_SIZE；启动与链接、栈/堆/共享缓冲区仍需一致性验收。
+docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md:24:- 小型输入身份 SHA-256：
+docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md:32:- `hw/bootrom/cheshire_bootrom.S:59` LLC BIST/SPM 先于 80 行 Platform ROM 钩子；RefClk 启动需 CPU/互连/ROM/LLC 具备有效时钟及复位、可访问宏。
+docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md:51:- 仅执行 Git 状态/版本检查、rg 搜索、定向 nl/sed 阅读与小文件 sha256sum，并访问 Cheshire 官方集成/启动文档。没有编译、仿真、综合、STA、板测、远程操作或 Dremi 修改。
+docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md:52:- [Cheshire Platform ROM](https://pulp-platform.github.io/cheshire/tg/integr/#platform-rom)、[Cheshire Boot Flow](https://pulp-platform.github.io/cheshire/um/sw/#boot-flow) 与本地分层一致。尝试在线读取匹配 common_cells 版本的时钟 mux 文件返回 cache miss，具体判断以本地快照为据。
+docs_codex/handoffs/L01_pll_boot_strategy_dremi_review.md:54:- 本轮不把建议写成用户已冻结决策，不修改共享状态或任务表。
+docs_codex/handoffs/L01_review_fixes.md:15:### R1：Platform ROM 的栈前提
+docs_codex/handoffs/L01_review_fixes.md:60:- 人工查看当前桌面 Platform ROM 表、手机 AXI RT 小节、桌面 Router 小节截图；所看范围无明显文字遮挡或布局异常。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:21:- 状态：教程与配图已交付；软件编译完成；目标运行及功能缺陷仍待验证。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:38:| Platform ROM返回、Boot ROM C栈对齐、CLINT sleep/read/compare、Reg桥窄读副作用 | 复核/引用已有分析；[缺口表](../software/interfaces/labs.html#gaps) | 功能修复未实施；源事实与动态后果分开 |
+docs_codex/handoffs/L01_software_hardware_interfaces.md:77:3. 在匹配默认PLIC硬件上补最小强`trap_vector`示例；CLINT、Platform ROM和窄读问题分别验收。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:89:用户已确认裸机BSP为主、RTOS/Linux只比较职责变化，并明确要求实施规划。沿用L01；负责原接口专题、软件手册导航、本交接和独立新图目录，未扩展为BSP源码重构。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:109:**本轮没有应用编译、SoC仿真、FPGA板测或Linux启动。** 既有DMA/CLINT/Platform ROM/中断与DDR缺口继续引用原记录，未因文档扩充关闭。生产RTL/sw、依赖、地址/IRQ/位宽、FPGA脚本无修改，无Git提交。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:115:用户要求保留UART/SPI/Flash案例图，再补完整组件总览；已确认覆盖当前裸机BSP、Ara、主机工具，Linux/OpenSBI/SDK单列可选分路。本轮仅修改L01专题正文/生成页、软件导航、维护脚本、新图稿及本交接；未自动启动子Agent。
+docs_codex/handoffs/L01_software_hardware_interfaces.md:131:当前检查覆盖9对HTML/Markdown、18组桌面/手机视口、6张SVG；原有133份证据保留。与foundation批次相比110个生产源码引用哈希不变。没有重查编译器版本、重建应用、SoC仿真、板测、Linux启动或BSP功能修复。原有DMA/CLINT/Platform ROM/DDR等缺口继续保留。
+docs_codex/handoffs/L01_axi128_functional_review.md:38:2. CPU：gen_cva6_cfg:497覆盖AXI位宽；当前向量WT Iline128/Dline256。wt_axi_adapter:65,485明确1拍I refill和2拍D refill；:142复制XLEN64写数据、:208按地址低4位选WSTRB。wt_dcache_mem:274按AXI偏移选择uncached读64位字，:377等断言满足256>=128>=64；wt_dcache_missunit:286有AXI>64的AMO返回字选择。不是标量WB结论；该WB约束前交接已说明。
+docs_codex/handoffs/L01_axi128_functional_review.md:41:5. LLC：默认8×256×8×16=256KiB，line128B。get_llc_size、地址图、CPU可缓存/可执行范围及LLC_SIZE寄存器消费同一公式；Boot ROM :76读取LLC_SIZE设置栈。SPM范围0x10000000..0x10040000，uncached别名0x14000000..0x14040000，当前映射无因此新增碰撞。BIST/flush/边界/栈仍需动态验收。
+docs_codex/handoffs/L01_structure_revision.md:71:- 用户已授权按照结构评审修改，已实现七篇/30 章；原审查报告仍保留其当时“建议、未实施”的历史身份。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:7:- 日期：2026-10-09；用户要求根据架构图和当前源码确认 Data Width / Address Width 配置。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:14:2. AXI规范的 DW 为 8/16/32/64/128/256/512/1024。当前 RV64/64-bit AMO 路径不能据此选择32或更小：`axi_riscv_amos.sv:1078` 要求 RISCV_WORD_WIDTH <= AXI_DATA_WIDTH，SoC 实例传64；WT CPU也要求 AxiDataWidth>=XLEN。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:15:3. Cheshire配置类型 `dw_bt=bit[9:0]`、`aw_bt=bit[5:0]`：可表示上限分别1023、63。结合标准DW和当前RV64路径，字段级候选是64/128/256/512；1024和AW64均会截断为0。候选不是整套SoC验收通过清单。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:19:7. Ara向量profile `cv64a6_imafdcv_sv39` 是WT、IcacheLineWidth=128、DcacheLineWidth=256；wt_axi_adapter显式有Icache单beat等宽分支，64/128可作为不改变cacheline时进一步验证的候选；DW256/512会让现有Icache line/DW比值为0，不能直接视为可用。未展开或运行128配置，不声称其整机通过。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:22:10. `get_llc_size()` 包含DW/8；默认geometry不变，DW128会使LLC/SPM容量从128KiB变成256KiB。普通Reg接口仍32-bit，由axi_to_reg_v2适配。iDMA旧桥/生成reg32消费者已有位宽缺口，不能因backend参数化就保证控制接口支持加宽。
+docs_codex/handoffs/L01_axi_data_address_width_qa.md:23:11. LLC顶层DW断言明列64/128/256/512，但尾项为1028。相同依赖提交官方源码也存在此异常，不能将其当作标准1024支持；本地10-bit字段原本也无法设置1024。本轮不修复、不升级。
+docs_codex/handoffs/L01_rtl_module_guide.md:7:技术输入仍为各节所列版本。Platform ROM 返回、ROM C 栈对齐、iDMA 位宽/错误处理、CLINT HAL、I²C 分块/STOP 等静态发现未关闭；图稿检查不替代 S01/V01 动态验证。原日期、角色、命令和验证结果保留下文。
+docs_codex/handoffs/L01_rtl_module_guide.md:30:- [源码清单](../diagrams/2026-10-12_rtl_modules/source_manifest.json)：57 个文件 SHA-256，111 个可搜索的文件/行号/符号锚点。生成脚本可刷新表格，刷新哈希不能替代技术复核。
+docs_codex/handoffs/L01_rtl_module_guide.md:39:- 既有 Platform ROM 返回问题、USB/VGA 错误处理待办、JTAG ndmreset 未接等继续保留，不由图稿关闭。
+docs_codex/handoffs/L01_rtl_module_guide.md:85:新增四章覆盖外部主从口/ID/适配/BusErr覆盖、寄存器跨域/复位/Platform ROM启动、LVDS/ISP/帧DMA和GB搬运、CPU/Ara/PMA/缓存和所有权。已有AXI扩展口访问LLC目标仍走LLC；新DDR旁路不是配置端口数即可获得。当前向量profile的L1D为WT，但在途写、LLC副本和所有权仍须处理；Ara失效过滤器不覆盖新旁路master。FPGA MIG校准完成输出悬空，不能描述成统一DDR ready闭环。
+docs_codex/handoffs/L01_rtl_module_guide.md:95:仍需最终IP/平台资料确定DDR AXI端口/ID/在途与训练ready、LVDS格式/背压、GB容量/bank/端口、PLL时钟复位域、寄存器窗口和IRQ分配、DMA共享区及缓存维护契约。这些分别影响适配器、FIFO与吞吐预算、启动顺序和软件可见性，未由示意图冻结。用户已选择A连续走线；后续图文修订按A推进，真实IP接入仍按独立集成任务的授权和输入实施。
+docs_codex/handoffs/L01_editorial_revision.md:43:- 与本轮编辑前本机快照比较：634 个既有证据/图片资源/示例/交接文件 SHA256 不变；51 个代码块、27 个源码依据块、30 个图表块、101 个自测/步骤解释、77 张技术表格数据保留。导航表标题和技术表表头允许编辑，技术单元格不变。
+docs_codex/handoffs/L01_editorial_revision.md:49:- 用户已确认本轮优先优化表达与结构，保留技术结论与验证边界，不新增无必要的文档实体。
+docs_codex/handoffs/L01_layer_tools_user_reference.md:7:- 日期：2026-10-11；任务 L01，用户要求将层次和工具映射写入正式学习文档，而非仅存交接。
+docs_codex/handoffs/L01_cpu_npu_inference_survey.md:7:| 2026-10-16 | L01 文档与图稿作者；`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8` | 按用户确认计划交付七组案例、LLM 分析、当前工程映射、四图及原生 PPTX；仅文档/图稿验证 |
+docs_codex/handoffs/L01_cpu_npu_inference_survey.md:42:- 授权范围：用户要求补充七组工作的裸机、RTOS、Linux 分类。只修改正式专题与本交接，增加本次证据；工程索引、既有专题、SVG/PNG/PPTX 和生成脚本保持原样。
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:18:### R1 / P2：Platform ROM 分支表遗漏“内部 LLC 存在”的前提
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:23:- 影响：读者按表格裁掉 LLC 后，可能直接在平台入口调用依赖栈的 C 初始化程序，首次保存返回地址/局部变量时就访问不存在或未就绪的存储。另一个方向的误读是认为 Platform ROM 必须依赖内部 LLC，而忽略平台可提供替代存储的契约。
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:33:- 最小修改：拆成三个简短案例，每个写明相对 DefaultCfg 的差异、CPU 有效配置是否受影响、生成 IP/软件编号的依赖、启动或 handler/驱动要求、当前阻塞及一个最小验收场景。对未知条件明确留待验证，不虚构完整合法配置；可复用现有事实及专章链接，无需增加 Lab。
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:56:Cfg 派生方式和未用输入绑值与官方集成说明一致；在线扩展数量概述与参数表的差异确实存在。PMA 的静态属性与核内访问行为相符。具体 LLC 机制以随依赖保存的官方设计说明及 RTL 为准。Platform ROM 修复提交用本地 `git show` 确认，未执行 cherry-pick 或 ROM 重生成。
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:69:- 原 browser-final 的 152 项输入、54 HTML，以及 sources.json 的 48 来源文件，经 SHA-256 复核均未漂移。原浏览器检查可追溯至当前内容；本轮没有重新运行 Chrome 自动检查。
+docs_codex/handoffs/L01_official_source_teaching_extension_review.md:70:- 人工查看留存截图：三张 `teaching-*.svg`、390 宽集成接口表、1440 宽 Platform ROM 表。所看范围未发现文字遮挡或明显溢出；不声称人工审读了全部页面截图。
+docs_codex/handoffs/L01_title_style_independent_review.md:33:复核输入快照的 51 个 before-content 文件，其 SHA-256 与 input.json 记录一致。检查发布生成报告和浏览器报告：两者各自记录的 212 项输入及 71 个 HTML 与当前文件哈希全部一致。没有用旧截图代表发生漂移的新页面。
+docs_codex/handoffs/L01_OS_implementation.md:18:- 等级：上述为源码确认；数学例为教学推演；本轮实测只限文档检查。既有 Platform ROM/iDMA/Ara 缺口不关闭。
+docs_codex/handoffs/L01_advanced_peripherals.md:9:- 状态：教材实现完成；目标RTL编译、展开、运行均待验证。未启动子Agent。
+docs_codex/handoffs/L01_advanced_peripherals.md:64:- 用户已确认：同时扩充CPU/Ara内部与综合驱动两条线，篇幅可增加；全部外设纳入教学。普通排版无重复确认，无子Agent。
+docs_codex/handoffs/L01_llc_bist_crt0_labels_exit_qa.md:7:- 日期：2026-10-08；任务 L01；用户要求解释四个源码问题，不包含修复实施。
+docs_codex/handoffs/L01_llc_bist_crt0_labels_exit_qa.md:28:- ELF SHA-256 `619a03ebcc13a8b9a7cc5052c4c2e6d066f6253554edc48b83a5f242c0c9f970`。
+docs_codex/handoffs/L01_llc_bist_crt0_labels_exit_qa.md:47:- ROM S SHA-256 `6641c387c8a3d77235bf7aa2617874a205d7fc5abdb5d52cf63b05c7abc078d0`；crt0 S `b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7`。
+docs_codex/handoffs/L01_llc_bist_crt0_labels_exit_qa.md:49:- 已有 S01-B01（Platform ROM 返回）与本次载荷返回问题不是同一条控制流，不能以修复其中一个声称另一个已通过。C00 可将新返回链缺口及 tag-only BIST 证据边界合并到共享状态，本轮只写独立记录。
+docs_codex/handoffs/L01_llc_cache_spm_diagram.md:14:- 图稿基于当前DefaultCfg：AXI Addr48/Data64、8way、256组、每行8块，数据容量128KiB，per-way16KiB。
+docs_codex/handoffs/L01_llc_cache_spm_diagram.md:34:- 最终SVG SHA-256 `ec0e60d9eb312f1119e7678bdb029c7cde040cf217d169e8df39efe364232733`。
+docs_codex/handoffs/L01_interface_reference.md:8:| 2026-10-11 | L01 地址表维护；输入 c4162204c，开始时工作区干净 | 按用户要求优化 01 的 8.1 地址表：补齐用途/窗口大小，移除平台启用状态，注明可变范围公式；仅修改该节及本交接 |
+docs_codex/handoffs/L01_interface_reference.md:10:| 2026-10-11 | 本对话 L01；同 HEAD，保留已有未提交文档 | 新增正式参考及导航；按用户要求修改 AGENTS/模板/任务表的交接规则，历史日期前缀日志改为任务主题命名并迁移引用 |
+docs_codex/handoffs/L01_interface_reference.md:38:- DDR 模型不提供采购 ASIC Controller/PHY；Platform ROM 返回和栈对齐、iDMA/Ara 等原验证缺口均保持。
+docs_codex/handoffs/L01_software_hardware_layer_figure.md:8:- 状态：图稿及结构导出完成；Office 实际显示/编辑待验证。
+docs_codex/handoffs/L01_software_hardware_layer_figure.md:24:- 导出报告确认 334 个对象、108 个文本对象，重读文字及对象数相同，无 `ppt/media/` 整图图片。报告保存输入 SHA-256。
+docs_codex/handoffs/L01_spm_dram_rom_link_modes_qa.md:7:- 日期：2026-10-09；任务 L01；用户要求详细解释三种链接模式的区别和联系。
+docs_codex/handoffs/L01_spm_dram_rom_link_modes_qa.md:42:- 仓库根运行git状态/HEAD、rg、nl/sed，读取三脚本/CRT0/构建及GPT/DPI加载代码；readelf、objdump、nm读取已有ELF，sha256sum记录身份。未编译/未仿真/未板测、未改源码或其他文档。
+docs_codex/handoffs/L01_spm_dram_rom_link_modes_qa.md:43:- 已有ELF SHA-256：spm `619a03ebcc13a8b9a7cc5052c4c2e6d066f6253554edc48b83a5f242c0c9f970`；其余两份身份可按本轮只读命令重新取得，不能将文件名当运行证据。
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:12:## 用户要求与输入事实
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:14:- 本轮用户要求：LVDS图像可选择原始写DDR或经ISP处理后写DDR；考虑ISP与NPU复用GB。
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:16:- 2026-10-09 M01/L01交接已记录：GB是独立片上SRAM，NPU与Ara共享中间数据；近期主Xbar64；NPU DDR数据口256为发起端需求；Ara4-lane及GB支路、容量/地址/端口/频率均未实施或冻结。本轮建议保留Ara作为GB访问者。
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:24:- 原始/ISP流选择器、共享图像DMA、ISP/NPU/Ara分bank GB及以下三口分组，均是本项目需求引出的设计建议；尚非用户确认的最终结构。
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:39:- 三口方案以S1为统一搬运出口为条件；如果既有NPU DDR master与新增独立GB DMA无法/不宜合并，或需要独立QoS，则可使用第四口。不要为了凑三口强行合并或串行化，也不根据模块名字各分一个DDR口。
+docs_codex/handoffs/L01_lvds_isp_gb_soc_topology.md:60:2. I01/M01确定NPU/GB是否共用DDR搬运出口，决定三口基线或第四口的实际必要性。
+docs_codex/handoffs/C00_initial_handoff.md:7:## 用户已明确的信息
+docs_codex/handoffs/ENV01_codex_gpu_auth.md:9:- 状态：认证文件迁移完成；远端 CLI 登录状态检查通过；VSCode 界面及实际模型请求待验证。
+docs_codex/handoffs/M01_DDR_GB_requirements_update.md:9:- 状态：需求文档更新完成；参数待输入，方案未实现、待验证。
+docs_codex/handoffs/M01_DDR_GB_requirements_update.md:16:- 用户确认：近期主Xbar64以控制适配/验证工作量；接受容量增长、功能优先；NPU256 DDR旁路；GB为独立片上SRAM、NPU/Ara共享中间数据。
+docs_codex/handoffs/M01_DDR_GB_requirements_update.md:20:- Word发现：V2.0缺独立GB/分流及三类预算；INNO…20260416d仍AXI3/APB2且颗粒/Rank/总容量表内不一致，需供应商澄清。原件未写、锁未动。SHA256及精确字段在Windows主指南§19.9.2。
+docs_codex/handoffs/M01_DDR_GB_requirements_update.md:40:- 原Word和V2.0的收尾SHA256与读取前一致。INNO…20260416d在其他进程编辑期间从76cf…变为547c…，随后重新只读完整表格，协议与容量问题仍存在；最终快照和边界已同步主指南。本轮未覆盖或撤回该外部变更。
+docs_codex/handoffs/M01_DDR_GB_requirements_update.md:45:- 用户已确认的最新决定来自2026-10-09本轮指令及L01 GB交接；主Xbar64不因Ara4候选自动改变，VLEN和固定提取基线不变更。
+docs_codex/handoffs/L01_native_background_fix.md:10:- 授权：用户要求修复 PPTX 将白色背景导出为可选矩形、需手工删除的问题。按此前保护边界，仅修改新版 `svg-pptx-diagrams-native`，旧 skill 不变。
+docs_codex/handoffs/L01_native_background_fix.md:45:- 45 SVG 与 50 PNG 的 SHA-256 全部不变；45 个原始输入哈希不变；旧 skill 哈希不变。完整对象/文字/箭头/虚线/ZIP 检查与程序化编辑保存检查通过。
+docs_codex/handoffs/L01_publication_figure_research.md:18:- 用户确认四类问题：彩色圆角卡片、文字与连线层次、缺少领域图式、受聊天影响自动添加外围说明框。规划已分别落实，强调必要事实进入图面、假设进入 caption、验证/来源进入伴随记录。
+docs_codex/handoffs/L01_publication_figure_research.md:27:- 主要命令：`git status --short`、`git rev-parse HEAD`；定向 `cat`/`rg`/`sed`；官方网页检索/读取；临时 Python 下载公开 PDF、`pymupdf.open()` 与 `get_pixmap()` 渲染；`view_image` 视觉检查；ElementTree 读取 SVG `font-size` 和 `viewBox` 并按 mm→pt 计算；SHA-256 记录输入。
+docs_codex/handoffs/L01_software_hardware_layer_plan_review.md:9:- 状态：完成静态复核；图稿方案待用户确认，未生成 SVG/PPTX。
+docs_codex/handoffs/L01_software_hardware_layer_plan_review.md:24:## 修订建议（未获用户确认）
+docs_codex/handoffs/L01_software_hardware_layer_plan_review.md:39:- 等待用户确认图稿范围与修订方案，然后读取技能 SVG 子集约束并在新目录绘制、导出和验证。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:7:| 2026-10-15 | L01 文档作者；`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8` | 按用户确认计划新增一致性条件审查、三类架构比较及三张可编辑图；只交付文档与图稿 |
+docs_codex/handoffs/L01_cache_coherence_architecture.md:8:| 2026-10-16 | L01 文档修订；同分支 / HEAD | 按用户要求润色正文与三图；按新增更正重画图 1 的共享代理、LLC–DDR 路径及一致性接口；沿用方案比较状态 |
+docs_codex/handoffs/L01_cache_coherence_architecture.md:11:| 2026-10-16 | L01 文档维护；用户转交独立评审，同分支 / HEAD | 完成评审答疑后的 Markdown 修订，新增 Q&A 与供应商会议问题；握手职责待实现，未改 RTL |
+docs_codex/handoffs/L01_cache_coherence_architecture.md:20:- 用户选择“先比较，暂不选型”。逐行 I/O 一致性是不分配 LLC 行的长期优先评估建议；缓存直接供数、协议选型及接口改造不是用户已确认决策。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:51:### 用户要求及处理
+docs_codex/handoffs/L01_cache_coherence_architecture.md:77:用户明确否定上节重新安排整个图 1 布局的做法，并要求排除 10 月 11 日参考图的影响。当前唯一绘图基准是 `2026-10-12_industrial_redraw/ddr_interconnect.svg` 及其原生 PPTX；生成器直接载入该 SVG，保留所有原有模块、尺寸、坐标、数据线和三口 DDR 分组。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:90:| `validate.py --out-file evidence/minimal-validation.json` | 核对唯一底图的原对象几何/样式、三口连接、图 2/3 一致性、链接、原生 PPTX 与输入保护 |
+docs_codex/handoffs/L01_cache_coherence_architecture.md:96:用户确认工程综述深度：4000–6000 字、七组案例、四张原文配图。输入仍为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`。由 L01 完成资料研究，供 M01/I01/S01/V01 评审；沿用现有架构建议状态。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:117:用户指出综述缺少项目建议的明确位置，并要求用示意图直观比较。输入仍为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，L01 文档职责；本次更新综述、原图目录 README 导航及本交接，新增[统一布局图稿目录](../diagrams/2026-10-16_coherence_comparison/README.md)。现有架构正文、工业底图三口 DDR 互连、原文图片及其他主题保留。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:143:用户要求将上节方案详细写入现有规划并同步图文。输入仍为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，L01 负责文档，供 M01/I01/S01/V01 后续实现评审。当前方向为软件交接、L1D／LLC 硬件范围维护、统一经 DDR 的缓存／GB 数据交换；此前逐事务 I/O 一致性优先推荐状态由本节取代，F 为文献背景，缓存直供为成本比较项。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:163:用户审核通过八章独立说明计划后授权实施。L01 本轮输入为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，工作区已有文档和图稿修改保留；状态为文档与图稿交付完成，硬件仍待实现。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:178:| 链接、拓扑与保护 | `validate.py`，检查正文链接、PPTX 文字／箭头、三口与代理路径、旧规划原文保留、源码哈希及空白错误；[最终记录](../diagrams/2026-10-16_ddr_gb_coherence_design/evidence/validation.json) |
+docs_codex/handoffs/L01_cache_coherence_architecture.md:184:用户要求将答疑中的概念区分补入独立说明。输入 HEAD 仍为 `322bd6ce9`。修改正文开篇及第 1–3 章：用表格区分 DDR 软件输入／输出缓冲区、WT L1D 内部写缓冲和独立 GB；补充 `wt_dcache.sv` 中的 `i_wt_dcache_wbuffer`、八条目配置及 `wbuffer_q` 时序状态的源码入口；说明软件范围交接、写缓冲排空和 DDR→GB 搬运的不同职责。既定维护流程与硬件方案保持原样。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:205:Office 显示／编辑未实测，未执行 RTL 构建、仿真、板测、错误注入或性能测量。最小下一步：用户转交评审 Prompt，由独立评审核对目标维护窗口、错误观察点、软件前进性及恢复契约；具体修复位置、CSR／指令形式与超时值留待实现评审。本记录补充前文“现有 FENCE 不能完成 LLC 清理”的结论，明确其已有写缓冲排空作用。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:209:**输入与授权。** L01 文档维护，`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`。用户转交新一轮独立评审，要求先分析答疑，随后明确授权修改 Markdown、记录供应商会议问题，并保存评审及答疑 Q&A。被评审主文 SHA-256 为 `487683bb133ddcf10584c1123baec3620910e64a5f6a4eddc0690f67e0cf1373`，作者接收时重新核对一致。本轮未启动其他 Agent，未提交 Git commit。
+docs_codex/handoffs/L01_cache_coherence_architecture.md:215:**决策与事实边界。** 用户确认维护窗口和握手需要实现，本轮只登记职责，没有实施 RTL/HAL。“新同步清除历史错误”被明确更正为未来应避免的设计风险，当前写回路径未记录该错误。LLC 写回不检查 BRESP、回填不使用 RRESP、tag 先于写回成功更新等属于静态源码核查；不据此宣称故障已复现。透明重试、故障硬时限／监控主体、CSR 和额外 DDR 接口尚未冻结。供应商问题尚未发送或取得答复。
+docs_codex/handoffs/L01_ara_parameter_linkage_baseline.md:21:7. `hw/cheshire_soc.sv:606,818,841,861`：Ara AXI DW=32×lane，经invalidation filter和位宽转换接系统总线。2-lane为64；只改8-lane则256→64，不自动加宽主Xbar。
+docs_codex/handoffs/L01_ara_parameter_linkage_baseline.md:22:8. `hw/cheshire_pkg.sv:489`的gen_cva6_cfg同步覆盖CPU AXI DW/AW；`cheshire_soc.sv:242,513`的主Xbar/LLC消费系统位宽。`get_llc_size():276`包含DW/8，固定默认geometry时DW64容量128KiB，DW128容量256KiB。加宽必须联查CPU缓存、LLC/SPM、DMA、外设适配及平台出口。
+docs_codex/handoffs/L01_bootrom_crt0_execution_qa.md:7:- 日期：2026-10-08；任务 L01；用户要求解释 crt0.S、cheshire_bootrom.S、cheshire_bootrom.c 的职责、联系及复位后顺序。
+docs_codex/handoffs/L01_teaching_review_peripherals_ara.md:50:|定向SHA256/旧id/容量与分块算式检查|0；162资产含用户PPTX未变；34原正文快照未变且旧id全部保留；58来源哈希未变|protection-and-task-checks.txt、release-protection.txt、sources.json|
+docs_codex/handoffs/L01_teaching_review_peripherals_ara.md:53:前后检查独立保存，未覆盖历史。875历史证据/示例/资产、728旧站文件保护检查通过。Chrome沙箱失败是运行环境限制，不是页面通过；沙箱外重试才产生浏览器/临时生成通过证据，没有自动审批拒绝或待用户确认事项。run.json记录各轮被测HTML集合与哈希；release-*为最终正文结果。
+docs_codex/handoffs/L01_svg_pptx_skill.md:31:- 不支持的 CSS、marker、tspan、滤镜、渐变、裁剪、变换、透明度等报定位错误，不静默栅格化。限制属于此版转换器，不是格式固有限制。复杂旧 SVG 可由 Agent 按用户要求规范化后再导出。
+docs_codex/handoffs/M01_mixed_AXI_technology_review.md:5:User prefers existing vendor mixed-width capability. Keep CPU exposed port64 and NPU port256; vendor internal adaptation preferred, subject to generated configuration confirmation. Details stay in Windows controlled DDR guide section19.8.
+docs_codex/handoffs/M01_DDR2133_SoC_bandwidth_review.md:12:- get_llc_size multiplies width. Keeping 8 ways, 256 lines, 8 blocks while changing 64 to 256 gives 512 KiB instead of 128 KiB and 256-byte instead of 64-byte lines. Review macro/SPM/software consequences before widening.
+docs_codex/handoffs/L01_targeted_closeout.md:15:3. M3：report_run.py 在 inputs 之外新增 tested_html，记录全部根目录主页面和兼容 HTML 的 SHA-256；preview_structure_site.py 在结束时核对文件集合和哈希。旧报告不回填。README 同步说明。
+docs_codex/handoffs/L01_pll_integration_boundary_qa.md:53:- 未实施候选 B：上电默认旁路，参考时钟或安全分频输出驱动整个 Cheshire 主域；CPU 执行内置 Boot ROM 并调用 Platform ROM，软件写 PLL 寄存器并等待锁定，由平台时钟控制器安全切换主域至 PLL，然后继续启动。切换不能使用未经验证的组合 mux/软件直接切 sel，且切换后控制路径仍须可用。
+docs_codex/handoffs/L01_pll_integration_boundary_qa.md:57:- 本轮仍为静态核查和官方 Platform ROM 文档对照，未修改生产代码或实施上述方案。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:15:| 2026-10-16 | L01 全景 PPT 第 4 页；当前 M5 三页 PPT / 同 HEAD | 同目录追加 eMMC 内置 DMA、≤256 ROI 裁切与四口共享压缩前端；前三页原字节保留，四页原生 PPT/SVG/PNG 及检查交付；未改 RTL 或正式契约 |
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:16:| 2026-10-16 | L01 全景 PPT 第 3 页布局；当前 M5 两页 PPT / 同 HEAD | 按用户要求在同目录追加第 3 页，前两页完整保留；等距排列目标端口，互换 GB 适配下方 M5/ISP 入口，删除两者之间的跳线 |
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:17:| 2026-10-16 | L01 全景 PPT 布局纠正；上一版两页 PPT / 同 HEAD | 用户要求下侧新增 M5，保持 GB 子系统上方；第 2 页更新为 M4—M5—M_EXT 和 7×6，保留第 1 页、原输入与上一版 |
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:20:| 2026-10-15 | L01 分析与图稿作者；`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8` | 按用户确认计划及追加 Markdown 要求，交付正式分析和两张工业风格 SVG/PNG、两页原生 PPTX；仅文档与图稿 |
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:28:接续本图时，从[当前图稿 README](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)和最终八页 PPT 开始。当前 PPT SHA-256 为 `2f224f52a5c0d53b84da8dd1b0a6d4a20c6e9d65e989e6b498996d5301faa106`；第 8 页从用户手调七页 `8916ac31…` 复制，仅调整五条长线几何，保留 F1/F2/F3 深蓝双向虚线。`build_page8.py` 直接读取该原生输入，不读取旧页生成数据。根目录 `slide-07.svg/png` 保留历史生成版，手调版第 7 页预览另见 README 链接，不能以旧预览覆盖 PPT。第 7/8 页公共控制为 C14，历史第 4～6 页仍为 C12。此处是接手提示，不授权继续改图。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:38:- **授权/输入：**用户明确要求实施集中长线与跳线修正计划；L01，分支 `mp/ara-pulp-v2`，HEAD `09798c1ded457e423b927844f66faae87583a20c`。用户手调七页 SHA-256 `8916ac316a5d9244297545fe6a6dc751de79851fa4f21a1757ea295771453b1b`。主 PPT、README、本交接及原第 7 页预览已备份至 [page8-before](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page8-before/)。工作区既有改动保留，包括 `Global_Buffer_CPU_Access.md`，本轮没有修改该工程说明。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:39:- **负责文件/结果：**原图稿目录主 PPT、README、新增 `slide-08.svg/png`、`build_page8.py` / `render_page8_previews.py` / `validate_page8.py` 与证据，以及本交接。复制当前原生第 7 页，仅改变 F1、F2、ISP↔GB、eMMC、M5 回接五条线几何；552 个其他对象完全一致。六处跳线按真实交点重新定位，F1/F2 集中在原图例左侧；用户手调的图例、Crossbar 标题、PLL 说明位置不变。具体路径和样式见[图稿说明](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md#第-8-页集中长线通道修正交叉与跳线)。不改模块、配置编号、协议含义、RTL 或契约。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:41:- **视觉与限度：**从最终主 PPT 重读生成整页及 GB/采集、eMMC、F1/F2 折返、图例、M5 回接和跳线放大预览，已实际逐一查看；修改区未见穿字/穿框，相关路径连续且返回归属未变。根目录第 8 页预览来自最终主 PPT；历史第 7 页预览保留，不能冒充用户手调版。详见[交付记录](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page8-delivery.json)。Office 显示/编辑未实测，无硬件测试。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:76:用户随后明确要求以 `docs_codex/diagrams/soc_landscape.pptx` 的第 1 页复制出第 2 页，再修改 Ara/GB 互联。本轮新增 [SoC 全景图目录](../diagrams/2026-10-16_soc_landscape_shared_gb/README.md)，只更新本 handoff，不改正式分析和其他对话文件。输入 SHA-256 `ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b`，原 PPT 与本交接修改前版本均备份。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:88:输入是上一版两页 `soc_landscape_shared_gb.pptx`，SHA-256 `9080ab142e19910ba0d2bc50298d9fb66800aeceefec28bb7382e6250e73f8a0`。新增 [M5 修正图稿目录](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)，仅更新本稳定 handoff，正式分析、共享状态与其他对话文档保持不变；本交接修改前版本已备份。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:98:用户要求保留前两页，在当前 `2026-10-16_soc_landscape_m5_gb/` 目录追加第 3 页，不另建图稿目录。输入两页 PPT 的 SHA-256 为 `3aeb085a47c843dbaa101d5e4dc85abb8b52d15c135402468c0cdb0b13608a57`；修改前 PPT、README、本交接已备份到该目录 `evidence/page3-before/`。负责范围仅当前图稿目录及本稳定 handoff，未改变正式分析、共享状态、源码或配置。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:108:用户确认 eMMC Host 内置 DMA、每帧至多 256 个矩形 ROI 纯裁切，以及按地址区域启用、保留普通旁路的四口共享无损压缩/解压；前端位于采购 DDR Controller 外部。本轮仅实施图稿和配套说明，不授权硬件实施，也不冻结 IP、地址、IRQ、容量、速率或算法。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:110:输入为当前三页 `soc_landscape_m5_gb.pptx`，SHA-256 `8522fffd3d4b36412d72da427866e59ebe67252b497913d9cd8298ed1a2bdeeb`，HEAD/分支仍为上述基线。修改前 PPT、README 和本交接已备份至原图稿目录 `evidence/page4-before/`；负责文件仅该目录的主 PPT、README、新增第 4 页 SVG/PNG、生成/检查脚本及证据，以及本 handoff。未新建图稿目录。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:112:[四页交付与接口说明](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)保留前三页，复制第 3 页框架并重排第 4 页。新增 eMMC→Host/DMA→S7→M5→GB、ROI 调度→单个二维读 VDMA→FIFO→LVDS TX，以及四个独立 F0～F3→DDR S0～S3 通路。Crossbar 改为 8×6 固定端口加扩展；上下端口等距，Ara2/AXI64、CPU/Ara 独立输入及单个 GB 保持。前端内部压缩器和解压器分别绘制，普通旁路和元数据管理可见；新增 C10～C12 配置与独立 IRQ 向量连续接入 RegExt/外部 IRQ/PLIC。详细条件及后续硬件验证只写入图稿 README，不复制成另一份工程契约。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:114:实际 `build_page4.py …/page4-build-04`、`preview_deck.py …/page4-preview-04`、CairoSVG 渲染及 `validate_page4.py` 最终退出 0，完整命令见 README。[检查报告](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-validation.json)确认前三页 XML/关系/备注/共享依赖、原 SVG/PNG 均保持原字节；第 4 页 461 个原生对象、192 个文本、96 个原生箭头、16 个虚线对象，112 条路径连续且端点正确，51 处显式跳线。文字边界/重叠、连线避让、S7/M5、四口映射、包关系与保存重读检查通过，66 个受保护文件未改。[交付检查](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-delivery.json)记录发布文件及链接/保护核对。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:116:首版局部检查发现 ROI/压缩模块文字偏上与 PHY 标记重叠，第二版修正；第三版明确“四口共享”和“独立 IRQ 向量”语义；最终版修正 Regbus 首列分支 2 px 边界差异。先前证据保留，不冒充已通过结果。作者实际查看最终整页及 eMMC/ROI、压缩/DDR、Regbus/IRQ、GB 入口局部。Office 显示/编辑未实测；没有 RTL 编译、仿真、板测或吞吐验证。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:118:跨对话待同步：当前正式 DDR 文档仍有三口快照，本页第四口及 eMMC/ROI/压缩需求由协调者后续对照用户决定汇总；本轮未修改这些契约、`PROJECT_STATE.md` 或任务表。最小后续动作是在目标 Office 核对字体/编辑显示；若另行进入硬件设计，再按 README 落实区域格式、元数据更新、部分写/跨块、四口可见性、缓存维护、帧/参数所有权与错误排空，不把本交接当作实施授权。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:124:输入 SHA-256 `4574947a4d716530021dd0735c6affdfe525202dd82ee246ae8e4ea2a5d51c98`；输出 `92c80e25bc9bb5d444dfa3269997e1b0c78168885ac4d627fd92e9cebaa9dc8b`。负责范围仍为原 `2026-10-16_soc_landscape_m5_gb/` 图稿目录和本 handoff；旧主 PPT、第 4 页 SVG/PNG、README 与本交接均备份至 `evidence/page4-layout-before/`。未修改 RTL、工程契约、共享状态或其他对话文件。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:128:`revise_page4_layout.py …/page4-layout-build-03`、`preview_deck_colours.py`、`validate_page4_layout.py` 最终退出 0；[README](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)记录命令、颜色说明和接口边界。[当前检查](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-validation.json)确认填充一致、C1～C9/PLL 位置、等距端口、S7/M5、四口 DDR、单个 GB、竖向链及配置目标位置。第 4 页 487 个原生对象、222 文本、91 原生箭头、25 虚线对象；108 条连续路径、11 处跳线，文字/端点/避让/关系/保存重读检查通过。构建 01 因 C 标记重复 SVG ID 退出 1，构建 02 修正后通过布局检查；构建 03 进一步去除底部配置线重叠并对齐端点。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:134:用户明确授权仅修订现有主 PPT 第 4 页，使用 `industrial-svg-pptx`，同目录先备份，不修改前三页、主题、母版、布局、RTL 或其他契约。输入 HEAD 仍为 `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，分支 `mp/ara-pulp-v2`；PPT 输入 SHA-256 `92c80e25bc9bb5d444dfa3269997e1b0c78168885ac4d627fd92e9cebaa9dc8b`，输出 `24427f14665215fbef05494c4b28175ea2222c73631fd23267ca5a687dc0b890`。主 PPT、第 4 页 SVG/PNG、README 与本交接修改前内容已备份至原图稿目录 `evidence/page4-controls-before/`。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:136:负责文件为 `diagrams/2026-10-16_soc_landscape_m5_gb/` 下主 PPT、`slide-04.svg/png`、README、新增 `revise_page4_controls.py` / `validate_page4_controls.py` 及本轮 evidence，以及本稳定 handoff。C1～C9 含义/顺序保留；C10 eMMC、C11 ROI、C12 前端公共控制、C13 输出 VDMA、C14 LVDS TX、C15 压缩器、C16 解压器统一在底部 RegExt 主线下，各自匹配模块 C 标识。Regbus 内旧 C10～C12 汇总框删除，不增加远端配置长线或红色 IRQ 线。配置组不冻结地址或寄存器文件数量。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:138:F3 外部只保留深蓝 VDMA→F3 请求接口；R 响应沿原接口返回，绿色限定 GB 局部读写。前端重排为公共四口适配、独立 AR/AW 地址/事务路径、共享 W 压缩/R 解压/普通数据旁路、元数据管理及下游 R/B 响应匹配；B 独立返回，不通过编解码器。四个独立下游接口标为 DDR.S0～DDR.S3，与主 Crossbar S 口区分。PLL、CPU/Ara、S7/M5、单个 GB、RAW/ISP 选择、四路 DDR 及右侧 ROI 纵向链保留。完整接口条件和 C1～C16 参数归属只写入[图稿 README](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:142:初次预览误用系统 Python，缺少 Pillow，改用既有 skill 环境。构建 01 发现 F 端口文字贴边，02 修正；实际查看整页和局部后发现 C 标识框压到标题，03 增加留白并补充框/文字交叠检查，04 再修正旧 eMMC/PHY 说明贴住 C10/C3 框。中间通过的报告只对应当时检查范围，未充作最终验收。最终发布后从主 PPT 重新生成 `evidence/page4-controls-final-preview-04/`，作者实际查看整页、存储/ROI、配置行、PLL、Crossbar、Regbus、GB/图像输入局部，并沿 eMMC 加载、帧写与 ROI 读三个场景复核方向和共享关系。[交付检查](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-controls-delivery.json)记录最终哈希、文件保护、链接和检查范围。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:150:用户要求规划修改并创建第 5 页。本轮先说明单箭头“请求方向”与双箭头“请求/响应”的区别及两行布局方案，再实施同目录追加页。输入仍为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`；四页 PPT SHA-256 `24427f14665215fbef05494c4b28175ea2222c73631fd23267ca5a687dc0b890`，五页输出 `3f100763d6bd76966b2e7b9ee6773735e716aebfd349a6034f444f842d4a8887`。主 PPT、README、第 4 页 SVG/PNG、本交接已备份到原目录 `evidence/page5-before/`。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:164:五页输入 SHA-256 `3f100763d6bd76966b2e7b9ee6773735e716aebfd349a6034f444f842d4a8887`，六页输出 `0dcb46b4fdce907ff32e75ca59d932b414ec053d3b07c5e2abe5dd1386f9cdf9`。直接复制第 5 页原生对象：ISP↔GB、搬运器↔F1、帧写入 DMA↔F2 恢复原第 4 页备份的虚线参数；S_EXT/M_EXT 恢复第 3 页外部扩展的灰色虚线。保持第 5 页双/单箭头、线宽与几何，不恢复旧 DDR 拓扑。仅图例新增虚线样例并调整内部留白；标题、C1～C16 两行、PLL 对齐、填充/字号和其余连接完全保留。详细边界与样式来源见[README 第 6 页](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)。
+docs_codex/handoffs/L01_global_buffer_cpu_access.md:185:- 用户选择的分析输入是“小结果、灵活处理”；建议保留 64-bit 主机入口，反复排序时复制到 CPU 私有工作区。此建议不是用户已经冻结 CPU 接入的决定。
+docs_codex/handoffs/L01_edge_llm_os_architecture.md:7:| 2026-10-15 | L01 文档与图稿作者；`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8` | 按用户确认计划整理 OS 比较专题、两张图及原生 PPTX；文档/图稿检查见下文，不新增目标运行证据 |
+docs_codex/handoffs/L01_edge_llm_os_architecture.md:44:2. 按既有官方路径验证 OS/RVV，按现行契约独立验证 DDR/GB/NPU 和缓存交接；不因本篇交付关闭 Platform ROM、iDMA 或向量上下文缺口。
+docs_codex/handoffs/M01_DDR_requirements_recommendation.md:12:Recommend evaluating one physical x64 DDR3/3L channel with independent Cheshire64 and NPU256 AXI4 ingress ports. This is a project integration proposal based on the new IP requirements, not current Cheshire functionality or a frozen procurement decision. Capacity candidate2 GiB, with support for4 GiB organization requested; actual population selected before PCB freeze from weights/KV/workspace/OS budget. Two channels are an upgrade alternative pending traffic estimates and cost/physical review.
+docs_codex/handoffs/M01_DDR_requirements_recommendation.md:16:hw/cheshire_soc.sv still places atomic adaptation before LLC. NPU bypass follows the project requirement but needs full cache visibility/ownership and atomic restrictions. Multiple AXI ports do not create coherent memory or multiply physical DDR bandwidth. Preserve current official Platform ROM hook direction for boot configuration.
+docs_codex/handoffs/L01_axi_crossbar_parallelism_qa.md:7:- 日期：2026-10-09；用户要求结合源码解释两个 Master 同时访问两个不同 Slave 的并行性。
+docs_codex/handoffs/L01_axi_crossbar_parallelism_qa.md:31:- 如后续用户要求动态展示，针对不同输出/同输出同方向/同输出读写设置独立小型 Crossbar 测试，记录输入和输出握手、数据拍及响应；无需启动完整生产 SoC 构建。
+docs_codex/handoffs/L01_mechanism_review.md:75:建议把根目录主页面及兼容HTML的SHA-256加入现有run.json，明确区分“内容源快照”和“被测页面快照”。可附带完成时间和最终成功/失败状态，便于汇总；不需要增加新的报告框架。
+docs_codex/handoffs/L01_mechanism_review.md:112:- 在执行检查前保存当前站点1036个文件的SHA-256（排除Python缓存）；完成后全部一致。
+docs_codex/handoffs/L01_mechanism_review.md:133:1. 先修正M1的三处等待表述，保留代码行为与待验证条件的区别。
+docs_codex/handoffs/L01_nonvolatile_storage.md:7:| 2026-10-13 | L01 图文作者，root Agent | `bf1b4198dfd74cc78291c152b8b682d523e785c5` / `mp/ara-pulp-v2` | 新增 eMMC/SPI NAND 两页可编辑 PPT、连续连接配图、预览及来源；原生结构和 SVG 预览检查通过 |
+docs_codex/handoffs/L01_nonvolatile_storage.md:8:| 2026-10-13 | L01 图文作者，root Agent，修订 2 | 同上；工作区另有软件教材未提交修改，原样保留 | 用户要求紧凑汇报版；补充协议、器件候选、eMMC 50 MHz/SPI 100 MHz评估点与PHY/PAD约束；旧稿保留 |
+docs_codex/handoffs/L01_nonvolatile_storage.md:15:- [当前PPTX](../diagrams/2026-10-13_nonvolatile_storage/revision_03/nonvolatile_storage_options_v3.pptx)及[来源/说明](../diagrams/2026-10-13_nonvolatile_storage/README.md)：eMMC主候选改为明确支持3.3 V VCCQ的ISSI IS21TF08G-JCLI 8 GB；建议8-bit High Speed SDR/50 MHz，3.3 V不使用HS200/HS400。注意同家族A2仅1.8 V。
+docs_codex/handoffs/L01_nonvolatile_storage.md:25:- 用户要求提高单页信息密度；本次仍为两页，正文约16–18 pt，统一建议配置、结构图、协议和选型表格、性能比较。配图补齐工艺相关 I/O PAD/收发时序层，连续连接仍采用既定表达。
+docs_codex/handoffs/L01_nonvolatile_storage.md:26:- 内容更新：eMMC建议1-bit/≤400kHz初始化，8-bit High Speed SDR/50MHz读取；候选Kingston E04GS14DXI 4GB及EMMC08G-WV28 8GB。SPI NAND候选W25N08MW，10MHz初次联调、100MHz Quad SDR条件性评估。以上为建议，用户未冻结料号/频率/IP或采购。
+docs_codex/handoffs/L01_nonvolatile_storage.md:39:- 用户确认（2026-10-13）：约 500 MiB 校正参数开机完整加载 DDR、运行时从 DDR 读取，30 秒加载可接受。
+docs_codex/handoffs/L01_nonvolatile_storage.md:40:- 建议而非冻结决策：eMMC 4/8 GB 优先评估，SPI NAND 作为吞吐达标后的备选；有效搬运目标 25 MiB/s；A/B 更新、具体器件/主机 IP 未确定。
+docs_codex/handoffs/L01_platform_rom_decision_tracking.md:1:# L01 / Platform ROM 决策、官方优先约定与修复登记
+docs_codex/handoffs/L01_platform_rom_decision_tracking.md:11:- 状态：文档与决策登记完成；缺陷修复、Platform ROM/IP 控制与运行时调频未实施。
+docs_codex/handoffs/L01_platform_rom_decision_tracking.md:17:- 登记 S01-B01：Platform ROM 普通返回错误；记录官方 #187 修复、同步生成 ROM 要求、默认/非零平台入口及载荷路径回归判据。
+docs_codex/handoffs/L01_platform_rom_decision_tracking.md:24:- 官方 Platform ROM 和 Boot Flow 链接已在专题记录；附件中的多个独立频率、Linux cpufreq/DVFS、最终工作点及配置文件格式均未当作用户冻结的实现细节。
+docs_codex/handoffs/L01_platform_rom_decision_tracking.md:32:- `git diff --stat -- hw sw target Bender.yml Bender.lock Bender.local` 无输出；Boot ROM S/SV 的 SHA-256 与上轮记录一致，生产源码及依赖未改。
+docs_codex/handoffs/L01_axi_crossbar_ara_rt_qa.md:26:- 用户已要求 NPU/ISP 绕过 LLC，因此流量管理必须覆盖它们实际通往共享 DDR 的汇聚入口；仅启用原 SoC Crossbar 前的 RT 不会限制独立旁路。
+docs_codex/handoffs/M01_CPU_Ara_AXI_width_recommendation.md:6:Recommendation: preserve DW64/AW48 baseline for two lanes unless profiling shows shared-path contention; evaluate DW128 first for four lanes or substantial concurrent CPU/DMA/Ara traffic. Avoid DW256/512 global changes for this baseline. WT vector profile has128-bit I-cache and256-bit D-cache lines;128 is a static candidate, not validated. WB scalar profile cannot inherit the same choice without addressing its line/DW assertion. Global width forwards into CVA6 config.
+docs_codex/handoffs/M01_CPU_Ara_AXI_width_recommendation.md:7:If evaluating128, keep benchmark capacity comparable: unchanged LLC geometry doubles capacity to256KiB and line to128B; NumBlocks4 instead of8 is a candidate to retain128KiB/64B, subject to elaboration and functional validation. Preserve software/SPM consistency. Ara converter max reads currently4 is another possible bottleneck, not automatically to be increased.
+docs_codex/handoffs/M01_CPU_Ara_AXI_width_recommendation.md:8:Vendor CPU-facing port should match selected SoC width64 or128 using native mixed-width support; NPU independent256 path remains. DDR does not require every master to fill physical bandwidth. Compare64@533.25=4.266GB/s vs128@333.25=5.332GB/s ideal aggregate data-path per direction, with timing/source limitations explicit.
+docs_codex/handoffs/L01_svg_pptx_windows_gpu_sync.md:30:- 按 whitelist 仅同步 SKILL.md、requirements、agents/scripts/references/assets。12 个源码文件在仓库源包、WSL、Windows 和 GPU 上逐项 SHA-256 一致。
+docs_codex/handoffs/L01_official_source_teaching_extension.md:11:- 输入工作区：`AGENTS.md`、`PROJECT_STATE.md`、`AGENT_TASKS.md`、`handoffs/README.md` 已修改；Platform ROM 专题、其他交接/图表/tools 等未跟踪。均保留，输入状态和 1084 项哈希见 [input.json](../learning/evidence/teaching-20261007/input.json)。
+docs_codex/handoffs/L01_official_source_teaching_extension.md:24:| ASIC 平台 | 启动安全时钟、Platform ROM 与运行时调频；时钟/复位/电源域分别划分；SRAM 延迟与字节写适配；PAD/PLL/ROM/DDR/DFT 交付 | [clocks](../learning/clocks.html#boot-and-runtime-frequency)、[future](../learning/future.html#resource-mapping) |
+docs_codex/handoffs/L01_official_source_teaching_extension.md:38:- **官方契约与本地差异**：非零 Platform ROM 正常返回落入 `boot_next_stage` 的缺口继续保留。`git show 9b4c222...` 可读上游修复（PR #187），`git merge-base --is-ancestor ... HEAD` 返回 1；不在当前祖先链。在线 commit 页抓取失败，修复依据来自本地 git 对象，未擅自 cherry-pick/重生成生产 ROM。
+docs_codex/handoffs/L01_official_source_teaching_extension.md:68:- 人工实际查看三张新增 SVG、桌面 CVA6 页、手机首页、桌面 Platform ROM 表、手机集成接口表。初看 ASIC 图箭头标签过近，调整后再次查看最终图；执行流程图补充继承栈前提。最终截图留在 browser-final，未将仅自动检查的全部页面称为逐页人工审读。
+docs_codex/handoffs/L01_official_source_teaching_extension.md:76:用户已确认：由本对话实施，另一对话独立评审；从示例问答所体现的解释深度扩展到官方硬件/ASIC 章节。此前确认的 Platform ROM 早期平台初始化方向、固定配置和静态清单方向保留。
+docs_codex/handoffs/L01_official_source_teaching_extension.md:83:2. 用 `sources.json` 中本地路径核对有效配置、端口方向、LLC 和 Platform ROM 的解释，重点检查是否把必要条件写成充分条件。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:7:- 日期：2026-10-09；任务 L01；用户要求读源码确认 Platform ROM 配 PLL 之前的启动时钟、ROM 驱动时钟及锁定后切换。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:17:- clkwiz 参数由 `target/xilinx/scripts/impl_ip.tcl:18` 在生成 FPGA IP 时设置，不需要 CPU 运行 Platform ROM 才完成最初配置。locked 输出悬空；rstgen 不依据 locked 放行，不能描述为已实现完整锁定启动协议。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:18:- Boot ROM S:59 先等待 LLC BIST/SPM/栈设置，80 行才调用 Platform ROM。因此在平台代码执行前，CVA6/ROM访问/互连/LLC 都必须已有可用 clk_i 及所需存储条件。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:24:- 目标芯片 wrapper 可以将 RefClk 或安全分频时钟先送入 clk_i，再由 CPU 执行 Boot ROM/Platform ROM 配 PLL。PLL 输出稳定、请求完成条件满足后，由外围安全时钟控制器把同一 clk_i 的来源切换为 PLL；不另给 ROM 单独时钟。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:26:- 官方 [Platform ROM 集成说明](https://pulp-platform.github.io/cheshire/tg/integr/#platform-rom) 将时钟源作为外围平台资源，并要求内置启动所需的稳定时钟/存储条件；它没有提供通用 PLL 宏或时钟切换实现。
+docs_codex/handoffs/L01_boot_clock_source_confirmation.md:28:- 用户已确认的安全 PLL 启动方向仍见 03_Platform_ROM_Clock_IP_Configuration.md；S01-B01 返回缺陷尚未修复，与启动时钟来源是不同问题。
+docs_codex/handoffs/AR_architecture_review.md:18:- 源码/生成指令确认：Platform ROM普通返回缺陷仍在；iDMA Reg64/32适配与HAL宽读缺陷、Ara写B错误TODO仍开放；另外确认ZSL忽略载荷读取返回值。报告区分真实缺陷、条件风险与信息缺口。
+docs_codex/handoffs/AR_architecture_review.md:21:- 未完成：RTL集成、Platform ROM/iDMA修复、真实DDR初始化、目标仿真/Linux/板测、55nm工艺映射或签核。本次没有将建议升级为用户决定。
+docs_codex/handoffs/AR_architecture_review.md:26:- [推荐关系图](../reviews/2026-10-11_architecture/figures/recommended_integration.png)及[SVG](../reviews/2026-10-11_architecture/figures/recommended_integration.svg)；[当前图](../reviews/2026-10-11_architecture/figures/current_implementation.png)。图用实线/虚线区分当前和待实现。
+docs_codex/handoffs/L01_native_reconstruction_regbus_rtl.md:9:| 2026-10-12 | L01 接入视角收敛；`c4162204c` | 用户要求全 Regbus 限一到两张图；新增全路径与 IP 寄存器封装两图，明确 RegExt 配置/接线/寄存器契约与可直接复用的内部模块 |
+docs_codex/handoffs/L01_native_reconstruction_regbus_rtl.md:54:- 内容边界：图①依据现有 RTL 表达两级选路、完整桥模块次序、片内/错误/外部端口；新增 IP 显式标记待实现。图②是建议寄存器封装，非既有 IP 电路。说明聚焦当前平台 RegExt 参数、外层接线、寄存器握手/字节使能/偏移、软件表与时钟中断；地址数值未冻结。
+docs_codex/handoffs/L01_documentation_organization.md:8:| 2026-10-11 | eaf55be17，L01 本对话；保留前轮命名迁移及用户未提交文档 | 用户要求解释并归类顶层 L01 文件；13 份过程资料迁到 maintenance/L01，收敛用户入口，更新 AGENTS 存放规则 |
+docs_codex/handoffs/L01_documentation_organization.md:42:- M01/P01 是现行工程契约/适配参考；首轮保留，后续按用户要求迁至 engineering（非历史归档）。用户 01 正文仅在有旧路径引用时作机械替换，不删除其其他修改。
+docs_codex/handoffs/L01_documentation_organization.md:68:- 定向检查通过：旧站目录不存在，当前 HTML/Markdown/content 无指向旧站的 href/src/Markdown 链接。`check_structure.py` 退出 1（`/tmp/l01-checks-r89a7zfb`）：先在历史 `L01_structure_revision_review.md` 与早期 review_sha256 比较处失败，该文件此前命名迁移已加头部说明；未抵达后续结构断言，不声称完整结构通过，不放宽该历史检查。
+docs_codex/handoffs/L01_vcu118_clock_lock_confirmation.md:7:- 日期：2026-10-09；任务 L01；用户要求确认 VCU118 Cheshire/CVA6 系统频率，以及启动前稳定时钟的保证。
+docs_codex/handoffs/L01_title_polish.md:43:- 未编译、未仿真、未综合、未板测；这些不属于标题润色验收。未关闭Platform ROM、iDMA、Ara及其他工程运行缺口，也未重新审核全部技术正文。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:13:- 范围纠正：曾误把用户附加条目理解为实施授权，短暂编辑五个 `learning/content/*.html`。收到纠正后仅撤回本轮这五个文件的改动；逐文件 SHA-256 已与输入快照核对一致。未生成新网页或图片，最终网站与参考手册保持输入状态。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:41:#### P1：Platform ROM 的现状未进入网页
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:46:- 要求：讲清 `Bootrom=1/PlatformRom=0`、内置 ROM 调非零平台入口、`Bootrom=0` 直接复位到平台入口三类关系。默认入口为 0 与缺陷触发条件分别说明。将用户已确认的安全启动 PLL / 运行软件保留配置能力融入正文。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:56:- 覆盖路线：标量 SPM；Ara 整数/浮点；DRAM；AXI RT；CLIC/Router；保留/旁路/关闭 LLC；保留或关闭启动外设；Platform ROM；Linux 前置条件。后四项可以作为条件与依赖推演，不要求实现或运行。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:89:3. Platform ROM 的正常返回属于官方设计意图；本地缺陷另述，不能直接用箭头写成现已可用。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:102:| Cheshire Instantiating / Platform ROM | configuration、boot、clocks、reset、ddr | RECIPES.md、RUNTIME_AND_DEBUG.md，链接 03 平台约定 | DefaultCfg 派生法、接口类型、启动前置条件；本地 S01-B01 与新决策 |
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:121:> 1. 先完成本评审三个主项：同步三项收尾的已完成状态；补全 CVA6/SoC/软件配置的选项—约束—组合—结果关系；建立软件栈与启动对象的连续讲解。附加完成官方资料按上表融入 HTML 与 Markdown。最新用户要求为评审者提出要求，实际实施需在你的对话取得明确实施任务后进行。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:124:> 4. 在 Boot/PLL 正文回答四个问题：ROM 固定为何有多模式；Platform ROM 与 Boot ROM/ZSL 的关系；固定代码如何读取可变配置；启动安全频率如何与运行时重配置衔接。用本地 S01-B01 和已确认决策约束示意图，不修生产启动代码。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:161:未编译软件、未 RTL 编译/仿真、未 SDK/Linux 构建、未板测、未综合、未修复 Platform ROM。网页通过不构成目标运行证据。
+docs_codex/handoffs/L01_configuration_teaching_depth_review.md:165:1. 将本记录交给教材实施 Agent；重点先把配置选择与 Boot/Platform ROM 写成足够深入的样章，再按同一标准扩充相关章节。
+docs_codex/handoffs/L01_boot_initialization_diagrams.md:33:- 最终母版 SHA-256：图1 `fcd54ee815cc89d21dd0982ff1a994f1672b6d490276a2b23e53810182c76a06`；图2 `0cf010da0dcecfec3ad40e4c0b368b00ca90f4792776a62f9bd3b54bce5b1633`。
+docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md:7:- 日期：2026-10-06；任务 L01；用户要求确认 Dremi 固定板级 LDO 与片上调压能力，并介绍行业实现。
+docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md:8:- Cheshire HEAD `5ddec4fb4`；上轮 AGENTS.md、状态、任务表、索引及 Platform ROM 专题文档变更保留。本轮仅新建本交接。
+docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md:40:- 命令：Git 状态/HEAD 只读检查，rg 文件与相关符号定向搜索，nl/sed 检查 top/PLLConfig/教材和 SoC Link 边界，sha256sum 记录小型输入，浏览厂商官方资料。
+docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md:41:- Dremi top SHA-256：`bc2cddeef62de720a1cdcbfbb1ad46933c64c0d550078ad6e52a1e7bfbe0a376`；wrapper：`0fe31fc9f5dae432a62f8abb8186317be276dd9e2ff0300227fc7bcd2c778ce5`；MPU main：`8bf7b2a8b273690a14a488446160b726e8748159fbdb898b4b539dd19975c138`。
+docs_codex/handoffs/L01_voltage_scaling_dremi_qa.md:42:- 未编译、未仿真、未板测、未测电压、未改变供电或频率，未修改共享状态/任务决定。既有 Platform ROM 配置约定未被扩展成已决定 DVFS。
+docs_codex/handoffs/L01_independent_system_review.md:33:- JSON快照脚本读各路径并执行SHA-256，17页/9图/3时序齐全，定向源码无缺失。可通过Python读取JSON并逐路径重算sha256；内容以后续主管修改为准。
+docs_codex/handoffs/L01_independent_system_review.md:34:- `git diff --check`退出0。新增报告、快照README、交接3文件另以Python检查：11个本地目标存在，无尾随空白；快照全部路径重算SHA-256一致，脚本退出0。该检查没有代替全站锚点或浏览器检查。
+docs_codex/handoffs/L01_independent_system_review.md:39:- 用户已明确授权多Agent实施教材；没有授权本任务工程修复。文档审查未关闭Platform ROM、iDMA、Ara等验证缺口。
+docs_codex/handoffs/L01_system_curriculum_plan.md:17:- 用户确认：论文实验需要 OS，系统补强 RTOS/Linux；CVA6 以正确使用所需深度为主；ASIC 需要实例和机制；正常教学与诊断分离。来源为本次用户附件，摘要保存在规划第1节。
+docs_codex/handoffs/L01_system_curriculum_plan.md:41:- Platform ROM、iDMA、Ara 的既有缺陷/运行缺口不关闭，Office/PPTX 实际验证缺口不变。
+docs_codex/handoffs/L01_system_curriculum_plan.md:45:- 用户确认事项见规划第1节；本文建议不自动授权产品/工程实施。
+docs_codex/handoffs/L01_hardware_track.md:7:- 日期：2026-09-23。用户确认先前两轮分析方案后明确“开始实施”。不启动子Agent。
+docs_codex/handoffs/L01_hardware_track.md:66:- 用户已确认本次层次与深度；普通排版和独立教学单元在授权范围内。
+docs_codex/handoffs/L01_structure_review.md:9:- 状态：审查完成；以下目录为待用户确认的建议，未实施。
+docs_codex/handoffs/L01_structure_review.md:219:- 用户已提出：希望调整目录结构，增加二级乃至三级目录；本轮要求先审查、提出意见。
+docs_codex/handoffs/L01_structure_review.md:220:- 待确认：上述篇章职责及拆分规模。具体 30 章不是用户已确认的数量约束。
+docs_codex/handoffs/L01_ara2_tc24_axi_width_qa.md:5:- 日期：2026-10-09；输入 HEAD `278434024`。用户要求核对论文8-lane配置是否对应256-bit AXI。本轮仅新增交接，不改 RTL/配置，不提交；已有未跟踪交接/图保留。
+docs_codex/handoffs/L01_ara2_tc24_axi_width_qa.md:7:- 论文第4节、PDF第5页脚注3声明SRAM word为4×L bytes；第5.1节说明lane加倍时AXI数据位宽也加倍。因此8 lanes对应32 bytes/word=256 bits。论文评估2/4/8/16 lanes，不仅8 lanes。
+docs_codex/handoffs/L01_ara2_tc24_axi_width_qa.md:9:- 当前 `hw/cheshire_soc.sv:606` 的 AraDataWideWidth=32*Cfg.AraNrLanes，818传入Ara。若仅将AraNrLanes改为8，Ara接口为256-bit，但 `Cfg.AxiDataWidth` 仍可保持64-bit，由861起的dw_converter变为256→64后接主Xbar。增加lane不自动加宽主Xbar。
+docs_codex/handoffs/L01_single_path_textbook.md:9:- 状态：教材实现完成；目标 SoC 动态验收待验证。
+docs_codex/handoffs/L01_single_path_textbook.md:15:- 先完整复制旧站到 learning_backup（旧站已于 2026-10-11 移除），728 文件、66,754,766 字节；写入前后按 SHA-256 核对。备份含 HTML、资源、维护脚本、示例、历史日志和原有本地构建产物。
+docs_codex/handoffs/L01_single_path_textbook.md:21:- 事实等级：技术结论为当前本地源码静态确认；四种软件构建和浏览器为本轮实测；旧单元/模型结果为标明日期的历史实测；SoC/板级/ASIC 为待验证或规划。
+docs_codex/handoffs/L01_structure_revision_review.md:79:依据：`content/boot.html:5–12` 已有模式比较表，但 Serial Link、UART、SPI SD、NOR、EEPROM 仍集中在表格与三个段落中。目录无法直接进入某种启动路径，用户要求的“总分结构解析各Boot模式”只完成了总述。
+docs_codex/handoffs/L01_structure_revision_review.md:161:- 进入浏览器检查前记录 `learning/` 下1001个文件的SHA-256（排除Python缓存），检查后比对全部未变。未运行原版 `check_structure.py` 或任何网站生成器，未覆盖已有结构证据。
+docs_codex/handoffs/L01_native_reconstruction.md:9:| 2026-10-12 | L01 skill 归档与风格选择；`c4162204c` | 按用户要求归档并移除非 native skill 及发现链接；1820 项清单核对一致，native 工业模板导出通过；细化硬件互连与软硬件分层图的不同风格偏好 |
+docs_codex/handoffs/L01_native_reconstruction.md:13:| 2026-10-12 | L01 横向双版；`c4162204c`；主 Agent + 布局子 Agent | 用户确认按日期归档；新增参考风格版、原版重排版及两页合辑；旧目录改名由用户完成，本轮只读保护，见本节 |
+docs_codex/handoffs/L01_native_reconstruction.md:20:- 经工具权限批准，将完整旧目录（含虚拟环境）移至 [归档与恢复说明](/home/zhaowenyao/.codex/skill-archives/2026-10-12_svg-pptx-diagrams/README.md)，并将 `~/.agents/skills/svg-pptx-diagrams` 发现链接移入归档。1820 项文件 SHA-256、目录和符号链接清单前后一致；旧安装目录与发现链接均已移除。归档不在 active skills 目录内，当前会话已加载的目录描述可能仍显示旧条目。
+docs_codex/handoffs/L01_native_reconstruction.md:27:- 授权/输入：用户显式调用 `industrial-svg-pptx`，要求按 RTL 绘制 Regbus；HEAD `c4162204cfee0c48b81158b4296860a678d92bec`。未启动子 Agent，仅负责新图目录与本主题交接，保留用户已有修改和旧图目录改名。
+docs_codex/handoffs/L01_native_reconstruction.md:40:- 技术版本边界：旧 QoS 图 S1=ISP/S2=NPU 标为历史独立主口方案，DDR/GB 图仍为 S1=NPU/GB/S2=帧写入；没有借重绘统一端口或冻结地址/接口。旧静态快照、ROM 返回缺口、GB/旁路待实现与 Office 未验证状态保留。
+docs_codex/handoffs/L01_native_reconstruction.md:51:- 验证：`skill-creator/scripts/quick_validate.py` 通过；native 后端 `scripts/run.py --input .../industrial_starter.svg --out-dir /tmp/industrial-svg-pptx-starter-check --aspect source --font-file /usr/share/fonts/truetype/wqy/wqy-zenhei.ttc` 通过。模板为 2400×1350，100 个原生 PPT 对象、47 个文本、23 个原生箭头、1 个虚线对象；保存重读文字相同、无 `ppt/media/`、字体度量无重叠/越界、全部本地引用有效，实际查看 PNG 预览。6 个安装文件逐项 SHA-256 与暂存源一致。
+docs_codex/handoffs/L01_native_reconstruction.md:64:- 保护：输入 163 个文件 SHA-256 快照位于 `/tmp/soc_landscape_input_hashes.json`；包含用户改名后的旧图目录、用户修改的合辑及锁文件、三篇已有修改文档。交付时全部保持不变，详见[交付检查](../diagrams/2026-10-12_soc_landscape/delivery_checks.json)。本轮只新增当天图目录、更新本主题交接与根 `AGENTS.md` 的图稿归档规则。
+docs_codex/handoffs/L01_native_reconstruction.md:69:- 授权/范围：用户要求在 `native_reconstruction` 新增 SoC 完整框图，展开参考 Crossbar 图的所有主从端口、Regbus 所有外设、DDR 图的三 AXI 端口；补充三张芯片框图作视觉参考。仅绘图和相关导航/交接，未修改 RTL/sw、Cfg、地址、中断、filelist、依赖或旧 FPGA 工程，未提交。未启动子 Agent。
+docs_codex/handoffs/L01_native_reconstruction.md:70:- 输入工作区已有 `01_Cheshire_Ara_Quick_Start.md`、`configuration/CVA6.md`、`handoffs/L01_interface_reference.md`、`all_diagrams.pptx` 修改及 `~$all_diagrams.pptx` 锁文件；全部保护。工作前对本目录原有文件及上述三篇文档保存 155 个 SHA-256 快照，位置 `/tmp/soc_architecture_protection.json`；临时快照仅作本轮核对。
+docs_codex/handoffs/L01_native_reconstruction.md:72:- 结构与依据：[图稿说明及复现](../diagrams/2026-10-11_native_reconstruction/README.md#新增完整-soc-架构图2026-10-12)。已核对 `gen_axi_in/gen_axi_out/gen_reg_out`、`cheshire_soc` 的 Ara filter/width converter/LLC/iDMA 路径，以及 `cheshire_idma_wrap` 内部 AXI→Reg。7 个内部发起端、5 类目标、AXI 扩展口、18 个 Regbus 外设目标与 error/extension、9 组新 IP 配置端、DDR 三口均独立标示。可选灰框、新增彩色虚线、C1–C9 配置端身份均有说明。
+docs_codex/handoffs/L01_native_reconstruction.md:119:- 验收报告：45 个输入 SHA-256 保持不变，旧 skill 的 12 个源文件与上轮留存哈希一致；45 SVG、45 图稿 PNG、5 总览 PNG、45 单图 PPTX、1 合辑 PPTX；索引链接有效，目录平铺。
+docs_codex/handoffs/L01_native_reconstruction.md:125:- 本次是原版图稿的对象语义迁移，保留原图技术快照与候选/待验证说明，不改变项目实现结论。

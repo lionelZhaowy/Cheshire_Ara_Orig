@@ -1,0 +1,52 @@
+{
+  "status": "pass",
+  "date": "2026-10-17",
+  "input_sha256": "7330221874eb045d9fd2511a834d64c6ba45b98e5c7fb7014c67dee088277f31",
+  "output_sha256": "a77597c0fd7a8d829f7b447a7a03888668beb870e8894e0d20c7f094622385d7",
+  "head": "09798c1ded457e423b927844f66faae87583a20c",
+  "backup_count": 5,
+  "protected_file_count": 483,
+  "protected_files_unchanged": true,
+  "old_slides_and_dependencies_byte_identical": true,
+  "old_svg_png_unchanged": true,
+  "new_page": 7,
+  "final_preview_source_and_root_delivery_equal": true,
+  "new_artifact_sha256": {
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx": "a77597c0fd7a8d829f7b447a7a03888668beb870e8894e0d20c7f094622385d7",
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-07.svg": "3e98a85a2dae247b461efce5e96d09a9cdac66a6e11036e30bc9ff2e17013d8a",
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/slide-07.png": "3d2ac0cd9aad5fcf51a3fcbda2e2290e2bad3038602bf95792bcf9862e3bec59",
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/README.md": "57865b558c4c96b08457c583f4b73a8f11f2e7b9027943f93d6f6f9191d558e0",
+    "docs_codex/handoffs/L01_global_buffer_cpu_access.md": "aca5fbb79e467c5191f6e7bc5dd265a10595f34629dae9c22d0af8fdc5ef0e84"
+  },
+  "visual_review": {
+    "source": "Final delivered PPT read by preview_deck_colours.py, then CairoSVG; not an Office screenshot",
+    "viewed": [
+      "slide-07.png",
+      "image-input-detail.png",
+      "config-detail.png",
+      "config-pll-detail.png",
+      "storage-output-detail.png",
+      "gb-input-detail.png",
+      "tx-external-detail.png",
+      "f2-crossing-detail.png"
+    ],
+    "configuration": "C1–C16 function order and module tags agree; two rows and PLL baseline preserved; C14 is compression common control",
+    "sensor_input": "Sensor on right sends left through RX→CDC→ISP→frame selector→write DMA; RAW branches from CDC to selector",
+    "gb_f2": "ISP left side reaches original GB adapter channel; DMA bottom uses lower acquisition corridor to F2; explicit bridge at their crossing",
+    "roi_output": "F3/DDR read interface retained; DMA→FIFO→TX→external processor follows actual arrows; no DMA write capability added",
+    "line_styles": "Inherited native line styles unchanged, including ISP/GB green bidirectional dashed, F1/F2/F3 blue bidirectional dashed, F0/downstream four blue bidirectional solid, grey external Xbar dashed",
+    "readability": "Inspected stated full/crop previews: no obscured text, unintended box traversal or wrong endpoint observed in changed paths",
+    "shared_frontend": "Common services, address/transaction path, codec/metadata/bypass and four independent downstream ports retained",
+    "office_tested": false
+  },
+  "local_links_checked": 123,
+  "git_diff_check": "pass",
+  "scope_check": "diagram directory and existing L01 handoff only",
+  "iteration": [
+    "build-01 passed geometry inspection; visual review requested larger new F2/ISP bridge",
+    "build-02 changes only that bridge geometry; candidate and final package checks pass"
+  ],
+  "preview_comparison_note": "Historical slides 1–3 renderer differs only in Crossbar fill luminance; old PPT and delivered SVG/PNG protected, see page7-preview-comparison.json",
+  "office_tested": false,
+  "hardware_tested": false
+}

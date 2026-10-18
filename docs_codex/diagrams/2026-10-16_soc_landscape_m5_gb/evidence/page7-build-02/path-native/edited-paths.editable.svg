@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="3600.0" height="2025.0" viewBox="0.0 0.0 3600.0 2025.0">
+  <defs>
+    <marker id="arr-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66" />
+    </marker>
+    <marker id="arr-gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78" />
+    </marker>
+    <marker id="arr-pixel" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043" />
+    </marker>
+    <marker id="arr-cfg" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489" />
+    </marker>
+    <marker id="arr-irq" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#A54D5D" />
+    </marker>
+    <marker id="arr-optional" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#93939D" />
+    </marker>
+  </defs>
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="lvds-rx-to-rx-cdc" d="M 3121.25 448.09517716535436 L 3091.25 448.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="rx-cdc-to-isp" d="M 2931.25 448.09517716535436 L 2901.25 448.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="isp-to-frame-select" d="M 2736.25 448.09517716535436 L 2706.25 448.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="frame-select-to-frame-dma" d="M 2526.25 448.09517716535436 L 2491.25 448.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="raw-bypass" d="M 3011.25 358.09517716535436 L 3011.25 313.09517716535436 L 2616.25 313.09517716535436 L 2616.25 358.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#187C78" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="18 11" marker-start="url(#arr-gb)" marker-end="url(#arr-gb)" id="isp-gb" d="M 2736.25 503.09517716535436 L 2720.0 503.09517716535436 L 2720.0 658.0951771653544 L 1506.25 658.0951771653544 L 1506.25 608.0951771653544" stroke-linejoin="miter" />
+  <path fill="none" stroke="#314D66" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="18 11" marker-start="url(#arr-data)" marker-end="url(#arr-data)" id="frame-f2" d="M 2383.75 543.0951771653544 L 2383.75 588.0951771653544 L 2709.0 588.0951771653544 Q 2720.0 568.0951771653544 2731.0 588.0951771653544 L 3300 588.0951771653544 L 3300 687.0951771653544 Q 3308 693.0951771653544 3300 699.0951771653544 L 3300 1218.0951771653542 L 2966 1218.0951771653542 Q 2960 1210.0951771653542 2954 1218.0951771653542 L 2500 1218.0951771653542 L 2500 1227.0951771653542 Q 2508 1233.0951771653542 2500 1239.0951771653542 L 2500 1274.0951771653542" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="sensor-rx" d="M 3370 448.09517716535436 L 3286.25 448.09517716535436" stroke-linejoin="miter" />
+  <path fill="none" stroke="#B96043" stroke-width="4.8" font-family="Arial" font-size="16" font-weight="normal" font-style="normal" text-anchor="start" stroke-dasharray="none" marker-start="none" marker-end="url(#arr-pixel)" id="tx-processor" d="M 3290 1738.0951771653542 L 3370 1738.0951771653542" stroke-linejoin="miter" />
+</svg>

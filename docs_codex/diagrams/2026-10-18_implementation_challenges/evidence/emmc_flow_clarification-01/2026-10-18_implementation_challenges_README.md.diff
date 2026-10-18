@@ -1,0 +1,11 @@
+--- before/docs_codex/diagrams/2026-10-18_implementation_challenges/README.md
++++ docs_codex/diagrams/2026-10-18_implementation_challenges/README.md
+@@ -27,6 +27,8 @@
+ `masters/` 为 13 幅编辑母版；`export/*.editable.svg` 是同一批图的规范化副本，不是另外 13 个主题。`png/` 为 Markdown 使用的 13 张阅读预览。`evidence/` 保留首轮及修订检查，不能拿中间稿代替正式交付。
+ 
+ ## 视觉与语义约定
++
++**2026-10-18 用户澄清：图 01 的 eMMC/S7→M5→GB 表示硬件可达性，不是当前软件参数加载流程。** 实际规划为上电复位、DDR 就绪后软件先 eMMC→DDR，ISP 工作时才 DDR→GB。图 01 下方的 GB 写入/交接阶段由 DDR→GB 搬运及实际 GB 使用者承担；图 03 的设备地址必须按实际目的地配置。连通图和 PPT 原件保留，图注与[正式专题第 01 节](../../engineering/Implementation_Challenges_and_Open_Questions.md#challenge-01)纠正软件含义；首次交付的检查报告仅对当时文档快照有效。
+ 
+ 蓝：数据/请求；紫：配置/控制；绿：完成/交接/响应；红：故障/恢复。双向连线可以汇总请求与返回，不增加帧写 DMA 的读能力或帧读 DMA 的写能力；具体 AXI 通道见图 08。可选 IOMMU 边界用完整虚线矩形，其他边框实线不表示已经实现。
+ 

@@ -1,0 +1,3794 @@
+[
+  {
+    "number": 1,
+    "file": "01_gb_ownership",
+    "title": "GB：所有权、权限与仲裁",
+    "nodes": {
+      "cpu": [
+        75,
+        210,
+        220,
+        70
+      ],
+      "ara": [
+        75,
+        320,
+        220,
+        70
+      ],
+      "emmc": [
+        75,
+        430,
+        220,
+        70
+      ],
+      "xbar": [
+        380,
+        200,
+        220,
+        310
+      ],
+      "local": [
+        690,
+        165,
+        340,
+        90
+      ],
+      "adapt": [
+        690,
+        335,
+        340,
+        110
+      ],
+      "banks": [
+        1160,
+        320,
+        370,
+        140
+      ],
+      "policy": [
+        1150,
+        165,
+        380,
+        85
+      ],
+      "produce": [
+        75,
+        640,
+        300,
+        100
+      ],
+      "visible": [
+        445,
+        640,
+        300,
+        100
+      ],
+      "consume": [
+        815,
+        640,
+        300,
+        100
+      ],
+      "free": [
+        1185,
+        640,
+        300,
+        100
+      ]
+    },
+    "edges": [
+      {
+        "id": "cpu-xbar",
+        "kind": "data",
+        "points": [
+          [
+            295,
+            245
+          ],
+          [
+            380,
+            245
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "ara-xbar",
+        "kind": "data",
+        "points": [
+          [
+            295,
+            355
+          ],
+          [
+            380,
+            355
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "emmc-xbar",
+        "kind": "data",
+        "points": [
+          [
+            295,
+            465
+          ],
+          [
+            380,
+            465
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "m5-gb",
+        "kind": "data",
+        "points": [
+          [
+            600,
+            390
+          ],
+          [
+            690,
+            390
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "local-gb",
+        "kind": "data",
+        "points": [
+          [
+            860,
+            255
+          ],
+          [
+            860,
+            335
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "access-bank",
+        "kind": "data",
+        "points": [
+          [
+            1030,
+            390
+          ],
+          [
+            1160,
+            390
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "policy-check",
+        "kind": "control",
+        "points": [
+          [
+            1150,
+            207
+          ],
+          [
+            1080,
+            207
+          ],
+          [
+            1080,
+            295
+          ],
+          [
+            930,
+            295
+          ],
+          [
+            930,
+            335
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "handoff-0",
+        "kind": "done",
+        "points": [
+          [
+            375,
+            690
+          ],
+          [
+            445,
+            690
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "handoff-1",
+        "kind": "done",
+        "points": [
+          [
+            745,
+            690
+          ],
+          [
+            815,
+            690
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "handoff-2",
+        "kind": "done",
+        "points": [
+          [
+            1115,
+            690
+          ],
+          [
+            1185,
+            690
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "file": "02_cache_sync",
+    "title": "DDR–GB：跨层数据同步",
+    "nodes": {
+      "cpu": [
+        70,
+        215,
+        210,
+        80
+      ],
+      "ara": [
+        70,
+        325,
+        210,
+        60
+      ],
+      "xbar": [
+        355,
+        215,
+        185,
+        170
+      ],
+      "cache": [
+        610,
+        265,
+        210,
+        90
+      ],
+      "front": [
+        890,
+        265,
+        305,
+        90
+      ],
+      "ddr": [
+        1260,
+        265,
+        255,
+        90
+      ],
+      "dev": [
+        890,
+        165,
+        305,
+        65
+      ],
+      "service": [
+        55,
+        470,
+        290,
+        180
+      ],
+      "in": [
+        425,
+        440,
+        1090,
+        90
+      ],
+      "pre": [
+        425,
+        560,
+        1090,
+        90
+      ],
+      "post": [
+        425,
+        680,
+        1090,
+        90
+      ]
+    },
+    "edges": [
+      {
+        "id": "cpu-xbar",
+        "kind": "data",
+        "points": [
+          [
+            280,
+            255
+          ],
+          [
+            355,
+            255
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "ara-xbar",
+        "kind": "data",
+        "points": [
+          [
+            280,
+            355
+          ],
+          [
+            355,
+            355
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "xbar-cache",
+        "kind": "data",
+        "points": [
+          [
+            540,
+            310
+          ],
+          [
+            610,
+            310
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "cache-front",
+        "kind": "data",
+        "points": [
+          [
+            820,
+            310
+          ],
+          [
+            890,
+            310
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "front-ddr",
+        "kind": "data",
+        "points": [
+          [
+            1195,
+            310
+          ],
+          [
+            1260,
+            310
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "device-front",
+        "kind": "data",
+        "points": [
+          [
+            1042,
+            230
+          ],
+          [
+            1042,
+            265
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "service-cache",
+        "kind": "control",
+        "points": [
+          [
+            200,
+            470
+          ],
+          [
+            200,
+            425
+          ],
+          [
+            715,
+            425
+          ],
+          [
+            715,
+            355
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "service-l1",
+        "kind": "control",
+        "points": [
+          [
+            55,
+            510
+          ],
+          [
+            30,
+            510
+          ],
+          [
+            30,
+            255
+          ],
+          [
+            70,
+            255
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "sync-in",
+        "kind": "control",
+        "points": [
+          [
+            345,
+            555
+          ],
+          [
+            385,
+            555
+          ],
+          [
+            385,
+            485
+          ],
+          [
+            425,
+            485
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "sync-pre",
+        "kind": "control",
+        "points": [
+          [
+            345,
+            555
+          ],
+          [
+            385,
+            555
+          ],
+          [
+            385,
+            605
+          ],
+          [
+            425,
+            605
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "sync-post",
+        "kind": "control",
+        "points": [
+          [
+            345,
+            555
+          ],
+          [
+            385,
+            555
+          ],
+          [
+            385,
+            725
+          ],
+          [
+            425,
+            725
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "file": "03_address_spaces",
+    "title": "设备地址体系：先定义地址，再选择翻译机制",
+    "nodes": {
+      "va": [
+        75,
+        225,
+        260,
+        90
+      ],
+      "mmu": [
+        475,
+        225,
+        350,
+        90
+      ],
+      "pa": [
+        1165,
+        225,
+        350,
+        90
+      ],
+      "driver": [
+        75,
+        500,
+        280,
+        100
+      ],
+      "dma": [
+        480,
+        500,
+        300,
+        100
+      ],
+      "iommu": [
+        900,
+        485,
+        270,
+        130
+      ],
+      "target": [
+        1270,
+        500,
+        245,
+        100
+      ],
+      "gb-offset": [
+        75,
+        750,
+        300,
+        75
+      ],
+      "gb-bank": [
+        430,
+        750,
+        245,
+        75
+      ]
+    },
+    "edges": [
+      {
+        "id": "va-mmu",
+        "kind": "data",
+        "points": [
+          [
+            335,
+            270
+          ],
+          [
+            475,
+            270
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "mmu-pa",
+        "kind": "data",
+        "points": [
+          [
+            825,
+            270
+          ],
+          [
+            1165,
+            270
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "map-submit",
+        "kind": "control",
+        "points": [
+          [
+            355,
+            550
+          ],
+          [
+            480,
+            550
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "dma-optional",
+        "kind": "data",
+        "points": [
+          [
+            780,
+            530
+          ],
+          [
+            900,
+            530
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "iommu-target",
+        "kind": "data",
+        "points": [
+          [
+            1170,
+            530
+          ],
+          [
+            1270,
+            530
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "direct-bus",
+        "kind": "data",
+        "points": [
+          [
+            780,
+            575
+          ],
+          [
+            830,
+            575
+          ],
+          [
+            830,
+            655
+          ],
+          [
+            1392,
+            655
+          ],
+          [
+            1392,
+            600
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "target-decode",
+        "kind": "data",
+        "points": [
+          [
+            1392,
+            500
+          ],
+          [
+            1392,
+            380
+          ],
+          [
+            1340,
+            380
+          ],
+          [
+            1340,
+            315
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "offset-bank",
+        "kind": "data",
+        "points": [
+          [
+            375,
+            787
+          ],
+          [
+            430,
+            787
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "file": "04_register_commit",
+    "title": "配置寄存器：数量来自行为契约",
+    "nodes": {
+      "sw": [
+        65,
+        215,
+        330,
+        120
+      ],
+      "shadow": [
+        440,
+        215,
+        330,
+        120
+      ],
+      "commit": [
+        815,
+        215,
+        330,
+        120
+      ],
+      "active": [
+        1190,
+        215,
+        330,
+        120
+      ],
+      "execute": [
+        1190,
+        475,
+        330,
+        120
+      ],
+      "status": [
+        620,
+        475,
+        380,
+        120
+      ],
+      "reset": [
+        65,
+        675,
+        440,
+        110
+      ],
+      "contract": [
+        620,
+        675,
+        900,
+        110
+      ]
+    },
+    "edges": [
+      {
+        "id": "cfg-0",
+        "kind": "control",
+        "points": [
+          [
+            395,
+            275
+          ],
+          [
+            440,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "cfg-1",
+        "kind": "control",
+        "points": [
+          [
+            770,
+            275
+          ],
+          [
+            815,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "cfg-2",
+        "kind": "control",
+        "points": [
+          [
+            1145,
+            275
+          ],
+          [
+            1190,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "active-execute",
+        "kind": "control",
+        "points": [
+          [
+            1355,
+            335
+          ],
+          [
+            1355,
+            475
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "execute-status",
+        "kind": "done",
+        "points": [
+          [
+            1190,
+            535
+          ],
+          [
+            1000,
+            535
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "status-software",
+        "kind": "done",
+        "points": [
+          [
+            620,
+            535
+          ],
+          [
+            230,
+            535
+          ],
+          [
+            230,
+            335
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "reset-shadow",
+        "kind": "error",
+        "points": [
+          [
+            505,
+            730
+          ],
+          [
+            545,
+            730
+          ],
+          [
+            545,
+            335
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "file": "05_ddr_ports",
+    "title": "四口 DDR：独立入口，共享物理存储",
+    "nodes": {
+      "src0": [
+        60,
+        193,
+        335,
+        64
+      ],
+      "f0": [
+        535,
+        193,
+        160,
+        64
+      ],
+      "s0": [
+        1120,
+        193,
+        155,
+        64
+      ],
+      "src1": [
+        60,
+        293,
+        335,
+        64
+      ],
+      "f1": [
+        535,
+        293,
+        160,
+        64
+      ],
+      "s1": [
+        1120,
+        293,
+        155,
+        64
+      ],
+      "src2": [
+        60,
+        393,
+        335,
+        64
+      ],
+      "f2": [
+        535,
+        393,
+        160,
+        64
+      ],
+      "s2": [
+        1120,
+        393,
+        155,
+        64
+      ],
+      "src3": [
+        60,
+        493,
+        335,
+        64
+      ],
+      "f3": [
+        535,
+        493,
+        160,
+        64
+      ],
+      "s3": [
+        1120,
+        493,
+        155,
+        64
+      ],
+      "dram": [
+        1345,
+        290,
+        175,
+        170
+      ],
+      "wa": [
+        60,
+        680,
+        380,
+        100
+      ],
+      "visible": [
+        595,
+        680,
+        410,
+        100
+      ],
+      "rb": [
+        1155,
+        680,
+        385,
+        100
+      ]
+    },
+    "edges": [
+      {
+        "id": "source-f0",
+        "kind": "data",
+        "points": [
+          [
+            395,
+            225
+          ],
+          [
+            535,
+            225
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "f-s0",
+        "kind": "data",
+        "points": [
+          [
+            695,
+            225
+          ],
+          [
+            1120,
+            225
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "s-memory0",
+        "kind": "data",
+        "points": [
+          [
+            1275,
+            225
+          ],
+          [
+            1310,
+            225
+          ],
+          [
+            1310,
+            375
+          ],
+          [
+            1345,
+            375
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "source-f1",
+        "kind": "data",
+        "points": [
+          [
+            395,
+            325
+          ],
+          [
+            535,
+            325
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "f-s1",
+        "kind": "data",
+        "points": [
+          [
+            695,
+            325
+          ],
+          [
+            1120,
+            325
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "s-memory1",
+        "kind": "data",
+        "points": [
+          [
+            1275,
+            325
+          ],
+          [
+            1310,
+            325
+          ],
+          [
+            1310,
+            375
+          ],
+          [
+            1345,
+            375
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "source-f2",
+        "kind": "data",
+        "points": [
+          [
+            395,
+            425
+          ],
+          [
+            535,
+            425
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "f-s2",
+        "kind": "data",
+        "points": [
+          [
+            695,
+            425
+          ],
+          [
+            1120,
+            425
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "s-memory2",
+        "kind": "data",
+        "points": [
+          [
+            1275,
+            425
+          ],
+          [
+            1310,
+            425
+          ],
+          [
+            1310,
+            375
+          ],
+          [
+            1345,
+            375
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "source-f3",
+        "kind": "data",
+        "points": [
+          [
+            395,
+            525
+          ],
+          [
+            535,
+            525
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "f-s3",
+        "kind": "data",
+        "points": [
+          [
+            695,
+            525
+          ],
+          [
+            1120,
+            525
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "s-memory3",
+        "kind": "data",
+        "points": [
+          [
+            1275,
+            525
+          ],
+          [
+            1310,
+            525
+          ],
+          [
+            1310,
+            375
+          ],
+          [
+            1345,
+            375
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "write-visible",
+        "kind": "done",
+        "points": [
+          [
+            440,
+            730
+          ],
+          [
+            595,
+            730
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "visible-read",
+        "kind": "done",
+        "points": [
+          [
+            1005,
+            730
+          ],
+          [
+            1155,
+            730
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "file": "06_compression",
+    "title": "共享压缩前端：算法之外的事务系统",
+    "nodes": {
+      "ports": [
+        55,
+        195,
+        260,
+        100
+      ],
+      "route": [
+        425,
+        195,
+        410,
+        100
+      ],
+      "meta": [
+        1010,
+        180,
+        500,
+        120
+      ],
+      "raw": [
+        55,
+        415,
+        350,
+        115
+      ],
+      "write": [
+        425,
+        415,
+        350,
+        115
+      ],
+      "read": [
+        850,
+        415,
+        350,
+        115
+      ],
+      "down": [
+        1270,
+        405,
+        265,
+        140
+      ],
+      "aggregate": [
+        850,
+        675,
+        685,
+        115
+      ],
+      "complete": [
+        55,
+        675,
+        640,
+        115
+      ]
+    },
+    "edges": [
+      {
+        "id": "ports-route",
+        "kind": "data",
+        "points": [
+          [
+            315,
+            245
+          ],
+          [
+            425,
+            245
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "route-meta",
+        "kind": "control",
+        "points": [
+          [
+            835,
+            245
+          ],
+          [
+            1010,
+            245
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "address-downstream",
+        "kind": "control",
+        "points": [
+          [
+            835,
+            215
+          ],
+          [
+            945,
+            215
+          ],
+          [
+            945,
+            130
+          ],
+          [
+            1560,
+            130
+          ],
+          [
+            1560,
+            475
+          ],
+          [
+            1535,
+            475
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "route-raw",
+        "kind": "data",
+        "points": [
+          [
+            490,
+            295
+          ],
+          [
+            490,
+            350
+          ],
+          [
+            230,
+            350
+          ],
+          [
+            230,
+            415
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "route-write",
+        "kind": "data",
+        "points": [
+          [
+            630,
+            295
+          ],
+          [
+            630,
+            415
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "route-read",
+        "kind": "data",
+        "points": [
+          [
+            770,
+            295
+          ],
+          [
+            770,
+            350
+          ],
+          [
+            1025,
+            350
+          ],
+          [
+            1025,
+            415
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "raw-down",
+        "kind": "data",
+        "points": [
+          [
+            230,
+            530
+          ],
+          [
+            230,
+            585
+          ],
+          [
+            1300,
+            585
+          ],
+          [
+            1300,
+            545
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "write-down",
+        "kind": "data",
+        "points": [
+          [
+            600,
+            530
+          ],
+          [
+            600,
+            620
+          ],
+          [
+            1400,
+            620
+          ],
+          [
+            1400,
+            545
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "read-down",
+        "kind": "data",
+        "points": [
+          [
+            1200,
+            470
+          ],
+          [
+            1270,
+            470
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "metadata-io",
+        "kind": "control",
+        "points": [
+          [
+            1400,
+            300
+          ],
+          [
+            1400,
+            405
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "down-result",
+        "kind": "done",
+        "points": [
+          [
+            1495,
+            545
+          ],
+          [
+            1495,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "decoded-r",
+        "kind": "done",
+        "points": [
+          [
+            1025,
+            530
+          ],
+          [
+            1025,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "reply-aggregate",
+        "kind": "done",
+        "points": [
+          [
+            850,
+            730
+          ],
+          [
+            695,
+            730
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "raw-r",
+        "kind": "done",
+        "points": [
+          [
+            90,
+            530
+          ],
+          [
+            90,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "file": "07_completion_recovery",
+    "title": "完成与回收：区分五个时间点",
+    "nodes": {
+      "phase0": [
+        55,
+        220,
+        230,
+        110
+      ],
+      "phase1": [
+        370,
+        220,
+        230,
+        110
+      ],
+      "phase2": [
+        685,
+        220,
+        230,
+        110
+      ],
+      "phase3": [
+        1000,
+        220,
+        230,
+        110
+      ],
+      "phase4": [
+        1315,
+        220,
+        230,
+        110
+      ],
+      "fail": [
+        65,
+        485,
+        285,
+        115
+      ],
+      "isolate": [
+        455,
+        485,
+        285,
+        115
+      ],
+      "drain": [
+        845,
+        485,
+        285,
+        115
+      ],
+      "rebuild": [
+        1235,
+        485,
+        285,
+        115
+      ]
+    },
+    "edges": [
+      {
+        "id": "phase-edge0",
+        "kind": "done",
+        "points": [
+          [
+            285,
+            275
+          ],
+          [
+            370,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "phase-edge1",
+        "kind": "done",
+        "points": [
+          [
+            600,
+            275
+          ],
+          [
+            685,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "phase-edge2",
+        "kind": "done",
+        "points": [
+          [
+            915,
+            275
+          ],
+          [
+            1000,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "phase-edge3",
+        "kind": "done",
+        "points": [
+          [
+            1230,
+            275
+          ],
+          [
+            1315,
+            275
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "recover0",
+        "kind": "error",
+        "points": [
+          [
+            350,
+            543
+          ],
+          [
+            455,
+            543
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "recover1",
+        "kind": "error",
+        "points": [
+          [
+            740,
+            543
+          ],
+          [
+            845,
+            543
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "recover2",
+        "kind": "error",
+        "points": [
+          [
+            1130,
+            543
+          ],
+          [
+            1235,
+            543
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "failure-branch0",
+        "kind": "error",
+        "points": [
+          [
+            170,
+            330
+          ],
+          [
+            170,
+            405
+          ],
+          [
+            210,
+            405
+          ],
+          [
+            210,
+            485
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "failure-branch1",
+        "kind": "error",
+        "points": [
+          [
+            485,
+            330
+          ],
+          [
+            485,
+            405
+          ],
+          [
+            210,
+            405
+          ],
+          [
+            210,
+            485
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "failure-branch2",
+        "kind": "error",
+        "points": [
+          [
+            800,
+            330
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            210,
+            405
+          ],
+          [
+            210,
+            485
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "failure-branch3",
+        "kind": "error",
+        "points": [
+          [
+            1115,
+            330
+          ],
+          [
+            1115,
+            405
+          ],
+          [
+            210,
+            405
+          ],
+          [
+            210,
+            485
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "rebuild-free",
+        "kind": "done",
+        "points": [
+          [
+            1380,
+            485
+          ],
+          [
+            1380,
+            400
+          ],
+          [
+            1430,
+            400
+          ],
+          [
+            1430,
+            330
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "still-active",
+        "kind": "error",
+        "points": [
+          [
+            985,
+            600
+          ],
+          [
+            985,
+            730
+          ],
+          [
+            595,
+            730
+          ],
+          [
+            595,
+            600
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "file": "08_axi_adaptation",
+    "title": "AXI 适配：五个通道分别保持语义",
+    "nodes": {
+      "up-AW": [
+        75,
+        235,
+        315,
+        65
+      ],
+      "adapt-AW": [
+        590,
+        235,
+        420,
+        65
+      ],
+      "down-AW": [
+        1210,
+        235,
+        315,
+        65
+      ],
+      "up-W": [
+        75,
+        330,
+        315,
+        65
+      ],
+      "adapt-W": [
+        590,
+        330,
+        420,
+        65
+      ],
+      "down-W": [
+        1210,
+        330,
+        315,
+        65
+      ],
+      "up-B": [
+        75,
+        425,
+        315,
+        65
+      ],
+      "adapt-B": [
+        590,
+        425,
+        420,
+        65
+      ],
+      "down-B": [
+        1210,
+        425,
+        315,
+        65
+      ],
+      "up-AR": [
+        75,
+        520,
+        315,
+        65
+      ],
+      "adapt-AR": [
+        590,
+        520,
+        420,
+        65
+      ],
+      "down-AR": [
+        1210,
+        520,
+        315,
+        65
+      ],
+      "up-R": [
+        75,
+        615,
+        315,
+        65
+      ],
+      "adapt-R": [
+        590,
+        615,
+        420,
+        65
+      ],
+      "down-R": [
+        1210,
+        615,
+        315,
+        65
+      ]
+    },
+    "edges": [
+      {
+        "id": "AW0",
+        "kind": "data",
+        "points": [
+          [
+            390,
+            267
+          ],
+          [
+            590,
+            267
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "AW1",
+        "kind": "data",
+        "points": [
+          [
+            1010,
+            267
+          ],
+          [
+            1210,
+            267
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "W0",
+        "kind": "data",
+        "points": [
+          [
+            390,
+            362
+          ],
+          [
+            590,
+            362
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "W1",
+        "kind": "data",
+        "points": [
+          [
+            1010,
+            362
+          ],
+          [
+            1210,
+            362
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "B0",
+        "kind": "done",
+        "points": [
+          [
+            590,
+            457
+          ],
+          [
+            390,
+            457
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "B1",
+        "kind": "done",
+        "points": [
+          [
+            1210,
+            457
+          ],
+          [
+            1010,
+            457
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "AR0",
+        "kind": "data",
+        "points": [
+          [
+            390,
+            552
+          ],
+          [
+            590,
+            552
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "AR1",
+        "kind": "data",
+        "points": [
+          [
+            1010,
+            552
+          ],
+          [
+            1210,
+            552
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "R0",
+        "kind": "done",
+        "points": [
+          [
+            590,
+            647
+          ],
+          [
+            390,
+            647
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "R1",
+        "kind": "done",
+        "points": [
+          [
+            1210,
+            647
+          ],
+          [
+            1010,
+            647
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "file": "09_bandwidth",
+    "title": "实时预算：平均吞吐之外还要保证最长等待",
+    "nodes": {
+      "input": [
+        55,
+        205,
+        300,
+        120
+      ],
+      "fifo": [
+        495,
+        205,
+        300,
+        120
+      ],
+      "ddr": [
+        965,
+        190,
+        560,
+        150
+      ],
+      "load": [
+        965,
+        440,
+        560,
+        110
+      ],
+      "output": [
+        55,
+        440,
+        300,
+        110
+      ],
+      "outfifo": [
+        495,
+        440,
+        300,
+        110
+      ],
+      "budget": [
+        55,
+        660,
+        1470,
+        130
+      ]
+    },
+    "edges": [
+      {
+        "id": "input-fifo",
+        "kind": "data",
+        "points": [
+          [
+            355,
+            265
+          ],
+          [
+            495,
+            265
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "fifo-service",
+        "kind": "data",
+        "points": [
+          [
+            795,
+            265
+          ],
+          [
+            965,
+            265
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "competition",
+        "kind": "data",
+        "points": [
+          [
+            1245,
+            440
+          ],
+          [
+            1245,
+            340
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "service-output",
+        "kind": "data",
+        "points": [
+          [
+            965,
+            310
+          ],
+          [
+            870,
+            310
+          ],
+          [
+            870,
+            495
+          ],
+          [
+            795,
+            495
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "output-consume",
+        "kind": "data",
+        "points": [
+          [
+            495,
+            495
+          ],
+          [
+            355,
+            495
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "file": "10_algorithm_layout",
+    "title": "算法与布局：计算正确和搬得动必须同时满足",
+    "nodes": {
+      "gold": [
+        55,
+        195,
+        330,
+        115
+      ],
+      "quant": [
+        440,
+        195,
+        330,
+        115
+      ],
+      "layout": [
+        825,
+        195,
+        330,
+        115
+      ],
+      "tiles": [
+        1210,
+        195,
+        330,
+        115
+      ],
+      "cpu": [
+        130,
+        440,
+        320,
+        115
+      ],
+      "ara": [
+        640,
+        440,
+        320,
+        115
+      ],
+      "npu": [
+        1150,
+        440,
+        320,
+        115
+      ],
+      "compare": [
+        475,
+        675,
+        650,
+        110
+      ]
+    },
+    "edges": [
+      {
+        "id": "model0",
+        "kind": "control",
+        "points": [
+          [
+            385,
+            252
+          ],
+          [
+            440,
+            252
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "model1",
+        "kind": "control",
+        "points": [
+          [
+            770,
+            252
+          ],
+          [
+            825,
+            252
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "model2",
+        "kind": "control",
+        "points": [
+          [
+            1155,
+            252
+          ],
+          [
+            1210,
+            252
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "tile-cpu",
+        "kind": "control",
+        "points": [
+          [
+            1375,
+            310
+          ],
+          [
+            1375,
+            370
+          ],
+          [
+            290,
+            370
+          ],
+          [
+            290,
+            440
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "tile-ara",
+        "kind": "control",
+        "points": [
+          [
+            1375,
+            310
+          ],
+          [
+            1375,
+            370
+          ],
+          [
+            800,
+            370
+          ],
+          [
+            800,
+            440
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "tile-npu",
+        "kind": "control",
+        "points": [
+          [
+            1375,
+            310
+          ],
+          [
+            1375,
+            370
+          ],
+          [
+            1310,
+            370
+          ],
+          [
+            1310,
+            440
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "cpu-check",
+        "kind": "done",
+        "points": [
+          [
+            290,
+            555
+          ],
+          [
+            290,
+            625
+          ],
+          [
+            800,
+            625
+          ],
+          [
+            800,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "ara-check",
+        "kind": "done",
+        "points": [
+          [
+            800,
+            555
+          ],
+          [
+            800,
+            625
+          ],
+          [
+            800,
+            625
+          ],
+          [
+            800,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "npu-check",
+        "kind": "done",
+        "points": [
+          [
+            1310,
+            555
+          ],
+          [
+            1310,
+            625
+          ],
+          [
+            800,
+            625
+          ],
+          [
+            800,
+            675
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "gold-reference",
+        "kind": "control",
+        "points": [
+          [
+            55,
+            252
+          ],
+          [
+            30,
+            252
+          ],
+          [
+            30,
+            730
+          ],
+          [
+            475,
+            730
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "file": "11_boot_clock_reset",
+    "title": "启动、时钟、复位与 CDC：先建立可执行条件",
+    "nodes": {
+      "clk": [
+        55,
+        210,
+        330,
+        120
+      ],
+      "rom": [
+        440,
+        210,
+        330,
+        120
+      ],
+      "config": [
+        825,
+        210,
+        330,
+        120
+      ],
+      "ready": [
+        1210,
+        210,
+        330,
+        120
+      ],
+      "app": [
+        1210,
+        470,
+        330,
+        110
+      ],
+      "safe": [
+        55,
+        470,
+        430,
+        110
+      ],
+      "runtime": [
+        630,
+        660,
+        910,
+        125
+      ]
+    },
+    "edges": [
+      {
+        "id": "boot0",
+        "kind": "control",
+        "points": [
+          [
+            385,
+            270
+          ],
+          [
+            440,
+            270
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "boot1",
+        "kind": "control",
+        "points": [
+          [
+            770,
+            270
+          ],
+          [
+            825,
+            270
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "boot2",
+        "kind": "control",
+        "points": [
+          [
+            1155,
+            270
+          ],
+          [
+            1210,
+            270
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "ddr-app",
+        "kind": "done",
+        "points": [
+          [
+            1375,
+            330
+          ],
+          [
+            1375,
+            470
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "ready-fail",
+        "kind": "error",
+        "points": [
+          [
+            1375,
+            330
+          ],
+          [
+            1375,
+            395
+          ],
+          [
+            270,
+            395
+          ],
+          [
+            270,
+            470
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "runtime-config",
+        "kind": "control",
+        "points": [
+          [
+            630,
+            720
+          ],
+          [
+            550,
+            720
+          ],
+          [
+            550,
+            360
+          ],
+          [
+            990,
+            360
+          ],
+          [
+            990,
+            330
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "app-runtime",
+        "kind": "control",
+        "points": [
+          [
+            1375,
+            580
+          ],
+          [
+            1375,
+            660
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 12,
+    "file": "12_asic_dft",
+    "title": "真实工艺：宏语义、测试接管与物理签核",
+    "nodes": {
+      "consumer": [
+        55,
+        205,
+        350,
+        130
+      ],
+      "wrapper": [
+        570,
+        205,
+        420,
+        130
+      ],
+      "macro": [
+        1155,
+        205,
+        390,
+        130
+      ],
+      "test": [
+        55,
+        490,
+        350,
+        120
+      ],
+      "physical": [
+        570,
+        490,
+        420,
+        120
+      ],
+      "signoff": [
+        1155,
+        490,
+        390,
+        120
+      ]
+    },
+    "edges": [
+      {
+        "id": "consumer-wrap",
+        "kind": "data",
+        "points": [
+          [
+            405,
+            270
+          ],
+          [
+            570,
+            270
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "wrap-macro",
+        "kind": "data",
+        "points": [
+          [
+            990,
+            270
+          ],
+          [
+            1155,
+            270
+          ]
+        ],
+        "bidirectional": true
+      },
+      {
+        "id": "test-takeover",
+        "kind": "control",
+        "points": [
+          [
+            405,
+            550
+          ],
+          [
+            500,
+            550
+          ],
+          [
+            500,
+            385
+          ],
+          [
+            780,
+            385
+          ],
+          [
+            780,
+            335
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "macro-views",
+        "kind": "control",
+        "points": [
+          [
+            1350,
+            335
+          ],
+          [
+            1350,
+            400
+          ],
+          [
+            780,
+            400
+          ],
+          [
+            780,
+            490
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "physical-signoff",
+        "kind": "done",
+        "points": [
+          [
+            990,
+            550
+          ],
+          [
+            1155,
+            550
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "test-signoff",
+        "kind": "done",
+        "points": [
+          [
+            230,
+            610
+          ],
+          [
+            230,
+            710
+          ],
+          [
+            1350,
+            710
+          ],
+          [
+            1350,
+            610
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "file": "13_verification",
+    "title": "验证与调试：从故障触发到可追溯证据",
+    "nodes": {
+      "stim": [
+        55,
+        205,
+        350,
+        120
+      ],
+      "dut": [
+        610,
+        205,
+        380,
+        120
+      ],
+      "observe": [
+        1185,
+        205,
+        350,
+        120
+      ],
+      "gold": [
+        55,
+        490,
+        350,
+        115
+      ],
+      "check": [
+        610,
+        490,
+        380,
+        115
+      ],
+      "evidence": [
+        1185,
+        490,
+        350,
+        115
+      ],
+      "defects": [
+        55,
+        710,
+        1480,
+        90
+      ]
+    },
+    "edges": [
+      {
+        "id": "stim-dut",
+        "kind": "control",
+        "points": [
+          [
+            405,
+            265
+          ],
+          [
+            610,
+            265
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "dut-observe",
+        "kind": "done",
+        "points": [
+          [
+            990,
+            265
+          ],
+          [
+            1185,
+            265
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "reference-check",
+        "kind": "control",
+        "points": [
+          [
+            405,
+            547
+          ],
+          [
+            610,
+            547
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "observe-check",
+        "kind": "done",
+        "points": [
+          [
+            1360,
+            325
+          ],
+          [
+            1360,
+            400
+          ],
+          [
+            800,
+            400
+          ],
+          [
+            800,
+            490
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "check-evidence",
+        "kind": "done",
+        "points": [
+          [
+            990,
+            547
+          ],
+          [
+            1185,
+            547
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "defect-stim",
+        "kind": "error",
+        "points": [
+          [
+            55,
+            755
+          ],
+          [
+            30,
+            755
+          ],
+          [
+            30,
+            265
+          ],
+          [
+            55,
+            265
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-data",
+        "kind": "data",
+        "points": [
+          [
+            55,
+            858
+          ],
+          [
+            103,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-control",
+        "kind": "control",
+        "points": [
+          [
+            340,
+            858
+          ],
+          [
+            388,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-done",
+        "kind": "done",
+        "points": [
+          [
+            625,
+            858
+          ],
+          [
+            673,
+            858
+          ]
+        ],
+        "bidirectional": false
+      },
+      {
+        "id": "legend-error",
+        "kind": "error",
+        "points": [
+          [
+            910,
+            858
+          ],
+          [
+            958,
+            858
+          ]
+        ],
+        "bidirectional": false
+      }
+    ]
+  }
+]

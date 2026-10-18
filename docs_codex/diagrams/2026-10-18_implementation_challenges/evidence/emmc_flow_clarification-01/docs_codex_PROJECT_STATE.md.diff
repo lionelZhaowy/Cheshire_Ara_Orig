@@ -1,0 +1,10 @@
+--- before/docs_codex/PROJECT_STATE.md
++++ docs_codex/PROJECT_STATE.md
+@@ -20,6 +20,7 @@
+ | 性质 | 内容 |
+ | --- | --- |
+ | 用户确认（2026-10-18） | 当前“SoC 架构(v1)”在功能规划层面满足现阶段需求，作为后续实现基线；见[实施总纲](engineering/SoC_Architecture_v1_Master_Plan.md)。CPU/Ara2 经主 Xbar64 共享 M5 访问独立 GB，eMMC 参数加载、RAW/ISP 采集、≤256 ROI 裁切和四入口共享压缩 DDR 纳入目标；新增工程待实现/待验证，参数缺失不撤销拓扑选择 |
++| 用户澄清（2026-10-18） | 软件数据流为上电复位、DDR 就绪后 eMMC→DDR，ISP 工作时按需 DDR→GB。S7→M5 的硬件可达性保留，但不作为 eMMC→GB 软件加载流程；此前文档混淆已修正，见[总纲 §4.3](engineering/SoC_Architecture_v1_Master_Plan.md#43-emmc-先加载-ddrisp-工作时再从-ddr-装入-gb)与[修订交接](handoffs/L01_implementation_challenges.md)。搬运采用 CPU 拷贝或软件启动 Host DMA 尚未选定，工程未实施 |
+ | 用户输入（2026-10-18） | 队长/HYH/TTY 三人全职，多数新增模块从零开发，均未独立完成完整流片；可申请实验室指导，关键资源未齐。上级期望 2027 年 6 月投片，用户说明可延后三个月；取舍为保留 v1、争取专项支持 |
+ | 排期建议（2026-10-18） | [团队分工与进度对照](engineering/Team_Responsibilities_and_Tapeout_Schedule.md)：6 月前端交付检查、9 月有条件提交 GDS；不表示上级已批准日期调整或工程已启动。分工、依赖与验收见正文，[交接](handoffs/C00_team_execution_plan.md)记录本轮文档变更 |
+ | 用户确认 | DDR 供应商可以提供 AXI4 版本，不再把 AXI3 桥列为必选项 |

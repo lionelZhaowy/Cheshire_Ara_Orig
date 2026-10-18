@@ -4,6 +4,9 @@
 
 | 日期 | 角色 / 输入 | 修改与验证摘要 |
 |---|---|---|
+| 2026-10-18 | L01 架构资料整合；HEAD `09798c1de…`，用户手调九页 PPT `b19710ba…` | 用户确认 v1 满足当前功能规划；交付正式总纲与第 9 页只读导出 SVG/PNG，更新工程入口/共享状态；保留既有未提交内容，未改 PPT/RTL/sw，未执行工程验证 |
+| 2026-10-17 | L01 第 8 页实施；用户手调七页 PPT `8916ac31…` / HEAD `09798c1de…` | 明确授权后复制第 7 页，仅调整五条长线几何及六处跳线；前七页、主题依赖和手动位置修改保留；最终 PPT 整页/局部审图、原生差异和保存重读通过 |
+| 2026-10-17 | L01 第 7 页实施；六页 PPT `73302218…` / HEAD `09798c1de…` | 用户明确授权后复制第 6 页；功能配置重排、采集分区左右镜像及两个片外 LVDS 端点；前六页和依赖原字节保留，最终 PPT 预览、语义和保存重读检查；未改 RTL/契约 |
 | 2026-10-17 | L01 协作规则整理；用户明确要求总结给新 Agent / 同 HEAD | 更新根 AGENTS 与文档定位指南，固化规划/实施边界、局部原生修改、同类通路检查和分项验收；本轮不改图稿或工程契约 |
 | 2026-10-17 | L01 第 6 页 F3 样式补修；六页 PPT `0dcb46b4…` / 同 HEAD | 用户指出遗漏并授权修改；仅为 F3↔帧输出 VDMA 增加与 F1/F2 一致的深蓝双向虚线属性，前五页及其余对象不变；最终 PPT 重读预览与局部检查 |
 | 2026-10-17 | L01 第 6 页限定样式修复；五页 PPT `3f100763…` / 同 HEAD | 规划后收到“开始实施”；直接复制第 5 页，恢复 ISP/GB、F1/F2、S_EXT/M_EXT 五条虚线并补图例；前五页及主题依赖原字节保留；纠正第 5 页曾将规划误当实施的记录 |
@@ -17,17 +20,47 @@
 | 2026-10-16 | L01 架构决策与图稿作者；同分支/HEAD | 用户选定 Ara2 / CPU 与 Ara 共享主 Xbar64 的 GB 目标出口；更新正式文档，新增单图 SVG/PNG/原生 PPTX，保留旧图及修改前备份；未改生产代码 |
 | 2026-10-15 | L01 分析与图稿作者；`mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8` | 按用户确认计划及追加 Markdown 要求，交付正式分析和两张工业风格 SVG/PNG、两页原生 PPTX；仅文档与图稿 |
 
-## 新对话接手：图稿修订规则（2026-10-17）
+## 当前接手：v1 架构总纲与只读导出（2026-10-18）
+
+- **输入/授权：**L01 既有主题，分支 `mp/ara-pulp-v2`，HEAD `09798c1ded457e423b927844f66faae87583a20c`。用户授权核对、正式 Markdown 总纲、当前 PPT 导图及最小导航/交接更新；不启动子 Agent，不实施 RTL、软件、配置、提取或大型构建。
+- **最新决定：**用户确认当前“SoC 架构(v1)”在功能规划层面满足现阶段需求，作为后续实现基线。拓扑已确定；参数、硬件、软件和性能仍按待输入/待实现/待验证管理。下文八页/三口/旧 C 号等记录保留其历史输入，不再充作当前页序或目标拓扑。
+- **交付：**[SoC 架构 v1 总纲](../engineering/SoC_Architecture_v1_Master_Plan.md)覆盖目标、现状、六类场景、需求/模块/阶段映射、软硬件契约、缺陷/恢复和冲突来源。配图为 [PNG](../diagrams/2026-10-16_soc_landscape_m5_gb/soc-architecture-v1.png) / [SVG](../diagrams/2026-10-16_soc_landscape_m5_gb/soc-architecture-v1.svg)，来自主 PPT 显示顺序第 **9** 页，源哈希 `b19710ba3cf23a34c93745c381051c4da5b03cae735f9d2e895416120cf05e3a`。保留用户手调上边界和标题，未使用旧 slide-08 代替。
+- **负责文件：**新增总纲、v1 SVG/PNG和导出来源证据；修改 engineering/README、PROJECT_STATE、本交接及图稿 README 的最小追加。四份已有文档先核哈希并备份，GB 正文及全部原图稿不改；[输入/恢复与验证记录](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/soc-architecture-v1-export-2026-10-18/README.md)保存实际命令、页序和保护清单。未提交 Git。
+- **冲突处理：**明确 CPU 可达、Ara2、共享 M5、四路 DDR、当前功能 C1～C16，以及范围维护已确认/接口仍待定。旧契约和三口专题仅在总纲标替代关系，未批量重写；未来对应主题负责人按总纲 §9.1 同步有效条目。
+- **实际检查：**定向读官方随附文档及当前源码，复核 Ara 路径/位宽、启动返回、LLC/Ara错误入口；按演示关系顺序识别 v1。DrawingML→SVG→CairoSVG生成本地预览，实际查看整页与五处局部；核对关键通路方向/虚实、C编号、Markdown链接及源文件哈希。最终结果见证据目录 `validation.json`。这是作者文档自查，没有独立子 Agent 评审。
+- **未实测：**Office显示/编辑、RTL/软件编译、展开、仿真、板测、吞吐及ASIC签核；受控供应商PDF/Word和实际四口IP交付未重新审阅。现有Platform ROM、LLC错误、Ara B错误、iDMA等门槛未因本轮交付关闭。
+- **最小后续：**①接手读总纲并重新核当前版本；②M01/I01/P01/S01按 §8.1收集四口交付/可见错误协议、GB/图像/压缩和启动输入；③按用户届时授权执行分阶段实现与验收，原专题更新由责任人协调。任务表状态未改，没有新增任务ID或工程认领；共享状态已按本轮授权串行更新，无本轮待合并状态项。
+
+## 历史接手：图稿修订规则（2026-10-17）
 
 用户明确要求把本次返工经验更新到协作入口，避免新对话重复出现相同问题。规范入口为[根 AGENTS](../../AGENTS.md)的“既有图稿与产物修订”和[文档定位指南第 6 节](../AGENT_DOCUMENTATION_GUIDE.md#diagram-revision)：明确规划/实施边界，局部编辑原生对象，独立核对方向/虚实/颜色/框层级，检查相关同类通路，并分别报告范围、语义、视觉和文件检查。
 
 本次已发生的问题包括：把仅规划误当实施；配色继承时未正确处理主题亮度修饰；恢复 F1/F2 等五条连线后漏查 F3；收到 LVDS TX 反馈时未经核实先判断为模块边框；将有限脚本/几何检查表述成整体完成。详细历史与原始证据保留在下文及图稿 README，不把失败记录改写为已正确验收，也不将责任转给用户的提示词。
 
-接续本图时，从[当前图稿 README](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)和最终六页 PPT 开始。当前 PPT SHA-256 为 `7330221874eb045d9fd2511a834d64c6ba45b98e5c7fb7014c67dee088277f31`；第 6 页 F1/F2/F3 为深蓝双向虚线。`build_page6.py` 是首版生成器，F3 补修由 `fix_page6_f3.py` 完成；不能只重跑旧生成器就覆盖当前产物。此处是接手提示，不授权继续改图。
+接续本图时，从[当前图稿 README](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md)和最终八页 PPT 开始。当前 PPT SHA-256 为 `2f224f52a5c0d53b84da8dd1b0a6d4a20c6e9d65e989e6b498996d5301faa106`；第 8 页从用户手调七页 `8916ac31…` 复制，仅调整五条长线几何，保留 F1/F2/F3 深蓝双向虚线。`build_page8.py` 直接读取该原生输入，不读取旧页生成数据。根目录 `slide-07.svg/png` 保留历史生成版，手调版第 7 页预览另见 README 链接，不能以旧预览覆盖 PPT。第 7/8 页公共控制为 C14，历史第 4～6 页仍为 C12。此处是接手提示，不授权继续改图。
 
-本轮任务仍为 L01，输入分支/HEAD 为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`。负责修改仅 `AGENTS.md`、`docs_codex/AGENT_DOCUMENTATION_GUIDE.md` 和本交接；修改前原文与工作区快照保存在[规则整理证据](../maintenance/L01/reviews/diagram_revision_evidence/input.json)。现有共享状态、任务表、维护索引的未提交内容保留；不改 PPT/SVG/PNG、工程契约或 RTL，不新增任务 ID 或主题 handoff。
+历史 `build_page7.py` 基线为六页 `73302218…`，不包含后来的手调；更早的 `build_page6.py` 亦不包含由 `fix_page6_f3.py` 完成的 F3 补修。不能通过重跑历史生成器覆盖当前产物。
 
-本轮验收只针对文档：差异范围、链接/定位锚点、原文保留及受保护文件哈希，见[检查记录](../maintenance/L01/reviews/diagram_revision_evidence/checks.json)。没有重新执行旧图稿验收或硬件测试。下一位按新的规则处理用户实际提出的任务，不自动重跑历史待办。
+上述规则整理轮任务为 L01，输入分支/HEAD 为 `mp/ara-pulp-v2` / `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`。当轮负责修改仅 `AGENTS.md`、`docs_codex/AGENT_DOCUMENTATION_GUIDE.md` 和本交接；修改前原文与工作区快照保存在[规则整理证据](../maintenance/L01/reviews/diagram_revision_evidence/input.json)。当时共享状态、任务表、维护索引的未提交内容保留；未改 PPT/SVG/PNG、工程契约或 RTL，未新增任务 ID 或主题 handoff。
+
+规则整理轮验收只针对文档：差异范围、链接/定位锚点、原文保留及受保护文件哈希，见[检查记录](../maintenance/L01/reviews/diagram_revision_evidence/checks.json)。当轮没有重新执行旧图稿验收或硬件测试。下一位按新的规则处理用户实际提出的任务，不自动重跑历史待办。
+
+## 第 8 页实施交接（2026-10-17）
+
+- **授权/输入：**用户明确要求实施集中长线与跳线修正计划；L01，分支 `mp/ara-pulp-v2`，HEAD `09798c1ded457e423b927844f66faae87583a20c`。用户手调七页 SHA-256 `8916ac316a5d9244297545fe6a6dc751de79851fa4f21a1757ea295771453b1b`。主 PPT、README、本交接及原第 7 页预览已备份至 [page8-before](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page8-before/)。工作区既有改动保留，包括 `Global_Buffer_CPU_Access.md`，本轮没有修改该工程说明。
+- **负责文件/结果：**原图稿目录主 PPT、README、新增 `slide-08.svg/png`、`build_page8.py` / `render_page8_previews.py` / `validate_page8.py` 与证据，以及本交接。复制当前原生第 7 页，仅改变 F1、F2、ISP↔GB、eMMC、M5 回接五条线几何；552 个其他对象完全一致。六处跳线按真实交点重新定位，F1/F2 集中在原图例左侧；用户手调的图例、Crossbar 标题、PLL 说明位置不变。具体路径和样式见[图稿说明](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md#第-8-页集中长线通道修正交叉与跳线)。不改模块、配置编号、协议含义、RTL 或契约。
+- **实际验证：**构建 01、最终主 PPT 的 `preview_deck_colours.py` / `render_page8_previews.py`、`validate_page8.py` 均退出 0；[最终检查](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page8-validation-final.json)验证前七页 XML/关系/依赖和原 SVG/PNG 不变，567 个保护文件及备份保持，五个原生对象只有几何变化。六个跳线与实际交叉逐一匹配，端点/样式、包关系及原生保存重读通过。最终 557 对象、247 文本、102 箭头、36 虚线，与输入页相同。
+- **视觉与限度：**从最终主 PPT 重读生成整页及 GB/采集、eMMC、F1/F2 折返、图例、M5 回接和跳线放大预览，已实际逐一查看；修改区未见穿字/穿框，相关路径连续且返回归属未变。根目录第 8 页预览来自最终主 PPT；历史第 7 页预览保留，不能冒充用户手调版。详见[交付记录](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page8-delivery.json)。Office 显示/编辑未实测，无硬件测试。
+- **状态/最小后续：**本次图稿范围完成；目标 Office 显示与编辑仍待实测。后续按届时主 PPT 接续；原生自由路径没有绑定模块端口，移动模块后须重新检查接线。此记录不授权进一步改图或硬件实施。
+
+## 第 7 页实施交接（2026-10-17；历史生成版）
+
+- **授权/输入：**用户明确要求实施已确认的配置组重排与片外 LVDS 连接计划。任务 L01；分支 `mp/ara-pulp-v2`，HEAD `09798c1ded457e423b927844f66faae87583a20c`，开始时工作区干净。六页输入及摘要见上文；主 PPT、README、本交接、第 6 页 SVG/PNG 已备份至 [page7-before](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page7-before/)。
+- **负责文件：**原图稿目录主 PPT、README、新增 `slide-07.svg/png`、本轮生成/检查脚本与证据，以及本稳定 handoff。未改根 AGENTS、文档指南、共享状态、其他工程说明、RTL 或地址配置。
+- **结果：**仅追加第 7 页，保留原生样式；C1～C16 按功能重排并同步模块标识。旧公共控制 C12→本页 C14，GB 管理为 C12；完整映射和连接说明见[正式图稿说明](../diagrams/2026-10-16_soc_landscape_m5_gb/README.md#第-7-页配置组重排与片外-lvds-连接)。采集链左右镜像且文字正常，RAW 仍绕过 ISP。新增传感器→RX、TX→后级处理的橙色实线；帧输出 DMA 仍为二维 AXI 读，未新增写能力或传感器控制接口。
+- **实际验证：**`build_page7.py` 构建 01/02、最终主 PPT 的 `preview_deck_colours.py`/`render_page7_previews.py`、`validate_page7.py` 退出 0；完整命令与局部图见 README。[最终检查](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page7-validation-final.json)验证前六页/关系/依赖/主题/母版/布局和原预览不变，483 个受保护文件未改，配置映射、端点、线样式、包关系及原生保存重读通过。最终页 557 原生对象、247 文本、102 箭头、36 虚线；继承字体/配色/线属性保持。作者实际查看最终 PPT 重读的整页、配置/PLL、采集、GB、存储/ROI、TX 和跳线局部，逐段核对数据流。
+- **迭代与限度：**构建 01 新 F2/ISP 跳线视觉较小，构建 02 仅加宽该跳线，首版保留。重新渲染的历史第 1～3 页与旧 SVG 在 Crossbar 主题亮度上有差异，原 PPT 与原 SVG 未改；差异已定位，不宣称所有历史预览逐像素相同。详见[交付记录](../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page7-delivery.json)。Office 显示/编辑未实测，没有硬件/吞吐测试。
+- **该轮最小下一步：**当时已完成图稿范围；目标 Office 的字体及编辑显示待实际打开核对。该七页文件随后经过用户手调并作为第 8 页输入，不用旧脚本覆盖新页；C 编号仍不代表地址或寄存器文件数量，不把本图当作 IP/协议实现授权。
 
 ## 当前结果：2026-10-16 已确认拓扑
 

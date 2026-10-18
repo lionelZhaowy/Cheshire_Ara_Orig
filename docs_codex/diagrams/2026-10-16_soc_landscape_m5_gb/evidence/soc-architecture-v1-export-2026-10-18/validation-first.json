@@ -1,0 +1,256 @@
+{
+  "date": "2026-10-18",
+  "scope": "documentation and current v1 export only",
+  "existing_file_protection": {
+    "pass": true,
+    "detail": {
+      "checked": 628,
+      "unexpected": []
+    }
+  },
+  "backup_matches_input": {
+    "pass": true,
+    "detail": null
+  },
+  "targeted_source_protection": {
+    "pass": true,
+    "detail": 19
+  },
+  "head_unchanged": {
+    "pass": true,
+    "detail": null
+  },
+  "branch_unchanged": {
+    "pass": true,
+    "detail": null
+  },
+  "no_extraction_directory": {
+    "pass": true,
+    "detail": null
+  },
+  "source_ppt_hash": {
+    "pass": true,
+    "detail": "b19710ba3cf23a34c93745c381051c4da5b03cae735f9d2e895416120cf05e3a"
+  },
+  "ppt_zip_crc": {
+    "pass": true,
+    "detail": null
+  },
+  "presentation_order": {
+    "pass": true,
+    "detail": [
+      [
+        9,
+        "ppt/slides/slide9.xml"
+      ]
+    ]
+  },
+  "native_objects": {
+    "pass": false,
+    "detail": 558
+  },
+  "configuration_groups": {
+    "pass": true,
+    "detail": {
+      "1": "PLL / 时钟复位",
+      "2": "DDRController",
+      "3": "DDRPHY",
+      "4": "LVDSRX",
+      "5": "LVDSTX",
+      "6": "帧写入DMA",
+      "7": "帧输出DMA",
+      "8": "ROI 任务/ 调度",
+      "9": "ISP",
+      "10": "NPU计算",
+      "11": "GB搬运",
+      "12": "GB管理",
+      "13": "eMMC Host/ DMA",
+      "14": "压缩公共控制",
+      "15": "压缩器",
+      "16": "解压器"
+    }
+  },
+  "eight_ddr_interfaces_styles": {
+    "pass": true,
+    "detail": [
+      {
+        "name": "llc-f0",
+        "dashed": false,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "mover-f1",
+        "dashed": true,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "frame-f2",
+        "dashed": true,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "roi-f3-request",
+        "dashed": true,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "front-ddr-0",
+        "dashed": false,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "front-ddr-1",
+        "dashed": false,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "front-ddr-2",
+        "dashed": false,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      },
+      {
+        "name": "front-ddr-3",
+        "dashed": false,
+        "arrow_ends": [
+          "triangle",
+          "triangle"
+        ],
+        "pass": true
+      }
+    ]
+  },
+  "svg_all_text_from_ppt": {
+    "pass": true,
+    "detail": null
+  },
+  "svg_is_current_export": {
+    "pass": true,
+    "detail": null
+  },
+  "svg_editable_no_images": {
+    "pass": true,
+    "detail": null
+  },
+  "png_reproduced": {
+    "pass": true,
+    "detail": null
+  },
+  "crops_reproduced": {
+    "pass": true,
+    "detail": null
+  },
+  "markdown_new_links_and_anchors": {
+    "pass": false,
+    "detail": {
+      "new_errors": {
+        "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/evidence/soc-architecture-v1-export-2026-10-18/README.md": [
+          "validation.json"
+        ]
+      },
+      "inherited_errors": {}
+    }
+  },
+  "nine_required_sections": {
+    "pass": true,
+    "detail": null
+  },
+  "six_end_to_end_sections": {
+    "pass": true,
+    "detail": "4.2–4.6 cover five application flows; 6.2 / 8.3 cover cache, completion and recovery"
+  },
+  "requirement_mapping": {
+    "pass": true,
+    "detail": null
+  },
+  "table_columns": {
+    "pass": false,
+    "detail": [
+      [
+        "docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md",
+        146,
+        8,
+        7
+      ],
+      [
+        "docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md",
+        147,
+        7,
+        8
+      ]
+    ]
+  },
+  "tracked_change_scope": {
+    "pass": true,
+    "detail": [
+      "docs_codex/PROJECT_STATE.md",
+      "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/README.md",
+      "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx",
+      "docs_codex/diagrams/soc_landscape.pptx",
+      "docs_codex/engineering/Global_Buffer_CPU_Access.md",
+      "docs_codex/engineering/README.md",
+      "docs_codex/handoffs/L01_global_buffer_cpu_access.md"
+    ]
+  },
+  "git_diff_check": {
+    "pass": true,
+    "detail": ""
+  },
+  "new_markdown_whitespace": {
+    "pass": true,
+    "detail": null
+  },
+  "visual_review": {
+    "performed": true,
+    "reviewer": "L01 author, no subagent",
+    "views": [
+      "whole v1",
+      "title-core",
+      "gb-capture",
+      "storage-roi",
+      "controls",
+      "xbar-emmc"
+    ],
+    "method": "view_image on final-PPT-derived PNG and crops; local substitute-font rendering",
+    "office_tested": false,
+    "hardware_tested": false
+  },
+  "output_hashes": {
+    "docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md": "8cd4f684da6fe428d14bb75ed4bcdfb1e3273181e98029ae7301be1695c9b1b9",
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc-architecture-v1.svg": "7ea33b14ca6602a5b9e4c2e78e046e75dff6e18278731a04310e21b90ddb8231",
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc-architecture-v1.png": "7527e25e6ad1614df322251d5ad696c4604cfce84d75577599f45370a1310a95"
+  },
+  "failures": [
+    "native_objects",
+    "markdown_new_links_and_anchors",
+    "table_columns"
+  ],
+  "pass": false
+}

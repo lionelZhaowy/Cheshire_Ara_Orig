@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025" viewBox="0 0 3600 2025">
+  <defs>
+    <marker id="arr-data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66"/>
+    </marker>
+    <marker id="arr-gb" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78"/>
+    </marker>
+    <marker id="arr-pixel" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#B96043"/>
+    </marker>
+    <marker id="arr-cfg" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489"/>
+    </marker>
+    <marker id="arr-irq" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#A54D5D"/>
+    </marker>
+    <marker id="arr-optional" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#93939D"/>
+    </marker>
+  </defs>
+  <rect id="canvas" x="0" y="0" width="3600" height="2025" fill="#FFFFFF" stroke="none"/>
+  <path id="cpu-ara-command" d="M 346.25 358.09517716535436 L 396.25 358.09517716535436" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)" marker-start="url(#arr-cfg)"/>
+  <path id="ara-filter-edge" d="M 511.25 423.09517716535436 L 511.25 468.09517716535436" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="filter-width" d="M 606.25 511.09517716535436 L 826.25 511.09517716535436" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="npu-gb" d="M 1356.25 408.09517716535436 L 1391.25 408.09517716535436" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="adapter-sram" d="M 1621.25 428.09517716535436 L 1661.25 428.09517716535436" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="mover-gb" d="M 1661.25 563.0951771653544 L 1621.25 563.0951771653544" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="lvds-rx-to-rx-cdc" d="M 3121.25 448.09517716535436 L 3091.25 448.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="rx-cdc-to-isp" d="M 2931.25 448.09517716535436 L 2901.25 448.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="isp-to-frame-select" d="M 2736.25 448.09517716535436 L 2706.25 448.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="frame-select-to-frame-dma" d="M 2526.25 448.09517716535436 L 2491.25 448.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="raw-bypass" d="M 3011.25 358.09517716535436 L 3011.25 313.09517716535436 L 2616.25 313.09517716535436 L 2616.25 358.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="isp-gb" d="M 2736.25 503.09517716535436 L 2720.0 503.09517716535436 L 2720.0 658.0951771653544 L 1506.25 658.0951771653544 L 1506.25 608.0951771653544" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)" stroke-dasharray="18 11"/>
+  <path id="master-1" d="M 542.9166666666667 813.0951771653544 L 542.9166666666667 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-3" d="M 1171.8055555555557 813.0951771653544 L 1171.8055555555557 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-4" d="M 1486.25 813.0951771653544 L 1486.25 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-5" d="M 1800.6944444444443 813.0951771653544 L 1800.6944444444443 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-6" d="M 2115.1388888888887 813.0951771653544 L 2115.1388888888887 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-7" d="M 2429.5833333333335 813.0951771653544 L 2429.5833333333335 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="master-8" d="M 2744.027777777778 813.0951771653544 L 2744.027777777778 844.0951771653544" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)" stroke-dasharray="18 11"/>
+  <path id="cpu-xbar" d="M 228.47222222222223 513.0951771653544 L 228.47222222222223 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="ara-xbar" d="M 901.25 554.0951771653544 L 901.25 688.0951771653544 L 857.3611111111111 688.0951771653544 L 857.3611111111111 844.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-0" d="M 273.3928571428571 1007.0951771653544 L 273.3928571428571 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-1" d="M 677.6785714285714 1007.0951771653544 L 677.6785714285714 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-2" d="M 1081.9642857142858 1007.0951771653544 L 1081.9642857142858 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="atomics-llc" d="M 1076.9642857142858 1160.0951771653542 L 1101.9642857142858 1160.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-3" d="M 1486.25 1007.0951771653544 L 1486.25 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-4" d="M 1890.5357142857142 1007.0951771653544 L 1890.5357142857142 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-5" d="M 2294.8214285714284 1007.0951771653544 L 2294.8214285714284 1058.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="target-6" d="M 2699.1071428571427 1007.0951771653544 L 2699.1071428571427 1058.0951771653542" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)" stroke-dasharray="18 11"/>
+  <path id="m5-gb" d="M 2474.8214285714284 1133.0951771653542 L 2495 1133.0951771653542 L 2495 1028.0951771653542 L 2693.1071428571427 1028.0951771653542 Q 2699.1071428571427 1020.0951771653542 2705.1071428571427 1028.0951771653542 L 2945 1028.0951771653542 L 2945 678.0951771653544 L 1450 678.0951771653544 L 1450 608.0951771653544" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)"/>
+  <path id="emmc-physical" d="M 3370 763.0951771653544 L 3350 763.0951771653544 L 3350 693.0951771653544 L 2951 693.0951771653544 Q 2945 685.0951771653544 2939 693.0951771653544 L 2584 693.0951771653544 L 2584 763.0951771653544 L 2572.5833333333335 763.0951771653544" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)" marker-start="url(#arr-optional)"/>
+  <path id="bridge-regbus" d="M 677.6785714285714 1213.0951771653542 L 677.6785714285714 1293.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-0" d="M 84.25 1358.0951771653542 L 84.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="bootrom-cfg" d="M 84.25 1407.0951771653542 L 106.25 1407.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="uart-cfg" d="M 84.25 1495.0951771653542 L 106.25 1495.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="vga-regs-cfg" d="M 84.25 1583.0951771653542 L 106.25 1583.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="irq-router-cfg" d="M 84.25 1671.0951771653542 L 106.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-1" d="M 414.25 1358.0951771653542 L 414.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="clint-cfg" d="M 414.25 1407.0951771653542 L 436.25 1407.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="i2c-cfg" d="M 414.25 1495.0951771653542 L 436.25 1495.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="usb-regs-cfg" d="M 414.25 1583.0951771653542 L 436.25 1583.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="axi-rt-config-cfg" d="M 414.25 1671.0951771653542 L 436.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-2" d="M 744.25 1358.0951771653542 L 744.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="soc-regs-cfg" d="M 744.25 1407.0951771653542 L 766.25 1407.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="spi-cfg" d="M 744.25 1495.0951771653542 L 766.25 1495.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-vga-cfg" d="M 744.25 1583.0951771653542 L 766.25 1583.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="clic-cfg" d="M 744.25 1671.0951771653542 L 766.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-3" d="M 1074.25 1358.0951771653542 L 1074.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="plic-cfg" d="M 1074.25 1407.0951771653542 L 1096.25 1407.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="gpio-cfg" d="M 1074.25 1495.0951771653542 L 1096.25 1495.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-dma-cfg" d="M 1074.25 1583.0951771653542 L 1096.25 1583.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-error-cfg" d="M 1074.25 1671.0951771653542 L 1096.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-column-4" d="M 1404.25 1358.0951771653542 L 1404.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="llc-regs-cfg" d="M 1404.25 1407.0951771653542 L 1426.25 1407.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="slink-regs-cfg" d="M 1404.25 1495.0951771653542 L 1426.25 1495.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="err-cpu-cfg" d="M 1404.25 1583.0951771653542 L 1426.25 1583.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="reg-ext-cfg" d="M 1404.25 1671.0951771653542 L 1426.25 1671.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="ddr-arb-0" d="M 1950 1737.0951771653542 L 1950 1753.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="ddr-arb-1" d="M 2225 1737.0951771653542 L 2225 1753.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="ddr-arb-2" d="M 2500 1737.0951771653542 L 2500 1753.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="ddr-arb-3" d="M 2775 1737.0951771653542 L 2775 1753.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="arb-rw" d="M 2067.5 1793.0951771653542 L 2067.5 1803.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="rw-command" d="M 2305 1828.0951771653542 L 2425 1828.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="controller-phy" d="M 2910 1828.0951771653542 L 2970 1828.0951771653542 L 2970 1868.0951771653542 L 3030 1868.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="phy-ddr" d="M 3285 1868.0951771653542 L 3396.25 1868.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="roi-vdma-control" d="M 3160 1468.0951771653542 L 3160 1483.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="vdma-pixels" d="M 3160 1583.0951771653542 L 3160 1598.0951771653542" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="fifo-lvds" d="M 3160 1673.0951771653542 L 3160 1688.0951771653542" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="llc-f0" d="M 1186.9642857142858 1202.0951771653542 L 1186.9642857142858 1253.0951771653542 L 1950 1253.0951771653542 L 1950 1274.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="mover-f1" d="M 2166.25 563.0951771653544 L 2215 563.0951771653544 L 2215 652.0951771653544 Q 2223 658.0951771653544 2215 664.0951771653544 L 2215 672.0951771653544 Q 2223 678.0951771653544 2215 684.0951771653544 L 2215 698.0951771653544 L 2578 698.0951771653544 Q 2584 690.0951771653544 2590 698.0951771653544 L 2939 698.0951771653544 Q 2945 690.0951771653544 2951 698.0951771653544 L 2960 698.0951771653544 L 2960 1233.0951771653542 L 2225 1233.0951771653542 L 2225 1274.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)" stroke-dasharray="18 11"/>
+  <path id="frame-f2" d="M 2383.75 543.0951771653544 L 2383.75 588.0951771653544 L 2714.0 588.0951771653544 Q 2720.0 580.0951771653544 2726.0 588.0951771653544 L 3300 588.0951771653544 L 3300 687.0951771653544 Q 3308 693.0951771653544 3300 699.0951771653544 L 3300 1218.0951771653542 L 2966 1218.0951771653542 Q 2960 1210.0951771653542 2954 1218.0951771653542 L 2500 1218.0951771653542 L 2500 1227.0951771653542 Q 2508 1233.0951771653542 2500 1239.0951771653542 L 2500 1274.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)" stroke-dasharray="18 11"/>
+  <path id="roi-f3-request" d="M 3030 1503.0951771653542 L 2975 1503.0951771653542 L 2975 1263.0951771653542 L 2775 1263.0951771653542 L 2775 1274.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)" stroke-dasharray="18 11"/>
+  <path id="front-input-0" d="M 1950 1310.0951771653542 L 1950 1326.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-1" d="M 2225 1310.0951771653542 L 2225 1326.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-2" d="M 2500 1310.0951771653542 L 2500 1326.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="front-input-3" d="M 2775 1310.0951771653542 L 2775 1326.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="adapt-address" d="M 1945 1378.0951771653542 L 1945 1408.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="address-downstream" d="M 2060 1458.0951771653542 L 2072 1458.0951771653542 L 2072 1621.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="b-response" d="M 1830 1646.0951771653542 L 1820 1646.0951771653542 L 1820 1398.0951771653542 L 1845 1398.0951771653542 L 1845 1378.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="metadata-control" d="M 1945 1508.0951771653542 L 1945 1538.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)" marker-start="url(#arr-cfg)"/>
+  <path id="metadata-storage" d="M 1945 1588.0951771653542 L 1945 1621.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="adapt-compressor" d="M 2237.5 1378.0951771653542 L 2237.5 1448.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="compressor-route" d="M 2237.5 1563.0951771653542 L 2237.5 1621.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="read-to-decoder" d="M 2505 1621.0951771653542 L 2505 1563.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="decoder-up" d="M 2505 1448.0951771653542 L 2505 1378.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="adapt-plain-bypass" d="M 2772.5 1378.0951771653542 L 2772.5 1448.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="plain-bypass-route" d="M 2772.5 1563.0951771653542 L 2772.5 1621.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="front-ddr-0" d="M 1950 1671.0951771653542 L 1950 1709.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="front-ddr-1" d="M 2225 1671.0951771653542 L 2225 1709.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="front-ddr-2" d="M 2500 1671.0951771653542 L 2500 1709.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="front-ddr-3" d="M 2775 1671.0951771653542 L 2775 1709.0951771653542" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="regext-config" d="M 1726.25 1671.0951771653542 L 1785 1671.0951771653542 L 1785 1861.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="config-trunk-1" d="M 1785 1727.0951771653542 L 170.125 1727.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="cfg-C1" d="M 170.125 1727.0951771653542 L 170.125 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C2" d="M 381.875 1727.0951771653542 L 381.875 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C3" d="M 593.625 1727.0951771653542 L 593.625 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C4" d="M 805.375 1727.0951771653542 L 805.375 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C5" d="M 1017.125 1727.0951771653542 L 1017.125 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C6" d="M 1228.875 1727.0951771653542 L 1228.875 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C7" d="M 1440.625 1727.0951771653542 L 1440.625 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C8" d="M 1652.375 1727.0951771653542 L 1652.375 1745.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="config-trunk-2" d="M 1785 1861.1951771653542 L 170.125 1861.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter"/>
+  <path id="cfg-C9" d="M 170.125 1861.1951771653542 L 170.125 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C10" d="M 381.875 1861.1951771653542 L 381.875 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C11" d="M 593.625 1861.1951771653542 L 593.625 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C12" d="M 805.375 1861.1951771653542 L 805.375 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C13" d="M 1017.125 1861.1951771653542 L 1017.125 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C14" d="M 1228.875 1861.1951771653542 L 1228.875 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C15" d="M 1440.625 1861.1951771653542 L 1440.625 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="cfg-C16" d="M 1652.375 1861.1951771653542 L 1652.375 1879.1951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="legend-axi-interface" d="M 3010 858.0951771653544 L 3060 858.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)" marker-start="url(#arr-data)"/>
+  <path id="legend-axi-request" d="M 3010 906.0951771653544 L 3060 906.0951771653544" fill="none" stroke="#314D66" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-data)"/>
+  <path id="legend-gb" d="M 3010 954.0951771653544 L 3060 954.0951771653544" fill="none" stroke="#187C78" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-gb)" marker-start="url(#arr-gb)"/>
+  <path id="legend-pixel" d="M 3010 1002.0951771653542 L 3060 1002.0951771653542" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="legend-cfg" d="M 3010 1050.0951771653542 L 3060 1050.0951771653542" fill="none" stroke="#765489" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-cfg)"/>
+  <path id="legend-optional" d="M 3010 1098.0951771653542 L 3060 1098.0951771653542" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)" marker-start="url(#arr-optional)"/>
+  <path id="legend-dashed" d="M 3010 1146.0951771653542 L 3060 1146.0951771653542" fill="none" stroke="#93939D" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-optional)" stroke-dasharray="18 11"/>
+  <path id="sensor-rx" d="M 3370 448.09517716535436 L 3286.25 448.09517716535436" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+  <path id="tx-processor" d="M 3290 1738.0951771653542 L 3370 1738.0951771653542" fill="none" stroke="#B96043" stroke-width="4.8" stroke-linejoin="miter" marker-end="url(#arr-pixel)"/>
+</svg>

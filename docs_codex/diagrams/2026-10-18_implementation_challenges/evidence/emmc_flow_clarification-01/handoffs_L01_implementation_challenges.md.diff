@@ -1,0 +1,21 @@
+--- before/docs_codex/handoffs/L01_implementation_challenges.md
++++ docs_codex/handoffs/L01_implementation_challenges.md
+@@ -5,6 +5,18 @@
+ | 日期 | 角色 / 输入 | 修改与验证摘要 |
+ | --- | --- | --- |
+ | 2026-10-18 | L01 文档/图稿作者；`mp/ara-pulp-v2` / `09798c1ded457e423b927844f66faae87583a20c`，含当前未提交 v1、GB、排期与旧 PPT | 按用户确认计划完成 13 类难点专题、13 SVG/PNG、13 页原生 PPTX；作者图文/结构/保护检查，工程未实施 |
++
++## 2026-10-18 用户澄清：eMMC 先到 DDR，运行时再到 GB
++
++输入仍为 `09798c1ded457e423b927844f66faae87583a20c`，含首次交付的未提交文档/图稿。本轮仅修正软件数据流及其文档解释。
++
++- **用户明确：**上电复位后，在 DDR 就绪的初始化阶段由软件将 eMMC 数据搬到 DDR；ISP 工作时再按需从 DDR 搬到 GB。eMMC 经 S7→M5 可达 GB 是硬件能力，当前软件不采用直达 GB 流程。CPU 拷贝还是软件启动 Host DMA，本轮未选定。
++- **误解确认：**此前难点第 01 节将 eMMC 作为正常 GB 写者，且总纲 §4.3、需求 4 与团队排期同样采用直接加载 GB 的叙述；已一起纠正。GB 迟到写示例现为 DDR→GB 搬运器，两个搬运阶段分别管理完成/可见性与缓冲生命周期。
++- **负责文件：**难点专题、总纲、团队排期、GB 说明、PROJECT_STATE、两套图稿 README 及本交接，共八份 Markdown。图 01/旧全景图的硬件连接保持，正文/图注明确适用范围；历史交接、原始验证报告和图像不改写。人员主责、日期与缓存维护方向不变。
++- **保护与检查：**修订前备份及文件哈希见 [input.json](../diagrams/2026-10-18_implementation_challenges/evidence/emmc_flow_clarification-01/input.json)，本轮差异、引用及保护检查见 [validation.json](../diagrams/2026-10-18_implementation_challenges/evidence/emmc_flow_clarification-01/validation.json)。未修改 RTL/sw、SVG/PNG/PPTX 或生成器，未运行硬件验证；首次交付报告仍只对应原输入。
++- **最小下一步：**按总纲 §4.3 细化软件搬运实现、DDR 源缓冲就绪与 DDR→GB 装入协议；不再把 S7→M5 可达性列为软件直达 GB 需求。后续单独使用图页时同时携带当前图注。
++
++下方为首次交付记录，保护范围和检查数值对应当时输入；本节为软件数据流解释的最新修订。
+ 
+ ## 基本信息与结果
+ 

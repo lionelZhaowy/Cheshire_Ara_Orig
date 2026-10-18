@@ -1,0 +1,3 @@
+2026-10-18, author artifact acceptance only
+Run 1: validate.py --out evidence/validation-01.json exited 1 because two links targeted the not-yet-created evidence/validation.json. No missing source or artifact was reported. Original report retained.
+Run 2: after adding source hash checks, validate.py line 82 raised IndentationError: unexpected indent. This was an indentation error in the new validation utility, corrected before the final run. No deliverable modification occurred in that failed run.

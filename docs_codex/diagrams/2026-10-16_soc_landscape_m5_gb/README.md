@@ -1,8 +1,12 @@
 # SoC 全景图：共享 GB、参数加载与四口压缩存储
 
-2026-10-17，L01。输入 HEAD `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，分支 `mp/ara-pulp-v2`。第 6 页复制第 5 页并恢复五条虚线后，本轮按用户明确要求，补修遗漏的 **F3 ↔ 帧输出 VDMA**，统一为与 F1/F2 相同的深蓝双向虚线。仍为六页，前五页及主题、母版和布局不变。仅实施图稿、配套说明及稳定主题交接，没有修改 RTL、地址配置、驱动、正式工程契约或共享状态。
+> **2026-10-18 当前 v1 入口：**主 PPT 实际九页，“SoC 架构(v1)”为显示顺序第 **9** 页，包含用户手调的三个核心分区上边界与标题。本轮只读导出 [soc-architecture-v1.png](soc-architecture-v1.png) / [soc-architecture-v1.svg](soc-architecture-v1.svg)，源 PPT SHA-256 `b19710ba3cf23a34c93745c381051c4da5b03cae735f9d2e895416120cf05e3a`，导出日期 2026-10-18。主 PPT/全部旧页及旧预览未改；[来源、命令及检查](evidence/soc-architecture-v1-export-2026-10-18/README.md)，[架构与实施总纲](../../engineering/SoC_Architecture_v1_Master_Plan.md)。预览为 DrawingML 与本地替代字体渲染，已查看整页/局部，Office 未实测。**下文“八页”“当前第8页”及其预览保留为 10 月 17 日历史快照；旧 slide-08 不代表最新 v1。**
 
-**[六页原生可编辑 PPTX](soc_landscape_m5_gb.pptx)**
+> **2026-10-18 数据流更正：**用户明确软件先在上电初始化、DDR 就绪后完成 eMMC→DDR，ISP 工作时再按需 DDR→GB。图中的 S7→M5 保留硬件可达性；下文历史“eMMC 参数加载”及验收记录中的直接加载 GB 表述不再代表软件规划。当前流程见[总纲 §4.3](../../engineering/SoC_Architecture_v1_Master_Plan.md#43-emmc-先加载-ddrisp-工作时再从-ddr-装入-gb)。本次只修正文档解释，保留图稿及历史检查证据。
+
+2026-10-17，L01。第 8 页输入 HEAD `09798c1ded457e423b927844f66faae87583a20c`，分支 `mp/ara-pulp-v2`。以用户手调后的七页 PPT（`8916ac31…`）为输入，原生复制第 7 页后，仅修改五条长线的几何及六处跳线。前七页及主题、母版、布局和依赖完整保留；保留用户调整的图例、Crossbar 标题和 PLL 说明位置。实施前已有修改均保留，本轮范围仅当前图稿目录及 L01 交接，没有修改 RTL、地址配置、工程契约或共享状态。
+
+**[八页原生可编辑 PPTX](soc_landscape_m5_gb.pptx)**
 
 | 页码 | 内容 | PNG | SVG |
 |---|---|---|---|
@@ -11,11 +15,106 @@
 | 3 | 下侧目标等距；GB 下方左侧 M5、右侧 ISP，完整保留 | [预览](slide-03.png) | [矢量预览](slide-03.svg) |
 | 4 | eMMC 内置 DMA、≤256 ROI 纯裁切、四口共享压缩存储前端 | [预览](slide-04.png) | [矢量预览](slide-04.svg) |
 | 5 | 双向 DDR 接口、两行 C 配置、恢复标题栏；历史布局快照 | [预览](slide-05.png) | [矢量预览](slide-05.svg) |
-| 6 | 恢复虚线并补齐 F3；保留第 5 页布局和箭头方向；当前版本 | [预览](slide-06.png) | [矢量预览](slide-06.svg) |
+| 6 | 恢复虚线并补齐 F3，完整保留 | [预览](slide-06.png) | [矢量预览](slide-06.svg) |
+| 7 | 配置组重排、采集镜像、片外 LVDS；后续手调版为第 8 页输入 | [历史生成版](slide-07.png) | [历史生成版](slide-07.svg) / [手调版](evidence/page8-final-preview/slide-07.svg) |
+| 8 | 集中长线通道，修正六处交叉跳线；当前版本 | [预览](slide-08.png) | [矢量预览](slide-08.svg) |
 
-![第 6 页：恢复虚线，保留双向接口与两行扩展配置](slide-06.png)
+![第 8 页：集中长线通道，修正交叉与跳线](slide-08.png)
 
-## 第 6 页：限定范围恢复连线样式
+## 第 8 页：集中长线通道，修正交叉与跳线
+
+输入七页 PPT SHA-256 `8916ac316a5d9244297545fe6a6dc751de79851fa4f21a1757ea295771453b1b`；输出八页 PPT SHA-256 `2f224f52a5c0d53b84da8dd1b0a6d4a20c6e9d65e989e6b498996d5301faa106`。实施前主 PPT、README、L01 交接及原第 7 页 SVG/PNG 已备份至 [page8-before](evidence/page8-before/)，保护清单见 [page8-input.json](evidence/page8-input.json)。本轮从用户手调后的原生对象读取坐标，没有用旧生成数据恢复页面。原 `slide-07.svg/png` 是手调前的历史生成预览，按保护要求保留；当前 PPT 第 7 页的实际内容见上表“手调版”。
+
+### 五条连线与六处跳线
+
+坐标采用现有 3600×2025 画布；接入点由原生模块边界读取，坐标末位差异来自 PPT 的 EMU 换算。
+
+| 连线 | 第 8 页路径 | 保持的样式 |
+|---|---|---|
+| GB 搬运 ↔ F1 | 从引擎右边、距底边 20 px 处直出，沿 x=2975 下行，在 y=1228.095 左折接 F1 顶边中心 | 深蓝双向虚线 |
+| 帧写入 DMA ↔ F2 | 保留底边出口，下行 30 px 后接 x=3005，在 y=1245.095 左折接 F2 顶边中心 | 深蓝双向虚线 |
+| ISP ↔ GB | 原端点和主体路径不变；绿色竖线跨 F2、F1 横线处各有向右跳线，移除旧位置弧段 | 绿色双向虚线 |
+| eMMC 器件 ↔ Host | 两端接顶边中心，经 y=688.095 横向通道；跨 M5/F1/F2 竖线的三处跳线向下 | 灰色双向实线 |
+| GB AXI 接口 → GB 访问适配 | 从接口顶边距右侧 25 px 处接 y=1028.095 原横向通道；保留跨 M_EXT 的向上跳线及后续路径 | 原绿色实线及箭头方向 |
+
+五条线仍各为一个连续原生对象；每个交叉仅一条线承担跳线，无连接圆点。F1/F2 通道相距 30 px，均在原图例左侧；下方折返 F1 在上、F2 在下，两路没有互相交叉。F2 的反向箭头仍表示写响应 B，未增加 DMA 读能力。F0、F3、四条下游 DDR 接口、CPU/Ara、配置主线、RAW 旁路及 ROI 输出链保持原几何。模块布局、C1～C16、字体、配色、线宽、虚实和箭头属性均未调整。
+
+### 检查与复现
+
+[最终原生与几何检查](evidence/page8-validation-final.json) · [交付记录](evidence/page8-delivery.json) · [五条路径修改清单](evidence/page8-build-01/edit_report.json)
+
+第 8 页与手调第 7 页比较，仅五个对象的 `a:xfrm` / `a:custGeom` 改变，其余 552 个对象完整一致；全页仍为 557 个原生对象、247 个文本、102 个原生箭头、36 个虚线对象。六处跳线与实际交点逐一匹配，端点位于约定边界，F1/F2 回到端口中心。线段穿字/穿框及文字重叠检查通过。前七页 XML、关系、备注及全部依赖原字节保留，原 `slide-01`～`slide-07` SVG/PNG 未改；567 个受保护文件和备份哈希核对通过。包内仅更新追加页所需四个清单/计数部件，新增第 8 页及备注的四个部件。
+
+已从最终交付主 PPT 重新生成并实际查看[整页](slide-08.png)、[GB/采集区](evidence/page8-final-preview/gb-acquisition-detail.png)、[eMMC](evidence/page8-final-preview/emmc-detail.png)、[F1/F2 折返](evidence/page8-final-preview/f1-f2-return-detail.png)、[图例与通道](evidence/page8-final-preview/legend-corridor-detail.png)、[M5 回接](evidence/page8-final-preview/m5-return-detail.png)、[ISP 两处跳线](evidence/page8-final-preview/isp-crossings-detail.png)、[eMMC 三处跳线](evidence/page8-final-preview/emmc-crossings-detail.png)。核对长线独立归属、端点、虚实、箭头及六个交叉，修改区未见文字遮挡或连线穿框。候选与最终主 PPT 的八页 SVG 均一致，根目录第 8 页 SVG/PNG 来自最终主 PPT；原生保存重读及包关系检查通过。
+
+预览使用 DrawingML 解析及本地字体渲染，**Office 显示/编辑未实测**。没有硬件或性能测试；原生自由路径未绑定模块端口，后续移动模块仍需检查接线。
+
+以下命令从本轮备份复现，输出目录须新建；`NATIVE` / `RASTER` 为既有原生 skill / CairoSVG 环境的 Python，`NATIVE_ROOT` 为原生 skill 根目录：
+
+```sh
+python3 -B build_page8.py --input evidence/page8-before/soc_landscape_m5_gb.pptx --out-dir <新构建目录> --native-skill-root "$NATIVE_ROOT"
+"$NATIVE" -B preview_deck_colours.py --deck <待检查PPT> --out-dir <新预览目录>
+"$RASTER" -B render_page8_previews.py --preview-dir <新预览目录>
+"$NATIVE" -B validate_page8.py --build <新构建目录> --preview <新预览目录> --deck <待检查PPT> --report <新检查报告.json>
+```
+
+上述构建、最终预览和验证均退出 0。后端只为五条路径生成几何，不复制中间 PPT 的主题或线属性。后续修改继续从届时的主 PPT 开始，不用该七页备份覆盖用户的新修改。
+
+## 第 7 页：配置组重排与片外 LVDS 连接
+
+以下为历史生成版记录；用户后来手调并保存为 `8916ac31…`，该文件是第 8 页的实际输入。旧检查只对应当时版本。
+
+输入六页 PPT SHA-256 `7330221874eb045d9fd2511a834d64c6ba45b98e5c7fb7014c67dee088277f31`；输出七页 PPT SHA-256 `a77597c0fd7a8d829f7b447a7a03888668beb870e8894e0d20c7f094622385d7`。实施前主 PPT、README、L01 交接和第 6 页 SVG/PNG 保存在 [page7-before](evidence/page7-before/)，输入版本及保护清单见 [page7-input.json](evidence/page7-input.json)。本页直接复制当前第 6 页，未重新运行缺少 F3 补修的旧生成器。
+
+### 配置组映射（仅第 7 页）
+
+保留两行八列、同一 RegExt 主线和第二行与 PLL 的底边对齐，配置组与远端模块的 C 标识同步改变。**此前讨论的压缩前端公共控制 C12，在第 7 页改为 C14；第 7 页 C12 是 GB 管理。**编号是绘图配置组标识，不是寄存器地址、地址排序或独立寄存器文件数量。旧页及下文历史说明的旧编号不追溯修改。
+
+| 第一行 | 功能 | 第 6 页原编号 | 第二行 | 功能 | 第 6 页原编号 |
+|---|---|---|---|---|---|
+| C1 | PLL / 时钟复位 | C1 | C9 | ISP | C5 |
+| C2 | DDR Controller | C2 | C10 | NPU 计算 | C6 |
+| C3 | DDR PHY | C3 | C11 | GB 搬运 | C7 |
+| C4 | LVDS RX | C4 | C12 | GB 管理 | C9 |
+| C5 | LVDS TX | C14 | C13 | eMMC Host / DMA | C10 |
+| C6 | 帧写入 DMA | C8 | C14 | 压缩公共控制 | C12 |
+| C7 | 帧输出 DMA | C13 | C15 | 压缩器 | C15 |
+| C8 | ROI 任务 / 调度 | C11 | C16 | 解压器 | C16 |
+
+“帧输出 DMA”统一用于本页配置框和模块标题；副标题保留“二维 AXI 读”，仍是原 VDMA 的读职责，不新增写能力。“GB 搬运”仍对应 NPU / GB 搬运引擎。共享压缩前端公共控制、压缩器与解压器的职责及共享服务关系保持不变，本次只重编号。
+
+### 采集与输出连接
+
+采集分区保持原位置、大小及各模块尺寸，按**左右镜像排列**处理用户的翻转要求，文字保持正常阅读。实际图中传感器位于最右侧，沿左向橙色箭头经过 LVDS RX、CDC/FIFO、ISP、帧边界选择，最后到最左侧的帧写入 DMA；RAW 旁路仍从 CDC/FIFO 绕过 ISP 进入帧边界选择。
+
+两个片外端点与原 eMMC 片外框同列，并继承其浅灰填充、边框和字体层级：“图像传感器 / LVDS 输出”向左直连 RX；“后级处理 / LVDS 接收”接收 TX 向右的输出。两条新增连接均为橙色单向实线，仅补充数据连接，没有新增传感器控制总线、器件型号、通道数或速率。
+
+ISP 从镜像后的左侧接回原 GB 通道，保持绿色双向虚线；帧写入 DMA 从底边经分区下部留白折向原右侧通道，再接 F2，保持深蓝双向虚线。两者交叉处采用连续路径上的跨线跳线，不表示电气连接。F1/F2/F3 均保持深蓝双向虚线，F0 及四条下游 DDR 接口保持双向实线。F2 返回写响应 B，F3 返回读数据 R；双向接口表达没有改变请求发起者或 DMA 的读写能力。
+
+CPU/Ara 独立输入、S7/M5、唯一 GB SRAM、共享压缩前端、四口独立返回归属、ROI→帧输出 DMA→FIFO→TX 的纵向布局，以及标题栏和 PLL 位置均保留。外部 AXI S_EXT/M_EXT 的灰色虚线、既有模块填充、主题亮度修饰及所有继承文字字号也保持。
+
+### 检查与复现
+
+[最终结构与语义检查](evidence/page7-validation-final.json) · [交付检查与审图记录](evidence/page7-delivery.json) · [原生修改清单](evidence/page7-build-02/edit_report.json)
+
+包内仅更新追加页所需的四个清单/计数部件，新增第 7 页及备注的四个部件；前六页 XML、关系、备注和全部依赖原字节保留，原 `slide-01`～`slide-06` SVG/PNG 未改。549 个继承对象中 454 个完全不变；95 个仅涉及授权的位置、路径、编号及名称修改，8 个新增对象为两个片外框、四个文字和两条连接。所有继承对象的字体、填充、主题样式、线宽、虚实及箭头属性逐项保持；第 7 页共有 557 个原生对象、247 个文本、102 个原生箭头和 36 个虚线对象。
+
+已核对 C1～C16 的配置组—模块对应、配置主线、端点和方向，沿传感器输入、RAW/ISP 帧写入、ISP↔GB、ROI 输出逐段审图。文字越界/重叠、连线穿字/穿框检查及 PPTX 保存重读通过。所有最终预览均从交付主 PPT 重新读取 DrawingML 生成，已实际查看[整页](slide-07.png)、[采集区](evidence/page7-final-preview/image-input-detail.png)、[配置行](evidence/page7-final-preview/config-detail.png)、[配置与 PLL 对齐](evidence/page7-final-preview/config-pll-detail.png)、[GB 交互](evidence/page7-final-preview/gb-input-detail.png)、[存储与 ROI](evidence/page7-final-preview/storage-output-detail.png)、[TX 片外连接](evidence/page7-final-preview/tx-external-detail.png)及 [F2/ISP 跳线](evidence/page7-final-preview/f2-crossing-detail.png)。构建 01 审图发现新增跳线较小，构建 02 仅增大该跳线的几何幅度，保留首版供追溯。
+
+预览不是 Office 截图；**Office 显示/编辑未实测**，没有执行硬件仿真、板测或性能验证。当前渲染器解析主题亮度；重新渲染的第 1～3 页与历史 SVG 仅 Crossbar 填充不同（历史预览未应用亮度修饰），原 PPT 页面和原预览均保留，未扩大本次修改范围。第 4～6 页重新渲染的 SVG 与历史文件相同，候选与最终主 PPT 的七页 SVG 均相同，见[预览比较](evidence/page7-preview-comparison.json)。
+
+生成和检查脚本均在当前目录；以下构建/预览目录须使用新的空目录。`NATIVE`、`RASTER` 分别指已安装原生 SVG skill 与 CairoSVG 环境的 Python，`NATIVE_ROOT` 指原生 skill 根目录：
+
+```sh
+python3 -B build_page7.py --input evidence/page7-before/soc_landscape_m5_gb.pptx --out-dir <新构建目录> --native-skill-root "$NATIVE_ROOT"
+"$NATIVE" -B preview_deck_colours.py --deck <待检查PPT> --out-dir <新预览目录>
+"$RASTER" -B render_page7_previews.py --preview-dir <新预览目录>
+"$NATIVE" -B validate_page7.py --build <新构建目录> --preview <新预览目录> --deck <待检查PPT> --report <新检查报告.json>
+```
+
+生成器以该轮六页备份和含 F3 补修的 `evidence/page6-f3-build/slide-06.json` 为基线。原生后端只生成七条受影响连接和两条新增连接的几何；继承连线仍使用原对象的完整线属性，不把中间九线 PPT 的主题复制进主 PPT。该生成器不包含后来的手调及第 8 页修改，不能用它覆盖当前产物。
+
+## 第 6 页：限定范围恢复连线样式（历史输入）
 
 首版输入五页 PPT SHA-256 `3f100763d6bd76966b2e7b9ee6773735e716aebfd349a6034f444f842d4a8887`；首版六页输出 `0dcb46b4fdce907ff32e75ca59d932b414ec053d3b07c5e2abe5dd1386f9cdf9`。首版备份见 [page6-before](evidence/page6-before/)。本次 F3 补修以该六页文件为输入，当前输出为 `7330221874eb045d9fd2511a834d64c6ba45b98e5c7fb7014c67dee088277f31`；主 PPT、README、第 6 页 SVG/PNG 和交接的补修前备份见 [page6-f3-before](evidence/page6-f3-before/)。
 
@@ -34,7 +133,7 @@
 
 **历史授权纠正：**第 5 页实施发生在用户仅要求规划时，是 Agent 对授权范围的误读；保留原页和当时记录不表示该操作已获追认。本轮先给第 6 页方案，收到明确“开始实施”后才修改文件。
 
-### F3 补修检查与复现（当前版本）
+### F3 补修检查与复现（第 6 页历史版本）
 
 [原生差异检查](evidence/page6-f3-build/native-check.json) · [交付检查](evidence/page6-f3-delivery.json) · [存储/ROI 局部](evidence/page6-f3-final-preview/storage-roi-detail.png)
 
@@ -106,6 +205,8 @@ Crossbar 上侧为请求发起端，下侧为访问目标。上侧 S0～S7、S_E
 CPU→S0、Ara→S2 保持独立；Ara 仍为 2 lanes / AXI64，沿失效过滤→等宽透传进入主 Crossbar。M5 是唯一共享 GB 目标，经下侧 GB AXI 接口回接上方访问适配；只有一个 GB SRAM 实例。接口注明“CPU / Ara / eMMC DMA 共用”，描述主要使用者，不构成其他 master 的访问隔离保证。
 
 ### eMMC 参数加载
+
+**历史软件流程已纠正（2026-10-18）：**以下 S7→M5→GB 连线只保留硬件可达含义；参数加载采用 eMMC→DDR、运行时 DDR→GB，见页首更新。下文保存当时图稿设计/检查记录，不作为当前软件实施要求。
 
 连续数据路径为 **片外 eMMC ↔ eMMC Host / DMA → S7 → Crossbar M5 → GB 访问适配 → GB**。Host 内置 DMA，不额外借用既有 iDMA；S7 位于 S6 与 S_EXT 之间，保留独立外部扩展入口。Host 的实际 AXI 位宽、ID、突发及控制接口适配需按后续采购接口核对。
 

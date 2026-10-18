@@ -6,7 +6,7 @@
 
 | ID / 建议对话标题 | 当前状态 | 主要交付 | 依赖与写入边界 |
 | --- | --- | --- | --- |
-| C00 项目协调与交接 | 协作入口已建立；后续未认领 | 汇总状态、决策和冲突；不包办所有技术任务 | `AGENTS.md`、共享状态/任务索引；不顺手修改 RTL |
+| C00 项目协调与交接 | 协作入口及三人分工/条件排期文档完成（2026-10-18）；工程未启动 | 汇总状态、决策和冲突；[团队排期与对照表](engineering/Team_Responsibilities_and_Tapeout_Schedule.md)、[本主题交接](handoffs/C00_team_execution_plan.md)；不包办所有技术任务 | `AGENTS.md`、共享状态/任务索引；人员排期不替代 Agent 授权，不顺手修改 RTL |
 | E01 固定配置 ASIC 源码提取 | 未开始 | 独立 `cheshire_ara_asic/`、固定配置、静态清单、可运行入口、来源记录 | 按 02 文档；保护旧工程；首轮通常拥有新目录骨架及清单的编辑权 |
 | V01 仿真与验收 | 未开始 | 回归用例、编译/展开/运行结果、可重现日志 | 计划可先做；新目录验证依赖 E01；与 E01 协调 TB、filelist 编辑权 |
 | S01 裸机软件与启动 | 未开始 | 启动/链接/软件构建、向量结果验证、启动路径分析 | 与 E01 确认目录及地址布局后管理新目录软件；原 `sw/` 默认只读 |
@@ -17,6 +17,8 @@
 | L01 学习与源码问答 | 教材整理完成；DDR–GB 评审答疑与文档修订完成（2026-10-16），工程未实施 | [教材](learning/index.html)、[21篇RTL模块指南](rtl_modules/README.md)、[RTL指南交接](handoffs/L01_rtl_module_guide.md)、[组织交接](handoffs/L01_documentation_organization.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
 
 2026-10-16 L01：DDR–GB 独立评审已由用户转交并完成文档处理，见[主题交接](handoffs/L01_cache_coherence_architecture.md)、[评审 Q&A](maintenance/L01/reviews/ddr_gb_coherence_review_qa.md)及[供应商会议问题](engineering/DDR_Supplier_Coherence_Questions.md)。供应商会议问题已对照 Datasheet V2.1 更新，区分手册已知能力和跨口／错误／恢复未决项。维护窗口／握手列为用户确认的实现要求；本轮仅修改 Markdown，接口与恢复硬件尚未实施。
+
+2026-10-18 L01：已交付[实施难点专题与 13 幅可编辑图](engineering/Implementation_Challenges_and_Open_Questions.md)，供 M01/I01/S01/V01/P01/E01 按责任和门槛接手；[主题交接](handoffs/L01_implementation_challenges.md)记录文档与图稿检查。工程任务状态、人员分工和条件排期不变。
 
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
 

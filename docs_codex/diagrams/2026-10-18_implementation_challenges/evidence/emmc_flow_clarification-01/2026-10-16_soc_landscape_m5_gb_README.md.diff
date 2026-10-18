@@ -1,0 +1,20 @@
+--- before/docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/README.md
++++ docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/README.md
+@@ -1,6 +1,8 @@
+ # SoC 全景图：共享 GB、参数加载与四口压缩存储
+ 
+ > **2026-10-18 当前 v1 入口：**主 PPT 实际九页，“SoC 架构(v1)”为显示顺序第 **9** 页，包含用户手调的三个核心分区上边界与标题。本轮只读导出 [soc-architecture-v1.png](soc-architecture-v1.png) / [soc-architecture-v1.svg](soc-architecture-v1.svg)，源 PPT SHA-256 `b19710ba3cf23a34c93745c381051c4da5b03cae735f9d2e895416120cf05e3a`，导出日期 2026-10-18。主 PPT/全部旧页及旧预览未改；[来源、命令及检查](evidence/soc-architecture-v1-export-2026-10-18/README.md)，[架构与实施总纲](../../engineering/SoC_Architecture_v1_Master_Plan.md)。预览为 DrawingML 与本地替代字体渲染，已查看整页/局部，Office 未实测。**下文“八页”“当前第8页”及其预览保留为 10 月 17 日历史快照；旧 slide-08 不代表最新 v1。**
++
++> **2026-10-18 数据流更正：**用户明确软件先在上电初始化、DDR 就绪后完成 eMMC→DDR，ISP 工作时再按需 DDR→GB。图中的 S7→M5 保留硬件可达性；下文历史“eMMC 参数加载”及验收记录中的直接加载 GB 表述不再代表软件规划。当前流程见[总纲 §4.3](../../engineering/SoC_Architecture_v1_Master_Plan.md#43-emmc-先加载-ddrisp-工作时再从-ddr-装入-gb)。本次只修正文档解释，保留图稿及历史检查证据。
+ 
+ 2026-10-17，L01。第 8 页输入 HEAD `09798c1ded457e423b927844f66faae87583a20c`，分支 `mp/ara-pulp-v2`。以用户手调后的七页 PPT（`8916ac31…`）为输入，原生复制第 7 页后，仅修改五条长线的几何及六处跳线。前七页及主题、母版、布局和依赖完整保留；保留用户调整的图例、Crossbar 标题和 PLL 说明位置。实施前已有修改均保留，本轮范围仅当前图稿目录及 L01 交接，没有修改 RTL、地址配置、工程契约或共享状态。
+ 
+@@ -203,6 +205,8 @@
+ CPU→S0、Ara→S2 保持独立；Ara 仍为 2 lanes / AXI64，沿失效过滤→等宽透传进入主 Crossbar。M5 是唯一共享 GB 目标，经下侧 GB AXI 接口回接上方访问适配；只有一个 GB SRAM 实例。接口注明“CPU / Ara / eMMC DMA 共用”，描述主要使用者，不构成其他 master 的访问隔离保证。
+ 
+ ### eMMC 参数加载
++
++**历史软件流程已纠正（2026-10-18）：**以下 S7→M5→GB 连线只保留硬件可达含义；参数加载采用 eMMC→DDR、运行时 DDR→GB，见页首更新。下文保存当时图稿设计/检查记录，不作为当前软件实施要求。
+ 
+ 连续数据路径为 **片外 eMMC ↔ eMMC Host / DMA → S7 → Crossbar M5 → GB 访问适配 → GB**。Host 内置 DMA，不额外借用既有 iDMA；S7 位于 S6 与 S_EXT 之间，保留独立外部扩展入口。Host 的实际 AXI 位宽、ID、突发及控制接口适配需按后续采购接口核对。
+ 

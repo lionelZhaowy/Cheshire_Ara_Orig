@@ -1,0 +1,11 @@
+--- before/docs_codex/engineering/Global_Buffer_CPU_Access.md
++++ docs_codex/engineering/Global_Buffer_CPU_Access.md
+@@ -10,6 +10,8 @@
+ |---|---|---|
+ | 2026-10-15 | `322bd6ce9`；用户选择“小结果、灵活处理” | 比较 CPU 不接入和接入两案，均含 Ara 独立 GB 支路；仅文档/图稿，未选型 |
+ | 2026-10-16 | 同 HEAD；用户选择方案二并简化为 Ara2 / 主 Xbar64 共享 GB 出口 | 本次决策替代“CPU 未定、Ara 另设 GB 支路”的近期方案；核对等宽转换器直接透传。未改生产 RTL、VLEN 或地址；输入及旧文档备份见新图稿目录 |
++
++**2026-10-18 数据流澄清：**eMMC 在主 Xbar 上可到达 GB，并不代表软件采用该路径。用户规划为上电复位、DDR 就绪后由软件先将 eMMC 数据搬入 DDR；ISP 工作时再按需 DDR→GB。GB 装入完成由搬运器确认，与 eMMC→DDR 完成分开；详见[总纲 §4.3](SoC_Architecture_v1_Master_Plan.md#43-emmc-先加载-ddrisp-工作时再从-ddr-装入-gb)。本页 CPU/Ara 共享 GB 拓扑保持。
+ 
+ ## 1. 结论与适用场景
+ 

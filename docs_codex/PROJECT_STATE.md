@@ -1,6 +1,6 @@
 # 项目共享状态
 
-更新：2026-10-16，补充 L01 DDR–GB 评审文档状态；其余条目保留 2026-10-13 文档整理快照。原整理输入：`mp/ara-pulp-v2` / `5a1338e0a0bf115ddd54c19e0ae367ac2d541892`。这是当前事实与未验证项索引，不是测试报告或实施授权。新对话再核对实际 HEAD 和工作区；按[任务表](AGENT_TASKS.md)、[定位指南](AGENT_DOCUMENTATION_GUIDE.md)及对应主题交接接手。
+更新：2026-10-18，记录用户已确认 SoC 架构 v1 功能基线、总纲及三人分工/条件排期文档交付，输入 `mp/ara-pulp-v2` / `09798c1ded457e423b927844f66faae87583a20c`；保留 2026-10-16 DDR–GB 更新及其余 2026-10-13 文档整理快照。原整理输入：`mp/ara-pulp-v2` / `5a1338e0a0bf115ddd54c19e0ae367ac2d541892`。这是当前事实与未验证项索引，不是测试报告或实施授权。新对话再核对实际 HEAD 和工作区；按[任务表](AGENT_TASKS.md)、[定位指南](AGENT_DOCUMENTATION_GUIDE.md)及对应主题交接接手。
 
 ## 1. 最终目标与近期目标
 
@@ -19,6 +19,10 @@
 
 | 性质 | 内容 |
 | --- | --- |
+| 用户确认（2026-10-18） | 当前“SoC 架构(v1)”在功能规划层面满足现阶段需求，作为后续实现基线；见[实施总纲](engineering/SoC_Architecture_v1_Master_Plan.md)。CPU/Ara2 经主 Xbar64 共享 M5 访问独立 GB，eMMC 参数加载、RAW/ISP 采集、≤256 ROI 裁切和四入口共享压缩 DDR 纳入目标；新增工程待实现/待验证，参数缺失不撤销拓扑选择 |
+| 用户澄清（2026-10-18） | 软件数据流为上电复位、DDR 就绪后 eMMC→DDR，ISP 工作时按需 DDR→GB。S7→M5 的硬件可达性保留，但不作为 eMMC→GB 软件加载流程；此前文档混淆已修正，见[总纲 §4.3](engineering/SoC_Architecture_v1_Master_Plan.md#43-emmc-先加载-ddrisp-工作时再从-ddr-装入-gb)与[修订交接](handoffs/L01_implementation_challenges.md)。搬运采用 CPU 拷贝或软件启动 Host DMA 尚未选定，工程未实施 |
+| 用户输入（2026-10-18） | 队长/HYH/TTY 三人全职，多数新增模块从零开发，均未独立完成完整流片；可申请实验室指导，关键资源未齐。上级期望 2027 年 6 月投片，用户说明可延后三个月；取舍为保留 v1、争取专项支持 |
+| 排期建议（2026-10-18） | [团队分工与进度对照](engineering/Team_Responsibilities_and_Tapeout_Schedule.md)：6 月前端交付检查、9 月有条件提交 GDS；不表示上级已批准日期调整或工程已启动。分工、依赖与验收见正文，[交接](handoffs/C00_team_execution_plan.md)记录本轮文档变更 |
 | 用户确认 | DDR 供应商可以提供 AXI4 版本，不再把 AXI3 桥列为必选项 |
 | 用户要求 | NPU/ISP 数据通路需要绕过 LLC 直接访问 DDR，避免其流量污染 CPU 的 LLC |
 | 用户要求 | 提取独立 `cheshire_ara_asic`；不在 Bender 和旧脚本体系上投入过多精力 |
@@ -26,13 +30,13 @@
 | 用户要求（2026-10-06） | 软硬件方案先采用当前版本适用的官方建议；官方未覆盖或新增 IP 的抉择才补充自定义方案，见根 AGENTS.md |
 | 用户确认（2026-10-06，待实现） | 沿官方 Platform ROM 钩子，以安全启动频率配置 PLL，并按依赖完成必要 IP 配置；保留运行软件可重复访问的配置接口，支持受控动态调整；具体频率/IP/时钟域未冻结 |
 | 提取执行建议 | `cv64a6_imafdcv_sv39` + Ara 2 lanes / VLEN 2048，以当前 Ara 仿真配置取值快照作为首个固定基线；见 02 文档 |
-| 架构建议，尚未实现 | DMA 共享数据区采用全路径不缓存或经验证的缓存维护，加缓冲区所有权和 MMIO/中断交接 |
+| 用户确认方向（2026-10-16，待实现/待验证） | DDR 共享范围采用软件显式交接＋L1D/写缓冲/LLC 硬件范围维护，落实维护窗口、实际完成握手与错误闭环；具体接口仍待细化。GB 本地交接另行管理，见[总纲 §6](engineering/SoC_Architecture_v1_Master_Plan.md#6-跨模块接口与软硬件约束) |
 | 未决 | 最终外设保留表、地址分配、DMA 区大小、最终性能/功耗/面积指标 |
 | 未决 | 工艺、SRAM 宏、PLL/PAD、DDR 控制器/PHY 细节、DFT/MBIST 和 EDA 工具版本/许可 |
 | 用户要求（2026-10-08，教学已交付） | 论文实验需要OS，系统补齐RTOS/Linux；CVA6主线以正确使用为限，ASIC按机制/实例深化。具体OS选型/移植/运行尚未完成，OS不是裸机ASIC提取前置 |
 | 未决 | 最终启动介质、OS/RTOS具体版本及平台方案、论文指标、是否需要跨 CPU/设备的共享原子控制数据 |
 
-提取基线不是最终产品架构冻结；不要擅自替用户完成未决选择。
+首次最小提取基线与 v1 产品功能基线分阶段验收；v1 拓扑已确认，最终参数、外设裁切表和未来优化仍按未决输入处理。
 
 
 ## 3. 已交付内容与证据边界
@@ -46,6 +50,7 @@
 | RTL 模块指南 | [21 篇正文、24 张 A 图、213 条连接](rtl_modules/README.md)；2026-10-13 最终采用 A 连续走线，B 弃用、C 未采用；[技术交接](handoffs/L01_rtl_module_guide.md)保留审阅与缺口 |
 | 工程契约 | [IP/DDR/GB](engineering/IP_DDR_Interface_Contract.md)、[ASIC适配](engineering/ASIC_Adaptation_and_Evidence.md)是正式参考，工程尚未实施 |
 | DDR–GB 同步说明（2026-10-16） | [主说明](engineering/DDR_GB_Coherence_Design.md)已纳入用户转交的独立评审及答疑；[供应商会议问题](engineering/DDR_Supplier_Coherence_Questions.md)已按用户提供的 Datasheet V2.1 核对能力、页码及待澄清项，尚无会议答复；保存[评审 Q&A](maintenance/L01/reviews/ddr_gb_coherence_review_qa.md)。输入 `322bd6ce9`；用户确认维护窗口／握手需实现，当前仅修订文档，硬件与故障恢复未验收 |
+| 实施难点专题（2026-10-18） | [13 类难点与关闭条件](engineering/Implementation_Challenges_and_Open_Questions.md)及 13 幅 SVG/PNG、13 页原生 PPTX 已交付；引用已有同步等方案，区分已确认方向、未决输入、实现缺口和静态缺陷。仅文档/图稿检查，Office 与工程运行未实测；[交接](handoffs/L01_implementation_challenges.md) |
 | 历史检查 | 软件构建、独立教学 Reg 单元、浏览器/图稿检查均只对各次记录的输入有效；按[交接索引](handoffs/README.md)追溯，不合并成一次生产 SoC 验证 |
 
 OS/RTOS 具体平台、镜像溯源、系统启动和向量抢占仍未验收。教材中的 Linux 6.5 源码、SDK 配方版本与 OpenSBI 头声明不是运行证据；RTOS/Linux 教学已交付，OS 不是裸机 ASIC 提取前置。
@@ -67,7 +72,7 @@ OS/RTOS 具体平台、镜像溯源、系统启动和向量抢占仍未验收。
 
 13. **ROM C 栈对齐待复核（2026-10-11）。** 源码默认 SPM 顶端−8 后调用 ROM C main，sp 模16为8；非零 Platform ROM 钩子同样需核对。实际指令、动态影响和修复未验收，见[重构交接](handoffs/L01_documentation_restructure.md)。
 14. **新增软件静态疑点未关闭（2026-10-13）。** CLINT `clint_sleep_until()` 早退条件、MTIME 快照及比较寄存器分拆写；I²C EEPROM 分块推进和 STOP 枚举/注释不一致，见[RTL 指南交接](handoffs/L01_rtl_module_guide.md)。只是源码发现，需 S01/V01 定向复核，未修复或动态复现。
-15. **近期 M01 需求以契约第12节为准。** 主 Xbar 保持64-bit；新增 GB 为 NPU/Ara 共享的独立片上 SRAM，DDR/GB 显式搬运。Ara4-lane、GB 参数/支路和真实 DDR 旁路均未实现或冻结，见[现行契约](engineering/IP_DDR_Interface_Contract.md)。
+15. **近期产品拓扑以 v1 总纲为准（2026-10-18）。** Ara2/AXI64、CPU/Ara 独立输入共享 M5；DDR/GB 显式搬运，四路 F0～F3 接一个 Controller 的 DDR.S0～S3。旧契约第12节的 Ara4/独立支路/CPU待定及三口资料由[总纲冲突表](engineering/SoC_Architecture_v1_Master_Plan.md#91-冲突与替代关系)标明替代；容量/地址/宏/实际四口交付仍待输入，硬件及性能未验收。
 
 ## 5. 近期待办及依赖关系
 

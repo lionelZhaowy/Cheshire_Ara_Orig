@@ -1,0 +1,11 @@
+--- before/docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md
++++ docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md
+@@ -3,6 +3,8 @@
+ 返回[工程参考](README.md) · [项目状态](../PROJECT_STATE.md) · [任务分工](../AGENT_TASKS.md) · [本主题交接](../handoffs/L01_global_buffer_cpu_access.md)
+ 
+ **2026-10-18 用户确认：当前“SoC 架构(v1)”在功能规划层面满足现阶段已提出的需求，作为后续工程实现的架构基线。** 本文将该决定落实为需求、改动、接口依赖与验收门槛。拓扑已确定；新增硬件、基础软件、应用闭环和性能仍待实现、验证。参数待定不使拓扑重新成为未选方案。
++
++实施问题对照：[13 类难点、已有方案与关闭条件](Implementation_Challenges_and_Open_Questions.md)，含 GB 权限、跨层缓存同步、设备地址、寄存器及配套图稿。该专题承接本文件的架构/责任与条件排期；具体接口和工程验收仍待落实。
+ 
+ ## 1. 文档定位、输入版本与基线范围
+ 
