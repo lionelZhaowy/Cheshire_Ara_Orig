@@ -17,7 +17,7 @@
 
 ## 本轮结果
 
-- [图稿入口、源码依据及静态读写追踪](../diagrams/2026-10-12_regbus_rtl/README.md)、[两页原生 PPTX](../diagrams/2026-10-12_regbus_rtl/regbus_rtl_analysis.pptx)。两图分别交付 SVG、PNG、单页 PPTX，并提供生成/验证脚本、源码哈希与报告。
+- [图稿入口、源码依据及静态读写追踪](../diagrams/backup_no_use/2026-10-12_regbus_rtl/README.md)、[两页原生 PPTX](../diagrams/backup_no_use/2026-10-12_regbus_rtl/regbus_rtl_analysis.pptx)。两图分别交付 SVG、PNG、单页 PPTX，并提供生成/验证脚本、源码哈希与报告。
 - 桥图按默认 AXI64/Reg32 展开两路、请求弹性缓冲、零写过滤、内部仲裁，放大 periph_to_reg 响应 DFF；解码图展开范围比较/优先选择、valid 门控/payload MUX、34-bit 响应 MUX 及常量错误目标。
 - 明确时序缓冲与组合逻辑的区别；使用同名连接点及必要的局部抽象，不称为逐端口完整接线图、综合网表或已仿真时序。
 - 保留旧 Regbus 结构图和 SoC 全景图；没有自动封装新技能。

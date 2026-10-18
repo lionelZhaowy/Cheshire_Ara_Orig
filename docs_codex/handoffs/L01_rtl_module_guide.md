@@ -108,11 +108,11 @@ Microsoft Office显示/编辑未实测，浏览器交互未执行端到端测试
 
 输入提交仍为 `c4162204cfee0c48b81158b4296860a678d92bec` / `mp/ara-pulp-v2`。本轮未委派子 Agent，未改 RTL、软件、配置或依赖。修改范围：AGENTS 的本系列偏好条款、21 章的对比链接/查线说明、指南入口、L01 绘图约定、本交接，以及新旧日期图稿目录的导航/生成脚本。共享 PROJECT_STATE / AGENT_TASKS 的已有改动未覆盖。
 
-交付 [A/C 对比页](../diagrams/2026-10-13_rtl_modules_native_c/index.html) 和 [图源/复现说明](../diagrams/2026-10-13_rtl_modules_native_c/README.md)：24 张 C SVG/PNG/矢量 PDF、一份 24 页原生 PPTX；C 使用彩色标题带、浅色主体、柔和边框，复用 A 的全部布局和 213 条连续连接。以前 A/B 已使用 native 导出后端；本次使用其绘图约定改变外观，不宣称新的后端或 RTL 拓扑。没有修改或封装 skill。
+交付 [A/C 对比页](../diagrams/backup_no_use/2026-10-13_rtl_modules_native_c/index.html) 和 [图源/复现说明](../diagrams/backup_no_use/2026-10-13_rtl_modules_native_c/README.md)：24 张 C SVG/PNG/矢量 PDF、一份 24 页原生 PPTX；C 使用彩色标题带、浅色主体、柔和边框，复用 A 的全部布局和 213 条连续连接。以前 A/B 已使用 native 导出后端；本次使用其绘图约定改变外观，不宣称新的后端或 RTL 拓扑。没有修改或封装 skill。
 
 旧 B 生成函数显式拒绝调用，旧批量生成/渲染/导出默认只处理 A；旧对比页改为 A/C 导航页，B 图片/PDF/PPT 原样留档。原 A/B validation 和审阅哈希属于当时快照，当前导航检查使用 C 目录的脚本，未通过刷新旧哈希掩盖正文变化。本轮正文相对于备份仅允许对比链接和 B 查线句替换，已自动检查。
 
-验证命令：publication-figures 已有 venv 执行 `build_native_c.py`、`verify_native_c.py`；native skill `scripts/run.py --input …/C/*.svg --out-dir …/C/editable --aspect source`。24 PNG 均实际用 view_image 查看并保存哈希；检查 213 条线、78 个源码/本地资料哈希、21 章导航、24 个矢量 PDF 字体嵌入和 24 页 PPT（1708 原生对象、无整图图片）。最终结果见 [validation.json](../diagrams/2026-10-13_rtl_modules_native_c/validation.json)。首轮检查时验证报告尚未生成导致其自身链接暂缺，生成后复查关闭。
+验证命令：publication-figures 已有 venv 执行 `build_native_c.py`、`verify_native_c.py`；native skill `scripts/run.py --input …/C/*.svg --out-dir …/C/editable --aspect source`。24 PNG 均实际用 view_image 查看并保存哈希；检查 213 条线、78 个源码/本地资料哈希、21 章导航、24 个矢量 PDF 字体嵌入和 24 页 PPT（1708 原生对象、无整图图片）。最终结果见 [validation.json](../diagrams/backup_no_use/2026-10-13_rtl_modules_native_c/validation.json)。首轮检查时验证报告尚未生成导致其自身链接暂缺，生成后复查关闭。
 
 Office 显示/编辑、浏览器交互未实测；未运行 RTL 编译、仿真或板测。后续由用户评价 A/C 的视觉偏好；无论选择何种配色，连续连线要求不再作为待决项。所有修改前文档和脚本保存于新图稿 `evidence/before_c_style.tar.gz`。
 

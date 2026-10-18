@@ -92,7 +92,7 @@ DIF（Device Interface Function，设备接口函数）主要操作控制器寄�
 
 [RTL 模块指南](../../../rtl_modules/README.md)负责模块内部电路；[软件手册](../../README.md)负责命令/API 查阅；本专题负责贯穿它们的执行场景，避免重建整份 SoC 地址表。详细地址和 C/I/E 条件继续查 [01 §8.1](../../../01_Cheshire_Ara_Quick_Start.md#81-cie-attributes)。
 
-本轮附件只有文本，没有可直接核验的两张附图；已经找到[分层参考](../../LAYERS_AND_TOOLS.md)和 [SoC 规划图说明](../../../diagrams/2026-10-12_soc_landscape/README.md)。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 [IP/DDR 契约 §12](../../../engineering/IP_DDR_Interface_Contract.md)为准，不从图中冻结新地址、宽度或频率。
+本轮附件只有文本，没有可直接核验的两张附图；已经找到[分层参考](../../LAYERS_AND_TOOLS.md)和 [SoC 规划图说明](../../../diagrams/backup_no_use/2026-10-12_soc_landscape/README.md)。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 [IP/DDR 契约 §12](../../../engineering/IP_DDR_Interface_Contract.md)为准，不从图中冻结新地址、宽度或频率。
 
 本专题中“源码事实”表示已核对引用源；“分析推断”表示根据该配置推演；“设计建议”表示后续需要实现与验证。编译结果、目标运行和板测分别记录在[实践页](labs.md#evidence)。
 

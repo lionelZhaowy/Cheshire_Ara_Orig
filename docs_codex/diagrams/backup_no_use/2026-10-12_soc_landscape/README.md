@@ -1,6 +1,6 @@
 # SoC 横向架构图 · 2026-10-12
 
-本轮按用户要求生成两个版本，使用 `svg-pptx-diagrams-native`。AXI、Regbus、DDR Controller 横向组织，CVA6–Ara、NPU/GB、LVDS/ISP 放在中上部。图稿按生成日期归档；旧图位于 [2026-10-11_native_reconstruction](../2026-10-11_native_reconstruction/README.md)，本轮未改写旧目录。
+本轮按用户要求生成两个版本，使用 `svg-pptx-diagrams-native`。AXI、Regbus、DDR Controller 横向组织，CVA6–Ara、NPU/GB、LVDS/ISP 放在中上部。图稿按生成日期归档；旧图位于 [2026-10-11_native_reconstruction](../../2026-10-11_native_reconstruction/README.md)，本轮未改写旧目录。
 
 ## 查看与编辑
 
@@ -32,10 +32,10 @@ Ara GB 分支位于失效过滤之后、位宽转换之前，仍为新增候选�
 
 输入：分支 `mp/ara-pulp-v2`，HEAD `c4162204cfee0c48b81158b4296860a678d92bec`，保留输入时的未提交修改。
 
-- [原完整图](../2026-10-11_native_reconstruction/soc_full_architecture.svg)、[Crossbar 参考](../2026-10-11_native_reconstruction/crossbar_ara.png)、[DDR 参考](../2026-10-11_native_reconstruction/ddr_interconnect.png)。用户提供的工业芯片框图仅用于视觉风格。
-- [cheshire_pkg.sv](../../../hw/cheshire_pkg.sv)：`gen_axi_in`、`gen_axi_out`、`gen_reg_out`。
-- [cheshire_soc.sv](../../../hw/cheshire_soc.sv)、[cheshire_idma_wrap.sv](../../../hw/cheshire_idma_wrap.sv)：实际互连、Ara 过滤/位宽转换、LLC、iDMA 内部配置路径。
-- [IP/DDR 接口契约](../../engineering/IP_DDR_Interface_Contract.md) §12：候选 DDR/GB/图像结构与未冻结条件。
+- [原完整图](../../2026-10-11_native_reconstruction/soc_full_architecture.svg)、[Crossbar 参考](../../2026-10-11_native_reconstruction/crossbar_ara.png)、[DDR 参考](../../2026-10-11_native_reconstruction/ddr_interconnect.png)。用户提供的工业芯片框图仅用于视觉风格。
+- [cheshire_pkg.sv](../../../../hw/cheshire_pkg.sv)：`gen_axi_in`、`gen_axi_out`、`gen_reg_out`。
+- [cheshire_soc.sv](../../../../hw/cheshire_soc.sv)、[cheshire_idma_wrap.sv](../../../../hw/cheshire_idma_wrap.sv)：实际互连、Ara 过滤/位宽转换、LLC、iDMA 内部配置路径。
+- [IP/DDR 接口契约](../../../engineering/IP_DDR_Interface_Contract.md) §12：候选 DDR/GB/图像结构与未冻结条件。
 
 ## 验证与复现
 

@@ -14,6 +14,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from diagram_paths import resolve_asset
 NS = 'http://www.w3.org/2000/svg'
 ET.register_namespace('', NS)
 
@@ -29,19 +31,25 @@ def main():
                         default=Path.home()/'.codex/skills/svg-pptx-diagrams-native')
     parser.add_argument('--plan', type=Path,
                         default=Path(__file__).with_name('reconstruction_plan.json'))
-    parser.add_argument('--out-dir', type=Path, required=True)
+    parser.add_argument('--out-dir', type=Path)
+    parser.add_argument('--check-inputs-only', action='store_true', help='Check source paths/hashes without producing files')
     args = parser.parse_args()
-    if args.out_dir.exists() and any(args.out_dir.iterdir()):
+    if not args.check_inputs_only and args.out_dir is None:
+        parser.error('--out-dir is required unless --check-inputs-only is used')
+    if args.out_dir and args.out_dir.exists() and any(args.out_dir.iterdir()):
         parser.error('Refusing to overwrite a nonempty output directory')
     sys.path.insert(0, str(args.skill/'scripts'))
     from svg_to_pptx import read_svg, create_deck, path_commands
     plan = json.loads(args.plan.read_text())
     for entry in plan:
-        assert digest(args.repo/entry['source']) == entry['sha256'], entry['source']
+        assert digest(resolve_asset(args.repo, entry['source'])) == entry['sha256'], entry['source']
+    if args.check_inputs_only:
+        print(f'PASS: {len(plan)} original source paths and SHA-256 hashes; no output generated')
+        return
     args.out_dir.mkdir(parents=True, exist_ok=True)
     reports, figures = [], []
     for entry in plan:
-        original = read_svg(args.repo/entry['source'])
+        original = read_svg(resolve_asset(args.repo, entry['source']))
         root = copy.deepcopy(original['svg'])
         objects = {e.get('id'): e for e in root}
         defs = ET.Element(f'{{{NS}}}defs')
@@ -120,7 +128,7 @@ def main():
     combined = create_deck(figures, args.out_dir/'all_diagrams.pptx', 'source')
     assert len(combined) == len(plan)
     for entry in plan:
-        assert digest(args.repo/entry['source']) == entry['sha256']
+        assert digest(resolve_asset(args.repo, entry['source'])) == entry['sha256']
     report = dict(skill='svg-pptx-diagrams-native', figures=reports, slides=len(plan),
                   total_omitted_canvas_backgrounds=sum(len(r['omitted_canvas_background_ids']) for r in reports),
                   total_native_arrows=sum(r['native_arrow_objects'] for r in reports),

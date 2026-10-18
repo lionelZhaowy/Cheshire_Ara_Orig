@@ -138,9 +138,9 @@ python3 docs_codex/software/interfaces/scripts/check.py
 
 用户明确调用`industrial-svg-pptx`，要求重新绘制软件栈供汇报选择。沿用L01；本轮只负责`diagrams/2026-10-14_software_stack_industrial/`及本主题交接，没有改变正文采用版本、软件组件范围或工程实现。
 
-- [新旧对照页](../diagrams/2026-10-14_software_stack_industrial/index.html) · [SVG/PNG/原生PPTX](../diagrams/2026-10-14_software_stack_industrial/README.md)。新图白底、方角、深色细边框、浅色嵌套区域、连续正交箭头；16:9横向画布。
+- [新旧对照页](../diagrams/backup_no_use/2026-10-14_software_stack_industrial/index.html) · [SVG/PNG/原生PPTX](../diagrams/backup_no_use/2026-10-14_software_stack_industrial/README.md)。新图白底、方角、深色细边框、浅色嵌套区域、连续正交箭头；16:9横向画布。
 - 复用原图34个组件组及35条关系箭头，另有6条图例；所有边的起止组件一致。省略/缩短少量长标签，完整定义继续引用原39类源码索引。157个旧批次非文档源码引用哈希未改变，未重新编译/运行目标。
-- [验证记录](../diagrams/2026-10-14_software_stack_industrial/evidence/validation.json)：旧图/正文保护哈希、端点关系、链接、文字边界和连线遮挡均通过。实际查看1920×1080预览、新旧对照页1440/390视口；首次Chrome沙箱socket受限，审批后完成本机预览。失败/调整过程保留在新目录evidence。
+- [验证记录](../diagrams/backup_no_use/2026-10-14_software_stack_industrial/evidence/validation.json)：旧图/正文保护哈希、端点关系、链接、文字边界和连线遮挡均通过。实际查看1920×1080预览、新旧对照页1440/390视口；首次Chrome沙箱socket受限，审批后完成本机预览。失败/调整过程保留在新目录evidence。
 - PPTX单页243个原生对象，163个文本、41个箭头、2个完整虚线边界；没有整图图片嵌入。Office显示/编辑未验证，连接器不保证移动模块自动跟随。
 
 原版SVG/PNG/PPTX、基础软件HTML/Markdown和历史证据保持不变。用户尚未选择正式汇报采用哪一版；后续按明确选择更新引用。本轮无项目实现事实或架构决策变化，不更新共享状态和任务表。

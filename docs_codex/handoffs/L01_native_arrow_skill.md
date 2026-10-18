@@ -12,7 +12,7 @@
 
 ## 本轮结果
 
-- [总交付](../diagrams/2026-10-11_native_pptx_validation/README.md)、[ZIP](../diagrams/2026-10-11_native_pptx_validation/svg-pptx-diagrams-native.zip)、[新 skill 源快照](../diagrams/2026-10-11_native_pptx_validation/skill/svg-pptx-diagrams-native/SKILL.md)。已安装新目录与独立依赖环境，旧 skill 保持不变；publication-figures 未删除或修改。
+- [总交付](../diagrams/backup_no_use/2026-10-11_native_pptx_validation/README.md)、[ZIP](../diagrams/backup_no_use/2026-10-11_native_pptx_validation/svg-pptx-diagrams-native.zip)、[新 skill 源快照](../diagrams/backup_no_use/2026-10-11_native_pptx_validation/skill/svg-pptx-diagrams-native/SKILL.md)。已安装新目录与独立依赖环境，旧 skill 保持不变；publication-figures 未删除或修改。
 - 新后端读取受限的三角 marker，将 marker-start/end 写成同一线/路径对象的 DrawingML headEnd/tailEnd；将 dasharray 写成同一轮廓的 custom dash。直线为 connector，折线/曲线保留一个自由形状，不生成分离箭头三角形。
 - 支持自由画布/适度配色，概念图不套用论文栏宽或投稿字号门槛。新增可选 `--slide-width-in`；不将文件格式本身的页面范围误称为“完全无限”。
 - 旧碎片仍兼容，不自动推断线段/三角形关系；原生端点绑定模块、自动布线、任意SVG marker、PPT g分组均未实现。迁移旧图的明确说明已放入 skill。

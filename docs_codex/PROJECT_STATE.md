@@ -88,6 +88,8 @@ OS/RTOS 具体平台、镜像溯源、系统启动和向量抢占仍未验收。
 
 ## 6. 文档维护决策
 
+- 2026-10-18 图稿已建立[按内容检索的目录索引](diagrams/README.md)：区分正式配图、生成依赖、独立交付和backup_no_use历史资料；整理未改变图稿内容或工程验证状态，见[组织交接](handoffs/L01_documentation_organization.md)。
+
 - 当前阅读总入口：[00_README](00_README.md)；Agent 按[定位指南](AGENT_DOCUMENTATION_GUIDE.md)只读相关主题。
 - 2026-10-11 用户移除 `learning_backup/`，不得重建；旧“保留旧站”仅为当日历史状态。旧哈希清单和目录外独立证据保留。
 - 旧图目录现为 `2026-10-11_native_reconstruction`，不得恢复旧目录名。现行工程契约在 `engineering/`，不能作为过程日志清理。

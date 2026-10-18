@@ -218,7 +218,7 @@
 <p><code>params.h</code> 中的 <code>extern ... __base_uart</code> 是链接符号声明。<code>&amp;__base_uart</code> 得到链接器赋的数值地址，不是先从该地址读取一个指针。全库编入归档也不表示最终 ELF 包含所有驱动，更不表示所有外设都启用。</p>
 <h2 id="boundaries">与既有文档及参考图的关系</h2>
 <p><a href="../../rtl_modules/README.md">RTL 模块指南</a>负责模块内部电路；<a href="../README.md">软件手册</a>负责命令/API 查阅；本专题负责贯穿它们的执行场景，避免重建整份 SoC 地址表。详细地址和 C/I/E 条件继续查 <a href="../../01_Cheshire_Ara_Quick_Start.md#81-cie-attributes">01 §8.1</a>。</p>
-<p>本轮附件只有文本，没有可直接核验的两张附图；已经找到<a href="../LAYERS_AND_TOOLS.md">分层参考</a>和 <a href="../../diagrams/2026-10-12_soc_landscape/README.md">SoC 规划图说明</a>。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 <a href="../../engineering/IP_DDR_Interface_Contract.md">IP/DDR 契约 §12</a>为准，不从图中冻结新地址、宽度或频率。</p>
+<p>本轮附件只有文本，没有可直接核验的两张附图；已经找到<a href="../LAYERS_AND_TOOLS.md">分层参考</a>和 <a href="../../diagrams/backup_no_use/2026-10-12_soc_landscape/README.md">SoC 规划图说明</a>。其中 C1–C9、S0–S2、多端口 DDR 和 Ara→GB 都按规划处理；采购 IP 的真实端口 manifest 尚未提供。最新已确认需求以 <a href="../../engineering/IP_DDR_Interface_Contract.md">IP/DDR 契约 §12</a>为准，不从图中冻结新地址、宽度或频率。</p>
 <p>本专题中“源码事实”表示已核对引用源；“分析推断”表示根据该配置推演；“设计建议”表示后续需要实现与验证。编译结果、目标运行和板测分别记录在<a href="labs.html#evidence">实践页</a>。</p>
 
 <p>软件组件整体定位见<a href="foundation-software.html#complete-stack">全组件软件栈</a>及<a href="foundation-software.html#component-index">源码索引</a>；UART和GPT/Flash逐步调用链仍保留在同章。</p>

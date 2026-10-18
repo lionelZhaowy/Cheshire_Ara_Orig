@@ -1,6 +1,6 @@
 # SoC 全景 PPT：CPU / Ara 共用 GB 出口
 
-2026-10-16，L01 图稿修订。输入为用户提供的 [soc_landscape.pptx](../soc_landscape.pptx)，SHA-256 `ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b`；工程 HEAD `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，分支 `mp/ara-pulp-v2`。仅按已确认的 [CPU/Ara 共享 GB 拓扑](../../engineering/Global_Buffer_CPU_Access.md)修改图稿。
+2026-10-16，L01 图稿修订。输入为用户提供的 [soc_landscape.pptx](../../soc_landscape.pptx)，SHA-256 `ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b`；工程 HEAD `322bd6ce964c96cd4337ceb98e5ce89d1bb478d8`，分支 `mp/ara-pulp-v2`。仅按已确认的 [CPU/Ara 共享 GB 拓扑](../../../engineering/Global_Buffer_CPU_Access.md)修改图稿。
 
 ## 交付
 
@@ -39,7 +39,7 @@
 
 **Office 显示/编辑未实测。** 当前无连接的 Office 会话。PNG/SVG 通过本任务的 `preview_deck.py` 读取 PPT 中显式 DrawingML 几何与文本后本地渲染；文字使用文泉驿替代字体，是排版检查预览，不是 PowerPoint 截图。PPTX 是本次编辑的主交付文件，SVG 为配套矢量预览，不用于重新生成和覆盖原页。连接线未绑定模块端口，移动模块后可能需手动调整走线。
 
-没有修改 RTL、配置、工程契约、其他图稿或共享状态；未执行硬件编译、仿真或板测。本次增量记录于 [稳定主题交接](../../handoffs/L01_global_buffer_cpu_access.md)。
+没有修改 RTL、配置、工程契约、其他图稿或共享状态；未执行硬件编译、仿真或板测。本次增量记录于 [稳定主题交接](../../../handoffs/L01_global_buffer_cpu_access.md)。
 
 ## 复现
 

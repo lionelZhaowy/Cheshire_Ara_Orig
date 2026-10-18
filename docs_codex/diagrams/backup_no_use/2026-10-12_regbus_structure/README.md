@@ -25,11 +25,11 @@
 
 | 图中对象 | 本地源码与符号 |
 | --- | --- |
-| 公共 AXI→Reg 路径、解码、demux、error、扩展口 | [cheshire_soc.sv](../../../hw/cheshire_soc.sv)，约 295–440 行 |
-| 地址规则与目标类别 | [cheshire_pkg.sv](../../../hw/cheshire_pkg.sv)，`gen_axi_out()`、`gen_reg_out()` |
-| 公共数据/选通宽度 | [typedef.svh](../../../hw/include/cheshire/typedef.svh)，Reg 类型生成宏 |
-| 协议、桥、组合分发 | [register_interface](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/README.md)，`include/register_interface/typedef.svh`、`src/axi_to_reg_v2.sv`、`src/reg_demux.sv`、`src/reg_err_slv.sv` |
-| 地址选择与默认目标 | [addr_decode.sv](../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/addr_decode.sv) |
+| 公共 AXI→Reg 路径、解码、demux、error、扩展口 | [cheshire_soc.sv](../../../../hw/cheshire_soc.sv)，约 295–440 行 |
+| 地址规则与目标类别 | [cheshire_pkg.sv](../../../../hw/cheshire_pkg.sv)，`gen_axi_out()`、`gen_reg_out()` |
+| 公共数据/选通宽度 | [typedef.svh](../../../../hw/include/cheshire/typedef.svh)，Reg 类型生成宏 |
+| 协议、桥、组合分发 | [register_interface](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/README.md)，`include/register_interface/typedef.svh`、`src/axi_to_reg_v2.sv`、`src/reg_demux.sv`、`src/reg_err_slv.sv` |
+| 地址选择与默认目标 | [addr_decode.sv](../../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/addr_decode.sv) |
 
 ## 复现与验证
 

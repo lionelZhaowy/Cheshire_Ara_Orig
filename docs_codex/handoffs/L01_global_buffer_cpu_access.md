@@ -85,11 +85,11 @@
 
 ### 全景 PPT 首版交付（2026-10-16；布局已被下文修正替代）
 
-用户随后明确要求以 `docs_codex/diagrams/soc_landscape.pptx` 的第 1 页复制出第 2 页，再修改 Ara/GB 互联。本轮新增 [SoC 全景图目录](../diagrams/2026-10-16_soc_landscape_shared_gb/README.md)，只更新本 handoff，不改正式分析和其他对话文件。输入 SHA-256 `ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b`，原 PPT 与本交接修改前版本均备份。
+用户随后明确要求以 `docs_codex/diagrams/soc_landscape.pptx` 的第 1 页复制出第 2 页，再修改 Ara/GB 互联。本轮新增 [SoC 全景图目录](../diagrams/backup_no_use/2026-10-16_soc_landscape_shared_gb/README.md)，只更新本 handoff，不改正式分析和其他对话文件。输入 SHA-256 `ec43b6e1b645ff379865d518ac3b20dc32c078c02bca1eca52428a49cca4db4b`，原 PPT 与本交接修改前版本均备份。
 
 输出第 1 页 XML/依赖完整保留；第 2 页删除地址分流及 Ara 独立 GB 线，保留 CPU S0、Ara S2，新增连续 `M_GB→GB 访问适配` 路径，标注 Ara2/AXI64，清除 ISP 线在旧 Ara 分支处已失去用途的跳线。新图 368 个原对象未变；仅删除 7、修改 9、新增 6 个原生对象。
 
-实际 `edit_deck.py …/build-02`、`preview_deck.py …/preview-03`、`validate.py` 最终退出 0；[验证报告](../diagrams/2026-10-16_soc_landscape_shared_gb/evidence/validation.json)记录两页、原文件/原页保护、关系检查、原生文本/箭头/虚线保存重读及新增路径端点和避字。两次先前检查失败是 M_GB 端点附近的字形/平头线帽边界计算问题，修正检查后通过；没有据此修改或删减图形内容，迭代记录保留。
+实际 `edit_deck.py …/build-02`、`preview_deck.py …/preview-03`、`validate.py` 最终退出 0；[验证报告](../diagrams/backup_no_use/2026-10-16_soc_landscape_shared_gb/evidence/validation.json)记录两页、原文件/原页保护、关系检查、原生文本/箭头/虚线保存重读及新增路径端点和避字。两次先前检查失败是 M_GB 端点附近的字形/平头线帽边界计算问题，修正检查后通过；没有据此修改或删减图形内容，迭代记录保留。
 
 作者实际查看原页与最终第 2 页的本地 SVG 渲染。无连接的 Office 会话，Office 显示/编辑未实测，配套预览不冒充 PowerPoint 截图。最小后续检查是用户在目标 Office 打开两页核对字体和编辑行为；不扩展为硬件实施。
 

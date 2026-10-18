@@ -20,6 +20,8 @@
 
 2026-10-18 L01：已交付[实施难点专题与 13 幅可编辑图](engineering/Implementation_Challenges_and_Open_Questions.md)，供 M01/I01/S01/V01/P01/E01 按责任和门槛接手；[主题交接](handoffs/L01_implementation_challenges.md)记录文档与图稿检查。工程任务状态、人员分工和条件排期不变。
 
+2026-10-18 L01图稿整理：[图稿总索引](diagrams/README.md)已建立，backup_no_use引用审查与迁移完成；仍用配图/依赖已移回，历史旧版归档。详见[组织交接](handoffs/L01_documentation_organization.md)，工程任务状态不变。
+
 同一任务需要进一步拆分时用 `V01-a` 等子编号。不要为了分工一次性创建大量空专题文件。
 
 2026-10-13 RTL 指南：正式采用 A 连续走线；B/C 试绘已归档，活动生成与检查只依赖 A。源代码和工程验证状态未变。

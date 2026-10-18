@@ -3,6 +3,7 @@
 
 This is an OOXML/python-pptx check, not an Office display or UI editing test.
 """
+import sys
 import argparse
 import hashlib
 from html.parser import HTMLParser
@@ -14,6 +15,9 @@ from PIL import Image
 from pptx import Presentation
 from pptx.oxml.ns import qn
 
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from diagram_paths import resolve_asset
 
 def counts(prs):
     result = dict(slides=len(prs.slides), objects=0, arrow_objects=0, arrowheads=0, dashed_objects=0)
@@ -42,7 +46,7 @@ def main():
     assert len(list(directory.glob('*.pptx'))) == 46
     assert len(list(directory.glob('*.png'))) == 50
     for entry, row in zip(plan, report['figures']):
-        source = args.repo/entry['source']
+        source = resolve_asset(args.repo, entry['source'])
         assert hashlib.sha256(source.read_bytes()).hexdigest() == entry['sha256']
         stem = row['name']
         with Image.open(directory/(stem+'.png')) as im:
@@ -91,7 +95,7 @@ def main():
                 if key in ('href', 'src'):
                     assert (directory/value).is_file(), value
     Links().feed((directory/'index.html').read_text())
-    prior = args.repo/'docs_codex/diagrams/2026-10-11_native_pptx_validation/old_skill_hashes.json'
+    prior = resolve_asset(args.repo, 'docs_codex/diagrams/2026-10-11_native_pptx_validation/old_skill_hashes.json')
     skill_hashes = json.loads(prior.read_text())
     for filename, expected in skill_hashes.items():
         assert hashlib.sha256(Path(filename).read_bytes()).hexdigest() == expected

@@ -18,9 +18,9 @@
 
 - 正式技术内容：[DDR–GB 缓存一致性](../engineering/Cache_Coherence_Architecture.md)。状态：文档与图稿完成；硬件方案未选型、未实现、未验证。
 - 用户选择“先比较，暂不选型”。逐行 I/O 一致性是不分配 LLC 行的长期优先评估建议；缓存直接供数、协议选型及接口改造不是用户已确认决策。
-- 本轮改动：上述正式文档、`engineering/README.md` 入口、[新图稿目录](../diagrams/2026-10-15_cache_coherence/README.md)、本交接。
+- 本轮改动：上述正式文档、`engineering/README.md` 入口、[新图稿目录](../diagrams/backup_no_use/2026-10-15_cache_coherence/README.md)、本交接。
 - 保留 `IP_DDR_Interface_Contract.md` 的用户需求及现有建议。未改 RTL、sw、地址、位宽、CSR、IRQ、启动、filelist 或依赖；未提交 Git。共享状态与任务状态没有工程进展变化，不改写。
-- 输入已有 `L01_software_hardware_interfaces.md` 未提交修改与 `2026-10-14_software_stack_industrial/` 未跟踪目录，未覆盖；[input.json](../diagrams/2026-10-15_cache_coherence/evidence/input.json)保存这些文件、现行契约/共享文档及源码哈希。
+- 输入已有 `L01_software_hardware_interfaces.md` 未提交修改与 `2026-10-14_software_stack_industrial/` 未跟踪目录，未覆盖；[input.json](../diagrams/backup_no_use/2026-10-15_cache_coherence/evidence/input.json)保存这些文件、现行契约/共享文档及源码哈希。
 
 ## 证据与检查
 
@@ -35,9 +35,9 @@
 | 同输入渲染到 `evidence/render-02` | 经环境审批在沙箱外运行，退出 0；首次预览通过 |
 | `build_figures.py --out-dir evidence/source-02`，再渲染到 `evidence/render-03` | 各退出 0；最终三图无文字越界、框内溢出、文本重叠或连线穿字；逐张人工查看 PNG |
 | 原生后端 `run.py --input system.svg read-to-gb.svg write-to-ddr.svg --out-dir export --aspect source --font 'Microsoft YaHei' --font-file /usr/share/fonts/truetype/wqy/wqy-zenhei.ttc` | 退出 0；3 页、119 文本、29 原生箭头；保存重读检查通过 |
-| `validate.py --out-file evidence/validation.json`，`git diff --check` | 结果见[验证报告](../diagrams/2026-10-15_cache_coherence/evidence/validation.json)；检查正文/图稿链接、SVG/PPTX一致性、原生对象、输入保护与空白错误 |
+| `validate.py --out-file evidence/validation.json`，`git diff --check` | 结果见[验证报告](../diagrams/backup_no_use/2026-10-15_cache_coherence/evidence/validation.json)；检查正文/图稿链接、SVG/PPTX一致性、原生对象、输入保护与空白错误 |
 
-字体、重现命令和完整产物导航见[图稿说明](../diagrams/2026-10-15_cache_coherence/README.md)。PNG 的布局检查不是 Office 检查；Office 显示与编辑未实测。未编译、未展开、未仿真、未板测，也没有运行新硬件一致性协议。
+字体、重现命令和完整产物导航见[图稿说明](../diagrams/backup_no_use/2026-10-15_cache_coherence/README.md)。PNG 的布局检查不是 Office 检查；Office 显示与编辑未实测。未编译、未展开、未仿真、未板测，也没有运行新硬件一致性协议。
 
 ## 未关闭项与下一步
 

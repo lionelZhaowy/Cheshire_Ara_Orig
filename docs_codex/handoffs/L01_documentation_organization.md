@@ -4,12 +4,34 @@
 
 | 日期 | 输入 / 角色 | 修改 |
 | --- | --- | --- |
+| 2026-10-18 | `aa5716464a8869b91212cba9fa31deb1e41ebcf5` / `mp/ara-pulp-v2`，L01 root | 审查用户backup_no_use迁移，移回4个仍用目录、归档3个旧版目录；新增图稿总索引，修复导航及原生重建输入解析 |
 | 2026-10-13 | `5a1338e0a0bf115ddd54c19e0ae367ac2d541892` / `mp/ara-pulp-v2`，L01 文档整理 root；无子 Agent | 正式入口收敛到 A；归档224个B/C产物及脚本，删除2个字节码缓存；共享状态精简，修复28项历史路径映射，活动文档检查通过 |
 | 2026-10-11 | eaf55be17，L01 本对话；保留前轮命名迁移及用户未提交文档 | 用户要求解释并归类顶层 L01 文件；13 份过程资料迁到 maintenance/L01，收敛用户入口，更新 AGENTS 存放规则 |
 | 2026-10-11 | 同 HEAD 与本对话变更 | 用户补充要求 M/P 统一处理及新 Agent 历史定位：两份现行工程参考迁入 engineering，新增 Agent 定位指南并接入 AGENTS/00/状态 |
 | 2026-10-11 | 同 HEAD 与本对话变更 | 用户授权删除 learning_backup 及独占资源；728 文件移出仓库，移除现行页面备份入口并同步生成，保留共享资源和独立证据 |
 
-## 当前结果（2026-10-13）
+## 当前图稿整理（2026-10-18）
+
+本轮只整理图稿目录、导航和相关维护脚本，未改变图稿对象或工程实现。输入工作区已有337项删除及未跟踪的 `diagrams/backup_no_use/`，是用户移动16个目录形成的状态；没有清理或覆盖用户这些原件。
+
+- 正式检索：[diagrams/README.md](../diagrams/README.md)，逐项介绍23个主目录与15个备份子目录，并提供SoC v1第9页、RTL A图、软件栈、DDR–GB同步和实施难点的快捷入口。
+- 从备份区移回 **4目录/61文件**：`2026-10-09_software_hardware_layers`、`2026-10-13_complete_software_stack`、`2026-10-13_foundation_software`仍被正式正文直接嵌图；`2026-10-12_axi_to_detailed_mem`是正式A图经Regbus脚本导入的绘图依赖。
+- 新增归档 **3目录/108文件**：`2026-10-14_software_stack_industrial`（正文未采用的候选，未宣称用户否定它）、`2026-10-15_cache_coherence`（被10月16日方案替代）、`2026-10-16_soc_landscape_shared_gb`（已由m5_gb九页主PPT承接）。仅移动，未删除图片/PPT/独立证据。
+- 备份区仍有早期SoC C1～C9说明被软件教材链接，也有旧母版被45图原生重建使用。将它们标为历史参考/来源并修复路径；`backup_no_use`不是可整体删除的缓存。其他未直接嵌入正文的独立汇报PPT、生成布局依赖、前版校验输入、原始资料与修订证据继续保留。
+- 修复 **31份页面中的112处导航引用**，同步软件专题content源、HTML及Markdown；纯历史命令、JSON哈希和evidence/before快照中的旧路径不改写。新增 `diagrams/path_migrations.json` 与 `diagram_paths.py`，原生重建/验证按迁移表解析原来源，保留原哈希。
+- [集中备份、清单与检查](../maintenance/L01/archive/diagram_inventory/README.md)：201个操作前文件，含7个本次迁移目录的原件，归档逐成员读取核验后操作；清单保留初始2559个图稿目录文件的前后位置与哈希。10月13日的归档和报告不覆盖。
+
+实际检查：
+
+1. `python3 -B docs_codex/maintenance/L01/archive/diagram_inventory/verify_inventory.py --output <新路径>`：现行Markdown/图稿HTML链接、锚点和图片引用、9对软件专题HTML/Markdown生成一致性通过；1708个SVG/PNG/PPTX/PDF等视觉产物与1321个证据/源码快照文件字节不变（两类有交集，不相加）。准确页面/链接计数见本次validation.json。
+2. `python3 -B docs_codex/diagrams/2026-10-11_native_reconstruction/rebuild.py --check-inputs-only`：45个原母版解析及原始SHA-256通过，没有生成图稿。A生成器只导入布局、组装24图清单并与213条连接清单比较，未写SVG/PNG/PPT。
+3. 已有venv执行 `verify_a.py --output <新路径>`：21章、24图、213连接、78项源码哈希、176源码行号、24份PDF/24页PPT通过。没有重新人工审图、运行Office、生产RTL仿真或硬件构建。
+4. 原 `check_site.py`全站检查仍被 `maintenance/L01/reviews/diagram_revision_evidence/before/` 中的三份旧文档快照的57处相对链接阻断；未改原始快照或宣称全站通过。本次专项检查按历史快照身份排除该类输入，HTML预览遵循各页base路径，历史报告表中的原HTML片段不作为当前导航。
+
+最小下一步：按图稿索引查找对应主题；需要复核旧图时走迁移表。后续不根据文件名或“无正文图片链接”删除生成源、用户PPT、外部原图和独立证据。
+
+## 2026-10-13 整理结果（历史）
+
 
 - 正式入口：[文档总览](../00_README.md)、[RTL模块指南](../rtl_modules/README.md)、[工程契约](../engineering/README.md)。A 连续走线是最终决定；B 弃用、C 未采用，均已退出正文与默认维护流程。
 - 共享状态从145行收敛至89行，任务表从92行收敛至68行；历史过程与旧任务Prompt保存在整理前快照，日期/输入/失败及未关闭项继续由原主题交接和证据承担。没有合并或改写不同轮次的验证。

@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-18",
+  "input_head": "aa5716464a8869b91212cba9fa31deb1e41ebcf5",
+  "restored_directories": [
+    "2026-10-09_software_hardware_layers",
+    "2026-10-12_axi_to_detailed_mem",
+    "2026-10-13_complete_software_stack",
+    "2026-10-13_foundation_software"
+  ],
+  "archived_directories": [
+    "2026-10-14_software_stack_industrial",
+    "2026-10-15_cache_coherence",
+    "2026-10-16_soc_landscape_shared_gb"
+  ],
+  "checked_pages": 293,
+  "local_links": 6199,
+  "diagram_link_occurrences": 1940,
+  "unchanged_visual_artifacts": 1708,
+  "unchanged_evidence_files": 1321,
+  "checked_initial_files": 2559,
+  "changed_text_files": [
+    "docs_codex/diagrams/backup_no_use/2026-10-16_soc_landscape_shared_gb/README.md",
+    "docs_codex/diagrams/2026-10-11_native_reconstruction/verify_outputs.py",
+    "docs_codex/diagrams/2026-10-11_native_reconstruction/rebuild.py",
+    "docs_codex/diagrams/2026-10-12_industrial_redraw/figure_notes.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-15_cache_coherence/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-14_software_stack_industrial/index.html",
+    "docs_codex/diagrams/backup_no_use/2026-10-14_software_stack_industrial/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-12_soc_landscape/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-12_regbus_structure/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-12_regbus_rtl/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-13_rtl_modules_native_c/index.html",
+    "docs_codex/diagrams/backup_no_use/2026-10-13_rtl_modules_native_c/README.md",
+    "docs_codex/diagrams/backup_no_use/2026-10-11_native_pptx_validation/README.md",
+    "docs_codex/diagrams/backup_no_use/backup_skill_publication/2026-10-09_software_hardware_layers_new/README.md",
+    "docs_codex/diagrams/backup_no_use/backup_skill_publication/2026-10-10_publication_figure_research_new/index.html"
+  ],
+  "software_html_markdown_pairs": 9,
+  "errors": [],
+  "graphics_redrawn": false,
+  "office_tested": false,
+  "rtl_simulated": false,
+  "A_checks": {
+    "check": "current_A",
+    "head": "aa5716464a8869b91212cba9fa31deb1e41ebcf5",
+    "chapters": 21,
+    "figures": 24,
+    "connections": 213,
+    "source_hashes": 78,
+    "links": 537,
+    "source_line_refs": 176,
+    "unchanged_historical_visual_hashes": 24,
+    "new_visual_review": false,
+    "vector_pdfs": 24,
+    "ppt_slides": 24,
+    "ppt_native_objects": 1548,
+    "errors": [],
+    "geometry_findings": [],
+    "rtl_simulated": false,
+    "board_tested": false,
+    "office_tested": false,
+    "browser_interaction_tested": false
+  },
+  "A_import_check": {
+    "figures": 24,
+    "connections": 213,
+    "equal_to_existing_inventory": true,
+    "outputs_generated": false
+  },
+  "native_source_check": {
+    "command": [
+      "python3",
+      "-B",
+      "docs_codex/diagrams/2026-10-11_native_reconstruction/rebuild.py",
+      "--check-inputs-only"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS: 45 original source paths and SHA-256 hashes; no output generated\n"
+  },
+  "legacy_full_site_check": {
+    "command": [
+      "python3",
+      "-B",
+      "docs_codex/learning/scripts/check_site.py"
+    ],
+    "exit_code": 1,
+    "stdout": "missing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/AGENTS.md: docs_codex/PROJECT_STATE.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/AGENTS.md: docs_codex/AGENT_TASKS.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/AGENTS.md: docs_codex/02_Cheshire_Ara_ASIC_Extraction_Handoff.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/AGENTS.md: docs_codex/HANDOFF_TEMPLATE.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: PROJECT_STATE.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: AGENT_TASKS.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: 00_README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: learning/markdown/index.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: learning/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: rtl_modules/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: handoffs/L01_rtl_module_guide.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: configuration/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: software/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: software/LAYERS_AND_TOOLS.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: EXTERNAL_DEVICES_AND_INTERFACES.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: 02_Cheshire_Ara_ASIC_Extraction_Handoff.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: 03_Platform_ROM_Clock_IP_Configuration.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: engineering/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: engineering/ASIC_Adaptation_and_Evidence.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: handoffs/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: maintenance/L01/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: handoffs/name_migrations.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: maintenance/L01/path_migrations.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: maintenance/L01/archive/documentation_organization/manifest.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/AGENT_DOCUMENTATION_GUIDE.md: engineering/path_migrations.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../engineering/Global_Buffer_CPU_Access.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_global_buffer_shared_xbar/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_global_buffer_shared_xbar/evidence/input.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_global_buffer_shared_xbar/evidence/validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_shared_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_shared_gb/evidence/validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page3-validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-layout-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-controls-validation-final.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page4-controls-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page5-validation.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page5-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page6-validation-final.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page6-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page6-f3-build/native-check.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/evidence/page6-f3-delivery.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-16_soc_landscape_m5_gb/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../engineering/Global_Buffer_CPU_Access.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-15_global_buffer_cpu_access/README.md\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-15_global_buffer_cpu_access/evidence/input.json\nmissing /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/maintenance/L01/reviews/diagram_revision_evidence/before/docs_codex/handoffs/L01_global_buffer_cpu_access.md: ../diagrams/2026-10-15_global_buffer_cpu_access/evidence/validation.json\n",
+    "stderr": "",
+    "note": "Unmodified raw before snapshots are not current rendered pages. This failure is not reported as a full-site pass."
+  },
+  "scope": "Document/image organization only. 4 directories restored (61 files); 3 archived (108 files); no visual artifact or evidence deleted/redrawn; user moves retained except proven active inputs restored.",
+  "new_visual_review": false,
+  "protected_implementation_diff": [],
+  "git_diff_check": "pass",
+  "checker_corrections": [
+    "Read source HTML links relative to their rendered page directory.",
+    "Honor HTML base href in preview pages.",
+    "Exclude raw evidence/before/skill snapshots and historical maintenance report snippets from the current-page inventory; do not rewrite their original records."
+  ]
+}

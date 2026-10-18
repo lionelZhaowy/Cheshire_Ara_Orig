@@ -4,7 +4,7 @@
 
 - [新旧对照页](index.html)
 - [工业版SVG](software-stack-industrial.svg) · [PNG](software-stack-industrial.png) · [原生可编辑PPTX](export/diagrams.pptx)
-- [原版图稿](../2026-10-13_complete_software_stack/README.md) · [39类组件源码索引](../../software/interfaces/foundation-software.html#component-index)
+- [原版图稿](../../2026-10-13_complete_software_stack/README.md) · [39类组件源码索引](../../../software/interfaces/foundation-software.html#component-index)
 - [生成脚本](build_figure.py) · [原生导出报告](export/export_report.json) · [验证记录](evidence/validation.json)
 
 ## 改绘范围

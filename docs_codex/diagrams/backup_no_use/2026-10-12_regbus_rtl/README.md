@@ -21,13 +21,13 @@
 
 | 图中对象 | RTL 依据 |
 | --- | --- |
-| SoC 接入与参数 | [cheshire_soc.sv](../../../hw/cheshire_soc.sv) 的 `i_axi_to_reg_v2`；[cheshire_pkg.sv](../../../hw/cheshire_pkg.sv) 的 `DefaultCfg` |
-| 桥 A/B 层级、子通路、过滤、汇合 | [axi_to_reg_v2.sv](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv)，`NumBanks`、`gen_tcdm_to_reg`、`i_mem_req_spill`、`i_mem_rsp_spill`、`i_reg_mux` |
-| 读写地址/计数、选择锁定、元数据与 R/B 返回 | [axi_to_detailed_mem.sv](../../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv)，`rd_meta_q/r_cnt_q`、`wr_meta_q/w_cnt_q`、`meta_sel_q/sel_lock_q`、`i_fork`、`i_meta_buf`、`i_sel_buf`、`i_join`、`i_fork_dynamic` |
-| 两路数据切片、地址、请求/响应缓冲 | [mem_to_banks_detailed.sv](../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv)，`gen_reqs`、`gen_resp_regs`；桥使用 `HideStrb=0`、`MaxTrans=1`、`FifoDepth=1` |
-| 在途限制与响应缓冲 | [stream_to_mem.sv](../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv)，`BufDepth=1` |
-| Reg 子通路轮询仲裁、响应回送 | [reg_mux.sv](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_mux.sv) 及 [stream_arbiter.sv](../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_arbiter.sv) |
-| 响应寄存器、请求直通 | [periph_to_reg.sv](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/periph_to_reg.sv)，`gnt_o`、`r_valid_q`、`r_rdata_q`、`r_opc_q` |
+| SoC 接入与参数 | [cheshire_soc.sv](../../../../hw/cheshire_soc.sv) 的 `i_axi_to_reg_v2`；[cheshire_pkg.sv](../../../../hw/cheshire_pkg.sv) 的 `DefaultCfg` |
+| 桥 A/B 层级、子通路、过滤、汇合 | [axi_to_reg_v2.sv](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/axi_to_reg_v2.sv)，`NumBanks`、`gen_tcdm_to_reg`、`i_mem_req_spill`、`i_mem_rsp_spill`、`i_reg_mux` |
+| 读写地址/计数、选择锁定、元数据与 R/B 返回 | [axi_to_detailed_mem.sv](../../../../.bender/git/checkouts/axi-ecdc900686449c15/src/axi_to_detailed_mem.sv)，`rd_meta_q/r_cnt_q`、`wr_meta_q/w_cnt_q`、`meta_sel_q/sel_lock_q`、`i_fork`、`i_meta_buf`、`i_sel_buf`、`i_join`、`i_fork_dynamic` |
+| 两路数据切片、地址、请求/响应缓冲 | [mem_to_banks_detailed.sv](../../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/mem_to_banks_detailed.sv)，`gen_reqs`、`gen_resp_regs`；桥使用 `HideStrb=0`、`MaxTrans=1`、`FifoDepth=1` |
+| 在途限制与响应缓冲 | [stream_to_mem.sv](../../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_to_mem.sv)，`BufDepth=1` |
+| Reg 子通路轮询仲裁、响应回送 | [reg_mux.sv](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_mux.sv) 及 [stream_arbiter.sv](../../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/stream_arbiter.sv) |
+| 响应寄存器、请求直通 | [periph_to_reg.sv](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/periph_to_reg.sv)，`gnt_o`、`r_valid_q`、`r_rdata_q`、`r_opc_q` |
 
 连接点解释：
 
@@ -46,7 +46,7 @@
 
 ## 第二图的组合等价关系
 
-依据 [addr_decode_dync.sv](../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/addr_decode_dync.sv)、[reg_demux.sv](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_demux.sv)、[reg_err_slv.sv](../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_err_slv.sv)。
+依据 [addr_decode_dync.sv](../../../../.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/addr_decode_dync.sv)、[reg_demux.sv](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_demux.sv)、[reg_err_slv.sv](../../../../.bender/git/checkouts/register_interface-902ad5bfde7bb98c/src/reg_err_slv.sv)。
 
 当前实例 `Napot=0`、`config_ongoing_i=0`、`en_default_idx_i=1`，规则命中为：
 

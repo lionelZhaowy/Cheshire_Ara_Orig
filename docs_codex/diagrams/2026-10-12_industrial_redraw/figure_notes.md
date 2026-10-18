@@ -76,6 +76,6 @@
 
 ## 9. soc_full_architecture
 
-本图沿用用户已选定的 [工业版布局](../2026-10-12_soc_landscape/soc_reference_style.svg)，用其冻结脚本副本 `soc_layout.py` 重新导出，不重新发明用户已确认的分区。与旧完整图对应：7 个 AXI 发起端及扩展、5 类目标及扩展、18 个 Regbus 目标及 error/RegExt、C1–C9、GB/NPU/LVDS/ISP/帧写入、DDR 三端口都保留。
+本图沿用用户已选定的 [工业版布局](../backup_no_use/2026-10-12_soc_landscape/soc_reference_style.svg)，用其冻结脚本副本 `soc_layout.py` 重新导出，不重新发明用户已确认的分区。与旧完整图对应：7 个 AXI 发起端及扩展、5 类目标及扩展、18 个 Regbus 目标及 error/RegExt、C1–C9、GB/NPU/LVDS/ISP/帧写入、DDR 三端口都保留。
 
-详见 [原工业版说明](../2026-10-12_soc_landscape/README.md)。特别保留 iDMA 控制 slave→wrapper 内 AXI→Reg，与 iDMA 数据 master 分离；新 IP 的 RegExt 配置端是候选。原完整图的 NPU 搬运 256 bit 是需求候选，不是供应商接口冻结值；图内简写为统一 AXI 主口，条件仍保留在此。地址、GB 参数、lane/VLEN、DDR 实际位宽/频率、时钟域、IRQ 均未因重绘冻结。
+详见 [原工业版说明](../backup_no_use/2026-10-12_soc_landscape/README.md)。特别保留 iDMA 控制 slave→wrapper 内 AXI→Reg，与 iDMA 数据 master 分离；新 IP 的 RegExt 配置端是候选。原完整图的 NPU 搬运 256 bit 是需求候选，不是供应商接口冻结值；图内简写为统一 AXI 主口，条件仍保留在此。地址、GB 参数、lane/VLEN、DDR 实际位宽/频率、时钟域、IRQ 均未因重绘冻结。

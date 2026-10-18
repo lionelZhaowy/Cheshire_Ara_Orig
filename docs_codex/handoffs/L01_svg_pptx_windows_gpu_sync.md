@@ -39,7 +39,7 @@ Windows 独立 Python 3.14.6 环境位于技能 `.venv\Scripts\python.exe`；GPU
 - GPU 为 x86_64 / Ubuntu glibc 2.39、Python 3.12.3，缺 pip/ensurepip。按目标 Python/ABI/platform 下载二进制 wheels 后离线安装，只在该 skill .venv 内安装 pip 26.2.1、python-pptx 1.0.2、Pillow 12.3.0 等。
 - GPU 原生导出示例：19 个对象、8 个文本，重新读回及 ZIP/无整图图片检查通过。产物在服务器安装根 `validation-linux/`。未做 GPU 上的 Office 渲染或 UI skill 列表实测。
 - 传输内容仅 skill 与离线依赖；未上传工程源码、供应商 PDF、字体、配置或凭据。
-- 持久比对证据：[platform_sync.json](../diagrams/2026-10-06_svg_pptx_skill_validation/platform_sync.json)，包含各端源码哈希与安装报告摘要。
+- 持久比对证据：[platform_sync.json](../diagrams/backup_no_use/2026-10-06_svg_pptx_skill_validation/platform_sync.json)，包含各端源码哈希与安装报告摘要。
 - 临时包：本机 `/tmp/svg-pptx-diagrams-source-20261006.tar.gz`、`/tmp/svg-pptx-gpu-wheels-20261006.tar.gz`；服务器暂存 `/tmp/svg-pptx-sync.3TzfHU/`。未执行清理或删除用户资料。
 
 ## 调用

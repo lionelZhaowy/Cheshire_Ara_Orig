@@ -20,7 +20,7 @@
 ## Skill 与产物
 
 - 主Agent完整读取本次skill文件及SVG子集说明，并读取其PowerPoint验证脚本；使用scripts/run.py，不改skill或工程依赖。
-- [最终入口](../diagrams/2026-10-10_llc_cache_spm/README.md)：source_final母版、export_final可编辑SVG/PNG/PPTX/报告。中间母版及export/原样保留。
+- [最终入口](../diagrams/backup_no_use/2026-10-10_llc_cache_spm/README.md)：source_final母版、export_final可编辑SVG/PNG/PPTX/报告。中间母版及export/原样保留。
 - 297个独立原生PPT对象，177个文本对象，3:2页面与母版同布局，最小文字10.2pt。无文字轮廓、无整图图片或SVG内嵌。
 - 生成器refuse覆盖目标；第一次行1与选中行相邻过紧，修正row0/1间距，补全SPM时DDR旁路说明后生成新的source_final/export_final目录。
 

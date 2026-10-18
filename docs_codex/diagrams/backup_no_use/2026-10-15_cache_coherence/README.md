@@ -1,6 +1,6 @@
 # DDR–GB 一致性图稿
 
-2026-10-15，L01。正文见[缓存一致性审查与架构比较](../../engineering/Cache_Coherence_Architecture.md)。图示为未实施的候选职责和逻辑过程，不是冻结的 RTL 拓扑。
+2026-10-15，L01。正文见[缓存一致性审查与架构比较](../../../engineering/Cache_Coherence_Architecture.md)。图示为未实施的候选职责和逻辑过程，不是冻结的 RTL 拓扑。
 
 | 图 | SVG 母版 | PNG 预览 |
 |---|---|---|

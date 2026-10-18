@@ -25,7 +25,7 @@
 ## 公共 Regbus 结构图（2026-10-12）
 
 - 授权/输入：用户显式调用 `industrial-svg-pptx`，要求按 RTL 绘制 Regbus；HEAD `c4162204cfee0c48b81158b4296860a678d92bec`。未启动子 Agent，仅负责新图目录与本主题交接，保留用户已有修改和旧图目录改名。
-- 交付：[图稿说明与源码依据](../diagrams/2026-10-12_regbus_structure/README.md)、[SVG](../diagrams/2026-10-12_regbus_structure/regbus_structure.svg)、[PNG](../diagrams/2026-10-12_regbus_structure/regbus_structure.png)、[原生 PPTX](../diagrams/2026-10-12_regbus_structure/regbus_structure.pptx)。包含生成/检查脚本、导出报告及输入源码哈希。
+- 交付：[图稿说明与源码依据](../diagrams/backup_no_use/2026-10-12_regbus_structure/README.md)、[SVG](../diagrams/backup_no_use/2026-10-12_regbus_structure/regbus_structure.svg)、[PNG](../diagrams/backup_no_use/2026-10-12_regbus_structure/regbus_structure.png)、[原生 PPTX](../diagrams/backup_no_use/2026-10-12_regbus_structure/regbus_structure.pptx)。包含生成/检查脚本、导出报告及输入源码哈希。
 - 内容：公共原子适配→切片→AXI/Reg 转换→解码/分发；16 类正常目标、错误响应与 RegExt，重复组按类别合并。明确 `clk_i` 同域、组合解码/分发、固定 32-bit Reg 数据、可选目标与 iDMA 独立路径边界；不加入尚未实施的 CDC 或新增 IP。
 - 实际验证：`build_regbus.py`、native `run.py --aspect source --font-file /usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`、CairoSVG 渲染、`verify_regbus.py` 最终均退出 0。135 原生对象、77 文本、28 原生箭头、15 虚线；保存重读文字一致，无栅格媒体；字体度量无文本互相重叠/画布越界；最终 PNG 已目视检查。检查脚本初版将空文本框计入，修正为仅比较非空文本后通过，不涉及图稿内容差异。
 - 保护/边界：开始保存 189 个输入哈希及交接临时备份；除本交接获授权追加外核对保持不变。未改 RTL/sw、Cfg、地址或旧图；未提交，未编译/仿真/板测。Office 显示/编辑未实测；字体未嵌入，箭头不保证端口跟随。
@@ -56,12 +56,12 @@
 
 - 用户决定：后续图稿使用 `docs_codex/diagrams/YYYY-MM-DD_<主题>/`；已由用户将旧目录改名为 `2026-10-11_native_reconstruction`。本轮新增 `2026-10-12_soc_landscape`，并将日期规则写入根 `AGENTS.md`。本交接的旧图链接已跟随改名；下方历史命令/原授权文字保留当时路径，不恢复旧目录。
 - 输入：`mp/ara-pulp-v2` / `c4162204cfee0c48b81158b4296860a678d92bec`。按 `svg-pptx-diagrams-native` 绘制；主 Agent 负责原版重排与汇总，`soc_reference_style` 子 Agent 只负责同目录的参考风格图及自身脚本/报告，之后相互审图。未修改 RTL、软件、地址/Cfg、filelist 或依赖，未提交。
-- [本轮预览入口](../diagrams/2026-10-12_soc_landscape/index.html)、[图稿说明](../diagrams/2026-10-12_soc_landscape/README.md)、[两页原生 PPTX 合辑](../diagrams/2026-10-12_soc_landscape/soc_landscape_comparison.pptx)。每版分别交付 SVG、PNG、单页 PPTX、layout/export/验证 JSON，附两个生成脚本、合辑导出脚本和统一检查脚本。
+- [本轮预览入口](../diagrams/backup_no_use/2026-10-12_soc_landscape/index.html)、[图稿说明](../diagrams/backup_no_use/2026-10-12_soc_landscape/README.md)、[两页原生 PPTX 合辑](../diagrams/backup_no_use/2026-10-12_soc_landscape/soc_landscape_comparison.pptx)。每版分别交付 SVG、PNG、单页 PPTX、layout/export/验证 JSON，附两个生成脚本、合辑导出脚本和统一检查脚本。
 - 版本 1：3600×2025、16:9，参考工业芯片框图的细深色边框与柔和嵌套分区；版本 2：3400×1850，保留原蓝/绿/橙/紫和圆角风格。两版均将 CVA6–Ara/NPU/ISP 上置、AXI/Regbus/DDR 横置；合辑统一 16:9 按比例居中。
 - 范围：7 个 AXI 发起端 + 扩展、5 类 AXI 目标 + 扩展、18 个 Regbus 外设 + error/RegExt、C1–C9 配置端、DDR S0/S1/S2。Ara GB 分流、独立 GB、统一 S1 搬运前提、RAW/ISP 帧边界选择均保留为候选，未冻结地址与接口参数。
 - 命令/结果：native skill Python 运行两份 `build_*.py`（版本 1 由布局子 Agent 生成；版本 2 导出至 `/tmp/cheshire-soc-landscape-v2-final`）；CairoSVG 2.9.1 渲染 PNG；`verify_landscape.py --stem soc_reference_style` 与 `--stem soc_rearranged` 均 PASS；`export_comparison.py --out-dir /tmp/cheshire-soc-landscape-comparison-final` PASS。图稿由非覆盖复制进入正式目录。
 - 实际验证：两版人工查看并独立交叉审图；修正 Ara GB 线穿标题、C 标号留白、ISP 副标题越界，以及三 DDR 口统一进入 QoS 的表示。版本 1 为 386 对象 / 198 文本 / 71 原生箭头 / 28 原生虚线，版本 2 为 370 / 185 / 72 / 24；文字逐项与 SVG 一致、字体度量无重叠/越界、单页及两页 PPTX 无栅格媒体。
-- 保护：输入 163 个文件 SHA-256 快照位于 `/tmp/soc_landscape_input_hashes.json`；包含用户改名后的旧图目录、用户修改的合辑及锁文件、三篇已有修改文档。交付时全部保持不变，详见[交付检查](../diagrams/2026-10-12_soc_landscape/delivery_checks.json)。本轮只新增当天图目录、更新本主题交接与根 `AGENTS.md` 的图稿归档规则。
+- 保护：输入 163 个文件 SHA-256 快照位于 `/tmp/soc_landscape_input_hashes.json`；包含用户改名后的旧图目录、用户修改的合辑及锁文件、三篇已有修改文档。交付时全部保持不变，详见[交付检查](../diagrams/backup_no_use/2026-10-12_soc_landscape/delivery_checks.json)。本轮只新增当天图目录、更新本主题交接与根 `AGENTS.md` 的图稿归档规则。
 - 边界/下一步：Office 显示/编辑仍未实测，字体未嵌入，箭头未绑定模块端口；未编译/仿真/板测。用户可比较两版并选后续主版，在 PowerPoint 中核对显示与编辑。无 RTL 工程事实变化，不扩大更新共享状态页。
 
 ## 完整 SoC 架构图补充（2026-10-12）
