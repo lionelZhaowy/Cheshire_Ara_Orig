@@ -1,0 +1,164 @@
+# 2026-10-18 read-only SSH detail check; SSH exit=0.
+# Version banner hostname/authorization identifiers and sales contact omitted; no compilation performed.
+FILE src/tb/src/tb_cheshire_pkg.sv
+1: // Copyright 2022 ETH Zurich and University of Bologna.
+2: // Solderpad Hardware License, Version 0.51, see LICENSE for details.
+3: // SPDX-License-Identifier: SHL-0.51
+4: //
+5: // Thomas Benz <tbenz@iis.ee.ethz.ch>
+6: 
+7: /// This package contains parameters used in the simulation environment
+8: package tb_cheshire_pkg;
+9: 
+10:     import cheshire_pkg::*;
+11: 
+12:     // A dedicated RT config
+13:     function automatic cheshire_cfg_t gen_cheshire_rt_cfg();
+14:       cheshire_cfg_t ret = DefaultCfg;
+15:       ret.AxiRt = 1;
+16:       return ret;
+17:     endfunction
+18: 
+19:     // A dedicated CLIC config
+20:     function automatic cheshire_cfg_t gen_cheshire_clic_cfg();
+21:       cheshire_cfg_t ret = DefaultCfg;
+22:       ret.Clic = 1;
+23:       return ret;
+24:     endfunction
+25: 
+26:     // A dedicated vCLIC config
+27:     function automatic cheshire_cfg_t gen_cheshire_vclic_cfg();
+28:       cheshire_cfg_t ret = DefaultCfg;
+29:       ret.Clic = 1;
+30:       ret.ClicVsclic = 1;
+31:       ret.ClicVsprio = 1;
+32:       ret.ClicNumVsctxts = 4;
+33:       ret.ClicPrioWidth = 1;
+34:       return ret;
+35:     endfunction
+36: 
+37:     // Number of Cheshire configurations
+38:     localparam int unsigned NumCheshireConfigs = 32'd4;
+39: 
+40:     // Assemble a configuration array indexed by a numeric parameter
+41:     localparam cheshire_cfg_t [NumCheshireConfigs-1:0] TbCheshireConfigs = {
+42:         gen_cheshire_vclic_cfg(), // 3: vCLIC-enabled configuration
+43:         gen_cheshire_clic_cfg(),  // 2: CLIC-enabled configuration
+44:         gen_cheshire_rt_cfg(),    // 1: RT-enabled configuration
+45:         DefaultCfg                // 0: Default configuration
+46:     };
+47: 
+48: endpackage
+FILE src/tb/src/tb_cheshire_soc.sv
+1: // Copyright 2022 ETH Zurich and University of Bologna.
+2: // Solderpad Hardware License, Version 0.51, see LICENSE for details.
+3: // SPDX-License-Identifier: SHL-0.51
+4: //
+5: // Nicole Narr <narrn@student.ethz.ch>
+6: // Christopher Reinwardt <creinwar@student.ethz.ch>
+7: 
+8: module tb_cheshire_soc #(
+9:   /// The selected simulation configuration from the `tb_cheshire_pkg`.
+10:   parameter int unsigned SelectedCfg = 32'd0,
+11:   parameter bit          UseDramSys  = 1'b0
+12: );
+13: 
+14:   fixture_cheshire_soc #(
+15:     .SelectedCfg  (SelectedCfg),
+16:     .UseDramSys   (UseDramSys)
+17:   ) fix();
+18: 
+19:   string      preload_elf;
+20:   string      boot_hex;
+21:   logic [1:0] boot_mode;
+22:   logic [1:0] preload_mode;
+23:   bit [31:0]  exit_code;
+24: 
+25:   initial begin
+26:     // Fetch plusargs or use safe (fail-fast) defaults
+27:     if (!$value$plusargs("BOOTMODE=%d", boot_mode))     boot_mode     = 0;
+28:     if (!$value$plusargs("PRELMODE=%d", preload_mode))  preload_mode  = 0;
+29:     if (!$value$plusargs("BINARY=%s",   preload_elf))   preload_elf   = "";
+30:     if (!$value$plusargs("IMAGE=%s",    boot_hex))      boot_hex      = "";
+31: 
+32:     // Set boot mode and preload boot image if there is one
+33:     fix.vip.set_boot_mode(boot_mode);
+34:     fix.vip.i2c_eeprom_preload(boot_hex);
+35:     fix.vip.spih_norflash_preload(boot_hex);
+36: 
+37:     // Wait for reset
+38:     fix.vip.wait_for_reset();
+39: 
+40:     // Preload in idle mode or wait for completion in autonomous boot
+41:     if (boot_mode == 0) begin
+42:       // Idle boot: preload with the specified mode
+43:       case (preload_mode)
+44:         0: begin      // JTAG
+45:           fix.vip.jtag_init();
+46:           fix.vip.jtag_elf_run(preload_elf);
+47:           fix.vip.jtag_wait_for_eoc(exit_code);
+48:         end 1: begin  // Serial Link
+49:           fix.vip.slink_elf_run(preload_elf);
+50:           fix.vip.slink_wait_for_eoc(exit_code);
+51:         end 2: begin  // UART
+52:           fix.vip.uart_debug_elf_run_and_wait(preload_elf, exit_code);
+53:         end 3: begin  // MEMH
+54:           fix.vip.jtag_init();
+55:           fix.vip.jtag_wait_for_llc_config_halt();
+56:           fix.vip.memh_elf_preload(preload_elf);
+57:           fix.vip.jtag_elf_run_no_preload(preload_elf);
+58:           fix.vip.jtag_wait_for_eoc(exit_code);
+59:         end default: begin
+60:           $fatal(1, "Unsupported preload mode %d (reserved)!", boot_mode);
+61:         end
+62:       endcase
+63:     end else if (boot_mode == 1) begin
+64:       $fatal(1, "Unsupported boot mode %d (SD Card)!", boot_mode);
+65:     end else begin
+66:       // Autonomous boot: Only poll return code
+67:       fix.vip.jtag_init();
+68:       fix.vip.jtag_wait_for_eoc(exit_code);
+69:     end
+70: 
+71:     // Wait for the UART to finish reading the current byte
+72:     wait (fix.vip.uart_reading_byte == 0);
+73: 
+74:     $finish;
+75:   end
+76:   initial begin
+77:     $fsdbDumpfile("wave.fsdb");
+78:     $fsdbDumpvars(0, tb_cheshire_soc,"+all");
+79:     $fsdbDumpMDA();
+80:   end
+81: endmodule
+FILELIST_INTEGRITY_FROM_SIM_WORK
+{"sources": 308, "unique_sources": 308, "includes": 12, "other": [], "missing": []}
+SELECTED_SOURCE_HASHES
+c517f3da1e6d2c03e13ba99d700188ef9accc439d6a45d55e3827a8d97b6113f src/filelist.f
+a3a300d59ac85563aa7f2e8d758c36240958c8535c7b24dce39f868e404c861c src/tb/src/elfloader.cpp
+fc0c38c4ba345cff778a3bde8f5f19cd53d7c25aa88335f9234701b22700d3c1 src/tb/src/tb_cheshire_pkg.sv
+80e3c9901e1099339d4198500107a1f7d50cc1a7ee26ed2b7b77d47c73b51b98 src/tb/src/vip_cheshire_soc.sv
+de7a00d2c05695aa87a569e96ea0ce2a02dbe3916dbaa82955bfc4486e877885 src/tb/src/fixture_cheshire_soc.sv
+584039de5bc1a790e32ab85b4d503e00b8d2f7e5d43fa48ca970261fd46fa52a src/cheshire_soc/cheshire_top/cheshire_pkg.sv
+919bab80b4be1dace93a0a3a8b152a1074f0c90e70dfc0a2f4f8a4c5fa319482 src/cheshire_soc/cheshire_top/cheshire_soc.sv
+CHESHIRE_TOP_FILES
+src/cheshire_soc/cheshire_top ['cheshire_addrmap_pkg.sv', 'cheshire_idma_wrap.sv', 'cheshire_pkg.sv', 'cheshire_soc.sv']
+src/cheshire_soc/cheshire_top/bootrom ['cheshire_bootrom.sv']
+src/cheshire_soc/cheshire_top/future ['UsbOhciAxi4.v', 'spinal_usb_ohci.sv']
+src/cheshire_soc/cheshire_top/include []
+src/cheshire_soc/cheshire_top/regs ['cheshire_soc_regs.sv', 'cheshire_soc_regs_pkg.sv']
+LIBRARY_AND_HEADER_PRESENCE
+/opt/riscv/riscv64-unknown-elf/lib/libc.a 2414846
+/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a 3727870
+/opt/riscv/riscv64-unknown-elf/include/newlib.h 11814
+/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/include/riscv_vector.h 3087
+-print-prog-name=as rc 0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/bin/as
+-print-prog-name=ld rc 0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/bin/ld
+VCS_VERSION_QUERY
+rc 0
+vcs script version : W-2024.09
+machine type = linux64 
+machine os = Linux 4.18.0-553.134.1.el8_10.x86_64  
+Compiler version = VCS W-2024.09-SP1_Full64
+VCS Build Date = Dec 03 2024 20:20:03
+

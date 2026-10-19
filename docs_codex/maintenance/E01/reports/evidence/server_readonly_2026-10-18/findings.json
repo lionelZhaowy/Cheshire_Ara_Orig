@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-18",
+  "task": "E01 with S01/V01 read-only planning",
+  "input": {
+    "branch": "mp/ara-pulp-v2",
+    "head": "2f0f2d6f85979709fbc99dd4098447cb5587ce5f",
+    "protected_worktree_files": {
+      "docs_codex/AGENT_TASKS.md": "b5d22bc84f6644d4b20f7f1b099fbc58f02e857874e6888de9f3bc271aa52632",
+      "docs_codex/PROJECT_STATE.md": "514b264df023f8aa15a9a0f6d331e399dcd7699af4c1f77d3492a17dd071a0a9",
+      "docs_codex/engineering/ASIC_Adaptation_and_Evidence.md": "2f40c0ed0217e132ae1fd9eb8bff75fa46f251a5da18ce568d61a4b148b5844c",
+      "docs_codex/engineering/README.md": "bdc4c76ee668800a48bb033fd480b0acc2a23774803ad5ac5552f80677bf7365",
+      "docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md": "edab5198d3a6c37665eb78470c53ed940b881695a69e2c2eda1c1fc8cfe55e87",
+      "docs_codex/engineering/Team_Responsibilities_and_Tapeout_Schedule.md": "cc26cd178afd90591265a40351556ec8ad61a8256c40b78e76efb95bf812d0c2",
+      "docs_codex/handoffs/README.md": "c255e9b8de5bc234eeed70947880eccc03d0ddf2da208a0c42c38785655723dc",
+      "docs_codex/engineering/SoC_Resource_and_Packaging_Plan.md": "0c4f23b186cf6af0cefcf9ca04a1953586226d258f62c2c5002a42b3ab0230f3",
+      "docs_codex/handoffs/P01_soc_resource_packaging.md": "8c5b8895e359d5bc1ecb578aa72a73091ca817b955ed218db6a5e84025d4bf57"
+    }
+  },
+  "authorization": "Read-only investigation and local E01 documentation only in this turn; each implementation stage requires user confirmation.",
+  "remote": {
+    "host": "zhaowy24@172.16.0.243",
+    "read_only_ssh_exit": 0,
+    "reference": {
+      "path": "/home/zhaowy24/CheshireAraPULP",
+      "observed_entries": []
+    },
+    "extracted": {
+      "path": "/home/zhaowy24/CheshireAra",
+      "observed_entries": []
+    },
+    "tty": {
+      "path": "/home/zhaowy24/Desktop/mycheshire_24",
+      "top_dirs": [
+        "src",
+        "sim",
+        "sw"
+      ],
+      "source_entries": 308,
+      "unique_source_entries": 308,
+      "include_dirs": 12,
+      "missing_from_sim_work": [],
+      "profile": "cv64a6_imafdchsclic_sv39_wb",
+      "config_3": "vCLIC",
+      "script_hardcoded_root": "/home/dell/Desktop/test/mycheshire_24"
+    }
+  },
+  "tools": {
+    "riscv_gcc": {
+      "path": "/opt/riscv/bin/riscv64-unknown-elf-gcc",
+      "version": "13.2.0 (gc891d8dc23e)",
+      "triple": "riscv64-unknown-elf",
+      "default_march": "rv64imafdc_zicsr_zifencei",
+      "default_mabi": "lp64d",
+      "multilib": ".;",
+      "as_ld_version": "2.43.1",
+      "libc_libgcc_vector_header_present": true
+    },
+    "host_gcc": {
+      "path": "/opt/rh/gcc-toolset-13/root/usr/bin/gcc",
+      "version": "13.3.1",
+      "triple": "x86_64-redhat-linux",
+      "system_gcc_version": "8.5.0"
+    },
+    "vcs": {
+      "path": "/eda/synopsys/vcs/W-2024.09-SP1/bin/vcs",
+      "query": "vcs -full64 -ID",
+      "exit_code": 0,
+      "compiler_version": "VCS W-2024.09-SP1_Full64",
+      "license_compile_simulation_validated": false
+    },
+    "make": "4.2.1",
+    "python": "3.6.8",
+    "additional_python_versions": {
+      "/usr/bin/python3.9": "3.9.25",
+      "/usr/bin/python3.11": "3.11.13",
+      "/usr/bin/python3.12": "3.12.14"
+    },
+    "python_version_queries_exit": 0,
+    "official_python_packages_checked": false,
+    "rsync": "3.1.3",
+    "bender": "0.32.1"
+  },
+  "evidence_level": "Read-only file inspection, source checks, version and compiler configuration/library path queries. No compilation/linking/disassembly/HDL elaboration/simulation/board test.",
+  "exclusions": "No environment dump, credentials, license variables, or host authorization identifiers retained.",
+  "command_inventory": {
+    "local": [
+      "git status --short --untracked-files=all",
+      "git rev-parse HEAD",
+      "git branch --show-current",
+      "git submodule status sw/deps/printf sw/deps/cva6-sdk",
+      "Source reads named in the plan"
+    ],
+    "remote_queries": [
+      "gcc --version / -dumpmachine / -dumpfullversion / -print-multi-lib / -print-sysroot / -print-search-dirs / -print-file-name=libc.a / -print-libgcc-file-name / -Q --help=target",
+      "riscv64-unknown-elf-as --version",
+      "riscv64-unknown-elf-ld --version",
+      "Native gcc/g++/make/python3/rsync/bender/timeout version queries",
+      "Directory listings, selected TTY scripts/configuration/filelist reads and SHA256",
+      "Final detail command and redacted output stored alongside this summary"
+    ]
+  },
+  "note": "This JSON is a findings summary, not a verbatim transcript of all SSH calls."
+}

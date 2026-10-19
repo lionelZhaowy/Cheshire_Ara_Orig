@@ -1,0 +1,194 @@
+
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/run_002/scalar_crt0.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text._start:
+
+0000000000000000 <_start>:
+   0:	30057073          	csrci	mstatus,10
+   4:	f14022f3          	csrr	t0,mhartid
+   8:	00028563          	beqz	t0,12 <.L2^B1>
+			8: R_RISCV_BRANCH	.L2^B1
+
+000000000000000c <.L1^B1>:
+   c:	10500073          	wfi
+  10:	bff5                	j	c <.L1^B1>
+			10: R_RISCV_RVC_JUMP	.L1^B1
+
+0000000000000012 <.L2^B1>:
+  12:	830a                	mv	t1,sp
+  14:	00000297          	auipc	t0,0x0
+			14: R_RISCV_PCREL_HI20	__stack_pointer$
+			14: R_RISCV_RELAX	*ABS*
+  18:	00028293          	mv	t0,t0
+			18: R_RISCV_PCREL_LO12_I	.L0 
+			18: R_RISCV_RELAX	*ABS*
+  1c:	00028363          	beqz	t0,22 <.L1^B2>
+			1c: R_RISCV_BRANCH	.L1^B2
+  20:	8116                	mv	sp,t0
+
+0000000000000022 <.L1^B2>:
+  22:	00000297          	auipc	t0,0x0
+			22: R_RISCV_PCREL_HI20	__global_pointer$
+  26:	00028293          	mv	t0,t0
+			26: R_RISCV_PCREL_LO12_I	.L0 
+  2a:	00028363          	beqz	t0,30 <.L1^B3>
+			2a: R_RISCV_BRANCH	.L1^B3
+  2e:	8196                	mv	gp,t0
+
+0000000000000030 <.L1^B3>:
+  30:	1121                	addi	sp,sp,-24
+  32:	e01a                	sd	t1,0(sp)
+  34:	e40e                	sd	gp,8(sp)
+  36:	e806                	sd	ra,16(sp)
+  38:	00000297          	auipc	t0,0x0
+			38: R_RISCV_PCREL_HI20	_trap_handler_wrap
+			38: R_RISCV_RELAX	*ABS*
+  3c:	00028293          	mv	t0,t0
+			3c: R_RISCV_PCREL_LO12_I	.L0 
+			3c: R_RISCV_RELAX	*ABS*
+  40:	30529073          	csrw	mtvec,t0
+  44:	00000297          	auipc	t0,0x0
+			44: R_RISCV_PCREL_HI20	__bss_start
+			44: R_RISCV_RELAX	*ABS*
+  48:	00028293          	mv	t0,t0
+			48: R_RISCV_PCREL_LO12_I	.L0 
+			48: R_RISCV_RELAX	*ABS*
+  4c:	00000317          	auipc	t1,0x0
+			4c: R_RISCV_PCREL_HI20	__bss_end
+			4c: R_RISCV_RELAX	*ABS*
+  50:	00030313          	mv	t1,t1
+			50: R_RISCV_PCREL_LO12_I	.L0 
+			50: R_RISCV_RELAX	*ABS*
+  54:	405303b3          	sub	t2,t1,t0
+  58:	4501                	li	a0,0
+
+000000000000005a <_zero_bss_loop>:
+  5a:	fe038e93          	addi	t4,t2,-32
+  5e:	02705863          	blez	t2,8e <_fp_init>
+			5e: R_RISCV_BRANCH	_fp_init
+  62:	020ec063          	bltz	t4,82 <_zero_bss_rem>
+			62: R_RISCV_BRANCH	_zero_bss_rem
+  66:	00a2b023          	sd	a0,0(t0) # 44 <.L1^B3+0x14>
+  6a:	00a2b423          	sd	a0,8(t0)
+  6e:	00a2b823          	sd	a0,16(t0)
+  72:	00a2bc23          	sd	a0,24(t0)
+  76:	1381                	addi	t2,t2,-32
+  78:	02028293          	addi	t0,t0,32
+  7c:	fc704fe3          	bgtz	t2,5a <_zero_bss_loop>
+			7c: R_RISCV_BRANCH	_zero_bss_loop
+  80:	a039                	j	8e <_fp_init>
+			80: R_RISCV_RVC_JUMP	_fp_init
+
+0000000000000082 <_zero_bss_rem>:
+  82:	00a28023          	sb	a0,0(t0)
+  86:	13fd                	addi	t2,t2,-1
+  88:	0285                	addi	t0,t0,1
+  8a:	fe704ce3          	bgtz	t2,82 <_zero_bss_rem>
+			8a: R_RISCV_BRANCH	_zero_bss_rem
+
+000000000000008e <_fp_init>:
+  8e:	4305                	li	t1,1
+  90:	0336                	slli	t1,t1,0xd
+  92:	30032073          	csrs	mstatus,t1
+  96:	d2207053          	fcvt.d.l	ft0,zero
+  9a:	220000d3          	fmv.d	ft1,ft0
+  9e:	22000153          	fmv.d	ft2,ft0
+  a2:	220001d3          	fmv.d	ft3,ft0
+  a6:	22000253          	fmv.d	ft4,ft0
+  aa:	220002d3          	fmv.d	ft5,ft0
+  ae:	22000353          	fmv.d	ft6,ft0
+  b2:	220003d3          	fmv.d	ft7,ft0
+  b6:	22000453          	fmv.d	fs0,ft0
+  ba:	220004d3          	fmv.d	fs1,ft0
+  be:	22000553          	fmv.d	fa0,ft0
+  c2:	220005d3          	fmv.d	fa1,ft0
+  c6:	22000653          	fmv.d	fa2,ft0
+  ca:	220006d3          	fmv.d	fa3,ft0
+  ce:	22000753          	fmv.d	fa4,ft0
+  d2:	220007d3          	fmv.d	fa5,ft0
+  d6:	22000853          	fmv.d	fa6,ft0
+  da:	220008d3          	fmv.d	fa7,ft0
+  de:	22000953          	fmv.d	fs2,ft0
+  e2:	220009d3          	fmv.d	fs3,ft0
+  e6:	22000a53          	fmv.d	fs4,ft0
+  ea:	22000ad3          	fmv.d	fs5,ft0
+  ee:	22000b53          	fmv.d	fs6,ft0
+  f2:	22000bd3          	fmv.d	fs7,ft0
+  f6:	22000c53          	fmv.d	fs8,ft0
+  fa:	22000cd3          	fmv.d	fs9,ft0
+  fe:	22000d53          	fmv.d	fs10,ft0
+ 102:	22000dd3          	fmv.d	fs11,ft0
+ 106:	22000e53          	fmv.d	ft8,ft0
+ 10a:	22000ed3          	fmv.d	ft9,ft0
+ 10e:	22000f53          	fmv.d	ft10,ft0
+ 112:	22000fd3          	fmv.d	ft11,ft0
+ 116:	30033073          	csrc	mstatus,t1
+ 11a:	0ff0000f          	fence
+ 11e:	00000097          	auipc	ra,0x0
+			11e: R_RISCV_CALL_PLT	main
+			11e: R_RISCV_RELAX	*ABS*
+ 122:	000080e7          	jalr	ra # 11e <_fp_init+0x90>
+
+0000000000000126 <_exit>:
+ 126:	60c2                	ld	ra,16(sp)
+ 128:	61a2                	ld	gp,8(sp)
+ 12a:	6102                	ld	sp,0(sp)
+ 12c:	00151293          	slli	t0,a0,0x1
+ 130:	0012e293          	ori	t0,t0,1
+ 134:	00000317          	auipc	t1,0x0
+			134: R_RISCV_PCREL_HI20	__base_regs
+			134: R_RISCV_RELAX	*ABS*
+ 138:	00030313          	mv	t1,t1
+			138: R_RISCV_PCREL_LO12_I	.L0 
+			138: R_RISCV_RELAX	*ABS*
+ 13c:	00532423          	sw	t0,8(t1) # 13c <_exit+0x16>
+ 140:	8082                	ret
+ 142:	0001                	nop
+			142: R_RISCV_ALIGN	*ABS*+0xe
+ 144:	00000013          	nop
+ 148:	00000013          	nop
+ 14c:	00000013          	nop
+
+0000000000000150 <_trap_handler_wrap>:
+ 150:	7119                	addi	sp,sp,-128
+ 152:	fc86                	sd	ra,120(sp)
+ 154:	f896                	sd	t0,112(sp)
+ 156:	f49a                	sd	t1,104(sp)
+ 158:	f09e                	sd	t2,96(sp)
+ 15a:	ecaa                	sd	a0,88(sp)
+ 15c:	e8ae                	sd	a1,80(sp)
+ 15e:	e4b2                	sd	a2,72(sp)
+ 160:	e0b6                	sd	a3,64(sp)
+ 162:	fc3a                	sd	a4,56(sp)
+ 164:	f83e                	sd	a5,48(sp)
+ 166:	f442                	sd	a6,40(sp)
+ 168:	f046                	sd	a7,32(sp)
+ 16a:	ec72                	sd	t3,24(sp)
+ 16c:	e876                	sd	t4,16(sp)
+ 16e:	e47a                	sd	t5,8(sp)
+ 170:	e07e                	sd	t6,0(sp)
+ 172:	02a000ef          	jal	19c <trap_vector>
+			172: R_RISCV_JAL	trap_vector
+ 176:	70e6                	ld	ra,120(sp)
+ 178:	72c6                	ld	t0,112(sp)
+ 17a:	7326                	ld	t1,104(sp)
+ 17c:	7386                	ld	t2,96(sp)
+ 17e:	6566                	ld	a0,88(sp)
+ 180:	65c6                	ld	a1,80(sp)
+ 182:	6626                	ld	a2,72(sp)
+ 184:	6686                	ld	a3,64(sp)
+ 186:	7762                	ld	a4,56(sp)
+ 188:	77c2                	ld	a5,48(sp)
+ 18a:	7822                	ld	a6,40(sp)
+ 18c:	7882                	ld	a7,32(sp)
+ 18e:	6e62                	ld	t3,24(sp)
+ 190:	6ec2                	ld	t4,16(sp)
+ 192:	6f22                	ld	t5,8(sp)
+ 194:	6f82                	ld	t6,0(sp)
+ 196:	6109                	addi	sp,sp,128
+ 198:	30200073          	mret
+
+000000000000019c <trap_vector>:
+ 19c:	0000006f          	j	19c <trap_vector>
+			19c: R_RISCV_JAL	trap_vector

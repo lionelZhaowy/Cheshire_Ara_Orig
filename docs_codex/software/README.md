@@ -4,6 +4,8 @@
 
 本目录是原工程的软件参考与操作手册：保留 `sw/` 规则、工具选项、库 API、示例限制和调试命令。基础原理集中在[主教材](../learning/index.html)；本目录的源码专题与其互相引用，不改变主教材的章节顺序。
 
+**服务器实际使用入口：**[参考工程使用与仿真上手指南](SERVER_SIMULATION_GUIDE.md)以 `~/CheshireAraPULP` 和官方 `fmatmul` 串起目录、TB/VIP/DPI、配置、脚本、软件修改及 VNC/Verdi 波形操作。适合已完成重建、希望从执行命令进阶到独立修改与定位问题的读者；其中新练习与波形流程明确标注待实测。
+
 初始基准：2026-09-20，提交 `379ae4544bc62e05a2736b11b33a3244181bba38`；本轮于 2026-10-11 按 `2784340240915fe4338ec54bfd613723b127d62e` 定向复核启动、链接和装载源码。历史工具查询与构建结果保留原日期；**本轮仅改文档，未编译应用、仿真、板测或烧写介质**。命令示例不代表已执行，硬件配置另见[配置手册](../configuration/README.md)。
 
 连续入门先读[程序执行全流程与 C 环境](../learning/runtime.html#execution-chain)、[编译链接与 ELF](../learning/build.html)，再按主教材学习地址、互连、存储与数据搬运；具备这些前置后读[启动机制](../learning/boot.html#default-path)、[装载与调试](../learning/boot-debug.html)和[异常与上下文](../learning/traps.html)。已有 [RVV 编程入口](../learning/vector.html#programming)及[尾部/归约实验](../learning/labs.html#rvv-depth)继续复用其历史构建证据。症状集中到[软件诊断](../learning/software-debug.html)，目标操作及验收见[运行验证](../learning/simulation.html)。

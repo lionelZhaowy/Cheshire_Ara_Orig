@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "input_head": "2f0f2d6f85979709fbc99dd4098447cb5587ce5f",
+  "kind": "Standalone step-1 probes; no target execution",
+  "copied_sources": {
+    "elfloader.cpp": {
+      "source": "target/sim/src/elfloader.cpp",
+      "modified": false,
+      "sha256": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6"
+    },
+    "LICENSE.Cheshire": {
+      "source": "LICENSE",
+      "modified": false
+    }
+  },
+  "generated_sources": [
+    "probe.S",
+    "probe.c",
+    "probe.ld",
+    "host.cpp",
+    "run_preflight.py"
+  ],
+  "external_headers": [
+    "/eda/synopsys/vcs/W-2024.09-SP1/include/svdpi.h (used in place, not copied)"
+  ]
+}

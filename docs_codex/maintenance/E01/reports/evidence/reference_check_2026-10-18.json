@@ -1,0 +1,1379 @@
+{
+  "date": "2026-10-18",
+  "mode": "Read-only remote audit. No compilation, elaboration or target simulation was run by this audit.",
+  "local_input_commit": "2f0f2d6f85979709fbc99dd4098447cb5587ce5f",
+  "checks": {
+    "general": {
+      "root": "/home/zhaowy24/CheshireAraPULP",
+      "root_head": {
+        "rc": 0,
+        "output": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a"
+      },
+      "lock_unchanged": {
+        "rc": 0,
+        "output": ""
+      },
+      "deps": [
+        {
+          "name": "apb",
+          "head": "77ddf073f194d44b9119949d2421be59789e69ae",
+          "locked": "77ddf073f194d44b9119949d2421be59789e69ae",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "apb_uart",
+          "head": "6c7dde3d749ac8274377745c105da8c8b8cd27c6",
+          "locked": "6c7dde3d749ac8274377745c105da8c8b8cd27c6",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "ara",
+          "head": "2895ba907e9eb14b3464609dc791a969d159a7c3",
+          "locked": "2895ba907e9eb14b3464609dc791a969d159a7c3",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "axi",
+          "head": "39f5f2d51c5e524f6fc5cf8b6e901f7dcc5622d7",
+          "locked": "39f5f2d51c5e524f6fc5cf8b6e901f7dcc5622d7",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "axi_llc",
+          "head": "559bcbd09a5a884dbe31e2d72fd95d024e357f39",
+          "locked": "559bcbd09a5a884dbe31e2d72fd95d024e357f39",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "axi_riscv_atomics",
+          "head": "0ac3a78fe342c5a5b9b10bff49d58897f773059e",
+          "locked": "0ac3a78fe342c5a5b9b10bff49d58897f773059e",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "axi_rt",
+          "head": "641ea950e24722af747033f2ab85f0e48ea8d7f8",
+          "locked": "641ea950e24722af747033f2ab85f0e48ea8d7f8",
+          "matches": true,
+          "diff": "src/regs/axi_rt.hjson      |    8 +-\n src/regs/axi_rt_reg_pkg.sv |  814 +++++-------\n src/regs/axi_rt_reg_top.sv | 3008 ++++++++------------------------------------\n sw/include/regs/axi_rt.h   |  482 +++----\n 4 files changed, 1002 insertions(+), 3310 deletions(-)"
+        },
+        {
+          "name": "axi_stream",
+          "head": "54891ff40455ca94a37641b9da4604647878cc07",
+          "locked": "54891ff40455ca94a37641b9da4604647878cc07",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "axi_vga",
+          "head": "3718b9930f94a9eaad8ee50b4bccc71df0403084",
+          "locked": "3718b9930f94a9eaad8ee50b4bccc71df0403084",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "clic",
+          "head": "8ed76ffc779a435d0ed034f3068e4c3334fe2ecf",
+          "locked": "8ed76ffc779a435d0ed034f3068e4c3334fe2ecf",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "clint",
+          "head": "d5390a805c20f9226758a152ba1645f61da73349",
+          "locked": "d5390a805c20f9226758a152ba1645f61da73349",
+          "matches": true,
+          "diff": "src/clint.hjson      |  19 +-----\n src/clint.sv         |  10 ++-\n src/clint_reg_pkg.sv |  43 ++++--------\n src/clint_reg_top.sv | 182 ++++++++-------------------------------------------\n 4 files changed, 45 insertions(+), 209 deletions(-)"
+        },
+        {
+          "name": "common_cells",
+          "head": "13f28aa0021fc22c0d01a12d618fda58d2c93239",
+          "locked": "13f28aa0021fc22c0d01a12d618fda58d2c93239",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "common_verification",
+          "head": "9c07fa860593b2caabd9b5681740c25fac04b878",
+          "locked": "9c07fa860593b2caabd9b5681740c25fac04b878",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "cva6",
+          "head": "99eac9a649001bdf5b8f9da52e0ca73d5c48db1c",
+          "locked": "99eac9a649001bdf5b8f9da52e0ca73d5c48db1c",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "dram_rtl_sim",
+          "head": "2cac4a9e12a60537567276b539ab6c919c87b5dc",
+          "locked": "2cac4a9e12a60537567276b539ab6c919c87b5dc",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "fpnew",
+          "head": "e5aa6a01b5bbe1675c3aa8872e1203413ded83d1",
+          "locked": "e5aa6a01b5bbe1675c3aa8872e1203413ded83d1",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "fpu_div_sqrt_mvp",
+          "head": "86e1f558b3c95e91577c41b2fc452c86b04e85ac",
+          "locked": "86e1f558b3c95e91577c41b2fc452c86b04e85ac",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "idma",
+          "head": "c12caf59bb482fe44b27361f6924ad346b2d22fe",
+          "locked": "c12caf59bb482fe44b27361f6924ad346b2d22fe",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "irq_router",
+          "head": "d1d31350b24f3965b3a51e1bc96c71eb34e94db3",
+          "locked": "d1d31350b24f3965b3a51e1bc96c71eb34e94db3",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "obi",
+          "head": "5321106817e177d6c16ecc4daa922b96b1bc946b",
+          "locked": "5321106817e177d6c16ecc4daa922b96b1bc946b",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "opentitan_peripherals",
+          "head": "cd3153de2783abd3d03d0595e6c4b32413c62f14",
+          "locked": "cd3153de2783abd3d03d0595e6c4b32413c62f14",
+          "matches": true,
+          "diff": "src/rv_plic/data/rv_plic.hjson          |  258 +-\n src/rv_plic/data/rv_plic.ipconfig.hjson |    8 +-\n src/rv_plic/rtl/rv_plic.sv              |   42 +-\n src/rv_plic/rtl/rv_plic_reg_pkg.sv      |  429 ++-\n src/rv_plic/rtl/rv_plic_reg_top.sv      | 6119 +++++++++++++++++++++++++++----\n src/rv_plic/rv_plic.cfg.hjson           |   11 +-\n sw/include/rv_plic_regs.h               |  469 ++-\n 7 files changed, 6394 insertions(+), 942 deletions(-)"
+        },
+        {
+          "name": "register_interface",
+          "head": "ae616e5a1ec2b41e72d200e5ab09c65e94aebd3d",
+          "locked": "ae616e5a1ec2b41e72d200e5ab09c65e94aebd3d",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "riscv-dbg",
+          "head": "358f90110220adf7a083f8b65d157e836d706236",
+          "locked": "358f90110220adf7a083f8b65d157e836d706236",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "serial_link",
+          "head": "5a25f5a71074f1ebb6de7b5280f2b16924bcc666",
+          "locked": "5a25f5a71074f1ebb6de7b5280f2b16924bcc666",
+          "matches": true,
+          "diff": "src/regs/serial_link_single_channel.hjson      |  4 +--\n src/regs/serial_link_single_channel_reg_pkg.sv | 38 +++++++++++++-------------\n src/regs/serial_link_single_channel_reg_top.sv | 16 +++++------\n 3 files changed, 29 insertions(+), 29 deletions(-)"
+        },
+        {
+          "name": "tech_cells_generic",
+          "head": "7968dd6e6180df2c644636bc6d2908a49f2190cf",
+          "locked": "7968dd6e6180df2c644636bc6d2908a49f2190cf",
+          "matches": true,
+          "diff": ""
+        },
+        {
+          "name": "unbent",
+          "head": "e9c9d5cfb635f2d4668c816ce9235798cfecb297",
+          "locked": "e9c9d5cfb635f2d4668c816ce9235798cfecb297",
+          "matches": true,
+          "diff": ""
+        }
+      ],
+      "printf": {
+        "rc": 0,
+        "output": "0dd4b64bc778bf55229428cefccba4c0a81f384b sw/deps/printf (v4.0.0)"
+      },
+      "pip_check": {
+        "rc": 0,
+        "output": "No broken requirements found."
+      },
+      "python_versions": {
+        "rc": 0,
+        "output": "3.9.25 (main, Dec 18 2025, 08:36:10) \n[GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]\n{'pip': '26.0.1', 'tclint': '0.4.2', 'importlib-metadata': '6.8.0', 'pathspec': '0.11.2', 'tomli': '2.0.2'}"
+      },
+      "filelist": {
+        "stat": {
+          "bytes": 109788,
+          "mtime_utc": "2026-10-18T12:49:35.504180+00:00",
+          "sha256": "4ee24c78016eaea0800c2470cab3c3b08fe928184950aeae4e2c1bf0c36f9f52"
+        },
+        "profile_lines": [
+          "\"$ROOT/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv\"",
+          "\"$ROOT/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/build_config_pkg.sv\""
+        ],
+        "decoder_lines": [
+          "\"$ROOT/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/cva6_accel_first_pass_decoder.sv\" \\"
+        ],
+        "defines": [
+          "+define+ARA",
+          "+define+NR_LANES=2",
+          "+define+TARGET_CV64A6_IMAFDCV_SV39",
+          "+define+TARGET_CVA6",
+          "+define+TARGET_EXCLUDE_FIRST_PASS_DECODER",
+          "+define+TARGET_RTL",
+          "+define+TARGET_SIM",
+          "+define+TARGET_SIMULATION",
+          "+define+TARGET_TEST",
+          "+define+TARGET_VCS",
+          "+define+VLEN=2048"
+        ],
+        "vlogan_lines": [
+          "vlogan -sverilog \\",
+          "vlogan -sverilog \\",
+          "vlogan -sverilog \\",
+          "vlogan -sverilog \\",
+          "vlogan -sverilog \\",
+          "vlogan -sverilog \\"
+        ],
+        "root_line": [
+          "ROOT=\"/home/zhaowy24/CheshireAraPULP\""
+        ]
+      },
+      "tb_config": "    // A dedicated Ara config\n      ret.Ara        = 1;\n      ret.AraNrLanes = 2;\n      ret.AraVLEN    = 2048;\n        gen_cheshire_ara_cfg(),  // 3: Ara-enabled configuration",
+      "logs": {
+        "elaborate.log": {
+          "stat": {
+            "bytes": 98518,
+            "mtime_utc": "2026-10-18T13:07:49.515107+00:00",
+            "sha256": "4b7e2b7b7d4efa8cb77c6747ed94df98f0d699caf1e0ac5d2b3d87250f1220ae"
+          },
+          "excerpt": [
+            "Top Level Modules:",
+            "assign 3 /tb_cheshire_soc/SelectedCfg (global:\"command line\":0)",
+            "assign 3 /tb_cheshire_soc/fix/SelectedCfg (global:\"command line\":0)",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "Warning-[SIOB] Select index out of bounds",
+            "recompiling module nrbd_nrsc_mvp",
+            "recompiling module norm_div_sqrt_mvp",
+            "recompiling module fpnew_cast_multi",
+            "recompiling module iteration_div_sqrt_mvp",
+            "All of 277 modules done",
+            "rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so",
+            "/opt/rh/gcc-toolset-13/root/usr/bin/g++ -w  -pipe -fPIC -O -I/eda/synopsys/vcs/W-2024.09-SP1/include    -c ../../src/elfloader.cpp",
+            "if [ -x ../simv ]; then chmod a-x ../simv; fi",
+            "/opt/rh/gcc-toolset-13/root/usr/bin/g++  -o ../simv      -rdynamic -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/eda/synopsys/vcs/W-2024.09-SP1/linux64/lib -L/eda/synopsys/vcs/W-2024.09-SP1/linux64/lib -z noexecstack  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1 elfloader.o   objs/amcQw_d.o   _3383237_archive_1.so   SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -lvirsim -luclinative /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive       ./../simv.daidir/vc_hdrs.o  _vcs_pli_stub_.o   /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/vcs_save_restore_new.o /eda/synopsys/verdi/W-2024.09-SP1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl ",
+            "../simv up to date",
+            "CPU time: 27.805 seconds to compile + .665 seconds to elab + .892 seconds to link",
+            "Verdi KDB elaboration done and the database successfully generated"
+          ],
+          "warning_codes": [
+            "ENUMASSIGN",
+            "SIOB"
+          ],
+          "error_codes": []
+        },
+        "simulate.log": {
+          "stat": {
+            "bytes": 1762,
+            "mtime_utc": "2026-10-18T13:08:18.875185+00:00",
+            "sha256": "dfd293acb6c3fe23d9e9816545959cccb639950154174fc41d71e6c714afa100"
+          },
+          "excerpt": [
+            "Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.",
+            "Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.",
+            "Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Oct 18 09:07 2026",
+            "",
+            "Warning-[RT-NCMUCS] No condition matches in statement",
+            "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/axi_inval_filter.sv, 85",
+            "  No condition matches in 'unique case' statement. 'default' specification is ",
+            "  missing, inside ",
+            "  tb_cheshire_soc.fix.dut.gen_cva6_cores[0].gen_ara.i_ara_axi_inval_filter.inval_fsm,",
+            "  at time 0ps.",
+            "",
+            "[TRACER] Output filename is: trace_hart_0.log",
+            "[SLINK] Wait for LLC configuration",
+            "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/sw/tests/helloworld.spm.elf",
+            "[ELF] INFO: File /home/zhaowy24/CheshireAraPULP/sw/tests/helloworld.spm.elf was memory mapped to 0x15555553d000",
+            "[ELF] INFO: Entrypoint at 0x10000000",
+            "[ELF] INFO: Found symbol table at offset 0x35f0",
+            "[ELF] INFO: Found string table at offset 0x41a8",
+            "[SLINK] Preloading section at 0x0000000010000000 (831 bytes)",
+            "[SLINK] Preload complete",
+            "[SLINK] Wrote launch signal and entry point 0x0000000010000000",
+            "[UART] Hello World!",
+            "[SLINK] SUCCESS",
+            "$finish called from file \"/home/zhaowy24/CheshireAraPULP/target/sim/src/tb_cheshire_soc.sv\", line 68.",
+            "$finish at simulation time           2210659000",
+            "           V C S   S i m u l a t i o n   R e p o r t ",
+            "Time: 2210659000 ps",
+            "CPU Time:     29.170 seconds;       Data structure size: 517.3Mb",
+            "Sun Oct 18 09:08:18 2026"
+          ],
+          "warning_codes": [
+            "RT-NCMUCS"
+          ],
+          "error_codes": []
+        }
+      },
+      "elfs": {
+        "axirt_budget.spm.elf": {
+          "bytes": 25008,
+          "mtime_utc": "2026-10-18T13:12:38.400872+00:00",
+          "sha256": "bff1b8e1f7477f9ac211c4730bf8b38c64bebf3cc02d2aa07405886612e9fa39"
+        },
+        "axirt_budget_isolate.spm.elf": {
+          "bytes": 24000,
+          "mtime_utc": "2026-10-18T13:12:38.185872+00:00",
+          "sha256": "66a9f5154d1b3823bceac2a09e8f8c92a3e190ce0ee98f86e79497742979816f"
+        },
+        "axirt_hello.spm.elf": {
+          "bytes": 25760,
+          "mtime_utc": "2026-10-18T13:12:37.977871+00:00",
+          "sha256": "5aaa07ec8899682cb4e5b8de6018bde330515996934fd4cb8c04f1b0f9343e6e"
+        },
+        "clic_basic.spm.elf": {
+          "bytes": 9880,
+          "mtime_utc": "2026-10-18T13:12:38.619873+00:00",
+          "sha256": "bea11a98cf5ddde10c44bb3970ce14c72c1b19a34a1b61d1911d6ea210e6a64c"
+        },
+        "clic_multiple.spm.elf": {
+          "bytes": 10200,
+          "mtime_utc": "2026-10-18T13:12:38.642873+00:00",
+          "sha256": "79f25fc0dd81a9621f7851a2eaf4cd2922329da2b7228761420bdc96efa01359"
+        },
+        "dma_2d.spm.elf": {
+          "bytes": 14896,
+          "mtime_utc": "2026-10-18T13:12:38.592873+00:00",
+          "sha256": "23e050e35bd7c49e4faaa195b8995de5bdde72f10ebf4e1b64316338fc9962af"
+        },
+        "fmatmul.dram.elf": {
+          "bytes": 63552,
+          "mtime_utc": "2026-10-18T13:12:42.322883+00:00",
+          "sha256": "3c372fc57c3f303928ffa61549e2f697d5a3a4d189927ad4f5a554ffb3cf3b30"
+        },
+        "fmatmul.rom.elf": {
+          "bytes": 63472,
+          "mtime_utc": "2026-10-18T13:11:56.053760+00:00",
+          "sha256": "711ac75b33643463ce56145a7318403c00b8ccf246dde72497e3abf47cf5b207"
+        },
+        "fmatmul.spm.elf": {
+          "bytes": 63552,
+          "mtime_utc": "2026-10-18T13:12:48.917900+00:00",
+          "sha256": "3c78ea067ab80dcc1dde25e13a0b633e071f4976d7e3c2042de01d76cbc97d89"
+        },
+        "helloworld.dram.elf": {
+          "bytes": 19048,
+          "mtime_utc": "2026-10-18T13:12:41.923882+00:00",
+          "sha256": "85b100d7019d5e7bd38fc7e807f85f8297b0e7fa50fa275ad263b00d7f0836da"
+        },
+        "helloworld.rom.elf": {
+          "bytes": 18960,
+          "mtime_utc": "2026-10-18T13:11:55.544759+00:00",
+          "sha256": "8c1f2d558894861f3756c9be11c89894460486adca8b41b2d5566ad7c040bd05"
+        },
+        "helloworld.spm.elf": {
+          "bytes": 19048,
+          "mtime_utc": "2026-10-18T13:12:48.520899+00:00",
+          "sha256": "93efef92f99dbe217c392b13fcf28cc45eef91d59e8148d3c75db91b75bdbbc8"
+        },
+        "regfile_text_stub_regs.dram.elf": {
+          "bytes": 50416,
+          "mtime_utc": "2026-10-18T13:12:43.372885+00:00",
+          "sha256": "a70b3900ed333bc58bb8bb299b673e8ffc86e01118acac42c73eaa413d9eeee8"
+        },
+        "regfile_text_stub_regs.rom.elf": {
+          "bytes": 50384,
+          "mtime_utc": "2026-10-18T13:11:57.136763+00:00",
+          "sha256": "0122cf6eef3f3a5ea9e728cd122a5e704893b166fe52b3cd1519e4fe9639c261"
+        },
+        "regfile_text_stub_regs.spm.elf": {
+          "bytes": 50416,
+          "mtime_utc": "2026-10-18T13:12:49.964903+00:00",
+          "sha256": "1391b2d51e476d79da95511f3ff0422356555ab6a4f38b75608983d6c40864ae"
+        },
+        "rvv_test_exceptions.dram.elf": {
+          "bytes": 55544,
+          "mtime_utc": "2026-10-18T13:12:40.273877+00:00",
+          "sha256": "5ed26f6b8dd9567f0eabaf6cfe07f9df64d312b0ada73f38d3987bd18f315988"
+        },
+        "rvv_test_exceptions.rom.elf": {
+          "bytes": 55816,
+          "mtime_utc": "2026-10-18T13:11:53.857754+00:00",
+          "sha256": "47862de38c31a8ae57a2406c23cc0bdd0a2dd1c6cf5ffe620b8967f3ebda0e1c"
+        },
+        "rvv_test_exceptions.spm.elf": {
+          "bytes": 55544,
+          "mtime_utc": "2026-10-18T13:12:46.878895+00:00",
+          "sha256": "d395ec83e1b8f0a331591f94224a8f4016ae663529b8dcbe3c90554e8756fa58"
+        },
+        "rvv_test_mmu_stub_idx_ld_comprehensive_page_fault_var_lat_var_ex.dram.elf": {
+          "bytes": 59040,
+          "mtime_utc": "2026-10-18T13:12:45.096890+00:00",
+          "sha256": "94d0eacf10d141ef345656607e6a818de508cbe2d0db26f7d35a3bbfd1ea97a3"
+        },
+        "rvv_test_mmu_stub_idx_ld_comprehensive_page_fault_var_lat_var_ex.rom.elf": {
+          "bytes": 59024,
+          "mtime_utc": "2026-10-18T13:11:58.993768+00:00",
+          "sha256": "da189951730eff071a3d50bfd65867f54c9bcd4d632b5ed8d80b3320a9eea739"
+        },
+        "rvv_test_mmu_stub_idx_ld_comprehensive_page_fault_var_lat_var_ex.spm.elf": {
+          "bytes": 59040,
+          "mtime_utc": "2026-10-18T13:12:51.660908+00:00",
+          "sha256": "96091df9eb64e66130479874fca96397782c45b11f60dc5b04b379998a4d53b3"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat.dram.elf": {
+          "bytes": 56480,
+          "mtime_utc": "2026-10-18T13:12:43.748887+00:00",
+          "sha256": "4192298d70ed1551022b8333e2cd5fcdbd12e5e60f69f4f20875532565cb79e8"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat.rom.elf": {
+          "bytes": 56640,
+          "mtime_utc": "2026-10-18T13:11:57.510764+00:00",
+          "sha256": "157c98ca8dcc936d38ec1ccc1140b9d96dcb126e357089fb7db2f97a3f884f04"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat.spm.elf": {
+          "bytes": 56480,
+          "mtime_utc": "2026-10-18T13:12:50.322904+00:00",
+          "sha256": "bd38a99d86decdcfa8755ad6f957c11e737c42ac983cdabfe56ba2ce8aef0914"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat_var_ex.dram.elf": {
+          "bytes": 57536,
+          "mtime_utc": "2026-10-18T13:12:42.694884+00:00",
+          "sha256": "9daf708a98212bc8b6c26c67a24525d40fd17fdf99fd6cf7c7fd240c5964911f"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat_var_ex.rom.elf": {
+          "bytes": 57784,
+          "mtime_utc": "2026-10-18T13:11:56.434761+00:00",
+          "sha256": "a2eb455b3299279dc1cb6a2484f96ec086674c5b83a41b14ad7cc3f095ec0c2e"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat_var_ex.spm.elf": {
+          "bytes": 57536,
+          "mtime_utc": "2026-10-18T13:12:49.287901+00:00",
+          "sha256": "6d45a40c8de3cf320a6ccd1ed039ac1a12244492e05d8a21771144a7d390d7f2"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_var_lat.dram.elf": {
+          "bytes": 55416,
+          "mtime_utc": "2026-10-18T13:12:44.722889+00:00",
+          "sha256": "3be53ce7fa1c006f9f505812b8b89925e266c535fea1249a68bcf2278fcececb"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_var_lat.rom.elf": {
+          "bytes": 55496,
+          "mtime_utc": "2026-10-18T13:11:58.604767+00:00",
+          "sha256": "7c83f76578e9aeb2d19690e346fb421fffe14c51fbba660e57b2ea0ba2092ece"
+        },
+        "rvv_test_mmu_stub_unit_stride_comprehensive_var_lat.spm.elf": {
+          "bytes": 55416,
+          "mtime_utc": "2026-10-18T13:12:51.289907+00:00",
+          "sha256": "cdf7e44136bd059c4573e2f10e9872a6db49b9a43eebc2f224b21252588a0c10"
+        },
+        "rvv_test_mmu_stub_unit_stride_corner_cases.dram.elf": {
+          "bytes": 60344,
+          "mtime_utc": "2026-10-18T13:12:41.372880+00:00",
+          "sha256": "4b13b5a5be38fb2524f59b23bdc37b3c90ba9e7b9c2adcbc1623386db38d2d28"
+        },
+        "rvv_test_mmu_stub_unit_stride_corner_cases.rom.elf": {
+          "bytes": 60720,
+          "mtime_utc": "2026-10-18T13:11:54.992757+00:00",
+          "sha256": "a286f84c6f804ab9eaeeeb68af4fcf0b73bd915d6e10a0f5f7873ca024f2ea5d"
+        },
+        "rvv_test_mmu_stub_unit_stride_corner_cases.spm.elf": {
+          "bytes": 60344,
+          "mtime_utc": "2026-10-18T13:12:47.981898+00:00",
+          "sha256": "1eca143f55c16b1b6c431c98ee8098da364bce7249a7fbcc656647013f685f8e"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat.dram.elf": {
+          "bytes": 56960,
+          "mtime_utc": "2026-10-18T13:12:40.633878+00:00",
+          "sha256": "5c957259a86986dd980c2f022d21c47ba8cf48a963b9f7a372309681b3507dfa"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat.rom.elf": {
+          "bytes": 57144,
+          "mtime_utc": "2026-10-18T13:11:54.232755+00:00",
+          "sha256": "d4b6db2fa7b9ca4f96e0781f3bf4718fb3ca416cd508024d8cba7f930e0ced06"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat.spm.elf": {
+          "bytes": 56960,
+          "mtime_utc": "2026-10-18T13:12:47.249896+00:00",
+          "sha256": "3f214ebba7bc688466730016029ee48dd46769be8e06091e950f7d970b8050bf"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat_var_ex.dram.elf": {
+          "bytes": 58368,
+          "mtime_utc": "2026-10-18T13:12:39.587876+00:00",
+          "sha256": "796f86502d27779146bb5bf4ce88cfd627cd319963b31a98a334a67884394c58"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat_var_ex.rom.elf": {
+          "bytes": 58608,
+          "mtime_utc": "2026-10-18T13:11:53.146752+00:00",
+          "sha256": "3e221dcb943ec4ba779b80c574c8c93be262be7c1bd8bfce51e8f804cf5b7e53"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat_var_ex.spm.elf": {
+          "bytes": 58368,
+          "mtime_utc": "2026-10-18T13:12:46.174893+00:00",
+          "sha256": "56ed85025ae5f4564f6d1d3e5efc5d56376e96d750f0663f5d87344e72aed9a9"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_var_lat.dram.elf": {
+          "bytes": 56744,
+          "mtime_utc": "2026-10-18T13:12:40.995879+00:00",
+          "sha256": "ee6ddb4f7c284a02672daf814a7b43cef64fc03a87720b12ea53e66656091ef4"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_var_lat.rom.elf": {
+          "bytes": 56840,
+          "mtime_utc": "2026-10-18T13:11:54.605756+00:00",
+          "sha256": "efe99cdf745215585e3a34c74afb2e5a561769d5d9581dbc057f2951002237bd"
+        },
+        "rvv_test_mmu_stub_unit_stride_ld_comprehensive_var_lat.spm.elf": {
+          "bytes": 56744,
+          "mtime_utc": "2026-10-18T13:12:47.606897+00:00",
+          "sha256": "8d0dbb6ce20be7f714fa525133c098f44519a101234a80e8d22ac88f4368e427"
+        },
+        "rvv_test_mmu_stub_unit_stride_reshuffle.dram.elf": {
+          "bytes": 57208,
+          "mtime_utc": "2026-10-18T13:12:41.739881+00:00",
+          "sha256": "a5ec496d7207133436be299512f97a628c35aa60b0a39d40a824db9dfdd875ab"
+        },
+        "rvv_test_mmu_stub_unit_stride_reshuffle.rom.elf": {
+          "bytes": 57272,
+          "mtime_utc": "2026-10-18T13:11:55.361758+00:00",
+          "sha256": "417731f7cbaa427c8cab2f9adc92e3b3396e3617d1ea45e708438c53a35a1e04"
+        },
+        "rvv_test_mmu_stub_unit_stride_reshuffle.spm.elf": {
+          "bytes": 57208,
+          "mtime_utc": "2026-10-18T13:12:48.339899+00:00",
+          "sha256": "deb0a11fefab7519bd8e33f79c2f500ce0e172baa3589af555e0185d1b1c62cd"
+        },
+        "rvv_test_mmu_stub_unit_stride_st_reshuffle.dram.elf": {
+          "bytes": 55632,
+          "mtime_utc": "2026-10-18T13:12:39.212875+00:00",
+          "sha256": "09fcd015bd51f2bd08be32d221f3a0a7a8d173fcb990e11f5f522233f9fdccae"
+        },
+        "rvv_test_mmu_stub_unit_stride_st_reshuffle.rom.elf": {
+          "bytes": 55704,
+          "mtime_utc": "2026-10-18T13:11:52.752751+00:00",
+          "sha256": "d2ebf9a6c6a7e789d46328acacc40fea447ea8d6dbdb9bac6884ac13dbd69524"
+        },
+        "rvv_test_mmu_stub_unit_stride_st_reshuffle.spm.elf": {
+          "bytes": 55632,
+          "mtime_utc": "2026-10-18T13:12:45.798892+00:00",
+          "sha256": "664caae12d93735b6ecf2edf8486df8089b8dbeed03f170c55bd94a09daca572"
+        },
+        "rvv_test_vstart_csrs.dram.elf": {
+          "bytes": 50752,
+          "mtime_utc": "2026-10-18T13:12:44.084888+00:00",
+          "sha256": "8de1ffc56ef9c73520bcc04c9572947ff9e2710c85728d9a94769bdc92470625"
+        },
+        "rvv_test_vstart_csrs.rom.elf": {
+          "bytes": 50816,
+          "mtime_utc": "2026-10-18T13:11:57.853765+00:00",
+          "sha256": "4c93345e30010f9251322c573c48adc79ce707255cc05f236ac470f24a8790eb"
+        },
+        "rvv_test_vstart_csrs.spm.elf": {
+          "bytes": 50752,
+          "mtime_utc": "2026-10-18T13:12:50.658905+00:00",
+          "sha256": "23e1acd6d9c9eed1804c41d46009ad1d5ec625ada868e43da63bd9cc90432799"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat.dram.elf": {
+          "bytes": 54288,
+          "mtime_utc": "2026-10-18T13:12:43.040885+00:00",
+          "sha256": "bec18d19413bc393b8be501511112d7a4acadd9cd7c96219bfcff9a2ea4b102f"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat.rom.elf": {
+          "bytes": 54480,
+          "mtime_utc": "2026-10-18T13:11:56.799762+00:00",
+          "sha256": "32a3bac1b1a1a185c4c30bdc6141206a481a1bf7b27d10c6e19d10fa83acd4d8"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat.spm.elf": {
+          "bytes": 54288,
+          "mtime_utc": "2026-10-18T13:12:49.634902+00:00",
+          "sha256": "0b712516c2bbd91df75ce0a27f8be75e02e43f3a5da77f1b81f80c979a561cc2"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat_mmu_req_gen.dram.elf": {
+          "bytes": 54312,
+          "mtime_utc": "2026-10-18T13:12:45.443891+00:00",
+          "sha256": "102b3e328c28d1c502d1180cc10b7e100d781d52b4f9ee88959cc60572949984"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat_mmu_req_gen.rom.elf": {
+          "bytes": 54512,
+          "mtime_utc": "2026-10-18T13:11:59.352769+00:00",
+          "sha256": "4ff23048e3353abeaa903881428f0bd78c7d55cd4c30c396454f2cdbe0025089"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat_mmu_req_gen.spm.elf": {
+          "bytes": 54312,
+          "mtime_utc": "2026-10-18T13:12:52.006908+00:00",
+          "sha256": "93c3ac0441abc619af19342d191885fdf834f0ac07898b85211aa224852951e2"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_var_lat.dram.elf": {
+          "bytes": 55336,
+          "mtime_utc": "2026-10-18T13:12:39.934876+00:00",
+          "sha256": "d83b2a5313af3cf69515e202b4d0f0f4da37c7b1e9b8db748b86ff31bd40a0f3"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_var_lat.rom.elf": {
+          "bytes": 55384,
+          "mtime_utc": "2026-10-18T13:11:53.505754+00:00",
+          "sha256": "a98256d1d3876b9d0e20c2a19ff6a8f07cac7ad433f6d709fdfc2561d5f07dea"
+        },
+        "rvv_test_vstart_unit_stride_mmu_stub_var_lat.spm.elf": {
+          "bytes": 55336,
+          "mtime_utc": "2026-10-18T13:12:46.532894+00:00",
+          "sha256": "9a04a1bb352a125798d261c8b145b657bf98c281ef526c52b866f5edf93641eb"
+        },
+        "vector_helloworld.dram.elf": {
+          "bytes": 37056,
+          "mtime_utc": "2026-10-18T13:12:44.369888+00:00",
+          "sha256": "0230e45ee968886fbb5f681310a3dd9fec59ff632158ffcc3e8c58db6fe2271d"
+        },
+        "vector_helloworld.rom.elf": {
+          "bytes": 36968,
+          "mtime_utc": "2026-10-18T13:11:58.235766+00:00",
+          "sha256": "82785a9025eae2b9ed9fdea7024a323d6ec4e3000531448596586f6759498100"
+        },
+        "vector_helloworld.spm.elf": {
+          "bytes": 37056,
+          "mtime_utc": "2026-10-18T13:12:50.943906+00:00",
+          "sha256": "1517b65c0712cedfe31a47ab6295921d22349b746543e7035243f73d66d4c73f"
+        }
+      },
+      "small_outputs": [
+        {
+          "name": "start.cheshire_soc.sh",
+          "bytes": 1753
+        },
+        {
+          "name": "compile.cheshire_soc.sh",
+          "bytes": 109788
+        },
+        {
+          "name": "elaborate.log",
+          "bytes": 98518
+        },
+        {
+          "name": "vc_hdrs.h",
+          "bytes": 1481
+        },
+        {
+          "name": "simv",
+          "bytes": 1434080
+        },
+        {
+          "name": "simulate.log",
+          "bytes": 1762
+        },
+        {
+          "name": "ucli.key",
+          "bytes": 0
+        },
+        {
+          "name": "trace_hart_0.log",
+          "bytes": 9179302
+        },
+        {
+          "name": "trace_hart_0_commit.log",
+          "bytes": 3634085
+        }
+      ],
+      "software_sources_remaining": [],
+      "extra_logs": [],
+      "bootrom_diff": {
+        "rc": 0,
+        "output": ""
+      }
+    },
+    "details": {
+      "warnings": {
+        "count_by_code": {
+          "ENUMASSIGN": 9,
+          "SIOB": 245
+        },
+        "examples": {
+          "ENUMASSIGN": [
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/hit_miss_detect/axi_llc_tag_store.sv, 258\naxi_llc_tag_store, \"req_q <= '{default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'tag_mode_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type.",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv, 747\nlane_sequencer, \"operand_request[AluA] = '{id:pe_req.id, vs:pe_req.vs1, scale_vl:pe_req.scale_vl, vtype:pe_req.vtype, vstart:vfu_operation_d.vstart, hazard:(pe_req.hazard_vs1 | pe_req.hazard_vd), target_fu:ALU_SLDU, conv:OpQueueConversionNone, cvt_resize:CVT_SAME, default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'vew_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type.",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv, 861\nlane_sequencer, \"operand_request[MaskB] = '{id:pe_req.id, vs:pe_req.vd, scale_vl:pe_req.scale_vl, vtype:pe_req.vtype, vstart:vfu_operation_d.vstart, hazard:pe_req.hazard_vd, target_fu:ALU_SLDU, conv:OpQueueConversionNone, cvt_resize:CVT_SAME, default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'vew_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type.",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv, 941\nlane_sequencer, \"operand_request[MaskB] = '{vs:masku_vrgat_req_q.vs, eew:masku_vrgat_req_q.eew, scale_vl:1'b0, cvt_resize:pe_req.cvt_resize, vl:1, vstart:masku_vrgat_req_q.idx, hazard:'0, default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'opqueue_conversion_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type.",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv, 941\nlane_sequencer, \"operand_request[MaskB] = '{vs:masku_vrgat_req_q.vs, eew:masku_vrgat_req_q.eew, scale_vl:1'b0, cvt_resize:pe_req.cvt_resize, vl:1, vstart:masku_vrgat_req_q.idx, hazard:'0, default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'target_fu_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type.",
+            "Warning-[ENUMASSIGN] Illegal assignment to enum variable\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv, 941\nlane_sequencer, \"operand_request[MaskB] = '{vs:masku_vrgat_req_q.vs, eew:masku_vrgat_req_q.eew, scale_vl:1'b0, cvt_resize:pe_req.cvt_resize, vl:1, vstart:masku_vrgat_req_q.idx, hazard:'0, default:'0};\"\n  Only expressions of the enum type can be assigned to an enum variable. \n  The type bit [0:0] is incompatible with the enum 'vew_e'\n  Expression: '0\n  Use the static cast operator to convert the expression to enum type."
+          ],
+          "SIOB": [
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/instr_queue.sv, 446\n\"pc_j[2]\"\n  The select index is out of declared bounds : [1:0].\n  In module instance : i_instr_queue \n  In module : instr_queue.",
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/instr_queue.sv, 382\n\"idx_ds[2]\"\n  The select index is out of declared bounds : [1:0].\n  In module instance : i_instr_queue \n  In module : instr_queue.",
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv, 316\n\"fus_busy[1]\"\n  The select index is out of declared bounds : [0:0].\n  In module instance : i_issue_read_operands \n  In module : issue_read_operands.",
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv, 319\n\"fus_busy[1]\"\n  The select index is out of declared bounds : [0:0].\n  In module instance : i_issue_read_operands \n  In module : issue_read_operands.",
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv, 321\n\"fus_busy[1]\"\n  The select index is out of declared bounds : [0:0].\n  In module instance : i_issue_read_operands \n  In module : issue_read_operands.",
+            "Warning-[SIOB] Select index out of bounds\n/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv, 324\n\"fus_busy[1]\"\n  The select index is out of declared bounds : [0:0].\n  In module instance : i_issue_read_operands \n  In module : issue_read_operands."
+          ]
+        }
+      },
+      "warning_file_counts": {
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/hit_miss_detect/axi_llc_tag_store.sv": 1,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/instr_queue.sv": 2,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv": 52,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv": 11,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/lane_sequencer.sv": 6,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv": 2,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6_mmu/cva6_tlb.sv": 160,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6_mmu/cva6_shared_tlb.sv": 18,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vector_regfile.sv": 1,
+        "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/fifo_v3.sv": 1
+      },
+      "helloworld.spm.elf": {
+        "header": {
+          "rc": 0,
+          "output": "ELF Header:\n  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 \n  Class:                             ELF64\n  Data:                              2's complement, little endian\n  Version:                           1 (current)\n  OS/ABI:                            UNIX - System V\n  ABI Version:                       0\n  Type:                              EXEC (Executable file)\n  Machine:                           RISC-V\n  Version:                           0x1\n  Entry point address:               0x10000000\n  Start of program headers:          64 (bytes into file)\n  Start of section headers:          18088 (bytes into file)\n  Flags:                             0x5, RVC, double-float ABI\n  Size of this header:               64 (bytes)\n  Size of program headers:           56 (bytes)\n  Number of program headers:         1\n  Size of section headers:           64 (bytes)\n  Number of section headers:         15\n  Section header string table index: 14"
+        },
+        "vector_instruction_examples": [],
+        "vector_matching_lines": 0
+      },
+      "vector_helloworld.spm.elf": {
+        "header": {
+          "rc": 0,
+          "output": "ELF Header:\n  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 \n  Class:                             ELF64\n  Data:                              2's complement, little endian\n  Version:                           1 (current)\n  OS/ABI:                            UNIX - System V\n  ABI Version:                       0\n  Type:                              EXEC (Executable file)\n  Machine:                           RISC-V\n  Version:                           0x1\n  Entry point address:               0x10000000\n  Start of program headers:          64 (bytes into file)\n  Start of section headers:          36032 (bytes into file)\n  Flags:                             0x5, RVC, double-float ABI\n  Size of this header:               64 (bytes)\n  Size of program headers:           56 (bytes)\n  Number of program headers:         1\n  Size of section headers:           64 (bytes)\n  Number of section headers:         16\n  Section header string table index: 15"
+        },
+        "vector_instruction_examples": [
+          "    1000037a:\tcc0b7057          \tvsetivli\tzero,22,e8,m1,ta,ma",
+          "    10000382:\t02070c07          \tvle8.v\tv24,(a4)",
+          "    10000386:\t02078c27          \tvse8.v\tv24,(a5)"
+        ],
+        "vector_matching_lines": 3
+      },
+      "fmatmul.spm.elf": {
+        "header": {
+          "rc": 0,
+          "output": "ELF Header:\n  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 \n  Class:                             ELF64\n  Data:                              2's complement, little endian\n  Version:                           1 (current)\n  OS/ABI:                            UNIX - System V\n  ABI Version:                       0\n  Type:                              EXEC (Executable file)\n  Machine:                           RISC-V\n  Version:                           0x1\n  Entry point address:               0x10000000\n  Start of program headers:          64 (bytes into file)\n  Start of section headers:          62528 (bytes into file)\n  Flags:                             0x5, RVC, double-float ABI\n  Size of this header:               64 (bytes)\n  Size of program headers:           56 (bytes)\n  Number of program headers:         1\n  Size of section headers:           64 (bytes)\n  Number of section headers:         16\n  Section header string table index: 15"
+        },
+        "vector_instruction_examples": [
+          "    1000151c:\t0d84f6d7          \tvsetvli\ta3,s1,e64,m1,ta,ma",
+          "    100015a2:\t0d87f057          \tvsetvli\tzero,a5,e64,m1,ta,ma",
+          "    10001634:\t020bf807          \tvle64.v\tv16,(s7)",
+          "    1000163e:\tb318d057          \tvfmacc.vf\tv0,fa7,v17",
+          "    10001646:\t0206f807          \tvle64.v\tv16,(a3)",
+          "    1000164e:\tb31850d7          \tvfmacc.vf\tv1,fa6,v17",
+          "    10001656:\tb313d157          \tvfmacc.vf\tv2,ft7,v17",
+          "    1000165e:\tb31351d7          \tvfmacc.vf\tv3,ft6,v17",
+          "    10001666:\tb312d257          \tvfmacc.vf\tv4,ft5,v17",
+          "    1000166e:\tb31252d7          \tvfmacc.vf\tv5,ft4,v17",
+          "    10001676:\tb311d357          \tvfmacc.vf\tv6,ft3,v17",
+          "    1000167e:\tb31153d7          \tvfmacc.vf\tv7,ft2,v17"
+        ],
+        "vector_matching_lines": 69
+      },
+      "rvv_test_vstart_csrs.spm.elf": {
+        "header": {
+          "rc": 0,
+          "output": "ELF Header:\n  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 \n  Class:                             ELF64\n  Data:                              2's complement, little endian\n  Version:                           1 (current)\n  OS/ABI:                            UNIX - System V\n  ABI Version:                       0\n  Type:                              EXEC (Executable file)\n  Machine:                           RISC-V\n  Version:                           0x1\n  Entry point address:               0x10000000\n  Start of program headers:          64 (bytes into file)\n  Start of section headers:          49728 (bytes into file)\n  Flags:                             0x5, RVC, double-float ABI\n  Size of this header:               64 (bytes)\n  Size of program headers:           56 (bytes)\n  Number of program headers:         1\n  Size of section headers:           64 (bytes)\n  Number of section headers:         16\n  Section header string table index: 15"
+        },
+        "vector_instruction_examples": [
+          "    10001424:\t0db8f8d7          \tvsetvli\ta7,a7,e64,m8,ta,ma"
+        ],
+        "vector_matching_lines": 1
+      },
+      "vector_outputs": {
+        "source_count": 18,
+        "source_names": [
+          "fmatmul.c",
+          "regfile_text_stub_regs.c",
+          "rvv_test_exceptions.c",
+          "rvv_test_mmu_stub_idx_ld_comprehensive_page_fault_var_lat_var_ex.c",
+          "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat.c",
+          "rvv_test_mmu_stub_unit_stride_comprehensive_page_fault_var_lat_var_ex.c",
+          "rvv_test_mmu_stub_unit_stride_comprehensive_var_lat.c",
+          "rvv_test_mmu_stub_unit_stride_corner_cases.c",
+          "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat.c",
+          "rvv_test_mmu_stub_unit_stride_ld_comprehensive_page_fault_var_lat_var_ex.c",
+          "rvv_test_mmu_stub_unit_stride_ld_comprehensive_var_lat.c",
+          "rvv_test_mmu_stub_unit_stride_reshuffle.c",
+          "rvv_test_mmu_stub_unit_stride_st_reshuffle.c",
+          "rvv_test_vstart_csrs.c",
+          "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat.c",
+          "rvv_test_vstart_unit_stride_mmu_stub_page_fault_var_lat_mmu_req_gen.c",
+          "rvv_test_vstart_unit_stride_mmu_stub_var_lat.c",
+          "vector_helloworld.c"
+        ],
+        "link_modes": [
+          "dram",
+          "rom",
+          "spm"
+        ],
+        "elf_dump_expected": 108,
+        "elf_dump_missing": [],
+        "rom_images_expected": 36,
+        "rom_images_missing": []
+      },
+      "startup_source_checks": [
+        "csrrc x0, mstatus, 10",
+        "// Set FS state to \"Initial\", enabling FP instructions",
+        "csrs mstatus, t1",
+        "// Set FS state to \"Clean\"",
+        "csrrc x0, mstatus, t1"
+      ],
+      "vector_header_matches_official": {
+        "rc": 0,
+        "output": ""
+      },
+      "generated_markers": [
+        ".bender/git/checkouts/axi_rt-7cef46f372eaf0fb/.generated",
+        ".bender/git/checkouts/axi_vga-74c838b44ce780d5/.generated",
+        ".bender/git/checkouts/clint-de4a234303f657d0/.generated",
+        ".bender/git/checkouts/opentitan_peripherals-7b624fb57f78de9a/.generated",
+        ".bender/git/checkouts/serial_link-6e09ea4800bad616/.generated"
+      ],
+      "boot_image_counts": {
+        ".gpt.memh": 19,
+        ".rom.memh": 19,
+        ".dump": 63
+      },
+      "runtime_linkage": {
+        "rc": 0,
+        "output": "linux-vdso.so.1 (0x00007ffd1f331000)\n\tlibnuma.so.1 => /lib64/libnuma.so.1 (0x00007f8e1461e000)\n\t_3383237_archive_1.so => /home/zhaowy24/CheshireAraPULP/target/sim/vcs/simv.daidir/_3383237_archive_1.so (0x00007f8e13144000)\n\tliberrorinf.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/liberrorinf.so (0x00007f8e12f10000)\n\tlibsnpsmalloc.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libsnpsmalloc.so (0x00007f8e14a0c000)\n\tlibvfs.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvfs.so (0x00007f8e14987000)\n\tlibvcsnew.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvcsnew.so (0x00007f8e0af08000)\n\tlibsimprofile.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libsimprofile.so (0x00007f8e0ac9c000)\n\tlibvirsim.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvirsim.so (0x00007f8e0a8d9000)\n\tlibuclinative.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libuclinative.so (0x00007f8e0a2ca000)\n\tlibvcsucli.so => /eda/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvcsucli.so (0x00007f8e09dc9000)\n\tlibdl.so.2 => /lib64/libdl.so.2 (0x00007f8e09bc5000)\n\tlibpthread.so.0 => /lib64/libpthread.so.0 (0x00007f8e099a5000)\n\tlibstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007f8e09610000)\n\tlibm.so.6 => /lib64/libm.so.6 (0x00007f8e0928e000)\n\tlibc.so.6 => /lib64/libc.so.6 (0x00007f8e08eb8000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f8e1482a000)\n\tlibgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f8e08ca0000)\n\tlibrt.so.1 => /usr/lib64/librt.so.1 (0x00007f8e08a98000)"
+      },
+      "static_paths": {
+        "files": 716,
+        "unique_files": 716,
+        "missing_files": [],
+        "include_dirs": 18,
+        "missing_includes": []
+      },
+      "extract_dir": {
+        "exists": true,
+        "entries": []
+      }
+    },
+    "initialization_and_locations": {
+      "bounds_warning_locations": [
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/instr_queue.sv",
+          "line": 446,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/frontend/instr_queue.sv",
+          "line": 382,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 316,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 319,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 321,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 324,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 328,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 329,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 330,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 332,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 334,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 338,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 339,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 340,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 343,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 349,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 352,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 353,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 355,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 356,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 357,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 362,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 364,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 366,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 367,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 370,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 371,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 689,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 698,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 699,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 702,
+          "count": 2
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 703,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 707,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 710,
+          "count": 2
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 711,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 716,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 719,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 720,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 721,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 722,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 966,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1047,
+          "count": 3
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1127,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1128,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1129,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1130,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1162,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1163,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1164,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/issue_read_operands.sv",
+          "line": 1165,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 293,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 294,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 295,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 296,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 387,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 388,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 520,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 521,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 522,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 423,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/ex_stage.sv",
+          "line": 424,
+          "count": 1
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv",
+          "line": 596,
+          "count": 2
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6_mmu/cva6_tlb.sv",
+          "line": 102,
+          "count": 144
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6_mmu/cva6_tlb.sv",
+          "line": 119,
+          "count": 16
+        },
+        {
+          "file": ".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cva6_mmu/cva6_shared_tlb.sv",
+          "line": 174,
+          "count": 18
+        }
+      ],
+      "vector_helloworld.spm.elf": {
+        "mstatus_context": [
+          "",
+          "0000000010000000 <__base_spm>:",
+          "    10000000:\t30057073          \tcsrci\tmstatus,10",
+          "    10000004:\tf14022f3          \tcsrr\tt0,mhartid",
+          "    10000082:\t4305                \tli\tt1,1",
+          "    10000084:\t0336                \tslli\tt1,t1,0xd",
+          "    10000086:\t30032073          \tcsrs\tmstatus,t1",
+          "    1000008a:\td2207053          \tfcvt.d.l\tft0,zero",
+          "    10000102:\t22000f53          \tfmv.d\tft10,ft0",
+          "    10000106:\t22000fd3          \tfmv.d\tft11,ft0",
+          "    1000010a:\t30033073          \tcsrc\tmstatus,t1",
+          "    1000010e:\t0ff0000f          \tfence",
+          "    10000330:\t00f70823          \tsb\ta5,16(a4)",
+          "    10000334:\t60000293          \tli\tt0,1536",
+          "    10000338:\t3002a073          \tcsrs\tmstatus,t0",
+          "    1000033c:\t00000797          \tauipc\ta5,0x0"
+        ]
+      },
+      "fmatmul.spm.elf": {
+        "mstatus_context": [
+          "",
+          "0000000010000000 <__base_spm>:",
+          "    10000000:\t30057073          \tcsrci\tmstatus,10",
+          "    10000004:\tf14022f3          \tcsrr\tt0,mhartid",
+          "    10000086:\t4305                \tli\tt1,1",
+          "    10000088:\t0336                \tslli\tt1,t1,0xd",
+          "    1000008a:\t30032073          \tcsrs\tmstatus,t1",
+          "    1000008e:\td2207053          \tfcvt.d.l\tft0,zero",
+          "    10000106:\t22000f53          \tfmv.d\tft10,ft0",
+          "    1000010a:\t22000fd3          \tfmv.d\tft11,ft0",
+          "    1000010e:\t30033073          \tcsrc\tmstatus,t1",
+          "    10000112:\t0ff0000f          \tfence",
+          "    100013fe:\t00f68823          \tsb\ta5,16(a3)",
+          "    10001402:\t60000293          \tli\tt0,1536",
+          "    10001406:\t3002a073          \tcsrs\tmstatus,t0",
+          "    1000140a:\t02000593          \tli\ta1,32"
+        ]
+      },
+      "rvv_test_vstart_csrs.spm.elf": {
+        "mstatus_context": [
+          "",
+          "0000000010000000 <__base_spm>:",
+          "    10000000:\t30057073          \tcsrci\tmstatus,10",
+          "    10000004:\tf14022f3          \tcsrr\tt0,mhartid",
+          "    10000082:\t4305                \tli\tt1,1",
+          "    10000084:\t0336                \tslli\tt1,t1,0xd",
+          "    10000086:\t30032073          \tcsrs\tmstatus,t1",
+          "    1000008a:\td2207053          \tfcvt.d.l\tft0,zero",
+          "    10000102:\t22000f53          \tfmv.d\tft10,ft0",
+          "    10000106:\t22000fd3          \tfmv.d\tft11,ft0",
+          "    1000010a:\t30033073          \tcsrc\tmstatus,t1",
+          "    1000010e:\t0ff0000f          \tfence",
+          "    100013e6:\t1601be23          \tsd\tzero,380(gp) # 10001848 <mcause>",
+          "    100013ea:\t60000293          \tli\tt0,1536",
+          "    100013ee:\t3002a073          \tcsrs\tmstatus,t0",
+          "    100013f2:\t18c1b783          \tld\ta5,396(gp) # 10001858 <exception>"
+        ]
+      },
+      "trace_head": [
+        "     470ns       90 M 0000000002000000 0 00004081 c.li           ra, 0                 ra  :0000000000000000",
+        "     475ns       91 M 0000000002000002 0 00004201 c.li           tp, 0                 tp  :0000000000000000",
+        "     570ns      110 M 0000000002000004 0 00004281 c.li           t0, 0                 t0  :0000000000000000",
+        "     575ns      111 M 0000000002000006 0 00004301 c.li           t1, 0                 t1  :0000000000000000",
+        "     670ns      130 M 0000000002000008 0 00004381 c.li           t2, 0                 t2  :0000000000000000",
+        "     675ns      131 M 000000000200000a 0 00004401 c.li           s0, 0                 s0  :0000000000000000",
+        "     770ns      150 M 000000000200000c 0 00004481 c.li           s1, 0                 s1  :0000000000000000",
+        "     775ns      151 M 000000000200000e 0 00004501 c.li           a0, 0                 a0  :0000000000000000",
+        "     870ns      170 M 0000000002000010 0 00004581 c.li           a1, 0                 a1  :0000000000000000",
+        "     875ns      171 M 0000000002000012 0 00004601 c.li           a2, 0                 a2  :0000000000000000",
+        "     970ns      190 M 0000000002000014 0 00004681 c.li           a3, 0                 a3  :0000000000000000",
+        "     975ns      191 M 0000000002000016 0 00004701 c.li           a4, 0                 a4  :0000000000000000"
+      ],
+      "models": {
+        "24FC1025.v": {
+          "size": 33296
+        },
+        "s25fs512s.v": {
+          "size": 380262
+        }
+      },
+      "core_cfg_source": "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv",
+      "generated_sw_tools": {
+        "sw/lib/libcheshire.a": true,
+        "sw/boot/flash.spm.elf": true,
+        ".bender/.chs_deps": true
+      },
+      "compile_group_counts": {
+        "groups": 66,
+        "full64": 132
+      }
+    }
+  },
+  "commands": {
+    "general_readonly_python": "\nfrom pathlib import Path\nimport subprocess, json, os, re, hashlib, datetime\nimport yaml\nr=Path.home()/\"CheshireAraPULP\"\nos.chdir(r)\nenv=dict(os.environ,GIT_OPTIONAL_LOCKS=\"0\",PYTHONDONTWRITEBYTECODE=\"1\",PIP_DISABLE_PIP_VERSION_CHECK=\"1\")\ndef cmd(args,cwd=r):\n p=subprocess.run(args,cwd=str(cwd),env=env,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=45)\n return {\"rc\":p.returncode,\"output\":p.stdout.strip()}\ndef stat(p):\n return {\"bytes\":p.stat().st_size,\"mtime_utc\":datetime.datetime.fromtimestamp(p.stat().st_mtime,datetime.timezone.utc).isoformat(),\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest()}\nout={\"root\":str(r)}\nlock=yaml.safe_load((r/\"Bender.lock\").read_text())[\"packages\"]\nout[\"root_head\"]=cmd([\"git\",\"rev-parse\",\"HEAD\"])\nout[\"lock_unchanged\"]=cmd([\"git\",\"diff\",\"--exit-code\",\"HEAD\",\"--\",\"Bender.lock\",\"Bender.yml\"])\ndeps=[]\nfor d in sorted((r/\".bender/git/checkouts\").iterdir()):\n if not d.is_dir():continue\n name=d.name.rsplit(\"-\",1)[0]\n if name not in lock:continue\n h=cmd([\"git\",\"rev-parse\",\"HEAD\"],d)\n deps.append({\"name\":name,\"head\":h[\"output\"],\"locked\":lock[name][\"revision\"],\"matches\":h[\"output\"]==lock[name][\"revision\"],\"diff\":cmd([\"git\",\"diff\",\"--stat\",\"HEAD\"],d)[\"output\"]})\nout[\"deps\"]=deps\nout[\"printf\"]=cmd([\"git\",\"submodule\",\"status\",\"sw/deps/printf\"])\nout[\"pip_check\"]=cmd([str(r/\".venv/bin/python\"),\"-m\",\"pip\",\"check\"])\nout[\"python_versions\"]=cmd([str(r/\".venv/bin/python\"),\"-c\",\"import sys, importlib.metadata as m; print(sys.version); print({n:m.version(n) for n in ['pip','tclint','importlib-metadata','pathspec','tomli']})\"])\np=r/\"target/sim/vcs/compile.cheshire_soc.sh\"\ns=p.read_text()\nactive=\"\\n\".join(x for x in s.splitlines() if not x.lstrip().startswith(\"#\"))\nout[\"filelist\"]={\"stat\":stat(p),\"profile_lines\":[l.strip() for l in active.splitlines() if \"_config_pkg.sv\" in l],\"decoder_lines\":[l.strip() for l in active.splitlines() if \"cva6_accel_first_pass_decoder.sv\" in l],\"defines\":sorted(set(re.findall(r'\\+define\\+[^\\s\"]+',active))),\"vlogan_lines\":[l for l in active.splitlines() if \"vlogan\" in l][:6],\"root_line\":[l for l in s.splitlines() if l.startswith(\"ROOT\")]}\nout[\"tb_config\"]=\"\\n\".join(l for l in (r/\"target/sim/src/tb_cheshire_pkg.sv\").read_text().splitlines() if any(x in l for x in [\"Ara\",\"2048\",\"// 3:\"]))\nout[\"logs\"]={}\nfor name in [\"elaborate.log\",\"simulate.log\"]:\n p=r/\"target/sim/vcs\"/name\n if p.exists():\n  lines=p.read_text(errors=\"replace\").splitlines()\n  safe=[l for l in lines if not re.search(\"license|SNPSLMD|LM_LICENSE\",l,re.I)]\n  if name==\"simulate.log\": excerpt=safe\n  else: excerpt=[l for l in safe if re.search(\"Error-|Warning-|SelectedCfg|UseDramSys|^Top Level|^CPU time|^Chronologic|^Parsing|^.*Up to date|^make|^g\\+\\+|^gcc|^Note:.*(recompiled|compiled)\",l)][:110]+safe[-12:]\n  out[\"logs\"][name]={\"stat\":stat(p),\"excerpt\":excerpt,\"warning_codes\":sorted(set(re.findall(r'Warning-\\[([^]]+)\\]',\"\\n\".join(lines)))),\"error_codes\":sorted(set(re.findall(r'Error-\\[([^]]+)\\]',\"\\n\".join(lines))))}\nout[\"elfs\"]={p.name:stat(p) for p in sorted((r/\"sw/tests\").glob(\"*.elf\"))}\nout[\"small_outputs\"]=[{\"name\":p.name,\"bytes\":p.stat().st_size} for p in (r/\"target/sim/vcs\").iterdir() if p.is_file()]\nout[\"software_sources_remaining\"]=[p.name for p in (r/\"sw/tests\").glob(\"*.c\") if p.name.startswith((\"rvv\",\"vector\",\"fmatmul\"))]\nout[\"extra_logs\"]=[str(p.relative_to(r)) for base in [r/\"sw\",r/\"_e01\"] for p in base.rglob(\"*.log\") if \"preflight\" not in str(p)][:80]\nout[\"bootrom_diff\"]=cmd([\"git\",\"diff\",\"HEAD\",\"--\",\"hw/bootrom/cheshire_bootrom.sv\"])\nprint(json.dumps(out,ensure_ascii=False,indent=2))\n",
+    "detail_readonly_python": "\nfrom pathlib import Path\nimport subprocess, json, re, collections, os, hashlib\nr=Path.home()/\"CheshireAraPULP\"\nv=r/\"target/sim/vcs\"\nara=r/\".bender/git/checkouts/ara-2c7b103275a16c87\"\nout={}\ndef run(args,cwd=r):\n p=subprocess.run(args,cwd=str(cwd),env=dict(os.environ,PYTHONDONTWRITEBYTECODE=\"1\",GIT_OPTIONAL_LOCKS=\"0\"),stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=30)\n return {\"rc\":p.returncode,\"output\":p.stdout.strip()}\ns=(v/\"elaborate.log\").read_text(errors=\"replace\")\nblocks=re.findall(r'Warning-\\[[\\s\\S]*?(?=\\n\\n|\\Z)',s)\nout[\"warnings\"]={\"count_by_code\":dict(collections.Counter(re.findall(r'Warning-\\[([^]]+)\\]',s))),\"examples\":{}}\nfor code in out[\"warnings\"][\"count_by_code\"]:\n selected=[b for b in blocks if b.startswith(\"Warning-[\"+code+\"]\")]\n out[\"warnings\"][\"examples\"][code]=list(dict.fromkeys(selected))[:6]\nout[\"warning_file_counts\"]=dict(collections.Counter(re.findall(r'^([^\\n]+\\.(?:sv|svh|v)), \\d+',s,re.M)))\nout[\"sim_config\"]=\"omitted tool banner\"\nfor name in [\"helloworld.spm.elf\",\"vector_helloworld.spm.elf\",\"fmatmul.spm.elf\",\"rvv_test_vstart_csrs.spm.elf\"]:\n p=r/\"sw/tests\"/name\n d=run([\"/opt/riscv/bin/riscv64-unknown-elf-objdump\",\"-d\",str(p)])\n lines=d[\"output\"].splitlines()\n vector=[l for l in lines if re.search(r'\\s(vsetvli|vsetivli|vle\\d+\\.v|vse\\d+\\.v|vf\\w+\\.|vadd\\.)',l)]\n start=run([\"/opt/riscv/bin/riscv64-unknown-elf-objdump\",\"-d\",\"--disassemble=_start\",str(p)])\n main=run([\"/opt/riscv/bin/riscv64-unknown-elf-objdump\",\"-d\",\"--disassemble=main\",str(p)])\n out[name]={\"header\":run([\"/opt/riscv/bin/riscv64-unknown-elf-readelf\",\"-h\",str(p)]),\"vector_instruction_examples\":vector[:12],\"vector_matching_lines\":len(vector),\"start\":start[\"output\"][:6000],\"main\":main[\"output\"][:6500] if name==\"vector_helloworld.spm.elf\" else main[\"output\"][:1200]}\n# Read source names only; do not invoke Make.\nara_sources=sorted(list((ara/\"cheshire/sw/src\").glob(\"*.c\"))+list((ara/\"cheshire/sw/src/tests\").glob(\"*.c\")))\nmodes=[p.stem for p in (r/\"sw/link\").glob(\"*.ld\")]\nexpected=[r/\"sw/tests\"/(p.stem+\".\"+mode+\".\"+ext) for p in ara_sources for mode in modes for ext in [\"elf\",\"dump\"]]\nrom_extra=[r/\"sw/tests\"/(p.stem+suffix) for p in ara_sources for suffix in [\".rom.memh\",\".gpt.memh\"]]\nout[\"vector_outputs\"]={\"source_count\":len(ara_sources),\"source_names\":[p.name for p in ara_sources],\"link_modes\":modes,\"elf_dump_expected\":len(expected),\"elf_dump_missing\":[str(p.relative_to(r)) for p in expected if not p.exists()],\"rom_images_expected\":len(rom_extra),\"rom_images_missing\":[str(p.relative_to(r)) for p in rom_extra if not p.exists()]}\nout[\"startup_source_checks\"]=[l.strip() for l in (r/\"sw/lib/crt0.S\").read_text().splitlines() if any(x in l for x in [\"MSTATUS\",\"mstatus\",\"FS\",\"VS\"])] if (r/\"sw/lib/crt0.S\").exists() else []\nout[\"vector_header_matches_official\"]=run([\"git\",\"diff\",\"HEAD\",\"--\",\"cheshire/sw/include/vector_util.h\",\"cheshire/sw/src/vector_helloworld.c\"],ara)\nout[\"generated_markers\"]=[str(p.relative_to(r)) for p in (r/\".bender/git/checkouts\").glob(\"*/.generated\")]\nout[\"boot_image_counts\"]={x:len(list((r/\"sw/tests\").glob(\"*\"+x))) for x in [\".gpt.memh\",\".rom.memh\",\".dump\"]}\nout[\"runtime_linkage\"]=run([\"ldd\",str(v/\"simv\")])\n# Check all explicit source paths and include dirs in the script without running it.\nscript=(v/\"compile.cheshire_soc.sh\").read_text()\nactive=\"\\n\".join(l for l in script.splitlines() if not l.lstrip().startswith(\"#\"))\nfiles=re.findall(r'\"(\\$ROOT/[^\"]+\\.(?:sv|v|vp|vhd|vhdl))\"',active)\nincs=re.findall(r'\"\\+incdir\\+(\\$ROOT/[^\"]+)\"',active)\nout[\"static_paths\"]={\"files\":len(files),\"unique_files\":len(set(files)),\"missing_files\":[p for p in files if not Path(p.replace(\"$ROOT\",str(r))).is_file()],\"include_dirs\":len(set(incs)),\"missing_includes\":[p for p in set(incs) if not Path(p.replace(\"$ROOT\",str(r))).is_dir()]}\nout[\"extract_dir\"]={\"exists\":(Path.home()/\"CheshireAra\").exists(),\"entries\":[p.name for p in (Path.home()/\"CheshireAra\").iterdir()] if (Path.home()/\"CheshireAra\").exists() else []}\nprint(json.dumps(out,ensure_ascii=False,indent=2))\n",
+    "initialization_readonly_python": "\nfrom pathlib import Path\nimport subprocess,json,re,collections,os\nr=Path.home()/\"CheshireAraPULP\"; v=r/\"target/sim/vcs\"; out={}\ndef run(args):\n p=subprocess.run(args,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=30)\n return {\"rc\":p.returncode,\"output\":p.stdout.strip()}\ns=(v/\"elaborate.log\").read_text(errors=\"replace\")\nlocs=collections.Counter(re.findall(r'Warning-\\[SIOB\\][^\\n]*\\n([^\\n]+), (\\d+)',s))\nout[\"bounds_warning_locations\"]=[{\"file\":str(Path(f).relative_to(r)),\"line\":int(n),\"count\":c} for (f,n),c in locs.items()]\nfor name in [\"vector_helloworld.spm.elf\",\"fmatmul.spm.elf\",\"rvv_test_vstart_csrs.spm.elf\"]:\n p=r/\"sw/tests\"/name\n dump=run([\"/opt/riscv/bin/riscv64-unknown-elf-objdump\",\"-d\",str(p)])[\"output\"].splitlines()\n selected=[]\n for i,l in enumerate(dump):\n  if \"mstatus\" in l: selected.extend(dump[max(0,i-2):i+2])\n out[name]={\"mstatus_context\":selected[:45],\"entry\":run([\"/opt/riscv/bin/riscv64-unknown-elf-objdump\",\"-d\",\"--start-address=0x10000000\",\"--stop-address=0x10000110\",str(p)])[\"output\"]}\nout[\"trace_head\"]=(v/\"trace_hart_0.log\").read_text(errors=\"replace\").splitlines()[:12]\nout[\"models\"]={p.name:{\"size\":p.stat().st_size} for p in (r/\"target/sim/models\").glob(\"*.v\")}\nout[\"core_cfg_source\"]=str(r/\".bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv\")\nout[\"generated_sw_tools\"]={str(p.relative_to(r)):p.exists() for p in [r/\"sw/lib/libcheshire.a\",r/\"sw/boot/flash.spm.elf\",r/\".bender/.chs_deps\"]}\nout[\"compile_group_counts\"]={\"groups\":(v/\"compile.cheshire_soc.sh\").read_text().count(\"vlogan -sverilog\"),\"full64\":(v/\"compile.cheshire_soc.sh\").read_text().count(\"-full64\")}\nfor name in [\"vector_helloworld.spm.elf\",\"fmatmul.spm.elf\",\"rvv_test_vstart_csrs.spm.elf\"]:\n out[name].pop(\"entry\",None)\nprint(json.dumps(out,ensure_ascii=False,indent=2))\n"
+  }
+}

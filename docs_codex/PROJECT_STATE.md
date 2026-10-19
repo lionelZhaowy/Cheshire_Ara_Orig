@@ -2,6 +2,8 @@
 
 更新：2026-10-18，记录用户已确认 SoC 架构 v1 功能基线、总纲及三人分工/条件排期文档交付，输入 `mp/ara-pulp-v2` / `09798c1ded457e423b927844f66faae87583a20c`；保留 2026-10-16 DDR–GB 更新及其余 2026-10-13 文档整理快照。原整理输入：`mp/ara-pulp-v2` / `5a1338e0a0bf115ddd54c19e0ae367ac2d541892`。这是当前事实与未验证项索引，不是测试报告或实施授权。新对话再核对实际 HEAD 和工作区；按[任务表](AGENT_TASKS.md)、[定位指南](AGENT_DOCUMENTATION_GUIDE.md)及对应主题交接接手。
 
+2026-10-18 补充：输入 `mp/ara-pulp-v2` / `2f0f2d6f85979709fbc99dd4098447cb5587ce5f`，已保存用户确认的 SMIC55 工艺标识、WireBond 倾向及[资源预算专题](engineering/SoC_Resource_and_Packaging_Plan.md)。同日后续纠正：DDR DQ x64 保持；LVDS RX/TX 各 128 个通道组，每组 1 对时钟＋N 对数据，像素暂按 16 bit，专题更新至 v1.2，替代原“每方向总计 128 对”的理解。仅文档与算例交付；实际工艺库、IP 视图和封装能力仍待核实，[P01 交接](handoffs/P01_soc_resource_packaging.md)区分初版和增量检查。
+
 ## 1. 最终目标与近期目标
 
 最终目标：以 Cheshire + CVA6 + Ara 为起点，集成 LVDS 图像输入、ISP、脉动阵列/NPU、采购的 DDR 控制器及相关 IP，裁切无用模块，迁移到团队 EDA 服务器，完成 IC 设计、验证、DFT 与物理实现并流片。
@@ -24,6 +26,7 @@
 | 用户输入（2026-10-18） | 队长/HYH/TTY 三人全职，多数新增模块从零开发，均未独立完成完整流片；可申请实验室指导，关键资源未齐。上级期望 2027 年 6 月投片，用户说明可延后三个月；取舍为保留 v1、争取专项支持 |
 | 排期建议（2026-10-18） | [团队分工与进度对照](engineering/Team_Responsibilities_and_Tapeout_Schedule.md)：6 月前端交付检查、9 月有条件提交 GDS；不表示上级已批准日期调整或工程已启动。分工、依赖与验收见正文，[交接](handoffs/C00_team_execution_plan.md)记录本轮文档变更 |
 | 用户确认 | DDR 供应商可以提供 AXI4 版本，不再把 AXI3 桥列为必选项 |
+| 用户纠正（2026-10-18 / v1.2） | DDR 外部 DQ 已定 x64；LVDS RX、TX **每方向各 128 个通道组，每组 1 对时钟＋N 对数据**；像素位宽先按 16 bit。N_RX/N_TX、串行化/像素映射、线速与并发待输入；16 bit 不等于 16 对数据，组数不等于独立图像数。旧“每方向总共 128 对”及 512/680 PAD 预算被替代，详见[资源预算 §3](engineering/SoC_Resource_and_Packaging_Plan.md#pad-budget-example) |
 | 用户要求 | NPU/ISP 数据通路需要绕过 LLC 直接访问 DDR，避免其流量污染 CPU 的 LLC |
 | 用户要求 | 提取独立 `cheshire_ara_asic`；不在 Bender 和旧脚本体系上投入过多精力 |
 | 用户要求 | 使用多个独立对话分工，交接信息保存在仓库中 |
@@ -32,7 +35,9 @@
 | 提取执行建议 | `cv64a6_imafdcv_sv39` + Ara 2 lanes / VLEN 2048，以当前 Ara 仿真配置取值快照作为首个固定基线；见 02 文档 |
 | 用户确认方向（2026-10-16，待实现/待验证） | DDR 共享范围采用软件显式交接＋L1D/写缓冲/LLC 硬件范围维护，落实维护窗口、实际完成握手与错误闭环；具体接口仍待细化。GB 本地交接另行管理，见[总纲 §6](engineering/SoC_Architecture_v1_Master_Plan.md#6-跨模块接口与软硬件约束) |
 | 未决 | 最终外设保留表、地址分配、DMA 区大小、最终性能/功耗/面积指标 |
-| 未决 | 工艺、SRAM 宏、PLL/PAD、DDR 控制器/PHY 细节、DFT/MBIST 和 EDA 工具版本/许可 |
+| 用户确认（2026-10-18） | 目标工艺标识为 `smic55ll_ulp_rf_09121825_1P9M_7Ic_1TMc_1MTTc_ALPA1_oa_cds_v1.16_2`；名称确认不代表已核验 PDK、库或 IP 交付，见[资源预算专题](engineering/SoC_Resource_and_Packaging_Plan.md) |
+| 用户倾向与评估建议（2026-10-18） | 用户倾向 WireBond；除暂按 16 bit/像素预算外，图像尺寸/帧率及模型硬指标待输入。2 MiB GB＋1024 INT8 MAC 为评估起点；同 N＝1/2/4 时 1192/1704/2728 仅为条件信号小计，未计电源地/额外端。先核对 128 组/方向的接口与封装可行性，旧 PAD 区间和裸片草案不沿用，不因面积压力自动扩大 GB/NPU |
+| 未决 | 已选工艺的实际 PDK/库配套、SRAM 宏、PLL/PAD、DDR 控制器/PHY 细节、封装/板条件、DFT/MBIST 和 EDA 工具版本/许可 |
 | 用户要求（2026-10-08，教学已交付） | 论文实验需要OS，系统补齐RTOS/Linux；CVA6主线以正确使用为限，ASIC按机制/实例深化。具体OS选型/移植/运行尚未完成，OS不是裸机ASIC提取前置 |
 | 未决 | 最终启动介质、OS/RTOS具体版本及平台方案、论文指标、是否需要跨 CPU/设备的共享原子控制数据 |
 
@@ -49,6 +54,7 @@
 | 查询参考 | [配置](configuration/README.md)、[软件](software/README.md)、[层次与工具](software/LAYERS_AND_TOOLS.md)、[片外接口](EXTERNAL_DEVICES_AND_INTERFACES.md)，按问题查阅 |
 | RTL 模块指南 | [21 篇正文、24 张 A 图、213 条连接](rtl_modules/README.md)；2026-10-13 最终采用 A 连续走线，B 弃用、C 未采用；[技术交接](handoffs/L01_rtl_module_guide.md)保留审阅与缺口 |
 | 工程契约 | [IP/DDR/GB](engineering/IP_DDR_Interface_Contract.md)、[ASIC适配](engineering/ASIC_Adaptation_and_Evidence.md)是正式参考，工程尚未实施 |
+| 资源与封装预算（2026-10-18） | [专题及六类预算表](engineering/SoC_Resource_and_Packaging_Plan.md)区分 PAD/GB/NPU/面积算例与实际待输入项；[交接](handoffs/P01_soc_resource_packaging.md)记录文档检查，未综合、布局、STA、SI/PI 或性能实测 |
 | DDR–GB 同步说明（2026-10-16） | [主说明](engineering/DDR_GB_Coherence_Design.md)已纳入用户转交的独立评审及答疑；[供应商会议问题](engineering/DDR_Supplier_Coherence_Questions.md)已按用户提供的 Datasheet V2.1 核对能力、页码及待澄清项，尚无会议答复；保存[评审 Q&A](maintenance/L01/reviews/ddr_gb_coherence_review_qa.md)。输入 `322bd6ce9`；用户确认维护窗口／握手需实现，当前仅修订文档，硬件与故障恢复未验收 |
 | 实施难点专题（2026-10-18） | [13 类难点与关闭条件](engineering/Implementation_Challenges_and_Open_Questions.md)及 13 幅 SVG/PNG、13 页原生 PPTX 已交付；引用已有同步等方案，区分已确认方向、未决输入、实现缺口和静态缺陷。仅文档/图稿检查，Office 与工程运行未实测；[交接](handoffs/L01_implementation_challenges.md) |
 | 历史检查 | 软件构建、独立教学 Reg 单元、浏览器/图稿检查均只对各次记录的输入有效；按[交接索引](handoffs/README.md)追溯，不合并成一次生产 SoC 验证 |

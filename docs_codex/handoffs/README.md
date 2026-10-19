@@ -4,6 +4,8 @@
 
 ## 当前主题入口
 
+- [SoC 资源预算与封装预规划](P01_soc_resource_packaging.md)：SMIC55 工艺输入、WireBond 倾向、PAD/GB/NPU/面积算例与预算表；仅文档交付，实际宏和封装验证待输入。
+
 - [实施难点专题与 13 幅图稿](L01_implementation_challenges.md)：已有讨论、当前未决项、责任和验收门槛；仅文档/图稿交付。
 
 - [三人团队分工与投片排期](C00_team_execution_plan.md)：正式分工、阶段门槛和进度对照见[工程文档](../engineering/Team_Responsibilities_and_Tapeout_Schedule.md)；日期为条件排期，工程未验收。

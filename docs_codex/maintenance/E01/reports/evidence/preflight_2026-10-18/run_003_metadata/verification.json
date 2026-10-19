@@ -1,0 +1,61 @@
+{
+  "queries": [
+    {
+      "command": [
+        "/opt/riscv/bin/riscv64-unknown-elf-gcc",
+        "-print-prog-name=lto-wrapper"
+      ],
+      "exit_code": 0,
+      "stdout": "/opt/riscv/libexec/gcc/riscv64-unknown-elf/13.2.0/lto-wrapper\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/riscv/bin/riscv64-unknown-elf-gcc",
+        "-print-prog-name=as"
+      ],
+      "exit_code": 0,
+      "stdout": "/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/bin/as\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/riscv/bin/riscv64-unknown-elf-gcc",
+        "-print-prog-name=ld"
+      ],
+      "exit_code": 0,
+      "stdout": "/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/bin/ld\n",
+      "stderr": ""
+    }
+  ],
+  "lto_plugin": {
+    "path": "/opt/riscv/libexec/gcc/riscv64-unknown-elf/13.2.0/liblto_plugin.so",
+    "exists": true
+  },
+  "input_sha256": {
+    "inputs": {
+      "LICENSE.Apache-2.0": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "LICENSE.Cheshire": "6527a46225891b976fa94f634f6ee0cd22e1c7129d6f11c5c98c997627625fc7",
+      "elfloader.cpp": "34017a4e39c23d58b17bd53e8fe1a2697446272f523c750bf7d9b548c22edec6",
+      "host.cpp": "5535b9b5e2a635a1cad7a17bf31f02f3726cfcd107c53b94787d018f74e8f2ee",
+      "probe.S": "0caf9db4a31b523782ed131248a5bb3f557f2b44f8f13d5640ef8c5bb3975fc5",
+      "probe.c": "0676e112413b7c1d399fe9fdebc8906a2c1425a1fc208f79d98dc927aa864e6a",
+      "probe.ld": "f096a6ae9187aa1e31ccf0752810e644adc0dfc75c238ddae523048f7c0fdf8c",
+      "provenance.json": "fc5ddd5f61838b9ce4ee72874a5bd2e77fd99ab319fd05a0418d28df35427ba0",
+      "run_preflight.py": "6954fdf41685fd98a16b1fd09928eae7778d539837f9ffeed31004607396078c"
+    },
+    "diagnostic_inputs": {
+      "common.ldh": "ef50440c91ca4c3f0de0541488f342e4a66d94d3840da3fed3a1cd1a48747620",
+      "crt0.S": "b6b305f14dc866903fb9d0c0dee51a0758141b6742b793bf265776f19c2ef7f7",
+      "diagnose.py": "5fa012ee6168ccb1d05387618524d1d88dd10b8c40a45464a9a8a54a871e0990",
+      "dram.ld": "696c9d45d134c90953f5971f77c50c8876be9a2547f66059cee048e66d8834d2",
+      "provenance.json": "bf65271a7190ab200e6c7cf5475ef64ee34f5963305a135e4356e8bbe374dc3b",
+      "runtime_subset.c": "44d64a62706e7fd31da79721ff1fa0ab145b70bb3d4aefba58ba08d411dfd45c",
+      "spm.ld": "bdf2e8a2891086351f5ef754513ee1de961d548ea3400d82235fd680bf004106"
+    }
+  },
+  "reference_entries": [
+    "_e01"
+  ],
+  "extracted_entries": []
+}

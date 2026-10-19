@@ -1,0 +1,182 @@
+Archive member included to satisfy reference by file (symbol)
+
+/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+                              /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o (memcpy)
+/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+                              /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o (__divti3)
+/opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+                              /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o) (__clz_tab)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+ .comment       0x0000000000000000       0x1c /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ .comment       0x0000000000000000       0x13 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+ .comment       0x0000000000000000       0x1c /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .comment       0x0000000000000000       0x1c /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000010000000                PROBE_BASE = 0x10000000
+LOAD /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+LOAD /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+START GROUP
+LOAD /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a
+LOAD /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a
+END GROUP
+                0x0000000010000000                . = PROBE_BASE
+
+.text           0x0000000010000000      0x5e6
+ *(.text._start)
+ .text._start   0x0000000010000000       0x34 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+                0x0000000010000000                _start
+ *(.text .text.*)
+ .text          0x0000000010000034       0x34 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+                0x0000000010000034                scalar_isa_probe
+ .text          0x0000000010000068        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ .text.probe_main
+                0x0000000010000068       0xac /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                0x0000000010000068                probe_main
+ .text          0x0000000010000114        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+ .text.memcpy   0x0000000010000114      0x146 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+                0x0000000010000114                memcpy
+ .text          0x000000001000025a      0x38c /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+                0x000000001000025a                __divti3
+ .text          0x00000000100005e6        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.rodata         0x00000000100005f0      0x128
+ *(.rodata .rodata.* .srodata .srodata.*)
+ .rodata.source
+                0x00000000100005f0       0x24 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ *fill*         0x0000000010000614        0x4 
+ .rodata        0x0000000010000618      0x100 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+                0x0000000010000618                __clz_tab
+
+.eh_frame       0x0000000010000718       0x28
+ .eh_frame      0x0000000010000718       0x28 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+
+.rela.dyn       0x0000000010000740        0x0
+ .rela.text._start
+                0x0000000010000740        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+                0x0000000010001000                . = ALIGN (0x1000)
+
+.data           0x0000000010001000       0x30
+ *(.data .data.* .sdata .sdata.*)
+ .data          0x0000000010001000        0x8 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+ .data          0x0000000010001008        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ .sdata.probe_status
+                0x0000000010001008        0x4 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                0x0000000010001008                probe_status
+ *fill*         0x000000001000100c        0x4 
+ .data.divisor  0x0000000010001010       0x10 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                0x0000000010001010                divisor
+ .data.dividend
+                0x0000000010001020       0x10 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                0x0000000010001020                dividend
+ .data          0x0000000010001030        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+ .data          0x0000000010001030        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .data          0x0000000010001030        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+                0x0000000010001800                __global_pointer$ = (ADDR (.data) + 0x800)
+
+.bss            0x0000000010001030       0x40
+ *(.bss .bss.* .sbss .sbss.* COMMON)
+ .bss           0x0000000010001030        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+ .bss           0x0000000010001030        0x0 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ .bss.destination
+                0x0000000010001030       0x24 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ *fill*         0x0000000010001054        0xc 
+ .bss.quotient  0x0000000010001060       0x10 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                0x0000000010001060                quotient
+ .bss           0x0000000010001070        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+ .bss           0x0000000010001070        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .bss           0x0000000010001070        0x0 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+                0x0000000010001070                __image_end = .
+                0x0000000010010000                __stack_top = (PROBE_BASE + 0x10000)
+                0x0000000000000001                ASSERT ((__image_end < (__stack_top - 0x1000)), probe exceeds reserved memory)
+
+.riscv.attributes
+                0x0000000000000000       0x6a
+ *(.riscv.attributes)
+ .riscv.attributes
+                0x0000000000000000       0x68 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+ .riscv.attributes
+                0x0000000000000068       0x66 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+ .riscv.attributes
+                0x00000000000000ce       0x66 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+ .riscv.attributes
+                0x0000000000000134       0x66 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .riscv.attributes
+                0x000000000000019a       0x66 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+/DISCARD/
+ *(.comment)
+ *(.note.GNU-stack)
+OUTPUT(/home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_spm.elf elf64-littleriscv)
+
+.debug_info     0x0000000000000000      0x8c3
+ .debug_info    0x0000000000000000      0x7cb /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .debug_info    0x00000000000007cb       0xf8 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.debug_abbrev   0x0000000000000000      0x22f
+ .debug_abbrev  0x0000000000000000      0x1bf /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .debug_abbrev  0x00000000000001bf       0x70 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.debug_loclists
+                0x0000000000000000      0x61a
+ .debug_loclists
+                0x0000000000000000      0x61a /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+
+.debug_aranges  0x0000000000000000       0x50
+ .debug_aranges
+                0x0000000000000000       0x30 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .debug_aranges
+                0x0000000000000030       0x20 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.debug_rnglists
+                0x0000000000000000       0x80
+ .debug_rnglists
+                0x0000000000000000       0x80 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+
+.debug_line     0x0000000000000000      0x97d
+ .debug_line    0x0000000000000000      0x93e /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+ .debug_line    0x000000000000093e       0x3f /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.debug_str      0x0000000000000000      0x2f3
+ .debug_str     0x0000000000000000      0x2f3 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+                                        0x294 (size before relaxing)
+ .debug_str     0x00000000000002f3      0x1e2 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+.debug_line_str
+                0x0000000000000000       0xa3
+ .debug_line_str
+                0x0000000000000000       0xa3 /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+                                        0x11a (size before relaxing)
+ .debug_line_str
+                0x00000000000000a3      0x11a /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+
+Cross Reference Table
+
+Symbol                                            File
+__clz_tab                                         /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_clz.o)
+                                                  /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+__divti3                                          /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/libgcc.a(_divdi3.o)
+                                                  /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+__global_pointer$                                 /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+__stack_top                                       /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+_start                                            /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+dividend                                          /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+divisor                                           /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+memcpy                                            /opt/riscv/lib/gcc/riscv64-unknown-elf/13.2.0/../../../../riscv64-unknown-elf/lib/libc.a(libc_a-memcpy.o)
+                                                  /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+probe_main                                        /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                                                  /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+probe_status                                      /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+                                                  /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o
+quotient                                          /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_c.o
+scalar_isa_probe                                  /home/zhaowy24/CheshireAraPULP/_e01/preflight/run_001/scalar_asm.o

@@ -6,6 +6,8 @@
 
 本手册面向有 MIPS/自定义总线经验、正在学习 RISC-V/AXI 的团队，按“在哪里改、参数是什么意思、实际值是多少、哪些地方要一起改”组织。
 
+**2026-10-19使用入口：**先读[上手指南：配置生效路径](../software/SERVER_SIMULATION_GUIDE.md#config)，再查[服务器固定配置追踪表](RECIPES.md#server-config-trace)。前者解释硬件结构、运行行为、TB环境和工具选项的区别；后者按pkg/TB/脚本列出默认值、覆盖、消费者与重做范围。以本地`2f0f2d6f…`源码和2026-10-18服务器证据为依据，本轮SSH握手超时，未新增服务器实测。下文旧日期保留其原检查范围。
+
 整理日期：2026-09-20；任务：L01 配置学习文档；源码基准：本仓库 HEAD `379ae4544bc62e05a2736b11b33a3244181bba38`，含版本管理中的 `.bender/` 本地依赖快照。**该次只做源码与文档静态检查，未编译、仿真、综合或板测。** 用户此前报告的 VCU118 HelloWorld 不扩展解释成 Ara/DDR 全功能已验证。
 
 > 2026-10-11 复核基准：HEAD `2784340240915fe4338ec54bfd613723b127d62e`。本次按子系统重组 CVA6 字段，并定向核对配置覆盖、Ara、iDMA、Serial Link 和平台时钟；未重新验证所有组合或运行生产目标。原编制日期与历史证据保留。
@@ -18,7 +20,7 @@
 
 | 文档 | 解决的问题 | 覆盖范围 |
 | --- | --- | --- |
-| [常用配置与修改流程](RECIPES.md) | 当前到底用哪组配置？第一次怎么改？ | 仿真/FPGA/软件入口、配置矩阵、示例、核对表 |
+| [常用配置与修改流程](RECIPES.md) | 当前到底用哪组配置？哪一层真正使用它？ | 首部为当前固定配置的文件地图、覆盖链与有效值表；后附仿真/FPGA/软件示例 |
 | [CVA6 参数](CVA6.md) | CPU profile、ISA、cache、MMU、PMP 怎么配？ | cva6_user_cfg_t 全部 88 字段，按六类子系统组织，附覆盖与派生量 |
 | [Cheshire SoC 参数](CHESHIRE.md) | 总线、地址、外设开关、LLC、外部接口怎么配？ | 当前 cheshire_cfg_t 全部 113 字段、默认值、地址图、容量公式 |
 | [Ara 参数](ARA.md) | lanes、VLEN、浮点、访存带宽怎么配？ | 顶层参数、固定实例参数、包常量、现有 lane 示例 |
@@ -33,12 +35,14 @@
 | 层次 | 例子 | 何时生效 | 误区 |
 | --- | --- | --- | --- |
 | 源文件/profile 选择 | cv64a6_imafdcv_sv39_config_pkg.sv | 编译源码时 | SELCFG 不会切换已编译的 CPU profile |
-| 宏 | ARA、NR_LANES、VLEN、TARGET_VCU118 | 预处理时 | FPGA wrapper 读宏，当前 TB Ara 函数却写死 2/2048 |
+| 宏 | ARA、NR_LANES、VLEN、TARGET_VCU118 | 预处理时 | 必须有消费者：FPGA wrapper读宏，Cheshire TB Ara函数独立赋值2/2048 |
 | 硬件参数 | Cfg.Ara、Cfg.LlcSetAssoc、Cva6Cfg.RVV | 展开/综合时 | 运行软件无法增加 lane 或扩容 SRAM |
 | 生成参数 | PLIC src/target、CLINTCORES、SerialLink NumBits | 生成寄存器 RTL/头文件时 | 改 SoC 字段不自动重生成 IP |
 | 软件与运行时 | -march/-mabi、VS/FS、DMA 长度、LLC SPM way | 软件构建/运行时 | 编译器能生成指令不表示硬件已经支持 |
+| TB环境参数 | UseDramSys、VIP的ClkPeriodSys/RstCycles | 仿真展开及运行激励 | 不改变SoC内部电路仍可能需要重新展开；tb文件中的SelectedCfg却会改变DUT配置 |
+| 工具与观察 | CXX_PATH、-debug_access、UCLI波形窗口、timeout | 对应构建或运行阶段 | 主机工具配置与芯片配置不同，工具参数本身也不是同一阶段生效 |
 
-`parameter` 是实例化时传入的硬件配置；`localparam` 通常由其他参数计算或由实现固定；`typedef struct packed` 把许多配置打包成一个可传递对象。`DefaultCfg` 是起点，函数先复制再覆盖部分字段。模块声明的 `Cfg='0` 或 `parameter ...=0` 常是占位，不是可工作的推荐实例。判断具体目标时，继续沿 TB 的 `DutCfg` 或 FPGA 的 `FPGACfg` 查传入值，再核对选入的 profile/宏；只有构建输入和展开记录一致，才能把推导称为该次构建的最终有效值。
+`parameter`是实例可传入的常量/类型，既用于DUT也用于TB；`localparam`通常由其他参数计算或由实现固定；`typedef struct packed`把许多配置打包成一个可传递对象。package可包含这些声明、枚举和函数，不是运行时配置寄存器。`DefaultCfg`是起点，函数先复制再覆盖部分字段。模块声明的`Cfg='0`或类型`logic`等可能只是占位，不能据此判断工作实例。继续沿TB的`DutCfg`或FPGA的`FPGACfg`查绑定，再核对profile/宏和最终消费者；源码推导值与实际构建证据分开记录。
 
 ```mermaid
 flowchart TD
@@ -60,7 +64,7 @@ flowchart TD
 
 ## 3. 常用配置基准
 
-以下是**向量 profile + TB Ara 配置**的静态取值快照，尚不能当成当前标量仿真脚本已经使用的组合：
+以下是**向量profile＋TB Ara配置**的静态取值快照。旧版手册所述“当前标量仿真脚本”指当时本地生成产物，不代表服务器后续状态：2026-10-18服务器已核对向量清单及SelectedCfg=3，并取得修正FS后的单例运行证据。下表仍不冒充逐项动态读回；默认/覆盖/消费者及证据范围见[当前追踪表](RECIPES.md#server-config-trace)。
 
 | 项目 | 值 |
 | --- | --- |
@@ -92,9 +96,9 @@ flowchart TD
 
 本手册依据仓库内源码，不依赖最新版网络文档推断本地行为。每章链接到具体定义/消费者。表中区分 profile 原值、SoC 覆盖值、派生值与建议；以当前代码和可追溯测试为准。
 
-本轮发现的消费者差异与待核查项集中在 [修改流程的已知缺口](RECIPES.md#6-本轮静态发现与待验证项)，包括仿真 profile/decoder、Serial Link 分频字段、SPM 执行属性、DMA 1D busy、VGA 错误追踪容量。没有顺手修改 RTL。
+历史发现的消费者差异与待核查项集中在[修改流程的已知缺口](RECIPES.md#6-本轮静态发现与待验证项)，包括旧本地仿真profile/decoder、Serial Link分频字段、SPM执行属性、DMA 1D busy、VGA错误追踪容量。服务器清单后续状态另列，未将单例通过当作其他缺口关闭；没有修改RTL。
 
-项目目标与边界见 [PROJECT_STATE](../PROJECT_STATE.md)、[AGENT_TASKS](../AGENT_TASKS.md) 和 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。本轮验证与交接见 [L01 记录](../handoffs/L01_configuration_reference.md)。
+项目目标与边界见 [PROJECT_STATE](../PROJECT_STATE.md)、[AGENT_TASKS](../AGENT_TASKS.md) 和 [ASIC 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。原手册验证见[L01记录](../handoffs/L01_configuration_reference.md)；2026-10-19配置导读增量见[E01交接](../handoffs/E01_fixed_vector_extraction.md)。
 
 <a id="teaching-20261007"></a>
 

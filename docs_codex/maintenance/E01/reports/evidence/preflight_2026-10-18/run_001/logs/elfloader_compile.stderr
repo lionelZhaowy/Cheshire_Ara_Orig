@@ -1,0 +1,149 @@
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp: In function ‘void write(uint64_t, uint64_t, uint8_t*)’:
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:160:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint64_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  160 |   for (int i = 0; i < len; i++) {
+      |                   ~~^~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp: In function ‘char get_section(long long int*, long long int*)’:
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:180:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::pair<long unsigned int, long unsigned int> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  180 |   if (section_index < sections.size()) {
+      |       ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp: In function ‘char read_section(long long int, svOpenArrayHandle, long long int)’:
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:197:56: warning: format ‘%p’ expects argument of type ‘void*’, but argument 2 has type ‘long long int’ [-Wformat=]
+  197 |     printf("[ELF] ERROR: No section found for address %p\n", address);
+      |                                                       ~^     ~~~~~~~
+      |                                                        |     |
+      |                                                        void* long long int
+      |                                                       %lld
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:205:39: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘long long int’ [-Wformat=]
+  205 |       printf("[ELF] ERROR: Copied 0x%lx bytes. Buffer is full but there is still data available.\n", len);
+      |                                     ~~^                                                              ~~~
+      |                                       |                                                              |
+      |                                       long unsigned int                                              long long int
+      |                                     %llx
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp: In instantiation of ‘void load_elf(char*, size_t) [with E = Elf32_Ehdr; P = Elf32_Phdr; Sh = Elf32_Shdr; Sy = Elf32_Sym; size_t = long unsigned int]’:
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:340:60:   required from here
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:230:38: warning: format ‘%p’ expects argument of type ‘void*’, but argument 2 has type ‘uint64_t’ {aka ‘long unsigned int’} [-Wformat=]
+  230 |   printf("[ELF] INFO: Entrypoint at %p\n", entry);
+      |                                     ~^     ~~~~~
+      |                                      |     |
+      |                                      void* uint64_t {aka long unsigned int}
+      |                                     %ld
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:244:56: warning: format ‘%p’ expects argument of type ‘void*’, but argument 2 has type ‘uint32_t’ {aka ‘unsigned int’} [-Wformat=]
+  244 |         printf("[ELF] WARNING: The section starting @ %p contains 0x%lx zero bytes which will NOT be preloaded!\n",
+      |                                                       ~^
+      |                                                        |
+      |                                                        void*
+      |                                                       %d
+  245 |                ph[i].p_paddr, (ph[i].p_memsz - ph[i].p_filesz));
+      |                ~~~~~~~~~~~~~                            
+      |                      |
+      |                      uint32_t {aka unsigned int}
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:244:71: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘uint32_t’ {aka ‘unsigned int’} [-Wformat=]
+  244 |         printf("[ELF] WARNING: The section starting @ %p contains 0x%lx zero bytes which will NOT be preloaded!\n",
+      |                                                                     ~~^
+      |                                                                       |
+      |                                                                       long unsigned int
+      |                                                                     %x
+  245 |                ph[i].p_paddr, (ph[i].p_memsz - ph[i].p_filesz));
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         
+      |                                              |
+      |                                              uint32_t {aka unsigned int}
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:257:108: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘int’ [-Wformat=]
+  257 |     printf("[ELF] ERROR: Malformed ELF file. The index of the section header strings is out of bounds (0x%lx vs max 0x%lx)",
+      |                                                                                                          ~~^
+      |                                                                                                            |
+      |                                                                                                            long unsigned int
+      |                                                                                                          %x
+  258 |            eh->e_shstrndx, eh->e_shnum);
+      |            ~~~~~~~~~~~~~~                                                                                   
+      |                |
+      |                int
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:257:121: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘int’ [-Wformat=]
+  257 |     printf("[ELF] ERROR: Malformed ELF file. The index of the section header strings is out of bounds (0x%lx vs max 0x%lx)",
+      |                                                                                                                       ~~^
+      |                                                                                                                         |
+      |                                                                                                                         long unsigned int
+      |                                                                                                                       %x
+  258 |            eh->e_shstrndx, eh->e_shnum);
+      |                            ~~~~~~~~~~~                                                                                   
+      |                                |
+      |                                int
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:263:103: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘uint32_t’ {aka ‘unsigned int’} [-Wformat=]
+  263 |     printf("[ELF] ERROR: Filesize is smaller than advertised size of section name table (0x%lx vs 0x%lx)\n",
+      |                                                                                                     ~~^
+      |                                                                                                       |
+      |                                                                                                       long unsigned int
+      |                                                                                                     %x
+  264 |            size, sh[eh->e_shstrndx].sh_offset + sh[eh->e_shstrndx].sh_size);
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                             
+      |                                               |
+      |                                               uint32_t {aka unsigned int}
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:279:60: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘uint32_t’ {aka ‘unsigned int’} [-Wformat=]
+  279 |       printf("[ELF] INFO: Found string table at offset 0x%lx\n", sh[i].sh_offset);
+      |                                                          ~~^     ~~~~~~~~~~~~~~~
+      |                                                            |           |
+      |                                                            |           uint32_t {aka unsigned int}
+      |                                                            long unsigned int
+      |                                                          %x
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:286:60: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘uint32_t’ {aka ‘unsigned int’} [-Wformat=]
+  286 |       printf("[ELF] INFO: Found symbol table at offset 0x%lx\n", sh[i].sh_offset);
+      |                                                          ~~^     ~~~~~~~~~~~~~~~
+      |                                                            |           |
+      |                                                            |           uint32_t {aka unsigned int}
+      |                                                            long unsigned int
+      |                                                          %x
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:275:18: warning: unused variable ‘max_len’ [-Wunused-variable]
+  275 |     unsigned int max_len = sh[eh->e_shstrndx].sh_size - sh[i].sh_name;
+      |                  ^~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:270:16: warning: variable ‘strtabidx’ set but not used [-Wunused-but-set-variable]
+  270 |   unsigned int strtabidx = 0, symtabidx = 0;
+      |                ^~~~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:270:31: warning: variable ‘symtabidx’ set but not used [-Wunused-but-set-variable]
+  270 |   unsigned int strtabidx = 0, symtabidx = 0;
+      |                               ^~~~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp: In instantiation of ‘void load_elf(char*, size_t) [with E = Elf64_Ehdr; P = Elf64_Phdr; Sh = Elf64_Shdr; Sy = Elf64_Sym; size_t = long unsigned int]’:
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:342:60:   required from here
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:230:38: warning: format ‘%p’ expects argument of type ‘void*’, but argument 2 has type ‘uint64_t’ {aka ‘long unsigned int’} [-Wformat=]
+  230 |   printf("[ELF] INFO: Entrypoint at %p\n", entry);
+      |                                     ~^     ~~~~~
+      |                                      |     |
+      |                                      void* uint64_t {aka long unsigned int}
+      |                                     %ld
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:244:56: warning: format ‘%p’ expects argument of type ‘void*’, but argument 2 has type ‘uint64_t’ {aka ‘long unsigned int’} [-Wformat=]
+  244 |         printf("[ELF] WARNING: The section starting @ %p contains 0x%lx zero bytes which will NOT be preloaded!\n",
+      |                                                       ~^
+      |                                                        |
+      |                                                        void*
+      |                                                       %ld
+  245 |                ph[i].p_paddr, (ph[i].p_memsz - ph[i].p_filesz));
+      |                ~~~~~~~~~~~~~                            
+      |                      |
+      |                      uint64_t {aka long unsigned int}
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:257:108: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘int’ [-Wformat=]
+  257 |     printf("[ELF] ERROR: Malformed ELF file. The index of the section header strings is out of bounds (0x%lx vs max 0x%lx)",
+      |                                                                                                          ~~^
+      |                                                                                                            |
+      |                                                                                                            long unsigned int
+      |                                                                                                          %x
+  258 |            eh->e_shstrndx, eh->e_shnum);
+      |            ~~~~~~~~~~~~~~                                                                                   
+      |                |
+      |                int
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:257:121: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘int’ [-Wformat=]
+  257 |     printf("[ELF] ERROR: Malformed ELF file. The index of the section header strings is out of bounds (0x%lx vs max 0x%lx)",
+      |                                                                                                                       ~~^
+      |                                                                                                                         |
+      |                                                                                                                         long unsigned int
+      |                                                                                                                       %x
+  258 |            eh->e_shstrndx, eh->e_shnum);
+      |                            ~~~~~~~~~~~                                                                                   
+      |                                |
+      |                                int
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:275:18: warning: unused variable ‘max_len’ [-Wunused-variable]
+  275 |     unsigned int max_len = sh[eh->e_shstrndx].sh_size - sh[i].sh_name;
+      |                  ^~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:270:16: warning: variable ‘strtabidx’ set but not used [-Wunused-but-set-variable]
+  270 |   unsigned int strtabidx = 0, symtabidx = 0;
+      |                ^~~~~~~~~
+/home/zhaowy24/CheshireAraPULP/_e01/preflight/inputs/elfloader.cpp:270:31: warning: variable ‘symtabidx’ set but not used [-Wunused-but-set-variable]
+  270 |   unsigned int strtabidx = 0, symtabidx = 0;
+      |                               ^~~~~~~~~
