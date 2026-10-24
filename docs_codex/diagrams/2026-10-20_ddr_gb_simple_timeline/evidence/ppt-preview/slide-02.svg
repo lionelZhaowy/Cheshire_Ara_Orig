@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025.0" viewBox="0 0 3600 2025.0">
+  <defs>
+    <marker id="arrow314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66"/>
+    </marker>
+    <marker id="arrow187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78"/>
+    </marker>
+  </defs>
+  <rect id="canvas" x="0" y="0" width="3600" height="2025.0" fill="#FFFFFF" stroke="none"/>
+  <rect x="75.0" y="22.67997750281215" width="1080.0" height="86.39988751406074" id="shape-2" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-2-0" x="75.0" y="73.43997750281216" font-family="WenQuanYi Zen Hei" font-size="54.0" font-weight="bold" fill="#29292D" text-anchor="start">缺少同步时，同一地址会出现不同数据版本</text>
+  <rect x="75.0" y="105.12007874015748" width="1332.0" height="57.600112485939256" id="shape-3" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-3-0" x="75.0" y="138.96007874015748" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#606773" text-anchor="start">三个独立场景：输入过期、输出旧副本、迟到脏写回。数值表示所示时刻的状态。</text>
+  <rect x="52.5" y="217.5" width="3495.0" height="480.0" id="shape-4" fill="#F7F9FA" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="90.0" y="239.39988751406074" width="877.2398762654668" height="72.0" id="shape-5" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-5-0" x="90.0" y="281.6998875140607" font-family="WenQuanYi Zen Hei" font-size="45.0" font-weight="bold" fill="#29292D" text-anchor="start">① 输入：CPU 写 x = 2，设备却搬到 x = 1</text>
+  <rect x="90.0" y="352.5" width="600.0" height="225.0" id="shape-6" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="274.6487626546682" y="385.2601237345332" width="230.70247469066368" height="64.80005624296963" id="shape-7" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-7-0" x="390.0" y="423.3301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">CPU / L1D</text>
+  <rect x="217.25984251968504" y="442.62007874015745" width="345.48059617547807" height="57.600112485939256" id="shape-8" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-8-0" x="390.0001406074241" y="476.4600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">L1D 阵列仍为 x = 1</text>
+  <rect x="227.683633295838" y="495.12007874015745" width="324.632733408324" height="57.600112485939256" id="shape-9" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-9-0" x="390.0" y="528.9600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">CPU 读可前递到 2</text>
+  <rect x="787.5" y="352.5" width="600.0" height="225.0" id="shape-10" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1006.5" y="385.2601237345332" width="162.0" height="64.80005624296963" id="shape-11" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-11-0" x="1087.5" y="423.3301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">写缓冲</text>
+  <rect x="969.814398200225" y="442.62007874015745" width="235.37120359955006" height="57.600112485939256" id="shape-12" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-12-0" x="1087.5" y="476.4600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">待推进 x = 2</text>
+  <rect x="961.5" y="495.12007874015745" width="252.0" height="57.600112485939256" id="shape-13" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-13-0" x="1087.5" y="528.9600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">下层尚未收到</text>
+  <rect x="1485.0" y="352.5" width="600.0" height="225.0" id="shape-14" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1696.7612485939258" y="385.2601237345332" width="176.47722159730034" height="64.80005624296963" id="shape-15" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-15-0" x="1784.999859392576" y="423.3301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">WB LLC</text>
+  <rect x="1649.314398200225" y="442.62007874015745" width="271.37120359955003" height="57.600112485939256" id="shape-16" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-16-0" x="1785.0" y="476.4600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">当前仍为 x = 1</text>
+  <rect x="1588.8104611923509" y="495.12007874015745" width="392.37879640044997" height="57.600112485939256" id="shape-17" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-17-0" x="1784.999859392576" y="528.9600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">收到新写后可持脏值 2</text>
+  <rect x="2182.5" y="352.5" width="600.0" height="225.0" id="shape-18" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="2423.0143419572555" y="385.2601237345332" width="118.97103487064118" height="64.80005624296963" id="shape-19" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-19-0" x="2482.499859392576" y="423.3301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">DDR</text>
+  <rect x="2424.210911136108" y="442.62007874015745" width="116.57817772778402" height="57.600112485939256" id="shape-20" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-20-0" x="2482.5" y="476.4600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">x = 1</text>
+  <rect x="2320.5" y="495.12007874015745" width="324.0" height="57.600112485939256" id="shape-21" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-21-0" x="2482.5" y="528.9600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">设备可见的旧输入</text>
+  <rect x="2880.0" y="352.5" width="600.0" height="225.0" id="shape-22" fill="#D9EEE8" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="3133.863329583802" y="385.2601237345332" width="92.27334083239595" height="64.80005624296963" id="shape-23" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-23-0" x="3180.0" y="423.3301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">GB</text>
+  <rect x="3080.314398200225" y="442.62007874015745" width="199.37120359955006" height="57.600112485939256" id="shape-24" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-24-0" x="3180.0" y="476.4600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">搬入 x = 1</text>
+  <rect x="3015.152418447694" y="495.12007874015745" width="329.6954443194601" height="57.600112485939256" id="shape-25" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-25-0" x="3180.000140607424" y="528.9600787401574" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">NPU 使用了旧输入</text>
+  <rect x="90.0" y="605.8799212598425" width="1397.3813273340832" height="62.399887514060744" id="shape-26" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-26-0" x="90.0" y="642.5399212598425" font-family="WenQuanYi Zen Hei" font-size="39.0" font-weight="normal" fill="#29292D" text-anchor="start">写缓冲排空之后，新值还可能只到达 WB LLC；输入 clean 继续把它推进 DDR。</text>
+  <rect x="52.5" y="765.0" width="3495.0" height="480.0" id="shape-27" fill="#F7F9FA" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="90.0" y="786.8998875140608" width="920.4820022497188" height="72.0" id="shape-28" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-28-0" x="90.0" y="829.1998875140607" font-family="WenQuanYi Zen Hei" font-size="45.0" font-weight="bold" fill="#29292D" text-anchor="start">② 输出：设备已写 y = 9，CPU 仍命中 y = 0</text>
+  <rect x="90.0" y="900.0" width="600.0" height="225.0" id="shape-29" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="274.6487626546682" y="932.7601237345332" width="230.70247469066368" height="64.80005624296963" id="shape-30" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-30-0" x="390.0" y="970.8301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">CPU / L1D</text>
+  <rect x="254.66591676040494" y="990.1200787401575" width="270.667885264342" height="57.600112485939256" id="shape-31" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-31-0" x="389.9998593925759" y="1023.9600787401575" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">缓存副本 y = 0</text>
+  <rect x="225.87317210348706" y="1042.6200787401574" width="328.253937007874" height="57.600112485939256" id="shape-32" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-32-0" x="390.0001406074241" y="1076.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">CPU 读取命中旧值</text>
+  <rect x="787.5" y="900.0" width="600.0" height="225.0" id="shape-33" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1006.5" y="932.7601237345332" width="162.0" height="64.80005624296963" id="shape-34" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-34-0" x="1087.5" y="970.8301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">写缓冲</text>
+  <rect x="997.5" y="990.1200787401575" width="180.0" height="57.600112485939256" id="shape-35" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-35-0" x="1087.5" y="1023.9600787401575" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">此时为空</text>
+  <rect x="961.5" y="1042.6200787401574" width="252.0" height="57.600112485939256" id="shape-36" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-36-0" x="1087.5" y="1076.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">没有待完成写</text>
+  <rect x="1485.0" y="900.0" width="600.0" height="225.0" id="shape-37" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1731.9620359955006" y="932.7601237345332" width="106.07564679415073" height="64.80005624296963" id="shape-38" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-38-0" x="1784.999859392576" y="970.8301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">LLC</text>
+  <rect x="1631.665916760405" y="990.1200787401575" width="306.667885264342" height="57.600112485939256" id="shape-39" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-39-0" x="1784.9998593925761" y="1023.9600787401575" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">干净旧副本 y = 0</text>
+  <rect x="1587.0" y="1042.6200787401574" width="396.0" height="57.600112485939256" id="shape-40" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-40-0" x="1785.0" y="1076.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">下次回填也可能取旧值</text>
+  <rect x="2182.5" y="900.0" width="600.0" height="225.0" id="shape-41" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="2423.0143419572555" y="932.7601237345332" width="118.97103487064118" height="64.80005624296963" id="shape-42" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-42-0" x="2482.499859392576" y="970.8301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">DDR</text>
+  <rect x="2424.562429696288" y="990.1200787401575" width="115.87514060742407" height="57.600112485939256" id="shape-43" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-43-0" x="2482.5" y="1023.9600787401575" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">y = 9</text>
+  <rect x="2338.5" y="1042.6200787401574" width="288.0" height="57.600112485939256" id="shape-44" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-44-0" x="2482.5" y="1076.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">已收到设备结果</text>
+  <rect x="2880.0" y="900.0" width="600.0" height="225.0" id="shape-45" fill="#D9EEE8" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="3133.863329583802" y="932.7601237345332" width="92.27334083239595" height="64.80005624296963" id="shape-46" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-46-0" x="3180.0" y="970.8301237345332" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">GB</text>
+  <rect x="3080.665916760405" y="990.1200787401575" width="198.66788526434195" height="57.600112485939256" id="shape-47" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-47-0" x="3179.9998593925757" y="1023.9600787401575" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">结果 y = 9</text>
+  <rect x="3026.3321147356583" y="1042.6200787401574" width="307.33605174353204" height="57.600112485939256" id="shape-48" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-48-0" x="3180.0001406074243" y="1076.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">设备向 DDR 搬出</text>
+  <rect x="90.0" y="1153.3799212598426" width="1364.8172103487063" height="62.399887514060744" id="shape-49" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-49-0" x="90.0" y="1190.0399212598427" font-family="WenQuanYi Zen Hei" font-size="39.0" font-weight="normal" fill="#29292D" text-anchor="start">输出交还 CPU 前，对 L1D 与 LLC 执行失效，并协调此前尚未完成的旧回填。</text>
+  <rect x="52.5" y="1312.5" width="3495.0" height="480.0" id="shape-50" fill="#F7F9FA" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="90.0" y="1334.3998875140608" width="1068.1805399325085" height="72.0" id="shape-51" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-51-0" x="90.0" y="1376.6998875140607" font-family="WenQuanYi Zen Hei" font-size="45.0" font-weight="bold" fill="#29292D" text-anchor="start">③ 输出：设备先写 y = 9，LLC 的旧脏行随后覆盖它</text>
+  <rect x="90.0" y="1447.5" width="600.0" height="225.0" id="shape-52" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="274.6487626546682" y="1480.2601237345332" width="230.70247469066368" height="64.80005624296963" id="shape-53" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-53-0" x="390.0" y="1518.3301237345331" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">CPU / L1D</text>
+  <rect x="254.66591676040494" y="1537.6200787401574" width="270.667885264342" height="57.600112485939256" id="shape-54" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-54-0" x="389.9998593925759" y="1571.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">先前写过 y = 3</text>
+  <rect x="202.47665916760405" y="1590.1200787401574" width="375.04696287964003" height="57.600112485939256" id="shape-55" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-55-0" x="390.0001406074241" y="1623.9600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">此时 CPU 已停止访问</text>
+  <rect x="787.5" y="1447.5" width="600.0" height="225.0" id="shape-56" fill="#F1D7D9" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1006.5" y="1480.2601237345332" width="162.0" height="64.80005624296963" id="shape-57" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-57-0" x="1087.5" y="1518.3301237345331" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">写缓冲</text>
+  <rect x="943.5" y="1537.6200787401574" width="288.0" height="57.600112485939256" id="shape-58" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-58-0" x="1087.5" y="1571.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">先前的写已推进</text>
+  <rect x="944.958942632171" y="1590.1200787401574" width="285.082114735658" height="57.600112485939256" id="shape-59" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-59-0" x="1087.5" y="1623.9600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">LLC 尚有脏数据</text>
+  <rect x="1485.0" y="1447.5" width="600.0" height="225.0" id="shape-60" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="1696.7612485939258" y="1480.2601237345332" width="176.47722159730034" height="64.80005624296963" id="shape-61" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-61-0" x="1784.999859392576" y="1518.3301237345331" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">WB LLC</text>
+  <rect x="1649.665916760405" y="1537.6200787401574" width="270.667885264342" height="57.600112485939256" id="shape-62" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-62-0" x="1784.9998593925761" y="1571.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">旧脏副本 y = 3</text>
+  <rect x="1641.0" y="1590.1200787401574" width="288.0" height="57.600112485939256" id="shape-63" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-63-0" x="1785.0" y="1623.9600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">稍后替换并写回</text>
+  <rect x="2182.5" y="1447.5" width="600.0" height="225.0" id="shape-64" fill="#D8E8F4" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="2423.0143419572555" y="1480.2601237345332" width="118.97103487064118" height="64.80005624296963" id="shape-65" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-65-0" x="2482.499859392576" y="1518.3301237345331" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">DDR</text>
+  <rect x="2355.8321147356583" y="1537.6200787401574" width="253.33605174353207" height="57.600112485939256" id="shape-66" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-66-0" x="2482.5001406074243" y="1571.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">y = 9 → y = 3</text>
+  <rect x="2338.5" y="1590.1200787401574" width="288.0" height="57.600112485939256" id="shape-67" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-67-0" x="2482.5" y="1623.9600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">设备结果被覆盖</text>
+  <rect x="2880.0" y="1447.5" width="600.0" height="225.0" id="shape-68" fill="#D9EEE8" stroke="#29292D" stroke-width="2.550056242969629" stroke-linejoin="miter"/>
+  <rect x="3133.863329583802" y="1480.2601237345332" width="92.27334083239595" height="64.80005624296963" id="shape-69" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-69-0" x="3180.0" y="1518.3301237345331" font-family="WenQuanYi Zen Hei" font-size="40.5" font-weight="bold" fill="#29292D" text-anchor="middle">GB</text>
+  <rect x="3080.665916760405" y="1537.6200787401574" width="198.66788526434195" height="57.600112485939256" id="shape-70" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-70-0" x="3179.9998593925757" y="1571.4600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">结果 y = 9</text>
+  <rect x="3036.0" y="1590.1200787401574" width="288.0" height="57.600112485939256" id="shape-71" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-71-0" x="3180.0" y="1623.9600787401573" font-family="WenQuanYi Zen Hei" font-size="36.0" font-weight="normal" fill="#29292D" text-anchor="middle">此前已完成搬出</text>
+  <rect x="90.0" y="1700.8799212598426" width="1236.5764904386951" height="62.399887514060744" id="shape-72" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-72-0" x="90.0" y="1737.5399212598427" font-family="WenQuanYi Zen Hei" font-size="39.0" font-weight="normal" fill="#29292D" text-anchor="start">输出写入前先排空旧写、clean + invalidate；写入后再失效旧读副本。</text>
+  <path d="M 690.0000 465.0000 L 787.5000 465.0000" id="shape-73" fill="none" stroke="#314D66" stroke-width="4.199943757030371" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <path d="M 1387.5000 465.0000 L 1485.0000 465.0000" id="shape-74" fill="none" stroke="#314D66" stroke-width="4.199943757030371" stroke-linejoin="miter" stroke-dasharray="10.499859392575928 7.499881566366703" marker-end="url(#arrow314D66)"/>
+  <path d="M 2782.5000 465.0000 L 2880.0000 465.0000" id="shape-75" fill="none" stroke="#187C78" stroke-width="4.199943757030371" stroke-linejoin="miter" marker-end="url(#arrow187C78)"/>
+  <path d="M 2880.0000 1012.5000 L 2782.5000 1012.5000" id="shape-76" fill="none" stroke="#187C78" stroke-width="4.199943757030371" stroke-linejoin="miter" marker-end="url(#arrow187C78)"/>
+  <path d="M 2085.0000 1560.0000 L 2182.5000 1560.0000" id="shape-77" fill="none" stroke="#314D66" stroke-width="4.199943757030371" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <path d="M 2880.0000 1560.0000 L 2782.5000 1560.0000" id="shape-78" fill="none" stroke="#187C78" stroke-width="4.199943757030371" stroke-linejoin="miter" marker-end="url(#arrow187C78)"/>
+  <rect x="90.0" y="1847.8799212598426" width="1495.1085489313837" height="62.399887514060744" id="shape-79" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-79-0" x="90.0" y="1884.5399212598427" font-family="WenQuanYi Zen Hei" font-size="39.0" font-weight="normal" fill="#29292D" text-anchor="start">蓝色：CPU / 缓存写入    绿色：设备搬运（经过共享数据代理）    虚线：待完成写入</text>
+  <rect x="90.0" y="1922.8799212598426" width="1452.257874015748" height="62.399887514060744" id="shape-80" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-80-0" x="90.0" y="1959.5399212598427" font-family="WenQuanYi Zen Hei" font-size="39.0" font-weight="normal" fill="#29292D" text-anchor="start">三个场景共同指向：输入先清理到 DDR，输出写前保护旧数据、写后清除旧副本。</text>
+</svg>

@@ -1,0 +1,307 @@
+{
+  "status": "prepared_not_applied",
+  "reference": {
+    "head": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "baseline": "424e4d2cd9f7e129bbda7e595504a48952b150e9",
+    "passed_tag": "reference-p1-p5-pass-20261024",
+    "passed_commit": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "remote_main": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c"
+  },
+  "steps": [
+    {
+      "name": "P1",
+      "candidate_commit": "26637be97e731a98ae0fd220b61f814f6a703409",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv",
+          "before_blob": "845c81a376c693def6ffe0b985319f5a4e9fb9b8",
+          "after_blob": "93afa0ed839b893898da79d95c4ba4699e6dd792"
+        }
+      ],
+      "r_commit": "0073a2f8cbbada5f359dd0b7ba0617ee7c20179a",
+      "r_parent": "319f5f0bc9806dd23efcbafa0d7268fc2ea2b759"
+    },
+    {
+      "name": "P2_official",
+      "candidate_commit": "7a7075a71386027b1da630bf2d8268b561957654",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vmfpu.sv",
+          "before_blob": "c125986491ac51fba722d992885c974e81d9fb08",
+          "after_blob": "744dfc62efcaab74ea08be1b1e22a5e0cb84cad5"
+        }
+      ],
+      "r_commit": "6694b4e81dd00a420e3615a667299ba5e1c9f858",
+      "r_parent": "48232ea131cf527184e1cd48346ec2fe1bf9c888"
+    },
+    {
+      "name": "P2_mask",
+      "candidate_commit": "2b36bfcc68b2f2cf4b67a190804a1872262a392d",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/masku/masku.sv",
+          "before_blob": "0a48f02687548d5da30983cbc32414574f6750ba",
+          "after_blob": "37b47cc1eeec8c01c34ab51c9d0d737c35627a16"
+        }
+      ],
+      "r_commit": "8ade2100115ab7f536535f1be0ff7e00dd429411",
+      "r_parent": "6694b4e81dd00a420e3615a667299ba5e1c9f858"
+    },
+    {
+      "name": "P2_sequencer",
+      "candidate_commit": "6382e4214100c0e0de56dcd7190941cbaeebae0e",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv",
+          "before_blob": "9cd0cc405c75caa36d1b4554296ae25c786f37d1",
+          "after_blob": "890e9103f14a4647e546cab1e6c9748dc4361def"
+        }
+      ],
+      "r_commit": "4e54c06ef2b76ccebce9c21eaabff64c00b41735",
+      "r_parent": "8ade2100115ab7f536535f1be0ff7e00dd429411"
+    },
+    {
+      "name": "P3_official",
+      "candidate_commit": "fa7baaa3a830f0460fecdc1c0ebf2dd444d43bda",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/fpu_div_sqrt_mvp-33e0a4fc0dc853c1/hdl/norm_div_sqrt_mvp.sv",
+          "before_blob": "590abe969bddccabe201f2a15ae8a40d14032c95",
+          "after_blob": "1d74170b5355afc7933c2ca2f8629d13a629c0db"
+        }
+      ],
+      "r_commit": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4",
+      "r_parent": "4e54c06ef2b76ccebce9c21eaabff64c00b41735"
+    },
+    {
+      "name": "P3_mask",
+      "candidate_commit": "d38bcf6925077593e6b766154d6fda205a532ed7",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/fpnew-ed006ec0a4178e29/src/fpnew_opgroup_multifmt_slice.sv",
+          "before_blob": "f5991cbd7c46bd8f64970e8a838e3ce5db42ffdc",
+          "after_blob": "90444850e9ab188b893cb2fc033446d74e437420"
+        }
+      ],
+      "r_commit": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0",
+      "r_parent": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4"
+    },
+    {
+      "name": "P4_191",
+      "candidate_commit": "4d1c46e3c2ecfd884202c3e86af85a2542897d93",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "57b143d4064dd74c538d44a755221c1dc2330ad8",
+          "after_blob": "3b6fcf8cbc7f25365da91c8223c0268f1e8fe91e"
+        }
+      ],
+      "r_commit": "e983027d08c0e6e398c5243c286709252378fbed",
+      "r_parent": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0"
+    },
+    {
+      "name": "P4_192",
+      "candidate_commit": "857992bfd32a6a565d16a3b615e901f3edc6d0da",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "3b6fcf8cbc7f25365da91c8223c0268f1e8fe91e",
+          "after_blob": "e32e5410fcf4c11b7c64ad55be13ba545f28eaa8"
+        }
+      ],
+      "r_commit": "d1b8559f52b075ee784db545dbe8049d40e4e5df",
+      "r_parent": "e983027d08c0e6e398c5243c286709252378fbed"
+    },
+    {
+      "name": "P4_adjacent",
+      "candidate_commit": "ac5d74a3f32d682fe6ce73186479e1d5a564b479",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "e32e5410fcf4c11b7c64ad55be13ba545f28eaa8",
+          "after_blob": "8892c51861d2027660a2e993e65e448064d23db8"
+        }
+      ],
+      "r_commit": "98a0591e35dceb5548ad435ef68ed42d92670114",
+      "r_parent": "d1b8559f52b075ee784db545dbe8049d40e4e5df"
+    },
+    {
+      "name": "P5_RTL",
+      "candidate_commit": "4c0429ef96cedefc68c01ee7b88c03bab029cea7",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/reg/tpl/idma_reg.sv.tpl",
+          "before_blob": "946604089b2368b68a937b1d4539b365e17f5edf",
+          "after_blob": "0cfc6cd292da5e824efd1ae7e5412972bdb44141"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv",
+          "before_blob": "30015f02a8adb907c378ebf4ba0a3b26fef510ca",
+          "after_blob": "6085b4448192897789a59c26f97fb07c5f58482d"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg32_3d_top.sv",
+          "before_blob": "20ee6d8cba056b59c93236ddecfe15dd67ecd381",
+          "after_blob": "65558eb42262009dbfcd0484d2ec0bef8a755fa7"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv",
+          "before_blob": "b8c2d5e5fa8fcaee5de200d58a83dbbec5f1a50a",
+          "after_blob": "c702a64abe0786c0dfa259ed831727833e4f7f80"
+        }
+      ],
+      "r_commit": "0bf9efca695b17b943921c2e04fd9b92492b7656",
+      "r_parent": "98a0591e35dceb5548ad435ef68ed42d92670114"
+    },
+    {
+      "name": "P5_HAL",
+      "candidate_commit": "4e2ebd52cf5206291fd088f70aeb3a198df0bec2",
+      "blobs": [
+        {
+          "source": "sw/include/dif/dma.h",
+          "before_blob": "830f9f696f1c20b517c94f68ed5db691c4a61f8b",
+          "after_blob": "b75e226339fc4ed38be93c57af3f3aca204fb717"
+        }
+      ],
+      "r_commit": "5efef8be7f867b9ddff700d6ddf97b2c9f48e66b",
+      "r_parent": "0bf9efca695b17b943921c2e04fd9b92492b7656"
+    }
+  ],
+  "existing": {
+    "README.md": {
+      "kind": "file",
+      "mode": 436,
+      "size": 6432,
+      "sha256": "b14f036768b16db1abb41eff797c4347078a4bd4f0c1af6071c5a2fa6701f5be"
+    },
+    "docs/CONFIGURATION_AND_DEVELOPMENT.md": {
+      "kind": "file",
+      "mode": 436,
+      "size": 29284,
+      "sha256": "ddb68c2912c2b8bb13b8d43e3ee65d036570d28b533476a82f1e97fa648218a8"
+    },
+    "docs/README.md": {
+      "kind": "file",
+      "mode": 436,
+      "size": 16319,
+      "sha256": "63dd2249e0d720476b0468a92034311792149d8ed59d89c92b47d9f4dca1b026"
+    },
+    "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl": {
+      "kind": "file",
+      "mode": 436,
+      "size": 7390,
+      "sha256": "f15a934fc449d7b9935d22aaa095270d52b34e5af5cfe9a9e2ab0e02af3e2264"
+    },
+    "provenance/generation_inputs.json": {
+      "kind": "file",
+      "mode": 436,
+      "size": 97293,
+      "sha256": "86d30bc9d5949c0e2571de3df9bc06fc363b0109cbfc28333fd4cea885624074"
+    },
+    "provenance/source_manifest.json": {
+      "kind": "file",
+      "mode": 436,
+      "size": 493339,
+      "sha256": "1d082990eb0eb9e010712f54fe600aa854292e1fc30e966157ea740781b6fe18"
+    },
+    "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 30583,
+      "sha256": "44c190ede2a626504806f43d474e3478dbbafb81f4cf036cc43b606e9c6e0d7d"
+    },
+    "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 104340,
+      "sha256": "b24b559bade3dabc741b755fe5331a7a853ccd71b144bedfb3fc8e03c1454aa7"
+    },
+    "src/cheshire_soc/ara/hardware/src/masku/masku.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 74939,
+      "sha256": "e061e51790935ab379bfdb8a832e13c897a8a6502f001f2c495c4d078ba65edc"
+    },
+    "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 22618,
+      "sha256": "df1fbfee134eb0617b250777e188aa9f62c3530c5f88e5ed354566b438fc635f"
+    },
+    "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 32249,
+      "sha256": "52adbaaea561d083b176a246e4712605c1d1bfea6193e9725c0cdf101dc79d39"
+    },
+    "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 20026,
+      "sha256": "b96f2bebe6a2feb2af7e9b937cf980e6681f907c8da9bd7ecf569f15e73cfddf"
+    },
+    "src/cheshire_soc/idma/target/rtl/idma_generated.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 680941,
+      "sha256": "bf6f2d34d8883936014351258bcb40f9a89978b2d51079f525f37b5e55360250"
+    },
+    "src/tb/src/tb_cheshire_soc.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 2224,
+      "sha256": "308af462ac0e075556eeef6990b1ca5faecfe22260dbab39065214425cb8ba85"
+    },
+    "src/tb/src/vip_cheshire_soc.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 33660,
+      "sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c"
+    },
+    "sw/Makefile": {
+      "kind": "file",
+      "mode": 436,
+      "size": 7366,
+      "sha256": "05c999fce76f3346b5f53ac7f945bcd1a790f312d7354aa07bb40675f358c289"
+    },
+    "sw/include/dif/dma.h": {
+      "kind": "file",
+      "mode": 436,
+      "size": 6252,
+      "sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d"
+    }
+  },
+  "new_paths": [
+    "sw/tests/p1_vstu_wrap.c",
+    "sw/tests/p2_vmfpu_order.c",
+    "sw/tests/p2_vcpop_boundaries.c",
+    "sw/tests/p2_scalar_overlap.c",
+    "sw/tests/p3_div_flags.c",
+    "sw/tests/p4_preload_bytes.c",
+    "sw/tests/p5_dma_1d.spm.c",
+    "sw/link/p4_single.ld",
+    "sw/link/p4_multi.ld",
+    "provenance/p1_p5_sync_20261024.json"
+  ],
+  "all_inputs_count": 1023,
+  "backup": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024/before.tar",
+  "backup_sha256": "fc66f90b0cc67d1270095e192ab8be6ad9c1622236ab8e7420c04880cd18b374",
+  "restore_checked_files": 17,
+  "restore_check": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024/restore_check",
+  "source_map": {
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv": "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vmfpu.sv": "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/masku/masku.sv": "src/cheshire_soc/ara/hardware/src/masku/masku.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv": "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv",
+    ".bender/git/checkouts/fpu_div_sqrt_mvp-33e0a4fc0dc853c1/hdl/norm_div_sqrt_mvp.sv": "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv",
+    ".bender/git/checkouts/fpnew-ed006ec0a4178e29/src/fpnew_opgroup_multifmt_slice.sv": "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv",
+    "target/sim/src/vip_cheshire_soc.sv": "src/tb/src/vip_cheshire_soc.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv": "src/cheshire_soc/idma/target/rtl/idma_generated.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/reg/tpl/idma_reg.sv.tpl": "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl",
+    "sw/include/dif/dma.h": "sw/include/dif/dma.h"
+  },
+  "skipped_unextracted_sources": [
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg32_3d_top.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv"
+  ]
+}

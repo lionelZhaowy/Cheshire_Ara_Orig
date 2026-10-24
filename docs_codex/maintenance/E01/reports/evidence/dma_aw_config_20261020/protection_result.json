@@ -1,0 +1,21 @@
+{
+  "head": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a",
+  "status": " M .gitignore\n M hw/cheshire_idma_wrap.sv\n M sw/include/dif/dma.h\n M sw/lib/crt0.S\n M sw/tests/axirt_budget.spm.c\n M sw/tests/axirt_budget_isolate.spm.c\n M sw/tests/dma_2d.spm.c\n M target/sim/vcs/start.cheshire_soc.sh\n?? target/sim/vcs/wave.tcl\n",
+  "protected_file_count": 83,
+  "protected_unchanged_outside_patch": 81,
+  "patch_files": {
+    "sw/include/dif/dma.h": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+    "sw/tests/dma_2d.spm.c": "3edd5b18211fed52b066cff3ff88d4a42698f31a66223a0eaba9b47ec4187eff",
+    "sw/tests/axirt_budget.spm.c": "5a2c5fc0579c71d7df328a8bdada0516e0fb2aaf4a8f07118f81ae0d35f0c6e2",
+    "sw/tests/axirt_budget_isolate.spm.c": "3ebc7e26115393027e653614e9e9935be704d05ddf6020c759f46c38d5b7016f"
+  },
+  "dependency_heads": {
+    "ara-2c7b103275a16c87": "2895ba907e9eb14b3464609dc791a969d159a7c3",
+    "cva6-20c9d7cbe0dd6995": "99eac9a649001bdf5b8f9da52e0ca73d5c48db1c",
+    "idma-77bf7fa56d324e6a": "c12caf59bb482fe44b27361f6924ad346b2d22fe",
+    "register_interface-902ad5bfde7bb98c": "ae616e5a1ec2b41e72d200e5ab09c65e94aebd3d"
+  },
+  "outside_patch_diff_unchanged": true,
+  "crt0_object_sha256": "0742610964841561a1964439b419a58244f77cf12583c30bd0f394b366c80e9f",
+  "library_sha256": "af7e0485ee38f2aaae06bbca1f6f1e90cf0552ccf919453502aa1a630567e7e4"
+}

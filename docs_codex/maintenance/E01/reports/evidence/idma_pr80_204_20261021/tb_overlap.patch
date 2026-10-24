@@ -1,0 +1,25 @@
+--- output/tb_idma_backend_rw_axi.sv
++++ output/tb_idma_backend_overlap_checked.sv
+@@ -497,12 +497,10 @@
+                 overlap = 1'b0;
+ 
+                 // Check if previous destination and this jobs source overlap -> New job's src init could override dst of previous job 
+-                overlap = overlap || ((now.src_protocol == previous.dst_protocol) && ( (now.src_addr inside {[previous.dst_addr:previous.dst_addr+previous.length]})
+-                || ((now.src_addr + now.length) inside {[previous.dst_addr:previous.dst_addr+previous.length]}) ));
++                overlap = overlap || ((now.src_protocol == previous.dst_protocol) && ((now.src_addr < previous.dst_addr+previous.length) && (previous.dst_addr < now.src_addr+now.length)));
+ 
+                 // Check if previous destination and this jobs destination overlap -> New job's dst could override dst of previous job
+-                overlap = overlap || ((now.dst_protocol == previous.dst_protocol) && ( (now.dst_addr inside {[previous.dst_addr:previous.dst_addr+previous.length]})
+-                || ((now.dst_addr + now.length) inside {[previous.dst_addr:previous.dst_addr+previous.length]}) ));
++                overlap = overlap || ((now.dst_protocol == previous.dst_protocol) && ((now.dst_addr < previous.dst_addr+previous.length) && (previous.dst_addr < now.dst_addr+now.length)));
+ 
+                 if (overlap) begin
+                     $display("Overlap!");
+@@ -629,6 +627,7 @@
+                            now.err_action
+                           );
+             // check memory
++            $display("CHECK id=%0d dst=%h len=%0d at=%0t",now.id,now.dst_addr,now.length,$time);
+             compare_mem(now.length, now.dst_addr, now.dst_protocol, match);
+             // fail if there is a mismatch
+             if (!match)

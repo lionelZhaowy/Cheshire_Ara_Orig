@@ -1,0 +1,38 @@
+[
+  {
+    "phase": "compile",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "bash",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/compile.cheshire_soc.sh"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build",
+    "host_rc": 0,
+    "wall_seconds": 19.459
+  },
+  {
+    "phase": "elaborate",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "900s",
+      "/eda/synopsys/vcs/W-2024.09-SP1/bin/vcs",
+      "-full64",
+      "-kdb",
+      "-O2",
+      "-debug_access+r",
+      "-cpp",
+      "/opt/rh/gcc-toolset-13/root/usr/bin/g++",
+      "-pvalue+SelectedCfg=3",
+      "/home/zhaowy24/CheshireAraPULP/target/sim/src/elfloader.cpp",
+      "tb_cheshire_soc"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build",
+    "host_rc": 0,
+    "wall_seconds": 33.009
+  }
+]

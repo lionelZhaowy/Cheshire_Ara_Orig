@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><marker id="next" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker></defs>
+<rect x="0" y="0" width="1600" height="900" fill="#FFFFFF" stroke="none"/>
+<text x="800" y="53" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="middle" fill="#29292D">一次推理的两次数据交接</text>
+<rect id="stage-1" x="180" y="100" width="1240" height="120" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="800" y="132" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="stage-1">CPU／Ara 准备输入</text>
+<text x="800" y="180" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-1">计算结束，交出输入与输出范围</text>
+<line id="next-1" x1="800" y1="220" x2="800" y2="244" stroke="#314D66" stroke-width="2.8" marker-end="url(#next)"/>
+<rect id="stage-2" x="180" y="244" width="1240" height="120" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="800" y="276" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="stage-2">交接前同步</text>
+<text x="800" y="310" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-2">先排空旧事务，再清理输入、清理并失效输出</text>
+<text x="800" y="348" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-2">确认设备端口可见，允许启动搬运</text>
+<line id="next-2" x1="800" y1="364" x2="800" y2="388" stroke="#314D66" stroke-width="2.8" marker-end="url(#next)"/>
+<rect id="stage-3" x="180" y="388" width="1240" height="120" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="800" y="420" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="stage-3">设备执行</text>
+<text x="800" y="468" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-3">DDR → GB → NPU 计算 → 结果从 GB 写回 DDR</text>
+<line id="next-3" x1="800" y1="508" x2="800" y2="532" stroke="#314D66" stroke-width="2.8" marker-end="url(#next)"/>
+<rect id="stage-4" x="180" y="532" width="1240" height="120" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="800" y="564" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="stage-4">交回 CPU 前同步</text>
+<text x="800" y="598" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-4">确认写回成功且 CPU 端口可见</text>
+<text x="800" y="636" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-4">处理相关回填，再失效 L1D／LLC 输出副本</text>
+<line id="next-4" x1="800" y1="652" x2="800" y2="676" stroke="#314D66" stroke-width="2.8" marker-end="url(#next)"/>
+<rect id="stage-5" x="180" y="676" width="1240" height="120" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="800" y="708" font-family="WenQuanYi Zen Hei" font-size="29" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="stage-5">CPU 读取结果并后处理</text>
+<text x="800" y="756" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="stage-5">同步成功后重新取得输出使用权</text>
+<text x="800" y="850" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D">箭头表示先后顺序；每个阶段成功后才进入下一阶段。</text>
+</svg>

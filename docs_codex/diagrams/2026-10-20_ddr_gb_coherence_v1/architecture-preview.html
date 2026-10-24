@@ -1,0 +1,249 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="../../engineering/"><title>Cache_Coherence_Architecture.md</title><style>body{max-width:1250px;margin:40px auto;padding:0 24px;font:17px/1.85 "WenQuanYi Zen Hei",sans-serif;color:#243042}h1,h2,h3{line-height:1.4;color:#143d5c}h2{margin-top:2em;border-bottom:1px solid #cdd8e0;padding-bottom:.35em}a{color:#176296}img{display:block;max-width:100%;height:auto;margin:24px auto}table{border-collapse:collapse;width:100%;font-size:15px}th,td{border:1px solid #cdd8e0;text-align:left;padding:8px 11px}th{background:#edf3f7}code{background:#f0f3f6;padding:2px 4px}pre{padding:14px;background:#f0f3f6;overflow:auto;font-size:14px;line-height:1.6}</style><h1 id="ddrgb">DDR–GB 缓存一致性：软硬件协同维护方案</h1>
+<p>本方案的主要讲解入口已更新为<a href="DDR_GB_Coherence_Design.md">《DDR–GB 数据同步设计：从裸机推理到缓存维护》</a>，沿一次推理解释数据版本、同步调用及硬件职责。本页保留此前的规划讨论与证据。</p>
+<p>返回<a href="README.md">工程参考</a> · <a href="CPU_NPU_Cache_Coherence_Survey.md">工业与学术综述</a> · <a href="IP_DDR_Interface_Contract.md">IP／DDR／GB 契约</a></p>
+<p>2026-10-20 按 SoC v1 修订；2026-10-16 原 L01 规划说明，供 M01/I01/S01/V01 评审。源码输入：<code>mp/ara-pulp-v2</code> / <code>322bd6ce9</code>。本版落实用户选择的方向：软件显式交接，硬件维护 L1D／LLC，缓存与 GB 的数据统一经 DDR 交换。范围接口、指令形式及实现参数继续细化；当前输入 <code>c9abbb48</code>，本次为文档与图稿修订；拓扑以<a href="SoC_Architecture_v1_Master_Plan.md">SoC v1 总纲</a>为准，原源码记录保留原版本。</p>
+<p><strong>软件告诉硬件“哪块数据、交给谁、何时交接”；硬件完成该范围的排空、清理、失效与完成确认。</strong> CPU 日常保持缓存，设备通过独立 DDR 端口搬运，GB 继续作为 NPU／Ara 共享的独立 SRAM。维护按缓冲区或计算分块批量执行，成本集中在实际交接点。</p>
+<h2 id="1">1. 方案定位与数据连接</h2>
+<p>本方案结合了此前对比中的两个维度：沿用 <strong>E 所示的设备旁路拓扑</strong>，维护方式采用 <strong>B 类软件触发的硬件范围维护</strong>。硬件在交接点查询和维护 CPU 缓存；软件在设备持有期间保持缓冲区所有权。逐笔访存都由硬件透明协调的 I/O 一致性，继续作为能力和成本参照。</p>
+<table>
+<thead>
+<tr>
+<th>设计维度</th>
+<th>本方案采用的方向</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维护时机</td>
+<td>软件在推理或分块交接处显式同步</td>
+<td>软件掌握张量生命周期，可合并维护范围和调用次数</td>
+</tr>
+<tr>
+<td>硬件覆盖</td>
+<td>CVA6 L1D、写缓冲、LLC 及相关在途事务</td>
+<td>目标地址的最新值和旧副本可能分布在不同层次</td>
+</tr>
+<tr>
+<td>设备数据路径</td>
+<td>绕过 LLC，连接 DDR 控制器设备端口</td>
+<td>保留流式带宽路径，避免设备访问分配 LLC 行</td>
+</tr>
+<tr>
+<td>缓存与 GB 交换</td>
+<td>缓存先清理到 DDR，再由搬运器传输</td>
+<td>复用现有数据接口；缓存直供仅作成本比较</td>
+</tr>
+<tr>
+<td>设备存储</td>
+<td>独立 GB，经共享数据代理访问</td>
+<td>由分块调度决定装入、消费和复用，不引入设备私有一致性缓存</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="SoC v1 四口 DDR 与范围维护" src="../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png" /></p>
+<p>图 1：v1 一致性专题图，与主说明共用一份源图。CPU/Ara 共享 M5 访问 GB，DDR 数据经 F0–F3、共享压缩前端和 DDR.S0–S3；紫线表示维护控制和确认的逻辑关系，不分配新 CSR 或 C 编号。<a href="../diagrams/2026-10-20_ddr_gb_coherence_v1/figures/system.svg">SVG</a> · <a href="../diagrams/2026-10-20_ddr_gb_coherence_v1/export/planning/diagrams.pptx">六页可编辑 PPTX</a></p>
+<p>CPU/Ara 普通 DDR 访存经主 Xbar M2→原子适配→LLC→F0→共享前端→DDR.S0；GB 搬运使用 F1／DDR.S1；帧写入 DMA 使用 F2／DDR.S2；ROI 二维读 DMA 使用 F3／DDR.S3，再经 FIFO、LVDS TX 输出。CPU 和 Ara2 保留独立 Xbar 输入，经 M5、GB 访问适配与共享数据代理访问独立 SRAM；NPU、ISP 和搬运器也在 GB 侧仲裁。</p>
+<p>这些连接是已确认的 v1 目标；GB 目标、共享前端和范围维护仍待实现。此前 Ara 宽侧分流与三口系统图已被替代，原图保留为历史。主 Xbar 保持 64-bit 的既有要求，DDR IP 的实际端口能力、容量和时钟按原契约评审。</p>
+<p>F 类“完整缓存代理一致性”的判断依据是设备存在参与探测的同地址私有缓存，而非接口是否连接 L2。综述所核 Gemmini 配置通过 DMA 显式管理 Scratchpad，不能仅凭 L2 接入位置归为 F。本项目采用独立 GB，F 留作文献背景。<a href="https://github.com/ucb-bar/gemmini/blob/2c98ce3ec634b1d0995080d040aaa32980c0cc12/README.md#architecture">Gemmini 固定版本说明</a></p>
+<h2 id="2">2. 一次推理如何交接输入与输出</h2>
+<p>维护对象是搬运描述符中的 <strong>DDR 侧物理范围</strong>，即共享前端上游的软件可见逻辑地址；压缩数据与元数据的物理布局由前端管理。需要分别考虑地址是否可缓存、当前是否驻留、是否有脏数据，以及写缓冲／回填／替换是否在途。软件在查询前交出范围并保持所有权约束；硬件在维护期间协调冲突事务，返回实际完成确认。</p>
+<p><img alt="软件交接与硬件维护生命周期" src="../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/ownership.png" /></p>
+<p>图 2：提交前准备输入与输出，设备完成后再同步输出供 CPU 消费。箭头表示阶段依赖；DMA 和计算可在不同分块间流水重叠。<a href="../diagrams/2026-10-20_ddr_gb_coherence_v1/figures/ownership.svg">SVG</a></p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>L1D／写缓冲</th>
+<th>LLC／DDR</th>
+<th>软件、搬运器与 GB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入交给设备前</td>
+<td>等待相关 CPU／Ara 生产者完成，排空先行写；干净副本可保留</td>
+<td>clean 目标脏行，确认 F1／F3 后续读可见（含前端）</td>
+<td>软件交出范围，维护完成后发布描述符和启动</td>
+</tr>
+<tr>
+<td>输出交给设备前</td>
+<td>排空旧写，失效目标副本，处理冲突回填</td>
+<td>clean＋invalidate 目标范围，等旧写和维护实际结束</td>
+<td>预清理保护部分行未覆盖字节，预失效清除旧副本</td>
+</tr>
+<tr>
+<td>设备持有期间</td>
+<td>软件避免 CPU／Ara 通过 DDR 路径访问交接范围</td>
+<td>输入从 DDR 读取；结果经设备端口写回 DDR</td>
+<td>数据经共享代理进入 GB；CPU 可处理其他缓冲区</td>
+</tr>
+<tr>
+<td>输出交还 CPU 前</td>
+<td>先排空相关旧回填，再最终 invalidate 输出</td>
+<td>确认设备写跨口可见，再清除 LLC 旧读副本</td>
+<td>核对任务身份和错误，完成同步后交还所有权</td>
+</tr>
+</tbody>
+</table>
+<p><strong>输入 clean 与输出 invalidate 解决不同问题。</strong> 输入要让设备取得 CPU 产生的新值；输出要让 CPU 放弃设备写入前的旧值。WT L1D 的先行写还可能在缓冲中，必须先推进到下层，随后 LLC clean 才能覆盖这些更新。维护引擎应先让依赖 LLC 接收的上游写入排空，再隔离并维护 LLC，避免循环等待。</p>
+<p>输出采用“写前 clean＋invalidate，写后 invalidate”的基线。前者防止旧脏行迟到写回覆盖结果，后者清除可能存在的旧读副本，并收束允许发生的在途回填；具体旧响应交错须以当前实现证明，完整写前排空可以排除对应的交接前请求。写后发现冲突脏数据时进入错误处理，避免清理旧值覆盖设备结果。完成确认包含冲突读响应与回填的处理；只有请求被接收时，还不能交还缓冲区。</p>
+<p>部分行示例：DDR 的最新逻辑行是 <code>[A,B,C,D]</code>，设备只更新第二段为 <code>X</code>。先把缓存中的 A/C/D 最新值清理到 DDR，再按 WSTRB 写 X，结果为 <code>[A,X,C,D]</code>。基线对完整行也执行相同准备流程；省略完整覆盖行的旧数据回写可作为后续优化，须核对覆盖范围、有效字节、失败语义和所有旧写。</p>
+<p>维护和分配边界要覆盖实际缓存粒度。当前 L1D 行为 32 B，默认 LLC 行为 64 B，因此一个 LLC 行涉及两个 L1D 行；共享缓冲区应按所涉及层次的公共对齐粒度隔离，避免与锁、栈或其他对象共用可维护行。后续参数变化时由平台统一更新粒度。</p>
+<p>如果整次推理期间只有设备访问该组缓冲区，同步集中在推理两端；CPU／Ara／NPU 交替处理时，按实际分块交接。只读权重在内容和生命周期保持稳定时，可复用已经完成的交接。GB 保存本次搬运的数据，后续需要新的 DDR 版本时重新装入；GB 内部的 Ara／NPU 中间结果交接由本地调度负责。</p>
+<h2 id="3">3. 软件接口与硬件完成协议</h2>
+<p>软件接口建议表达 <code>sync_for_device(range, direction)</code> 与 <code>sync_for_cpu(range, direction)</code> 这样的语义。它们是拟定的 HAL 职责名称；实现可先通过 MMIO 向范围维护引擎提交命令。Linux 按需要显式同步的 DMA 设备接入，平台维护后端负责调用该引擎；裸机和 RTOS 可直接封装同一底层服务。<a href="https://docs.kernel.org/6.5/core-api/dma-api-howto.html">Linux 6.5 DMA API</a></p>
+<table>
+<thead>
+<tr>
+<th>接口职责</th>
+<th>建议携带或返回的信息</th>
+<th>完成要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>范围命令</td>
+<td>设备可达的物理范围、方向、操作、任务身份</td>
+<td>校验权限、边界、对齐和溢出；虚拟地址／DMA 地址转换由平台处理</td>
+</tr>
+<tr>
+<td>L1D 维护</td>
+<td>目标地址／范围、排空与失效请求</td>
+<td>覆盖写缓冲及冲突回填；完成后旧响应不能重新建立过期副本</td>
+</tr>
+<tr>
+<td>LLC 维护</td>
+<td>范围、clean／invalidate 操作</td>
+<td>处理命中脏行与在途替换；仅操作 cache way，保留 SPM 内容</td>
+</tr>
+<tr>
+<td>DMA 准入</td>
+<td>维护任务与搬运任务的依赖</td>
+<td>汇合所需确认后开放 F1 搬运、F2 写帧或 F3 读帧任务，按任务身份跟踪完成</td>
+</tr>
+<tr>
+<td>结果状态</td>
+<td>成功、错误、完成范围及任务身份</td>
+<td>数据可见、缓存维护和任务顺序均满足后，允许软件消费</td>
+</tr>
+</tbody>
+</table>
+<p>这里需要的是可确认的范围维护服务。L1D 必须参与硬件探测，但探测可集中在软件交接点，而不必对每个 DMA beat 重复执行。范围内部按行处理；小范围可逐地址查询，大范围可评估扫描驻留 tag 并筛选范围内条目。</p>
+<p><strong>软件所有权与硬件准入各有边界。</strong> 本方案由软件保证设备持有期间的访问纪律，硬件保证维护动作和搬运启动的先后。如果增加“自动拦截 CPU 违规访问”的能力，还需让范围检查覆盖 L1D 命中路径；仅阻挡 LLC 下游无法发现这些命中。该检查作为独立成本项评审。</p>
+<p><code>fence</code> 用于建立访存与命令发布的顺序；<code>clean</code> 推进修改后的数据，<code>invalidate</code> 清除副本，<code>flush</code> 通常组合 clean 与 invalidate。RISC-V Zicbom 提供标准 CBO 语义，可作为后续指令实现依据。<a href="https://docs.riscv.org/reference/isa/v20240411/unpriv/cmo.html">CMO v1.0，20240411 规范</a></p>
+<p>当前向量 profile 的 <code>DcacheFlushOnFence=0</code>，FENCE 提交包含 WT 写缓冲为空的条件，但没有替代 LLC clean 的系统路径。若采用 CBO 指令，需要补齐译码、权限、统一的软件可见维护粒度、下层传播和完成语义。先以 HAL 封装范围命令，可以将这些实现选择留在平台层。</p>
+<p>DDR 的完成点定义为：<strong>其他相关 AXI 端口随后读取该地址，能取得按约定顺序写入的新值。</strong> 控制器可以通过内部排序与转发兑现这一保证；供应商需说明 DDR.S0–S3 的写响应与跨口读关系；项目须另证明 F0–F3 上游完成包含前端数据／元数据发布、CDC 和错误聚合。前端部分块更新的串行化不能由缓存行维护代替。维护引擎汇合缓存确认和 DDR 可见性，再发布状态或 IRQ。</p>
+<p>共享控制结构建议采用经验证的非缓存映射或 MMIO，启动时初始化维护服务后再允许设备任务；描述符若使用缓存，同样纳入发布同步。LR/SC、AMO 数据与搬运缓冲区优先隔离；确需共享原子数据时，单独定义旁路写的 reservation／原子观察范围。新接口会影响 HAL、驱动、IRQ/轮询和构建清单，具体 CSR 地址、编码、IRQ 编号与初始化次序由实现评审确定。</p>
+<h2 id="4">4. 维护开销与数据路径取舍</h2>
+<p>当前向量 L1D 为 <strong>8 KiB、4 路、32 B 行，共 256 条缓存行</strong>。WT 减少了 L1D 脏行供数职责，但查询 tag、更新有效位、排空写缓冲仍会占用资源。当前行写／失效与读授权共享资源；已有 Ara 外部失效按索引清除该组全部 way，扩展时应评估 tag 匹配后的定向失效，以减少无关行被驱逐。</p>
+<table>
+<thead>
+<tr>
+<th>开销</th>
+<th>影响</th>
+<th>优化方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag 查询与有效位更新</td>
+<td>争用 L1D／LLC 访问端口</td>
+<td>批量命令、合理仲裁与限速，比较逐地址查询和驻留 tag 扫描</td>
+</tr>
+<tr>
+<td>排空与冲突回填处理</td>
+<td>增加交接延迟</td>
+<td>在生产者完成后维护，合并相关范围和确认</td>
+</tr>
+<tr>
+<td>失效后重填</td>
+<td>CPU 再次访问时产生 miss</td>
+<td>输入保留干净副本，输出仅维护交接范围</td>
+</tr>
+<tr>
+<td>LLC 脏写回</td>
+<td>消耗 DDR 带宽，推迟设备读取</td>
+<td>提前准备下一块，双缓冲重叠，稳定权重减少重复同步</td>
+</tr>
+<tr>
+<td>粗粒度 way 维护</td>
+<td>无关 CPU 请求可能停顿</td>
+<td>从现有入口隔离改进为范围维护和可证明的局部仲裁</td>
+</tr>
+</tbody>
+</table>
+<p>1 MiB 范围包含 32768 个 32 B 块，而当前 L1D 只有 256 个驻留位置。扫描驻留 tag 可能减少大范围的检查量；实际周期还取决于 way 并行度、端口竞争和在途事务。LLC 当前按 way 维护并隔离入口，直接频繁调用这一机制可能成为主要停顿来源。上述为结构分析，面积、频率和性能比例需要综合与负载测量。</p>
+<p><img alt="统一经 DDR 与缓存直供的路径比较" src="../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/data-paths.png" /></p>
+<p>图 3：以 LLC 持有最新脏行的设备读为例。左侧为本方案，右侧仅比较新增数据通路的潜在收益与成本；两侧均需可靠的交接协议。<a href="../diagrams/2026-10-20_ddr_gb_coherence_v1/figures/data-paths.svg">SVG</a></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>统一经 DDR：本方案</th>
+<th>缓存直接供数：比较项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据接口</td>
+<td>复用 LLC→F0→共享前端、F1 设备搬运路径</td>
+<td>增加缓存到搬运器的数据响应、仲裁和背压</td>
+</tr>
+<tr>
+<td>脏行输入</td>
+<td>clean 后从 DDR 读取</td>
+<td>可直接取得最新缓存数据</td>
+</tr>
+<tr>
+<td>更适合的流量</td>
+<td>大块流式数据、GB 内高复用、接口复杂度受限</td>
+<td>CPU 刚产生的小块缓存驻留数据、频繁低延迟交接</td>
+</tr>
+<tr>
+<td>主要成本</td>
+<td>DDR 往返和多端口竞争</td>
+<td>缓存端口竞争、事务匹配与更复杂的验证</td>
+</tr>
+</tbody>
+</table>
+<p>按完整缓存行计，64 B 脏输入在前端上游逻辑接口需要一次 64 B 写回和一次 64 B 读取；缓存直供能省去当次往返，但脏行以后仍可能写回。对于输入范围 N、交接时需写回的数据量 D，本方案前端上游逻辑数据量约为 <code>D + N</code>。压缩区实际 DDR 流量另计压缩数据、元数据、部分块读改写和额外读取；普通旁路区按原样传输统计。若数据已在 DDR 且缓存干净，D 为零；不能把所有模型输入都按双倍流量估算。</p>
+<p>当前优先优化范围、调用频率和分块流水。只有实测表明 DDR 往返成为主要瓶颈时，才值得重新比较直供收益与新增端口成本；本版数据连接保持统一经 DDR。</p>
+<h2 id="5">5. 源码依据、验收与待定接口</h2>
+<p><a id="evidence"></a></p>
+<table>
+<thead>
+<tr>
+<th>当前事实</th>
+<th>源码入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WT、L1D 容量／行大小、FENCE 配置</td>
+<td><a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/include/cv64a6_imafdcv_sv39_config_pkg.sv">向量 profile</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/controller.sv">controller</a></td>
+</tr>
+<tr>
+<td>写缓冲、全 way 索引失效、行写与读端口竞争</td>
+<td><a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_wbuffer.sv">wbuffer</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_missunit.sv">missunit</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_mem.sv">cache mem</a></td>
+</tr>
+<tr>
+<td>Ara 失效与专用并发前提</td>
+<td><a href="../../hw/cheshire_soc.sv">SoC</a> 的 <code>i_ara_axi_inval_filter</code>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/acc_dispatcher.sv">acc_dispatcher</a>、<a href="../../.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_axi_adapter.sv">wt_axi_adapter</a></td>
+</tr>
+<tr>
+<td>WB LLC、way 维护、入口隔离和默认 64 B 行</td>
+<td><a href="../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv">LLC top</a>、<a href="../../.bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_config.sv">LLC config</a>、<a href="../../hw/cheshire_pkg.sv">SoC 参数</a></td>
+</tr>
+<tr>
+<td>旁路写影响原子观察范围</td>
+<td><a href="../../.bender/git/checkouts/axi_riscv_atomics-40ad8d2d0e0daa8b/README.md">原子适配说明</a>、<a href="IP_DDR_Interface_Contract.md">现行契约</a></td>
+</tr>
+</tbody>
+</table>
+<p>现有机制可以复用写回数据路径、AXI 事务跟踪和部分维护控制；需要新增范围命令、定向探测与确认、DMA 准入和错误状态，并重新处理维护与回填／替换的竞争。依赖版本和本地差异见<a href="../../.bender/SNAPSHOT.tsv">快照清单</a>。</p>
+<p>最小正确性验收以逐字节参考结果检查三项不变量：<strong>设备取得交接版本；旧脏行和迟到写无法覆盖新结果；部分行未选中字节保持正确。</strong> 用例覆盖干净／脏副本、待完成写、32/64 B 边界与跨行、失效期间回填／替换、输出写后旧副本重取、多设备范围重叠，以及原子域约束。维护完成与 DMA 准入之间应有可观测证据。新增 F2→F3、F1→F3 和 F0→F3 读帧交接，区分 DMA 读取、源帧释放与 TX 完成，具体流程见<a href="DDR_GB_Coherence_Design.md#7-其他数据交接复用相同原则">主说明第 7 章</a>。CPU/Ara 经 M5 的非缓存 GB 本地交接不套用 DDR 往返，但仍需等待写入可见及使用权转移。</p>
+<p>错误路径按部分完成处理。超时或 AXI 错误后停止该任务的新请求，保留 DDR／GB 缓冲及任务身份；确认迟到事务排空，或受控恢复使其无法再写入后，才允许复用。不得仅靠清软件完成标志重新提交相同地址。</p>
+<p>既有 LLC 写回路径未消费 B 响应内容，flush 完成计数不能单独证明写回成功；这是新增 GB 前的静态源码发现，系统级报告、修复位置和故障影响仍待核查。维护须自主推进；LLC 入口隔离也会阻塞经此入口的 SPM 访问，CPU 无法执行时，软件轮询不能单独保证故障处理的硬时间上界。详见<a href="DDR_GB_Coherence_Design.md#8-可靠完成后才能消费和复用资源">主说明第 8 章</a>。</p>
+<p>性能测试拆分准备、维护、等待、搬运、计算和输出交接，记录 CPU 停顿、tag 占用、缓存重填、脏写回字节、DDR 流量和多设备尾延迟；比较小块频繁交接、大权重连续搬运和双缓冲并发。测试与综合完成后再给出面积或性能比例。</p>
+<p>实施前仍需确定范围粒度与并发任务数、缓存端口仲裁、DDR 跨口可见契约、HAL／指令入口、IRQ/错误恢复及共享原子域。当前未运行上述硬件验收。文档链接、图稿检查和版本记录见<a href="../handoffs/L01_cache_coherence_architecture.md">主题交接</a>与<a href="../diagrams/2026-10-20_ddr_gb_coherence_v1/README.md">图稿目录</a>。</p></html>

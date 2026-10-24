@@ -1,0 +1,27 @@
+{
+  "query_date": "2026-10-23 Asia/Shanghai",
+  "official_repository": "https://github.com/pulp-platform/cheshire",
+  "official_main": "6c6dd5e834347f72c7be31cd6c41021ec293c5b9",
+  "official_ara_branch": "mp/ara-pulp-v2",
+  "official_ara_branch_sha": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a",
+  "main_commit_date": "2026-10-14T15:31:59Z",
+  "ara_branch_commit_date": "2025-07-09T18:36:56Z",
+  "issue206": {
+    "url": "https://github.com/pulp-platform/cheshire/issues/206#issuecomment-2891515252",
+    "date": "2025-05-19T15:51:00Z",
+    "finding": "Maintainer states mainline Cheshire and its compiler do not support Ara; issue did not pin a commit."
+  },
+  "server_readback": {
+    "os": "Rocky Linux 8.10",
+    "reference_head": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a",
+    "vcs": "VCS W-2024.09-SP1_Full64",
+    "formal_has_git": false,
+    "hash": {
+      "provenance/reference.json": "d9b52a6c5be8b67d2b02250139b471df5e483d1398d9a4a5f738a6f61b0e09b0",
+      "provenance/source_manifest.json": "1d082990eb0eb9e010712f54fe600aa854292e1fc30e966157ea740781b6fe18",
+      "sim/scripts/compile.cheshire_soc.sh": "38180a8933a5ceaaf30c8b417723744f4e54c844125224e88a9551d309efbb66",
+      "src/config/cheshire_pkg.sv": "f703155731c6dc678f92a2612897a68f031c11fbe8786d393d4f698080d78961"
+    },
+    "checks": "Read-only SSH. VCS -ID queried; no simulation or license checkout build."
+  }
+}

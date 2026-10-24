@@ -1,0 +1,648 @@
+{
+  "states": [
+    {
+      "ns": 600000,
+      "signals": {
+        "D.next_id": 3,
+        "D.done_id": 1,
+        "D.axi_mst_req_o.ar_valid": 0,
+        "D.axi_mst_rsp_i.ar_ready": 1,
+        "D.axi_mst_req_o.ar.addr": 335579240,
+        "D.axi_mst_rsp_i.r_valid": 0,
+        "D.axi_mst_req_o.r_ready": 1,
+        "D.axi_mst_rsp_i.r.last": 0,
+        "D.axi_mst_req_o.aw_valid": 0,
+        "D.axi_mst_rsp_i.aw_ready": 1,
+        "D.axi_mst_req_o.aw.addr": 335610216,
+        "D.axi_mst_req_o.w_valid": 0,
+        "D.axi_mst_rsp_i.w_ready": 1,
+        "D.axi_mst_req_o.w.last": 0,
+        "L.to_llc_req.aw_valid": 1,
+        "L.to_llc_resp.aw_ready": 0,
+        "L.to_llc_req.aw.addr": 268503176,
+        "L.to_llc_req.w_valid": 0,
+        "L.to_llc_resp.w_ready": 1,
+        "L.to_llc_resp.r_valid": 0,
+        "L.to_llc_req.r_ready": 0,
+        "L.ax_desc_valid": 3,
+        "L.ax_desc_ready": 0,
+        "L.rw_desc.rw": 0,
+        "L.rw_desc.a_x_addr": 268470208,
+        "L.rw_desc_valid": 1,
+        "L.rw_desc_ready": 0,
+        "L.spill_desc.rw": 0,
+        "L.spill_desc.a_x_addr": 268470144,
+        "L.spill_valid": 1,
+        "L.spill_ready": 0,
+        "L.desc.rw": 1,
+        "L.desc.a_x_addr": 268503104,
+        "L.hit_valid": 1,
+        "L.hit_ready": 0,
+        "L.read_desc_valid": 0,
+        "L.read_desc_ready": 1,
+        "L.write_desc_valid": 1,
+        "L.write_desc_ready": 0,
+        "L.r_unlock_req": 0,
+        "L.r_unlock_gnt": 1,
+        "L.w_unlock_req": 0,
+        "L.w_unlock_gnt": 1,
+        "H.busy_q": 1,
+        "H.locked": 0,
+        "H.cnt_stall": 0,
+        "H.to_miss": 0,
+        "R.busy_q": 0,
+        "R.desc_q.a_x_addr": 268470136,
+        "R.desc_q.a_x_len": 0,
+        "R.r_fifo_full": 0,
+        "R.meta_fifo_full": 0,
+        "R.way_inp_valid_o": 0,
+        "R.way_inp_ready_i": 1,
+        "W.busy_q": 1,
+        "W.desc_q.a_x_addr": 268503040,
+        "W.desc_q.a_x_len": 7,
+        "W.w_valid": 0,
+        "W.w_ready": 0,
+        "W.b_ready": 1,
+        "W.way_inp_valid_o": 0,
+        "W.way_inp_ready_i": 0,
+        "T.w_dp_valid_i": 1,
+        "T.mask_out": 255,
+        "T.buffer_out_valid_i": 15,
+        "T.ready_to_write": 0,
+        "T.w_dp_req_i.shift": 2,
+        "T.first_w": 0,
+        "T.last_w": 0
+      }
+    },
+    {
+      "ns": 2000000,
+      "signals": {
+        "D.next_id": 3,
+        "D.done_id": 1,
+        "D.axi_mst_req_o.ar_valid": 0,
+        "D.axi_mst_rsp_i.ar_ready": 1,
+        "D.axi_mst_req_o.ar.addr": 335579240,
+        "D.axi_mst_rsp_i.r_valid": 0,
+        "D.axi_mst_req_o.r_ready": 1,
+        "D.axi_mst_rsp_i.r.last": 0,
+        "D.axi_mst_req_o.aw_valid": 0,
+        "D.axi_mst_rsp_i.aw_ready": 1,
+        "D.axi_mst_req_o.aw.addr": 335610216,
+        "D.axi_mst_req_o.w_valid": 0,
+        "D.axi_mst_rsp_i.w_ready": 1,
+        "D.axi_mst_req_o.w.last": 0,
+        "L.to_llc_req.aw_valid": 1,
+        "L.to_llc_resp.aw_ready": 0,
+        "L.to_llc_req.aw.addr": 268503176,
+        "L.to_llc_req.w_valid": 0,
+        "L.to_llc_resp.w_ready": 1,
+        "L.to_llc_resp.r_valid": 0,
+        "L.to_llc_req.r_ready": 0,
+        "L.ax_desc_valid": 3,
+        "L.ax_desc_ready": 0,
+        "L.rw_desc.rw": 0,
+        "L.rw_desc.a_x_addr": 268470208,
+        "L.rw_desc_valid": 1,
+        "L.rw_desc_ready": 0,
+        "L.spill_desc.rw": 0,
+        "L.spill_desc.a_x_addr": 268470144,
+        "L.spill_valid": 1,
+        "L.spill_ready": 0,
+        "L.desc.rw": 1,
+        "L.desc.a_x_addr": 268503104,
+        "L.hit_valid": 1,
+        "L.hit_ready": 0,
+        "L.read_desc_valid": 0,
+        "L.read_desc_ready": 1,
+        "L.write_desc_valid": 1,
+        "L.write_desc_ready": 0,
+        "L.r_unlock_req": 0,
+        "L.r_unlock_gnt": 1,
+        "L.w_unlock_req": 0,
+        "L.w_unlock_gnt": 1,
+        "H.busy_q": 1,
+        "H.locked": 0,
+        "H.cnt_stall": 0,
+        "H.to_miss": 0,
+        "R.busy_q": 0,
+        "R.desc_q.a_x_addr": 268470136,
+        "R.desc_q.a_x_len": 0,
+        "R.r_fifo_full": 0,
+        "R.meta_fifo_full": 0,
+        "R.way_inp_valid_o": 0,
+        "R.way_inp_ready_i": 1,
+        "W.busy_q": 1,
+        "W.desc_q.a_x_addr": 268503040,
+        "W.desc_q.a_x_len": 7,
+        "W.w_valid": 0,
+        "W.w_ready": 0,
+        "W.b_ready": 1,
+        "W.way_inp_valid_o": 0,
+        "W.way_inp_ready_i": 0,
+        "T.w_dp_valid_i": 1,
+        "T.mask_out": 255,
+        "T.buffer_out_valid_i": 15,
+        "T.ready_to_write": 0,
+        "T.w_dp_req_i.shift": 2,
+        "T.first_w": 0,
+        "T.last_w": 0
+      }
+    }
+  ],
+  "arbiter_handshakes": [
+    {
+      "ns": 553075,
+      "direction": "R",
+      "addr": "0x100002b0"
+    },
+    {
+      "ns": 553190,
+      "direction": "R",
+      "addr": "0x100002c0"
+    },
+    {
+      "ns": 553305,
+      "direction": "R",
+      "addr": "0x100002d0"
+    },
+    {
+      "ns": 553420,
+      "direction": "R",
+      "addr": "0x100002e0"
+    },
+    {
+      "ns": 553535,
+      "direction": "R",
+      "addr": "0x100002f0"
+    },
+    {
+      "ns": 553595,
+      "direction": "R",
+      "addr": "0x10008040"
+    },
+    {
+      "ns": 553600,
+      "direction": "R",
+      "addr": "0x10008080"
+    },
+    {
+      "ns": 553605,
+      "direction": "W",
+      "addr": "0x10010040"
+    },
+    {
+      "ns": 553615,
+      "direction": "R",
+      "addr": "0x100080c8"
+    },
+    {
+      "ns": 553655,
+      "direction": "W",
+      "addr": "0x10010080"
+    },
+    {
+      "ns": 553665,
+      "direction": "R",
+      "addr": "0x10008100"
+    },
+    {
+      "ns": 553695,
+      "direction": "R",
+      "addr": "0x10008140"
+    },
+    {
+      "ns": 553715,
+      "direction": "R",
+      "addr": "0x10008158"
+    },
+    {
+      "ns": 553730,
+      "direction": "W",
+      "addr": "0x100100d8"
+    },
+    {
+      "ns": 553770,
+      "direction": "R",
+      "addr": "0x10008180"
+    },
+    {
+      "ns": 553785,
+      "direction": "W",
+      "addr": "0x10010100"
+    },
+    {
+      "ns": 553795,
+      "direction": "R",
+      "addr": "0x100081c0"
+    },
+    {
+      "ns": 553810,
+      "direction": "W",
+      "addr": "0x10010140"
+    },
+    {
+      "ns": 553820,
+      "direction": "R",
+      "addr": "0x100081e0"
+    },
+    {
+      "ns": 553850,
+      "direction": "W",
+      "addr": "0x10010168"
+    },
+    {
+      "ns": 553860,
+      "direction": "R",
+      "addr": "0x10008200"
+    },
+    {
+      "ns": 553870,
+      "direction": "W",
+      "addr": "0x10010180"
+    },
+    {
+      "ns": 553880,
+      "direction": "R",
+      "addr": "0x10008240"
+    },
+    {
+      "ns": 553890,
+      "direction": "W",
+      "addr": "0x100101c0"
+    },
+    {
+      "ns": 553900,
+      "direction": "R",
+      "addr": "0x10008268"
+    },
+    {
+      "ns": 553930,
+      "direction": "W",
+      "addr": "0x10010200"
+    },
+    {
+      "ns": 553940,
+      "direction": "R",
+      "addr": "0x10008280"
+    },
+    {
+      "ns": 553955,
+      "direction": "W",
+      "addr": "0x10010240"
+    },
+    {
+      "ns": 553970,
+      "direction": "R",
+      "addr": "0x100082c0"
+    },
+    {
+      "ns": 553980,
+      "direction": "W",
+      "addr": "0x10010298"
+    },
+    {
+      "ns": 554010,
+      "direction": "R",
+      "addr": "0x100082f8"
+    },
+    {
+      "ns": 554020,
+      "direction": "W",
+      "addr": "0x100102c0"
+    },
+    {
+      "ns": 554050,
+      "direction": "R",
+      "addr": "0x10008300"
+    },
+    {
+      "ns": 554060,
+      "direction": "W",
+      "addr": "0x10010300"
+    },
+    {
+      "ns": 554075,
+      "direction": "R",
+      "addr": "0x10008340"
+    },
+    {
+      "ns": 554085,
+      "direction": "W",
+      "addr": "0x10010328"
+    },
+    {
+      "ns": 554115,
+      "direction": "R",
+      "addr": "0x10008380"
+    },
+    {
+      "ns": 554125,
+      "direction": "W",
+      "addr": "0x10010340"
+    },
+    {
+      "ns": 554135,
+      "direction": "R",
+      "addr": "0x100083c0"
+    },
+    {
+      "ns": 554160,
+      "direction": "W",
+      "addr": "0x10010380"
+    },
+    {
+      "ns": 554170,
+      "direction": "R",
+      "addr": "0x10008410"
+    },
+    {
+      "ns": 554200,
+      "direction": "W",
+      "addr": "0x100103c0"
+    },
+    {
+      "ns": 554210,
+      "direction": "R",
+      "addr": "0x10008440"
+    },
+    {
+      "ns": 554240,
+      "direction": "W",
+      "addr": "0x10010400"
+    },
+    {
+      "ns": 554250,
+      "direction": "R",
+      "addr": "0x10008480"
+    },
+    {
+      "ns": 554270,
+      "direction": "W",
+      "addr": "0x10010458"
+    },
+    {
+      "ns": 554290,
+      "direction": "R",
+      "addr": "0x10008498"
+    },
+    {
+      "ns": 554310,
+      "direction": "W",
+      "addr": "0x10010480"
+    },
+    {
+      "ns": 554330,
+      "direction": "R",
+      "addr": "0x100084c0"
+    },
+    {
+      "ns": 554340,
+      "direction": "W",
+      "addr": "0x100104c0"
+    },
+    {
+      "ns": 554355,
+      "direction": "R",
+      "addr": "0x10008500"
+    },
+    {
+      "ns": 554365,
+      "direction": "W",
+      "addr": "0x100104e8"
+    },
+    {
+      "ns": 554395,
+      "direction": "R",
+      "addr": "0x10008520"
+    },
+    {
+      "ns": 554405,
+      "direction": "W",
+      "addr": "0x10010500"
+    },
+    {
+      "ns": 554415,
+      "direction": "R",
+      "addr": "0x10008540"
+    },
+    {
+      "ns": 554425,
+      "direction": "W",
+      "addr": "0x10010540"
+    },
+    {
+      "ns": 554435,
+      "direction": "R",
+      "addr": "0x10008580"
+    },
+    {
+      "ns": 554445,
+      "direction": "W",
+      "addr": "0x10010580"
+    },
+    {
+      "ns": 554475,
+      "direction": "R",
+      "addr": "0x10000300"
+    },
+    {
+      "ns": 554485,
+      "direction": "W",
+      "addr": "0x100105c0"
+    },
+    {
+      "ns": 554500,
+      "direction": "R",
+      "addr": "0x100085b0"
+    },
+    {
+      "ns": 554510,
+      "direction": "W",
+      "addr": "0x10010610"
+    },
+    {
+      "ns": 554540,
+      "direction": "R",
+      "addr": "0x100085c0"
+    },
+    {
+      "ns": 554550,
+      "direction": "W",
+      "addr": "0x10010640"
+    },
+    {
+      "ns": 554580,
+      "direction": "R",
+      "addr": "0x10008600"
+    },
+    {
+      "ns": 554590,
+      "direction": "W",
+      "addr": "0x10010680"
+    },
+    {
+      "ns": 554670,
+      "direction": "R",
+      "addr": "0x10008638"
+    },
+    {
+      "ns": 554680,
+      "direction": "W",
+      "addr": "0x100106a8"
+    },
+    {
+      "ns": 554760,
+      "direction": "R",
+      "addr": "0x10008640"
+    },
+    {
+      "ns": 554770,
+      "direction": "W",
+      "addr": "0x100106c0"
+    },
+    {
+      "ns": 554780,
+      "direction": "R",
+      "addr": "0x10008680"
+    },
+    {
+      "ns": 554790,
+      "direction": "W",
+      "addr": "0x10010700"
+    },
+    {
+      "ns": 554860,
+      "direction": "R",
+      "addr": "0x100086c0"
+    },
+    {
+      "ns": 554870,
+      "direction": "W",
+      "addr": "0x10010740"
+    },
+    {
+      "ns": 554940,
+      "direction": "R",
+      "addr": "0x10008700"
+    },
+    {
+      "ns": 554950,
+      "direction": "W",
+      "addr": "0x10010780"
+    },
+    {
+      "ns": 554965,
+      "direction": "R",
+      "addr": "0x10008740"
+    },
+    {
+      "ns": 554990,
+      "direction": "W",
+      "addr": "0x100107d0"
+    },
+    {
+      "ns": 555055,
+      "direction": "R",
+      "addr": "0x10008750"
+    },
+    {
+      "ns": 555065,
+      "direction": "W",
+      "addr": "0x10010800"
+    },
+    {
+      "ns": 555130,
+      "direction": "R",
+      "addr": "0x10008778"
+    },
+    {
+      "ns": 555140,
+      "direction": "W",
+      "addr": "0x10010840"
+    },
+    {
+      "ns": 555230,
+      "direction": "R",
+      "addr": "0x10008780"
+    },
+    {
+      "ns": 555240,
+      "direction": "W",
+      "addr": "0x10010868"
+    }
+  ],
+  "first_matching_wait": {
+    "ns": 555270,
+    "signals": {
+      "D.next_id": 3,
+      "D.done_id": 1,
+      "D.axi_mst_req_o.ar_valid": 0,
+      "D.axi_mst_rsp_i.ar_ready": 1,
+      "D.axi_mst_req_o.ar.addr": 335579240,
+      "D.axi_mst_rsp_i.r_valid": 0,
+      "D.axi_mst_req_o.r_ready": 1,
+      "D.axi_mst_rsp_i.r.last": 0,
+      "D.axi_mst_req_o.aw_valid": 0,
+      "D.axi_mst_rsp_i.aw_ready": 1,
+      "D.axi_mst_req_o.aw.addr": 335610216,
+      "D.axi_mst_req_o.w_valid": 0,
+      "D.axi_mst_rsp_i.w_ready": 1,
+      "D.axi_mst_req_o.w.last": 0,
+      "L.to_llc_req.aw_valid": 1,
+      "L.to_llc_resp.aw_ready": 0,
+      "L.to_llc_req.aw.addr": 268503176,
+      "L.to_llc_req.w_valid": 0,
+      "L.to_llc_resp.w_ready": 1,
+      "L.to_llc_resp.r_valid": 0,
+      "L.to_llc_req.r_ready": 0,
+      "L.ax_desc_valid": 3,
+      "L.ax_desc_ready": 0,
+      "L.rw_desc.rw": 0,
+      "L.rw_desc.a_x_addr": 268470208,
+      "L.rw_desc_valid": 1,
+      "L.rw_desc_ready": 0,
+      "L.spill_desc.rw": 0,
+      "L.spill_desc.a_x_addr": 268470144,
+      "L.spill_valid": 1,
+      "L.spill_ready": 0,
+      "L.desc.rw": 1,
+      "L.desc.a_x_addr": 268503104,
+      "L.hit_valid": 1,
+      "L.hit_ready": 0,
+      "L.read_desc_valid": 0,
+      "L.read_desc_ready": 1,
+      "L.write_desc_valid": 1,
+      "L.write_desc_ready": 0,
+      "L.r_unlock_req": 0,
+      "L.r_unlock_gnt": 1,
+      "L.w_unlock_req": 0,
+      "L.w_unlock_gnt": 1,
+      "H.busy_q": 1,
+      "H.locked": 0,
+      "H.cnt_stall": 0,
+      "H.to_miss": 0,
+      "R.busy_q": 0,
+      "R.desc_q.a_x_addr": 268470136,
+      "R.desc_q.a_x_len": 0,
+      "R.r_fifo_full": 0,
+      "R.meta_fifo_full": 0,
+      "R.way_inp_valid_o": 0,
+      "R.way_inp_ready_i": 1,
+      "W.busy_q": 1,
+      "W.desc_q.a_x_addr": 268503040,
+      "W.desc_q.a_x_len": 7,
+      "W.w_valid": 0,
+      "W.w_ready": 0,
+      "W.b_ready": 1,
+      "W.way_inp_valid_o": 0,
+      "W.way_inp_ready_i": 0,
+      "T.w_dp_valid_i": 1,
+      "T.mask_out": 255,
+      "T.buffer_out_valid_i": 15,
+      "T.ready_to_write": 0,
+      "T.w_dp_req_i.shift": 2,
+      "T.first_w": 0,
+      "T.last_w": 0
+    }
+  }
+}

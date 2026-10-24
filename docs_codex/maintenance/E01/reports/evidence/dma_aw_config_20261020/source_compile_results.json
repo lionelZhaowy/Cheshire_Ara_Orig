@@ -1,0 +1,44 @@
+[
+  {
+    "source": "/tmp/e01-aw-implementation-vegknctz/stage/sw/tests/dma_2d.spm.c",
+    "cmd": [
+      "riscv64-unknown-elf-gcc",
+      "-O2",
+      "-ffreestanding",
+      "-march=rv64imafdc",
+      "-mabi=lp64d",
+      "-I",
+      "/tmp/e01-aw-implementation-vegknctz/stage/sw/include",
+      "-I",
+      "sw/include",
+      "-I",
+      "sw/deps/printf",
+      "-c",
+      "/tmp/e01-aw-implementation-vegknctz/stage/sw/tests/dma_2d.spm.c",
+      "-o",
+      "/tmp/e01-aw-implementation-vegknctz/dma_2d.spm.o"
+    ],
+    "rc": 0
+  },
+  {
+    "source": "/tmp/e01-aw-implementation-vegknctz/dma_long_aw_api.c",
+    "cmd": [
+      "riscv64-unknown-elf-gcc",
+      "-O2",
+      "-ffreestanding",
+      "-march=rv64imafdc",
+      "-mabi=lp64d",
+      "-I",
+      "/tmp/e01-aw-implementation-vegknctz/stage/sw/include",
+      "-I",
+      "sw/include",
+      "-I",
+      "sw/deps/printf",
+      "-c",
+      "/tmp/e01-aw-implementation-vegknctz/dma_long_aw_api.c",
+      "-o",
+      "/tmp/e01-aw-implementation-vegknctz/dma_long_aw_api.o"
+    ],
+    "rc": 0
+  }
+]

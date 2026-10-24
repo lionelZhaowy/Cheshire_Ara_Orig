@@ -1,0 +1,50 @@
+[
+  {
+    "mode": "before",
+    "cmd": [
+      "riscv64-unknown-elf-gcc",
+      "-ffreestanding",
+      "-O2",
+      "-march=rv64imafdc",
+      "-mabi=lp64d",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-error=array-bounds",
+      "-I",
+      "/tmp/e01-aw-implementation-vegknctz/old/sw/include",
+      "-I",
+      "sw/include",
+      "-c",
+      "/tmp/e01-aw-implementation-vegknctz/hal_api_check_before.c",
+      "-o",
+      "/tmp/e01-aw-implementation-vegknctz/before.o"
+    ],
+    "rc": 0,
+    "warnings": 61
+  },
+  {
+    "mode": "after",
+    "cmd": [
+      "riscv64-unknown-elf-gcc",
+      "-ffreestanding",
+      "-O2",
+      "-march=rv64imafdc",
+      "-mabi=lp64d",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-error=array-bounds",
+      "-I",
+      "/tmp/e01-aw-implementation-vegknctz/stage/sw/include",
+      "-I",
+      "sw/include",
+      "-c",
+      "/tmp/e01-aw-implementation-vegknctz/hal_api_check.c",
+      "-o",
+      "/tmp/e01-aw-implementation-vegknctz/after.o"
+    ],
+    "rc": 0,
+    "warnings": 61
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "status": "pass",
+  "documents": [
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/versions.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/timeline.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 一次裸机推理由 CPU、搬运器和 NPU 共同完成",
+        "2. CPU 与设备可能读到同一地址的不同版本",
+        "3. 软件确定交接时机，硬件完成缓存维护",
+        "4. 输入维护使设备从 DDR 取得最新数据",
+        "5. 输出维护保护未覆盖字节，并让 CPU 读取新结果",
+        "6. 裸机程序用显式同步串起完整推理",
+        "7. 范围维护引擎连接现有缓存与搬运控制",
+        "8. 同步范围和交接频率决定维护开销"
+      ],
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "sha256": "fcc41e3074441ab8a2da93fbc63e8ccb0f6af9f50b790b61fc6d1aab30f35496"
+    },
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/ownership.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/data-paths.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 方案定位与数据连接",
+        "2. 一次推理如何交接输入与输出",
+        "3. 软件接口与硬件完成协议",
+        "4. 维护开销与数据路径取舍",
+        "5. 源码依据、验收与待定接口"
+      ],
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "sha256": "38e560e38baed3fbab494291e4fd4d6d0dad81fb995857b827994a49dfae2777"
+    },
+    {
+      "images": [],
+      "overflow": false,
+      "headings": [
+        "1. 四端口目标与供应商交付范围",
+        "2. 跨端口可见性和属性支持需要明确",
+        "3. 错误报告已存在，需确认怎样影响本次访问",
+        "4. 排空、运行中复位和故障超时分别确认",
+        "5. 手册核对结果与会议答复分开保存"
+      ],
+      "source": "docs_codex/engineering/DDR_Supplier_Coherence_Questions.md",
+      "sha256": "fbc8731bcf868a5ce04c6c424d23e706dcb47baa904896bea1c7148d7343d8c0"
+    },
+    {
+      "overflow": false,
+      "images": [],
+      "source": "docs_codex/software/interfaces/integration.html",
+      "sha256": "f18577bf1ba83a541f6e4c890199901775c4140c2d46b1c0d1c50433a4da4334"
+    }
+  ],
+  "chrome": "Google Chrome 151.0.7922.108"
+}

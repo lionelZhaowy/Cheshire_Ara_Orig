@@ -1,19 +1,23 @@
 # 图稿目录索引
 
-更新：2026-10-18。按内容查图；“正式配图”表示文档正在使用，不表示对应硬件已经实现或验证。**文件夹没有被正文直接链接，也可能是生成依赖或用户单独使用的 PPT。**
+更新：2026-10-23（新增 LVDS RX 像素/行帧 WaveDrom 时序；既有 SoC 图稿保持）。按内容查图；“正式配图”表示文档正在使用，不表示对应硬件已经实现或验证。**文件夹没有被正文直接链接，也可能是生成依赖或用户单独使用的 PPT。**
 
 ## 常用入口
 
-- **当前 SoC 架构 v1**：[第9页预览](2026-10-16_soc_landscape_m5_gb/soc-architecture-v1.png) · [九页主PPT](2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx) · [实施总纲](../engineering/SoC_Architecture_v1_Master_Plan.md)。
+- **DMA–LLC/SPM 死锁**：[结构、形成过程及 AW 解耦位置](2026-10-20_dma_llc_deadlock/README.md)（SVG／PNG／原生 PPTX）。
+- **LVDS RX 像素位序与128路行帧时序**：[图稿、JSON5与离线HTML](2026-10-23_lvds_rx_timing/README.md) · [参数与预算](../engineering/SoC_Resource_and_Packaging_Plan.md#lvds-rx-timing)。RX按8组×16数据；SDR/上升沿/LSB先发为绘图约定，同步格式待定。
+- **当前 SoC 架构 v1＋LVDS 像素流直通**：[修改版 PPT/预览](2026-10-22_soc_lvds_bypass/README.md) · [直通设计说明](../engineering/LVDS_Raw_Bypass_Design.md) · [实施总纲](../engineering/SoC_Architecture_v1_Master_Plan.md)。原[九页 PPT](2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx)及第9页预览保留。
 - **RTL 模块内部机制**：[A 图总览](2026-10-13_rtl_module_comparison/index.html) · [21篇正文](../rtl_modules/README.md)。
 - **软件栈**：[全组件软件栈](2026-10-13_complete_software_stack/README.md) · [软硬件分层](2026-10-09_software_hardware_layers/README.md)。
-- **DDR–GB 同步**：[当前图稿](2026-10-16_ddr_gb_coherence_review/README.md) · [说明正文](../engineering/DDR_GB_Coherence_Design.md)。
+- **DDR–GB 同步**：[软件触发维护：系统／五阶段／生命周期](2026-10-20_ddr_gb_software_maintenance/README.md) · [硬件实现规划](../engineering/Cache_Coherence_Architecture.md#hardware-plan) · [说明正文](../engineering/DDR_GB_Coherence_Design.md)。
 - **实施难点**：[13幅图](2026-10-18_implementation_challenges/README.md) · [专题正文](../engineering/Implementation_Challenges_and_Open_Questions.md)。
 
 ## 主目录：正文配图、独立交付及依赖
 
 | 文件夹 | 用途 | 图片内容与保留原因 |
 | --- | --- | --- |
+| [2026-10-22_soc_lvds_bypass](2026-10-22_soc_lvds_bypass/README.md) | 当前架构增量 | 原 3600×2025 单页 v1 增加像素直通线、FIFO 前 2:1 MUX 和 TX 寄存器短控制线；原正常路径保留，右扩展版弃用并保留历史。 |
+| [2026-10-20_ddr_gb_software_maintenance](2026-10-20_ddr_gb_software_maintenance/README.md) | 正式配图 | 软件范围命令、缓存侧维护；系统／生命周期／五阶段图，三页与六页原生 PPTX。 |
 | [2026-10-09_software_hardware_layers](2026-10-09_software_hardware_layers/README.md) | 正式配图 | 软硬件分层、源码与工具对应；LAYERS_AND_TOOLS 正文使用。 |
 | [2026-10-11_native_reconstruction](2026-10-11_native_reconstruction/README.md) | 共享来源 / 独立图集 | 37 张教材结构图、8 张独立图的原生重建，另有完整 SoC 图；工业版的输入来源。 |
 | [2026-10-12_axi_to_detailed_mem](2026-10-12_axi_to_detailed_mem/README.md) | 生成依赖 | AXI→详细存储接口的请求、fork/metadata、stream_to_mem、bank/port；A 图经 Regbus 脚本导入其绘图工具。 |
@@ -29,16 +33,18 @@
 | [2026-10-15_global_buffer_cpu_access](2026-10-15_global_buffer_cpu_access/README.md) | 正文比较参考 | CPU 不直达 GB 与 CPU 可达 GB 两种方案；正文仍引用作历史比较，现行 v1 采用共享 M5。 |
 | [2026-10-16_cache_coherence](2026-10-16_cache_coherence/README.md) | 生成依赖 / 前版 | 早期逐行协调图及 industrial-base 底图；当前 hybrid、DDR–GB 说明等生成器仍读取。 |
 | [2026-10-16_coherence_comparison](2026-10-16_coherence_comparison/README.md) | 生成依赖 / 前版 | A～F 一致性方案的统一布局比较；hybrid 生成器仍复用其代码，旧推荐状态已被替代。 |
-| [2026-10-16_coherence_hybrid](2026-10-16_coherence_hybrid/README.md) | 正式配图 | 软件交接与硬件范围维护、数据路径及方案比较；缓存一致性专题和综述使用。 |
+| [2026-10-16_coherence_hybrid](2026-10-16_coherence_hybrid/README.md) | 前版 / 生成依赖 | 10月16日维护与分类图；当前专题采用10月20日v1版，原件和生成依赖保留。 |
 | [2026-10-16_coherence_survey](2026-10-16_coherence_survey/README.md) | 正式引用 / 外部原图 | Cohmeleon、NVDLA、Gemmini 等四张来源图及出处；综述仍使用，保留来源与证据。 |
 | [2026-10-16_cpu_npu_inference](2026-10-16_cpu_npu_inference/README.md) | 正式配图 | 模型部署全链、CPU/NPU 分工、运行时提交及异构推理系统。 |
 | [2026-10-16_ddr_gb_coherence_design](2026-10-16_ddr_gb_coherence_design/README.md) | 前版 / 校验输入 | DDR–GB 同步说明的系统、版本快照、时间线三图；后续 review 版本引用其证据和前版校验输入，保留。 |
-| [2026-10-16_ddr_gb_coherence_review](2026-10-16_ddr_gb_coherence_review/README.md) | 正式配图 | DDR_GB_Coherence_Design 当前正文配图：按独立评审修订的系统、版本与同步时间线。 |
+| [2026-10-16_ddr_gb_coherence_review](2026-10-16_ddr_gb_coherence_review/README.md) | 前版 / 生成依赖 | 10月16日评审输入及三图；旧三口系统图由v1专题替代，原件/预览/证据保留。 |
+| [2026-10-20_ddr_gb_simple_timeline](2026-10-20_ddr_gb_simple_timeline/README.md) | 当前主说明时间线 | 五个应用阶段、两次数据交接；新版三页 PPTX 只替换时序页，系统与版本页保持原件。 |
+| [2026-10-20_ddr_gb_coherence_v1](2026-10-20_ddr_gb_coherence_v1/README.md) | v1 拓扑 / 硬件展开 | v1共享M5与四口前端专题图、16步时序、生命周期/路径比较；保留原 16 步版三页及规划/综述六页原生PPTX。 |
 | [2026-10-16_global_buffer_shared_xbar](2026-10-16_global_buffer_shared_xbar/README.md) | 正式配图 | CPU/Ara 独立 master 经主 Xbar 共用 GB 出口；Global_Buffer_CPU_Access 正文采用。 |
-| [2026-10-16_soc_landscape_m5_gb](2026-10-16_soc_landscape_m5_gb/README.md) | 当前架构图 | 用户手调的九页主 PPT；显示顺序第 9 页为 SoC 架构(v1)，使用 soc-architecture-v1.png/svg 预览。旧页与修订证据保留。 |
+| [2026-10-16_soc_landscape_m5_gb](2026-10-16_soc_landscape_m5_gb/README.md) | v1 基线保留 | 用户手调的九页主 PPT；显示顺序第 9 页为 SoC 架构(v1)，使用 soc-architecture-v1.png/svg 预览。旧页与修订证据保留。 |
 | [2026-10-18_implementation_challenges](2026-10-18_implementation_challenges/README.md) | 正式配图 | SoC v1 十三类实施难点，13 张 SVG/PNG 与13页原生 PPT；对应实施难点专题。 |
 
-根目录的 [soc_landscape.pptx](soc_landscape.pptx) 是用户提供的原始全景 PPT 输入，保留；当前 v1 主文件见上方入口。
+根目录的 [soc_landscape.pptx](soc_landscape.pptx) 是用户提供的原始全景 PPT 输入，保留；当前 LVDS 像素流直通版在既有 `2026-10-22_soc_lvds_bypass` 目录内修订，见上方入口。
 
 ## backup_no_use：历史备份与少量历史来源
 

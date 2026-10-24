@@ -1,0 +1,56 @@
+--- a/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_ctrl.sv
++++ b/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_dcache_ctrl.sv
+@@ -288,6 +288,30 @@
+   //pragma translate_off
+ `ifndef VERILATOR
+ 
++  // Check the response using the request metadata saved on data_gnt.
++  // The live request may already describe the next access on a hit.
++  a_read_metadata_known :
++  assert property (@(posedge clk_i) disable iff (!rst_ni)
++    req_port_o.data_rvalid && !req_port_i.kill_req |->
++      !$isunknown({address_off_q[CVA6Cfg.XLEN_ALIGN_BYTES-1:0], data_size_q}) &&
++      ((int'(address_off_q[CVA6Cfg.XLEN_ALIGN_BYTES-1:0]) + (1 << data_size_q))
++        <= CVA6Cfg.XLEN / 8))
++  else $warning("READ_META_INVALID %m id=%h offset=%h size=%h",
++      $sampled(id_q), $sampled(address_off_q), $sampled(data_size_q));
++
++  for (genvar byte_idx = 0; byte_idx < CVA6Cfg.XLEN / 8; byte_idx++) begin : gen_read_data_check
++    a_read_data_known :
++    assert property (@(posedge clk_i) disable iff (!rst_ni)
++      req_port_o.data_rvalid && !req_port_i.kill_req &&
++      !$isunknown({address_off_q[CVA6Cfg.XLEN_ALIGN_BYTES-1:0], data_size_q}) &&
++      (byte_idx >= int'(address_off_q[CVA6Cfg.XLEN_ALIGN_BYTES-1:0])) &&
++      (byte_idx < int'(address_off_q[CVA6Cfg.XLEN_ALIGN_BYTES-1:0]) + (1 << data_size_q))
++      |-> !$isunknown(req_port_o.data_rdata[byte_idx*8+:8]))
++    else $warning("READ_DATA_X %m id=%h offset=%h size=%h byte=%0d data=%h",
++        $sampled(id_q), $sampled(address_off_q), $sampled(data_size_q), byte_idx,
++        $sampled(req_port_o.data_rdata));
++  end
++
+   hot1 :
+   assert property (@(posedge clk_i) disable iff (!rst_ni) (!rd_ack_i) |=> cache_en_i |-> $onehot0(
+       rd_hit_oh_i
+--- a/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_cache_subsystem.sv
++++ b/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_cache_subsystem.sv
+@@ -283,18 +283,8 @@
+   end
+ 
+ 
+-  for (genvar j = 0; j < NumPorts - 1; j++) begin : gen_assertion
+-    a_invalid_read_data :
+-    assert property (
+-      @(posedge clk_i) disable iff (!rst_ni) dcache_req_ports_o[j].data_rvalid && ~dcache_req_ports_i[j].kill_req |-> (|dcache_req_ports_o[j].data_rdata) !== 1'hX)
+-    else
+-      $warning(
+-          1,
+-          "[l1 dcache] reading invalid data on port %01d: data=%016X",
+-          j,
+-          dcache_req_ports_o[j].data_rdata
+-      );
+-  end
++  // Read-data X/Z checks live in wt_dcache_ctrl, where the saved request
++  // offset and size identify the valid bytes of this response.
+ `endif
+   //pragma translate_on
+ 

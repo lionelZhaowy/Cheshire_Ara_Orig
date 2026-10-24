@@ -1,0 +1,91 @@
+[
+  {
+    "name": "dma_long_aw_api",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/dma_long_aw_api.elf"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/run_dma_long_aw_api",
+    "elf_sha256": "5f807e2b7cb3c80023cd4228df7559d572d74afc4625fb1efee8594c73b0d124",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T13:53:45.707472Z",
+    "host_rc": 0,
+    "wall_seconds": 241.185,
+    "end_utc": "2026-10-20T13:57:46.892466Z",
+    "completion": [
+      "[UART] DMA_LONG job=0 id=2 done=2 pending=19 errors=0",
+      "[UART] DMA_LONG job=1 id=3 done=3 pending=30 errors=0",
+      "[SLINK] SUCCESS"
+    ],
+    "assertions": [],
+    "trace_sha256": "8a257c60e7fffc677ce408d95c27a5d65d234c2b24fa729b74b940d9a22b31cc",
+    "previous_trace_sha256": "8a257c60e7fffc677ce408d95c27a5d65d234c2b24fa729b74b940d9a22b31cc",
+    "passed": true,
+    "trace_unchanged": true
+  },
+  {
+    "name": "helloworld",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/helloworld.elf"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/run_helloworld",
+    "elf_sha256": "77e56cba45b4a16f8791934fba312ee5c3d2bc747226d96e2f27a17ce71400c9",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T13:57:47.002554Z",
+    "host_rc": 0,
+    "wall_seconds": 33.283,
+    "end_utc": "2026-10-20T13:58:20.286047Z",
+    "completion": [
+      "[UART] Hello World!",
+      "[SLINK] SUCCESS"
+    ],
+    "assertions": [],
+    "trace_sha256": "eb814933d1c3603fe9451905bc0155146c79f4e8965c4e6b8a8e99e67fa82a33",
+    "previous_trace_sha256": "eb814933d1c3603fe9451905bc0155146c79f4e8965c4e6b8a8e99e67fa82a33",
+    "passed": true,
+    "trace_unchanged": true
+  },
+  {
+    "name": "vector_fixed",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/vector_fixed.elf"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/run_vector_fixed",
+    "elf_sha256": "d0c9293f0c45ae335e18d0383e53c91835a838cff7bb79cb210e449145bafaa4",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T13:58:20.304631Z",
+    "host_rc": 0,
+    "wall_seconds": 81.746,
+    "end_utc": "2026-10-20T13:59:42.050587Z",
+    "completion": [
+      "[UART] Hello Vector World!",
+      "[UART] VECTOR_COPY errors=0 bytes=22",
+      "[SLINK] SUCCESS"
+    ],
+    "assertions": [],
+    "trace_sha256": "8d56fc8a94bfdca872d3f963ac76a49e2f61033bcb64321df609fc27ac510738",
+    "previous_trace_sha256": "8d56fc8a94bfdca872d3f963ac76a49e2f61033bcb64321df609fc27ac510738",
+    "passed": true,
+    "trace_unchanged": true
+  }
+]

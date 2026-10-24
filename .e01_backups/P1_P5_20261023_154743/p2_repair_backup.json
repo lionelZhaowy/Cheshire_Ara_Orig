@@ -1,0 +1,116 @@
+{
+  "tag": "p2-pass",
+  "head": "7ac2e12b4bdfcf65d91ef5962439e4b0f13bdd6c",
+  "bundle_sha256": "c586c07f274b3fd85e24c803a2d8a9b618522c3b0ccb8326e5ab444680c7300f",
+  "evidence_sha256": "032b078fe575f1a3efad7995545651cf2d48e75cb100b198d2046856c47d9a6f",
+  "evidence_files": 50,
+  "source_status": "",
+  "regressions": {
+    "p2_reg_rvv": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/p2_scalar_after/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/sw/build/baseline_v3/rvv_bounds.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/runs/p2_reg_rvv",
+      "wall_seconds": 268.014,
+      "simv_sha256": "58a95809e0ee638308de55a0f21abefaec3e5cc51b24f71b9852798e6322e9f0",
+      "artifact_sha256": "7d2e8ebc545ec105d617334954f401f6a4e38e533c846a8507cb69c87798cee6",
+      "errors": []
+    },
+    "p2_reg_fmatmul": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/p2_scalar_after/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/sw/build/baseline_v3/fmatmul.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/runs/p2_reg_fmatmul",
+      "wall_seconds": 458.345,
+      "simv_sha256": "58a95809e0ee638308de55a0f21abefaec3e5cc51b24f71b9852798e6322e9f0",
+      "artifact_sha256": "05e8b9da5906eeccdc3552323e518d1e3c8293b0c59fdd240163b404543518e1",
+      "errors": []
+    },
+    "p2_reg_vector": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/p2_scalar_after/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/sw/build/baseline_v3/vector_fixed.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/runs/p2_reg_vector",
+      "wall_seconds": 82.022,
+      "simv_sha256": "58a95809e0ee638308de55a0f21abefaec3e5cc51b24f71b9852798e6322e9f0",
+      "artifact_sha256": "e7eb37007a02e7d23160366e9d9f91a10d5d8cb5442d450fa2768d5d44216cee",
+      "errors": []
+    },
+    "p2_reg_csr": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/p2_scalar_after/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/sw/build/baseline_v3/rvv_test_vstart_csrs.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/runs/p2_reg_csr",
+      "wall_seconds": 34.154,
+      "simv_sha256": "58a95809e0ee638308de55a0f21abefaec3e5cc51b24f71b9852798e6322e9f0",
+      "artifact_sha256": "49381bc4f84d3108888ba86288ebe22ca9cd504c1ad8bd7cc0521c23c2b76084",
+      "errors": []
+    },
+    "p2_reg_p1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/p2_scalar_after/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/sw/build/p1_test/p1_vstu_wrap.elf",
+        "+P1_VSTU_GATE"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra_maintenance/P1_P5_20261023_154743/candidate/work/runs/p2_reg_p1",
+      "wall_seconds": 156.133,
+      "simv_sha256": "58a95809e0ee638308de55a0f21abefaec3e5cc51b24f71b9852798e6322e9f0",
+      "artifact_sha256": "13a14532c332603e01b81873675ec7f8e153fd75b2d45efc0080ddc766f8be89",
+      "errors": []
+    }
+  }
+}

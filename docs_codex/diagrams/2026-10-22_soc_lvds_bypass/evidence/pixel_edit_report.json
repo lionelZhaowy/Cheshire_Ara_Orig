@@ -1,0 +1,155 @@
+{
+  "source_sha256": "4917dd2aa4e8fe36e58e19250376a0d061e3d09b14759cfa467891cef1587276",
+  "output_sha256": "630b6377bbdb9e7ce6a5c91cb0b992ced4a02bdc5fa3b4b904be9055b930787f",
+  "canvas": [
+    4100,
+    2025
+  ],
+  "input_shapes": 589,
+  "output_shapes": 591,
+  "changed_existing_objects": [
+    {
+      "id": "1041",
+      "name": "emmc-physical"
+    },
+    {
+      "id": "1077",
+      "name": "vdma-pixels"
+    },
+    {
+      "id": "1335",
+      "name": "rx-cdc-t1: 像素流缓冲"
+    },
+    {
+      "id": "1458",
+      "name": "roi-title: 图像裁切输出"
+    },
+    {
+      "id": "1459",
+      "name": "roi-count: ≤256 ROI / 帧"
+    },
+    {
+      "id": "1460",
+      "name": "roi-no-scale: 纯裁切 · 不缩放"
+    },
+    {
+      "id": "1538",
+      "name": "lvds-tx-detail: 子图帧行封装"
+    },
+    {
+      "id": "1542",
+      "name": "legend-pixel-text: 像素流"
+    },
+    {
+      "id": "1550",
+      "name": "tx-processor"
+    },
+    {
+      "id": "559",
+      "name": "object-005: SoC"
+    },
+    {
+      "id": "1558",
+      "name": "lvds-io-region-title: LVDS I/O / 直通"
+    },
+    {
+      "id": "1559",
+      "name": "lvds-io-region-status: PAD / PHY 待确认"
+    },
+    {
+      "id": "1563",
+      "name": "lvds-output-select"
+    },
+    {
+      "id": "1564",
+      "name": "lvds-select-title: 二选一"
+    },
+    {
+      "id": "1565",
+      "name": "lvds-select-detail: 数据/时钟"
+    },
+    {
+      "id": "1569",
+      "name": "lvds-mode-control"
+    },
+    {
+      "id": "1570",
+      "name": "lvds-control-title: C5 · 模式选择"
+    },
+    {
+      "id": "1571",
+      "name": "lvds-control-priority: 软件选择 / 外部强制优先"
+    },
+    {
+      "id": "1572",
+      "name": "lvds-control-independent: 强制不依赖 CPU/DDR"
+    },
+    {
+      "id": "1573",
+      "name": "lvds-force-external"
+    },
+    {
+      "id": "1574",
+      "name": "lvds-force-title: 外部强制"
+    },
+    {
+      "id": "1575",
+      "name": "lvds-force-signal: BYPASS_FORCE"
+    },
+    {
+      "id": "1576",
+      "name": "lvds-force-pin-status: 管脚待分配"
+    },
+    {
+      "id": "1577",
+      "name": "lvds-bypass-title: 解串前串行旁路"
+    },
+    {
+      "id": "1578",
+      "name": "lvds-bypass-lanes: 128 对数据＋1 对时钟"
+    },
+    {
+      "id": "1579",
+      "name": "lvds-bypass-protocol: 保持传感器原始协议"
+    },
+    {
+      "id": "1580",
+      "name": "lvds-processor-compatibility: 需支持原始协议"
+    },
+    {
+      "id": "1586",
+      "name": "lvds-force-to-control"
+    },
+    {
+      "id": "1587",
+      "name": "lvds-control-to-select"
+    }
+  ],
+  "removed_objects": [
+    {
+      "id": "1582",
+      "name": "lvds-raw-bypass"
+    },
+    {
+      "id": "1583",
+      "name": "lvds-serial-branch"
+    },
+    {
+      "id": "1584",
+      "name": "lvds-select-to-driver"
+    }
+  ],
+  "added_objects": [
+    "pixel-bypass",
+    "pixel-select-to-fifo",
+    "pixel-control-to-rx-route",
+    "pixel-bypass-isolation: 直通时隔离写入反压",
+    "pixel-bypass-clocks: 需 RX / TX 时钟正常"
+  ],
+  "unchanged_existing_objects": 557,
+  "modified_package_parts": [
+    "ppt/slides/slide1.xml"
+  ],
+  "office_tested": false,
+  "hardware_tested": false
+}

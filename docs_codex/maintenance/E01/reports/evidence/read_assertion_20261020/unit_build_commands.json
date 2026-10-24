@@ -1,0 +1,33 @@
+[
+  {
+    "phase": "unit_compile",
+    "cmd": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "-assert",
+      "svaext",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/tb_read_assertion.sv"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build",
+    "host_rc": 0,
+    "wall_seconds": 0.229
+  },
+  {
+    "phase": "unit_elaborate",
+    "cmd": [
+      "vcs",
+      "-full64",
+      "-O2",
+      "-cpp",
+      "/opt/rh/gcc-toolset-13/root/usr/bin/g++",
+      "-Mdir=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/unit_csrc",
+      "-o",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/unit_simv",
+      "tb_read_assertion"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build",
+    "host_rc": 0,
+    "wall_seconds": 2.123
+  }
+]

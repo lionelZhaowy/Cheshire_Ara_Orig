@@ -1,0 +1,60 @@
+{
+  "wt_cache_subsystem.sv": {
+    "sha256": "6fb3b0b22c4da932e296313fa6a8cb29875ce15516808abaeab6f2abbfb2a644",
+    "functional_text_unchanged": true
+  },
+  "wt_dcache_ctrl.sv": {
+    "sha256": "944049633d9367562d500c4bb514a349f77cd11ea5c46f415f394a5340a45686",
+    "functional_text_unchanged": true
+  },
+  "soc": [
+    {
+      "name": "dma_long_aw_api",
+      "recorded_pass": true,
+      "success_in_log": true,
+      "new_read_warnings": false,
+      "trace_hashes": {
+        "trace_hart_0.log": "8a257c60e7fffc677ce408d95c27a5d65d234c2b24fa729b74b940d9a22b31cc",
+        "trace_hart_0_commit.log": "c6cfdb33159fc107978797932c067f40965c7a23f6c446dbab9ef98860e8c6ec"
+      },
+      "expected_trace": "8a257c60e7fffc677ce408d95c27a5d65d234c2b24fa729b74b940d9a22b31cc",
+      "host_rc": 0,
+      "elf_matches": true
+    },
+    {
+      "name": "helloworld",
+      "recorded_pass": true,
+      "success_in_log": true,
+      "new_read_warnings": false,
+      "trace_hashes": {
+        "trace_hart_0.log": "eb814933d1c3603fe9451905bc0155146c79f4e8965c4e6b8a8e99e67fa82a33",
+        "trace_hart_0_commit.log": "1aae8309c39b66d16a628b4fcf897a4368a480866f315c3d0944914edec7dd57"
+      },
+      "expected_trace": "eb814933d1c3603fe9451905bc0155146c79f4e8965c4e6b8a8e99e67fa82a33",
+      "host_rc": 0,
+      "elf_matches": true
+    },
+    {
+      "name": "vector_fixed",
+      "recorded_pass": true,
+      "success_in_log": true,
+      "new_read_warnings": false,
+      "trace_hashes": {
+        "trace_hart_0.log": "8d56fc8a94bfdca872d3f963ac76a49e2f61033bcb64321df609fc27ac510738",
+        "trace_hart_0_commit.log": "5a3c7eaafcd75a91f7682a8373a18ff0db94013ed5f6b873fc1e67dbc43fca91"
+      },
+      "expected_trace": "8d56fc8a94bfdca872d3f963ac76a49e2f61033bcb64321df609fc27ac510738",
+      "host_rc": 0,
+      "elf_matches": true
+    }
+  ],
+  "unit": {
+    "cases": 54,
+    "all_pass": true,
+    "host_rc": 0,
+    "log_files": {
+      "simulate.log": true
+    }
+  },
+  "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b"
+}

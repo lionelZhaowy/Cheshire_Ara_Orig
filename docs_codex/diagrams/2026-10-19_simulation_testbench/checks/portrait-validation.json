@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-19",
+  "input_head": "c9abbb48946fe3a7244bfb3159919b7c9731cb59",
+  "office_tested": false,
+  "runtime_verification_performed": false,
+  "slides": [
+    {
+      "style": "industrial_portrait",
+      "pptx_sha256": "2374aebfcba3e4705eb18ecf24c7cd73e6a23ad6af95fb1f671cf887ef220360",
+      "objects": 141,
+      "editable_text_objects": 86,
+      "native_arrow_objects": 28,
+      "native_dashed_objects": 14,
+      "embedded_images": 0,
+      "roundtrip_edit_check": true,
+      "pptx_interpreted_objects": 141
+    }
+  ],
+  "browser_checks": [
+    {
+      "source": "/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/docs_codex/diagrams/2026-10-19_simulation_testbench/industrial_portrait.svg",
+      "issues": [],
+      "text_count": 86
+    },
+    {
+      "source": "/tmp/simulation-testbench-art/industrial_portrait-pptx.svg",
+      "issues": [],
+      "text_count": 86
+    }
+  ],
+  "comparison_to_first_industrial": {
+    "retained_arrows_preserve_direction_and_type": true,
+    "merged_arrows": [
+      "uart-report",
+      "slink-report"
+    ],
+    "merged_boxes": [
+      "vip-report",
+      "checks"
+    ],
+    "explanation": "VIP 内部两条打印汇入总日志箭头；独立检查职责框改为页脚文字。其余结构与主流程保留。"
+  },
+  "visual_review": {
+    "final_pptx_whole_page": true,
+    "vip_dut_connections": true,
+    "software_and_results": true,
+    "endpoints_boundaries_and_result_semantics_checked": true
+  }
+}

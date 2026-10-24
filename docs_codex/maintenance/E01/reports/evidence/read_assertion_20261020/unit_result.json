@@ -1,0 +1,681 @@
+{
+  "cmd": [
+    "timeout",
+    "-k",
+    "5s",
+    "60s",
+    "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/unit_simv"
+  ],
+  "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/unit_run",
+  "host_rc": 0,
+  "wall_seconds": 0.15,
+  "testbench_sha256": "b2e45d0b6d0c7b2c79d5ab3246654e6af3f581c542ffb4c91d795ff6685a1e2e",
+  "simv_sha256": "506552a7022335871ab1bae390f9ad43993c6957cc7afd9b0578610e9453ecc9",
+  "cases": [
+    {
+      "id": 1,
+      "label": "unused_x_s0_o0",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxxxxxxxx00",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 2,
+      "label": "used_x_with_ones_s0_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffxx",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=0 byte=0 data=ffffffffffffffxx"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 3,
+      "label": "used_z_s0_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffzz",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=0 byte=0 data=ffffffffffffffzz"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 4,
+      "label": "unused_x_s0_o1",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxxxxxx00xx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 5,
+      "label": "used_x_with_ones_s0_o1",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffxxff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[1].a_read_data_known id=1 offset=01 size=0 byte=1 data=ffffffffffffxxff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 6,
+      "label": "used_z_s0_o1",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffzzff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[1].a_read_data_known id=1 offset=01 size=0 byte=1 data=ffffffffffffzzff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 7,
+      "label": "unused_x_s0_o2",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxxxx00xxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 8,
+      "label": "used_x_with_ones_s0_o2",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffxxffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[2].a_read_data_known id=1 offset=02 size=0 byte=2 data=ffffffffffxxffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 9,
+      "label": "used_z_s0_o2",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffzzffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[2].a_read_data_known id=1 offset=02 size=0 byte=2 data=ffffffffffzzffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 10,
+      "label": "unused_x_s0_o3",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxx00xxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 11,
+      "label": "used_x_with_ones_s0_o3",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffxxffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[3].a_read_data_known id=1 offset=03 size=0 byte=3 data=ffffffffxxffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 12,
+      "label": "used_z_s0_o3",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffzzffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[3].a_read_data_known id=1 offset=03 size=0 byte=3 data=ffffffffzzffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 13,
+      "label": "unused_x_s0_o4",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxx00xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 14,
+      "label": "used_x_with_ones_s0_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=0 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 15,
+      "label": "used_z_s0_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffzzffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=0 byte=4 data=ffffffzzffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 16,
+      "label": "unused_x_s0_o5",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxx00xxxxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 17,
+      "label": "used_x_with_ones_s0_o5",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffxxffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[5].a_read_data_known id=1 offset=05 size=0 byte=5 data=ffffxxffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 18,
+      "label": "used_z_s0_o5",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffzzffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[5].a_read_data_known id=1 offset=05 size=0 byte=5 data=ffffzzffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 19,
+      "label": "unused_x_s0_o6",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xx00xxxxxxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 20,
+      "label": "used_x_with_ones_s0_o6",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffxxffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[6].a_read_data_known id=1 offset=06 size=0 byte=6 data=ffxxffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 21,
+      "label": "used_z_s0_o6",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffzzffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[6].a_read_data_known id=1 offset=06 size=0 byte=6 data=ffzzffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 22,
+      "label": "unused_x_s0_o7",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "00xxxxxxxxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 23,
+      "label": "used_x_with_ones_s0_o7",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "xxffffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[7].a_read_data_known id=1 offset=07 size=0 byte=7 data=xxffffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 24,
+      "label": "used_z_s0_o7",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "zzffffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[7].a_read_data_known id=1 offset=07 size=0 byte=7 data=zzffffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 25,
+      "label": "unused_x_s1_o0",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxxxxxx0000",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 26,
+      "label": "used_x_with_ones_s1_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffxx",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=1 byte=0 data=ffffffffffffffxx"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 27,
+      "label": "used_z_s1_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffzz",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=1 byte=0 data=ffffffffffffffzz"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 28,
+      "label": "unused_x_s1_o2",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxx0000xxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 29,
+      "label": "used_x_with_ones_s1_o2",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffxxffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[2].a_read_data_known id=1 offset=02 size=1 byte=2 data=ffffffffffxxffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 30,
+      "label": "used_z_s1_o2",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffzzffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[2].a_read_data_known id=1 offset=02 size=1 byte=2 data=ffffffffffzzffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 31,
+      "label": "unused_x_s1_o4",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxx0000xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 32,
+      "label": "used_x_with_ones_s1_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=1 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 33,
+      "label": "used_z_s1_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffzzffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=1 byte=4 data=ffffffzzffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 34,
+      "label": "unused_x_s1_o6",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "0000xxxxxxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 35,
+      "label": "used_x_with_ones_s1_o6",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffxxffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[6].a_read_data_known id=1 offset=06 size=1 byte=6 data=ffxxffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 36,
+      "label": "used_z_s1_o6",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffzzffffffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[6].a_read_data_known id=1 offset=06 size=1 byte=6 data=ffzzffffffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 37,
+      "label": "unused_x_s2_o0",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxx00000000",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 38,
+      "label": "used_x_with_ones_s2_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffxx",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=2 byte=0 data=ffffffffffffffxx"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 39,
+      "label": "used_z_s2_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffzz",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=2 byte=0 data=ffffffffffffffzz"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 40,
+      "label": "unused_x_s2_o4",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "00000000xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 41,
+      "label": "used_x_with_ones_s2_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=2 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 42,
+      "label": "used_z_s2_o4",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffzzffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=2 byte=4 data=ffffffzzffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 43,
+      "label": "unused_x_s3_o0",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "0000000000000000",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 44,
+      "label": "used_x_with_ones_s3_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffxx",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=3 byte=0 data=ffffffffffffffxx"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 45,
+      "label": "used_z_s3_o0",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffffffffffzz",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[0].a_read_data_known id=1 offset=00 size=3 byte=0 data=ffffffffffffffzz"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 46,
+      "label": "cancelled",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "xxxxxxxxxxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 47,
+      "label": "metadata_x",
+      "expected_data": 0,
+      "expected_meta": 1,
+      "expected_word": "ffffffffffffffff",
+      "data_messages": [],
+      "meta_messages": [
+        "READ_META_INVALID tb_read_assertion.dut.a_read_metadata_known id=1 offset=04 size=x"
+      ],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 48,
+      "label": "invalid_range",
+      "expected_data": 0,
+      "expected_meta": 1,
+      "expected_word": "ffffffffffffffff",
+      "data_messages": [],
+      "meta_messages": [
+        "READ_META_INVALID tb_read_assertion.dut.a_read_metadata_known id=1 offset=04 size=3"
+      ],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 49,
+      "label": "miss_unused_x",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "00000000xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 50,
+      "label": "miss_used_x",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=2 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 51,
+      "label": "replay_unused_x",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "00000000xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 52,
+      "label": "replay_used_x",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=2 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 53,
+      "label": "sampled_print",
+      "expected_data": 1,
+      "expected_meta": 0,
+      "expected_word": "ffffffxxffffffff",
+      "data_messages": [
+        "READ_DATA_X tb_read_assertion.dut.gen_read_data_check[4].a_read_data_known id=1 offset=04 size=2 byte=4 data=ffffffxxffffffff"
+      ],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    },
+    {
+      "id": 54,
+      "label": "back_to_back_width_change",
+      "expected_data": 0,
+      "expected_meta": 0,
+      "expected_word": "00000000xxxxxxxx",
+      "data_messages": [],
+      "meta_messages": [],
+      "ended": true,
+      "pass": true
+    }
+  ],
+  "passed": true
+}

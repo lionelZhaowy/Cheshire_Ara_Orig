@@ -1,0 +1,342 @@
+// RX data-batch illustration only; no RTL interface or clock-phase guarantee.
+// Display FRAME_CNT, ROW_CNT, COL_CNT and DATA_RX only.
+// Fixed color by scale: FRAME blue (5), ROW purple (8), COL green (7), DATA white (2).
+// DATA labels F/R/i identify the current frame, row and zero-based batch.
+// COL_CNT is shown symbolically as i*128, i=0..95 (96 batches per row).
+// Pixel index = ROW_CNT*12288 + i*128 + lane, lane=0..127; reset numbering each frame.
+// After batch 95: COL_CNT=0*128 and ROW_CNT increments; after row 12287,
+// ROW_CNT=0 and FRAME_CNT increments. Counter widths/overflow are not specified.
+// Show rows 0,1,12287: first three batches and batch 95; then next-frame first batch.
+// Aligned | slots 3/8/14 omit batches 3..94 (92 batches); slot 10 omits rows 2..12286.
+// Inter-row/inter-frame intervals are omitted, not asserted to be zero.
+// Compressed horizontal axis is not proportional to elapsed time.
+// Compact native JsonML labels: F/R/i above DATA box; {Pfirst…Plast} inside.
+// One unnamed spacer separates the DATA metadata from the COL track; four named signals remain.
+{
+  "signal": [
+    {
+      "name": "FRAME_CNT",
+      "wave": "5..|....|.|...|.5",
+      "data": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "name": "ROW_CNT",
+      "wave": "8..|.8..|.|8..|.8",
+      "data": [
+        "0",
+        "1",
+        "12287",
+        "0"
+      ]
+    },
+    {
+      "name": "COL_CNT",
+      "wave": "777|7777|7|777|77",
+      "data": [
+        "0*128",
+        "1*128",
+        "2*128",
+        "95*128",
+        "0*128",
+        "1*128",
+        "2*128",
+        "95*128",
+        "0*128",
+        "1*128",
+        "2*128",
+        "95*128",
+        "0*128"
+      ]
+    },
+    {},
+    {
+      "name": "DATA_RX",
+      "wave": "222|2222|2|222|22",
+      "data": [
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R0/i0"
+          ],
+          [
+            "tspan",
+            {
+              "x": 96,
+              "dy": 25
+            },
+            "{P0…P127}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R0/i1"
+          ],
+          [
+            "tspan",
+            {
+              "x": 306,
+              "dy": 25
+            },
+            "{P128…P255}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R0/i2"
+          ],
+          [
+            "tspan",
+            {
+              "x": 606,
+              "dy": 25
+            },
+            "{P256…P383}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R0/i95"
+          ],
+          [
+            "tspan",
+            {
+              "x": 906,
+              "dy": 25
+            },
+            "{P12160…P12287}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R1/i0"
+          ],
+          [
+            "tspan",
+            {
+              "x": 1106,
+              "dy": 25
+            },
+            "{P12288…P12415}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R1/i1"
+          ],
+          [
+            "tspan",
+            {
+              "x": 1306,
+              "dy": 25
+            },
+            "{P12416…P12543}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R1/i2"
+          ],
+          [
+            "tspan",
+            {
+              "x": 1606,
+              "dy": 25
+            },
+            "{P12544…P12671}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R1/i95"
+          ],
+          [
+            "tspan",
+            {
+              "x": 2006,
+              "dy": 25
+            },
+            "{P24448…P24575}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R12287/i0"
+          ],
+          [
+            "tspan",
+            {
+              "x": 2306,
+              "dy": 25
+            },
+            "{P150982656…P150982783}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R12287/i1"
+          ],
+          [
+            "tspan",
+            {
+              "x": 2506,
+              "dy": 25
+            },
+            "{P150982784…P150982911}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R12287/i2"
+          ],
+          [
+            "tspan",
+            {
+              "x": 2806,
+              "dy": 25
+            },
+            "{P150982912…P150983039}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F0/R12287/i95"
+          ],
+          [
+            "tspan",
+            {
+              "x": 3106,
+              "dy": 25
+            },
+            "{P150994816…P150994943}"
+          ]
+        ],
+        [
+          "tspan",
+          [
+            "tspan",
+            {
+              "dy": -25
+            },
+            "F1/R0/i0"
+          ],
+          [
+            "tspan",
+            {
+              "x": 3306,
+              "dy": 25
+            },
+            "{P0…P127}"
+          ]
+        ]
+      ]
+    }
+  ],
+  "head": {
+    "text": [
+      "tspan",
+      [
+        "tspan",
+        {
+          "x": 1700,
+          "dy": -20
+        },
+        "LVDS RX 帧时序"
+      ],
+      [
+        "tspan",
+        {
+          "x": 700,
+          "dy": 20
+        },
+        "省略92批"
+      ],
+      [
+        "tspan",
+        {
+          "x": 1700
+        },
+        "省略92批"
+      ],
+      [
+        "tspan",
+        {
+          "x": 2100
+        },
+        "省略12285行"
+      ],
+      [
+        "tspan",
+        {
+          "x": 2900
+        },
+        "省略92批"
+      ]
+    ]
+  },
+  "config": {
+    "hscale": 5,
+    "skin": "default"
+  }
+}

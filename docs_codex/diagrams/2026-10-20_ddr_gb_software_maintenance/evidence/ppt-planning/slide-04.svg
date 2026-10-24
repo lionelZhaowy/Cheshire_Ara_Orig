@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025.0" viewBox="0 0 3600 2025.0">
+  <defs>
+    <marker id="arrow314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66"/>
+    </marker>
+    <marker id="arrow187C78" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#187C78"/>
+    </marker>
+    <marker id="arrow765489" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#765489"/>
+    </marker>
+  </defs>
+  <rect id="canvas" x="0" y="0" width="3600" height="2025.0" fill="#FFFFFF" stroke="none"/>
+  <rect x="107.14285714285714" y="32.399887514060744" width="1565.986501687289" height="123.42857142857143" id="shape-2" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-2-0" x="107.14285714285714" y="104.91417322834644" font-family="WenQuanYi Zen Hei" font-size="77.14285714285714" font-weight="bold" fill="#29292D" text-anchor="start">① 交接方式：软件发起，缓存维护由谁执行</text>
+  <rect x="107.14285714285714" y="150.17154105736782" width="1770.0669291338584" height="82.28571428571429" id="shape-3" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-3-0" x="107.14285714285714" y="198.51439820022495" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#606773" text-anchor="start">同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。</text>
+  <rect x="53.57142857142857" y="278.57142857142856" width="1714.2857142857142" height="1585.7142857142858" id="shape-4" fill="#FAFBFC" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="107.14285714285714" y="288.42857142857144" width="880.4732845894263" height="102.85714285714286" id="shape-5" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-5-0" x="107.14285714285714" y="348.8571428571429" font-family="WenQuanYi Zen Hei" font-size="64.28571428571429" font-weight="bold" fill="#29292D" text-anchor="start">A  软件维护 + 非一致性 DMA</text>
+  <rect x="107.14285714285714" y="388.1999437570304" width="837.8571428571429" height="78.85714285714286" id="shape-6" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-6-0" x="107.14285714285714" y="434.5285151856018" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#606773" text-anchor="start">软件维护全层次；硬件直接访问内存</text>
+  <rect x="182.14285714285714" y="514.2857142857143" width="428.57142857142856" height="117.85714285714286" id="shape-7" fill="#F1D7D9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="314.89791901012376" y="532.1571991001125" width="163.06130483689537" height="92.57142857142857" id="shape-8" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-8-0" x="396.42857142857144" y="586.5429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">CPU</text>
+  <rect x="182.14285714285714" y="750.0" width="428.57142857142856" height="182.14285714285714" id="shape-9" fill="#F1D7D9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="271.5033745781777" y="763.585770528684" width="249.8503937007874" height="92.57142857142857" id="shape-10" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-10-0" x="396.42857142857144" y="817.9714848143982" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">L1 / L2</text>
+  <rect x="293.57142857142856" y="845.5286839145107" width="205.71428571428572" height="82.28571428571429" id="shape-11" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-11-0" x="396.42857142857144" y="893.8715410573678" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">写缓冲</text>
+  <rect x="182.14285714285714" y="1200.0" width="428.57142857142856" height="182.14285714285714" id="shape-12" fill="#D8E8F4" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="320.6602924634421" y="1213.585770528684" width="151.53683914510685" height="92.57142857142857" id="shape-13" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-13-0" x="396.42871203599555" y="1267.9714848143983" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">LLC</text>
+  <rect x="242.14285714285714" y="1295.5286839145108" width="308.57142857142856" height="82.28571428571429" id="shape-14" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-14-0" x="396.42857142857144" y="1343.871541057368" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">系统侧缓存</text>
+  <rect x="182.14285714285714" y="1521.4285714285713" width="1457.142857142857" height="128.57142857142858" id="shape-15" fill="#E8DFED" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="677.6434195725534" y="1544.6571991001124" width="466.1417322834646" height="92.57142857142857" id="shape-16" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-16-0" x="910.7142857142857" y="1599.0429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">内存接入 / DDR</text>
+  <rect x="1167.857142857143" y="514.2857142857143" width="471.42857142857144" height="203.57142857142858" id="shape-17" fill="#D9EEE8" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="1287.857142857143" y="538.585770528684" width="231.42857142857142" height="92.57142857142857" id="shape-18" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-18-0" x="1403.5714285714287" y="592.9714848143982" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">加速器</text>
+  <rect x="1199.9915635545556" y="620.5286839145107" width="407.1597300337458" height="82.28571428571429" id="shape-19" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-19-0" x="1403.5714285714284" y="668.8715410573678" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">独立本地 SRAM</text>
+  <rect x="1167.857142857143" y="803.5714285714286" width="471.42857142857144" height="117.85714285714286" id="shape-20" fill="#D8E8F4" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="1315.6841957255342" y="821.4429133858267" width="175.77446569178852" height="92.57142857142857" id="shape-21" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-21-0" x="1403.5714285714284" y="875.828627671541" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">DMA</text>
+  <path d="M 396.4286 632.1429 L 396.4286 750.0000" id="shape-22" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 396.4286 932.1429 L 396.4286 1200.0000" id="shape-23" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 396.4286 1382.1429 L 396.4286 1521.4286" id="shape-24" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 1403.5714 717.8571 L 1403.5714 803.5714" id="shape-25" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <path d="M 1403.5714 921.4286 L 1403.5714 1200.0000" id="shape-26" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <rect x="996.4285714285714" y="1200.0" width="642.8571428571429" height="182.14285714285714" id="shape-27" fill="#F5E1C9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="1173.2142857142858" y="1213.585770528684" width="289.2857142857143" height="92.57142857142857" id="shape-28" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-28-0" x="1317.857142857143" y="1267.9714848143983" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">普通互连</text>
+  <rect x="1189.2857142857142" y="1295.5286839145108" width="257.14285714285717" height="82.28571428571429" id="shape-29" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-29-0" x="1317.857142857143" y="1343.871541057368" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">软件交接</text>
+  <path d="M 1317.8571 1382.1429 L 1317.8571 1521.4286" id="shape-30" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <rect x="707.1428571428571" y="514.2857142857143" width="364.2857142857143" height="117.85714285714286" id="shape-31" fill="#E8DFED" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="802.5" y="532.1571991001125" width="173.57142857142858" height="92.57142857142857" id="shape-32" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-32-0" x="889.2857142857143" y="586.5429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">驱动</text>
+  <path d="M 707.1429 572.1429 L 664.2857 572.1429 L 664.2857 810.0000 L 610.7143 810.0000" id="shape-33" fill="none" stroke="#765489" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow765489)" marker-end="url(#arrow765489)"/>
+  <path d="M 889.2857 632.1429 L 889.2857 1328.5714 L 610.7143 1328.5714" id="shape-34" fill="none" stroke="#765489" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow765489)" marker-end="url(#arrow765489)"/>
+  <rect x="107.14285714285714" y="1688.914229471316" width="784.9654105736782" height="78.85714285714286" id="shape-35" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-35-0" x="107.14285714285714" y="1735.2428008998875" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#29292D" text-anchor="start">交接前后由软件 clean / invalidate</text>
+  <rect x="107.14285714285714" y="1757.4856580427447" width="849.552587176603" height="78.85714285714286" id="shape-36" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-36-0" x="107.14285714285714" y="1803.8142294713161" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#29292D" text-anchor="start">设备直访 DDR；交接区限制冲突访问</text>
+  <rect x="1832.142857142857" y="278.57142857142856" width="1714.2857142857142" height="1585.7142857142858" id="shape-37" fill="#FAFBFC" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="1885.7142857142858" y="288.42857142857144" width="721.2052868391451" height="102.85714285714286" id="shape-38" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-38-0" x="1885.7142857142858" y="348.8571428571429" font-family="WenQuanYi Zen Hei" font-size="64.28571428571429" font-weight="bold" fill="#29292D" text-anchor="start">B  软硬件协同范围维护</text>
+  <rect x="1885.7142857142858" y="388.1999437570304" width="985.7142857142857" height="78.85714285714286" id="shape-39" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-39-0" x="1885.7142857142858" y="434.5285151856018" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#606773" text-anchor="start">软件触发批量维护；传输期保持范围所有权</text>
+  <rect x="1960.7142857142858" y="514.2857142857143" width="428.57142857142856" height="117.85714285714286" id="shape-40" fill="#F1D7D9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="2093.4693475815525" y="532.1571991001125" width="163.06130483689537" height="92.57142857142857" id="shape-41" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-41-0" x="2175.0" y="586.5429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">CPU</text>
+  <rect x="1960.7142857142858" y="750.0" width="428.57142857142856" height="182.14285714285714" id="shape-42" fill="#F1D7D9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="2050.0748031496064" y="763.585770528684" width="249.8503937007874" height="92.57142857142857" id="shape-43" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-43-0" x="2175.0" y="817.9714848143982" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">L1 / L2</text>
+  <rect x="2072.1428571428573" y="845.5286839145107" width="205.71428571428572" height="82.28571428571429" id="shape-44" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-44-0" x="2175.0" y="893.8715410573678" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">写缓冲</text>
+  <rect x="1960.7142857142858" y="1200.0" width="428.57142857142856" height="182.14285714285714" id="shape-45" fill="#D8E8F4" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="2099.2317210348706" y="1213.585770528684" width="151.53683914510685" height="92.57142857142857" id="shape-46" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-46-0" x="2175.000140607424" y="1267.9714848143983" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">LLC</text>
+  <rect x="2020.7142857142858" y="1295.5286839145108" width="308.57142857142856" height="82.28571428571429" id="shape-47" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-47-0" x="2175.0" y="1343.871541057368" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">系统侧缓存</text>
+  <rect x="1960.7142857142858" y="1521.4285714285713" width="1457.142857142857" height="128.57142857142858" id="shape-48" fill="#E8DFED" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="2456.214848143982" y="1544.6571991001124" width="466.1417322834646" height="92.57142857142857" id="shape-49" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-49-0" x="2689.2857142857147" y="1599.0429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">内存接入 / DDR</text>
+  <rect x="2946.4285714285716" y="514.2857142857143" width="471.42857142857144" height="203.57142857142858" id="shape-50" fill="#D9EEE8" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="3066.4285714285716" y="538.585770528684" width="231.42857142857142" height="92.57142857142857" id="shape-51" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-51-0" x="3182.1428571428573" y="592.9714848143982" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">加速器</text>
+  <rect x="2978.5629921259842" y="620.5286839145107" width="407.1597300337458" height="82.28571428571429" id="shape-52" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-52-0" x="3182.1428571428573" y="668.8715410573678" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">独立本地 SRAM</text>
+  <rect x="2946.4285714285716" y="803.5714285714286" width="471.42857142857144" height="117.85714285714286" id="shape-53" fill="#D8E8F4" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="3094.255624296963" y="821.4429133858267" width="175.77446569178852" height="92.57142857142857" id="shape-54" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-54-0" x="3182.1428571428573" y="875.828627671541" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">DMA</text>
+  <path d="M 2175.0000 632.1429 L 2175.0000 750.0000" id="shape-55" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 2175.0000 932.1429 L 2175.0000 1200.0000" id="shape-56" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 2175.0000 1382.1429 L 2175.0000 1521.4286" id="shape-57" fill="none" stroke="#314D66" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow314D66)" marker-end="url(#arrow314D66)"/>
+  <path d="M 3182.1429 717.8571 L 3182.1429 803.5714" id="shape-58" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <path d="M 3182.1429 921.4286 L 3182.1429 1200.0000" id="shape-59" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <rect x="2775.0" y="1200.0" width="642.8571428571429" height="182.14285714285714" id="shape-60" fill="#F5E1C9" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter" stroke-dasharray="19.285722857142858 12.857136428571428"/>
+  <rect x="2861.5514623172103" y="1213.585770528684" width="469.7544994375703" height="92.57142857142857" id="shape-61" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-61-0" x="3096.4287120359954" y="1267.9714848143983" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">维护 / 准入引擎</text>
+  <rect x="2967.8571428571427" y="1295.5286839145108" width="257.14285714285717" height="82.28571428571429" id="shape-62" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-62-0" x="3096.428571428571" y="1343.871541057368" font-family="WenQuanYi Zen Hei" font-size="51.42857142857143" font-weight="normal" fill="#29292D" text-anchor="middle">搬运边界</text>
+  <path d="M 3096.4286 1382.1429 L 3096.4286 1521.4286" id="shape-63" fill="none" stroke="#187C78" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow187C78)" marker-end="url(#arrow187C78)"/>
+  <path d="M 2775.0000 1232.1429 L 2528.5714 1232.1429 L 2528.5714 857.1429 L 2389.2857 857.1429" id="shape-64" fill="none" stroke="#765489" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow765489)" marker-end="url(#arrow765489)"/>
+  <path d="M 2775.0000 1332.8571 L 2389.2857 1332.8571" id="shape-65" fill="none" stroke="#765489" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow765489)" marker-end="url(#arrow765489)"/>
+  <rect x="1885.7142857142858" y="1688.914229471316" width="936.4285714285714" height="78.85714285714286" id="shape-66" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-66-0" x="1885.7142857142858" y="1735.2428008998875" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#29292D" text-anchor="start">软件交接所有权；硬件排空、维护并确认</text>
+  <rect x="1885.7142857142858" y="1757.4856580427447" width="893.0157480314961" height="78.85714285714286" id="shape-67" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-67-0" x="1885.7142857142858" y="1803.8142294713161" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#29292D" text-anchor="start">本项目方向：按缓冲区 / 分块批量同步</text>
+  <rect x="64.28571428571429" y="1909.6285151856018" width="1959.3481439820023" height="78.85714285714286" id="shape-68" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-68-0" x="64.28571428571429" y="1955.9570866141732" font-family="WenQuanYi Zen Hei" font-size="49.285714285714285" font-weight="normal" fill="#29292D" text-anchor="start">蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）</text>
+  <rect x="2485.714285714286" y="514.2857142857143" width="364.2857142857143" height="117.85714285714286" id="shape-69" fill="#E8DFED" stroke="#29292D" stroke-width="3.642857142857143" stroke-linejoin="miter"/>
+  <rect x="2581.0714285714284" y="532.1571991001125" width="173.57142857142858" height="92.57142857142857" id="shape-70" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-70-0" x="2667.8571428571427" y="586.5429133858268" font-family="WenQuanYi Zen Hei" font-size="57.857142857142854" font-weight="bold" fill="#29292D" text-anchor="middle">驱动</text>
+  <path d="M 2667.8571 632.1429 L 2667.8571 1125.0000 L 3096.4286 1125.0000 L 3096.4286 1200.0000" id="shape-71" fill="none" stroke="#765489" stroke-width="6.0" stroke-linejoin="miter" marker-start="url(#arrow765489)" marker-end="url(#arrow765489)"/>
+</svg>

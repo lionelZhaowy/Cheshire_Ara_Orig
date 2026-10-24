@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "source_sha256": "4917dd2aa4e8fe36e58e19250376a0d061e3d09b14759cfa467891cef1587276",
+  "final_pptx_sha256": "630b6377bbdb9e7ce6a5c91cb0b992ced4a02bdc5fa3b4b904be9055b930787f",
+  "changed_package_parts": [
+    "ppt/slides/slide1.xml"
+  ],
+  "source_shapes": 589,
+  "final_shapes": 591,
+  "unchanged_shapes": 557,
+  "modified_shapes": 29,
+  "removed_shapes": 3,
+  "added_shapes": 5,
+  "unique_object_ids": true,
+  "whole_slide_images": 0,
+  "native_arrows_and_pixel_custom_dash_checked": true,
+  "python_pptx_edit_save_reopen": "PASS",
+  "old_serial_visible_labels_removed": true,
+  "protected_initial_files_unchanged": {
+    "docs_codex/maintenance/E01/reports/reference_rebuild_check.md": true,
+    "docs_codex/engineering/Implementation_Challenges_and_Open_Questions.md": true,
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md": true,
+    "docs_codex/engineering/Global_Buffer_CPU_Access.md": true,
+    "docs_codex/engineering/DDR_GB_Coherence_Design.md": true,
+    "AGENTS.md": true,
+    "docs_codex/engineering/DDR_Supplier_Coherence_Questions.md": true,
+    "docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md": true,
+    "docs_codex/maintenance/L01/reviews/ddr_gb_coherence_review_qa.md": true,
+    "docs_codex/software/SERVER_SIMULATION_GUIDE.md": true,
+    "docs_codex/handoffs/E01_fixed_vector_extraction.md": true,
+    "docs_codex/handoffs/L01_cache_coherence_architecture.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/handoffs/P01_soc_resource_packaging.md": false,
+    "docs_codex/software/interfaces/integration.html": true,
+    "docs_codex/software/interfaces/markdown/integration.md": true,
+    "docs_codex/software/interfaces/content/integration.html": true,
+    "docs_codex/maintenance/E01/planning/server_reference_extraction_plan.md": true,
+    "docs_codex/engineering/Cache_Coherence_Architecture.md": true,
+    "docs_codex/maintenance/L01/reviews/ddr_gb_coherence_review_prompt.md": true,
+    "docs_codex/engineering/CPU_NPU_Cache_Coherence_Survey.md": true,
+    "docs_codex/diagrams/soc_landscape.pptx": true
+  },
+  "concurrent_external_changes": [
+    "docs_codex/handoffs/P01_soc_resource_packaging.md"
+  ],
+  "external_changes_note": "P01 budget documentation continued during this task; unrelated files were not written by this task.",
+  "visual_review": {
+    "source": "delivered PPT -> existing DrawingML SVG exporter -> CairoSVG PNG",
+    "full_page_viewed": true,
+    "crops_viewed": [
+      "pixel-input",
+      "pixel-output",
+      "pixel-io",
+      "pixel-emmc-crossing"
+    ],
+    "independent_reviewer": "/root/lvds_pixel_plan_review",
+    "independent_candidate_hash_matches_delivery": true,
+    "connections_reviewed": [
+      "RX CDC/FIFO output to pixel selector",
+      "normal DMA to pixel selector",
+      "selector to existing output FIFO",
+      "existing FIFO to TX",
+      "TX to normal LVDS driver",
+      "C5 to RX routing and TX selection",
+      "eMMC/control/DMA crossings use jumps"
+    ],
+    "font_note": "local font/layout approximation; inherited narrow CDC/FIFO title retained"
+  },
+  "office_tested": false,
+  "rtl_or_hardware_or_electrical_tested": false,
+  "validation_note": "Initial dash check assumed prstDash; inspected final XML and corrected the check to its actual native custDash representation, without changing PPT.",
+  "new_or_revised_local_links_checked": 62,
+  "local_link_errors": [],
+  "new_pixel_anchors_checked": true,
+  "git_diff_check": "PASS",
+  "artifact_hashes": {
+    "soc_lvds_bypass.pptx": "630b6377bbdb9e7ce6a5c91cb0b992ced4a02bdc5fa3b4b904be9055b930787f",
+    "soc_lvds_bypass.svg": "f1c3403ea7af816702dfeeeac5eacc0ca7b40f8b5bdf9a64bc25aba0bae69acf",
+    "soc_lvds_bypass.png": "f3a9e1529d5d6cb5bca6df86168b7c84a61bc9c8f0e6a61b4eb8dba00229b223"
+  }
+}

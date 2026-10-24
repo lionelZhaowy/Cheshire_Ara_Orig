@@ -1,0 +1,55 @@
+{
+  "source_sha256": "a4a552ca74684711df8ce78528c7b50d923d77b47e5f299b16918bd8208fe2d0",
+  "output_sha256": "795b6267b15b7d0706b74c2e71a6cc382ea86aa868f92df710f619fe52f05c73",
+  "canvas": [
+    3600,
+    2025
+  ],
+  "input_shapes": 558,
+  "output_shapes": 564,
+  "changed_existing_objects": [
+    {
+      "id": "1041",
+      "name": "emmc-physical"
+    },
+    {
+      "id": "1077",
+      "name": "vdma-pixels"
+    },
+    {
+      "id": "1303",
+      "name": "roi-fifo"
+    },
+    {
+      "id": "1458",
+      "name": "roi-title: 图像裁切输出"
+    },
+    {
+      "id": "1534",
+      "name": "roi-fifo-t0: 像素整理"
+    },
+    {
+      "id": "1535",
+      "name": "roi-fifo-t1: 输出 FIFO"
+    },
+    {
+      "id": "1538",
+      "name": "lvds-tx-detail: 子图帧行封装"
+    }
+  ],
+  "removed_objects": [],
+  "added_objects": [
+    "pixel-bypass",
+    "pixel-select-to-fifo",
+    "tx-register-to-select",
+    "pixel-source-select",
+    "pixel-select-label: 2:1",
+    "pixel-bypass-label: 像素流直通"
+  ],
+  "unchanged_existing_objects": 551,
+  "modified_package_parts": [
+    "ppt/slides/slide1.xml"
+  ],
+  "office_tested": false,
+  "hardware_tested": false
+}

@@ -1,0 +1,189 @@
+[
+  [
+    "promised_joint8",
+    {
+      "TEST_SRC": "0x14008048",
+      "TEST_DST": "0x14010048",
+      "TEST_BYTES": "120",
+      "TEST_SS": "136",
+      "TEST_DS": "200",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase0",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "24",
+      "TEST_SS": "136",
+      "TEST_DS": "200",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase8",
+    {
+      "TEST_SRC": "0x14008048",
+      "TEST_DST": "0x14010048",
+      "TEST_BYTES": "40",
+      "TEST_SS": "144",
+      "TEST_DS": "208",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase16",
+    {
+      "TEST_SRC": "0x14008050",
+      "TEST_DST": "0x14010050",
+      "TEST_BYTES": "56",
+      "TEST_SS": "152",
+      "TEST_DS": "216",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase24",
+    {
+      "TEST_SRC": "0x14008058",
+      "TEST_DST": "0x14010058",
+      "TEST_BYTES": "72",
+      "TEST_SS": "160",
+      "TEST_DS": "224",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase32",
+    {
+      "TEST_SRC": "0x14008060",
+      "TEST_DST": "0x14010060",
+      "TEST_BYTES": "88",
+      "TEST_SS": "168",
+      "TEST_DS": "232",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase40",
+    {
+      "TEST_SRC": "0x14008068",
+      "TEST_DST": "0x14010068",
+      "TEST_BYTES": "104",
+      "TEST_SS": "176",
+      "TEST_DS": "240",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase48",
+    {
+      "TEST_SRC": "0x14008070",
+      "TEST_DST": "0x14010070",
+      "TEST_BYTES": "120",
+      "TEST_SS": "184",
+      "TEST_DS": "248",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "phase56",
+    {
+      "TEST_SRC": "0x14008078",
+      "TEST_DST": "0x14010078",
+      "TEST_BYTES": "128",
+      "TEST_SS": "128",
+      "TEST_DS": "192",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "length8",
+    {
+      "TEST_SRC": "0x14008078",
+      "TEST_DST": "0x14010078",
+      "TEST_BYTES": "8",
+      "TEST_SS": "72",
+      "TEST_DS": "136",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "length16",
+    {
+      "TEST_SRC": "0x14008058",
+      "TEST_DST": "0x14010058",
+      "TEST_BYTES": "16",
+      "TEST_SS": "88",
+      "TEST_DS": "152",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "cross2k4k",
+    {
+      "TEST_SRC": "0x14008778",
+      "TEST_DST": "0x14010fb8",
+      "TEST_BYTES": "184",
+      "TEST_SS": "248",
+      "TEST_DS": "312",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "long520",
+    {
+      "TEST_SRC": "0x14008048",
+      "TEST_DST": "0x14010048",
+      "TEST_BYTES": "520",
+      "TEST_SS": "536",
+      "TEST_DS": "600",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "dense_rows",
+    {
+      "TEST_SRC": "0x14008068",
+      "TEST_DST": "0x14010068",
+      "TEST_BYTES": "120",
+      "TEST_SS": "120",
+      "TEST_DS": "120",
+      "TEST_ROWS": "32"
+    }
+  ],
+  [
+    "unequal_stride_reverse",
+    {
+      "TEST_SRC": "0x14008058",
+      "TEST_DST": "0x14010058",
+      "TEST_BYTES": "88",
+      "TEST_SS": "216",
+      "TEST_DS": "152",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "control_address_mismatch",
+    {
+      "TEST_SRC": "0x14008060",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "control_stride_mismatch",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "160",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ]
+]

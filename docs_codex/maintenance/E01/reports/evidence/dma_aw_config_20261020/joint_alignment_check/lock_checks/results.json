@@ -1,0 +1,101 @@
+[
+  {
+    "name": "dense_recheck",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense_recheck.elf",
+      "-ucli",
+      "-i",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense_recheck/probe.tcl"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense_recheck",
+    "elf_sha256": "a5c506073ddc979e9f4767f8ed4073c09f821d77557a9e89f17e118188b37f34",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T15:16:27.650261Z",
+    "mode": "functional_or_bounded_cycle_check",
+    "host_rc": 0,
+    "wall_seconds": 39.156,
+    "success": false,
+    "cycle": false,
+    "lock_wait": true,
+    "errors": [],
+    "assertions": [],
+    "states": [
+      "STATE ns=600000 D.next_id='h00000003 D.done_id='h00000001 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014008ef0 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h0 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h000014010800 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h000010010ef0 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h0 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h0 L.spill_desc.rw='h1 L.spill_desc.a_x_addr='h000010010f40 L.spill_valid='h1 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h000010008f00 L.hit_valid='h0 L.hit_ready='h1 L.read_desc_valid='h0 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h0 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h1 H.locked='h1 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h000010008ef8 R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h1 W.desc_q.a_x_addr='h000010010f00 W.desc_q.a_x_len='h07 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h1 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h3c,way_ind => 'h04) B.look_data='h3c04 B.look_valid='h1 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h3b10 F.look_ind='h0000000000000011 F.incr_ind='h0000000000000011 F.decr_ind='h8008000020000000 F.bucket_occupied='h0000000000020011 F.filter_usage_o='h01 WD.desc_q.way_ind='h10 RD.desc_q.way_ind='h04",
+      "STATE ns=2000000 D.next_id='h00000003 D.done_id='h00000001 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014008ef0 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h0 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h000014010800 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h000010010ef0 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h0 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h0 L.spill_desc.rw='h1 L.spill_desc.a_x_addr='h000010010f40 L.spill_valid='h1 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h000010008f00 L.hit_valid='h0 L.hit_ready='h1 L.read_desc_valid='h0 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h0 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h1 H.locked='h1 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h000010008ef8 R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h1 W.desc_q.a_x_addr='h000010010f00 W.desc_q.a_x_len='h07 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h1 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h3c,way_ind => 'h04) B.look_data='h3c04 B.look_valid='h1 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h3b10 F.look_ind='h0000000000000011 F.incr_ind='h0000000000000011 F.decr_ind='h8008000020000000 F.bucket_occupied='h0000000000020011 F.filter_usage_o='h01 WD.desc_q.way_ind='h10 RD.desc_q.way_ind='h04"
+    ],
+    "end_utc": "2026-10-20T15:17:06.806505Z"
+  },
+  {
+    "name": "dense64_control",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense64_control.elf",
+      "-ucli",
+      "-i",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense64_control/probe.tcl"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense64_control",
+    "elf_sha256": "ec2b65db98319e8bd26094e83fdefcf9df5e3c24a796eca3df1e32ecd98295f5",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T15:17:07.002590Z",
+    "mode": "functional_or_bounded_cycle_check",
+    "host_rc": 0,
+    "wall_seconds": 63.767,
+    "success": true,
+    "cycle": false,
+    "lock_wait": false,
+    "errors": [],
+    "assertions": [],
+    "states": [
+      "STATE ns=600000 D.next_id='h00000003 D.done_id='h00000002 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014009000 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h1 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h0000140108c0 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h000010000494 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h4 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h1 L.spill_desc.rw='h0 L.spill_desc.a_x_addr='h000010008089 L.spill_valid='h0 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h000010008089 L.hit_valid='h0 L.hit_ready='h1 L.read_desc_valid='h0 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h1 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h0 H.locked='h0 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h000010008089 R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h0 W.desc_q.a_x_addr='h000010000494 W.desc_q.a_x_len='h00 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h0 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h02,way_ind => 'h04) B.look_data='h0204 B.look_valid='h0 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h1201 F.look_ind='h0000000400000010 F.incr_ind='h0000000400000010 F.decr_ind='h0000000000020001 F.bucket_occupied='h0000000000000000 F.filter_usage_o='h00 WD.desc_q.way_ind='h01 RD.desc_q.way_ind='h04",
+      "STATE ns=2000000 D.next_id='h00000004 D.done_id='h00000003 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014009000 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h1 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h0000140108c0 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h000010000494 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h4 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h1 L.spill_desc.rw='h0 L.spill_desc.a_x_addr='h0000100101cd L.spill_valid='h0 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h0000100101cd L.hit_valid='h1 L.hit_ready='h1 L.read_desc_valid='h1 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h1 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h1 H.locked='h0 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h0000100081cd R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h0 W.desc_q.a_x_addr='h000010000494 W.desc_q.a_x_len='h00 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h0 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h07,way_ind => 'h10) B.look_data='h0710 B.look_valid='h0 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h1201 F.look_ind='h8080000020000000 F.incr_ind='h8080000020000000 F.decr_ind='h0000000000020001 F.bucket_occupied='h0000000000000000 F.filter_usage_o='h00 WD.desc_q.way_ind='h01 RD.desc_q.way_ind='h04",
+      "STATE ns=3000000 D.next_id='h00000004 D.done_id='h00000003 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014009000 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h1 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h0000140108c0 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h000010000494 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h4 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h1 L.spill_desc.rw='h0 L.spill_desc.a_x_addr='h000010008f82 L.spill_valid='h0 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h000010008f82 L.hit_valid='h0 L.hit_ready='h1 L.read_desc_valid='h0 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h1 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h0 H.locked='h0 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h000010008f82 R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h0 W.desc_q.a_x_addr='h000010000494 W.desc_q.a_x_len='h00 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h0 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h3e,way_ind => 'h04) B.look_data='h3e04 B.look_valid='h0 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h1201 F.look_ind='h0000004400000010 F.incr_ind='h0000004400000010 F.decr_ind='h0000000000020001 F.bucket_occupied='h0000000000000000 F.filter_usage_o='h00 WD.desc_q.way_ind='h01 RD.desc_q.way_ind='h04"
+    ],
+    "end_utc": "2026-10-20T15:18:10.770136Z"
+  },
+  {
+    "name": "dense16rows",
+    "cmd": [
+      "timeout",
+      "-k",
+      "5s",
+      "600s",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/read_assertion_20261020/rtl_build/simv",
+      "+BOOTMODE=0",
+      "+PRELMODE=1",
+      "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense16rows.elf",
+      "-ucli",
+      "-i",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense16rows/probe.tcl"
+    ],
+    "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/joint_alignment_check_20261020/lock_checks/dense16rows",
+    "elf_sha256": "ecf1d361d85cb812635d743c63f9cd7eeba18d764dfe0b5d4a5666c589982c05",
+    "simv_sha256": "f96fba4c7f1ccdb0755649770863fa6762b7cfa62b50647659c334128998556b",
+    "start_utc": "2026-10-20T15:18:10.966577Z",
+    "mode": "functional_or_bounded_cycle_check",
+    "host_rc": 0,
+    "wall_seconds": 35.367,
+    "success": true,
+    "cycle": false,
+    "lock_wait": false,
+    "errors": [],
+    "assertions": [],
+    "states": [
+      "STATE ns=600000 D.next_id='h00000003 D.done_id='h00000002 D.axi_mst_req_o.ar_valid='h0 D.axi_mst_rsp_i.ar_ready='h1 D.axi_mst_req_o.ar.addr='h000014008770 D.axi_mst_rsp_i.r_valid='h0 D.axi_mst_req_o.r_ready='h1 D.axi_mst_rsp_i.r.last='h1 D.axi_mst_req_o.aw_valid='h0 D.axi_mst_rsp_i.aw_ready='h1 D.axi_mst_req_o.aw.addr='h000014010068 D.axi_mst_req_o.w_valid='h0 D.axi_mst_rsp_i.w_ready='h1 D.axi_mst_req_o.w.last='h0 L.to_llc_req.aw_valid='h0 L.to_llc_resp.aw_ready='h1 L.to_llc_req.aw.addr='h0000100004a4 L.to_llc_req.w_valid='h0 L.to_llc_resp.w_ready='h1 L.to_llc_resp.r_valid='h0 L.to_llc_req.r_ready='h0 L.ax_desc_valid='h0 L.ax_desc_ready='h4 L.rw_desc.rw='h0 L.rw_desc.a_x_addr='h000000000000 L.rw_desc_valid='h0 L.rw_desc_ready='h1 L.spill_desc.rw='h0 L.spill_desc.a_x_addr='h0000100100cb L.spill_valid='h0 L.spill_ready='h0 L.desc.rw='h0 L.desc.a_x_addr='h0000100100cb L.hit_valid='h0 L.hit_ready='h1 L.read_desc_valid='h0 L.read_desc_ready='h1 L.write_desc_valid='h0 L.write_desc_ready='h1 L.r_unlock_req='h0 L.r_unlock_gnt='h1 L.w_unlock_req='h0 L.w_unlock_gnt='h1 H.busy_q='h0 H.locked='h0 H.cnt_stall='h0 H.to_miss='h0 R.busy_q='h0 R.desc_q.a_x_addr='h0000100100cb R.desc_q.a_x_len='h00 R.r_fifo_full='h0 R.meta_fifo_full='h0 R.way_inp_valid_o='h0 R.way_inp_ready_i='h1 W.busy_q='h0 W.desc_q.a_x_addr='h0000100004a4 W.desc_q.a_x_len='h00 W.w_valid='h0 W.w_ready='h0 W.b_ready='h1 W.way_inp_valid_o='h0 W.way_inp_ready_i='h0 T.w_dp_valid_i='h0 T.mask_out='hff T.buffer_out_valid_i='h00 T.ready_to_write='h0 T.w_dp_req_i.shift='h0 T.first_w='h0 T.last_w='h0 B.lock_i=(index => 'h03,way_ind => 'h10) B.look_data='h0310 B.look_valid='h0 B.full='h0 B.error='h0 B.w_empty='h1 B.r_empty='h1 B.decr_valid='h0 B.decr_data='h1201 F.look_ind='h0080400000200000 F.incr_ind='h0080400000200000 F.decr_ind='h0000000000020001 F.bucket_occupied='h0000000000000000 F.filter_usage_o='h00 WD.desc_q.way_ind='h01 RD.desc_q.way_ind='h10"
+    ],
+    "end_utc": "2026-10-20T15:18:46.334150Z"
+  }
+]

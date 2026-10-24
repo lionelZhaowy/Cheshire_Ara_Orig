@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-16",
+  "chrome": "Google Chrome 151.0.7922.108",
+  "office_application_tested": false,
+  "figures": [
+    {
+      "name": "timeline-simple",
+      "svg_sha256": "055a9a6f7e1f4df10869fd840154901e06499d3b5de505be82b61be807f58491",
+      "text_count": 14,
+      "outside_canvas": [],
+      "box_text_overflow": [],
+      "text_line_intersections": [],
+      "text_overlaps": [],
+      "text_bounds": [
+        {
+          "text": "一次推理的两次数据交接",
+          "owner": "",
+          "x": 602,
+          "y": 18,
+          "width": 396,
+          "height": 46
+        },
+        {
+          "text": "CPU／Ara 准备输入",
+          "owner": "stage-1",
+          "x": 676.21875,
+          "y": 104,
+          "width": 247.5625,
+          "height": 37
+        },
+        {
+          "text": "计算结束，交出输入与输出范围",
+          "owner": "stage-1",
+          "x": 625,
+          "y": 156,
+          "width": 350,
+          "height": 31
+        },
+        {
+          "text": "交接前同步",
+          "owner": "stage-2",
+          "x": 727.5,
+          "y": 248,
+          "width": 145,
+          "height": 37
+        },
+        {
+          "text": "先排空旧事务，再清理输入、清理并失效输出",
+          "owner": "stage-2",
+          "x": 550,
+          "y": 286,
+          "width": 500,
+          "height": 31
+        },
+        {
+          "text": "确认设备端口可见，允许启动搬运",
+          "owner": "stage-2",
+          "x": 611.5,
+          "y": 324,
+          "width": 376,
+          "height": 31
+        },
+        {
+          "text": "设备执行",
+          "owner": "stage-3",
+          "x": 742,
+          "y": 392,
+          "width": 116,
+          "height": 37
+        },
+        {
+          "text": "DDR → GB → NPU 计算 → 结果从 GB 写回 DDR",
+          "owner": "stage-3",
+          "x": 533.8984375,
+          "y": 444,
+          "width": 532.203125,
+          "height": 31
+        },
+        {
+          "text": "交回 CPU 前同步",
+          "owner": "stage-4",
+          "x": 692.4375,
+          "y": 536,
+          "width": 215.125,
+          "height": 37
+        },
+        {
+          "text": "确认写回成功且 CPU 端口可见",
+          "owner": "stage-4",
+          "x": 631.2734375,
+          "y": 574,
+          "width": 336.453125,
+          "height": 31
+        },
+        {
+          "text": "处理相关回填，再失效 L1D／LLC 输出副本",
+          "owner": "stage-4",
+          "x": 562.7734375,
+          "y": 612,
+          "width": 474.453125,
+          "height": 31
+        },
+        {
+          "text": "CPU 读取结果并后处理",
+          "owner": "stage-5",
+          "x": 653.28125,
+          "y": 680,
+          "width": 293.4375,
+          "height": 37
+        },
+        {
+          "text": "同步成功后重新取得输出使用权",
+          "owner": "stage-5",
+          "x": 625,
+          "y": 732,
+          "width": 350,
+          "height": 31
+        },
+        {
+          "text": "箭头表示先后顺序；每个阶段成功后才进入下一阶段。",
+          "owner": "",
+          "x": 512,
+          "y": 827,
+          "width": 576,
+          "height": 30
+        }
+      ]
+    }
+  ],
+  "status": "pass"
+}

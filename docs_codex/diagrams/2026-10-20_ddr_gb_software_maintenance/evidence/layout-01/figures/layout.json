@@ -1,0 +1,1181 @@
+[
+  {
+    "name": "system",
+    "canvas": [
+      3200,
+      1800
+    ],
+    "boxes": {
+      "compute-region": {
+        "x": 60,
+        "y": 145,
+        "width": 950,
+        "height": 480
+      },
+      "cpu": {
+        "x": 80,
+        "y": 180,
+        "width": 360,
+        "height": 120
+      },
+      "ara": {
+        "x": 560,
+        "y": 180,
+        "width": 360,
+        "height": 120
+      },
+      "filter": {
+        "x": 560,
+        "y": 350,
+        "width": 360,
+        "height": 80
+      },
+      "xbar": {
+        "x": 80,
+        "y": 500,
+        "width": 900,
+        "height": 90
+      },
+      "llc": {
+        "x": 90,
+        "y": 730,
+        "width": 420,
+        "height": 130
+      },
+      "gb-region": {
+        "x": 1080,
+        "y": 145,
+        "width": 1020,
+        "height": 510
+      },
+      "npu": {
+        "x": 1120,
+        "y": 200,
+        "width": 400,
+        "height": 120
+      },
+      "mover": {
+        "x": 1670,
+        "y": 200,
+        "width": 400,
+        "height": 120
+      },
+      "adapter": {
+        "x": 1120,
+        "y": 500,
+        "width": 380,
+        "height": 120
+      },
+      "gb": {
+        "x": 1600,
+        "y": 500,
+        "width": 390,
+        "height": 120
+      },
+      "isp": {
+        "x": 2250,
+        "y": 200,
+        "width": 400,
+        "height": 120
+      },
+      "frame": {
+        "x": 2250,
+        "y": 500,
+        "width": 400,
+        "height": 120
+      },
+      "roi": {
+        "x": 2750,
+        "y": 740,
+        "width": 360,
+        "height": 160
+      },
+      "tx": {
+        "x": 2750,
+        "y": 1100,
+        "width": 360,
+        "height": 120
+      },
+      "frontend": {
+        "x": 550,
+        "y": 1020,
+        "width": 2100,
+        "height": 320
+      },
+      "controller": {
+        "x": 550,
+        "y": 1430,
+        "width": 2100,
+        "height": 180
+      },
+      "ddr": {
+        "x": 2750,
+        "y": 1470,
+        "width": 360,
+        "height": 120
+      },
+      "f0": {
+        "x": 565,
+        "y": 1020,
+        "width": 230,
+        "height": 55
+      },
+      "s0": {
+        "x": 565,
+        "y": 1430,
+        "width": 230,
+        "height": 50
+      },
+      "f1": {
+        "x": 1165,
+        "y": 1020,
+        "width": 230,
+        "height": 55
+      },
+      "s1": {
+        "x": 1165,
+        "y": 1430,
+        "width": 230,
+        "height": 50
+      },
+      "f2": {
+        "x": 1765,
+        "y": 1020,
+        "width": 230,
+        "height": 55
+      },
+      "s2": {
+        "x": 1765,
+        "y": 1430,
+        "width": 230,
+        "height": 50
+      },
+      "f3": {
+        "x": 2365,
+        "y": 1020,
+        "width": 230,
+        "height": 55
+      },
+      "s3": {
+        "x": 2365,
+        "y": 1430,
+        "width": 230,
+        "height": 50
+      },
+      "mmio": {
+        "x": 800,
+        "y": 650,
+        "width": 900,
+        "height": 55
+      },
+      "maint": {
+        "x": 800,
+        "y": 740,
+        "width": 900,
+        "height": 125
+      }
+    },
+    "arrows": [
+      {
+        "id": "cpu-xbar",
+        "points": [
+          [
+            260,
+            300
+          ],
+          [
+            260,
+            500
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "cpu",
+        "target": "xbar",
+        "jump": false
+      },
+      {
+        "id": "ara-filter",
+        "points": [
+          [
+            740,
+            300
+          ],
+          [
+            740,
+            350
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "ara",
+        "target": "filter",
+        "jump": false
+      },
+      {
+        "id": "filter-xbar",
+        "points": [
+          [
+            740,
+            430
+          ],
+          [
+            740,
+            500
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "filter",
+        "target": "xbar",
+        "jump": false
+      },
+      {
+        "id": "m2-llc",
+        "points": [
+          [
+            300,
+            590
+          ],
+          [
+            300,
+            730
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "xbar",
+        "target": "llc",
+        "jump": false
+      },
+      {
+        "id": "m5-gb",
+        "points": [
+          [
+            980,
+            545
+          ],
+          [
+            1120,
+            545
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "xbar",
+        "target": "adapter",
+        "jump": false
+      },
+      {
+        "id": "adapter-gb",
+        "points": [
+          [
+            1500,
+            560
+          ],
+          [
+            1600,
+            560
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "adapter",
+        "target": "gb",
+        "jump": false
+      },
+      {
+        "id": "npu-gb",
+        "points": [
+          [
+            1320,
+            320
+          ],
+          [
+            1320,
+            500
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "npu",
+        "target": "adapter",
+        "jump": false
+      },
+      {
+        "id": "mover-gb",
+        "points": [
+          [
+            1870,
+            320
+          ],
+          [
+            1870,
+            400
+          ],
+          [
+            1410,
+            400
+          ],
+          [
+            1410,
+            500
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "mover",
+        "target": "adapter",
+        "jump": false
+      },
+      {
+        "id": "isp-gb",
+        "points": [
+          [
+            2250,
+            260
+          ],
+          [
+            2170,
+            260
+          ],
+          [
+            2170,
+            660
+          ],
+          [
+            1450,
+            660
+          ],
+          [
+            1450,
+            620
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": true,
+        "source": "isp",
+        "target": "adapter",
+        "jump": false
+      },
+      {
+        "id": "isp-frame",
+        "points": [
+          [
+            2450,
+            320
+          ],
+          [
+            2450,
+            500
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "isp",
+        "target": "frame",
+        "jump": false
+      },
+      {
+        "id": "llc-f0",
+        "points": [
+          [
+            510,
+            790
+          ],
+          [
+            680,
+            790
+          ],
+          [
+            680,
+            1020
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "llc",
+        "target": "frontend",
+        "jump": false
+      },
+      {
+        "id": "mover-f1",
+        "points": [
+          [
+            2070,
+            260
+          ],
+          [
+            2110,
+            260
+          ],
+          [
+            2110,
+            940
+          ],
+          [
+            1280,
+            940
+          ],
+          [
+            1280,
+            1020
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "mover",
+        "target": "frontend",
+        "jump": true
+      },
+      {
+        "id": "frame-f2",
+        "points": [
+          [
+            2450,
+            620
+          ],
+          [
+            2450,
+            910
+          ],
+          [
+            1880,
+            910
+          ],
+          [
+            1880,
+            1020
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "frame",
+        "target": "frontend",
+        "jump": true
+      },
+      {
+        "id": "roi-f3",
+        "points": [
+          [
+            2750,
+            800
+          ],
+          [
+            2680,
+            800
+          ],
+          [
+            2680,
+            970
+          ],
+          [
+            2480,
+            970
+          ],
+          [
+            2480,
+            1020
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "roi",
+        "target": "frontend",
+        "jump": false
+      },
+      {
+        "id": "roi-tx",
+        "points": [
+          [
+            2930,
+            900
+          ],
+          [
+            2930,
+            1100
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "roi",
+        "target": "tx",
+        "jump": false
+      },
+      {
+        "id": "ddr-port0",
+        "points": [
+          [
+            680,
+            1340
+          ],
+          [
+            680,
+            1430
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "frontend",
+        "target": "controller",
+        "jump": false
+      },
+      {
+        "id": "ddr-port1",
+        "points": [
+          [
+            1280,
+            1340
+          ],
+          [
+            1280,
+            1430
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "frontend",
+        "target": "controller",
+        "jump": false
+      },
+      {
+        "id": "ddr-port2",
+        "points": [
+          [
+            1880,
+            1340
+          ],
+          [
+            1880,
+            1430
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "frontend",
+        "target": "controller",
+        "jump": false
+      },
+      {
+        "id": "ddr-port3",
+        "points": [
+          [
+            2480,
+            1340
+          ],
+          [
+            2480,
+            1430
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "frontend",
+        "target": "controller",
+        "jump": false
+      },
+      {
+        "id": "controller-ddr",
+        "points": [
+          [
+            2650,
+            1530
+          ],
+          [
+            2750,
+            1530
+          ]
+        ],
+        "kind": "data",
+        "bidirectional": true,
+        "source": "controller",
+        "target": "ddr",
+        "jump": false
+      },
+      {
+        "id": "xbar-mmio",
+        "points": [
+          [
+            950,
+            590
+          ],
+          [
+            950,
+            650
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "xbar",
+        "target": "mmio",
+        "jump": false
+      },
+      {
+        "id": "mmio-maint",
+        "points": [
+          [
+            1250,
+            705
+          ],
+          [
+            1250,
+            740
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "mmio",
+        "target": "maint",
+        "jump": false
+      },
+      {
+        "id": "maint-cpu",
+        "points": [
+          [
+            800,
+            765
+          ],
+          [
+            760,
+            765
+          ],
+          [
+            760,
+            690
+          ],
+          [
+            40,
+            690
+          ],
+          [
+            40,
+            240
+          ],
+          [
+            80,
+            240
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "maint",
+        "target": "cpu",
+        "jump": true
+      },
+      {
+        "id": "maint-llc",
+        "points": [
+          [
+            800,
+            830
+          ],
+          [
+            510,
+            830
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": true,
+        "source": "maint",
+        "target": "llc",
+        "jump": true
+      }
+    ]
+  },
+  {
+    "name": "ownership",
+    "canvas": [
+      2400,
+      1350
+    ],
+    "boxes": {
+      "panel0": {
+        "x": 35,
+        "y": 140,
+        "width": 2330,
+        "height": 310
+      },
+      "r0b0": {
+        "x": 60,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b1": {
+        "x": 525,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b2": {
+        "x": 990,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b3": {
+        "x": 1455,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "r0b4": {
+        "x": 1920,
+        "y": 225,
+        "width": 400,
+        "height": 140
+      },
+      "panel1": {
+        "x": 35,
+        "y": 510,
+        "width": 2330,
+        "height": 310
+      },
+      "r1b0": {
+        "x": 60,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b1": {
+        "x": 525,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b2": {
+        "x": 990,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b3": {
+        "x": 1455,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "r1b4": {
+        "x": 1920,
+        "y": 595,
+        "width": 400,
+        "height": 140
+      },
+      "panel2": {
+        "x": 35,
+        "y": 880,
+        "width": 2330,
+        "height": 310
+      },
+      "r2b0": {
+        "x": 60,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b1": {
+        "x": 525,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b2": {
+        "x": 990,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b3": {
+        "x": 1455,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      },
+      "r2b4": {
+        "x": 1920,
+        "y": 965,
+        "width": 400,
+        "height": 140
+      }
+    },
+    "arrows": [
+      {
+        "id": "r0e1",
+        "points": [
+          [
+            460,
+            295
+          ],
+          [
+            525,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b0",
+        "target": "r0b1",
+        "jump": false
+      },
+      {
+        "id": "r0e2",
+        "points": [
+          [
+            925,
+            295
+          ],
+          [
+            990,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b1",
+        "target": "r0b2",
+        "jump": false
+      },
+      {
+        "id": "r0e3",
+        "points": [
+          [
+            1390,
+            295
+          ],
+          [
+            1455,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b2",
+        "target": "r0b3",
+        "jump": false
+      },
+      {
+        "id": "r0e4",
+        "points": [
+          [
+            1855,
+            295
+          ],
+          [
+            1920,
+            295
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b3",
+        "target": "r0b4",
+        "jump": false
+      },
+      {
+        "id": "next0",
+        "points": [
+          [
+            2320,
+            295
+          ],
+          [
+            2345,
+            295
+          ],
+          [
+            2345,
+            480
+          ],
+          [
+            45,
+            480
+          ],
+          [
+            45,
+            665
+          ],
+          [
+            60,
+            665
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r0b4",
+        "target": "r1b0",
+        "jump": false
+      },
+      {
+        "id": "r1e1",
+        "points": [
+          [
+            460,
+            665
+          ],
+          [
+            525,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b0",
+        "target": "r1b1",
+        "jump": false
+      },
+      {
+        "id": "r1e2",
+        "points": [
+          [
+            925,
+            665
+          ],
+          [
+            990,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b1",
+        "target": "r1b2",
+        "jump": false
+      },
+      {
+        "id": "r1e3",
+        "points": [
+          [
+            1390,
+            665
+          ],
+          [
+            1455,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b2",
+        "target": "r1b3",
+        "jump": false
+      },
+      {
+        "id": "r1e4",
+        "points": [
+          [
+            1855,
+            665
+          ],
+          [
+            1920,
+            665
+          ]
+        ],
+        "kind": "local",
+        "bidirectional": false,
+        "source": "r1b3",
+        "target": "r1b4",
+        "jump": false
+      },
+      {
+        "id": "next1",
+        "points": [
+          [
+            2320,
+            665
+          ],
+          [
+            2345,
+            665
+          ],
+          [
+            2345,
+            850
+          ],
+          [
+            45,
+            850
+          ],
+          [
+            45,
+            1035
+          ],
+          [
+            60,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r1b4",
+        "target": "r2b0",
+        "jump": false
+      },
+      {
+        "id": "r2e1",
+        "points": [
+          [
+            460,
+            1035
+          ],
+          [
+            525,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b0",
+        "target": "r2b1",
+        "jump": false
+      },
+      {
+        "id": "r2e2",
+        "points": [
+          [
+            925,
+            1035
+          ],
+          [
+            990,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b1",
+        "target": "r2b2",
+        "jump": false
+      },
+      {
+        "id": "r2e3",
+        "points": [
+          [
+            1390,
+            1035
+          ],
+          [
+            1455,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b2",
+        "target": "r2b3",
+        "jump": false
+      },
+      {
+        "id": "r2e4",
+        "points": [
+          [
+            1855,
+            1035
+          ],
+          [
+            1920,
+            1035
+          ]
+        ],
+        "kind": "control",
+        "bidirectional": false,
+        "source": "r2b3",
+        "target": "r2b4",
+        "jump": false
+      }
+    ]
+  },
+  {
+    "name": "timeline-simple",
+    "canvas": [
+      1600,
+      900
+    ],
+    "boxes": {
+      "stage-1": {
+        "x": 180,
+        "y": 100,
+        "width": 1240,
+        "height": 120
+      },
+      "stage-2": {
+        "x": 180,
+        "y": 244,
+        "width": 1240,
+        "height": 120
+      },
+      "stage-3": {
+        "x": 180,
+        "y": 388,
+        "width": 1240,
+        "height": 120
+      },
+      "stage-4": {
+        "x": 180,
+        "y": 532,
+        "width": 1240,
+        "height": 120
+      },
+      "stage-5": {
+        "x": 180,
+        "y": 676,
+        "width": 1240,
+        "height": 120
+      }
+    },
+    "arrows": [
+      {
+        "id": "next-1",
+        "points": [
+          [
+            800,
+            220
+          ],
+          [
+            800,
+            244
+          ]
+        ]
+      },
+      {
+        "id": "next-2",
+        "points": [
+          [
+            800,
+            364
+          ],
+          [
+            800,
+            388
+          ]
+        ]
+      },
+      {
+        "id": "next-3",
+        "points": [
+          [
+            800,
+            508
+          ],
+          [
+            800,
+            532
+          ]
+        ]
+      },
+      {
+        "id": "next-4",
+        "points": [
+          [
+            800,
+            652
+          ],
+          [
+            800,
+            676
+          ]
+        ]
+      }
+    ]
+  }
+]

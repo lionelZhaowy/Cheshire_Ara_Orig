@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-20",
+  "server_head": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a",
+  "local_head": "c9abbb48946fe3a7244bfb3159919b7c9731cb59",
+  "server_source_hashes": {
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_idma_wrap.sv": "da0811e1199b2dadf6f2cdbea169987ceb2fb4a1d344e56ecdecf76f1e699546",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv": "40ad5d3c0ec3817662815514d28f1a9190ae1b24af4976c6359502f0a851bd1c",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_pkg.sv": "4f23669394df059929916272f3dd3d09af30fd4211ea87cbda4d99eb17a0a5eb",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_chan_splitter.sv": "968fba08b9f3daeafe455bf4fcddf9318e95c14605083198b5a25471eb45cc89",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_burst_cutter.sv": "34f2652a0031e008e94844de2abfdfd32eb5515e6865efd65affee4bbed1833f",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_hit_miss.sv": "cf7d95aca77faa5a90dcd4b3fe34bc8d20f08914e0c9dbf67191c387f0607077",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_read_unit.sv": "00443f72109a59423ea9189c2fde95151c78edf733111d6e6b0944741aa05473",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_write_unit.sv": "2a264b35ba5f567f15d40f63af29fed4a140e73d27971990328de4610ad35778",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/hit_miss_detect/axi_llc_lock_box_bloom.sv": "2655812e119b2a48bd646d689fcfcb861038b4f2936cdadb4a9a4f9a932cb258",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv": "61a0e3bfa04d815dfd5bec3511b6d0e2b155f6320de16d6aa13f3a3f1988b607",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_legalizer_rw_axi.sv": "9713118e0dedb9a25d161c68c3d65a5a21cc7e90b1b8afe52469e154bbc793fb",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv": "8af0d7c124194b0788f1a5157c569f5fadd902caef5f20269beda9d79db79798",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/midend/idma_nd_midend.sv": "4ce42cf2b9f6c2baf12f7f941534752b270e84e41f082c5a2923b3d4377005b3",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_legalizer_page_splitter.sv": "328b9c5829eb7d9f816be9976909512b8d6b6f0c2840bb6bd132084e9541c7ee",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_channel_coupler.sv": "8e9e8d3202ae94594644443c9f99878a7d42cbe4558bd5fa6e75899163e09b73",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_axi_read.sv": "d814b1f9e3121c7c7b2ed75446e445c35827f82088e74fce79b824df52341bd6",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_axi_write.sv": "124aaab8ec834d09678c1be1de306ee348d5e4290548038044d5ee3f9a58cece",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_dataflow_element.sv": "76b73b666f36f1a99bb6c0c8861caab3243b8fa40b15f39bf5ae8de132ae0712",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/cb_filter.sv": "a6f0e7c43ff4c567ab35a22c3852a5943a9bea5093c2142f6ca6d375ebeb07ec",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/sub_per_hash.sv": "c65ce8abc04dff11fd0ee244a525651a8b7efe89b7708d45a1d2512f5a67fa8f",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/rr_arb_tree.sv": "bf567ed1186f74c87a7af9d99c447d8371c00b1919d95432e59cc30143d500f5",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_ways.sv": "b84f2bdf8b5712d17d26aecb9b0e758cdfc6095e87e61fb72950b206208dd9ae",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_data_way.sv": "ec86ec51325498389b108d41479da38044afd500f58bf63cce8c5afe2a3590e3",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_transport_layer_rw_axi.sv": "5d4e5073141e35eec1dcf9539e6e5550519626fe3dc271192848cb9128f63185",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/idma_transfer_id_gen.sv": "2e618a2f6fe5d01b80404b831a55790f530133385caacd3cabd68862fd2c93a6"
+  },
+  "local_source_hashes": {
+    "hw/cheshire_pkg.sv": "b082875864818d6f65a62c593e2621ac4ac94033600d13ba7a6bc12f63699752",
+    "hw/cheshire_soc.sv": "a8b447eebb120b55119c4f5fc0e1ce583a39cca91babc7e8e9e00369a6372e7c",
+    "hw/cheshire_idma_wrap.sv": "bb09f8221950423fa04d76c26ec60411f75a43d5287c4ad5e51c1823f81929dd",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_top.sv": "40ad5d3c0ec3817662815514d28f1a9190ae1b24af4976c6359502f0a851bd1c",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_pkg.sv": "4f23669394df059929916272f3dd3d09af30fd4211ea87cbda4d99eb17a0a5eb",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_chan_splitter.sv": "968fba08b9f3daeafe455bf4fcddf9318e95c14605083198b5a25471eb45cc89",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_burst_cutter.sv": "34f2652a0031e008e94844de2abfdfd32eb5515e6865efd65affee4bbed1833f",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_hit_miss.sv": "cf7d95aca77faa5a90dcd4b3fe34bc8d20f08914e0c9dbf67191c387f0607077",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_read_unit.sv": "00443f72109a59423ea9189c2fde95151c78edf733111d6e6b0944741aa05473",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_write_unit.sv": "2a264b35ba5f567f15d40f63af29fed4a140e73d27971990328de4610ad35778",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/hit_miss_detect/axi_llc_lock_box_bloom.sv": "2655812e119b2a48bd646d689fcfcb861038b4f2936cdadb4a9a4f9a932cb258",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv": "61a0e3bfa04d815dfd5bec3511b6d0e2b155f6320de16d6aa13f3a3f1988b607",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_legalizer_rw_axi.sv": "9713118e0dedb9a25d161c68c3d65a5a21cc7e90b1b8afe52469e154bbc793fb",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_backend_rw_axi.sv": "8af0d7c124194b0788f1a5157c569f5fadd902caef5f20269beda9d79db79798",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/midend/idma_nd_midend.sv": "4ce42cf2b9f6c2baf12f7f941534752b270e84e41f082c5a2923b3d4377005b3",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_legalizer_page_splitter.sv": "328b9c5829eb7d9f816be9976909512b8d6b6f0c2840bb6bd132084e9541c7ee",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_channel_coupler.sv": "8e9e8d3202ae94594644443c9f99878a7d42cbe4558bd5fa6e75899163e09b73",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_axi_read.sv": "d814b1f9e3121c7c7b2ed75446e445c35827f82088e74fce79b824df52341bd6",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_axi_write.sv": "124aaab8ec834d09678c1be1de306ee348d5e4290548038044d5ee3f9a58cece",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/backend/idma_dataflow_element.sv": "76b73b666f36f1a99bb6c0c8861caab3243b8fa40b15f39bf5ae8de132ae0712",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/cb_filter.sv": "a6f0e7c43ff4c567ab35a22c3852a5943a9bea5093c2142f6ca6d375ebeb07ec",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/sub_per_hash.sv": "c65ce8abc04dff11fd0ee244a525651a8b7efe89b7708d45a1d2512f5a67fa8f",
+    ".bender/git/checkouts/common_cells-7f7ae0f5e6bf7fb5/src/rr_arb_tree.sv": "bf567ed1186f74c87a7af9d99c447d8371c00b1919d95432e59cc30143d500f5",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_ways.sv": "b84f2bdf8b5712d17d26aecb9b0e758cdfc6095e87e61fb72950b206208dd9ae",
+    ".bender/git/checkouts/axi_llc-5fb8850caad4fcfa/src/axi_llc_data_way.sv": "ec86ec51325498389b108d41479da38044afd500f58bf63cce8c5afe2a3590e3",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_transport_layer_rw_axi.sv": "5d4e5073141e35eec1dcf9539e6e5550519626fe3dc271192848cb9128f63185",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/idma_transfer_id_gen.sv": "2e618a2f6fe5d01b80404b831a55790f530133385caacd3cabd68862fd2c93a6"
+  },
+  "only_difference": "hw/cheshire_idma_wrap.sv: prior axi_to_reg_v2 backport, backend parameters identical",
+  "analysis": "read-only source derivation; no RTL/HAL modification or simulation",
+  "hash_formula_low4_xor_input_bits": [
+    [
+      [
+        4,
+        7,
+        1
+      ],
+      [
+        15,
+        6,
+        14
+      ],
+      [
+        3,
+        2,
+        8
+      ],
+      [
+        5,
+        10,
+        11
+      ]
+    ],
+    [
+      [
+        12,
+        8,
+        13
+      ],
+      [
+        3,
+        0,
+        9
+      ],
+      [
+        4,
+        7,
+        11
+      ],
+      [
+        15,
+        5,
+        1
+      ]
+    ],
+    [
+      [
+        15,
+        13,
+        10
+      ],
+      [
+        0,
+        6,
+        9
+      ],
+      [
+        5,
+        14,
+        4
+      ],
+      [
+        7,
+        1,
+        8
+      ]
+    ]
+  ],
+  "hash_formula_high_bits": "h[4]=h[0], h[5]=h[1]",
+  "formula_check": "expanded XOR formula vs fixed PRG/permutation implementation: zero+16 Boolean basis inputs and the two recorded lock keys agree; no claim of RTL simulation",
+  "reference_keys": {
+    "0x3c04": {
+      "hashes": [
+        4,
+        4,
+        0
+      ],
+      "mask": "0x11"
+    },
+    "0x3c10": {
+      "hashes": [
+        17,
+        0,
+        4
+      ],
+      "mask": "0x20011"
+    }
+  },
+  "single_chunk_rule": {
+    "alignment_bytes": 8,
+    "chunk_bytes": "min(remaining,64-(src%64),64-(dst%64))",
+    "rows_per_job": 1,
+    "decouple_aw": 0,
+    "decouple_rw": 0,
+    "wait": "actual DONE of previous chunk",
+    "scope": "initially idle; no other LLC traffic including CPU instructions/stack; valid SPM, no miss/flush/reset/error, normal SRAM/response/unlock progress",
+    "status": "conditional source-level progress argument; not implemented, formally verified, or simulated",
+    "src_reduce_len": 0,
+    "dst_reduce_len": 0,
+    "burst": "INCR"
+  },
+  "recorded_example_formula_checks": {
+    "old_failed_row_axi_segments": [
+      42,
+      81
+    ],
+    "serial_candidate_first_row_chunks": [
+      24,
+      64,
+      32
+    ],
+    "serial_candidate_last_row_chunks": [
+      16,
+      64,
+      40
+    ],
+    "status": "arithmetic checks only, not target execution"
+  }
+}

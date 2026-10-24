@@ -1,0 +1,1874 @@
+{
+  "server_output": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021",
+  "date_utc": "2026-10-21T04:31:47.533290Z",
+  "reference_head": "e040b7bbc7851a37faff3c4657ff8d656cc6e20a",
+  "soc_simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd",
+  "protection": {
+    "checked_source_files": 339,
+    "changed_source_files": [],
+    "same_root_diff": true
+  },
+  "artifact_hashes": {
+    "cross.c": "8f4cdd1d46305834a89ca45445f9f4e5ec60fec30bc387a3691a00c705fc4ecd",
+    "run_soc.py": "8dd9a2a2d4dbfaa2e4fabe51ce7b2e62a43fe2ff7da53a01f85d833166bf37d8",
+    "run_soc_short.py": "7b42f1115adc744452c8a1dbab05f2ec27c3cba404476c73977bca5df30c39e2",
+    "short_window/cross.c": "8f4cdd1d46305834a89ca45445f9f4e5ec60fec30bc387a3691a00c705fc4ecd",
+    "short_window/build_commands.json": "ad3b83ca9fe2f01834f66a55eaf2a1b88bd41de4cfe915eb4c62a8fc8b96a44e",
+    "extend_soc.py": "244ac558d0305a8a01029f2d80efef7126345d18580a88024eeafd12e711f233",
+    "bypass_control/cross.c": "1ed8783fa28f6abab28cb5569ea9dcad55db330002d2f4cfbff682330d7488b5",
+    "run_bypass.py": "43bb614a6c2bd4c12486e75624e4dd5d7c0fa375b22754d05bdd88d9942f1fb7",
+    "bypass_control/build_commands.json": "f6ac0d4e58a3ca38130fcafe2d3182cebe3d671f6ebc65a107c24671c8abe376",
+    "tb_cross.sv": "dc2890e07713d121d439f6e48675c21a096773140462fb0ec48913c614e8b15e",
+    "tb_cross_serial.sv": "ef1cab3a26fca7a77ff33d0eac5a21aa5684b2b8b6e1b50a17d32c1ac0779d77",
+    "run_backend.py": "9a6ef2e8b2185a4bdf0ea4d66fb186cc5aca288f3ed79a2ce89d1a45373b28eb",
+    "run_backend_serial.py": "54c52dc22debe0740b001e04dafe47d88b08a96bf1fe56240fe30f44243c5912",
+    "backend_serial_commands.json": "ce88a2dec80e56b7f971796e98e75ead3bea0b468bfedf33c098d46452da9569",
+    "run_default_burst.py": "55b4cf16c22973fff93992733e75782c7b0dda8854e5824c6052c983acc18d3b",
+    "backend_jobs.txt": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53",
+    "backend_jobs_default256.txt": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+    "backend_serial_build/compile.sh": "4ee24c78016eaea0800c2470cab3c3b08fe928184950aeae4e2c1bf0c36f9f52",
+    "short_window/dir0_shape0_aw0.elf": "5c80d8dbaf2acb77dca2faf5a523bb92e8dbcabdce05031510c5ef897a7d1382",
+    "short_window/dir0_shape0_aw1.elf": "1a0b13ae202ee7eec236d8a0a81beee65f6b515351510a6a2b3a37f882fcff27",
+    "short_window/dir0_shape1_aw0.elf": "7f488f3521afd7baa0b802782524ca2738af73c88b82c7ff2059e5aabb020727",
+    "short_window/dir0_shape1_aw1.elf": "402bfbf9a8c274adcd1d697ed44917096ef53d055b5e1794d3cf432dd06a8d04",
+    "short_window/dir1_shape0_aw0.elf": "def5b8281270fee020adbcf3896d88d5f8e165a0427753b094476a97cfd20faf",
+    "short_window/dir1_shape0_aw1.elf": "b38f4b32b70461c3464a5f39840984219c3dad10fd5a2a953f5465f95ecc780e",
+    "short_window/dir1_shape1_aw0.elf": "d9fe58c18058c22456fdddf43a4fe79be1ec57adfd1b7f23c02933abaef27ab3",
+    "short_window/dir1_shape1_aw1.elf": "48e5dbcaff041a982dafb8bd95ef5998d7886e00d6d65ac3202bd7eab9518f83",
+    "short_window/dir2_shape0_aw0.elf": "7e9261743f70eeede7c6f2c288b234369effda7edbf05b790d2ecdb7342f3ad0",
+    "short_window/dir2_shape1_aw1.elf": "f0338cc27d34a220e496ff042f0a1bd121bf5ec6ae7577bc77dccda15aed059a",
+    "bypass_control/dir2_shape0_aw0.elf": "d62385e19fa9f4cf1438910ab3fee13f62c3bdf5fb60cf0e329c85bb2fbcf3a9",
+    "bypass_control/dir2_shape1_aw1.elf": "ed67a86f263fd38e51d3d0e74c12a20b3a40135729d6debfe4cff3b99a643399",
+    "backend_serial_build/simv_balanced": "4b6cb70665bd5c8c59efe8cbed99398d135f30e06cd90466bf5f93d845a266db",
+    "backend_serial_build/simv_slow_source": "503d2f472e3624e4234ae8fd68900e783d97cdae7039e03c78bf73f1b2305447",
+    "backend_serial_build/simv_slow_destination": "4453d73f70f08706220d17622ea977881014d927d756b86ead2f39114de2d796"
+  },
+  "soc_short_window": [
+    {
+      "name": "dir0_shape0_aw0",
+      "direction": 0,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 28.96,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1472 bytes)",
+        "[SLINK] - 1024/1472 bytes (69%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "5c80d8dbaf2acb77dca2faf5a523bb92e8dbcabdce05031510c5ef897a7d1382",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape0_aw1",
+      "direction": 0,
+      "shape": 0,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 28.66,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1472 bytes)",
+        "[SLINK] - 1024/1472 bytes (69%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape0_aw1/probe.tcl"
+      ],
+      "elf_sha256": "1a0b13ae202ee7eec236d8a0a81beee65f6b515351510a6a2b3a37f882fcff27",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape1_aw0",
+      "direction": 0,
+      "shape": 1,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 25.84,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape1_aw0/probe.tcl"
+      ],
+      "elf_sha256": "7f488f3521afd7baa0b802782524ca2738af73c88b82c7ff2059e5aabb020727",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape1_aw1",
+      "direction": 0,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 38.54,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "402bfbf9a8c274adcd1d697ed44917096ef53d055b5e1794d3cf432dd06a8d04",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape0_aw0",
+      "direction": 1,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 29.0,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "def5b8281270fee020adbcf3896d88d5f8e165a0427753b094476a97cfd20faf",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape0_aw1",
+      "direction": 1,
+      "shape": 0,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 66.0,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape0_aw1/probe.tcl"
+      ],
+      "elf_sha256": "b38f4b32b70461c3464a5f39840984219c3dad10fd5a2a953f5465f95ecc780e",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape1_aw0",
+      "direction": 1,
+      "shape": 1,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 25.86,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape1_aw0/probe.tcl"
+      ],
+      "elf_sha256": "d9fe58c18058c22456fdddf43a4fe79be1ec57adfd1b7f23c02933abaef27ab3",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape1_aw1",
+      "direction": 1,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 38.95,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "48e5dbcaff041a982dafb8bd95ef5998d7886e00d6d65ac3202bd7eab9518f83",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir2_shape0_aw0",
+      "direction": 2,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 29.32,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir2_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "7e9261743f70eeede7c6f2c288b234369effda7edbf05b790d2ecdb7342f3ad0",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir2_shape1_aw1",
+      "direction": 2,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 39.14,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h00 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir2_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "f0338cc27d34a220e496ff042f0a1bd121bf5ec6ae7577bc77dccda15aed059a",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    }
+  ],
+  "soc_extended": [
+    {
+      "name": "dir1_shape0_aw1",
+      "direction": 1,
+      "shape": 0,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 117.73,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/extended_dir1_shape0_aw1/probe.tcl"
+      ],
+      "elf_sha256": "b38f4b32b70461c3464a5f39840984219c3dad10fd5a2a953f5465f95ecc780e",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    }
+  ],
+  "soc_final": [
+    {
+      "name": "dir0_shape0_aw0",
+      "direction": 0,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 28.96,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1472 bytes)",
+        "[SLINK] - 1024/1472 bytes (69%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "5c80d8dbaf2acb77dca2faf5a523bb92e8dbcabdce05031510c5ef897a7d1382",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape0_aw1",
+      "direction": 0,
+      "shape": 0,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 28.66,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1472 bytes)",
+        "[SLINK] - 1024/1472 bytes (69%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h1 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h1",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape0_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape0_aw1/probe.tcl"
+      ],
+      "elf_sha256": "1a0b13ae202ee7eec236d8a0a81beee65f6b515351510a6a2b3a37f882fcff27",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape1_aw0",
+      "direction": 0,
+      "shape": 1,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 25.84,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape1_aw0/probe.tcl"
+      ],
+      "elf_sha256": "7f488f3521afd7baa0b802782524ca2738af73c88b82c7ff2059e5aabb020727",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir0_shape1_aw1",
+      "direction": 0,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 38.54,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir0_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir0_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "402bfbf9a8c274adcd1d697ed44917096ef53d055b5e1794d3cf432dd06a8d04",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape0_aw0",
+      "direction": 1,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 29.0,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "def5b8281270fee020adbcf3896d88d5f8e165a0427753b094476a97cfd20faf",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape0_aw1",
+      "direction": 1,
+      "shape": 0,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 117.73,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape0_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/extended_dir1_shape0_aw1/probe.tcl"
+      ],
+      "elf_sha256": "b38f4b32b70461c3464a5f39840984219c3dad10fd5a2a953f5465f95ecc780e",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape1_aw0",
+      "direction": 1,
+      "shape": 1,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 25.86,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h40 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape1_aw0/probe.tcl"
+      ],
+      "elf_sha256": "d9fe58c18058c22456fdddf43a4fe79be1ec57adfd1b7f23c02933abaef27ab3",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir1_shape1_aw1",
+      "direction": 1,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 38.95,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h40 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir1_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir1_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "48e5dbcaff041a982dafb8bd95ef5998d7886e00d6d65ac3202bd7eab9518f83",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir2_shape0_aw0",
+      "direction": 2,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 29.32,
+      "passed": false,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1440 bytes)",
+        "[SLINK] - 1024/1440 bytes (71%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000001 spm_lock='h00 i_read_unit.busy_q='h1 i_read_unit.r_fifo_full='h1 i_write_unit.busy_q='h0 i_write_unit.w_valid='h1 i_hit_miss_unit.locked='h0",
+        "ucli% puts \"WINDOW_END_WITHOUT_COMPLETION\"",
+        "WINDOW_END_WITHOUT_COMPLETION"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir2_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "7e9261743f70eeede7c6f2c288b234369effda7edbf05b790d2ecdb7342f3ad0",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir2_shape1_aw1",
+      "direction": 2,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 39.14,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='h00 i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/dir2_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/short_window/run_dir2_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "f0338cc27d34a220e496ff042f0a1bd121bf5ec6ae7577bc77dccda15aed059a",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    }
+  ],
+  "bypass": [
+    {
+      "name": "dir2_shape0_aw0",
+      "direction": 2,
+      "shape": 0,
+      "aw": 0,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 111.21,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/dir2_shape0_aw0.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='hff i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='hff i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='hff i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "CROSS_STATE next_id='h00000004 done_id='h00000003 spm_lock='hff i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/dir2_shape0_aw0.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/run_dir2_shape0_aw0/probe.tcl"
+      ],
+      "elf_sha256": "d62385e19fa9f4cf1438910ab3fee13f62c3bdf5fb60cf0e329c85bb2fbcf3a9",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    },
+    {
+      "name": "dir2_shape1_aw1",
+      "direction": 2,
+      "shape": 1,
+      "aw": 1,
+      "rw": 0,
+      "host_rc": 0,
+      "seconds": 37.18,
+      "passed": true,
+      "errors": [],
+      "completion": [
+        "[SLINK] Wait for LLC configuration",
+        "[SLINK] Preloading ELF binary: /home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/dir2_shape1_aw1.elf",
+        "[SLINK] Preloading section at 0x0000000080000000 (1456 bytes)",
+        "[SLINK] - 1024/1456 bytes (70%)",
+        "[SLINK] Preload complete",
+        "[SLINK] Wrote launch signal and entry point 0x0000000080000000",
+        "CROSS_STATE next_id='h00000003 done_id='h00000002 spm_lock='hff i_read_unit.busy_q='h0 i_read_unit.r_fifo_full='h0 i_write_unit.busy_q='h0 i_write_unit.w_valid='h0 i_hit_miss_unit.locked='h0",
+        "[SLINK] SUCCESS"
+      ],
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/dir2_shape1_aw1.elf",
+        "-ucli",
+        "-i",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/bypass_control/run_dir2_shape1_aw1/probe.tcl"
+      ],
+      "elf_sha256": "ed67a86f263fd38e51d3d0e74c12a20b3a40135729d6debfe4cff3b99a643399",
+      "simv_sha256": "e16fc6a78f7f37ec27c7324b8732e643876249f2636cd05190e4280b15e00dfd"
+    }
+  ],
+  "backend_max64": [
+    {
+      "mode": "balanced",
+      "seed": 1,
+      "source_latency": 0,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=168 aw_stall=9586 w_stall=197"
+      ],
+      "errors": [],
+      "simv_sha256": "4b6cb70665bd5c8c59efe8cbed99398d135f30e06cd90466bf5f93d845a266db",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    },
+    {
+      "mode": "balanced",
+      "seed": 17,
+      "source_latency": 0,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=168 aw_stall=9586 w_stall=197"
+      ],
+      "errors": [],
+      "simv_sha256": "4b6cb70665bd5c8c59efe8cbed99398d135f30e06cd90466bf5f93d845a266db",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    },
+    {
+      "mode": "slow_source",
+      "seed": 1,
+      "source_latency": 8,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=140 aw_stall=9913 w_stall=179"
+      ],
+      "errors": [],
+      "simv_sha256": "503d2f472e3624e4234ae8fd68900e783d97cdae7039e03c78bf73f1b2305447",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    },
+    {
+      "mode": "slow_source",
+      "seed": 17,
+      "source_latency": 8,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=140 aw_stall=9913 w_stall=179"
+      ],
+      "errors": [],
+      "simv_sha256": "503d2f472e3624e4234ae8fd68900e783d97cdae7039e03c78bf73f1b2305447",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    },
+    {
+      "mode": "slow_destination",
+      "seed": 1,
+      "source_latency": 0,
+      "destination_latency": 8,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=478 aw_stall=10098 w_stall=487"
+      ],
+      "errors": [],
+      "simv_sha256": "4453d73f70f08706220d17622ea977881014d927d756b86ead2f39114de2d796",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    },
+    {
+      "mode": "slow_destination",
+      "seed": 17,
+      "source_latency": 0,
+      "destination_latency": 8,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=427 AW=427 B=427 r_stall=478 aw_stall=10098 w_stall=487"
+      ],
+      "errors": [],
+      "simv_sha256": "4453d73f70f08706220d17622ea977881014d927d756b86ead2f39114de2d796",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    }
+  ],
+  "backend_default256": [
+    {
+      "mode": "balanced",
+      "seed": 1,
+      "source_latency": 0,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=34 aw_stall=8675 w_stall=56"
+      ],
+      "errors": [],
+      "simv_sha256": "4b6cb70665bd5c8c59efe8cbed99398d135f30e06cd90466bf5f93d845a266db",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_balanced",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=1"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.69
+    },
+    {
+      "mode": "balanced",
+      "seed": 17,
+      "source_latency": 0,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=34 aw_stall=8675 w_stall=56"
+      ],
+      "errors": [],
+      "simv_sha256": "4b6cb70665bd5c8c59efe8cbed99398d135f30e06cd90466bf5f93d845a266db",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_balanced",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=17"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.69
+    },
+    {
+      "mode": "slow_source",
+      "seed": 1,
+      "source_latency": 8,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=32 aw_stall=8754 w_stall=53"
+      ],
+      "errors": [],
+      "simv_sha256": "503d2f472e3624e4234ae8fd68900e783d97cdae7039e03c78bf73f1b2305447",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_slow_source",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=1"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.73
+    },
+    {
+      "mode": "slow_source",
+      "seed": 17,
+      "source_latency": 8,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=32 aw_stall=8754 w_stall=53"
+      ],
+      "errors": [],
+      "simv_sha256": "503d2f472e3624e4234ae8fd68900e783d97cdae7039e03c78bf73f1b2305447",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_slow_source",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=17"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.73
+    },
+    {
+      "mode": "slow_destination",
+      "seed": 1,
+      "source_latency": 0,
+      "destination_latency": 8,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=65 aw_stall=8787 w_stall=73"
+      ],
+      "errors": [],
+      "simv_sha256": "4453d73f70f08706220d17622ea977881014d927d756b86ead2f39114de2d796",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_slow_destination",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=1"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.81
+    },
+    {
+      "mode": "slow_destination",
+      "seed": 17,
+      "source_latency": 0,
+      "destination_latency": 8,
+      "jobs": 78,
+      "rc": 0,
+      "passed": true,
+      "completion": [
+        "BACKEND_PASS remaining=0 AR=158 AW=158 B=158 r_stall=65 aw_stall=8787 w_stall=73"
+      ],
+      "errors": [],
+      "simv_sha256": "4453d73f70f08706220d17622ea977881014d927d756b86ead2f39114de2d796",
+      "job_sha256": "61f15c2143aad87842f08f30f0517b6a7af5a70409d9532d6326528f63c9e88e",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_serial_build/simv_slow_destination",
+        "+job_file=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/backend_jobs_default256.txt",
+        "+ntb_random_seed=17"
+      ],
+      "max_burst_beats": 256,
+      "seconds": 5.81
+    }
+  ],
+  "backend_initial_fixture_failure": [
+    {
+      "mode": "balanced",
+      "seed": 1,
+      "source_latency": 0,
+      "destination_latency": 0,
+      "jobs": 78,
+      "rc": 0,
+      "passed": false,
+      "completion": [],
+      "errors": [
+        "Error: \"/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/cross_memory_20261021/tb_cross.sv\", 1195: tb_idma_backend_rw_axi.unnamed$$_10: at time 50180000 ps",
+        "Fatal: \"/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/common_verification-8eae3e9fca231308/src/stream_watchdog.sv\", 41: tb_idma_backend_rw_axi.i_axi_r_watchdog.wd: at time 50180000 ps"
+      ],
+      "simv_sha256": "d827e77c8f867abbcfe43aea000680d6051b1d977a8eb8c3583c57a3fb26a000",
+      "job_sha256": "53a0253f536e818160c5cfedaccde9c383b35b3fe81beaf8f0e39b904192fc53"
+    }
+  ],
+  "backend_cases": [
+    {
+      "length": 1,
+      "src": 2147549187,
+      "dst": 268500997,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 7,
+      "src": 2147680259,
+      "dst": 268632069,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 8,
+      "src": 2147811331,
+      "dst": 268763141,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 9,
+      "src": 2147942403,
+      "dst": 268894213,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 24,
+      "src": 2148073475,
+      "dst": 269025285,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 63,
+      "src": 2148204547,
+      "dst": 269156357,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 64,
+      "src": 2148335619,
+      "dst": 269287429,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 65,
+      "src": 2148466691,
+      "dst": 269418501,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 123,
+      "src": 2148597763,
+      "dst": 269549573,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 128,
+      "src": 2148728832,
+      "dst": 269680640,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 256,
+      "src": 2148859904,
+      "dst": 269811712,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 1958,
+      "src": 2148990979,
+      "dst": 269942789,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 4097,
+      "src": 2149122051,
+      "dst": 270073861,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 8192,
+      "src": 2149253120,
+      "dst": 270204928,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 65536,
+      "src": 2149384192,
+      "dst": 270336000,
+      "aw": 0,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 1,
+      "src": 2149515267,
+      "dst": 270467077,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 7,
+      "src": 2149646339,
+      "dst": 270598149,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 8,
+      "src": 2149777411,
+      "dst": 270729221,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 9,
+      "src": 2149908483,
+      "dst": 270860293,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 24,
+      "src": 2150039555,
+      "dst": 270991365,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 63,
+      "src": 2150170627,
+      "dst": 271122437,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 64,
+      "src": 2150301699,
+      "dst": 271253509,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 65,
+      "src": 2150432771,
+      "dst": 271384581,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 123,
+      "src": 2150563843,
+      "dst": 271515653,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 128,
+      "src": 2150694912,
+      "dst": 271646720,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 256,
+      "src": 2150825984,
+      "dst": 271777792,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 1958,
+      "src": 2150957059,
+      "dst": 271908869,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 4097,
+      "src": 2151088131,
+      "dst": 272039941,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 8192,
+      "src": 2151219200,
+      "dst": 272171008,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 65536,
+      "src": 2151350272,
+      "dst": 272302080,
+      "aw": 1,
+      "rw": 0,
+      "group": "length_boundary"
+    },
+    {
+      "length": 123,
+      "src": 2168193027,
+      "dst": 540803077,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 0
+    },
+    {
+      "length": 123,
+      "src": 2168193166,
+      "dst": 540934298,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 1
+    },
+    {
+      "length": 123,
+      "src": 2168193305,
+      "dst": 541065519,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 2
+    },
+    {
+      "length": 123,
+      "src": 2168193444,
+      "dst": 541196740,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 3
+    },
+    {
+      "length": 123,
+      "src": 2168193583,
+      "dst": 541327961,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 4
+    },
+    {
+      "length": 123,
+      "src": 2168193722,
+      "dst": 541459182,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 5
+    },
+    {
+      "length": 123,
+      "src": 2168193861,
+      "dst": 541590403,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 6
+    },
+    {
+      "length": 123,
+      "src": 2168194000,
+      "dst": 541721624,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 7
+    },
+    {
+      "length": 123,
+      "src": 2168194139,
+      "dst": 541852845,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 8
+    },
+    {
+      "length": 123,
+      "src": 2168194278,
+      "dst": 541984066,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 9
+    },
+    {
+      "length": 123,
+      "src": 2168194417,
+      "dst": 542115287,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 10
+    },
+    {
+      "length": 123,
+      "src": 2168194556,
+      "dst": 542246508,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 11
+    },
+    {
+      "length": 123,
+      "src": 2168194695,
+      "dst": 542377729,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 12
+    },
+    {
+      "length": 123,
+      "src": 2168194834,
+      "dst": 542508950,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 13
+    },
+    {
+      "length": 123,
+      "src": 2168194973,
+      "dst": 542640171,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 14
+    },
+    {
+      "length": 123,
+      "src": 2168195112,
+      "dst": 542771392,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_123",
+      "row": 15
+    },
+    {
+      "length": 120,
+      "src": 2170290179,
+      "dst": 542900229,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 0
+    },
+    {
+      "length": 120,
+      "src": 2170290299,
+      "dst": 543031421,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 1
+    },
+    {
+      "length": 120,
+      "src": 2170290419,
+      "dst": 543162613,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 2
+    },
+    {
+      "length": 120,
+      "src": 2170290539,
+      "dst": 543293805,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 3
+    },
+    {
+      "length": 120,
+      "src": 2170290659,
+      "dst": 543424997,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 4
+    },
+    {
+      "length": 120,
+      "src": 2170290779,
+      "dst": 543556189,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 5
+    },
+    {
+      "length": 120,
+      "src": 2170290899,
+      "dst": 543687381,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 6
+    },
+    {
+      "length": 120,
+      "src": 2170291019,
+      "dst": 543818573,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 7
+    },
+    {
+      "length": 120,
+      "src": 2170291139,
+      "dst": 543949765,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 8
+    },
+    {
+      "length": 120,
+      "src": 2170291259,
+      "dst": 544080957,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 9
+    },
+    {
+      "length": 120,
+      "src": 2170291379,
+      "dst": 544212149,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 10
+    },
+    {
+      "length": 120,
+      "src": 2170291499,
+      "dst": 544343341,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 11
+    },
+    {
+      "length": 120,
+      "src": 2170291619,
+      "dst": 544474533,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 12
+    },
+    {
+      "length": 120,
+      "src": 2170291739,
+      "dst": 544605725,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 13
+    },
+    {
+      "length": 120,
+      "src": 2170291859,
+      "dst": 544736917,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 14
+    },
+    {
+      "length": 120,
+      "src": 2170291979,
+      "dst": 544868109,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 15
+    },
+    {
+      "length": 120,
+      "src": 2170292099,
+      "dst": 544999301,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 16
+    },
+    {
+      "length": 120,
+      "src": 2170292219,
+      "dst": 545130493,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 17
+    },
+    {
+      "length": 120,
+      "src": 2170292339,
+      "dst": 545261685,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 18
+    },
+    {
+      "length": 120,
+      "src": 2170292459,
+      "dst": 545392877,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 19
+    },
+    {
+      "length": 120,
+      "src": 2170292579,
+      "dst": 545524069,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 20
+    },
+    {
+      "length": 120,
+      "src": 2170292699,
+      "dst": 545655261,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 21
+    },
+    {
+      "length": 120,
+      "src": 2170292819,
+      "dst": 545786453,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 22
+    },
+    {
+      "length": 120,
+      "src": 2170292939,
+      "dst": 545917645,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 23
+    },
+    {
+      "length": 120,
+      "src": 2170293059,
+      "dst": 546048837,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 24
+    },
+    {
+      "length": 120,
+      "src": 2170293179,
+      "dst": 546180029,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 25
+    },
+    {
+      "length": 120,
+      "src": 2170293299,
+      "dst": 546311221,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 26
+    },
+    {
+      "length": 120,
+      "src": 2170293419,
+      "dst": 546442413,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 27
+    },
+    {
+      "length": 120,
+      "src": 2170293539,
+      "dst": 546573605,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 28
+    },
+    {
+      "length": 120,
+      "src": 2170293659,
+      "dst": 546704797,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 29
+    },
+    {
+      "length": 120,
+      "src": 2170293779,
+      "dst": 546835989,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 30
+    },
+    {
+      "length": 120,
+      "src": 2170293899,
+      "dst": 546967181,
+      "aw": 1,
+      "rw": 0,
+      "group": "row_120",
+      "row": 31
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # DDR–GB 数据同步方案：独立评审与答疑 Q&A
 
+> 2026-10-20 版本说明：当前主说明与配图已按 SoC v1 更新为 CPU/Ara 共享 M5、四口 DDR 及共享压缩前端，见[当前主说明](../../../engineering/DDR_GB_Coherence_Design.md)。下文保留原评审输入及原文，旧三口/独立支路描述不作为当前拓扑；后续复审以新正文为输入。
+
 返回[主说明](../../../engineering/DDR_GB_Coherence_Design.md) · [供应商会议问题](../../../engineering/DDR_Supplier_Coherence_Questions.md) · [主题交接](../../../handoffs/L01_cache_coherence_architecture.md)
 
 2026-10-16，L01。用户要求保存本轮评审和答疑过程，以便后续使用。本页按问题整理完整技术脉络，保留评审意见、作者判断、用户追问、答复更正及处理结果；不是逐字聊天转储。附录保存用户转交的评审全文，原附件另有字节级备份。

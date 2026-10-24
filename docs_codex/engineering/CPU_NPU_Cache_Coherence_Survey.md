@@ -30,21 +30,21 @@ CPU 预处理图像时，新像素可能还在写缓冲或脏缓存行中。NPU 
 
 图 1：Zuckerman 等，*Cohmeleon*（MICRO 2021，arXiv v1），原文 Fig. 1。沿彩色连线观察设备访问进入哪一级存储；带独立 cache 的设备另列一类。图中 local mem 对应显式管理的本地存储。[原文](https://arxiv.org/html/2109.06382v1#S1.F1) · [原始 SVG](../diagrams/2026-10-16_coherence_survey/originals/cohmeleon-modes.svg)
 
-下面把论文四类模式展开成六个工程示例：加入软硬件协同的范围维护 B，并把 I/O 一致性按分配策略拆成 D／E。三张对比图保持模块位置一致，绿色表示设备数据路径，紫色表示维护、探测和确认。左侧 L1／L2 泛指 CPU 私有缓存，LLC 单列为系统侧缓存；各芯片实际层数不同。这些图解释机制，项目完整互连及 DDR 三个 AXI 入口仍以[现行架构图](Cache_Coherence_Architecture.md)为准。[ESP 2018 论文](https://www.cs.columbia.edu/~davide_giri/pdf/giri_nocs18.pdf)、[Cohmeleon §2](https://arxiv.org/html/2109.06382v1#S2)
+下面把论文四类模式展开成六个工程示例：加入软硬件协同的范围维护 B，并把 I/O 一致性按分配策略拆成 D／E。三张对比图保持模块位置一致，绿色表示设备数据路径，紫色表示维护、探测和确认。左侧 L1／L2 泛指 CPU 私有缓存，LLC 单列为系统侧缓存；各芯片实际层数不同。这些通用分类图不展开 M5、四口共享前端或压缩布局；项目完整互连以[现行架构图](Cache_Coherence_Architecture.md)为准。[ESP 2018 论文](https://www.cs.columbia.edu/~davide_giri/pdf/giri_nocs18.pdf)、[Cohmeleon §2](https://arxiv.org/html/2109.06382v1#S2)
 
-![对比一：软件维护与搬运边界硬件维护](../diagrams/2026-10-16_coherence_hybrid/previews/handover.png)
+![对比一：软件维护与搬运边界硬件维护](../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/handover.png)
 
 **对比一：A 与 B 改变“谁执行维护”，都在任务边界交接缓冲区。** A 的驱动维护 CPU 私有缓存和 LLC，然后让 DMA 直访 DDR；B 新增硬件维护／准入引擎，执行排空、清理、失效并返回确认。两者在传输期间都需保持交接范围的所有权，CPU 可继续处理其他区域。B 由软件发起范围请求，硬件执行和汇合确认，是本项目采用的维护方向。软件约束范围访问；若另加硬件违规访问阻挡，还需覆盖 L1 命中路径。Ethos-U 是 A 的软件契约实例。
 
-![对比二：LLC 局部协调与覆盖 CPU 缓存的 I/O 一致性](../diagrams/2026-10-16_coherence_hybrid/previews/coverage.png)
+![对比二：LLC 局部协调与覆盖 CPU 缓存的 I/O 一致性](../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/coverage.png)
 
 **对比二：C 与 D 改变“硬件负责哪些副本”。** C 按 ESP 的 LLC-coherent DMA 定义，只在 LLC 层协调，驱动仍维护 CPU 私有缓存。D 把私有缓存也纳入硬件探测，冲突在事务级排序；图中选择允许设备分配 LLC 行，便于 CPU 与设备复用刚访问的数据，同时带来容量与替换竞争。D 属于 coherent DMA，具体分配行为取决于系统实现。它相对 C 增加探测响应、在途访问管理及更多并发验证组合。
 
-![对比三：I/O 一致性的分配策略与设备私有缓存代理](../diagrams/2026-10-16_coherence_hybrid/previews/agent-types.png)
+![对比三：I/O 一致性的分配策略与设备私有缓存代理](../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/agent-types.png)
 
 **对比三：E 比较分配策略，F 比较设备是否拥有可探测的缓存。** E 与 D 都在事务级协调 CPU 私有缓存和 LLC，E 让设备访问不分配 LLC 行，以降低缓存容量竞争。本项目沿用其旁路数据拓扑，维护则放到软件交接点。F 增加同地址设备私有缓存，需要探测、供数和权限转移；本项目的独立 GB 采用显式搬运，F 留作文献分类。接到 L2 的 DMA 与设备私有缓存是不同对象，Gemmini 的 Scratchpad 不能仅因 L2 接入位置归入 F。
 
-AMD HPC／ACP 可分别帮助理解 E／D 的能力差别，但其比较对象是该平台的 CPU L2；图中的通用 LLC 用于表达系统角色。Ethos-N 的 ACE-Lite 接口支持 I/O 一致性方向，公开简报尚不足以判定其具体分配策略。[AMD PG201 端口表](https://docs.amd.com/r/en-US/pg201-zynq-ultrascale-plus-processing-system/Slave-Interface) · [当前图稿与可编辑 PPTX](../diagrams/2026-10-16_coherence_hybrid/README.md)
+AMD HPC／ACP 可分别帮助理解 E／D 的能力差别，但其比较对象是该平台的 CPU L2；图中的通用 LLC 用于表达系统角色。Ethos-N 的 ACE-Lite 接口支持 I/O 一致性方向，公开简报尚不足以判定其具体分配策略。[AMD PG201 端口表](https://docs.amd.com/r/en-US/pg201-zynq-ultrascale-plus-processing-system/Slave-Interface) · [当前图稿与可编辑 PPTX](../diagrams/2026-10-20_ddr_gb_coherence_v1/README.md)
 
 **软件维护的核心是交接所有权。** CPU 准备输入后，将脏数据清理到设备可见点，再发布任务；设备写入前也要处理目标范围的旧脏副本，避免它们稍后覆盖结果。设备完成后，CPU 按平台要求失效旧副本并读取。维护范围按缓存行隔离，可以保护与缓冲区相邻的对象。传输期间，CPU 可处理其他任务，但交接区内的冲突访问要由调度约束。
 
@@ -123,18 +123,18 @@ Spandex 的后续细粒度研究把选择推进到单次请求：读操作可采
 
 ## 5. 对 Cheshire＋CVA6＋Ara＋GB 的启示
 
-当前向量 profile 的 **WT L1D 保留读副本和写缓冲，LLC 为 WB**；Ara 已有专用失效与顺序配合，LLC 维护主要按 way 组织，相关符号和版本见[源码依据](Cache_Coherence_Architecture.md#evidence)。当前规划采用独立 GB、设备 DDR 旁路和软件触发的范围维护。
+当前向量 profile 的 **WT L1D 保留读副本和写缓冲，LLC 为 WB**；Ara 已有专用失效与顺序配合，LLC 维护主要按 way 组织，相关符号和版本见[源码依据](Cache_Coherence_Architecture.md#evidence)。2026-10-20 按 v1 对齐本项目映射：CPU/Ara2 独立输入共享主 Xbar64 的 M5 访问非缓存 GB（属性待配置）；普通主存经 M2/LLC/F0，设备经 F1–F3 及共享压缩前端接四口 DDR。软件触发范围维护方向保持，原外部研究案例不变。
 
-从这些案例中，本项目主要借鉴三项机制：任务交接时显式同步、缓存侧可靠维护与完成确认，以及独立 SRAM 的分块复用。软件提交地址、长度和方向；硬件排空相关写，维护 L1D／LLC，再开放设备搬运。输入 clean 到 DDR；输出写前 clean＋invalidate、写后 invalidate。软件维持缓冲区所有权，CPU 可处理其他缓冲区，GB 内的 Ara／NPU 消费由本地任务协议组织。
+从这些案例中，本项目主要借鉴任务交接时显式同步、缓存侧可靠维护与完成确认，以及独立 SRAM 的分块复用。2026-10-20 最新选择：首版软件执行 FENCE＋LLC 全量 flush，同时保存输入和输出区的旧写；结果可见后，软件提交输出范围，硬件完成 LLC／L1D 失效。搬运启动由软件排序，F1 不增加监听；后续再优化范围 clean。软件维持缓冲区所有权，CPU 可处理独立数据，GB 内交接由本地任务协议组织。实现职责见[硬件规划](Cache_Coherence_Architecture.md#hardware-plan)。
 
 这类选择减少了对持续逐事务探测的需求，同时保留 CPU 日常缓存。代价集中在交接时的 tag 端口竞争、脏写回和失效后重填。当前 L1D 的外部失效按索引清除全部 way，LLC 的 way 维护会隔离入口；把它们改进为范围维护并给出可靠完成确认，是具体实现中的主要工作。
 
-![本项目经 DDR 的路径及缓存直供成本比较](../diagrams/2026-10-16_coherence_hybrid/previews/data-paths.png)
+![本项目经 DDR 的路径及缓存直供成本比较](../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/data-paths.png)
 
-**路径比较：左侧为当前规划，右侧为成本参照。** LLC 持有最新脏行时，左侧先 clean 到 DDR，再经搬运器与共享数据代理送入 GB。右侧直接从缓存取得数据，可减少当次 DDR 往返，但需要新增缓存数据响应、仲裁与背压路径。本项目采用左侧，维护控制仍覆盖 L1D 和 LLC。若 DDR 已最新，直接读取；若先行 CPU 写尚在途，则先处理相关写缓冲和回填。
+**路径比较：左侧为当前规划，右侧为成本参照。** LLC 持有最新脏行时，左侧先经 F0／共享前端 clean，再由 F1 搬运器读取逻辑数据并通过共享代理送入 GB；压缩区的完成包含数据及元数据可见性。右侧直接从缓存取得数据，可减少当次 DDR 往返，但需要新增缓存数据响应、仲裁与背压路径。本项目采用左侧，维护控制仍覆盖 L1D 和 LLC。若 DDR 已最新，直接读取；若先行 CPU 写尚在途，则先处理相关写缓冲和回填。
 
 软件范围交接与逐行透明 I/O 一致性可以使用相近的数据路径，其区别在于谁保证传输期间的访问纪律。当前方案由软件保持交接范围所有权，硬件完成同步操作。只在同步点维护的实现，应按显式同步的设备契约接入驱动。后续若需要 CPU 与设备任意细粒度共享，再单独评估事务级保护和原子域。
 
-评估负载至少包含 CPU 预处理后立即提交、NPU 连续读取大权重、ISP 写帧同时 CPU／Ara 处理另一帧，以及 CPU 修改部分行后设备更新其他字节。每组记录 **CPU 停顿与维护时间、DDR 读写字节、LLC 命中与替换、设备吞吐及多设备尾延迟**；同时比较冷数据、缓存已有输入、整模型同步和分块同步。
+评估负载至少包含 CPU 预处理后立即提交、NPU 连续读取大权重、ISP 经 F2 写帧、F3 读取 ROI，同时 CPU／Ara 处理另一帧，以及 CPU 修改部分行后设备更新其他字节。每组记录 **CPU 停顿与维护时间、前端逻辑字节与下游实际 DDR 字节、LLC 命中与替换、设备吞吐及多设备尾延迟**；同时比较冷数据、缓存已有输入、整模型同步和分块同步。
 
-测量时拆开准备、维护、等待、搬运、计算和完成交接。计算占主导时，降低维护成本的收益可能有限；搬运受限时，则需观察 DDR 竞争和双缓冲重叠。性能评估以读取版本、部分写保护及迟到事务处理正确为前提。正式流程、接口职责和验收项集中在[软硬件协同维护规划](Cache_Coherence_Architecture.md)，四张原文配图来源见[资料清单](../diagrams/2026-10-16_coherence_survey/README.md)，本轮更新图稿见[图稿目录](../diagrams/2026-10-16_coherence_hybrid/README.md)。
+测量时拆开准备、维护、等待、搬运、计算和完成交接。计算占主导时，降低维护成本的收益可能有限；搬运受限时，则需观察 DDR 竞争和双缓冲重叠。性能评估以读取版本、部分写保护及迟到事务处理正确为前提。正式流程、接口职责和验收项集中在[软硬件协同维护规划](Cache_Coherence_Architecture.md)，四张原文配图来源见[资料清单](../diagrams/2026-10-16_coherence_survey/README.md)，本轮更新图稿见[图稿目录](../diagrams/2026-10-20_ddr_gb_coherence_v1/README.md)。

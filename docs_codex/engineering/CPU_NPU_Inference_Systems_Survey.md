@@ -203,7 +203,7 @@ Siracusa 包含主控核、8 核 RISC-V 计算集群、N-Eureka NPU、多 bank L
 | 共享片上存储与显式搬运 | [契约 §12](IP_DDR_Interface_Contract.md#12-独立global-buffer与ddr需求更新)要求独立 GB、主 Xbar 64-bit 及设备 DDR 旁路；当前 Ara 代码仍接主 Xbar | GB 分块、共享数据代理、DDR–GB 搬运及同步契约 | 容量、bank、仲裁、地址、错误；现有 iDMA 不直接等同于新搬运器 |
 | OS 与平台适配 | [Ara SDK 规则](../../.bender/git/checkouts/ara-2c7b103275a16c87/cheshire/sw/cva6-sdk.mk)有 `RVV_LINUX=1`、Linux 应用和镜像入口 | Linux 驱动、缓冲映射与用户态接口；裸机诊断适配 | Linux 启动、镜像溯源、RVV 抢占和 NPU 推理均未由本轮验收 |
 
-**最新需求与旧图的关系：**2026-10-16 的[一致性专题及交接](../handoffs/L01_cache_coherence_architecture.md)明确 Ara 访问 GB 应经过也服务 NPU/ISP 的共享数据代理，且该代理与 DDR–GB 搬运器是不同职责。本文映射采用这一更新，不将旧契约示意中的简化连接解释为最终直连，也不把另一对话提出的一致性候选当作已选方案。当前源码仍没有这一 GB 分支，需求与实现必须分列。
+**2026-10-20 按 v1 同步项目映射：**CPU/Ara2 通过主 Xbar64 共享 M5→GB 适配/仲裁；代理还服务 NPU、ISP 和 GB 搬运器，区别于 DDR↔GB 搬运职责。普通主存经 M2/LLC/F0，设备经 F1/F2/F3、共享压缩前端接四口 DDR；F3 为 ROI 读帧/LVDS 输出。软件显式交接＋硬件范围维护已确认，信号与实现仍待细化。CPU 可直接访问 GB 小结果，DDR 共享与 GB 本地交接分别处理；当前 RTL 尚无目标 GB/前端集成。
 
 官方 Linux 路线提供平台起点，并未交付面向新增 NPU 的编译器、模型运行时或驱动。现有 `i_ara_axi_inval_filter` 也不是面向任意设备的完整一致性系统。外购 DDR、共享代理、设备旁路和缓存协调仍需按契约实现并验证；用户报告的 VCU118 HelloWorld 不扩大解释为这些功能验收。
 

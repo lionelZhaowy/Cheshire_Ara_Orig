@@ -1,0 +1,1990 @@
+{
+  "status": "verified_in_formal_project",
+  "reference": {
+    "head": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "baseline": "424e4d2cd9f7e129bbda7e595504a48952b150e9",
+    "passed_tag": "reference-p1-p5-pass-20261024",
+    "passed_commit": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "remote_main": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c"
+  },
+  "production_steps": [
+    {
+      "name": "P1",
+      "candidate_commit": "26637be97e731a98ae0fd220b61f814f6a703409",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv",
+          "before_blob": "845c81a376c693def6ffe0b985319f5a4e9fb9b8",
+          "after_blob": "93afa0ed839b893898da79d95c4ba4699e6dd792"
+        }
+      ],
+      "r_commit": "0073a2f8cbbada5f359dd0b7ba0617ee7c20179a",
+      "r_parent": "319f5f0bc9806dd23efcbafa0d7268fc2ea2b759"
+    },
+    {
+      "name": "P2_official",
+      "candidate_commit": "7a7075a71386027b1da630bf2d8268b561957654",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vmfpu.sv",
+          "before_blob": "c125986491ac51fba722d992885c974e81d9fb08",
+          "after_blob": "744dfc62efcaab74ea08be1b1e22a5e0cb84cad5"
+        }
+      ],
+      "r_commit": "6694b4e81dd00a420e3615a667299ba5e1c9f858",
+      "r_parent": "48232ea131cf527184e1cd48346ec2fe1bf9c888"
+    },
+    {
+      "name": "P2_mask",
+      "candidate_commit": "2b36bfcc68b2f2cf4b67a190804a1872262a392d",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/masku/masku.sv",
+          "before_blob": "0a48f02687548d5da30983cbc32414574f6750ba",
+          "after_blob": "37b47cc1eeec8c01c34ab51c9d0d737c35627a16"
+        }
+      ],
+      "r_commit": "8ade2100115ab7f536535f1be0ff7e00dd429411",
+      "r_parent": "6694b4e81dd00a420e3615a667299ba5e1c9f858"
+    },
+    {
+      "name": "P2_sequencer",
+      "candidate_commit": "6382e4214100c0e0de56dcd7190941cbaeebae0e",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv",
+          "before_blob": "9cd0cc405c75caa36d1b4554296ae25c786f37d1",
+          "after_blob": "890e9103f14a4647e546cab1e6c9748dc4361def"
+        }
+      ],
+      "r_commit": "4e54c06ef2b76ccebce9c21eaabff64c00b41735",
+      "r_parent": "8ade2100115ab7f536535f1be0ff7e00dd429411"
+    },
+    {
+      "name": "P3_official",
+      "candidate_commit": "fa7baaa3a830f0460fecdc1c0ebf2dd444d43bda",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/fpu_div_sqrt_mvp-33e0a4fc0dc853c1/hdl/norm_div_sqrt_mvp.sv",
+          "before_blob": "590abe969bddccabe201f2a15ae8a40d14032c95",
+          "after_blob": "1d74170b5355afc7933c2ca2f8629d13a629c0db"
+        }
+      ],
+      "r_commit": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4",
+      "r_parent": "4e54c06ef2b76ccebce9c21eaabff64c00b41735"
+    },
+    {
+      "name": "P3_mask",
+      "candidate_commit": "d38bcf6925077593e6b766154d6fda205a532ed7",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/fpnew-ed006ec0a4178e29/src/fpnew_opgroup_multifmt_slice.sv",
+          "before_blob": "f5991cbd7c46bd8f64970e8a838e3ce5db42ffdc",
+          "after_blob": "90444850e9ab188b893cb2fc033446d74e437420"
+        }
+      ],
+      "r_commit": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0",
+      "r_parent": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4"
+    },
+    {
+      "name": "P4_191",
+      "candidate_commit": "4d1c46e3c2ecfd884202c3e86af85a2542897d93",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "57b143d4064dd74c538d44a755221c1dc2330ad8",
+          "after_blob": "3b6fcf8cbc7f25365da91c8223c0268f1e8fe91e"
+        }
+      ],
+      "r_commit": "e983027d08c0e6e398c5243c286709252378fbed",
+      "r_parent": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0"
+    },
+    {
+      "name": "P4_192",
+      "candidate_commit": "857992bfd32a6a565d16a3b615e901f3edc6d0da",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "3b6fcf8cbc7f25365da91c8223c0268f1e8fe91e",
+          "after_blob": "e32e5410fcf4c11b7c64ad55be13ba545f28eaa8"
+        }
+      ],
+      "r_commit": "d1b8559f52b075ee784db545dbe8049d40e4e5df",
+      "r_parent": "e983027d08c0e6e398c5243c286709252378fbed"
+    },
+    {
+      "name": "P4_adjacent",
+      "candidate_commit": "ac5d74a3f32d682fe6ce73186479e1d5a564b479",
+      "blobs": [
+        {
+          "source": "target/sim/src/vip_cheshire_soc.sv",
+          "before_blob": "e32e5410fcf4c11b7c64ad55be13ba545f28eaa8",
+          "after_blob": "8892c51861d2027660a2e993e65e448064d23db8"
+        }
+      ],
+      "r_commit": "98a0591e35dceb5548ad435ef68ed42d92670114",
+      "r_parent": "d1b8559f52b075ee784db545dbe8049d40e4e5df"
+    },
+    {
+      "name": "P5_RTL",
+      "candidate_commit": "4c0429ef96cedefc68c01ee7b88c03bab029cea7",
+      "blobs": [
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/reg/tpl/idma_reg.sv.tpl",
+          "before_blob": "946604089b2368b68a937b1d4539b365e17f5edf",
+          "after_blob": "0cfc6cd292da5e824efd1ae7e5412972bdb44141"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv",
+          "before_blob": "30015f02a8adb907c378ebf4ba0a3b26fef510ca",
+          "after_blob": "6085b4448192897789a59c26f97fb07c5f58482d"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg32_3d_top.sv",
+          "before_blob": "20ee6d8cba056b59c93236ddecfe15dd67ecd381",
+          "after_blob": "65558eb42262009dbfcd0484d2ec0bef8a755fa7"
+        },
+        {
+          "source": ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv",
+          "before_blob": "b8c2d5e5fa8fcaee5de200d58a83dbbec5f1a50a",
+          "after_blob": "c702a64abe0786c0dfa259ed831727833e4f7f80"
+        }
+      ],
+      "r_commit": "0bf9efca695b17b943921c2e04fd9b92492b7656",
+      "r_parent": "98a0591e35dceb5548ad435ef68ed42d92670114"
+    },
+    {
+      "name": "P5_HAL",
+      "candidate_commit": "4e2ebd52cf5206291fd088f70aeb3a198df0bec2",
+      "blobs": [
+        {
+          "source": "sw/include/dif/dma.h",
+          "before_blob": "830f9f696f1c20b517c94f68ed5db691c4a61f8b",
+          "after_blob": "b75e226339fc4ed38be93c57af3f3aca204fb717"
+        }
+      ],
+      "r_commit": "5efef8be7f867b9ddff700d6ddf97b2c9f48e66b",
+      "r_parent": "0bf9efca695b17b943921c2e04fd9b92492b7656"
+    }
+  ],
+  "source_map": {
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/vlsu/vstu.sv": "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/lane/vmfpu.sv": "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/masku/masku.sv": "src/cheshire_soc/ara/hardware/src/masku/masku.sv",
+    ".bender/git/checkouts/ara-2c7b103275a16c87/hardware/src/ara_sequencer.sv": "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv",
+    ".bender/git/checkouts/fpu_div_sqrt_mvp-33e0a4fc0dc853c1/hdl/norm_div_sqrt_mvp.sv": "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv",
+    ".bender/git/checkouts/fpnew-ed006ec0a4178e29/src/fpnew_opgroup_multifmt_slice.sv": "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv",
+    "target/sim/src/vip_cheshire_soc.sv": "src/tb/src/vip_cheshire_soc.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_generated.sv": "src/cheshire_soc/idma/target/rtl/idma_generated.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/src/frontend/reg/tpl/idma_reg.sv.tpl": "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl",
+    "sw/include/dif/dma.h": "sw/include/dif/dma.h"
+  },
+  "backup_directory": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024",
+  "backup_sha256": "fc66f90b0cc67d1270095e192ab8be6ad9c1622236ab8e7420c04880cd18b374",
+  "new_paths": [
+    "sw/tests/p1_vstu_wrap.c",
+    "sw/tests/p2_vmfpu_order.c",
+    "sw/tests/p2_vcpop_boundaries.c",
+    "sw/tests/p2_scalar_overlap.c",
+    "sw/tests/p3_div_flags.c",
+    "sw/tests/p4_preload_bytes.c",
+    "sw/tests/p5_dma_1d.spm.c",
+    "sw/link/p4_single.ld",
+    "sw/link/p4_multi.ld",
+    "provenance/p1_p5_sync_20261024.json"
+  ],
+  "changes": [
+    {
+      "step": "P1",
+      "destination": "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv",
+      "before_sha256": "df1fbfee134eb0617b250777e188aa9f62c3530c5f88e5ed354566b438fc635f",
+      "after_sha256": "e7b441face975c8ecafbcbc089dde02a440120ffcd3cbece152b10eca7d0ddd9",
+      "mode": 436
+    },
+    {
+      "step": "P2_official",
+      "destination": "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv",
+      "before_sha256": "b24b559bade3dabc741b755fe5331a7a853ccd71b144bedfb3fc8e03c1454aa7",
+      "after_sha256": "1f08fca9d992e5b20e95f07075405eccc57b592fc2ca2cce809565dabb42945c",
+      "mode": 436
+    },
+    {
+      "step": "P2_mask",
+      "destination": "src/cheshire_soc/ara/hardware/src/masku/masku.sv",
+      "before_sha256": "e061e51790935ab379bfdb8a832e13c897a8a6502f001f2c495c4d078ba65edc",
+      "after_sha256": "64687ebffa3c4fad66e54a90a60805ded3948ef34e10628b077c09bf6315378f",
+      "mode": 436
+    },
+    {
+      "step": "P2_sequencer",
+      "destination": "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv",
+      "before_sha256": "44c190ede2a626504806f43d474e3478dbbafb81f4cf036cc43b606e9c6e0d7d",
+      "after_sha256": "b5714eab7de81a5471fdd93f8a2a4f6b29e4133339e5c1668aa497613c6baa67",
+      "mode": 436
+    },
+    {
+      "step": "P3_official",
+      "destination": "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv",
+      "before_sha256": "b96f2bebe6a2feb2af7e9b937cf980e6681f907c8da9bd7ecf569f15e73cfddf",
+      "after_sha256": "7c171c8455913c5197a122e1013e9f74260a47011ab11e985496293a1a29757e",
+      "mode": 436
+    },
+    {
+      "step": "P3_mask",
+      "destination": "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv",
+      "before_sha256": "52adbaaea561d083b176a246e4712605c1d1bfea6193e9725c0cdf101dc79d39",
+      "after_sha256": "4751f038c46ee2118bfcf47764da8c6286b6cbab719ee779aceca1d2dcc17a0d",
+      "mode": 436
+    },
+    {
+      "step": "P4_191",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+      "after_sha256": "a301e6bf1a8013a9487192dba657ae22fa76d9d075b1d712ea91df9e7293114e",
+      "mode": 436
+    },
+    {
+      "step": "P4_192",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "a301e6bf1a8013a9487192dba657ae22fa76d9d075b1d712ea91df9e7293114e",
+      "after_sha256": "311b2da85ae8288ffabd165d33fdf6f67131d1807e535605824d68067d21406c",
+      "mode": 436
+    },
+    {
+      "step": "P4_adjacent",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "311b2da85ae8288ffabd165d33fdf6f67131d1807e535605824d68067d21406c",
+      "after_sha256": "f7b50724274741153633227342b5e3e77bc619aea770cbb29ad90d020e9eb371",
+      "mode": 436
+    },
+    {
+      "step": "P5_RTL",
+      "destination": "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl",
+      "before_sha256": "f15a934fc449d7b9935d22aaa095270d52b34e5af5cfe9a9e2ab0e02af3e2264",
+      "after_sha256": "794dbc98bf881481e91c1b7fd9295aac8bd2861402c3efb17182e9f555849ed2",
+      "mode": 436
+    },
+    {
+      "step": "P5_RTL",
+      "destination": "src/cheshire_soc/idma/target/rtl/idma_generated.sv",
+      "before_sha256": "bf6f2d34d8883936014351258bcb40f9a89978b2d51079f525f37b5e55360250",
+      "after_sha256": "2945ec2dda679d57f6df51d98ce814866fc9fea380558b12fb9569a5ef93aabf",
+      "mode": 436
+    },
+    {
+      "step": "P5_HAL",
+      "destination": "sw/include/dif/dma.h",
+      "before_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "after_sha256": "9f9f20b48f9abcee308094f9c80acaba0000a795c54079287946a5fd50249a5c",
+      "mode": 436
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p1_vstu_wrap.c",
+      "before_sha256": null,
+      "after_sha256": "7755b899cfd96560e71685927aeef031b973ca66d4a763d72431e3481178f221",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_vmfpu_order.c",
+      "before_sha256": null,
+      "after_sha256": "352d6d77fb6210a4577768a8edb4f4d81c91c25749a78833c844c3896412c69d",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_vcpop_boundaries.c",
+      "before_sha256": null,
+      "after_sha256": "6a8c0882282000899d3f330bcb71cc5470d5cc742862597f992e4c9ec15150b3",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_scalar_overlap.c",
+      "before_sha256": null,
+      "after_sha256": "517b9bda2381126a2d30af3923c1467d3b1129a6899ae281c8ef398da0c5e68c",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p3_div_flags.c",
+      "before_sha256": null,
+      "after_sha256": "3d9d9dbb7fd89f0c625d1b92080bcbd60f8221383ee2e155cbd5f1c9b2281e46",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p4_preload_bytes.c",
+      "before_sha256": null,
+      "after_sha256": "6c534a49a301e843223f8af3326f678ab7c088797bc35359da74cd868d0950d7",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p5_dma_1d.spm.c",
+      "before_sha256": null,
+      "after_sha256": "78b4e70a3bd6f6acc7d2b3391f2006e8986f0875984371ffc142e12163269766",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/link/p4_single.ld",
+      "before_sha256": null,
+      "after_sha256": "cc63d1de153ba949b6ef18c0b7b35b2e5b94916564112a704a51798fec95462c",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/link/p4_multi.ld",
+      "before_sha256": null,
+      "after_sha256": "def283b0011c7e3491e6e1b0a00a33da24414e1a08d571c6442579c8ac908e4e",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "src/tb/src/tb_cheshire_soc.sv",
+      "before_sha256": "308af462ac0e075556eeef6990b1ca5faecfe22260dbab39065214425cb8ba85",
+      "after_sha256": "d6607ae61921f22f9a96ad920e422ab5d534c8eda7802545f87bf42807a71fcd",
+      "mode": 436
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/Makefile",
+      "before_sha256": "05c999fce76f3346b5f53ac7f945bcd1a790f312d7354aa07bb40675f358c289",
+      "after_sha256": "6e587b1620de1dbadf6a49661b5a8d6e4514e337cc902bb00bb95bbf84a8ea4e",
+      "mode": 436
+    }
+  ],
+  "skipped_unextracted_sources": [
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg32_3d_top.sv",
+    ".bender/git/checkouts/idma-77bf7fa56d324e6a/target/rtl/idma_reg64_2d_top.sv"
+  ],
+  "pending": [],
+  "configuration_wrapper_and_existing_compile_start_unchanged": true,
+  "tests_run_by_this_program": false,
+  "push_by_this_program": false,
+  "results": {
+    "p1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p1_vstu_wrap.elf",
+        "+P1_VSTU_GATE"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p1",
+      "wall_seconds": 156.244,
+      "simv_sha256": "434fd46724c10e9c7b5286e677890cfe093856b33f2ca8ef4fdf7b1c9e545034",
+      "artifact_sha256": "950ddb8e014e0a12b61629a08aa306ec32a75609d4ef57a420348fda3cf1ecfa",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p2_order": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p2_vmfpu_order.elf",
+        "+P2_VMFPU_MONITOR",
+        "+P2_MASK_MONITOR",
+        "+P2_SCALAR_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_order",
+      "wall_seconds": 64.113,
+      "simv_sha256": "977b4dd5341a1a56973ab59dc5ff4f76ee3636d2bba2eafc6601d40bbaad4cec",
+      "artifact_sha256": "e73f72802f4d9e0c005b5c75ea9b05f58a8cd0576750a94bb29b97247fa3a41a",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p2_mask": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p2_vcpop_boundaries.elf",
+        "+P2_MASK_MONITOR",
+        "+P2_SCALAR_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_mask",
+      "wall_seconds": 58.52,
+      "simv_sha256": "e9003e791063d85befcc9eb49165f6021361f557f7b12b4461135291a79e70a9",
+      "artifact_sha256": "5a7e48f90e9d4f5cc6a950b01dd3e9bfe15c6936c88c8b43ff1a8a8848759bfe",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p2_scalar": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p2_scalar_overlap.elf",
+        "+P2_SCALAR_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_scalar",
+      "wall_seconds": 66.025,
+      "simv_sha256": "6a2c0f90c09528d64d5da750b47afa0b45377ef29ad08bbe6b48b8b7fde3abac",
+      "artifact_sha256": "1e5330c01b33744d1565c94663b04fa90c7ca05e16e7c92a5986a8730774e973",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p3_flags": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p3_div_flags.elf",
+        "+P3_FLAGS_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p3_flags",
+      "wall_seconds": 44.793,
+      "simv_sha256": "1b1b5051c10d59012517f268a86d1c55543dffebea56dfaa2c5b93082f571921",
+      "artifact_sha256": "059680128797d4459622f776aae637f4726629292fb9f76b6698adf193cf8e67",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p3_matrix": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p3_mask_matrix.elf",
+        "+P3_FLAGS_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p3_matrix",
+      "wall_seconds": 53.609,
+      "simv_sha256": "e31ba44ad3d6d44835b3c2f68137393611e40e990b18c491822113154e80a80b",
+      "artifact_sha256": "c340d94d36003e3d2c273337c7bee8ea0eb143deb304795a6fa7cf917e4d8f4d",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_01": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_01.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_01",
+      "wall_seconds": 53.32,
+      "simv_sha256": "02470231462ad85e4bc3520641e3fa57c6a8c53f2cd1e3497208fa051d271432",
+      "artifact_sha256": "3d6712e4ea51ddc7697743cfb2d3203f224fd993f036ef99d6dff417299bdccc",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_02": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_02.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=2"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_02",
+      "wall_seconds": 57.594,
+      "simv_sha256": "7fcdb43a88c460d3142ae0c1ac7b5741101481d6d8e62787370941e782bfc07a",
+      "artifact_sha256": "d6e96dfc24707077a25b98c644985d5bfc9fd1a60f652f6eacffc4f6855bd3c2",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_03": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_03.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=3"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_03",
+      "wall_seconds": 53.394,
+      "simv_sha256": "471cc23aa920ce8fb6244723e9d282a75cdf2454059daa0225242a431120e69a",
+      "artifact_sha256": "a644b9d5bac6be5adbcd1a898a2113069579e40ee0f56e10f2efd749f56fce05",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_04": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_04.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=4"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_04",
+      "wall_seconds": 53.15,
+      "simv_sha256": "c101ed54e5467ddc5a39f748ab643039e7cf9056cfb7eb434a585b587a380441",
+      "artifact_sha256": "eb76d0108de864217a97d5099265aef836d2a96f4c88d171a444851be1494e79",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_05": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_05.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=5"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_05",
+      "wall_seconds": 47.349,
+      "simv_sha256": "7c6962662db9945727eba71e2e10c8a0527434a507b0abe3ab7372540075a020",
+      "artifact_sha256": "c181881fd8fa667d050a31002406456bd2464ee7d458992724c31323d95a03b2",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p4_06": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p4_06.elf",
+        "+P4_SLINK_OBSERVE",
+        "+P4_CASE=6"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_06",
+      "wall_seconds": 47.03,
+      "simv_sha256": "3780857c5ce15ed405a8915ebd3dbbc97200553b3163e536ddc295fd0e20d5ac",
+      "artifact_sha256": "060c26c7f6089a55f27c6c0f1644a2c560cef1a949d3e2665521c4746cfe7c1a",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p5_1d": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p5_dma_1d.elf",
+        "+P5_DMA_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_1d",
+      "wall_seconds": 105.596,
+      "simv_sha256": "73a732534dbe2d45b4b556d666064f48ba29a7f4e28dde17be7e049ca331c973",
+      "artifact_sha256": "0af34a06c0e838fa2aabc3b5e1163052c1c873e150ae2f199044b6f7a3291390",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p5_sequence": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/p5_dma_sequence.elf",
+        "+P5_DMA_MONITOR"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_sequence",
+      "wall_seconds": 255.99,
+      "simv_sha256": "c93780960a6ca4d44b3cd73d32897b64dc495ee0b5fc76b905045bf7551dbf36",
+      "artifact_sha256": "d303511ac7a34ed0a23401cce470b0390bcadcab1605a9341d673b2de77c00a3",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_hello": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/helloworld.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_hello",
+      "wall_seconds": 33.522,
+      "simv_sha256": "99e6b5fa7abb87a8b584efb13cfa0ba6674b89e3e387fb01b9c7b055ce104c6b",
+      "artifact_sha256": "53aa19d4fe25ca7abd74de13f04813c091c2d3607b0d8e95644eab8af5c57906",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_csr": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/rvv_test_vstart_csrs.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_csr",
+      "wall_seconds": 34.652,
+      "simv_sha256": "bfee13a6ecf277d61307f3db1a010d52870f5fc97bf72ad4376d056e2d84d945",
+      "artifact_sha256": "0019a61f5b8d5c5fac71e7bc671d4ae3cefd2db1073d65fd292ae1dfa71f17a8",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_vector": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/vector_fixed.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_vector",
+      "wall_seconds": 82.712,
+      "simv_sha256": "ebfa783b8a6ba2f4b1459a81c9c9d57caa5561e8c392923baea59fb5f25d9d41",
+      "artifact_sha256": "a45e2d71fb9f584d9e6f65be3c7b5f8fbe5ce13f990cfc17256e20fcab04e175",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_rvv": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/rvv_bounds.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_rvv",
+      "wall_seconds": 270.614,
+      "simv_sha256": "38f4863cdcea63e80c3a6bc2c432dea23b38a2e0245f7063c1b343b1c0857c36",
+      "artifact_sha256": "6ed82dc306b29a1326de1611e827692432e15ba74008728b190ec7f1bd87e190",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_memory": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/memory_atomic.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_memory",
+      "wall_seconds": 191.771,
+      "simv_sha256": "8396de51f0d867df78749492ed9422e07def63d679d4ae98fb43e2b8756dee8f",
+      "artifact_sha256": "b877f23ca4d58e060dc395b53eb66cfbebfc0e8bbbcb03ee04ee878c0bf40ce0",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_fmatmul": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/fmatmul.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_fmatmul",
+      "wall_seconds": 463.698,
+      "simv_sha256": "9277ddea06aad67d7dfd35508d807a1a38f456db97e97b58f06d71a7fa741be2",
+      "artifact_sha256": "dbd76ca4b8ae5ad1ced1adb82444ce1f6ed5aa82c0890d30568200154457792b",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p5_dma_original": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/dma_original.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_original",
+      "wall_seconds": 7.681,
+      "simv_sha256": "564bafb00bc1c394acf2802e451fd1901ea8b4db300d572bfc465df3d67fee31",
+      "artifact_sha256": "3680e6969ee43876b478a853c1f5b378391a5fa23f3446852ac1b9cb25128064",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p5_dma_reg_lanes": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/dma_reg_lanes.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_reg_lanes",
+      "wall_seconds": 35.353,
+      "simv_sha256": "abbd867bd9ce8a6c60105fbffc91f13fc44a460d90706e601b61ad7d95a8f185",
+      "artifact_sha256": "8544e11c033cbcb6b16c48a032a4e245af9b046696ef7f5b77e01f3d6b9fbf76",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "p5_dma_long_aw_api": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/dma_long_aw_api.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_long_aw_api",
+      "wall_seconds": 242.312,
+      "simv_sha256": "4c13e7d247e29a3fdeafb48c8cfd9177c57f79d0dba33e49682936ad7aa11b5a",
+      "artifact_sha256": "dc4282e975a4633819a40fab313340a3f1ffdd1ba335b17db6fb28821c0c9018",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "final_spi": {
+      "status": "ASSERTION_OR_SIM_ERROR",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 2,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=2",
+        "+IMAGE=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/spi_raw.memh"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_spi",
+      "wall_seconds": 455.745,
+      "simv_sha256": "5162b9ef82e7ce40ba20a9aa116f4f2a567cc02a308597efa3e4c1b65a6c6198",
+      "artifact_sha256": "045d9d5d9b67adc379b5c366716dd4df5c9216f32459041b6ad956a66c6dd28b",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": [
+        "\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[6].a_read_data_known: started at 462510000ps failed at 462510000ps\n\tOffending '(!$isunknown(req_port_o.data_rdata[(6 * 8)+:8]))'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[6].a_read_data_known: at time 462510000 ps\nREAD_DATA_X tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[6].a_read_data_known id=0 offset=10 size=3 byte=6 data=xxxx0000000f0f0f",
+        "READ_DATA_X tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[6].a_read_data_known id=0 offset=10 size=3 byte=6 data=xxxx0000000f0f0f\n\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known: started at 462510000ps failed at 462510000ps\n\tOffending '(!$isunknown(req_port_o.data_rdata[(7 * 8)+:8]))'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known: at time 462510000 ps",
+        "\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known: started at 462510000ps failed at 462510000ps\n\tOffending '(!$isunknown(req_port_o.data_rdata[(7 * 8)+:8]))'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_dcache_ctrl.sv\", 304: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known: at time 462510000 ps\nREAD_DATA_X tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known id=0 offset=10 size=3 byte=7 data=xxxx0000000f0f0f",
+        "READ_DATA_X tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.i_wt_dcache.gen_rd_ports[1].genblk1.i_wt_dcache_ctrl.gen_read_data_check[7].a_read_data_known id=0 offset=10 size=3 byte=7 data=xxxx0000000f0f0f\n\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[6].a_invalid_write_data: started at 462875000ps failed at 462875000ps\n\tOffending '((|dcache_req_ports_i[(NumPorts - 1)].data_wdata[(6 * 8)+:8]) !== 1'hx)'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[6].a_invalid_write_data: at time 462875000 ps",
+        "\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[6].a_invalid_write_data: started at 462875000ps failed at 462875000ps\n\tOffending '((|dcache_req_ports_i[(NumPorts - 1)].data_wdata[(6 * 8)+:8]) !== 1'hx)'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[6].a_invalid_write_data: at time 462875000 ps\n          1[l1 dcache] writing invalid data: paddr=0000000000000000, be=00, data=0000000000000000, databe=0000000000000000",
+        "\"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[7].a_invalid_write_data: started at 462875000ps failed at 462875000ps\n\tOffending '((|dcache_req_ports_i[(NumPorts - 1)].data_wdata[(7 * 8)+:8]) !== 1'hx)'\nWarning: \"/home/zhaowy24/CheshireAra/src/cheshire_soc/cva6/core/cache_subsystem/wt_cache_subsystem.sv\", 270: tb_cheshire_soc.fix.dut.i_soc.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_invalid_write_assertion[7].a_invalid_write_data: at time 462875000 ps\n          1[l1 dcache] writing invalid data: paddr=0000000000000000, be=00, data=0000000000000000, databe=0000000000000000"
+      ]
+    },
+    "extra_slink_idle_64k": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/slink_rx/simv",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/slink_cpu0.elf",
+        "+CASE=0",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_idle_64k",
+      "wall_seconds": 67.249,
+      "simv_sha256": "973a63f4cf442c63eabcab319a7354a0c6a2aa1e14e9d7074bcbd8767bb1e7ec",
+      "artifact_sha256": "73c2936137d007fbe5422c8c2bf00ab19db5337560c02f90f3a44e14bd4371fb",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_slink_cpu_concurrent_192k": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/slink_rx/simv",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/slink_cpu1.elf",
+        "+CASE=1",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_cpu_concurrent_192k",
+      "wall_seconds": 91.049,
+      "simv_sha256": "c7dc32c596cb08d2c44f224a35629e52b6caca6ba54eb61faf042697230c26fb",
+      "artifact_sha256": "3910a5f67a8209ab28a427c17dca8030e882cdb77a1b4b2f7534ecf0d857ed25",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_slink_cpu_concurrent_unaligned_gapped": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/slink_rx/simv",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/slink_cpu1.elf",
+        "+CASE=2",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_cpu_concurrent_unaligned_gapped",
+      "wall_seconds": 15.858,
+      "simv_sha256": "0fb7927b3e06fe17c7f99b69824de6377d472891957d3ca6f379cedabbb967f1",
+      "artifact_sha256": "3910a5f67a8209ab28a427c17dca8030e882cdb77a1b4b2f7534ecf0d857ed25",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_issue115_aw0_rw0": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw0.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw0_rw0",
+      "wall_seconds": 0.181,
+      "simv_sha256": "66b05f170ba1751cb317efc023c4ad8b43b4ba2df646bfe9af6bfaac1ff6a526",
+      "artifact_sha256": "4c9277f859945554c714b308fa8164bebccb06abd8ef6521d7135e541d7bfb41",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_issue115_aw0_rw1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw1.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw0_rw1",
+      "wall_seconds": 0.184,
+      "simv_sha256": "059467a379cc4ae2b0f91a28b8ee1155bfd889f7cabe05fb5f999000045a1c9d",
+      "artifact_sha256": "68a91b2d292dfd5b7884a9d358ecc3a0a2ca1de27bd8e219f2d6843ed7bb154c",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_issue115_aw1_rw0": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw0.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw1_rw0",
+      "wall_seconds": 0.181,
+      "simv_sha256": "7826baba058fdd6509c8c0c58e78c966c31fbb7e7129c127eaf6fb02db779d74",
+      "artifact_sha256": "76df3444c690e8108796233dd214af9d60f7a67d176287592b59dfe3eeee7f19",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_issue115_aw1_rw1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw1.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw1_rw1",
+      "wall_seconds": 0.184,
+      "simv_sha256": "fc7a4db438f63a9dffdb0fb7ea5955a6590f4108f7d73379050b78a0c238e1d0",
+      "artifact_sha256": "4a7d7c9abcff77fa7a78c357f08c6536bd21560295a08b11e0b4ff2d5b34b54f",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_mixed_modes": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/mixed_modes.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_mixed_modes",
+      "wall_seconds": 0.293,
+      "simv_sha256": "49dd0470f81f8e8515dfa180e5be3e01f89920670c87ab0384928777bce43ca3",
+      "artifact_sha256": "cdb9593701a4e89be93c39df995b809bc3cf8bab9e7594897f4d1328ffd9a2de",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_ideal_pr80_asymmetric": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_ideal/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/pr80_asymmetric.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_pr80_asymmetric",
+      "wall_seconds": 0.173,
+      "simv_sha256": "b45cadc4b56e15fd3677ee0969c2a730b3d66ad8531a5ddefe2dd0a675077c19",
+      "artifact_sha256": "e3606002901eb35fc5aa1d8990c2480af602886ae9ae4411b97aa0616ab621e6",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_issue115_aw0_rw0": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw0.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw0_rw0",
+      "wall_seconds": 0.183,
+      "simv_sha256": "d6977577d72124b05269e850333d5e4a4c600df23686aa97ab87f361c8c20b3f",
+      "artifact_sha256": "4c9277f859945554c714b308fa8164bebccb06abd8ef6521d7135e541d7bfb41",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_issue115_aw0_rw1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw1.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw0_rw1",
+      "wall_seconds": 0.187,
+      "simv_sha256": "ec0b158ed329109dae58e257dd73c5f3ed07f2ad48007ca14e8349541d20168f",
+      "artifact_sha256": "68a91b2d292dfd5b7884a9d358ecc3a0a2ca1de27bd8e219f2d6843ed7bb154c",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_issue115_aw1_rw0": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw0.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw1_rw0",
+      "wall_seconds": 0.182,
+      "simv_sha256": "38864d1dd5571875c5e72627824af8e96f663e7c4e9733e93ea6bf95da9a1e71",
+      "artifact_sha256": "76df3444c690e8108796233dd214af9d60f7a67d176287592b59dfe3eeee7f19",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_issue115_aw1_rw1": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw1.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw1_rw1",
+      "wall_seconds": 0.187,
+      "simv_sha256": "64a7db3ae8842b7d234a921ac69d8dfccc50e70b64a797430bbf0cf04d69212f",
+      "artifact_sha256": "4a7d7c9abcff77fa7a78c357f08c6536bd21560295a08b11e0b4ff2d5b34b54f",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_mixed_modes": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/mixed_modes.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_mixed_modes",
+      "wall_seconds": 0.344,
+      "simv_sha256": "02ce2cafb7e9370cd6c582752ac2857496003798ddd3e8460f8eda70a16bd101",
+      "artifact_sha256": "cdb9593701a4e89be93c39df995b809bc3cf8bab9e7594897f4d1328ffd9a2de",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "extra_idma_throttle_pr80_asymmetric": {
+      "status": "PASS",
+      "target_rc": 0,
+      "simv_host_rc": 0,
+      "entry_host_rc": 0,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/idma_throttle/simv",
+        "+job_file=/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/pr80_asymmetric.txt",
+        "+ntb_random_seed=1"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_pr80_asymmetric",
+      "wall_seconds": 0.176,
+      "simv_sha256": "9c5a421106a49cdf69797ce257eb8a3ab3b3e9260830df0757425172ab2cd7bd",
+      "artifact_sha256": "e3606002901eb35fc5aa1d8990c2480af602886ae9ae4411b97aa0616ab621e6",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "negative_target": {
+      "status": "TARGET_FAIL",
+      "target_rc": 41,
+      "simv_host_rc": 0,
+      "entry_host_rc": 1,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/rvv_negative.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/negative_target",
+      "wall_seconds": 146.808,
+      "simv_sha256": "47554effdeee3e435093d5f15cab0754f1f8fa4a108650a0562f1542caf5ebe3",
+      "artifact_sha256": "9e22ee94511f1613f626289421580f479764144296be06b8dc1a5752019d3da9",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    },
+    "negative_timeout": {
+      "status": "TIMEOUT",
+      "target_rc": null,
+      "simv_host_rc": 124,
+      "entry_host_rc": 124,
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "1s",
+        "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/soc/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAra/sw/build/p1_p5_20261024/rvv_test_vstart_csrs.spm.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/negative_timeout",
+      "wall_seconds": 1.034,
+      "simv_sha256": "71e894d5cf3709692657f05e6401cbec161684ad476c16191a8e3ebd10643c29",
+      "artifact_sha256": "0019a61f5b8d5c5fac71e7bc671d4ae3cefd2db1073d65fd292ae1dfa71f17a8",
+      "source_manifest_sha256": "0b25cfac8cd982718cc5f42dac33044d89b1c23aee16dfb47be75bba2ff0e84b",
+      "entry_sha256": "412b06b855227e150efc89a8f7c94581089a4f6f789de2350f765a278609e91b",
+      "parser_sha256": "14f9f512f6c24a7cf9549c1a1f9c7620fcdad62c5106f91fecb06027c5c0f0f7",
+      "errors": []
+    }
+  },
+  "comparisons": {
+    "p1": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p1/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p1/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[P1_PROTOCOL_PASS] accepts=4 AW=4 W=8 WLAST=4 B=4 done=4 queue_empty=1",
+        "[UART] P1_VSTU_DATA errors=0 stores=4 bytes=64 vl=2",
+        "[UART] P1_VSTU_DATA_PASS"
+      ],
+      "uart_lines_equal": [
+        "P1_VSTU_BEGIN stores=4 vl=2 sew=64 lanes=2",
+        "P1_VSTU_DATA errors=0 stores=4 bytes=64 vl=2",
+        "P1_VSTU_DATA_PASS"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "50ca268e6706a9d25f9f46d03f07bc27e69fdb3b98f46375faa901be86559d5d",
+        "50ca268e6706a9d25f9f46d03f07bc27e69fdb3b98f46375faa901be86559d5d"
+      ]
+    },
+    "p2_order": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p2_order/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_order/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P2_DONE c=835 e=0 repeat=8",
+        "[P2_SCALAR_SUMMARY] rows=237 early=0 store_without_addrack=0 (diagnostic counts only)",
+        "[P2_OBS_SUMMARY] lane=0 inputs=136 outputs=136 pair_pending_cycles=235 low_inputs_while_add_processing=0 noncomp_assigned_to_add=0; observation only, not PASS",
+        "[P2_OBS_SUMMARY] lane=1 inputs=136 outputs=136 pair_pending_cycles=235 low_inputs_while_add_processing=0 noncomp_assigned_to_add=0; observation only, not PASS"
+      ],
+      "uart_lines_equal": [
+        "P2_DONE c=835 e=0 repeat=8"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "5646f1e97720eb93266e575b1131d23f4a6a47081ebed297ab82c6ee0e5b9c6a",
+        "5646f1e97720eb93266e575b1131d23f4a6a47081ebed297ab82c6ee0e5b9c6a"
+      ]
+    },
+    "p2_mask": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p2_mask/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_mask/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P2_CPOP_DONE zero=0 c=124 e=0",
+        "[P2_SCALAR_SUMMARY] rows=60 early=0 store_without_addrack=0 (diagnostic counts only)"
+      ],
+      "uart_lines_equal": [
+        "P2_CPOP_DONE zero=0 c=124 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "b7b144712aa3377a77186f3ecc5ec5c3dd163d731d45aaca0ae351eac6e32bd3",
+        "b7b144712aa3377a77186f3ecc5ec5c3dd163d731d45aaca0ae351eac6e32bd3"
+      ]
+    },
+    "p2_scalar": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p2_scalar/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p2_scalar/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P2_SCALAR_DONE c=483 e=0 repeat=2",
+        "[P2_SCALAR_SUMMARY] rows=285 early=0 store_without_addrack=0 (diagnostic counts only)"
+      ],
+      "uart_lines_equal": [
+        "P2_SCALAR_DONE c=483 e=0 repeat=2"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "58e2da79a5104162bb17e9b3d52f3c9877668a1051782fca53dbdda75d193046",
+        "58e2da79a5104162bb17e9b3d52f3c9877668a1051782fca53dbdda75d193046"
+      ]
+    },
+    "p3_flags": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p3_flags/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p3_flags/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P3_DONE c=177 e=0",
+        "[P3_FLAGS_SUMMARY] invalid_lane_contamination=0"
+      ],
+      "uart_lines_equal": [
+        "P3_DONE c=177 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "0aef331996a1c4b4d67012309b2526aafd51fb12a057378b89c6f8c823e4f830",
+        "0aef331996a1c4b4d67012309b2526aafd51fb12a057378b89c6f8c823e4f830"
+      ]
+    },
+    "p3_matrix": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p3_matrix/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p3_matrix/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P3_DONE c=753 e=0",
+        "[P3_FLAGS_SUMMARY] invalid_lane_contamination=0"
+      ],
+      "uart_lines_equal": [
+        "P3_DONE c=753 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "b1f718b2a8472b2412c72cf45e70680e20d81e2cf8c253461334d6869dded44f",
+        "b1f718b2a8472b2412c72cf45e70680e20d81e2cf8c253461334d6869dded44f"
+      ]
+    },
+    "p4_01": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_01/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_01/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=1 c=1027 e=0",
+        "[P4_OBS_DONE] case=1 aw=11 data_aw=1 app_aw=7 w=910 b=11 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=1 c=1027 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "946bb7964d14c88234c682f514c0351bb9170829d7dbc0a1a2f2178af4a833bc",
+        "946bb7964d14c88234c682f514c0351bb9170829d7dbc0a1a2f2178af4a833bc"
+      ]
+    },
+    "p4_02": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_02/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_02/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=2 c=2051 e=0",
+        "[P4_OBS_DONE] case=2 aw=12 data_aw=2 app_aw=7 w=1038 b=12 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=2 c=2051 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "23d8d715a15179359745bdfb9720f4ea1096dadd328cc5281c95f73eaf3135f5",
+        "23d8d715a15179359745bdfb9720f4ea1096dadd328cc5281c95f73eaf3135f5"
+      ]
+    },
+    "p4_03": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_03/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_03/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=3 c=1035 e=0",
+        "[P4_OBS_DONE] case=3 aw=12 data_aw=2 app_aw=7 w=917 b=12 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=3 c=1035 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "7e87347a05feed2ba1a77937e81dd12b19e087e9e4dd720ccefbcbd98cf822ec",
+        "7e87347a05feed2ba1a77937e81dd12b19e087e9e4dd720ccefbcbd98cf822ec"
+      ]
+    },
+    "p4_04": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_04/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_04/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=4 c=1034 e=0",
+        "[P4_OBS_DONE] case=4 aw=11 data_aw=1 app_aw=7 w=923 b=11 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=4 c=1034 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "9ae09101b54a2456134df0578be9fe9191023d9fdd3e1fa200429a972c2d3966",
+        "9ae09101b54a2456134df0578be9fe9191023d9fdd3e1fa200429a972c2d3966"
+      ]
+    },
+    "p4_05": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_05/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_05/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=5 c=19 e=0",
+        "[P4_OBS_DONE] case=5 aw=12 data_aw=2 app_aw=7 w=784 b=12 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=5 c=19 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "9632fe8de2d9100f21409b861fb4e95e882b3cb607e2d18017248e670829d8e5",
+        "9632fe8de2d9100f21409b861fb4e95e882b3cb607e2d18017248e670829d8e5"
+      ]
+    },
+    "p4_06": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p4_06/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p4_06/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P4_DONE case=6 c=29 e=0",
+        "[P4_OBS_DONE] case=6 aw=12 data_aw=2 app_aw=7 w=810 b=12 missing=0 bad=0 errors=0 launch=1"
+      ],
+      "uart_lines_equal": [
+        "P4_DONE case=6 c=29 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "be5908fed4472ba15643caee5963c2ae84fea55f4ff02c9624048423d873a763",
+        "be5908fed4472ba15643caee5963c2ae84fea55f4ff02c9624048423d873a763"
+      ]
+    },
+    "p5_1d": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_1d/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_1d/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P5 stage=0 two_d=0 submit=2 done=2 data_errors=0 polls=1",
+        "[UART] P5_DONE rc=0",
+        "[P5_OBS_DONE] nd=1 backend=1 response=1 retire=1 ar=1 r=3 aw=1 w=3 b=1 write_bytes=18 errors=0 done=2"
+      ],
+      "uart_lines_equal": [
+        "P5 stage=0 two_d=0 submit=2 done=2 data_errors=0 polls=1",
+        "P5_DONE rc=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "7ef99bd7e10ef0d1757f9244dc76f705bd887574740d937d04996e36c99adaae",
+        "7ef99bd7e10ef0d1757f9244dc76f705bd887574740d937d04996e36c99adaae"
+      ]
+    },
+    "p5_sequence": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_sequence/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_sequence/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "[UART] P5 stage=0 two_d=1 submit=2 done=2 data_errors=0 polls=1",
+        "[UART] P5 stage=1 two_d=0 submit=3 done=3 data_errors=0 polls=1",
+        "[UART] P5 stage=2 two_d=1 submit=4 done=4 data_errors=0 polls=1",
+        "[UART] P5_DONE rc=0",
+        "[P5_OBS_DONE] nd=3 backend=9 response=9 retire=3 ar=9 r=23 aw=9 w=25 b=9 write_bytes=138 errors=0 done=4"
+      ],
+      "uart_lines_equal": [
+        "P5 stage=0 two_d=1 submit=2 done=2 data_errors=0 polls=1",
+        "P5 stage=1 two_d=0 submit=3 done=3 data_errors=0 polls=1",
+        "P5 stage=2 two_d=1 submit=4 done=4 data_errors=0 polls=1",
+        "P5_DONE rc=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "3b9dc351910d0335849bdc9ff97db3bac8754523842fdd369cf8cba72982a9d0",
+        "3b9dc351910d0335849bdc9ff97db3bac8754523842fdd369cf8cba72982a9d0"
+      ]
+    },
+    "final_hello": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_hello/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_hello/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "Hello World!"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "76d84a3835e1dc3c9c408cb7a235f04f274d79a1182ffeb57e5aac4765238383",
+        "76d84a3835e1dc3c9c408cb7a235f04f274d79a1182ffeb57e5aac4765238383"
+      ]
+    },
+    "final_csr": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_csr/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_csr/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "Test SUCCESS!"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "afc6b76aa2eaa8d9f9babec16aff489934767a1cdf800a13c995717f263c1f7c",
+        "afc6b76aa2eaa8d9f9babec16aff489934767a1cdf800a13c995717f263c1f7c"
+      ]
+    },
+    "final_vector": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_vector/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_vector/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "Hello Vector World!",
+        "VECTOR_COPY errors=0 bytes=22"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "beb913ed0ddfb63230f6daaa34097360f83db16d075647184cdbfe454021909b",
+        "beb913ed0ddfb63230f6daaa34097360f83db16d075647184cdbfe454021909b"
+      ]
+    },
+    "final_rvv": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_rvv/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_rvv/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "INIT FS=2 VS=3",
+        "RVV e32 max=64",
+        "0:1:0 1:1:1 63:1:63 64:1:64 67:2:3 133:3:5 RVV e64 max=32",
+        "0:1:0 1:1:1 31:1:31 32:1:32 35:2:3 69:3:5",
+        "FP32 e=0",
+        "",
+        "FP64 e=0",
+        "RVV_DONE c=5976 e=0 n=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "15809a3466887bec3de7185d908fcf018dacf55421878eb50e43c623c10bebc1",
+        "15809a3466887bec3de7185d908fcf018dacf55421878eb50e43c623c10bebc1"
+      ]
+    },
+    "final_memory": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_memory/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_memory/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "L1D=0 SPM=ff",
+        "MEM 14010000 c=273 e=0",
+        "AMO 14010000 d=1 w=1 e=0",
+        "MEM 80010000 c=558 e=0",
+        "AMO 80010000 d=1 w=1 e=0",
+        "MEM_DONE c=572 e=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "258000ef9a7f3630dea09c113247da58b84dbb3260d3d5bcfa73d70eeb00f35b",
+        "258000ef9a7f3630dea09c113247da58b84dbb3260d3d5bcfa73d70eeb00f35b"
+      ]
+    },
+    "final_fmatmul": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_fmatmul/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_fmatmul/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "fmatmul kernel:",
+        "Calculating fmatmul on scalar core...",
+        "Calculating fmatmul on vector core...",
+        "The execution took 19883 cycles.",
+        "The performance is 3.296082 FLOP/cycle (82.402054% utilization).",
+        "Verifying result...",
+        "Passed."
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "a2053d85bc58bab927ebf108cf40bdbe80a40510f9194ac0b35de235bdd9a68e",
+        "a2053d85bc58bab927ebf108cf40bdbe80a40510f9194ac0b35de235bdd9a68e"
+      ]
+    },
+    "p5_dma_original": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_dma_original/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_original/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "d18b743991e221cd6887b343c6eba2128f11ab892cb1f4b0e9bf9a8943c89596",
+        "d18b743991e221cd6887b343c6eba2128f11ab892cb1f4b0e9bf9a8943c89596"
+      ]
+    },
+    "p5_dma_reg_lanes": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_dma_reg_lanes/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_reg_lanes/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "9f9d487cc8b6b31f9cb1a358bc69e68ba3a018a2deb2f96c424ca55d45420551",
+        "9f9d487cc8b6b31f9cb1a358bc69e68ba3a018a2deb2f96c424ca55d45420551"
+      ]
+    },
+    "p5_dma_long_aw_api": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_dma_long_aw_api/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_dma_long_aw_api/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "DMA_LONG job=0 id=2 done=2 pending=19 errors=0",
+        "DMA_LONG job=1 id=3 done=3 pending=30 errors=0"
+      ],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "f0750861747a004c940e2b2be4a2342ff83a6ad3e582cb5594175bfdeb352098",
+        "f0750861747a004c940e2b2be4a2342ff83a6ad3e582cb5594175bfdeb352098"
+      ]
+    },
+    "final_spi": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_final_spi/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/final_spi/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [],
+      "uart_lines_equal": [
+        "Hello World!"
+      ],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_slink_idle_64k": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_slink_idle_64k/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_idle_64k/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "SLINK_RX_PASS case=0 bytes=65536 bursts=32 cpu_ar=0 cpu_aw=0 rx_ar=0 rx_aw=32 rx_w_stall=0 locked_cycles=766114 cache_whit=0 cache_wmiss=1024 ddr_aw_during_rx=0 ddr_aw_total=1024 target_rc=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "85d53d39469301a20e1073241d9c4885cab60385711455bd4b250b67f78c4a2c",
+        "85d53d39469301a20e1073241d9c4885cab60385711455bd4b250b67f78c4a2c"
+      ]
+    },
+    "extra_slink_cpu_concurrent_192k": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_slink_cpu_concurrent_192k/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_cpu_concurrent_192k/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "SLINK_RX_PASS case=1 bytes=196608 bursts=96 cpu_ar=508 cpu_aw=508 rx_ar=0 rx_aw=96 rx_w_stall=0 locked_cycles=2393350 cache_whit=0 cache_wmiss=3072 ddr_aw_during_rx=1101 ddr_aw_total=3072 target_rc=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "25c13efa66a775a4d380865b49250681eb791f789bcaf3caa50a26224f50bd64",
+        "25c13efa66a775a4d380865b49250681eb791f789bcaf3caa50a26224f50bd64"
+      ]
+    },
+    "extra_slink_cpu_concurrent_unaligned_gapped": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_slink_cpu_concurrent_unaligned_gapped/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_slink_cpu_concurrent_unaligned_gapped/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "SLINK_RX_PASS case=2 bytes=8193 bursts=5 cpu_ar=27 cpu_aw=27 rx_ar=0 rx_aw=5 rx_w_stall=0 locked_cycles=106267 cache_whit=0 cache_wmiss=129 ddr_aw_during_rx=0 ddr_aw_total=129 target_rc=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": null,
+      "loadable_payload_sha256": [
+        "25c13efa66a775a4d380865b49250681eb791f789bcaf3caa50a26224f50bd64",
+        "25c13efa66a775a4d380865b49250681eb791f789bcaf3caa50a26224f50bd64"
+      ]
+    },
+    "extra_idma_ideal_issue115_aw0_rw0": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_issue115_aw0_rw0/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw0_rw0/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=8 AW=8 B=8 r_stall=8 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_ideal_issue115_aw0_rw1": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_issue115_aw0_rw1/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw0_rw1/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=5 AW=4 B=4 r_stall=3 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_ideal_issue115_aw1_rw0": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_issue115_aw1_rw0/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw1_rw0/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=8 AW=8 B=8 r_stall=0 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_ideal_issue115_aw1_rw1": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_issue115_aw1_rw1/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_issue115_aw1_rw1/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=5 AW=4 B=4 r_stall=0 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_ideal_mixed_modes": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_mixed_modes/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_mixed_modes/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=414 AW=762 B=762 r_stall=213 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_ideal_pr80_asymmetric": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_ideal_pr80_asymmetric/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_ideal_pr80_asymmetric/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=34 AW=38 B=38 r_stall=38 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_issue115_aw0_rw0": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_issue115_aw0_rw0/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw0_rw0/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=8 AW=8 B=8 r_stall=8 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_issue115_aw0_rw1": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_issue115_aw0_rw1/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw0_rw1/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=5 AW=4 B=4 r_stall=3 aw_stall=0"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_issue115_aw1_rw0": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_issue115_aw1_rw0/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw1_rw0/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=8 AW=8 B=8 r_stall=0 aw_stall=222"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_issue115_aw1_rw1": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_issue115_aw1_rw1/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_issue115_aw1_rw1/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=5 AW=4 B=4 r_stall=0 aw_stall=159"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_mixed_modes": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_mixed_modes/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_mixed_modes/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=414 AW=762 B=762 r_stall=2631 aw_stall=7585"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    },
+    "extra_idma_throttle_pr80_asymmetric": {
+      "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_extra_idma_throttle_pr80_asymmetric/result.json",
+      "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/extra_idma_throttle_pr80_asymmetric/result.json",
+      "status_equal": true,
+      "monitor_lines_equal": [
+        "BACKEND_PASS remaining=0 AR=34 AW=38 B=38 r_stall=36 aw_stall=360"
+      ],
+      "uart_lines_equal": [],
+      "non_elf_input_hash_equal": true
+    }
+  },
+  "counts": {
+    "runs": 41,
+    "normal_pass": 38,
+    "rom_padding_limited_acceptance": 1,
+    "expected_negative": 2,
+    "reference_compared": 39
+  },
+  "spi_acceptance": {
+    "same_known_warnings": true,
+    "loaded_bytes": 49152,
+    "cpu_stores": 12288,
+    "outside_image_helper_stores": [
+      {
+        "address": "0x1001ff28",
+        "data": "0000000000b11623"
+      },
+      {
+        "address": "0x1001ff2c",
+        "data": "0000000066b18e5d"
+      }
+    ],
+    "mismatches": 0,
+    "limit": "Executed-store reconstruction, not independent memory-model dump."
+  },
+  "protected_inputs": {
+    "before": 1023,
+    "after": 1033,
+    "all_unselected_unchanged": true
+  },
+  "rollback": {
+    "backup": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024/before.tar",
+    "sha256": "fc66f90b0cc67d1270095e192ab8be6ad9c1622236ab8e7420c04880cd18b374",
+    "before_metadata": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024/prepared.json",
+    "after_metadata": "/home/zhaowy24/CheshireAra_maintenance/formal_sync_20261024/final_after.json",
+    "new_paths": [
+      "sw/tests/p1_vstu_wrap.c",
+      "sw/tests/p2_vmfpu_order.c",
+      "sw/tests/p2_vcpop_boundaries.c",
+      "sw/tests/p2_scalar_overlap.c",
+      "sw/tests/p3_div_flags.c",
+      "sw/tests/p4_preload_bytes.c",
+      "sw/tests/p5_dma_1d.spm.c",
+      "sw/link/p4_single.ld",
+      "sw/link/p4_multi.ld",
+      "provenance/p1_p5_sync_20261024.json"
+    ],
+    "rule": "Before restoring any selected file, check all selected current hashes against final_after; refuse on concurrent changes. Restore only old members with original permissions and remove only listed new files with matching hashes. Preserve logs and outputs."
+  },
+  "limitations": [
+    "Original FS, libgcc and shared LLC limitations remain",
+    "No synthesis, PPA or ASIC acceptance",
+    "Unused iDMA derived configurations are not dynamically validated"
+  ]
+}

@@ -1,0 +1,666 @@
+{
+  "runs": [
+    {
+      "name": "dma_checked",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/dma_checked.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_dma_checked",
+      "start_utc": "2026-10-20T12:53:48.352922Z",
+      "elf_sha256": "69916f531251f21c2a2c07b0f69610861c4115188814b41c6d663767729fea0f",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 45.595,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:54:33.949715Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [
+        {
+          "symbol": "observed_submit",
+          "offset": 0,
+          "line": "538410ns   107678 M 00000000100013f4 0 1b21b223 sd             s2, 420(gp)           s2  :0000000000000002 gp  :000000001000161c VA: 00000000100017c0 PA: 000000100017c0"
+        },
+        {
+          "symbol": "observed_done",
+          "offset": 0,
+          "line": "538415ns   107679 M 00000000100013f8 0 1891be23 sd             s1, 412(gp)           s1  :0000000000000002 gp  :000000001000161c VA: 00000000100017b8 PA: 000000100017b8"
+        },
+        {
+          "symbol": "observed_data_errors",
+          "offset": 0,
+          "line": "545550ns   109106 M 0000000010001440 0 1881aa23 sw             s0, 404(gp)           s0  :0000000000000000 gp  :000000001000161c VA: 00000000100017b0 PA: 000000100017b0"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "537375ns   107471 M 000000001000137c 0 c8e7a623 sw             a4, -884(a5)          a4  :0000000000000400 a5  :0000000001000374 VA: 0000000001000000 PA: 00000001000000",
+        "537970ns   107590 M 00000000100013b0 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "dma_long_aw_api",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/dma_long_aw_api.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_dma_long_aw_api",
+      "start_utc": "2026-10-20T12:49:39.976587Z",
+      "elf_sha256": "5f807e2b7cb3c80023cd4228df7559d572d74afc4625fb1efee8594c73b0d124",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 240.554,
+      "completion": [
+        "\"/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_cache_subsystem.sv\", 288: tb_cheshire_soc.fix.dut.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_assertion[1].a_invalid_read_data: started at 1957840000ps failed at 1957840000ps",
+        "          1[l1 dcache] reading invalid data on port 1: data=0000000000000002",
+        "[UART] DMA_LONG job=0 id=2 done=2 pending=19 errors=0",
+        "[UART] DMA_LONG job=1 id=3 done=3 pending=30 errors=0",
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:53:40.532707Z",
+      "program_completed": true,
+      "assertions": [
+        "\"/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/cva6-20c9d7cbe0dd6995/core/cache_subsystem/wt_cache_subsystem.sv\", 288: tb_cheshire_soc.fix.dut.gen_cva6_cores[0].i_core_cva6.gen_cache_wt.i_cache_subsystem.gen_assertion[1].a_invalid_read_data: started at 1957840000ps failed at 1957840000ps",
+        "          1[l1 dcache] reading invalid data on port 1: data=0000000000000002"
+      ],
+      "global_stores": [
+        {
+          "symbol": "pending_polls",
+          "offset": 0,
+          "line": "1581155ns   316227 M 000000001000005e 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :0000000010001980 VA: 0000000010001980 PA: 00000010001980"
+        },
+        {
+          "symbol": "pending_polls",
+          "offset": 8,
+          "line": "1581165ns   316229 M 0000000010000062 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :0000000010001980 VA: 0000000010001988 PA: 00000010001988"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 0,
+          "line": "1581170ns   316230 M 0000000010000066 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :0000000010001980 VA: 0000000010001990 PA: 00000010001990"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 8,
+          "line": "1581175ns   316231 M 000000001000006a 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :0000000010001980 VA: 0000000010001998 PA: 00000010001998"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 16,
+          "line": "1581310ns   316258 M 000000001000005e 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :00000000100019a0 VA: 00000000100019a0 PA: 000000100019a0"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 0,
+          "line": "1581315ns   316259 M 0000000010000062 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :00000000100019a0 VA: 00000000100019a8 PA: 000000100019a8"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 8,
+          "line": "1581320ns   316260 M 0000000010000066 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :00000000100019a0 VA: 00000000100019b0 PA: 000000100019b0"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 16,
+          "line": "1581325ns   316261 M 000000001000006a 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :00000000100019a0 VA: 00000000100019b8 PA: 000000100019b8"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 0,
+          "line": "1958060ns   391608 M 00000000100014ce 0 01963023 sd             s9, 0(a2)             s9  :0000000000000002 a2  :00000000100019a8 VA: 00000000100019a8 PA: 000000100019a8"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 0,
+          "line": "1958085ns   391613 M 00000000100014dc 0 01953023 sd             s9, 0(a0)             s9  :0000000000000002 a0  :0000000010001990 VA: 0000000010001990 PA: 00000010001990"
+        },
+        {
+          "symbol": "pending_polls",
+          "offset": 0,
+          "line": "1958190ns   391634 M 00000000100014e6 0 01a5a023 sw            s10, 0(a1)             s10 :0000000000000013 a1  :0000000010001980 VA: 0000000010001980 PA: 00000010001980"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 8,
+          "line": "6401605ns  1280317 M 00000000100014ce 0 01963023 sd             s9, 0(a2)             s9  :0000000000000003 a2  :00000000100019b0 VA: 00000000100019b0 PA: 000000100019b0"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 8,
+          "line": "6401625ns  1280321 M 00000000100014dc 0 01953023 sd             s9, 0(a0)             s9  :0000000000000003 a0  :0000000010001998 VA: 0000000010001998 PA: 00000010001998"
+        },
+        {
+          "symbol": "pending_polls",
+          "offset": 4,
+          "line": "6401640ns  1280324 M 00000000100014e6 0 01a5a023 sw            s10, 0(a1)             s10 :000000000000001e a1  :0000000010001984 VA: 0000000010001984 PA: 00000010001984"
+        },
+        {
+          "symbol": "submitted_ids",
+          "offset": 16,
+          "line": "10842065ns  2168409 M 00000000100014ce 0 01963023 sd             s9, 0(a2)             s9  :0000000000000004 a2  :00000000100019b8 VA: 00000000100019b8 PA: 000000100019b8"
+        },
+        {
+          "symbol": "completed_ids",
+          "offset": 16,
+          "line": "10842085ns  2168413 M 00000000100014dc 0 01953023 sd             s9, 0(a0)             s9  :0000000000000004 a0  :00000000100019a0 VA: 00000000100019a0 PA: 000000100019a0"
+        },
+        {
+          "symbol": "pending_polls",
+          "offset": 8,
+          "line": "10842100ns  2168416 M 00000000100014e6 0 01a5a023 sw            s10, 0(a1)             s10 :000000000000001e a1  :0000000010001988 VA: 0000000010001988 PA: 00000010001988"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "1948100ns   389616 M 000000001000145a 0 bac72523 sw             a2, -1110(a4)         a2  :0000000000000401 a4  :0000000001000456 VA: 0000000001000000 PA: 00000001000000",
+        "1948710ns   389738 M 0000000010001488 0 04472c83 lw             s9, 68(a4)            s9  :0000000000000002 a4  :0000000001000000 VA: 0000000001000044 PA: 00000001000044",
+        "6394600ns  1278916 M 000000001000145a 0 bac72523 sw             a2, -1110(a4)         a2  :0000000000000401 a4  :0000000001000456 VA: 0000000001000000 PA: 00000001000000",
+        "6395335ns  1279063 M 0000000010001488 0 04472c83 lw             s9, 68(a4)            s9  :0000000000000003 a4  :0000000001000000 VA: 0000000001000044 PA: 00000001000044",
+        "10835060ns  2167008 M 000000001000145a 0 bac72523 sw             a2, -1110(a4)         a2  :0000000000000401 a4  :0000000001000456 VA: 0000000001000000 PA: 00000001000000",
+        "10835795ns  2167155 M 0000000010001488 0 04472c83 lw             s9, 68(a4)            s9  :0000000000000004 a4  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ],
+      "assert_context": [
+        "1957775ns   391551 M 00000000100001a8 0 0847a503 lw             a0, 132(a5)           a0  :0000000000000002 a5  :0000000001000000 VA: 0000000001000084 PA: 00000001000084",
+        "1957785ns   391553 M 00000000100001ac 0 00001502 c.slli         a0, a0, 32            a0  :0000000200000000 a0  :0000000000000002",
+        "1957795ns   391555 M 00000000100001ae 0 00009101 c.srli         a0, a0, 32            a0  :0000000000000002 a0  :0000000200000000",
+        "1957800ns   391556 M 00000000100001b0 0 00008082 c.jr           x0, ra, 0             ra  :00000000100014b2",
+        "1957805ns   391557 M 00000000100014b2 1 ff9519e3 bne            a0, s9, pc - 14       a0  :0000000000000002 s9  :0000000000000002",
+        "1957850ns   391566 M 00000000100014b6 0 02416783 lwu            a5, 36(sp)            a5  :0000000000000000 sp  :000000001001ff20 VA: 000000001001ff44 PA: 0000001001ff44",
+        "1957855ns   391567 M 00000000100014ba 0 00006742 c.ldsp         a4, 16(sp)            a4  :0000000000000002 sp  :000000001001ff20 VA: 000000001001ff30 PA: 0000001001ff30",
+        "1957860ns   391568 M 00000000100014bc 0 000066a2 c.ldsp         a3, 8(sp)             a3  :0000000000000002 sp  :000000001001ff20 VA: 000000001001ff28 PA: 0000001001ff28"
+      ]
+    },
+    {
+      "name": "dma_original",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/dma_original.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_dma_original",
+      "start_utc": "2026-10-20T12:53:40.533484Z",
+      "elf_sha256": "2050d1b173d673e2d2593facd2564ce171250eaa4c047d214cc25f2dcd54d882",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 7.817,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:53:48.352212Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "505670ns   101130 M 0000000010000274 0 d8e7aa23 sw             a4, -620(a5)          a4  :0000000000000400 a5  :000000000100026c VA: 0000000001000000 PA: 00000001000000",
+        "506200ns   101236 M 00000000100002a4 0 000043f8 c.lw           a4, 68(a5)            a4  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "dma_reg_lanes",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/dma_reg_lanes.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_dma_reg_lanes",
+      "start_utc": "2026-10-20T12:54:33.950452Z",
+      "elf_sha256": "a0e8de22baf64470d29d9e1116fd2b9186acf2b8bce827bba14c37c399230c98",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 35.035,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:55:08.987216Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": []
+    },
+    {
+      "name": "helloworld",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/helloworld.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_helloworld",
+      "start_utc": "2026-10-20T12:55:08.988109Z",
+      "elf_sha256": "77e56cba45b4a16f8791934fba312ee5c3d2bc747226d96e2f27a17ce71400c9",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 33.438,
+      "completion": [
+        "[UART] Hello World!",
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:55:42.428183Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": []
+    },
+    {
+      "name": "layout_cpu",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/layout_cpu.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_layout_cpu",
+      "start_utc": "2026-10-20T13:04:40.363593Z",
+      "elf_sha256": "e10e19adfa6d0f6359f15fc3d74020c4d9c8cb34c4c8180e1db7f05aeb724a31",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 59.864,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T13:05:40.228383Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "531660ns   106328 M 000000001000005a 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :00000000100004b0 VA: 00000000100004b0 PA: 000000100004b0"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "531755ns   106347 M 000000001000005e 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :00000000100004b0 VA: 00000000100004b8 PA: 000000100004b8"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "531765ns   106349 M 0000000010000062 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :00000000100004b0 VA: 00000000100004c0 PA: 000000100004c0"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "531770ns   106350 M 0000000010000066 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :00000000100004b0 VA: 00000000100004c8 PA: 000000100004c8"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "573510ns   114698 M 000000001000037a 0 0187b023 sd             s8, 0(a5)             s8  :0000000000000002 a5  :00000000100004c0 VA: 00000000100004c0 PA: 000000100004c0"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "573625ns   114721 M 000000001000038c 0 01873023 sd             s8, 0(a4)             s8  :0000000000000002 a4  :00000000100004b0 VA: 00000000100004b0 PA: 000000100004b0"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 0,
+          "line": "573725ns   114741 M 0000000010000394 0 0177a023 sw             s7, 0(a5)             s7  :0000000000000001 a5  :00000000100004d8 VA: 00000000100004d8 PA: 000000100004d8"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "573855ns   114767 M 00000000100003a4 0 0371a823 sw             s7, 48(gp)            s7  :0000000000000001 gp  :00000000100004a4 VA: 00000000100004d4 PA: 000000100004d4"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "1895675ns   379131 M 000000001000037a 0 0187b023 sd             s8, 0(a5)             s8  :0000000000000003 a5  :00000000100004c8 VA: 00000000100004c8 PA: 000000100004c8"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "1895705ns   379137 M 000000001000038c 0 01873023 sd             s8, 0(a4)             s8  :0000000000000003 a4  :00000000100004b8 VA: 00000000100004b8 PA: 000000100004b8"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 4,
+          "line": "1895720ns   379140 M 0000000010000394 0 0177a023 sw             s7, 0(a5)             s7  :0000000000000001 a5  :00000000100004dc VA: 00000000100004dc PA: 000000100004dc"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "1895745ns   379145 M 00000000100003a4 0 0371a823 sw             s7, 48(gp)            s7  :0000000000000002 gp  :00000000100004a4 VA: 00000000100004d4 PA: 000000100004d4"
+        },
+        {
+          "symbol": "case_errors",
+          "offset": 0,
+          "line": "3179860ns   635968 M 000000001000044c 0 02a1a623 sw             a0, 44(gp)            a0  :0000000000000000 gp  :00000000100004a4 VA: 00000000100004d0 PA: 000000100004d0"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "563520ns   112700 M 00000000100002b4 0 d567a823 sw             s6, -688(a5)          s6  :0000000000000401 a5  :00000000010002b0 VA: 0000000001000000 PA: 00000001000000",
+        "564095ns   112815 M 00000000100002e8 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044",
+        "1885600ns   377116 M 00000000100002b4 0 d567a823 sw             s6, -688(a5)          s6  :0000000000000401 a5  :00000000010002b0 VA: 0000000001000000 PA: 00000001000000",
+        "1886350ns   377266 M 00000000100002e8 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000003 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "layout_cross_bank",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/layout_cross_bank.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_layout_cross_bank",
+      "start_utc": "2026-10-20T12:58:48.424901Z",
+      "elf_sha256": "30d879e1aed1311c4078c075ba874f4368858c6970f7ae966a1f6d1745d18c3b",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 58.416,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:59:46.842465Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "531755ns   106347 M 000000001000005a 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000470 PA: 00000010000470"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "531850ns   106366 M 000000001000005e 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000478 PA: 00000010000478"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "531860ns   106368 M 0000000010000062 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000480 PA: 00000010000480"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "531865ns   106369 M 0000000010000066 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000488 PA: 00000010000488"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "567340ns   113464 M 0000000010000312 0 0177b023 sd             s7, 0(a5)             s7  :0000000000000002 a5  :0000000010000480 VA: 0000000010000480 PA: 00000010000480"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "567455ns   113487 M 0000000010000324 0 017cb023 sd             s7, 0(s9)             s7  :0000000000000002 s9  :0000000010000470 VA: 0000000010000470 PA: 00000010000470"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 0,
+          "line": "567465ns   113489 M 000000001000032a 0 0157a023 sw             s5, 0(a5)             s5  :000000000000000a a5  :0000000010000498 VA: 0000000010000498 PA: 00000010000498"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "567705ns   113537 M 0000000010000334 0 02f1a823 sw             a5, 48(gp)            a5  :0000000000000000 gp  :0000000010000464 VA: 0000000010000494 PA: 00000010000494"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "1862710ns   372538 M 0000000010000312 0 0177b023 sd             s7, 0(a5)             s7  :0000000000000003 a5  :0000000010000488 VA: 0000000010000488 PA: 00000010000488"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "1862740ns   372544 M 0000000010000324 0 017cb023 sd             s7, 0(s9)             s7  :0000000000000003 s9  :0000000010000478 VA: 0000000010000478 PA: 00000010000478"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 4,
+          "line": "1862750ns   372546 M 000000001000032a 0 0157a023 sw             s5, 0(a5)             s5  :0000000000000013 a5  :000000001000049c VA: 000000001000049c PA: 0000001000049c"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "1862780ns   372552 M 0000000010000334 0 02f1a823 sw             a5, 48(gp)            a5  :0000000000000000 gp  :0000000010000464 VA: 0000000010000494 PA: 00000010000494"
+        },
+        {
+          "symbol": "case_errors",
+          "offset": 0,
+          "line": "3125945ns   625185 M 00000000100003d2 0 02e1a623 sw             a4, 44(gp)            a4  :0000000000000000 gp  :0000000010000464 VA: 0000000010000490 PA: 00000010000490"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "563655ns   112727 M 00000000100002a0 0 d737a223 sw             s3, -668(a5)          s3  :0000000000000401 a5  :000000000100029c VA: 0000000001000000 PA: 00000001000000",
+        "564240ns   112844 M 00000000100002d0 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044",
+        "1858930ns   371782 M 00000000100002a0 0 d737a223 sw             s3, -668(a5)          s3  :0000000000000401 a5  :000000000100029c VA: 0000000001000000 PA: 00000001000000",
+        "1859680ns   371932 M 00000000100002d0 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000003 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "layout_reverse",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/layout_reverse.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_layout_reverse",
+      "start_utc": "2026-10-20T12:57:49.964836Z",
+      "elf_sha256": "b80ade14fc6fa4fbd37507d7d2e56bf93635add30983dcb7e36c4a5fcb059c9f",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 58.458,
+      "completion": [
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:58:48.424159Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "531755ns   106347 M 000000001000005a 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000470 PA: 00000010000470"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "531850ns   106366 M 000000001000005e 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000478 PA: 00000010000478"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "531860ns   106368 M 0000000010000062 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000480 PA: 00000010000480"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "531865ns   106369 M 0000000010000066 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :0000000010000470 VA: 0000000010000488 PA: 00000010000488"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "569445ns   113885 M 000000001000030e 0 0167b023 sd             s6, 0(a5)             s6  :0000000000000002 a5  :0000000010000480 VA: 0000000010000480 PA: 00000010000480"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "569560ns   113908 M 0000000010000320 0 016c3023 sd             s6, 0(s8)             s6  :0000000000000002 s8  :0000000010000470 VA: 0000000010000470 PA: 00000010000470"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 0,
+          "line": "569575ns   113911 M 0000000010000326 0 0000c398 c.sw           a4, 0(a5)             a4  :000000000000000b a5  :0000000010000498 VA: 0000000010000498 PA: 00000010000498"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "569715ns   113939 M 000000001000032e 0 02f1a823 sw             a5, 48(gp)            a5  :0000000000000000 gp  :0000000010000464 VA: 0000000010000494 PA: 00000010000494"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "1867195ns   373435 M 000000001000030e 0 0167b023 sd             s6, 0(a5)             s6  :0000000000000003 a5  :0000000010000488 VA: 0000000010000488 PA: 00000010000488"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "1867225ns   373441 M 0000000010000320 0 016c3023 sd             s6, 0(s8)             s6  :0000000000000003 s8  :0000000010000478 VA: 0000000010000478 PA: 00000010000478"
+        },
+        {
+          "symbol": "case_polls",
+          "offset": 4,
+          "line": "1867235ns   373443 M 0000000010000326 0 0000c398 c.sw           a4, 0(a5)             a4  :0000000000000022 a5  :000000001000049c VA: 000000001000049c PA: 0000001000049c"
+        },
+        {
+          "symbol": "cpu_visits",
+          "offset": 0,
+          "line": "1867265ns   373449 M 000000001000032e 0 02f1a823 sw             a5, 48(gp)            a5  :0000000000000000 gp  :0000000010000464 VA: 0000000010000494 PA: 00000010000494"
+        },
+        {
+          "symbol": "case_errors",
+          "offset": 0,
+          "line": "3130800ns   626156 M 00000000100003ca 0 02d1a623 sw             a3, 44(gp)            a3  :0000000000000000 gp  :0000000010000464 VA: 0000000010000490 PA: 00000010000490"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "563370ns   112670 M 000000001000029a 0 d747a523 sw             s4, -662(a5)          s4  :0000000000000401 a5  :0000000001000296 VA: 0000000001000000 PA: 00000001000000",
+        "563960ns   112788 M 00000000100002ca 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044",
+        "1861165ns   372229 M 000000001000029a 0 d747a523 sw             s4, -662(a5)          s4  :0000000000000401 a5  :0000000001000296 VA: 0000000001000000 PA: 00000001000000",
+        "1861915ns   372379 M 00000000100002ca 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000003 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "layout_unaligned",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/layout_unaligned.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_layout_unaligned",
+      "start_utc": "2026-10-20T12:59:46.843096Z",
+      "elf_sha256": "223fc2b0204dea416dcab6204dd85809a2d96d81e27f6e944a3a36e16c22e984",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 255,
+      "wall_seconds": 215.048,
+      "completion": [],
+      "end_utc": "2026-10-20T13:03:21.892672Z",
+      "program_completed": false,
+      "assertions": [],
+      "global_stores": [
+        {
+          "symbol": "case_done",
+          "offset": 0,
+          "line": "531650ns   106326 M 000000001000005a 0 00a2b023 sd             a0, 0(t0)             a0  :0000000000000000 t0  :0000000010000490 VA: 0000000010000490 PA: 00000010000490"
+        },
+        {
+          "symbol": "case_done",
+          "offset": 8,
+          "line": "531745ns   106345 M 000000001000005e 0 00a2b423 sd             a0, 8(t0)             a0  :0000000000000000 t0  :0000000010000490 VA: 0000000010000498 PA: 00000010000498"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 0,
+          "line": "531755ns   106347 M 0000000010000062 0 00a2b823 sd             a0, 16(t0)            a0  :0000000000000000 t0  :0000000010000490 VA: 00000000100004a0 PA: 000000100004a0"
+        },
+        {
+          "symbol": "case_ids",
+          "offset": 8,
+          "line": "531760ns   106348 M 0000000010000066 0 00a2bc23 sd             a0, 24(t0)            a0  :0000000000000000 t0  :0000000010000490 VA: 00000000100004a8 PA: 000000100004a8"
+        }
+      ],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": [
+        "553045ns   110605 M 00000000100002a6 0 d4e7af23 sw             a4, -674(a5)          a4  :0000000000000401 a5  :00000000010002a2 VA: 0000000001000000 PA: 00000001000000",
+        "553615ns   110719 M 00000000100002de 0 000043fc c.lw           a5, 68(a5)            a5  :0000000000000002 a5  :0000000001000000 VA: 0000000001000044 PA: 00000001000044"
+      ]
+    },
+    {
+      "name": "vector_fixed",
+      "cmd": [
+        "timeout",
+        "-k",
+        "5s",
+        "600s",
+        "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/fix_validation_20261020/rtl_build/simv",
+        "+BOOTMODE=0",
+        "+PRELMODE=1",
+        "+BINARY=/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/vector_fixed.elf"
+      ],
+      "cwd": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/aw_config_20261020/run_vector_fixed",
+      "start_utc": "2026-10-20T12:55:42.428941Z",
+      "elf_sha256": "d0c9293f0c45ae335e18d0383e53c91835a838cff7bb79cb210e449145bafaa4",
+      "simv_sha256": "a81d6de9fd9a4f1da89bdcf9485234271688abd3a2148beb6db63063d7cc743f",
+      "hal_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "host_rc": 0,
+      "wall_seconds": 82.372,
+      "completion": [
+        "[UART] Hello Vector World!",
+        "[UART] VECTOR_COPY errors=0 bytes=22",
+        "[SLINK] SUCCESS"
+      ],
+      "end_utc": "2026-10-20T12:57:04.802115Z",
+      "program_completed": true,
+      "assertions": [],
+      "global_stores": [],
+      "trace_x_lines": 0,
+      "conf_and_submit_mmio": []
+    }
+  ],
+  "long_text_matches_prior_aw": true,
+  "long_text_sha256": "5881365e5cc99c31332d24be9c451e4c4de29871a8d114dcf8efb78042bb31a5"
+}

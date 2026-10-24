@@ -1,0 +1,65 @@
+{
+  "status": "pass",
+  "documents": [
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_simple_timeline/previews/timeline-simple.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/versions.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. CPU 与设备通过 DDR 交接数据",
+        "2. 缓存副本使双方看到不同版本",
+        "3. 软件选择交接范围，硬件完成维护",
+        "4. 输入同步让设备读到最新数据",
+        "5. 输出写前准备，写后同步",
+        "6. 裸机程序串起完整推理",
+        "7. 其他数据交接复用相同原则",
+        "8. 可靠完成后才能消费和复用资源"
+      ],
+      "source": "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "sha256": "0a1e8a8105d6d3b3dda9c1f7e83f81743b57cd0df098e0af1672a0e4b347ef8e"
+    },
+    {
+      "images": [
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/ownership.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/timeline.png",
+          "loaded": true
+        },
+        {
+          "src": "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/data-paths.png",
+          "loaded": true
+        }
+      ],
+      "overflow": false,
+      "headings": [
+        "1. 方案定位与数据连接",
+        "2. 一次推理如何交接输入与输出",
+        "3. 软件接口与硬件完成协议",
+        "4. 维护开销与数据路径取舍",
+        "5. 源码依据、验收与待定接口"
+      ],
+      "source": "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "sha256": "ca0b04a54b5d7c7ef19c54f41931bc38d4c37c9093b3ef3679251167dc238e14"
+    }
+  ],
+  "chrome": "Google Chrome 151.0.7922.108"
+}

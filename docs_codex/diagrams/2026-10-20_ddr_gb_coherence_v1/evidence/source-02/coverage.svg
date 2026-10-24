@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="945" viewBox="0 0 1680 945">
+<title>② 协调范围：只到 LLC，还是覆盖 CPU 私有缓存</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="1680" height="945" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">② 协调范围：只到 LLC，还是覆盖 CPU 私有缓存</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">同一布局：左侧为 CPU 缓存层次，右侧为设备；沿绿线比较设备接入位置。</text>
+<rect id="Cpanel" x="25" y="130" width="800" height="740" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="50" y="167" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">C  LLC-coherent DMA</text>
+<text x="50" y="206" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#606773">LLC 硬件协调；CPU 私有缓存仍需软件维护</text>
+<rect id="Ccpu" x="85" y="240" width="200" height="55" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Ccpu">CPU</text>
+<rect id="Cprivate" x="85" y="350" width="200" height="85" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="385.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cprivate">L1 / L2</text>
+<text x="185.0" y="420.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Cprivate">写缓冲</text>
+<rect id="Cllc" x="85" y="560" width="200" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="185.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cllc">LLC</text>
+<text x="185.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Cllc">系统侧缓存</text>
+<rect id="Cddr" x="85" y="710" width="680" height="60" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="425.0" y="750.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cddr">内存接入 / DDR</text>
+<rect id="Cdevice" x="545" y="240" width="220" height="95" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="655.0" y="280.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cdevice">加速器</text>
+<text x="655.0" y="315.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Cdevice">独立本地 SRAM</text>
+<rect id="Cdma" x="545" y="375" width="220" height="55" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="655.0" y="412.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cdma">DMA</text>
+<polyline id="Ccpu-private" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,295 185,350"/>
+<polyline id="Cprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,435 185,560"/>
+<polyline id="Cllc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="185,645 185,710"/>
+<polyline id="Clocal-dma" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="655,335 655,375"/>
+<polyline id="Cdma-fabric" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="655,430 655,560"/>
+<rect id="Cfabric" x="465" y="560" width="300" height="85" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="615.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cfabric">LLC 接入</text>
+<text x="615.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Cfabric">局部协调</text>
+<polyline id="Cdevice-llc" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="465,587 285,587"/>
+<rect id="Cdriver" x="330" y="240" width="170" height="55" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="415.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Cdriver">驱动</text>
+<polyline id="Csw-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="330,267 310,267 310,378 285,378"/>
+<text x="50" y="813" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">CPU 私有缓存由软件维护</text>
+<text x="50" y="845" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">LLC 可供数；设备访问经过 LLC</text>
+<rect id="Dpanel" x="855" y="130" width="800" height="740" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="880" y="167" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">D  I/O 一致性 · 分配缓存行</text>
+<text x="880" y="206" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#606773">CPU 缓存由硬件协调；允许设备分配 LLC</text>
+<rect id="Dcpu" x="915" y="240" width="200" height="55" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="277.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Dcpu">CPU</text>
+<rect id="Dprivate" x="915" y="350" width="200" height="85" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="385.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Dprivate">L1 / L2</text>
+<text x="1015.0" y="420.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Dprivate">写缓冲</text>
+<rect id="Dllc" x="915" y="560" width="200" height="85" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1015.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Dllc">LLC</text>
+<text x="1015.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Dllc">系统侧缓存</text>
+<rect id="Dddr" x="915" y="710" width="680" height="60" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1255.0" y="750.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Dddr">内存接入 / DDR</text>
+<rect id="Ddevice" x="1375" y="240" width="220" height="95" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1485.0" y="280.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Ddevice">加速器</text>
+<text x="1485.0" y="315.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Ddevice">独立本地 SRAM</text>
+<rect id="Ddma" x="1375" y="375" width="220" height="55" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1485.0" y="412.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Ddma">DMA</text>
+<polyline id="Dcpu-private" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,295 1015,350"/>
+<polyline id="Dprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,435 1015,560"/>
+<polyline id="Dllc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1015,645 1015,710"/>
+<polyline id="Dlocal-dma" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1485,335 1485,375"/>
+<polyline id="Ddma-fabric" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1485,430 1485,560"/>
+<rect id="Dfabric" x="1295" y="560" width="300" height="85" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1445.0" y="595.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="Dfabric">一致性协调点</text>
+<text x="1445.0" y="630.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="Dfabric">含缓存分配</text>
+<polyline id="Ddevice-llc" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" marker-start="url(#local)" points="1295,587 1115,587"/>
+<polyline id="Dprobe-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1295,575 1180,575 1180,400 1115,400"/>
+<polyline id="Dprobe-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1295,622 1115,622"/>
+<text x="880" y="813" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">硬件协调 CPU 私有缓存和 LLC</text>
+<text x="880" y="845" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">设备可分配 LLC 行，利用片上复用</text>
+<text x="30" y="916" font-family="WenQuanYi Zen Hei" font-size="23" font-weight="400" text-anchor="start" fill="#29292D">蓝灰：CPU 常规访存    绿色：设备访问 / 数据    紫色：维护 / 探测与确认（双向合并）</text>
+</svg>

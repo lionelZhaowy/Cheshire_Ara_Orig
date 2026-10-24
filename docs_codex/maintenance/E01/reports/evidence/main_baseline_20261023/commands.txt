@@ -1,0 +1,60 @@
+Query date: 2026-10-23 Asia/Shanghai
+Local input HEAD: c9abbb48946fe3a7244bfb3159919b7c9731cb59
+Scope: source/history/read-only environment checks and isolated Git merge experiments.
+No Bender resolution, HDL compile, elaboration, simulation, FPGA build or Linux boot was run.
+
+Local source checks (outputs summarized in local_dependencies.json and initial_worktree.json):
+git status --short
+git status --porcelain -z --untracked-files=all
+git branch --show-current
+git rev-parse HEAD
+git remote -v
+git submodule status
+git ls-files --stage sw/deps
+git log --format='%h %ad %s' --date=short e040b7bbc..HEAD -- hw target sw util cheshire.mk Bender.local Bender.lock
+git diff --name-status e040b7bbc HEAD -- hw target sw util cheshire.mk Bender.yml Bender.lock Bender.local
+For each of the 26 actual Bender.local paths:
+  git -C PATH rev-parse HEAD
+  git -C PATH status --short
+  git -C PATH diff --binary
+  git -C PATH diff --name-status
+Compare HEAD against .bender/UPSTREAM.lock; root Bender.lock itself is Path-based.
+Read the existing FPGA/VCS/Questa generated source lists; check each source exists and inspect profile/decoder/macros. This is not compilation.
+
+Official branch/issue reads through connected GitHub GET tools:
+https://api.github.com/repos/pulp-platform/cheshire/branches/main
+https://api.github.com/repos/pulp-platform/cheshire/branches/mp/ara-pulp-v2
+https://api.github.com/repos/pulp-platform/cheshire/issues/206
+https://api.github.com/repos/pulp-platform/cheshire/issues/206/comments
+https://api.github.com/repos/pulp-platform/ara/issues/393
+https://api.github.com/repos/pulp-platform/ara/issues/393/comments
+https://api.github.com/repos/pulp-platform/ara/branches/main
+Exact-SHA source, PR status and dependency compare endpoints are linked in the decision report.
+
+Isolated Git setup (all new Git objects/worktree files in /tmp):
+git clone --bare --shared --no-hardlinks /home/zhaowenyao/RISC_CVA6_prj/cheshire_ara /tmp/cheshire_main_assessment_20261023/history.git
+git -C /tmp/cheshire_main_assessment_20261023/history.git fetch --no-tags https://github.com/pulp-platform/cheshire.git main mp/ara-pulp-v2
+git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git worktree add --detach /tmp/cheshire_main_assessment_20261023/main 6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+Initial sandbox network attempts failed (proxy connection, then DNS); normal network execution fetched successfully. Current workspace refs/index were not changed.
+See git_history.txt and merge_*.txt for exact history/merge commands, output and exit status.
+
+Read-only server connection:
+ssh -o BatchMode=yes -o ConnectTimeout=10 zhaowy24@172.16.0.243 'python3 -'
+The stdin program read /etc/os-release; ran git --no-optional-locks -C /home/zhaowy24/CheshireAraPULP rev-parse HEAD and status --short;
+hashed F provenance/reference.json, provenance/source_manifest.json, sim/scripts/compile.cheshire_soc.sh and src/config/cheshire_pkg.sv;
+checked F/.git existence; queried command -v vcs and vcs -full64 -ID.
+First program stopped after os-release because system Python 3.6 does not accept subprocess.run(text=...). Replaced with universal_newlines=True and the read-only query completed.
+Observed results are in observations.json. License host identifiers from -ID output are omitted as irrelevant; no license credentials were accessed or recorded.
+
+External concurrent backup activity was observed under .e01_backups/P1_P5_20261023_154743/ (not touched by this task).
+Therefore a final read-only SSH query rehashed F's source_manifest/reference/config and R/F vstu.sv/vmfpu.sv.
+Then a read-only Python loop loaded F provenance/source_manifest.json, computed SHA256 for every destination and compared against each sha256 field: 962 entries, 0 mismatches.
+Exact final output is in final_source_readback.txt. This is a source hash check, not a target execution.
+
+Source interface checks:
+Compare old CPU99eac9a6 vs main-locked CPU4c02b24 exact files/blocks (acc_dispatcher, cva6 accelerator instance, decoder accelerator instance, LSU MMU arbitration).
+Compare relevant AXI width-converter and common_cells wrapper files.
+Results in interface_check.json are text/block comparisons, not parser/elaboration checks.
+Current Ara includes #386/#388: git -C ARA_PATH merge-base --is-ancestor MERGE_SHA 2895ba907e9eb14b3464609dc791a969d159a7c3 returned 0 for both.
+
+Documentation validation and protection results are recorded in validation.json after writing.

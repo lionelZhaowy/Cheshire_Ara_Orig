@@ -1,5 +1,86 @@
 # Cheshire + Ara：服务器同版本重建速查
 
+<a id="reference-formal-sync-20261024"></a>
+
+## 2026-10-24 两工程同步与复验完成
+
+R `~/CheshireAraPULP` 已分项合入P1–P5、完成48次验证并推送GitHub `5986ba02` / `reference-p1-p5-pass-20261024`。随后F `~/CheshireAra` 按映射同步，从自身入口重建31ELF和四种仿真目标，41次测试完成：38 PASS、1次原ROM/SPI限定告警接受、2项负例判定正确；39项共同用例与R一致。
+
+两工程均有服务器目录外及本地备份：R恢复4390文件匹配；F修改前17文件、修改后27文件均实际恢复并核对。F的配置/wrapper/静态入口保持，无Bender调用或依赖升级。详细版本、比较范围、输出与回退命令统一见[本轮结果](official_upstream_maintenance_assessment.md#reference-formal-sync-20261024)。WSL连接中断后已按用户指示通过Windows OpenSSH完成剩余执行。本轮完成停止；下方为历史托管记录。
+
+<a id="github-cloud-baseline-20261023"></a>
+
+## 2026-10-23 云端基线同步成功
+
+用户完成仓库/公钥设置后要求尝试云端同步。已通过服务器专用SSH密钥，将重建基线原子推送至[个人仓库](https://github.com/lionelZhaowy/CheshireAraPULP)，没有强制推送。推送前远端为空，R工作区干净；dry-run及实际push均返回0。
+
+| 引用 | 云端实际值 |
+| --- | --- |
+| `refs/heads/main` | `424e4d2cd9f7e129bbda7e595504a48952b150e9` |
+| `refs/tags/rebuild-baseline-20261023`（附注标签对象） | `99e48aebfd30a9cd5da9d8bed7852ee1bbc59726` |
+| 标签解引用后的提交 | `424e4d2cd9f7e129bbda7e595504a48952b150e9`，与服务器基线一致 |
+
+已通过`git ls-remote`重新读取并比对以上三个引用；本地main跟踪`personal/main`，R源码/HEAD不变，工作区仍干净。未合入P1–P5、未构建/仿真、未修改C或正式工程F。本次只完成修复前基线上云；后续仍按已授权的P1→P5分项同步到R并复验。
+
+用户已选择私有仓库且截图显示锁图标；本轮匿名GitHub API返回404，授权SSH可访问。GitHub连接器仍返回404，不能读取新仓库的Actions管理设置，因此**没有声称独立验证Actions已关闭**，本次沿用用户完成前述网页设置的说明。SSH推送不依赖连接器权限。
+
+证据：服务器`~/CheshireAra_maintenance/github_rebuild_20261023/cloud_sync_20261023.json`及本地`.e01_backups/github_rebuild_20261023/cloud_sync_20261023.json`保存前置检查、dry-run、实际push和云端引用；原双份bundle与恢复记录继续保留。
+
+下方为首次配置准备记录，其中“待授权/未push”描述当时状态，现已由本节更新。
+
+<a id="github-personal-baseline-20261023"></a>
+
+## 2026-10-23 当前版本管理与 GitHub 待授权步骤
+
+用户已选择新建 **`lionelZhaowy/CheshireAraPULP` 私有仓库**，顺序为先上传重建基线，再将隔离副本中验证过的P1–P5分项同步、提交和复验。这授权后续写回重建工程R，不包含正式工程F。
+
+**已完成服务器配置，尚未上传GitHub，也未合入P1–P5。** 重建工程原有官方Git历史，但进入本轮时处于`e040b7bbc…`的detached HEAD，本地修正未提交，根仓库忽略整个`.bender`。本次保留官方历史，新建个人`main`分支并保存实际基线：
+
+| 项目 | 当前实际状态 |
+| --- | --- |
+| 工程 | `/home/zhaowy24/CheshireAraPULP` |
+| 基线提交 | `424e4d2cd9f7e129bbda7e595504a48952b150e9` |
+| 基线标签 | `rebuild-baseline-20261023` |
+| 官方来源remote | `origin = https://github.com/pulp-platform/cheshire.git`，保留 |
+| 个人托管remote | `personal = git@github.com:lionelZhaowy/CheshireAraPULP.git`，默认推送目标 |
+| 保存内容 | 4,358个普通文件/符号链接，另保留1个未初始化可选cva6-sdk gitlink；包括26个依赖、printf、已有修正、必要构建/测试输入 |
+| 依赖管理 | 根Git直接保存依赖实际文件；服务器原嵌套Git元数据保留，不上传、不更新依赖。printf改为根Git跟踪源码，原子模块元数据仍在本机 |
+| 备份 | 服务器`~/CheshireAra_maintenance/github_rebuild_20261023/`；本地`.e01_backups/github_rebuild_20261023/`保存累计bundle及摘要 |
+| 恢复核对 | 从bundle克隆到服务器新目录，4,358文件内容和模式匹配；其余4,353个原输入不变、27个依赖/printf的HEAD和原差异不变；本地bundle SHA256匹配并验证完整 |
+| 构建/测试 | 本轮未构建、仿真或综合；只进行版本保存和文件恢复检查 |
+
+本轮只改R的Git配置/索引和三份既有说明/管理文件（`.gitignore`、`.gitmodules`、`README.md`），新增`docs/rebuild_versioning.md`及`provenance/rebuild_sources.json`。RTL、软件功能源、原输出、隔离候选C和正式工程F未改。
+
+**外部模型例外：**`target/sim/models/24FC1025.v`头部有限定使用条款，未明确授予再分发权限，因此不纳入上传；原件及服务器恢复备份保留，仓库记录路径/哈希/官方获取配方。克隆后运行仿真仍需该授权模型及现有EDA/软件工具。未初始化的可选子模块没有拉取，不能称所有上游配置完整可用。
+
+### 用户现在需要做的操作
+
+1. 打开[新建仓库](https://github.com/new)，Owner选`lionelZhaowy`，名称填`CheshireAraPULP`，选择 **Private**；不要初始化README、许可证或.gitignore。
+2. 新仓库 **Settings → Actions → General → Disable actions → Save**，避免上传时触发继承的官方CI及依赖下载。
+3. **Settings → Deploy keys → Add deploy key**，标题填`CheshireAraPULP server 243`，粘贴下面公钥，勾选 **Allow write access** 后保存：
+
+```text
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJTDZjc3u4V4BrOnstCQ5aSftgPlpjjaYNDY7HZeMD6 CheshireAraPULP-server-243
+```
+
+密钥指纹为`SHA256:ksfV3avv37FkBJECBNWN6YvJPqUSs2km+roKgrh3+us`。私钥只在服务器`~/.ssh/cheshirearapulp_github_ed25519`，不复制到仓库或聊天；Git/SSH配置仅影响本仓库。GitHub主机Ed25519指纹按官方文档核对。实际SSH连接已到GitHub，但返回`Permission denied (publickey)`，符合公钥尚未授权的状态。
+
+GitHub连接器可查询账号/仓库，但没有新建仓库或添加deploy key的工具；服务器也没有已授权的GitHub写入身份，因此需用户本人登录网页完成以上步骤，不需要提供密码或token。[官方上传说明](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)、[Deploy keys操作](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys)。
+
+用户完成后，Agent先核对仓库为私有、空仓库、Actions关闭及SSH写入权限，再执行`git push -u personal main`和推送基线标签，读取云端SHA确认。**当前未创建远端仓库、未push，不把本地基线提交说成云端备份完成。**
+
+### 基线上云后的同步顺序
+
+按P1→P2→P3→P4→P5顺序，每个独立官方修复、本地修复分别提交，必要的测试入口适配另提交。来源和三处自行修改见[代码审查摘要](../reports/official_pr_failure_fixes_review.md)。仅同步固定SHA及已经验证的局部差异，保留R后续修改；P4中间失败版本不作为通过标签。
+
+每组在R新输出目录构建及复验，串行、无stub、默认600秒、普通运行无波形；最后累计回归。C已通过不能代替R复验。失败先保存结果、范围内定位修复，不扩展FS/共享LLC排查或依赖升级。正式工程F同步不在本次范围。
+
+回退先保存失败代码/日志，核对并发修改，再按本轮提交逆序`git revert`；不使用`reset --hard`。基线bundle已实际恢复检查，旧原件快照、原HEAD/index/config和依赖diff在服务器`before/`保留。日常从R根目录使用`git add -u -- 具体文件`提交已跟踪依赖修改；新增文件明确添加并检查暂存差异，不批量添加整个`.bender`。
+
+---
+
+**以下为2026-10-18从零重建的历史操作记录，不应在已保存个人基线的工程上重新执行初始化、detached checkout、Bender或生成步骤。**
+
 更新：2026-10-18。五步重建后，用户已修正启动代码FS设置，并完成官方32×32 fmatmul向量测试；Agent只读核对 `Passed.`、`[SLINK] SUCCESS` 和退出0，见[Q07](#q07)。**第5步本身仅构建软件；单个测试通过不等于完整RVV/提取验收。** 其余版本、工具和warning见[核查报告](../reports/reference_rebuild_check.md)。每步经用户确认后实施；遇到失败先定位。命令在服务器 Bash 中执行，保护已有 `_e01/preflight`、TTY 和本地 FPGA 工程。
 
 阅读方式：先按步骤1—5操作；遇到问题时点击步骤旁的 **⚠ 排障链接**。后半部分的[排障索引](#troubleshooting)集中保存报错原文、原因、解决方案和验证状态。

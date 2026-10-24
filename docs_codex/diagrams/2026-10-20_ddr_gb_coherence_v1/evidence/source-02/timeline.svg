@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="1800" viewBox="0 0 2800 1800">
+<title>裸机同步调用与硬件动作沿时间依次完成</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="2800" height="1800" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">裸机同步调用与硬件动作沿时间依次完成</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">时间向下；首次维护前建立上下文。紫色：命令 / 确认；蓝色：缓存写入；绿色：设备搬运。</text>
+<rect id="lane0" x="35" y="130" width="380" height="95" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="225.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane0">CPU 裸机程序</text>
+<text x="225.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane0">调用 HAL / 轮询</text>
+<line id="life0" x1="225" y1="225" x2="225" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<rect id="lane1" x="505" y="130" width="380" height="95" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="695.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane1">范围维护引擎</text>
+<text x="695.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane1">规划：汇合维护确认</text>
+<line id="life1" x1="695" y1="225" x2="695" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<rect id="lane2" x="975" y="130" width="380" height="95" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1165.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane2">L1D / 写缓冲</text>
+<text x="1165.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane2">排空与失效</text>
+<line id="life2" x1="1165" y1="225" x2="1165" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<rect id="lane3" x="1445" y="130" width="380" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1635.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane3">WB LLC</text>
+<text x="1635.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane3">清理与失效</text>
+<line id="life3" x1="1635" y1="225" x2="1635" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<rect id="lane4" x="1915" y="130" width="380" height="95" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="2105.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane4">前端 / DDR / 搬运器</text>
+<text x="2105.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane4">逻辑合并：跨口可见</text>
+<line id="life4" x1="2105" y1="225" x2="2105" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<rect id="lane5" x="2385" y="130" width="380" height="95" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2575.0" y="170.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="lane5">共享代理 / GB / NPU</text>
+<text x="2575.0" y="205.5" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="lane5">装入、计算、搬出</text>
+<line id="life5" x1="2575" y1="225" x2="2575" y2="1660" stroke="#BFC5CE" stroke-width="1.4" stroke-dasharray="7 7"/>
+<polyline id="prepare" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="225,290 695,290"/>
+<rect x="217.75" y="248" width="484.5" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="460.0" y="275" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">1. 登记上下文后：同步输入 + 准备输出</text>
+<polyline id="drain" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,370 1165,370"/>
+<rect x="721.625" y="328" width="416.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="930.0" y="355" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">2. 限制冲突新请求；排空已有读写</text>
+<polyline id="wt-store" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" points="1165,450 1635,450"/>
+<rect x="1191.75" y="408" width="416.5" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1400.0" y="435" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#314D66">3. WT 先行写推进；LLC 保持接收</text>
+<polyline id="l1-drained" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1165,530 695,530"/>
+<rect x="748.5" y="488" width="363.0" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="930.0" y="515" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">4. 排空及输出 L1D 失效确认</text>
+<polyline id="clean" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,610 1635,610"/>
+<rect x="794.625" y="568" width="740.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1165.0" y="595" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">5. 协调在途事务；输入 clean / 输出 clean + invalidate</text>
+<polyline id="writeback" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" points="1635,690 2105,690"/>
+<rect x="1683.125" y="648" width="373.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1870.0" y="675" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#314D66">6. 经 F0 写回；检查聚合响应</text>
+<polyline id="ddr-visible" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="2105,770 695,770"/>
+<rect x="1132.75" y="728" width="534.5" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1400.0" y="755" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">7. 前端数据 / 元数据可见；汇合完成与错误</text>
+<polyline id="prepared" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,850 225,850"/>
+<rect x="314.125" y="808" width="291.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="460.0" y="835" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">8. 维护成功，退出窗口</text>
+<polyline id="submit" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="225,930 2105,930"/>
+<rect x="903.125" y="888" width="523.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1165.0" y="915" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">9. 提交并确认接受：搬入 → 计算 → 搬出</text>
+<polyline id="dma-in" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="2105,1010 2575,1010"/>
+<rect x="2158.625" y="968" width="362.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="2340.0" y="995" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#187C78">10. 经 F1 读 DDR，搬入 GB</text>
+<rect id="compute" x="2385" y="1050" width="380" height="65" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2575.0" y="1092.5" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="compute">NPU 计算，结果留在 GB</text>
+<polyline id="dma-out" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="2575,1170 2105,1170"/>
+<rect x="2183.625" y="1128" width="312.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="2340.0" y="1155" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#187C78">11. GB 经 F1 写回 DDR</text>
+<polyline id="task-done" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="2105,1250 225,1250"/>
+<rect x="903.125" y="1208" width="523.75" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1165.0" y="1235" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">12. 任务成功：前端发布完成，F0 读取可见</text>
+<polyline id="acquire" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="225,1330 695,1330"/>
+<rect x="244.5" y="1288" width="431.0" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="460.0" y="1315" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">13. 同步输出：再次限制冲突新请求</text>
+<polyline id="post-l1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,1410 1165,1410"/>
+<rect x="752.0" y="1368" width="356.0" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="930.0" y="1395" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">14. 排空旧回填，再最终失效</text>
+<polyline id="post-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,1490 1635,1490"/>
+<rect x="951.375" y="1448" width="427.25" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="1165.0" y="1475" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">15. 协调 LLC 在途事务，最终失效</text>
+<polyline id="acquired" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="695,1610 225,1610"/>
+<rect x="228.5" y="1568" width="463.0" height="35" fill="#FFFFFF" stroke="none"/>
+<text x="460.0" y="1595" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="middle" fill="#765489">16. 收齐确认且无错误；CPU 可读结果</text>
+<text x="55" y="1700" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">设备持有范围期间：CPU / Ara / 中断代码遵守访问约定；CPU 可处理其他独立数据。</text>
+<text x="55" y="1750" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">错误或超时：保留上下文及 DDR / GB；停止新增请求，确认旧事务结束或有效隔离后再复用。</text>
+</svg>

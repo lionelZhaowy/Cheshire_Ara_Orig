@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-20",
+  "status": "pass_with_concurrent_changes",
+  "head": "c9abbb48946fe3a7244bfb3159919b7c9731cb59",
+  "failures": [],
+  "protection": {
+    "recorded_files": 167,
+    "unchanged_files": 154,
+    "authored_changes": [
+      "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "docs_codex/engineering/SoC_Architecture_v1_Master_Plan.md",
+      "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "docs_codex/diagrams/2026-10-20_ddr_gb_coherence_v1/design-preview.html",
+      "docs_codex/diagrams/2026-10-20_ddr_gb_coherence_v1/architecture-preview.html",
+      "docs_codex/diagrams/2026-10-20_ddr_gb_coherence_v1/README.md"
+    ],
+    "concurrent_changes": [
+      "docs_codex/AGENT_TASKS.md",
+      "docs_codex/PROJECT_STATE.md",
+      "docs_codex/engineering/README.md",
+      "docs_codex/handoffs/E01_fixed_vector_extraction.md",
+      "docs_codex/maintenance/E01/reports/reference_rebuild_check.md",
+      "docs_codex/engineering/DMA_Control_Path_and_Fix.md"
+    ],
+    "unexplained_changes": [],
+    "unchanged_svg_png_pptx_files": 95,
+    "note": "Six out-of-scope files changed concurrently; this turn issued no writes to them. First-pass result retained. No whole-workspace unchanged claim."
+  },
+  "main": {
+    "chinese_characters_before": 9548,
+    "chinese_characters_after": 4590,
+    "reduction_percent": 51.9,
+    "count_method": "U+4E00–U+9FFF, whole Markdown including tables, captions and code comments",
+    "chapters": [
+      "1. CPU 与设备通过 DDR 交接数据",
+      "2. 缓存副本使双方看到不同版本",
+      "3. 软件选择交接范围，硬件完成维护",
+      "4. 输入同步让设备读到最新数据",
+      "5. 输出写前准备，写后同步",
+      "6. 裸机程序串起完整推理",
+      "7. 其他数据交接复用相同原则",
+      "8. 可靠完成后才能消费和复用资源"
+    ],
+    "image_paths": [
+      "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/system.png",
+      "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/versions.png",
+      "../diagrams/2026-10-20_ddr_gb_coherence_v1/previews/timeline.png"
+    ],
+    "pseudocode_lines": 27,
+    "timeline": [
+      {
+        "svg": "1. 登记上下文后：同步输入 + 准备输出",
+        "stage": "交出输入、准备输出",
+        "action": "CPU→维护服务：登记范围、操作和请求身份，确认命令接受"
+      },
+      {
+        "svg": "2. 限制冲突新请求；排空已有读写",
+        "stage": "交出输入、准备输出",
+        "action": "服务→L1D：限制冲突新请求，排空已接受的相关读写"
+      },
+      {
+        "svg": "3. WT 先行写推进；LLC 保持接收",
+        "stage": "交出输入、准备输出",
+        "action": "写缓冲→LLC：推进先行写，LLC 保持接收直到上游排空"
+      },
+      {
+        "svg": "4. 排空及输出 L1D 失效确认",
+        "stage": "交出输入、准备输出",
+        "action": "L1D→服务：确认相关事务排空、输出 L1D 失效完成；输入干净副本可留"
+      },
+      {
+        "svg": "5. 协调在途事务；输入 clean / 输出 clean + invalidate",
+        "stage": "交出输入、准备输出",
+        "action": "服务→LLC：协调在途事务，对输入 clean，对输出 clean＋invalidate"
+      },
+      {
+        "svg": "6. 经 F0 写回；检查聚合响应",
+        "stage": "交出输入、准备输出",
+        "action": "LLC→前端／DDR：经 F0 写回脏数据，检查聚合响应及错误"
+      },
+      {
+        "svg": "7. 前端数据 / 元数据可见；汇合完成与错误",
+        "stage": "交出输入、准备输出",
+        "action": "前端／DDR→服务：确认目标端口可见，压缩区包含数据／元数据；汇合缓存完成与错误"
+      },
+      {
+        "svg": "8. 维护成功，退出窗口",
+        "stage": "等待准备成功",
+        "action": "服务→CPU：返回成功、退出维护窗口，软件继续保持范围使用约定"
+      },
+      {
+        "svg": "9. 提交并确认接受：搬入 → 计算 → 搬出",
+        "stage": "提交推理",
+        "action": "CPU→任务控制：提交搬入、计算、搬出任务，确认接受及身份"
+      },
+      {
+        "svg": "10. 经 F1 读 DDR，搬入 GB",
+        "stage": "装入并计算",
+        "action": "搬运器经 F1 读 DDR→GB：装入成功后启动 NPU，计算结果留在 GB"
+      },
+      {
+        "svg": "11. GB 经 F1 写回 DDR",
+        "stage": "搬出结果",
+        "action": "GB→搬运器经 F1 写 DDR：传送结果，等待写入及前端发布完成"
+      },
+      {
+        "svg": "12. 任务成功：前端发布完成，F0 读取可见",
+        "stage": "等待结果可见",
+        "action": "任务控制→CPU：确认任务成功、结果对 F0 可见；CPU 随后申请输出同步"
+      },
+      {
+        "svg": "13. 同步输出：再次限制冲突新请求",
+        "stage": "交回输出",
+        "action": "CPU→服务：提交输出范围，再次限制冲突新请求"
+      },
+      {
+        "svg": "14. 排空旧回填，再最终失效",
+        "stage": "交回输出",
+        "action": "服务→L1D：处理相关旧响应／回填，再最终失效输出副本"
+      },
+      {
+        "svg": "15. 协调 LLC 在途事务，最终失效",
+        "stage": "交回输出",
+        "action": "服务→LLC：协调相关在途事务，再最终失效；冲突脏数据进入错误处理"
+      },
+      {
+        "svg": "16. 收齐确认且无错误；CPU 可读结果",
+        "stage": "读取并后处理",
+        "action": "服务→CPU：收齐确认且无错误，允许读取输出；实际读取发生在图后"
+      }
+    ]
+  },
+  "links": {
+    "checked": 258,
+    "anchors": 15,
+    "errors": []
+  },
+  "visual_review": {
+    "source": "Chrome screenshots of final HTML; figure images reused unchanged",
+    "viewed": [
+      "design-top.png",
+      "design-chapter-3.png",
+      "design-chapter-4.png",
+      "design-chapter-5.png",
+      "design-software.png",
+      "design-table-2.png",
+      "design-timeline-table-end.png",
+      "design-table-3.png",
+      "design-figure-1.png",
+      "design-figure-2.png",
+      "design-figure-3.png",
+      "design-end.png"
+    ],
+    "no_horizontal_overflow": true,
+    "office_tested": false,
+    "pptx_regenerated": false
+  },
+  "semantic_review": [
+    "M2/LLC/F0 versus M5 GB local path; independent CPU/Ara Xbar inputs; F2 write and F3 read",
+    "software range ownership and full-line protection; frontend compression-block responsibility separate",
+    "upstream drain before LLC isolation; input clean with clean copies retained",
+    "output preparation distinct from input scope; partial-line example retained",
+    "device result visible before final invalidation; old refills handled; conflicting dirty data is error",
+    "16 arrows compared in order with final SVG and original pseudocode",
+    "frontend data/metadata completion; Controller visibility contract not assumed",
+    "LVDS device-to-device handover and source-frame release versus TX completion",
+    "uncertain submission treated as started; historical errors; old transactions ended or isolated before reuse",
+    "FENCE write-buffer drain distinct from LLC clean; autonomous maintenance and SPM progress limits"
+  ],
+  "diff_check": "",
+  "hardware_tests_run": false
+}

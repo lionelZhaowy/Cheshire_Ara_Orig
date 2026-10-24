@@ -1,0 +1,197 @@
+{
+  "source": "docs_codex/diagrams/soc_landscape.pptx",
+  "source_sha256": "a4a552ca74684711df8ce78528c7b50d923d77b47e5f299b16918bd8208fe2d0",
+  "output_sha256": "88bc9891db3a83366cba2296fa0a49b34502058d1cb968a8b2dd58fc5b181339",
+  "source_canvas": [
+    3600,
+    2025
+  ],
+  "output_canvas": [
+    4100,
+    2025
+  ],
+  "input_slides": 1,
+  "output_slides": 1,
+  "changed_existing_objects": [
+    {
+      "id": "7",
+      "name": "powerpoint template design by DAJU_PPT正版来源小红书大橘PPT微信DAJU_PPT请勿抄袭搬运！盗版必究！"
+    },
+    {
+      "id": "9",
+      "name": "powerpoint template design by DAJU_PPT正版来源小红书大橘PPT微信DAJU_PPT请勿抄袭搬运！盗版必究！"
+    },
+    {
+      "id": "1002",
+      "name": "soc-boundary"
+    },
+    {
+      "id": "1041",
+      "name": "emmc-physical"
+    },
+    {
+      "id": "1075",
+      "name": "phy-ddr"
+    },
+    {
+      "id": "1218",
+      "name": "emmc-device"
+    },
+    {
+      "id": "1250",
+      "name": "ddr-device"
+    },
+    {
+      "id": "1401",
+      "name": "emmc-device-t0: eMMC"
+    },
+    {
+      "id": "1402",
+      "name": "emmc-device-t1: 模型 / 校正参数"
+    },
+    {
+      "id": "1456",
+      "name": "ddr-device-t0: DDR"
+    },
+    {
+      "id": "1457",
+      "name": "ddr-device-t1: 片外器件"
+    },
+    {
+      "id": "1537",
+      "name": "lvds-tx-title: LVDS TX"
+    },
+    {
+      "id": "1542",
+      "name": "legend-pixel-text: 像素流"
+    },
+    {
+      "id": "1549",
+      "name": "sensor-rx"
+    },
+    {
+      "id": "1550",
+      "name": "tx-processor"
+    },
+    {
+      "id": "1551",
+      "name": "image-sensor"
+    },
+    {
+      "id": "1552",
+      "name": "image-sensor-t0: 图像传感器"
+    },
+    {
+      "id": "1553",
+      "name": "image-sensor-t1: LVDS 输出"
+    },
+    {
+      "id": "1554",
+      "name": "output-processor"
+    },
+    {
+      "id": "1555",
+      "name": "output-processor-t0: 后级处理"
+    },
+    {
+      "id": "1556",
+      "name": "output-processor-t1: LVDS 接收"
+    },
+    {
+      "id": "559",
+      "name": "object-005: SoC"
+    }
+  ],
+  "added_objects": [
+    "lvds-io-region",
+    "lvds-io-region-title: LVDS I/O / 直通",
+    "lvds-io-region-status: PAD / PHY 待确认",
+    "lvds-input-buffer",
+    "lvds-input-title: LVDS 输入",
+    "lvds-input-detail: 电气缓冲",
+    "lvds-output-select",
+    "lvds-select-title: 二选一",
+    "lvds-select-detail: 数据/时钟",
+    "lvds-common-driver",
+    "lvds-driver-title: LVDS 输出",
+    "lvds-driver-detail: 共用驱动",
+    "lvds-mode-control",
+    "lvds-control-title: C5 · 模式选择",
+    "lvds-control-priority: 软件选择 / 外部强制优先",
+    "lvds-control-independent: 无需 CPU / DDR",
+    "lvds-force-external",
+    "lvds-force-title: 外部强制",
+    "lvds-force-signal: BYPASS_FORCE",
+    "lvds-force-pin-status: 管脚待分配",
+    "lvds-bypass-title: 解串前串行旁路",
+    "lvds-bypass-lanes: 128 对数据＋1 对时钟",
+    "lvds-bypass-protocol: 保持传感器原始协议",
+    "lvds-processor-compatibility: 需支持原始协议",
+    "sensor-to-input-buffer",
+    "lvds-raw-bypass",
+    "lvds-serial-branch",
+    "lvds-select-to-driver",
+    "lvds-driver-to-processor",
+    "lvds-force-to-control",
+    "lvds-control-to-select"
+  ],
+  "unchanged_existing_objects": 537,
+  "preserved_package_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "ppt/slides/_rels/slide1.xml.rels",
+    "ppt/_rels/presentation.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout4.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout9.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout10.xml.rels",
+    "ppt/notesSlides/notesSlide1.xml",
+    "ppt/slideLayouts/_rels/slideLayout11.xml.rels",
+    "ppt/slideLayouts/slideLayout13.xml",
+    "ppt/slideLayouts/_rels/slideLayout8.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout7.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout6.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout2.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout1.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout5.xml.rels",
+    "ppt/slideMasters/_rels/slideMaster1.xml.rels",
+    "ppt/slideLayouts/slideLayout12.xml",
+    "ppt/slideLayouts/slideLayout11.xml",
+    "ppt/slideLayouts/slideLayout10.xml",
+    "ppt/slideLayouts/slideLayout1.xml",
+    "ppt/slideLayouts/_rels/slideLayout12.xml.rels",
+    "ppt/slideLayouts/_rels/slideLayout13.xml.rels",
+    "ppt/notesSlides/_rels/notesSlide1.xml.rels",
+    "ppt/slideMasters/slideMaster1.xml",
+    "ppt/slideLayouts/slideLayout2.xml",
+    "ppt/slideLayouts/slideLayout3.xml",
+    "ppt/slideLayouts/slideLayout4.xml",
+    "ppt/slideLayouts/slideLayout9.xml",
+    "ppt/slideLayouts/slideLayout8.xml",
+    "ppt/slideLayouts/slideLayout7.xml",
+    "ppt/slideLayouts/slideLayout6.xml",
+    "ppt/slideLayouts/slideLayout5.xml",
+    "ppt/slideLayouts/_rels/slideLayout3.xml.rels",
+    "ppt/commentAuthors.xml",
+    "ppt/notesMasters/_rels/notesMaster1.xml.rels",
+    "ppt/theme/theme1.xml",
+    "ppt/theme/theme2.xml",
+    "ppt/notesMasters/notesMaster1.xml",
+    "ppt/tableStyles.xml",
+    "ppt/viewProps.xml",
+    "ppt/presProps.xml",
+    "docProps/app.xml",
+    "docProps/custom.xml",
+    "ppt/tags/tag1.xml",
+    "docProps/core.xml"
+  ],
+  "new_crossing": {
+    "edge": "emmc-physical",
+    "over": "lvds-raw-bypass",
+    "at": [
+      3365,
+      688.0952755905512
+    ]
+  },
+  "office_tested": false,
+  "hardware_tested": false
+}

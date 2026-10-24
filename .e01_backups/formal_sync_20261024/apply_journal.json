@@ -1,0 +1,370 @@
+{
+  "status": "source_applied_not_tested",
+  "reference": {
+    "head": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "baseline": "424e4d2cd9f7e129bbda7e595504a48952b150e9",
+    "passed_tag": "reference-p1-p5-pass-20261024",
+    "passed_commit": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c",
+    "remote_main": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c"
+  },
+  "local_backup_verified_sha256": "fc66f90b0cc67d1270095e192ab8be6ad9c1622236ab8e7420c04880cd18b374",
+  "local_backup_location": "/home/zhaowenyao/RISC_CVA6_prj/cheshire_ara/.e01_backups/formal_sync_20261024/before.tar",
+  "completed_steps": [
+    {
+      "name": "P1",
+      "r_commit": "0073a2f8cbbada5f359dd0b7ba0617ee7c20179a",
+      "r_parent": "319f5f0bc9806dd23efcbafa0d7268fc2ea2b759"
+    },
+    {
+      "name": "P2_official",
+      "r_commit": "6694b4e81dd00a420e3615a667299ba5e1c9f858",
+      "r_parent": "48232ea131cf527184e1cd48346ec2fe1bf9c888"
+    },
+    {
+      "name": "P2_mask",
+      "r_commit": "8ade2100115ab7f536535f1be0ff7e00dd429411",
+      "r_parent": "6694b4e81dd00a420e3615a667299ba5e1c9f858"
+    },
+    {
+      "name": "P2_sequencer",
+      "r_commit": "4e54c06ef2b76ccebce9c21eaabff64c00b41735",
+      "r_parent": "8ade2100115ab7f536535f1be0ff7e00dd429411"
+    },
+    {
+      "name": "P3_official",
+      "r_commit": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4",
+      "r_parent": "4e54c06ef2b76ccebce9c21eaabff64c00b41735"
+    },
+    {
+      "name": "P3_mask",
+      "r_commit": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0",
+      "r_parent": "526274a30b6746cf204ed818c9d1c5bf78f8a0a4"
+    },
+    {
+      "name": "P4_191",
+      "r_commit": "e983027d08c0e6e398c5243c286709252378fbed",
+      "r_parent": "7e01dabbce104ec365b3b49753c5ffaf1e802bc0"
+    },
+    {
+      "name": "P4_192",
+      "r_commit": "d1b8559f52b075ee784db545dbe8049d40e4e5df",
+      "r_parent": "e983027d08c0e6e398c5243c286709252378fbed"
+    },
+    {
+      "name": "P4_adjacent",
+      "r_commit": "98a0591e35dceb5548ad435ef68ed42d92670114",
+      "r_parent": "d1b8559f52b075ee784db545dbe8049d40e4e5df"
+    },
+    {
+      "name": "P5_RTL",
+      "r_commit": "0bf9efca695b17b943921c2e04fd9b92492b7656",
+      "r_parent": "98a0591e35dceb5548ad435ef68ed42d92670114"
+    },
+    {
+      "name": "P5_HAL",
+      "r_commit": "5efef8be7f867b9ddff700d6ddf97b2c9f48e66b",
+      "r_parent": "0bf9efca695b17b943921c2e04fd9b92492b7656"
+    },
+    {
+      "name": "test_inputs_and_wrapper_paths",
+      "r_commit": "5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c"
+    }
+  ],
+  "completed_files": [
+    {
+      "step": "P1",
+      "destination": "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv",
+      "before_sha256": "df1fbfee134eb0617b250777e188aa9f62c3530c5f88e5ed354566b438fc635f",
+      "after_sha256": "e7b441face975c8ecafbcbc089dde02a440120ffcd3cbece152b10eca7d0ddd9",
+      "mode": 436
+    },
+    {
+      "step": "P2_official",
+      "destination": "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv",
+      "before_sha256": "b24b559bade3dabc741b755fe5331a7a853ccd71b144bedfb3fc8e03c1454aa7",
+      "after_sha256": "1f08fca9d992e5b20e95f07075405eccc57b592fc2ca2cce809565dabb42945c",
+      "mode": 436
+    },
+    {
+      "step": "P2_mask",
+      "destination": "src/cheshire_soc/ara/hardware/src/masku/masku.sv",
+      "before_sha256": "e061e51790935ab379bfdb8a832e13c897a8a6502f001f2c495c4d078ba65edc",
+      "after_sha256": "64687ebffa3c4fad66e54a90a60805ded3948ef34e10628b077c09bf6315378f",
+      "mode": 436
+    },
+    {
+      "step": "P2_sequencer",
+      "destination": "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv",
+      "before_sha256": "44c190ede2a626504806f43d474e3478dbbafb81f4cf036cc43b606e9c6e0d7d",
+      "after_sha256": "b5714eab7de81a5471fdd93f8a2a4f6b29e4133339e5c1668aa497613c6baa67",
+      "mode": 436
+    },
+    {
+      "step": "P3_official",
+      "destination": "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv",
+      "before_sha256": "b96f2bebe6a2feb2af7e9b937cf980e6681f907c8da9bd7ecf569f15e73cfddf",
+      "after_sha256": "7c171c8455913c5197a122e1013e9f74260a47011ab11e985496293a1a29757e",
+      "mode": 436
+    },
+    {
+      "step": "P3_mask",
+      "destination": "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv",
+      "before_sha256": "52adbaaea561d083b176a246e4712605c1d1bfea6193e9725c0cdf101dc79d39",
+      "after_sha256": "4751f038c46ee2118bfcf47764da8c6286b6cbab719ee779aceca1d2dcc17a0d",
+      "mode": 436
+    },
+    {
+      "step": "P4_191",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "f75b8bbca54215a7f97c21ccb75147b5502716ad934f2f51499543a5c04edd9c",
+      "after_sha256": "a301e6bf1a8013a9487192dba657ae22fa76d9d075b1d712ea91df9e7293114e",
+      "mode": 436
+    },
+    {
+      "step": "P4_192",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "a301e6bf1a8013a9487192dba657ae22fa76d9d075b1d712ea91df9e7293114e",
+      "after_sha256": "311b2da85ae8288ffabd165d33fdf6f67131d1807e535605824d68067d21406c",
+      "mode": 436
+    },
+    {
+      "step": "P4_adjacent",
+      "destination": "src/tb/src/vip_cheshire_soc.sv",
+      "before_sha256": "311b2da85ae8288ffabd165d33fdf6f67131d1807e535605824d68067d21406c",
+      "after_sha256": "f7b50724274741153633227342b5e3e77bc619aea770cbb29ad90d020e9eb371",
+      "mode": 436
+    },
+    {
+      "step": "P5_RTL",
+      "destination": "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl",
+      "before_sha256": "f15a934fc449d7b9935d22aaa095270d52b34e5af5cfe9a9e2ab0e02af3e2264",
+      "after_sha256": "794dbc98bf881481e91c1b7fd9295aac8bd2861402c3efb17182e9f555849ed2",
+      "mode": 436
+    },
+    {
+      "step": "P5_RTL",
+      "destination": "src/cheshire_soc/idma/target/rtl/idma_generated.sv",
+      "before_sha256": "bf6f2d34d8883936014351258bcb40f9a89978b2d51079f525f37b5e55360250",
+      "after_sha256": "2945ec2dda679d57f6df51d98ce814866fc9fea380558b12fb9569a5ef93aabf",
+      "mode": 436
+    },
+    {
+      "step": "P5_HAL",
+      "destination": "sw/include/dif/dma.h",
+      "before_sha256": "68083d32538d9f73c33232bda00d24c2d9236ac0f0c7cc438dff73d364921a8d",
+      "after_sha256": "9f9f20b48f9abcee308094f9c80acaba0000a795c54079287946a5fd50249a5c",
+      "mode": 436
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p1_vstu_wrap.c",
+      "before_sha256": null,
+      "after_sha256": "7755b899cfd96560e71685927aeef031b973ca66d4a763d72431e3481178f221",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_vmfpu_order.c",
+      "before_sha256": null,
+      "after_sha256": "352d6d77fb6210a4577768a8edb4f4d81c91c25749a78833c844c3896412c69d",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_vcpop_boundaries.c",
+      "before_sha256": null,
+      "after_sha256": "6a8c0882282000899d3f330bcb71cc5470d5cc742862597f992e4c9ec15150b3",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p2_scalar_overlap.c",
+      "before_sha256": null,
+      "after_sha256": "517b9bda2381126a2d30af3923c1467d3b1129a6899ae281c8ef398da0c5e68c",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p3_div_flags.c",
+      "before_sha256": null,
+      "after_sha256": "3d9d9dbb7fd89f0c625d1b92080bcbd60f8221383ee2e155cbd5f1c9b2281e46",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p4_preload_bytes.c",
+      "before_sha256": null,
+      "after_sha256": "6c534a49a301e843223f8af3326f678ab7c088797bc35359da74cd868d0950d7",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/tests/p5_dma_1d.spm.c",
+      "before_sha256": null,
+      "after_sha256": "78b4e70a3bd6f6acc7d2b3391f2006e8986f0875984371ffc142e12163269766",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/link/p4_single.ld",
+      "before_sha256": null,
+      "after_sha256": "cc63d1de153ba949b6ef18c0b7b35b2e5b94916564112a704a51798fec95462c",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/link/p4_multi.ld",
+      "before_sha256": null,
+      "after_sha256": "def283b0011c7e3491e6e1b0a00a33da24414e1a08d571c6442579c8ac908e4e",
+      "mode": 420
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "src/tb/src/tb_cheshire_soc.sv",
+      "before_sha256": "308af462ac0e075556eeef6990b1ca5faecfe22260dbab39065214425cb8ba85",
+      "after_sha256": "d6607ae61921f22f9a96ad920e422ab5d534c8eda7802545f87bf42807a71fcd",
+      "mode": 436
+    },
+    {
+      "step": "test_inputs_and_wrapper_paths",
+      "destination": "sw/Makefile",
+      "before_sha256": "05c999fce76f3346b5f53ac7f945bcd1a790f312d7354aa07bb40675f358c289",
+      "after_sha256": "6e587b1620de1dbadf6a49661b5a8d6e4514e337cc902bb00bb95bbf84a8ea4e",
+      "mode": 436
+    }
+  ],
+  "after": {
+    "provenance/generation/idma/src/frontend/reg/tpl/idma_reg.sv.tpl": {
+      "kind": "file",
+      "mode": 436,
+      "size": 7426,
+      "sha256": "794dbc98bf881481e91c1b7fd9295aac8bd2861402c3efb17182e9f555849ed2"
+    },
+    "provenance/p1_p5_sync_20261024.json": {
+      "kind": "file",
+      "mode": 420,
+      "size": 15499,
+      "sha256": "58a90f0d496e460f821e8f021c0b9b21bea521a1aea147f0e9078d06863591ea"
+    },
+    "src/cheshire_soc/ara/hardware/src/ara_sequencer.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 30895,
+      "sha256": "b5714eab7de81a5471fdd93f8a2a4f6b29e4133339e5c1668aa497613c6baa67"
+    },
+    "src/cheshire_soc/ara/hardware/src/lane/vmfpu.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 104269,
+      "sha256": "1f08fca9d992e5b20e95f07075405eccc57b592fc2ca2cce809565dabb42945c"
+    },
+    "src/cheshire_soc/ara/hardware/src/masku/masku.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 75373,
+      "sha256": "64687ebffa3c4fad66e54a90a60805ded3948ef34e10628b077c09bf6315378f"
+    },
+    "src/cheshire_soc/ara/hardware/src/vlsu/vstu.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 22618,
+      "sha256": "e7b441face975c8ecafbcbc089dde02a440120ffcd3cbece152b10eca7d0ddd9"
+    },
+    "src/cheshire_soc/fpnew/src/fpnew_opgroup_multifmt_slice.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 32708,
+      "sha256": "4751f038c46ee2118bfcf47764da8c6286b6cbab719ee779aceca1d2dcc17a0d"
+    },
+    "src/cheshire_soc/fpu_div_sqrt_mvp/hdl/norm_div_sqrt_mvp.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 20026,
+      "sha256": "7c171c8455913c5197a122e1013e9f74260a47011ab11e985496293a1a29757e"
+    },
+    "src/cheshire_soc/idma/target/rtl/idma_generated.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 680944,
+      "sha256": "2945ec2dda679d57f6df51d98ce814866fc9fea380558b12fb9569a5ef93aabf"
+    },
+    "src/tb/src/tb_cheshire_soc.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 40459,
+      "sha256": "d6607ae61921f22f9a96ad920e422ab5d534c8eda7802545f87bf42807a71fcd"
+    },
+    "src/tb/src/vip_cheshire_soc.sv": {
+      "kind": "file",
+      "mode": 436,
+      "size": 34044,
+      "sha256": "f7b50724274741153633227342b5e3e77bc619aea770cbb29ad90d020e9eb371"
+    },
+    "sw/Makefile": {
+      "kind": "file",
+      "mode": 436,
+      "size": 9037,
+      "sha256": "6e587b1620de1dbadf6a49661b5a8d6e4514e337cc902bb00bb95bbf84a8ea4e"
+    },
+    "sw/include/dif/dma.h": {
+      "kind": "file",
+      "mode": 436,
+      "size": 6208,
+      "sha256": "9f9f20b48f9abcee308094f9c80acaba0000a795c54079287946a5fd50249a5c"
+    },
+    "sw/link/p4_multi.ld": {
+      "kind": "file",
+      "mode": 420,
+      "size": 1413,
+      "sha256": "def283b0011c7e3491e6e1b0a00a33da24414e1a08d571c6442579c8ac908e4e"
+    },
+    "sw/link/p4_single.ld": {
+      "kind": "file",
+      "mode": 420,
+      "size": 1528,
+      "sha256": "cc63d1de153ba949b6ef18c0b7b35b2e5b94916564112a704a51798fec95462c"
+    },
+    "sw/tests/p1_vstu_wrap.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 3371,
+      "sha256": "7755b899cfd96560e71685927aeef031b973ca66d4a763d72431e3481178f221"
+    },
+    "sw/tests/p2_scalar_overlap.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 4546,
+      "sha256": "517b9bda2381126a2d30af3923c1467d3b1129a6899ae281c8ef398da0c5e68c"
+    },
+    "sw/tests/p2_vcpop_boundaries.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 5775,
+      "sha256": "6a8c0882282000899d3f330bcb71cc5470d5cc742862597f992e4c9ec15150b3"
+    },
+    "sw/tests/p2_vmfpu_order.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 6054,
+      "sha256": "352d6d77fb6210a4577768a8edb4f4d81c91c25749a78833c844c3896412c69d"
+    },
+    "sw/tests/p3_div_flags.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 10993,
+      "sha256": "3d9d9dbb7fd89f0c625d1b92080bcbd60f8221383ee2e155cbd5f1c9b2281e46"
+    },
+    "sw/tests/p4_preload_bytes.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 4562,
+      "sha256": "6c534a49a301e843223f8af3326f678ab7c088797bc35359da74cd868d0950d7"
+    },
+    "sw/tests/p5_dma_1d.spm.c": {
+      "kind": "file",
+      "mode": 420,
+      "size": 3601,
+      "sha256": "78b4e70a3bd6f6acc7d2b3391f2006e8986f0875984371ffc142e12163269766"
+    }
+  }
+}

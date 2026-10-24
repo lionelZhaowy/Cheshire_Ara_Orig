@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "source_sha256": "a4a552ca74684711df8ce78528c7b50d923d77b47e5f299b16918bd8208fe2d0",
+  "final_pptx_sha256": "795b6267b15b7d0706b74c2e71a6cc382ea86aa868f92df710f619fe52f05c73",
+  "canvas": [
+    3600,
+    2025
+  ],
+  "changed_package_parts": [
+    "ppt/slides/slide1.xml"
+  ],
+  "source_shapes": 558,
+  "final_shapes": 564,
+  "unchanged_original_shapes": 551,
+  "modified_original_shapes": 7,
+  "added_shapes": 6,
+  "removed_shapes": 0,
+  "inherited_fonts_and_line_styles_preserved": true,
+  "emmc_original_vertices_preserved": true,
+  "native_solid_arrow_endpoints_checked": {
+    "pixel-bypass": [
+      [
+        3060,
+        543.1
+      ],
+      [
+        3290,
+        1635
+      ]
+    ],
+    "vdma-pixels": [
+      [
+        3265,
+        1583.1
+      ],
+      [
+        3265,
+        1605
+      ]
+    ],
+    "pixel-select-to-fifo": [
+      [
+        3240,
+        1635
+      ],
+      [
+        3220,
+        1635
+      ]
+    ],
+    "tx-register-to-select": [
+      [
+        3265,
+        1688.1
+      ],
+      [
+        3265,
+        1665
+      ]
+    ]
+  },
+  "unique_object_ids": true,
+  "whole_slide_images": 0,
+  "python_pptx_text_edit_save_reopen": "PASS",
+  "protected_files_unchanged": {
+    "AGENTS.md": true,
+    "docs_codex/diagrams/2026-10-16_soc_landscape_m5_gb/soc_landscape_m5_gb.pptx": true,
+    "docs_codex/diagrams/diagram_paths.py": true,
+    "docs_codex/diagrams/path_migrations.json": true,
+    "docs_codex/diagrams/soc_landscape.pptx": true,
+    "docs_codex/engineering/CPU_NPU_Cache_Coherence_Survey.md": true,
+    "docs_codex/engineering/CPU_NPU_Inference_Systems_Survey.md": true,
+    "docs_codex/engineering/Cache_Coherence_Architecture.md": true,
+    "docs_codex/engineering/DDR_GB_Coherence_Design.md": true,
+    "docs_codex/engineering/DDR_Supplier_Coherence_Questions.md": true,
+    "docs_codex/engineering/Global_Buffer_CPU_Access.md": true,
+    "docs_codex/engineering/IP_DDR_Interface_Contract.md": true,
+    "docs_codex/engineering/Implementation_Challenges_and_Open_Questions.md": true,
+    "docs_codex/handoffs/E01_fixed_vector_extraction.md": true,
+    "docs_codex/handoffs/L01_cache_coherence_architecture.md": true,
+    "docs_codex/handoffs/P01_soc_resource_packaging.md": true,
+    "docs_codex/maintenance/E01/planning/server_reference_extraction_plan.md": true,
+    "docs_codex/maintenance/E01/reports/reference_rebuild_check.md": true,
+    "docs_codex/maintenance/L01/reviews/ddr_gb_coherence_review_prompt.md": true,
+    "docs_codex/maintenance/L01/reviews/ddr_gb_coherence_review_qa.md": true,
+    "docs_codex/software/SERVER_SIMULATION_GUIDE.md": true,
+    "docs_codex/software/interfaces/content/integration.html": true,
+    "docs_codex/software/interfaces/integration.html": true,
+    "docs_codex/software/interfaces/markdown/integration.md": true
+  },
+  "visual_review": {
+    "source": "final delivered PPT -> existing DrawingML SVG exporter -> CairoSVG PNG",
+    "full_page_viewed": true,
+    "crops_viewed": [
+      "minimal-input",
+      "minimal-output",
+      "minimal-emmc"
+    ],
+    "independent_reviewer": "/root/lvds_minimal_layout_review",
+    "candidate_hash_matches_delivery": true,
+    "result": "No new label/edge collisions observed in reviewed scope; original inherited layout kept.",
+    "font_note": "Local font/layout approximation, not Office rendering."
+  },
+  "office_tested": false,
+  "rtl_or_hardware_or_electrical_tested": false,
+  "new_or_changed_local_links_checked": 44,
+  "local_link_errors": [],
+  "git_diff_check": "PASS",
+  "artifact_hashes": {
+    "soc_lvds_bypass.pptx": "795b6267b15b7d0706b74c2e71a6cc382ea86aa868f92df710f619fe52f05c73",
+    "soc_lvds_bypass.svg": "69712d29689db8b5bacffab8564d2ad1c56912ec5c217924d5c540936d22092c",
+    "soc_lvds_bypass.png": "390e4d41af8798c7747a417f157e9cd9d04679a0c328e4ba3666e955e49eaf09"
+  }
+}

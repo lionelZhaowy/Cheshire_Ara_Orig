@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>软件交接、硬件维护：一次推理的数据生命周期</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">软件交接、硬件维护：一次推理的数据生命周期</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">按缓冲区或计算分块同步；交接范围由软件保持所有权，CPU 可并行处理其他缓冲区。</text>
+<rect id="panel0" x="35" y="140" width="2330" height="310" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="187" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">① 提交前：软件交出 DDR 输入与输出范围</text>
+<rect id="r0b0" x="60" y="225" width="400" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="271.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b0">软件提交</text>
+<text x="260.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b0">地址 / 长度 / 方向</text>
+<text x="260.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b0">确认各生产者完成</text>
+<rect id="r0b1" x="525" y="225" width="400" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="271.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b1">L1D / 写缓冲</text>
+<text x="725.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b1">排空相关旧写</text>
+<text x="725.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b1">输出失效 / 回填协调</text>
+<polyline id="r0e1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="460,295 525,295"/>
+<rect id="r0b2" x="990" y="225" width="400" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="271.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b2">LLC 范围维护</text>
+<text x="1190.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b2">输入：clean</text>
+<text x="1190.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b2">输出：clean + invalidate</text>
+<polyline id="r0e2" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="925,295 990,295"/>
+<rect id="r0b3" x="1455" y="225" width="400" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="271.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b3">前端 / DDR 共享点</text>
+<text x="1655.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b3">数据 / 元数据跨口可见</text>
+<text x="1655.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b3">汇合缓存维护确认</text>
+<polyline id="r0e3" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1390,295 1455,295"/>
+<rect id="r0b4" x="1920" y="225" width="400" height="140" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="271.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r0b4">允许启动</text>
+<text x="2120.0" y="306.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b4">返回维护完成</text>
+<text x="2120.0" y="341.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r0b4">软件发布 DMA 任务</text>
+<polyline id="r0e4" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1855,295 1920,295"/>
+<text x="65" y="415" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">输入的干净副本可保留；输出预清理保护未覆盖字节，预失效清除旧副本。</text>
+<polyline id="next0" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="2320,295 2345,295 2345,480 45,480 45,665 60,665"/>
+<rect id="panel1" x="35" y="510" width="2330" height="310" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="557" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">② 设备持有期间：DDR 与 GB 显式搬运</text>
+<rect id="r1b0" x="60" y="595" width="400" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="641.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b0">DDR → GB</text>
+<text x="260.0" y="676.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b0">搬运器读取输入</text>
+<text x="260.0" y="711.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b0">经共享数据代理写 GB</text>
+<rect id="r1b1" x="525" y="595" width="400" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="641.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b1">GB ready</text>
+<text x="725.0" y="676.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b1">数据完整后交给</text>
+<text x="725.0" y="711.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b1">NPU / Ara 消费</text>
+<polyline id="r1e1" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="460,665 525,665"/>
+<rect id="r1b2" x="990" y="595" width="400" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="641.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b2">计算与分块复用</text>
+<text x="1190.0" y="676.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b2">独立 SRAM 保存</text>
+<text x="1190.0" y="711.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b2">当前任务的数据</text>
+<polyline id="r1e2" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="925,665 990,665"/>
+<rect id="r1b3" x="1455" y="595" width="400" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="641.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b3">GB → DDR</text>
+<text x="1655.0" y="676.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b3">共享代理 → 搬运器</text>
+<text x="1655.0" y="711.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b3">按 WSTRB 更新输出</text>
+<polyline id="r1e3" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1390,665 1455,665"/>
+<rect id="r1b4" x="1920" y="595" width="400" height="140" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="641.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r1b4">设备完成</text>
+<text x="2120.0" y="676.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b4">前端发布 / 跨口可见</text>
+<text x="2120.0" y="711.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r1b4">返回任务身份与状态</text>
+<polyline id="r1e4" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1855,665 1920,665"/>
+<text x="65" y="785" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">CPU / Ara 的 DDR 冲突访问由任务协议限制；GB 内部交接由其独立的分块调度负责。</text>
+<polyline id="next1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="2320,665 2345,665 2345,850 45,850 45,1035 60,1035"/>
+<rect id="panel2" x="35" y="880" width="2330" height="310" fill="#F7F9FA" stroke="#29292D" stroke-width="1.7"/>
+<text x="60" y="927" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="700" text-anchor="start" fill="#29292D">③ 消费前：硬件清除旧读副本，软件收回输出</text>
+<rect id="r2b0" x="60" y="965" width="400" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="260.0" y="1011.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b0">软件等待完成</text>
+<text x="260.0" y="1046.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b0">核对任务与错误</text>
+<text x="260.0" y="1081.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b0">请求输出范围同步</text>
+<rect id="r2b1" x="525" y="965" width="400" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="725.0" y="1011.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b1">处理旧回填</text>
+<text x="725.0" y="1046.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b1">排空相关旧响应</text>
+<text x="725.0" y="1081.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b1">保护失效过程</text>
+<polyline id="r2e1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="460,1035 525,1035"/>
+<rect id="r2b2" x="990" y="965" width="400" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1190.0" y="1011.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b2">L1D + LLC</text>
+<text x="1190.0" y="1046.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b2">输出 invalidate</text>
+<text x="1190.0" y="1081.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b2">收齐实际完成确认</text>
+<polyline id="r2e2" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="925,1035 990,1035"/>
+<rect id="r2b3" x="1455" y="965" width="400" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1655.0" y="1011.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b3">交还所有权</text>
+<text x="1655.0" y="1046.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b3">建立完成到读取顺序</text>
+<text x="1655.0" y="1081.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b3">输出可由 CPU 访问</text>
+<polyline id="r2e3" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1390,1035 1455,1035"/>
+<rect id="r2b4" x="1920" y="965" width="400" height="140" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="2120.0" y="1011.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="r2b4">消费 / 复用</text>
+<text x="2120.0" y="1046.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b4">CPU 重新加载结果</text>
+<text x="2120.0" y="1081.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="r2b4">最后消费者释放缓冲</text>
+<polyline id="r2e4" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1855,1035 1920,1035"/>
+<text x="65" y="1155" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">超时或写错误时保留缓冲区；确认迟到事务排空或受控恢复完成后，再允许复用。</text>
+<text x="55" y="1260" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#29292D">紫色箭头：阶段顺序与完成依赖    绿色箭头：设备搬运与计算阶段    维护动作以目标物理范围为单位</text>
+<text x="55" y="1310" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#29292D">仅整模型前后交接时，同步集中在推理两端；CPU 与设备交替处理分块时，同步放在实际交接点。</text>
+</svg>

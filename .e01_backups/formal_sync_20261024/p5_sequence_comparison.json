@@ -1,0 +1,23 @@
+{
+  "reference_result": "/home/zhaowy24/CheshireAraPULP/work/runs/sync_p5_sequence/result.json",
+  "formal_result": "/home/zhaowy24/CheshireAra/sim/work/p1_p5_20261024/runs/p5_sequence/result.json",
+  "status_equal": true,
+  "monitor_lines_equal": [
+    "[UART] P5 stage=0 two_d=1 submit=2 done=2 data_errors=0 polls=1",
+    "[UART] P5 stage=1 two_d=0 submit=3 done=3 data_errors=0 polls=1",
+    "[UART] P5 stage=2 two_d=1 submit=4 done=4 data_errors=0 polls=1",
+    "[UART] P5_DONE rc=0",
+    "[P5_OBS_DONE] nd=3 backend=9 response=9 retire=3 ar=9 r=23 aw=9 w=25 b=9 write_bytes=138 errors=0 done=4"
+  ],
+  "uart_lines_equal": [
+    "P5 stage=0 two_d=1 submit=2 done=2 data_errors=0 polls=1",
+    "P5 stage=1 two_d=0 submit=3 done=3 data_errors=0 polls=1",
+    "P5 stage=2 two_d=1 submit=4 done=4 data_errors=0 polls=1",
+    "P5_DONE rc=0"
+  ],
+  "non_elf_input_hash_equal": null,
+  "loadable_payload_sha256": [
+    "3b9dc351910d0335849bdc9ff97db3bac8754523842fdd369cf8cba72982a9d0",
+    "3b9dc351910d0335849bdc9ff97db3bac8754523842fdd369cf8cba72982a9d0"
+  ]
+}

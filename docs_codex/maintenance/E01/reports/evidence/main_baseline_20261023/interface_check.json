@@ -1,0 +1,19 @@
+{
+  "old_cpu": "99eac9a649001bdf5b8f9da52e0ca73d5c48db1c",
+  "main_cpu": "4c02b24fe7c04690f626776a92274da24f80d1da",
+  "ara": "2895ba907e9eb14b3464609dc791a969d159a7c3",
+  "method": "Source text/block comparison only, not HDL compile or elaboration",
+  "results": {
+    "acc_dispatcher_identical_except_trailing_newline": true,
+    "cva6_accelerator_instance_and_connections_identical": true,
+    "decoder_accelerator_decode_instance_identical": true,
+    "load_store_mmu_arbiter_identical": true,
+    "old_config_has_RVXHCLIC": false,
+    "old_cva6_has_virtual_clic_ports": false,
+    "main_config_has_RVXHCLIC": true,
+    "main_cva6_has_virtual_clic_ports": true,
+    "axi_dw_converter_identical_except_trailing_newline": true,
+    "counter_identical_except_trailing_newline": true,
+    "spill_register_identical_except_trailing_newline": true
+  }
+}

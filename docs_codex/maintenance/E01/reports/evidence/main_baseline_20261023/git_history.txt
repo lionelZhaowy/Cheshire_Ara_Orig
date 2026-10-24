@@ -1,0 +1,172 @@
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git merge-base HEAD 6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+68a7836c0f8998581808efb561bd2fc275a95323
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git merge-base e040b7bbc7851a37faff3c4657ff8d656cc6e20a 6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+68a7836c0f8998581808efb561bd2fc275a95323
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git rev-list --left-right --count e040b7bbc7851a37faff3c4657ff8d656cc6e20a...6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+17	64
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git rev-list --left-right --count HEAD...6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+36	64
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git log --format=%H %cs %s e040b7bbc7851a37faff3c4657ff8d656cc6e20a..HEAD
+c9abbb48946fe3a7244bfb3159919b7c9731cb59 2026-10-19 测试服务器重建工程
+2f0f2d6f85979709fbc99dd4098447cb5587ce5f 2026-10-18 归档无用diagrams
+aa5716464a8869b91212cba9fa31deb1e41ebcf5 2026-10-18 更新v1 SoC架构和日程规划
+09798c1ded457e423b927844f66faae87583a20c 2026-10-17 更新SoC架构图、GB一致性验证、Ara/CPU互联
+322bd6ce964c96cd4337ceb98e5ce89d1bb478d8 2026-10-14 更新软硬件接口和基础软件层
+bf1b4198dfd74cc78291c152b8b682d523e785c5 2026-10-13 清理工程文档
+5a1338e0a0bf115ddd54c19e0ae367ac2d541892 2026-10-13 补充外设和软件层绘图
+c4162204cfee0c48b81158b4296860a678d92bec 2026-10-11 清理并整理docs_codex文件夹
+eaf55be17a07368cdc04ae624301411f8a906593 2026-10-11 图片文件夹重命名
+1b68ba72c64efad963d4af8f5d82fbb3cf37dadc 2026-10-11 提供可编辑图形并Ultra优化教程
+2784340240915fe4338ec54bfd613723b127d62e 2026-10-08 补充html和md文档内容
+459f9d6f5748e39063f7bb67e959c2f27859915d 2026-10-07 优化配图风格
+f01487c2f3c3e990b515bff813227b97049976a3 2026-10-07 结合官方文档进行更新
+5ddec4fb4e982b460b12c3f3587523807602d5d4 2026-09-29 更新html
+69fabdd227e225bf9f5f0b9ec5fe9d056999fea6 2026-09-29 扩充html教程
+4f240258ca683913b7e17949aff23139bff981f1 2026-09-24 更新教程
+ae2b69fe0640e57c89dfc6bcc9404bfd5008e1a5 2026-09-22 docs: add Chinese Cheshire-Ara learning site and engineering guides
+379ae4544bc62e05a2736b11b33a3244181bba38 2026-09-16 Vendor local Bender dependency sources for reproducible rebuilds
+4175f440144fba38a2c7d3b7411e26b51d4c5e56 2026-09-16 Preserve Cheshire-Ara VCU118 baseline and documentation
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git diff --stat e040b7bbc7851a37faff3c4657ff8d656cc6e20a 6c6dd5e834347f72c7be31cd6c41021ec293c5b9 -- hw Bender.yml Bender.lock cheshire.mk sw target
+ Bender.lock                                  |   80 +-
+ Bender.yml                                   |   35 +-
+ cheshire.mk                                  |   69 +-
+ hw/bootrom/cheshire_bootrom.S                |   57 +-
+ hw/bootrom/cheshire_bootrom.c                |   24 +-
+ hw/bootrom/cheshire_bootrom.sv               | 3520 +++++++++++++-------------
+ hw/cheshire.rdl                              |  124 +
+ hw/cheshire_addrmap_pkg.sv                   |  170 ++
+ hw/cheshire_idma_wrap.sv                     |   87 +-
+ hw/cheshire_pkg.sv                           |  110 +-
+ hw/cheshire_soc.sv                           |  372 ++-
+ hw/include/cheshire/typedef.svh              |    7 +-
+ hw/regs/cheshire_reg_pkg.sv                  |  193 --
+ hw/regs/cheshire_reg_top.sv                  | 1268 ----------
+ hw/regs/cheshire_regs.hjson                  |  136 -
+ hw/regs/cheshire_soc_regs.rdl                |  180 ++
+ hw/regs/cheshire_soc_regs.sv                 |  306 +++
+ hw/regs/cheshire_soc_regs_pkg.sv             |  150 ++
+ hw/serial_link.hjson                         |  276 --
+ sw/boot/cheshire.vcu118.dts                  |   20 +
+ sw/boot/flash.c                              |   11 +-
+ sw/boot/zsl.c                                |   12 +-
+ sw/deps/cva6-sdk                             |    2 +-
+ sw/include/dif/dma.h                         |   82 +-
+ sw/include/params.h                          |   43 +-
+ sw/include/regs/cheshire.h                   | 1175 ++++++++-
+ sw/include/regs/clint.h                      |   47 -
+ sw/include/regs/idma.h                       |    8 +
+ sw/include/regs/serial_link.h                |  146 --
+ sw/include/smp.h                             |    8 +-
+ sw/include/util.h                            |    8 +-
+ sw/lib/crt0.S                                |    6 +-
+ sw/lib/dif/clint.c                           |   16 +-
+ sw/lib/dif/uart.c                            |    4 +-
+ sw/lib/gpt.c                                 |    6 +-
+ sw/lib/hal/i2c_24fc1025.c                    |    2 +-
+ sw/lib/hal/spi_s25fs512s.c                   |    2 +-
+ sw/lib/hal/spi_sdcard.c                      |    2 +-
+ sw/link/cheshire_addrs.ldh                   |  232 ++
+ sw/link/common.ldh                           |   33 +-
+ sw/sw.mk                                     |   24 +-
+ sw/tests/axirt_budget.spm.c                  |   18 +-
+ sw/tests/axirt_budget_isolate.spm.c          |   22 +-
+ sw/tests/axirt_hello.spm.c                   |   16 +-
+ sw/tests/clic_smode.spm.S                    |  260 ++
+ sw/tests/clic_vsmode.spm.S                   |  328 +++
+ sw/tests/dma_1d.spm.c                        |   43 +
+ sw/tests/dma_2d.spm.c                        |    6 +-
+ sw/tests/dma_slink.spm.c                     |   47 +
+ sw/tests/helloworld.c                        |    8 +-
+ sw/tests/spm_uncached.spm.c                  |   45 +
+ target/sim/src/elfloader.cpp                 |   47 +
+ target/sim/src/tb_cheshire_pkg.sv            |   20 +-
+ target/sim/src/tb_cheshire_soc.sv            |    6 +
+ target/sim/src/vip_cheshire_soc.sv           |  281 +-
+ target/sim/vsim/start.cheshire_soc.tcl       |    4 +-
+ target/xilinx/constraints/cheshire.xdc       |    8 +
+ target/xilinx/constraints/genesys2.xdc       |   10 +
+ target/xilinx/constraints/vcu118.xdc         |   85 +
+ target/xilinx/constraints/vcu128.xdc         |  350 +++
+ target/xilinx/scripts/common.tcl             |    7 +
+ target/xilinx/scripts/impl_ip.tcl            |   68 +-
+ target/xilinx/scripts/impl_sys.tcl           |   14 +-
+ target/xilinx/scripts/util/flash.tcl         |    5 +-
+ target/xilinx/src/cheshire_top_xilinx.sv     |  156 +-
+ target/xilinx/src/dram_wrapper_xilinx.sv     |   41 +-
+ target/xilinx/src/phy_definitions.svh        |   56 +-
+ target/xilinx/src/regs/chs_xilinx_reg_pkg.sv |  105 +
+ target/xilinx/src/regs/chs_xilinx_reg_top.sv |  473 ++++
+ target/xilinx/src/regs/chs_xilinx_regs.hjson |   84 +
+ target/xilinx/xilinx.mk                      |   17 +-
+ 71 files changed, 6956 insertions(+), 4727 deletions(-)
+
+$ git --git-dir=/tmp/cheshire_main_assessment_20261023/history.git log --format=%H %cs %s 68a7836c0f8998581808efb561bd2fc275a95323..6c6dd5e834347f72c7be31cd6c41021ec293c5b9
+6c6dd5e834347f72c7be31cd6c41021ec293c5b9 2026-10-14 feat(AXI): Add optional AXI cut on the DMA manager port (#295)
+743d265ca58c533dc93b87a27823f61dd40c2a78 2026-10-14 fix(Makefile): Set `VIVADO` in top-level Makefile to avoid implicit overrides (#305)
+f66863c18c7d347bcc9f2dae3bc30991a5924f80 2026-10-14 fix(sw/tests): Set mstatus.MPP to HS-mode in `clic_vsmode`
+292d2c091ffed3e194b0f437b5b3460813905e26 2026-10-02 feat(FPGA): use SSI-aware implementation strategies for VCU118/128 boards (#302)
+a315a828abb61cf3cb9f4419b910ebe6739b90bf 2026-08-28 fix(AXI/APB): Fix configuration issues when deselecting AXI agents. (#284)
+6234e9e9898951e7b6ab818f4e699831eb76d74e 2026-08-07 feat(clint): Migrate to SystemRDL based register generation (#252)
+78e0181615b56135d8b867d405b65d5fb0216080 2026-08-07 fix(pyproject.toml): Set empty py_modules to fix package installation with pip (#291)
+faa7d15287e1f491d38a7f1f77ca52210e6b77a7 2026-08-07 fix(cheshire_pkg): Gate APB bitmask based on selected Cheshire configuration (#290)
+267a97e7031c821569f93a0274056361e55b4261 2026-08-06 feat(Makefile): Provide separate simulation model build target (#280)
+e8bdf609563c35254f10351cfef68a5f004fdd16 2026-08-05 fix(idma_wrap): Add missing submodule port (#279)
+55650af4adf63fa2f445c063983bb91e363b3ff1 2026-05-30 fix(fpga): implement VCU128 DRAM controller without ECC correction (#272)
+2d40a3bd0c83ed3244edb4bf690bedf1bf51936f 2026-05-08 feat(CI): Move to new CI environment with simplified shared runners (#270)
+703de67b50d2fc53fe833eb18a9269058b39dd46 2026-04-29 fix(dram_rtl_sim): Resolve QuestaSim fatal crash when simulating with DRAMSys built by GCC 8 (#267)
+6f997d4d2ee3f83fd9f0b868cbc34b5484a3518f 2026-04-29 feat(clang-format): Add top level `.clang-format` (#268)
+442155e3e7f0c855c5d6d52cae1d74ddc761041f 2026-04-22 SoC: Work around indirection issue in APB connection (#266)
+d9fb66864cf44c57d0415715728d3d5d0f4ab6d1 2026-04-20 fix: Make DRAM region optional in RDL + VIP fixes (#265)
+79a5f5c477241ea515ad5ba1cf55b550382ad950 2026-04-07 serial_link: Integrate new version (#253)
+519464ed4c123888c20dff53d2e9309d3e469ce6 2026-03-31 lint: Update verible waiver
+49d108df5d18270e38f0beac1e35dff887ff3601 2026-03-31 treewide: Clean up
+b437443bde0dbb76e76228a01872c6e83157d2cc 2026-03-31 treewide: Replace hardcoded addresses in favor of RDL generated ones
+4221f9b287b6930985ce600162814e94f058be91 2026-03-31 linker: Dump `ldh` without prefix
+d24a3ffd3aa4199d8bdb44de1d50cca8fdc3f3ab 2026-03-31 make: Clean up of license header insertion
+5894e1b75bf9f69d2dd011788c4303c0104daca5 2026-03-31 ld: Create linker script addresses and memory regions with `rawheader` plugin
+5c78dd4d2a6a8ec989f68331519df8b4ac5c3d4b 2026-03-31 vip: Use `rawheader` for register addresses
+9dbf12d0bac9591c69dd21b91044d0ed1eb5a6c1 2026-03-31 bootrom: Switch to struct based register access
+5cb1abbaa1028100f62987243865dbaee536b54e 2026-03-31 make: Recreate compile scripts when Bender.lock changes
+5597f1ef4ad4cffbdc26246fe8db1fb9e874373b 2026-03-31 hw(regs): Create shorthand for read-only register assignments
+282b4952c5fb621fd444f99fa8cdffa8eacecbf6 2026-03-31 sw: Clean up cheshire register access in SW
+e9103ddec646c5f56a744faa86a7a0f9df1c3900 2026-03-31 hw(regs): Add system address map and switch SW to struct-based register access
+e0d1a98b05c15eba5feb57867915e0877c44b76b 2026-03-31 sw(tests): Switch tests to struct-based register access and new macro names
+477acf279fe7b818d34a1e0fb97d49c13df135e5 2026-03-31 hw(regs): Add system address map and switch SW to struct-based register access
+3aed98131242eac999219602c7397892946dda6c 2026-03-31 hw(regs): Convert cheshire_regs from hjson to SystemRDL
+129779582b731b465bd68f392cf8a7f0a372c692 2026-03-31 make: Add peakrdl build infrastructure
+5d670e9749e5f4abf8317aba1e288b3fab6fd827 2026-03-31 deps: Add apb as explicit dependency and define types
+63a2172391caccb49cdf22e6c49f5643341a12c9 2026-03-31 py: Add `peakrdl` as dependency
+2a77a408a1c5cf1babb23514d12f40865b830607 2026-03-30 TB-MEMH: Add JTAG as fallback preloading method
+c60404ad7a3c1840235495ec3d67757604da6101 2026-03-30 TB: Add direct AXI sim mem preloading support
+da7babeeb96aa4778a37d0131b28b3b004222ab1 2026-03-27 pyproject.toml: Don't build cheshire as a python package
+a4fa6988e9b6fe52aab3edbaac62399f369462c9 2026-03-05 deps: Add reproducible Python `venv` with `uv` (#261)
+4a3932e1bfb8ab72b2d934d65667caefbe2884fc 2026-02-20 sw/deps: Update `cva6-sdk` submodule (#256)
+5752880791a2beabc75a5e39387ffdd2c3ce4230 2025-12-20 hw: Support custom `axi_xbar` config structs (#254)
+64741fb35d0047a146034757c36d560498086463 2025-10-08 target/xilinx: Add VCU118 flow (#240)
+71f9cb27fce47ebeb5ec5359d6663c11978ffab0 2025-10-07 treewide: Update CVA6 to `pulp-v2` and add vCLIC support (#236)
+b4e715ae5efd747907af9fa581c775c2a14a93c5 2025-09-30 target/sim: Clarify 64b alignment for `jtag_elf_preload` (#244)
+fcf135015e1a26ea4a2ad74c4c071f5a8fa645fa 2025-09-22 hw: Work around tool SV compliance issue (#246)
+2d0b8f82356330fc58b32a508a39239de5fcb237 2025-07-28 docs: Remove duplicate words in `sim.md` (#238)
+b3bb66bc3d4ca2b691061e060d93f0231aa132f0 2025-07-09 target/sim: Fix minor spelling and indentation mistakes (#235)
+bca9aadb7588de7046460daf91b39fe863a7a9d1 2025-07-08 treewide: Update iDMA and fix 1D transfers (#203)
+3d9aefbbb3689d6c95bdc1cefdcf768936aa5d8c 2025-06-25 target/xilinx: Add Genesys2 board features and DRAM delay control (#229)
+5c76406da7dd0399bb4179f739d1d768cfaf2d8f 2025-06-16 CHANGELOG.md: Release v0.3.1 (#226)
+f6096ff2ac42db7a3f3f5374770947932b45f587 2025-06-16 deps: Update `apb_uart` and its dependencies (#225)
+0b91c6a9fbbcfe8a445ce0537d9a7602d5e733f9 2025-06-11 target/sim:  Support non-POSIX systems in `elfloader.cpp` (#221)
+a62967e641c80a2eb5ce03bbb372427cd82d8584 2025-06-04 target/sim: Fix `-permissive` flag in `vsim` start script (#210)
+d816ac21ec20523c9bf68367f6a6c708dcdbdc7a 2025-05-21 doc: Fix boot mode index of I2C EEPROM (#209)
+ae5795dfdb177a8dc3ef2f43dcc7ceaa36fd9238 2025-05-12 target/sim: Split serial link preload at page boundaries (#192)
+da15f5bd51804908d56836a1a36943a648207690 2025-04-23 ci: Upgrade `setup-python` to `v5` (#198)
+59963f6d25cebaf14ff32bd7f02b3052d3b01351 2025-04-14 CHANGELOG.md: Release v0.3.0 (#196)
+5c63c992c827d6ed4b8daaf0e6818c78ac709d16 2025-04-14 hw/bootrom: Reduce SD clock as needed (#197)
+7ecb93a324aee8d1562a8ea347cfb714abe837e9 2025-04-13 hw: Fix uncached SPM execute region (#189)
+059365b9d47719845b9ce8856317153adf3db5e8 2025-04-13 target/xilinx: Avoid read-in issues with missing defines (#172)
+26d7b80c9d52dd3821d23cfecfff99857dbc4e7d 2025-04-13 deps: Update `axi_rt` to newest version (#193)
+1b893efc6ee520be7d135a1adda397af94fa1c45 2025-04-04 target/sim: Prevent zero-length SLINK bursts on preload (#191)
+7d1f4d7e70361b1f7764292c1b4dc21b86c8fda6 2025-04-04 sw/tests: Do not print null terminators (#185)
+9b4c222df72f74f90ab9f36d80ba7b527f92e62b 2025-03-31 hw/bootrom: Fix platform ROM fallthrough to boot (#187)

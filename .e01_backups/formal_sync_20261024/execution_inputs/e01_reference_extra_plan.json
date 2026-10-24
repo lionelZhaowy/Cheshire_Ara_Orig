@@ -1,0 +1,217 @@
+{
+  "roots": {
+    "R": "/home/zhaowy24/CheshireAraPULP",
+    "F": "/home/zhaowy24/CheshireAra"
+  },
+  "execution": "Read-only parameter plan; no build/test executed. Placeholders BUILD and SW_OUT must be new project-local output paths. Do not run historical run.py/backend_tests.py.",
+  "environment_path_prefix": "/opt/rh/gcc-toolset-13/root/usr/bin:/eda/synopsys/vcs/W-2024.09-SP1/bin",
+  "timeout_args": [
+    "timeout",
+    "-k",
+    "5s",
+    "600s"
+  ],
+  "seed": 1,
+  "reference_common_compile": {
+    "argv": [
+      "bash",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/production_build/compile.cheshire_soc.sh"
+    ],
+    "cwd": "BUILD",
+    "warning": "Execute original script at its original path; do not copy into BUILD because ROOT is computed relative to script location."
+  },
+  "slink": {
+    "reference_tb": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/slink_llc_rx_20261021/final/tb_slink_llc_rx.sv",
+    "reference_tb_compile": [
+      "vlogan",
+      "-kdb",
+      "-full64",
+      "-sverilog",
+      "-assert",
+      "svaext",
+      "-timescale=1ns/1ps",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/slink_llc_rx_20261021/final/tb_slink_llc_rx.sv"
+    ],
+    "reference_elaborate": [
+      "vcs",
+      "-full64",
+      "-kdb",
+      "-O2",
+      "-debug_access+r",
+      "-cpp",
+      "/opt/rh/gcc-toolset-13/root/usr/bin/g++",
+      "-pvalue+SelectedCfg=3",
+      "/home/zhaowy24/CheshireAraPULP/target/sim/src/elfloader.cpp",
+      "tb_slink_llc_rx",
+      "-o",
+      "BUILD/simv"
+    ],
+    "formal_target": "slink_rx",
+    "cases": [
+      {
+        "name": "idle_64k",
+        "mode": 0,
+        "elf": "slink_cpu0.elf",
+        "length": 65536,
+        "first": "0x80100000"
+      },
+      {
+        "name": "cpu_concurrent_192k",
+        "mode": 1,
+        "elf": "slink_cpu1.elf",
+        "length": 196608,
+        "first": "0x80100000"
+      },
+      {
+        "name": "cpu_concurrent_unaligned_gapped",
+        "mode": 2,
+        "elf": "slink_cpu1.elf",
+        "length": 8193,
+        "first": "0x80100ffd"
+      }
+    ],
+    "run_args": [
+      "+BINARY=SW_OUT/<case.elf>",
+      "+CASE=<case.mode>",
+      "+ntb_random_seed=1"
+    ],
+    "pass_requirements": [
+      "simv rc=0",
+      "target VIP [SLINK] SUCCESS",
+      "SLINK_RX_PASS case=<expected> bytes=<expected> ... target_rc=0",
+      "$finish present",
+      "no assertion/error/fatal/mismatch",
+      "TB checks final data and guards after flush; CASE1/2 require CPU read/write concurrency; CASE1 requires eviction before flush"
+    ],
+    "compare": [
+      "completion fields case/bytes/bursts",
+      "cpu_ar/cpu_aw/rx_ar/rx_aw/rx_w_stall/locked_cycles/cache_whit/cache_wmiss/ddr_aw_during_rx/ddr_aw_total",
+      "target_rc and simulator/entry result; investigate numerical mismatch rather than blindly fail timing change"
+    ]
+  },
+  "idma": {
+    "reference_tb_compile_prefix": [
+      "vlogan",
+      "-full64",
+      "-kdb",
+      "-sverilog",
+      "-assert",
+      "svaext",
+      "+v2k",
+      "-timescale=1ns/1ps"
+    ],
+    "reference_includes": "Extract literal +incdir+ entries from CURRENT reference static compile and replace $ROOT with R. Includes idma test/target rtl/src and axi/common/obi. Never use old before/combined paths.",
+    "reference_tb_sources": [
+      "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/axi-ecdc900686449c15/src/axi_sim_mem.sv",
+      "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/idma-77bf7fa56d324e6a/test/idma_intf.sv",
+      "/home/zhaowy24/CheshireAraPULP/.bender/git/checkouts/idma-77bf7fa56d324e6a/test/idma_test.sv",
+      "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/tb_idma_backend_rw_axi.sv"
+    ],
+    "reference_elaborate_prefix": [
+      "vcs",
+      "-full64",
+      "-kdb",
+      "-O2",
+      "-debug_access+r",
+      "-cpp",
+      "/opt/rh/gcc-toolset-13/root/usr/bin/g++",
+      "tb_idma_backend_rw_axi",
+      "-o",
+      "BUILD/simv_<mode>"
+    ],
+    "common_parameters": [
+      "-pvalue+DataWidth=64",
+      "-pvalue+NumAxInFlight=16",
+      "-pvalue+DmaTracing=0",
+      "-pvalue+WatchDogNumCycles=5000"
+    ],
+    "modes": [
+      {
+        "name": "ideal",
+        "formal_target": "idma_ideal",
+        "extra_parameters": []
+      },
+      {
+        "name": "throttle",
+        "formal_target": "idma_throttle",
+        "extra_parameters": [
+          "-pvalue+AXI_IdealMemory=0",
+          "-pvalue+AXI_MemNumReqOutst=2",
+          "-pvalue+AXI_MemLatency=8"
+        ]
+      }
+    ],
+    "jobs": [
+      {
+        "name": "issue115_aw0_rw0",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/issue115_aw0_rw0.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw0.txt"
+      },
+      {
+        "name": "issue115_aw0_rw1",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/issue115_aw0_rw1.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw0_rw1.txt"
+      },
+      {
+        "name": "issue115_aw1_rw0",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/issue115_aw1_rw0.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw0.txt"
+      },
+      {
+        "name": "issue115_aw1_rw1",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/issue115_aw1_rw1.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/issue115_aw1_rw1.txt"
+      },
+      {
+        "name": "mixed_modes",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/mixed_modes.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/mixed_modes.txt"
+      },
+      {
+        "name": "pr80_asymmetric",
+        "R": "/home/zhaowy24/CheshireAraPULP/_e01/dma_vector_check/pr80_204_20261021/jobs/pr80_asymmetric.txt",
+        "F": "/home/zhaowy24/CheshireAra/src/tb/regressions/idma/jobs/pr80_asymmetric.txt"
+      }
+    ],
+    "run_args": [
+      "+job_file=<job_path>",
+      "+ntb_random_seed=1"
+    ],
+    "pass_requirements": [
+      "simv rc=0",
+      "BACKEND_PASS remaining=0",
+      "$finish present",
+      "no Error/Fatal/Mismatch/AW_STABILITY/W_STABILITY/AR_STABILITY",
+      "AW count equals B count; all requested jobs complete with data checked by TB"
+    ],
+    "compare": [
+      "remaining/AR/AW/B/r_stall/aw_stall",
+      "completion simulation timestamp if available"
+    ]
+  },
+  "formal_entries": {
+    "compile": "/home/zhaowy24/CheshireAra/sim/scripts/compile.cheshire_soc.sh",
+    "start": "/home/zhaowy24/CheshireAra/sim/scripts/start.cheshire_soc.sh",
+    "parser": "/home/zhaowy24/CheshireAra/sim/scripts/check_result.py",
+    "variables": [
+      "TARGET",
+      "BUILD_DIR",
+      "RUN_DIR",
+      "BINARY or JOB_FILE",
+      "SIM_TIMEOUT=600"
+    ],
+    "extra_plusargs": "Pass as start positional arguments; input/boot parameters via environment only."
+  },
+  "equality_checked": {
+    "idma_tb_and_intf_test": "R/F byte-identical",
+    "six_jobs": "R/F byte-identical",
+    "slink_tb": "Only SelectedCfg removal and fix.dut.i_soc hierarchy adaptation",
+    "software": "Use rebuilt slink_cpu0/1 from each project current Makefile, no historical ELF/library reuse"
+  },
+  "error_pattern": "Error:|Fatal:|Error-\\[|Fatal-\\[|Assertion.*(?:fail|error)|started at .*failed at|READ_DATA_X|READ_META_INVALID|Mismatch|AW_STABILITY|W_STABILITY|AR_STABILITY",
+  "limitations": [
+    "No LLC known-failure expansion",
+    "No synthesis or ISA completeness claim",
+    "Test monitors do not replace target/completion/error checks"
+  ]
+}

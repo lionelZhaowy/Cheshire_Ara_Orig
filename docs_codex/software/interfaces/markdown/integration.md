@@ -6,8 +6,8 @@
 
 - [寄存器、地址和生成文件同步](#register-change)
 - [完成、错误和裸机 API](#driver-irq)
-- [NPU、Global Buffer 与图像输入的连接](#accelerators)
-- [C1–C9 的软件可见契约清单](#c1-c9)
+- [NPU、Global Buffer 与图像收发的连接](#accelerators)
+- [v1 C1–C16 的软件可见职责](#c1-c9)
 - [DDR 初始化与平台启动](#ddr)
 - [裸机与 Linux 的接口对照](#linux)
 
@@ -52,43 +52,52 @@ python3 "$REGTOOL_PATH" --cdefines hw/regs/cheshire_regs.hjson > "$REG_OUT/chesh
 
 <a id="accelerators"></a>
 
-## NPU、Global Buffer 与图像输入的连接
+## NPU、Global Buffer 与图像收发的连接
 
 | 需求与未决输入 | 可复用机制与建议新增部分 | 跨层契约、最小验证及恢复 |
 | --- | --- | --- |
-| NPU/GB搬运器的控制+AXI master | RegExt适配配置端；经确认后用AxiExt master接原系统，或按旁路需求在LLC下游合流 | 当前需求NPU DDR数据绕过LLC，不能为方便而接回会污染LLC的主存路径；定义设备地址/位宽/ID/在途、错误状态/IRQ、fence/缓存与所有权。先存储模型小块读写和R/B错误注入；超时隔离缓冲/排空 |
-| CPU或Ara访问GB | GB独立SRAM、总线适配/仲裁/译码；Ara宽侧分流是候选 | CPU是否直访尚未确认；若需直访，必须有从CPU主Xbar可达的目标，不可由Ara支路推断。验证双master同地址/不同bank冲突、byte写、边界与权限，失败不交付半写结果 |
+| NPU/GB搬运器的控制+AXI master | RegExt承接控制；v1的GB搬运器DDR主口经F1接共享压缩前端，绕过LLC | 当前需求NPU DDR数据绕过LLC，不能为方便而接回会污染LLC的主存路径；定义设备地址/位宽/ID/在途、错误状态/IRQ、fence/缓存与所有权。先存储模型小块读写和R/B错误注入；超时隔离缓冲/排空 |
+| CPU或Ara访问GB | GB独立SRAM；CPU/Ara2独立进入主Xbar64，经共享M5目标接GB适配/仲裁 | CPU直访已确认；GB不经过LLC，非缓存/权限需实际配置。验证双master同地址/不同bank冲突、byte写、边界与权限，失败不交付半写结果 |
 | LVDS接收 | 控制端参考RegExt；数据经过接收、对齐、解包、跨域、FIFO | 输入规格、lane映射/速率/训练/帧格式由传感器与IP方提供。记录锁定/失锁、FIFO溢出、帧ID；先器件模型/回环，失锁丢帧/重同步策略待确认 |
-| ISP与帧写入DMA | ISP配置、流通道背压；独立AXI帧写master | 定义stride单位、像素打包、裁剪/色彩格式、有效长度、帧末与错误；DONE应对应定义的写排空点。验证短帧/坏帧/背压/地址越界；不把坏帧标成可消费 |
+| ISP与帧写入DMA | ISP配置、流通道背压；独立AXI帧写master经F2→DDR.S2 | 定义stride单位、像素打包、裁剪/色彩格式、有效长度、帧末与错误；DONE应对应定义的写排空点。验证短帧/坏帧/背压/地址越界；不把坏帧标成可消费 |
 | NPU计算与Ara后处理 | 复用CPU任务调度与Ara指令入口，新增张量/任务描述和GB所有权 | layout/精度/量化、tile范围、epoch和顺序；验证小张量golden及守卫。IRQ只通知，结果交接仍需可见性保证 |
 
-GB容量、bank数、端口、字节写/ECC、时钟、仲裁公平性均待定。接口标称128/256位不能直接相加成SRAM带宽；CPU/Ara/搬运器是否访问同一bank需要仲裁预算。DDR与GB显式搬运是用户需求，GB不是DDR别名，也不是自动一致缓存。
+eMMC参数在DDR就绪后先加载到DDR，运行时再由F1搬入GB；Host DMA走主Xbar/M2/LLC/F0，不直接等同于GB搬运器。GB本地非缓存访问主要管理使用权和写入完成，不套用DDR往返维护。
+
+GB容量、bank数、端口、字节写/ECC、时钟、仲裁公平性均待定。M5的64-bit与设备256-bit接口标称位宽不能直接相加成SRAM带宽；CPU/Ara/搬运器是否访问同一bank需要仲裁预算。DDR与GB显式搬运是用户需求，GB不是DDR别名，也不是自动一致缓存。
 
 <a id="c1-c9"></a>
 
-## C1–C9 的软件可见契约清单
+## v1 C1–C16 的软件可见职责
 
-标号来自[现有规划图说明](../../../diagrams/backup_no_use/2026-10-12_soc_landscape/README.md)，不是当前SoC已实现的寄存器块。下列字段类别为**设计建议**，所有基址、偏移、IRQ编号、复位值和具体位定义仍待设计。
+沿用原锚点以保留链接；标号按[v1 总纲](../../../engineering/SoC_Architecture_v1_Master_Plan.md#65-c1c16-配置组与软件交付)。C编号是图中的配置组，不是寄存器地址或独立slave数量；范围维护服务的控制归属仍待设计，本页不增编号。以下仅为接口职责，硬件与驱动待实现。
 
-| 标号/规划对象 | 软件需要的控制与状态类别 | 当前实现/未决事项 |
+| 配置组 | 功能 | 软件需要观察/配置 |
 | --- | --- | --- |
-| C1 PLL/时钟复位 | 安全频点、请求/确认、lock、故障、复位原因 | 现FPGA时钟IP不等于ASIC软件PLL控制；安全启动/运行时重复配置方向已确认 |
-| C2 DDR Controller | 初始化状态、访问使能、端口/QoS、错误/ECC（若提供） | 采购AXI4版本方向已确认；具体寄存器/端口manifest未给出 |
-| C3 DDR PHY | 训练启动/状态/失败码、校准/维护 | 寄存器归属和训练执行者由供应商规定，不能自创厂商字段 |
-| C4 LVDS | 接收使能、lane/格式、锁定/失锁、帧同步 | 新增IP规格待输入 |
-| C5 ISP | 算法参数/参数生效帧、运行状态、错误 | 参数shadow和帧边界提交需要定义 |
-| C6 NPU计算 | 任务/张量/精度、提交/忙/完成ID、错误 | 队列、寄存器命令或描述符方式未冻结 |
-| C7 NPU/GB搬运 | src/dst/length/stride、任务ID、排空/错误 | 图中统一搬运出口只是候选；不能套现有iDMA有缺口的接口即声称完成 |
-| C8 帧写入DMA | 帧地址/容量/stride、帧ID、短帧/溢出/总线错 | 与LVDS/ISP的帧开始/结束和丢帧策略联动 |
-| C9 GB管理 | 可用bank/预约范围、端口状态、初始化/ECC（若有） | CPU直访、软件分配器、隔离/清零策略待定 |
+| C1 | PLL/时钟复位 | 安全频点、lock、切换/复位状态 |
+| C2 | DDR Controller | 初始化、ready、四口配置及错误 |
+| C3 | DDR PHY | 训练、校准、状态与失败 |
+| C4 | LVDS RX | 接收格式、对齐、启停及错误 |
+| C5 | LVDS TX | 发送格式、FIFO欠载、发送完成 |
+| C6 | 帧写入 DMA | 帧地址/stride、写及元数据发布完成 |
+| C7 | 帧输出 DMA | 二维读取、源帧范围、读完与错误 |
+| C8 | ROI 任务/调度 | 最多256个矩形、顺序、帧身份与提交 |
+| C9 | ISP | 参数位置/版本、帧边界生效及状态 |
+| C10 | NPU 计算 | 操作数/结果GB位置、计算完成及错误 |
+| C11 | GB 搬运 | DDR/GB地址、长度/stride、传输完成及排空 |
+| C12 | GB 管理 | 容量/bank能力、就绪、分块使用及错误 |
+| C13 | eMMC Host/DMA | Host命令、DDR加载、完成及错误 |
+| C14 | 压缩公共控制 | 区域/元数据、初始化、排空与公共错误 |
+| C15 | 共享压缩器 | 模式、能力、状态与统计 |
+| C16 | 共享解压器 | 模式、能力、状态与统计 |
 
-这些新增项需用户确认产品参数、供应商资料和实际写入范围后再实施。本轮授权只完成分析、教程及现有示例复用，不冻结接口数值。
+ROI读取经F3→共享前端→DDR.S3，R返回像素后进入FIFO/LVDS TX；不增加写能力。软件分别检查源帧生产完成、DMA读完和TX发完，源帧等待全部相关读取结束再复用。CPU改帧后需要输入同步；设备写帧后需跨口可见，CPU后续读取才执行所需失效。详见[DDR–GB同步设计](../../../engineering/DDR_GB_Coherence_Design.md)。
 
 <a id="ddr"></a>
 
 ## DDR 初始化与平台启动
 
-截至本轮可读资料，最新确认的是**供应商可提供AXI4**，以及M01 §12的独立GB/NPU旁路需求；没有新增受控Controller/PHY交付可用来核实端口修订。图中的S0（LLC下游）、S1（统一NPU/GB搬运）、S2（帧DMA）是候选合流，不证明Controller实际有三口；如NPU和GB分别保留独立出口还需重评端口数。[当前契约](../../../engineering/IP_DDR_Interface_Contract.md)仍是需求记录。
+2026-10-20 按v1同步：F0（LLC）、F1（GB搬运）、F2（帧写）、F3（ROI帧读）经共享压缩前端接一个Controller的DDR.S0–S3；四口共享物理带宽。压缩区成功需包含数据和元数据发布，普通区域原样旁路；Controller本身的保证由供应商确认，项目另外验证前端/CDC/通知。供应商手册最多8口的能力不等于四口实例已交付。见[当前契约](../../../engineering/IP_DDR_Interface_Contract.md)。
 
 可复用官方Platform ROM钩子，修复并验收S01-B01后，在片内可执行环境中按供应商流程配置安全时钟、复位、Controller/PHY、训练，再经定义的就绪检查开放DDR。具体先后依赖供应商时序，不能一概规定先Controller或先PHY。DDR不可用前，代码/栈/训练参数必须放在独立可用的片内资源；失败保留片内诊断/被动加载恢复入口，不搬应用到坏DDR。
 

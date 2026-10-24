@@ -1,0 +1,123 @@
+[
+  [
+    "align32_phase_shift",
+    {
+      "TEST_SRC": "0x14008060",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "160",
+      "TEST_DS": "192",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "align16_phase_shift",
+    {
+      "TEST_SRC": "0x14008050",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "144",
+      "TEST_DS": "160",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "align8_phase_shift",
+    {
+      "TEST_SRC": "0x14008048",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "136",
+      "TEST_DS": "144",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "align64_phase_shift",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "align64_boundary",
+    {
+      "TEST_SRC": "0x140087c0",
+      "TEST_DST": "0x14010780",
+      "TEST_BYTES": "192",
+      "TEST_SS": "256",
+      "TEST_DS": "320",
+      "TEST_ROWS": "8"
+    }
+  ],
+  [
+    "address32_only",
+    {
+      "TEST_SRC": "0x14008060",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "stride32_only",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "128",
+      "TEST_SS": "160",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "length24_only",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "24",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "length120_only",
+    {
+      "TEST_SRC": "0x14008040",
+      "TEST_DST": "0x14010040",
+      "TEST_BYTES": "120",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "address32_same_offset",
+    {
+      "TEST_SRC": "0x14008060",
+      "TEST_DST": "0x14010060",
+      "TEST_BYTES": "128",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ],
+  [
+    "address8_same_offset",
+    {
+      "TEST_SRC": "0x14008048",
+      "TEST_DST": "0x14010048",
+      "TEST_BYTES": "128",
+      "TEST_SS": "192",
+      "TEST_DS": "256",
+      "TEST_ROWS": "16"
+    }
+  ]
+]

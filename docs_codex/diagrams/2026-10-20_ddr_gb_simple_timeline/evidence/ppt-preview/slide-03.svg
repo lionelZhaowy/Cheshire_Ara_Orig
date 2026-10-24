@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2025.0" viewBox="0 0 3600 2025.0">
+  <defs>
+    <marker id="arrow314D66" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse">
+      <polygon points="0,0 3,1.5 0,3" fill="#314D66"/>
+    </marker>
+  </defs>
+  <rect id="canvas" x="0" y="0" width="3600" height="2025.0" fill="#FFFFFF" stroke="none"/>
+  <rect x="1314.0" y="31.76996625421822" width="972.0" height="129.60011248593926" id="shape-2" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-2-0" x="1800.0" y="107.90996625421822" font-family="WenQuanYi Zen Hei" font-size="81.0" font-weight="bold" fill="#29292D" text-anchor="middle">一次推理的两次数据交接</text>
+  <rect x="405.0" y="225.0" width="2790.0" height="270.0" id="shape-3" fill="#F1D7D9" stroke="#29292D" stroke-width="3.825084364454443" stroke-linejoin="miter"/>
+  <rect x="1488.8830146231721" y="226.5300899887514" width="622.2339707536557" height="104.39988751406074" id="shape-4" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-4-0" x="1800.0" y="287.8650899887514" font-family="WenQuanYi Zen Hei" font-size="65.25" font-weight="bold" fill="#29292D" text-anchor="middle">CPU／Ara 准备输入</text>
+  <rect x="1378.124859392576" y="344.25" width="843.75" height="90.0" id="shape-5" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-5-0" x="1799.999859392576" y="397.125" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">计算结束，交出输入与输出范围</text>
+  <line x1="1800.0" y1="495.0" x2="1800.0" y2="549.0" id="shape-6" fill="none" stroke="#314D66" stroke-width="6.300056242969629" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <rect x="405.0" y="549.0" width="2790.0" height="270.0" id="shape-7" fill="#E8DFED" stroke="#29292D" stroke-width="3.825084364454443" stroke-linejoin="miter"/>
+  <rect x="1604.25" y="550.5300899887515" width="391.5" height="104.39988751406074" id="shape-8" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-8-0" x="1800.0" y="611.8650899887515" font-family="WenQuanYi Zen Hei" font-size="65.25" font-weight="bold" fill="#29292D" text-anchor="middle">交接前同步</text>
+  <rect x="1209.375140607424" y="636.75" width="1181.25" height="90.0" id="shape-9" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-9-0" x="1800.000140607424" y="689.625" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">先排空旧事务，再清理输入、清理并失效输出</text>
+  <rect x="1350.0" y="722.25" width="900.0" height="90.0" id="shape-10" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-10-0" x="1800.0" y="775.125" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">确认设备端口可见，允许启动搬运</text>
+  <line x1="1800.0" y1="819.0" x2="1800.0" y2="873.0" id="shape-11" fill="none" stroke="#314D66" stroke-width="6.300056242969629" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <rect x="405.0" y="873.0" width="2790.0" height="270.0" id="shape-12" fill="#D9EEE8" stroke="#29292D" stroke-width="3.825084364454443" stroke-linejoin="miter"/>
+  <rect x="1636.875140607424" y="874.5300899887515" width="326.25" height="104.39988751406074" id="shape-13" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-13-0" x="1800.000140607424" y="935.8650899887515" font-family="WenQuanYi Zen Hei" font-size="65.25" font-weight="bold" fill="#29292D" text-anchor="middle">设备执行</text>
+  <rect x="1173.146512935883" y="992.25" width="1253.706974128234" height="90.0" id="shape-14" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-14-0" x="1800.0" y="1045.125" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">DDR → GB → NPU 计算 → 结果从 GB 写回 DDR</text>
+  <line x1="1800.0" y1="1143.0" x2="1800.0" y2="1197.0" id="shape-15" fill="none" stroke="#314D66" stroke-width="6.300056242969629" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <rect x="405.0" y="1197.0" width="2790.0" height="270.0" id="shape-16" fill="#E8DFED" stroke="#29292D" stroke-width="3.825084364454443" stroke-linejoin="miter"/>
+  <rect x="1525.3647356580427" y="1198.5300899887513" width="549.2708098987626" height="104.39988751406074" id="shape-17" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-17-0" x="1800.000140607424" y="1259.8650899887514" font-family="WenQuanYi Zen Hei" font-size="65.25" font-weight="bold" fill="#29292D" text-anchor="middle">交回 CPU 前同步</text>
+  <rect x="1394.4955005624297" y="1284.75" width="811.0089988751406" height="90.0" id="shape-18" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-18-0" x="1800.0" y="1337.625" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">确认写回成功且 CPU 端口可见</text>
+  <rect x="1238.1310461192352" y="1370.25" width="1123.7379077615299" height="90.0" id="shape-19" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-19-0" x="1800.0" y="1423.125" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">处理相关回填，再失效 L1D／LLC 输出副本</text>
+  <line x1="1800.0" y1="1467.0" x2="1800.0" y2="1521.0" id="shape-20" fill="none" stroke="#314D66" stroke-width="6.300056242969629" stroke-linejoin="miter" marker-end="url(#arrow314D66)"/>
+  <rect x="405.0" y="1521.0" width="2790.0" height="270.0" id="shape-21" fill="#F1D7D9" stroke="#29292D" stroke-width="3.825084364454443" stroke-linejoin="miter"/>
+  <rect x="1437.2702474690664" y="1522.5300899887513" width="725.4597862767154" height="104.39988751406074" id="shape-22" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-22-0" x="1800.000140607424" y="1583.8650899887514" font-family="WenQuanYi Zen Hei" font-size="65.25" font-weight="bold" fill="#29292D" text-anchor="middle">CPU 读取结果并后处理</text>
+  <rect x="1378.124859392576" y="1640.25" width="843.75" height="90.0" id="shape-23" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-23-0" x="1799.999859392576" y="1693.125" font-family="WenQuanYi Zen Hei" font-size="56.25" font-weight="normal" fill="#29292D" text-anchor="middle">同步成功后重新取得输出使用权</text>
+  <rect x="1125.0" y="1854.179977502812" width="1350.0" height="86.39988751406074" id="shape-24" fill="none" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+  <text id="text-24-0" x="1800.0" y="1904.939977502812" font-family="WenQuanYi Zen Hei" font-size="54.0" font-weight="normal" fill="#29292D" text-anchor="middle">箭头表示先后顺序；每个阶段成功后才进入下一阶段。</text>
+</svg>

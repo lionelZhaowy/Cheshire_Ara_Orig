@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-20",
+  "status": "pass",
+  "failures": [],
+  "protection": {
+    "inputs": 197,
+    "changed": [
+      "docs_codex/diagrams/README.md",
+      "docs_codex/engineering/Cache_Coherence_Architecture.md",
+      "docs_codex/engineering/DDR_GB_Coherence_Design.md",
+      "docs_codex/handoffs/L01_cache_coherence_architecture.md",
+      "docs_codex/diagrams/2026-10-20_ddr_gb_coherence_v1/README.md"
+    ],
+    "unexpected_changes": [],
+    "unchanged": 192
+  },
+  "main": {
+    "chinese_characters": 4173,
+    "chapters": 8,
+    "images": 3,
+    "original_pseudocode_preserved": true,
+    "old_table_rows_moved": 16
+  },
+  "pptx": {
+    "changed_parts": [
+      "ppt/slides/slide3.xml"
+    ],
+    "native_objects": 23,
+    "text_objects": 14,
+    "arrows": 4,
+    "pictures": 0,
+    "office_tested": false
+  },
+  "links": {
+    "checked": 277,
+    "errors": []
+  },
+  "visual_review": {
+    "viewed": [
+      "previews/timeline-simple.png",
+      "evidence/ppt-render/slide-03.png",
+      "evidence/ppt-detail/before.png",
+      "evidence/ppt-detail/after.png",
+      "previews/design-top.png",
+      "previews/design-figure-1.png",
+      "previews/design-software.png",
+      "previews/architecture-detail.png"
+    ],
+    "ppt_preview": "Final PPTX re-read using existing DrawingML subset renderer and local font; not Office",
+    "first_attempt_preserved": "evidence/attempt-01"
+  },
+  "semantic_review": [
+    "Five application stages in temporal order; four arrows are sequencing, not new physical buses",
+    "Preparation drains old transactions before cache maintenance; input clean and output clean/invalidate remain distinct ranges",
+    "Device stage includes DDR-to-GB, computation and GB-to-DDR",
+    "Return stage waits write success and CPU-port visibility, then handles refills and final invalidation",
+    "First two deck pages and six-page planning deck preserved; old 16 arrows remain available in architecture"
+  ],
+  "diff_check": "",
+  "hardware_tests_run": false
+}

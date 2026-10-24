@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+<title>经 DDR 与缓存直供：数据路径和代价</title>
+<defs>
+<marker id="data" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker>
+<marker id="control" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#765489"/></marker>
+<marker id="local" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#187C78"/></marker>
+</defs>
+<rect id="background" x="0" y="0" width="2400" height="1350" fill="#FFFFFF" stroke="none"/>
+<text x="50" y="54" font-family="WenQuanYi Zen Hei" font-size="36" font-weight="700" text-anchor="start" fill="#29292D">经 DDR 与缓存直供：数据路径和代价</text>
+<text x="50" y="96" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="start" fill="#606773">比较场景：CPU 的最新数据在 LLC 脏行中，DMA 将该行搬入独立 GB。</text>
+<rect id="cleanpanel" x="50" y="145" width="1120" height="790" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="75" y="193" font-family="WenQuanYi Zen Hei" font-size="34" font-weight="400" text-anchor="start" fill="#29292D">本方案：经前端清理，再搬运</text>
+<rect id="cleanprivate" x="90" y="295" width="240" height="90" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="210.0" y="350.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleanprivate">L1D / 写缓冲</text>
+<rect id="cleanllc" x="90" y="485" width="240" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="210.0" y="528.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleanllc">LLC</text>
+<text x="210.0" y="563.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="cleanllc">持有最新脏行</text>
+<rect id="cleancoord" x="450" y="295" width="600" height="90" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7" stroke-dasharray="9 6"/>
+<text x="750.0" y="333.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleancoord">缓存维护与协调</text>
+<text x="750.0" y="368.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="cleancoord">软件交接 / 缓存维护 / 搬运准入与完成</text>
+<rect id="cleanddr" x="90" y="725" width="240" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="210.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleanddr">DDR</text>
+<rect id="cleandma" x="450" y="725" width="240" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="570.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleandma">搬运器 / DMA</text>
+<rect id="cleanproxy" x="810" y="725" width="240" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="930.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleanproxy">共享数据代理</text>
+<rect id="cleangb" x="810" y="485" width="240" height="100" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="930.0" y="528.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="cleangb">GB</text>
+<text x="930.0" y="563.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="cleangb">独立 SRAM</text>
+<polyline id="cleanprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="210,385 210,485"/>
+<polyline id="cleanllc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="210,585 210,725"/>
+<polyline id="cleanprobe-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="450,320 330,320"/>
+<polyline id="cleanprobe-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="450,360 370,360 370,520 330,520"/>
+<polyline id="cleanadmit" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="650,385 650,725"/>
+<polyline id="cleanclean-data" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="270,585 270,725"/>
+<polyline id="cleanddr-data" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="330,770 450,770"/>
+<text x="335" y="637" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#187C78">② clean</text>
+<text x="335" y="676" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#187C78">等待前端 / DDR 可见</text>
+<polyline id="cleandma-proxy" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="690,770 810,770"/>
+<polyline id="cleanproxy-gb" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="930,725 930,585"/>
+<text x="700" y="443" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#765489">① 交接与缓存维护</text>
+<text x="960" y="649" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#187C78">③ 写入 GB</text>
+<text x="75" y="871" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">经共享前端供数；数据与元数据按逻辑地址发布。</text>
+<text x="75" y="912" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">设备不分配 LLC 行；GB 按任务显式管理。</text>
+<rect id="supplypanel" x="1230" y="145" width="1120" height="790" fill="#FAFBFC" stroke="#29292D" stroke-width="1.7"/>
+<text x="1255" y="193" font-family="WenQuanYi Zen Hei" font-size="34" font-weight="400" text-anchor="start" fill="#29292D">比较项：缓存直供（本方案不采用）</text>
+<rect id="supplyprivate" x="1270" y="295" width="240" height="90" fill="#F1D7D9" stroke="#29292D" stroke-width="1.7"/>
+<text x="1390.0" y="350.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplyprivate">L1D / 写缓冲</text>
+<rect id="supplyllc" x="1270" y="485" width="240" height="100" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1390.0" y="528.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplyllc">LLC</text>
+<text x="1390.0" y="563.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="supplyllc">持有最新脏行</text>
+<rect id="supplycoord" x="1630" y="295" width="600" height="90" fill="#F5E1C9" stroke="#29292D" stroke-width="1.7" stroke-dasharray="9 6"/>
+<text x="1930.0" y="333.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplycoord">缓存维护与协调</text>
+<text x="1930.0" y="368.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="supplycoord">软件交接 / 缓存维护 / 搬运准入与完成</text>
+<rect id="supplyddr" x="1270" y="725" width="240" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1390.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplyddr">DDR</text>
+<rect id="supplydma" x="1630" y="725" width="240" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1750.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplydma">搬运器 / DMA</text>
+<rect id="supplyproxy" x="1990" y="725" width="240" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="2110.0" y="780.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplyproxy">共享数据代理</text>
+<rect id="supplygb" x="1990" y="485" width="240" height="100" fill="#D9EEE8" stroke="#29292D" stroke-width="1.7"/>
+<text x="2110.0" y="528.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="supplygb">GB</text>
+<text x="2110.0" y="563.0" font-family="WenQuanYi Zen Hei" font-size="24" font-weight="400" text-anchor="middle" fill="#29292D" data-owner="supplygb">独立 SRAM</text>
+<polyline id="supplyprivate-llc" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1390,385 1390,485"/>
+<polyline id="supplyllc-ddr" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1390,585 1390,725"/>
+<polyline id="supplyprobe-private" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1630,320 1510,320"/>
+<polyline id="supplyprobe-llc" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1630,360 1550,360 1550,520 1510,520"/>
+<polyline id="supplyadmit" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" marker-start="url(#control)" points="1830,385 1830,725"/>
+<polyline id="supplyddr-fallback" fill="none" stroke="#314D66" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#data)" marker-start="url(#data)" points="1510,795 1630,795"/>
+<polyline id="supplycache-data" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1510,555 1590,555 1590,665 1750,665 1750,725"/>
+<text x="1610" y="631" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#187C78">② 最新数据</text>
+<text x="1255" y="871" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">DDR 可暂时保留旧值；由 LLC 提供本次读数据。</text>
+<polyline id="supplydma-proxy" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="1870,770 1990,770"/>
+<polyline id="supplyproxy-gb" fill="none" stroke="#187C78" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#local)" points="2110,725 2110,585"/>
+<text x="1880" y="443" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#765489">① 交接与缓存维护</text>
+<text x="2140" y="649" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="400" text-anchor="start" fill="#187C78">③ 写入 GB</text>
+<text x="1255" y="912" font-family="WenQuanYi Zen Hei" font-size="26" font-weight="400" text-anchor="start" fill="#29292D">设备不分配 LLC 行；GB 按任务显式管理。</text>
+<text x="55" y="996" font-family="WenQuanYi Zen Hei" font-size="32" font-weight="700" text-anchor="start" fill="#29292D">本方案的输出交接：先保护旧字节，最后清除旧读副本</text>
+<rect id="write0" x="55" y="1040" width="405" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="257.5" y="1095.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="write0">交接目标范围</text>
+<rect id="write1" x="520" y="1040" width="405" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="722.5" y="1095.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="write1">写前清理与失效</text>
+<polyline id="write-seq1" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="460,1085 520,1085"/>
+<rect id="write2" x="985" y="1040" width="405" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="1187.5" y="1095.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="write2">GB → DDR</text>
+<polyline id="write-seq2" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="925,1085 985,1085"/>
+<rect id="write3" x="1450" y="1040" width="405" height="90" fill="#D8E8F4" stroke="#29292D" stroke-width="1.7"/>
+<text x="1652.5" y="1095.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="write3">写后失效确认</text>
+<polyline id="write-seq3" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1390,1085 1450,1085"/>
+<rect id="write4" x="1915" y="1040" width="405" height="90" fill="#E8DFED" stroke="#29292D" stroke-width="1.7"/>
+<text x="2117.5" y="1095.0" font-family="WenQuanYi Zen Hei" font-size="27" font-weight="700" text-anchor="middle" fill="#29292D" data-owner="write4">CPU 获取结果</text>
+<polyline id="write-seq4" fill="none" stroke="#765489" stroke-width="2.8" stroke-linejoin="miter" marker-end="url(#control)" points="1855,1085 1915,1085"/>
+<text x="55" y="1192" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="400" text-anchor="start" fill="#29292D">N + D 为上游逻辑字节；DDR 实际字节另计压缩、元数据及部分块处理。</text>
+<text x="55" y="1240" font-family="WenQuanYi Zen Hei" font-size="30" font-weight="400" text-anchor="start" fill="#29292D">当前规划采用左侧路径；右侧用于成本比较。软件保持交接范围的所有权，硬件完成维护。</text>
+<text x="55" y="1300" font-family="WenQuanYi Zen Hei" font-size="25" font-weight="400" text-anchor="start" fill="#29292D">蓝灰：常规访存 / 后备路径    绿色：本场景的数据    紫色：控制与确认    虚线框：待实现的维护职责</text>
+</svg>

@@ -1,0 +1,2225 @@
+diff --git a/jobs/backend_rw_axi/simple.txt b/jobs/backend_rw_axi/simple.txt
+index 2e0a0e8..ffc3f50 100644
+--- a/jobs/backend_rw_axi/simple.txt
++++ b/jobs/backend_rw_axi/simple.txt
+@@ -1,4 +1,4 @@
+-2
++100
+ 0x0
+ 0x3ff
+ 0
+@@ -8,3 +8,23 @@
+ 0
+ 0
+ 0
++100
++0x4000
++0x43ff
++0
++0
++256
++4
++0
++1
++0
++1024
++0x8000
++0xc000
++0
++0
++256
++4
++0
++0
++0
+diff --git a/src/backend/idma_axi_read.sv b/src/backend/idma_axi_read.sv
+index d112911..c0514bf 100644
+--- a/src/backend/idma_axi_read.sv
++++ b/src/backend/idma_axi_read.sv
+@@ -61,10 +61,6 @@ module idma_axi_read #(
+     /// AXI4+ATOP read manager port response
+     input  read_rsp_t read_rsp_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -185,9 +181,6 @@ module idma_axi_read #(
+     assign r_dp_valid_o = read_rsp_i.r_valid & in_ready & (read_rsp_i.r.last
+         | (|read_rsp_i.r.resp));
+ 
+-    assign r_chan_ready_o = read_req_o.r_ready;
+-    assign r_chan_valid_o = read_rsp_i.r_valid;
+-
+     //--------------------------------------
+     // Unused AXI signals
+     //--------------------------------------
+diff --git a/src/backend/idma_axi_write.sv b/src/backend/idma_axi_write.sv
+index ee27349..2123e2b 100644
+--- a/src/backend/idma_axi_write.sv
++++ b/src/backend/idma_axi_write.sv
+@@ -68,6 +68,10 @@ module idma_axi_write #(
+     /// AXI4+ATOP write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -256,6 +260,10 @@ module idma_axi_write #(
+         end
+     end
+ 
++    // Channel management signals
++    assign w_chan_valid_o = write_req_o.w_valid;
++    assign w_chan_ready_o = write_rsp_i.w_ready;
++    assign w_chan_first_o = first_w;
+ 
+     //--------------------------------------
+     // Write response
+diff --git a/src/backend/idma_axil_read.sv b/src/backend/idma_axil_read.sv
+index 2d382b0..bbc8d0b 100644
+--- a/src/backend/idma_axil_read.sv
++++ b/src/backend/idma_axil_read.sv
+@@ -54,10 +54,6 @@ module idma_axil_read #(
+     /// AXI Lite read manager port response
+     input  read_rsp_t read_rsp_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -134,8 +130,6 @@ module idma_axil_read #(
+ 
+     // r_dp_valid_o is triggered once the last element is here or an error occurs
+     assign r_dp_valid_o   = read_rsp_i.r_valid & in_ready;
+-    assign r_chan_ready_o = read_req_o.r_ready;
+-    assign r_chan_valid_o = read_rsp_i.r_valid;
+ 
+     //--------------------------------------
+     // Unused AXI Lite signals
+diff --git a/src/backend/idma_axil_write.sv b/src/backend/idma_axil_write.sv
+index 0a47b41..65ec6d8 100644
+--- a/src/backend/idma_axil_write.sv
++++ b/src/backend/idma_axil_write.sv
+@@ -61,6 +61,10 @@ module idma_axil_write #(
+     /// AXI Lite write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -161,6 +165,11 @@ module idma_axil_write #(
+     // we are ready for the next transfer internally, once the w last signal is applied
+     assign w_dp_ready_o = write_happening;
+ 
++    // Channel management signals
++    assign w_chan_valid_o = write_req_o.w_valid;
++    assign w_chan_ready_o = write_rsp_i.w_ready;
++    assign w_chan_first_o = 1'b1; // always first, no bursting
++
+     //--------------------------------------
+     // Write response
+     //--------------------------------------
+diff --git a/src/backend/idma_axis_read.sv b/src/backend/idma_axis_read.sv
+index 36002be..1676ce4 100644
+--- a/src/backend/idma_axis_read.sv
++++ b/src/backend/idma_axis_read.sv
+@@ -54,10 +54,6 @@ module idma_axis_read #(
+     /// AXI Stream read manager port response
+     output read_rsp_t read_rsp_o,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -124,8 +120,6 @@ module idma_axis_read #(
+ 
+     // r_dp_ready_o is triggered by the last element arriving from the read
+     assign r_dp_req_ready_o = r_dp_req_valid_i & r_dp_rsp_ready_i & read_req_i.tvalid & in_ready;
+-    assign r_chan_ready_o   = read_rsp_o.tready;
+-    assign r_chan_valid_o   = read_req_i.tvalid;
+ 
+     // connect r_dp response payload
+     assign r_dp_rsp_o.resp  = '0;
+diff --git a/src/backend/idma_axis_write.sv b/src/backend/idma_axis_write.sv
+index d4e9f7b..a060772 100644
+--- a/src/backend/idma_axis_write.sv
++++ b/src/backend/idma_axis_write.sv
+@@ -66,6 +66,10 @@ module idma_axis_write #(
+     /// AXI Stream write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -152,6 +156,10 @@ module idma_axis_write #(
+     assign w_dp_req_ready_o = write_happening;
+     assign aw_ready_o       = write_happening;
+ 
++    assign w_chan_valid_o   = write_req_o.tvalid;
++    assign w_chan_ready_o   = write_rsp_i.tready;
++    assign w_chan_first_o   = 1'b1; // always first, no AW channel
++
+     //--------------------------------------
+     // Write response
+     //--------------------------------------
+diff --git a/src/backend/idma_channel_coupler.sv b/src/backend/idma_channel_coupler.sv
+index 1491716..c47c9dc 100644
+--- a/src/backend/idma_channel_coupler.sv
++++ b/src/backend/idma_channel_coupler.sv
+@@ -31,14 +31,14 @@ module idma_channel_coupler #(
+     /// Testmode in
+     input  logic testmode_i,
+ 
+-    /// R response valid
+-    input  logic r_rsp_valid_i,
+-    /// R response ready
+-    input  logic r_rsp_ready_i,
+-    /// First R response
+-    input  logic r_rsp_first_i,
+-    /// Did the read originate from a decoupled request
+-    input  logic r_decouple_aw_i,
++    /// W request valid
++    input  logic w_req_valid_i,
++    /// W request ready
++    input  logic w_req_ready_i,
++    /// First W request
++    input  logic w_req_first_i,
++    /// Does the `W` burst belong to a decoupled request?
++    input  logic w_decouple_aw_i,
+     /// Is the `AW` in the queue a decoupled request?
+     input  logic aw_decouple_aw_i,
+ 
+@@ -60,7 +60,7 @@ module idma_channel_coupler #(
+ );
+ 
+     /// The width of the credit counter keeping track of the transfers
+-    localparam int unsigned CounterWidth = cf_math_pkg::idx_width(NumAxInFlight);
++    localparam int unsigned CounterWidth = cf_math_pkg::idx_width(NumAxInFlight + 1);
+ 
+     /// Credit counter type
+     typedef logic [CounterWidth-1:0] cnt_t;
+@@ -87,8 +87,11 @@ module idma_channel_coupler #(
+     // counter to keep track of AR to send
+     cnt_t aw_to_send_d, aw_to_send_q;
+ 
+-    // first signal -> an R has arrived that needs to free an AW
+-    assign first = r_rsp_valid_i & r_rsp_ready_i & r_rsp_first_i & !r_decouple_aw_i;
++    logic aw_stall_d, aw_stall_q;
++
++    // first signal -> a W has data that needs to free an AW
++    assign first = w_req_valid_i & w_req_first_i & ~aw_stall_q & ~w_decouple_aw_i;
++    assign aw_stall_d = w_req_valid_i & ~w_req_ready_i;
+ 
+     // stream fifo to hold AWs back
+     stream_fifo_optimal_wrap #(
+@@ -132,26 +135,30 @@ module idma_channel_coupler #(
+ 
+         // defaults
+         aw_to_send_d = aw_to_send_q;
++        aw_sent      = 1'b0;
+ 
+-        // if we bypass the logic
+-        aw_sent = aw_decoupled_head & aw_valid;
+-
+-        // first is asserted and aw is ready -> just send AW out
+-        // without changing the credit counter value
+-        if (aw_ready_decoupled & first) begin
++        // a decoupled AW at the head is released without consuming a credit
++        if (aw_valid & aw_decoupled_head) begin
+             aw_sent = 1'b1;
++            if (first) begin
++                aw_to_send_d = aw_to_send_q + 1;
++            end
+         end
+ 
+-        // if first is asserted and aw is not ready -> increment
+-        // credit counter
+-        else if (!aw_ready_decoupled & first) begin
+-            aw_to_send_d = aw_to_send_q + 1;
++        // a coupled AW at the head is released against a credit
++        else if (aw_valid & (first | (aw_to_send_q != '0))) begin
++            aw_sent = 1'b1;
++            // the credit is consumed only once the AW is actually accepted
++            if (aw_ready_decoupled & !first) begin
++                aw_to_send_d = aw_to_send_q - 1;
++            end else if (!aw_ready_decoupled & first) begin
++                aw_to_send_d = aw_to_send_q + 1;
++            end
+         end
+ 
+-        // if not first, aw is ready and we have credit -> count down
+-        else if (aw_ready_decoupled & !first & aw_to_send_q != '0) begin
+-            aw_sent = 1'b1;
+-            aw_to_send_d = aw_to_send_q - 1;
++        // no AW can be released this cycle -> bank the credit
++        else if (first) begin
++            aw_to_send_d = aw_to_send_q + 1;
+         end
+     end
+ 
+@@ -159,7 +166,7 @@ module idma_channel_coupler #(
+     assign aw_ready = aw_valid_o & aw_ready_i;
+ 
+     // fall through register to decouple the aw valid signal from the aw ready
+-    // now payload is required; just the decoupling of the handshaking signals
++    // no payload is required; just the decoupling of the handshaking signals
+     fall_through_register #(
+         .T ( logic [0:0] )
+     ) i_fall_through_register_decouple_aw_valid (
+@@ -180,6 +187,7 @@ module idma_channel_coupler #(
+ 
+     // state
+     `FF(aw_to_send_q, aw_to_send_d, '0, clk_i, rst_ni)
++    `FF(aw_stall_q, aw_stall_d, '0, clk_i, rst_ni)
+ 
+ 
+ endmodule
+diff --git a/src/backend/idma_init_read.sv b/src/backend/idma_init_read.sv
+index 4e959da..5738159 100644
+--- a/src/backend/idma_init_read.sv
++++ b/src/backend/idma_init_read.sv
+@@ -54,10 +54,6 @@ module idma_init_read #(
+     /// INIT read manager port response
+     input  read_rsp_t read_rsp_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -126,8 +122,6 @@ module idma_init_read #(
+ 
+     // r_dp_ready_o is triggered by the last element arriving from the read
+     assign r_dp_ready_o   = r_dp_valid_i & r_dp_ready_i & read_rsp_i.rsp_valid & in_ready;
+-    assign r_chan_ready_o = read_req_o.rsp_ready;
+-    assign r_chan_valid_o = read_rsp_i.rsp_valid;
+ 
+     // connect r_dp response payload
+     assign r_dp_rsp_o.resp  = '0;
+diff --git a/src/backend/idma_init_write.sv b/src/backend/idma_init_write.sv
+index 61e9b9b..0eb573d 100644
+--- a/src/backend/idma_init_write.sv
++++ b/src/backend/idma_init_write.sv
+@@ -62,6 +62,10 @@ module idma_init_write #(
+     /// INIT write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -151,6 +155,11 @@ module idma_init_write #(
+     assign w_dp_ready_o       = write_happening;
+     assign write_meta_ready_o = write_happening;
+ 
++    // Channel management signals
++    assign w_chan_valid_o = write_req_o.req_valid;
++    assign w_chan_ready_o = write_rsp_i.req_ready;
++    assign w_chan_first_o = 1'b1; // always first, no AW channel
++
+     //--------------------------------------
+     // Write response
+     //--------------------------------------
+diff --git a/src/backend/idma_obi_read.sv b/src/backend/idma_obi_read.sv
+index 0fd518d..005828b 100644
+--- a/src/backend/idma_obi_read.sv
++++ b/src/backend/idma_obi_read.sv
+@@ -54,10 +54,6 @@ module idma_obi_read #(
+     /// OBI read manager port response
+     input  read_rsp_t read_rsp_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -126,8 +122,6 @@ module idma_obi_read #(
+ 
+     // r_dp_ready_o is triggered by the last element arriving from the read
+     assign r_dp_ready_o   = r_dp_valid_i & r_dp_ready_i & read_rsp_i.rvalid & in_ready;
+-    assign r_chan_ready_o = read_req_o.rready;
+-    assign r_chan_valid_o = read_rsp_i.rvalid;
+ 
+     // connect r_dp response payload
+     assign r_dp_rsp_o.resp  = {1'b0, read_rsp_i.r.err};
+diff --git a/src/backend/idma_obi_write.sv b/src/backend/idma_obi_write.sv
+index d79163c..5b9ef11 100644
+--- a/src/backend/idma_obi_write.sv
++++ b/src/backend/idma_obi_write.sv
+@@ -61,6 +61,10 @@ module idma_obi_write #(
+     /// OBI write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -153,6 +157,11 @@ module idma_obi_write #(
+     assign w_dp_ready_o = write_happening;
+     assign aw_ready_o   = write_happening;
+ 
++    // Channel management signals
++    assign w_chan_valid_o = write_req_o.req;
++    assign w_chan_ready_o = write_rsp_i.gnt;
++    assign w_chan_first_o = 1'b1; // always first, no bursting
++
+     //--------------------------------------
+     // Write response
+     //--------------------------------------
+diff --git a/src/backend/idma_tilelink_read.sv b/src/backend/idma_tilelink_read.sv
+index f59c938..e51379c 100644
+--- a/src/backend/idma_tilelink_read.sv
++++ b/src/backend/idma_tilelink_read.sv
+@@ -63,10 +63,6 @@ module idma_tilelink_read #(
+     /// TileLink read manager port response
+     input  read_rsp_t read_rsp_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
+-
+     /// Data to Buffer
+     output byte_t [StrbWidth-1:0] buffer_in_o,
+     /// Valid to Buffer
+@@ -207,9 +203,6 @@ module idma_tilelink_read #(
+     assign r_dp_valid_o = read_rsp_i.d_valid & in_ready & (last
+         | read_rsp_i.d.corrupt | read_rsp_i.d.denied);
+ 
+-    assign r_chan_ready_o = read_req_o.d_ready;
+-    assign r_chan_valid_o = read_rsp_i.d_valid;
+-
+     //--------------------------------------
+     // State
+     //--------------------------------------
+diff --git a/src/backend/idma_tilelink_write.sv b/src/backend/idma_tilelink_write.sv
+index 50c94b5..95865f3 100644
+--- a/src/backend/idma_tilelink_write.sv
++++ b/src/backend/idma_tilelink_write.sv
+@@ -70,6 +70,10 @@ module idma_tilelink_write #(
+     /// TileLink write manager port response
+     input  write_rsp_t write_rsp_i,
+ 
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
++
+     /// Data from buffer
+     input  byte_t [StrbWidth-1:0] buffer_out_i,
+     /// Valid from buffer
+@@ -254,6 +258,10 @@ module idma_tilelink_write #(
+         end
+     end
+ 
++    // Channel management signals
++    assign w_chan_valid_o = write_req_o.a_valid;
++    assign w_chan_ready_o = write_rsp_i.a_ready;
++    assign w_chan_first_o = first_w;
+ 
+     //--------------------------------------
+     // Write response
+diff --git a/src/backend/tpl/idma_backend.sv.tpl b/src/backend/tpl/idma_backend.sv.tpl
+index 946c417..9d685e6 100644
+--- a/src/backend/tpl/idma_backend.sv.tpl
++++ b/src/backend/tpl/idma_backend.sv.tpl
+@@ -370,9 +370,10 @@ _rsp_t ${protocol}_write_rsp_i,
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -769,8 +770,9 @@ _rsp_t ${protocol}_write_rsp_i,
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -785,6 +787,28 @@ _rsp_t ${protocol}_write_rsp_i,
+ 
+     if (RAWCouplingAvail) begin : gen_r_aw_coupler
+ % if one_read_port and one_write_port and (used_read_protocols[0] == used_write_protocols[0]):
++        // per-transfer decouple_aw tag travelling with the write datapath request
++        logic w_decouple_aw_out;
++
++        // mirrors i_w_dp_req exactly: same depth, same push valid, same pop ready
++        stream_fifo_optimal_wrap #(
++            .Depth     ( NumAxInFlight ),
++            .type_t    ( logic                            ),
++            .PrintInfo ( PrintFifoInfo                    )
++        ) i_w_decouple_aw (
++            .clk_i      ( clk_i               ),
++            .rst_ni     ( rst_ni              ),
++            .testmode_i ( testmode_i          ),
++            .flush_i    ( 1'b0                ),
++            .usage_o    ( /* NOT CONNECTED */ ),
++            .data_i     ( w_req.decouple_aw   ),
++            .valid_i    ( w_valid             ),
++            .ready_o    ( /* NOT CONNECTED */ ),
++            .data_o     ( w_decouple_aw_out   ),
++            .valid_o    ( /* NOT CONNECTED */ ),
++            .ready_i    ( w_dp_req_out_ready  )
++        );
++
+         // instantiate the channel coupler
+         idma_channel_coupler #(
+             .NumAxInFlight   ( NumAxInFlight               ),
+@@ -802,10 +826,10 @@ _rsp_t ${protocol}_write_rsp_i,
+             .clk_i            ( clk_i                       ),
+             .rst_ni           ( rst_ni                      ),
+             .testmode_i       ( testmode_i                  ),
+-            .r_rsp_valid_i    ( r_chan_valid                ),
+-            .r_rsp_ready_i    ( r_chan_ready                ),
+-            .r_rsp_first_i    ( r_dp_rsp.first              ),
+-            .r_decouple_aw_i  ( r_dp_req_out.decouple_aw    ),
++            .w_req_valid_i    ( w_chan_valid                ),
++            .w_req_ready_i    ( w_chan_ready                ),
++            .w_req_first_i    ( w_chan_first                ),
++            .w_decouple_aw_i  ( w_decouple_aw_out           ),
+             .aw_decouple_aw_i ( \
+ % if one_write_port:
+ w_req.decouple_aw\
+diff --git a/src/backend/tpl/idma_transport_layer.sv.tpl b/src/backend/tpl/idma_transport_layer.sv.tpl
+index 28b4a0f..56ac453 100644
+--- a/src/backend/tpl/idma_transport_layer.sv.tpl
++++ b/src/backend/tpl/idma_transport_layer.sv.tpl
+@@ -172,9 +172,10 @@ _rsp_t ${protocol}_write_rsp_i,
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -231,24 +232,6 @@ _rsp_t ${protocol}_write_rsp_i,
+     // Read multiplexed signals
+     logic\
+     % for index, protocol in enumerate(used_read_protocols):
+- ${protocol}_r_chan_valid\
+-        % if index == len(used_read_protocols)-1:
+-;
+-        % else:
+-,\
+-        % endif
+-    %endfor
+-    logic\
+-    % for index, protocol in enumerate(used_read_protocols):
+- ${protocol}_r_chan_ready\
+-        % if index == len(used_read_protocols)-1:
+-;
+-        % else:
+-,\
+-        % endif
+-    %endfor
+-    logic\
+-    % for index, protocol in enumerate(used_read_protocols):
+  ${protocol}_r_dp_valid\
+         % if index == len(used_read_protocols)-1:
+ ;
+@@ -288,6 +271,9 @@ _rsp_t ${protocol}_write_rsp_i,
+ % if not one_write_port:
+ 
+     // Write multiplexed signals
++    % for protocol in used_write_protocols:
++    logic ${protocol}_w_chan_valid, ${protocol}_w_chan_ready, ${protocol}_w_chan_first;
++    % endfor
+     logic\
+     % for index, protocol in enumerate(used_write_protocols):
+  ${protocol}_w_dp_rsp_valid\
+@@ -373,8 +359,6 @@ ${rendered_read_ports[read_port]}
+         case(r_dp_req_i.src_protocol)
+ % for rp in used_read_protocols:
+         idma_pkg::${database[rp]['protocol_enum']}: begin
+-            r_chan_valid_o  = ${rp}_r_chan_valid;
+-            r_chan_ready_o  = ${rp}_r_chan_ready;
+ 
+             r_dp_ready_o    = ${rp}_r_dp_ready;
+             r_dp_rsp_o      = ${rp}_r_dp_rsp;
+@@ -385,8 +369,6 @@ ${rendered_read_ports[read_port]}
+         end
+ % endfor
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -459,11 +441,17 @@ ${rendered_read_ports[read_port]}
+         idma_pkg::${database[wp]['protocol_enum']}: begin
+             w_dp_req_ready   = ${wp}_w_dp_ready;
+             buffer_out_ready = ${wp}_buffer_out_ready;
++            w_chan_valid_o   = ${wp}_w_chan_valid;
++            w_chan_ready_o   = ${wp}_w_chan_ready;
++            w_chan_first_o   = ${wp}_w_chan_first;
+         end
+ % endfor
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+diff --git a/src/db/idma_axi.yml b/src/db/idma_axi.yml
+index c80096e..dcfecc7 100644
+--- a/src/db/idma_axi.yml
++++ b/src/db/idma_axi.yml
+@@ -92,8 +92,6 @@ read_template: |
+         .ar_ready_o        ( ${read_meta_ready} ),
+         .read_req_o        ( ${read_request} ),
+         .read_rsp_i        ( ${read_response} ),
+-        .r_chan_valid_o    ( ${r_chan_valid} ),
+-        .r_chan_ready_o    ( ${r_chan_ready} ),
+         .buffer_in_o       ( ${buffer_in} ),
+         .buffer_in_valid_o ( ${buffer_in_valid} ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -125,6 +123,9 @@ write_template: |
+         .aw_ready_o         ( ${write_meta_ready} ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/src/db/idma_axi_lite.yml b/src/db/idma_axi_lite.yml
+index be959e1..65201e4 100644
+--- a/src/db/idma_axi_lite.yml
++++ b/src/db/idma_axi_lite.yml
+@@ -77,8 +77,6 @@ read_template: |
+         .ar_ready_o        ( ${read_meta_ready}   ),
+         .read_req_o        ( ${read_request}     ),
+         .read_rsp_i        ( ${read_response}     ),
+-        .r_chan_valid_o    ( ${r_chan_valid}     ),
+-        .r_chan_ready_o    ( ${r_chan_ready}     ),
+         .buffer_in_o       ( ${buffer_in}         ),
+         .buffer_in_valid_o ( ${buffer_in_valid}   ),
+         .buffer_in_ready_i ( buffer_in_ready      )
+@@ -108,6 +106,9 @@ write_template: |
+         .aw_ready_o         ( ${write_meta_ready} ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/src/db/idma_axi_stream.yml b/src/db/idma_axi_stream.yml
+index ac639ff..be4d77d 100644
+--- a/src/db/idma_axi_stream.yml
++++ b/src/db/idma_axi_stream.yml
+@@ -240,8 +240,6 @@ read_template: |
+         .read_meta_ready_o ( ${read_meta_ready} ),
+         .read_req_i        ( ${read_request} ),
+         .read_rsp_o        ( ${read_response} ),
+-        .r_chan_valid_o    ( ${r_chan_valid} ),
+-        .r_chan_ready_o    ( ${r_chan_ready} ),
+         .buffer_in_o       ( ${buffer_in} ),
+         .buffer_in_valid_o ( ${buffer_in_valid} ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -273,6 +271,9 @@ write_template: |
+         .aw_ready_o         ( ${write_meta_ready}  ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/src/db/idma_init.yml b/src/db/idma_init.yml
+index 35e4091..a6f34f8 100644
+--- a/src/db/idma_init.yml
++++ b/src/db/idma_init.yml
+@@ -98,8 +98,6 @@ read_template: |
+         .read_meta_ready_o ( ${read_meta_ready} ),
+         .read_req_o        ( ${read_request} ),
+         .read_rsp_i        ( ${read_response} ),
+-        .r_chan_valid_o    ( ${r_chan_valid} ),
+-        .r_chan_ready_o    ( ${r_chan_ready} ),
+         .buffer_in_o       ( ${buffer_in} ),
+         .buffer_in_valid_o ( ${buffer_in_valid} ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -128,6 +126,9 @@ write_template: |
+         .write_meta_ready_o ( ${write_meta_ready}  ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/src/db/idma_obi.yml b/src/db/idma_obi.yml
+index e466473..b38598e 100644
+--- a/src/db/idma_obi.yml
++++ b/src/db/idma_obi.yml
+@@ -84,8 +84,6 @@ read_template: |
+         .read_meta_ready_o ( ${read_meta_ready} ),
+         .read_req_o        ( ${read_request} ),
+         .read_rsp_i        ( ${read_response} ),
+-        .r_chan_valid_o    ( ${r_chan_valid} ),
+-        .r_chan_ready_o    ( ${r_chan_ready} ),
+         .buffer_in_o       ( ${buffer_in} ),
+         .buffer_in_valid_o ( ${buffer_in_valid} ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -115,6 +113,9 @@ write_template: |
+         .aw_ready_o         ( ${write_meta_ready}  ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/src/db/idma_tilelink.yml b/src/db/idma_tilelink.yml
+index 652a6ca..a6aa01b 100644
+--- a/src/db/idma_tilelink.yml
++++ b/src/db/idma_tilelink.yml
+@@ -111,8 +111,6 @@ read_template: |
+         .read_meta_ready_o ( ${read_meta_ready} ),
+         .read_req_o        ( ${read_request} ),
+         .read_rsp_i        ( ${read_response} ),
+-        .r_chan_valid_o    ( ${r_chan_valid} ),
+-        .r_chan_ready_o    ( ${r_chan_ready} ),
+         .buffer_in_o       ( ${buffer_in} ),
+         .buffer_in_valid_o ( ${buffer_in_valid} ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -150,6 +148,9 @@ write_template: |
+         .write_meta_ready_o ( ${write_meta_ready} ),
+         .write_req_o        ( ${write_request} ),
+         .write_rsp_i        ( ${write_response} ),
++        .w_chan_valid_o     ( ${w_chan_valid} ),
++        .w_chan_ready_o     ( ${w_chan_ready} ),
++        .w_chan_first_o     ( ${w_chan_first} ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( ${buffer_out_ready} )
+diff --git a/target/rtl/idma_backend_r_axi_rw_init_rw_obi.sv b/target/rtl/idma_backend_r_axi_rw_init_rw_obi.sv
+index 1ba932f..6af7094 100644
+--- a/target/rtl/idma_backend_r_axi_rw_init_rw_obi.sv
++++ b/target/rtl/idma_backend_r_axi_rw_init_rw_obi.sv
+@@ -314,9 +314,10 @@ module idma_backend_r_axi_rw_init_rw_obi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -631,8 +632,9 @@ module idma_backend_r_axi_rw_init_rw_obi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_backend_r_axi_w_obi.sv b/target/rtl/idma_backend_r_axi_w_obi.sv
+index 6d52666..2a45134 100644
+--- a/target/rtl/idma_backend_r_axi_w_obi.sv
++++ b/target/rtl/idma_backend_r_axi_w_obi.sv
+@@ -286,9 +286,10 @@ module idma_backend_r_axi_w_obi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -589,8 +590,9 @@ module idma_backend_r_axi_w_obi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_backend_r_obi_rw_init_w_axi.sv b/target/rtl/idma_backend_r_obi_rw_init_w_axi.sv
+index f4c3658..6d65268 100644
+--- a/target/rtl/idma_backend_r_obi_rw_init_w_axi.sv
++++ b/target/rtl/idma_backend_r_obi_rw_init_w_axi.sv
+@@ -309,9 +309,10 @@ module idma_backend_r_obi_rw_init_w_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -624,8 +625,9 @@ module idma_backend_r_obi_rw_init_w_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_backend_r_obi_w_axi.sv b/target/rtl/idma_backend_r_obi_w_axi.sv
+index a63bcd6..708a82e 100644
+--- a/target/rtl/idma_backend_r_obi_w_axi.sv
++++ b/target/rtl/idma_backend_r_obi_w_axi.sv
+@@ -286,9 +286,10 @@ module idma_backend_r_obi_w_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -589,8 +590,9 @@ module idma_backend_r_obi_w_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_backend_rw_axi.sv b/target/rtl/idma_backend_rw_axi.sv
+index dacaef2..b3cdbf5 100644
+--- a/target/rtl/idma_backend_rw_axi.sv
++++ b/target/rtl/idma_backend_rw_axi.sv
+@@ -283,9 +283,10 @@ module idma_backend_rw_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -618,8 +619,9 @@ module idma_backend_rw_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -627,6 +629,28 @@ module idma_backend_rw_axi #(
+     //--------------------------------------
+ 
+     if (RAWCouplingAvail) begin : gen_r_aw_coupler
++        // per-transfer decouple_aw tag travelling with the write datapath request
++        logic w_decouple_aw_out;
++
++        // mirrors i_w_dp_req exactly: same depth, same push valid, same pop ready
++        stream_fifo_optimal_wrap #(
++            .Depth     ( NumAxInFlight ),
++            .type_t    ( logic                            ),
++            .PrintInfo ( PrintFifoInfo                    )
++        ) i_w_decouple_aw (
++            .clk_i      ( clk_i               ),
++            .rst_ni     ( rst_ni              ),
++            .testmode_i ( testmode_i          ),
++            .flush_i    ( 1'b0                ),
++            .usage_o    ( /* NOT CONNECTED */ ),
++            .data_i     ( w_req.decouple_aw   ),
++            .valid_i    ( w_valid             ),
++            .ready_o    ( /* NOT CONNECTED */ ),
++            .data_o     ( w_decouple_aw_out   ),
++            .valid_o    ( /* NOT CONNECTED */ ),
++            .ready_i    ( w_dp_req_out_ready  )
++        );
++
+         // instantiate the channel coupler
+         idma_channel_coupler #(
+             .NumAxInFlight   ( NumAxInFlight               ),
+@@ -639,10 +663,10 @@ module idma_backend_rw_axi #(
+             .clk_i            ( clk_i                       ),
+             .rst_ni           ( rst_ni                      ),
+             .testmode_i       ( testmode_i                  ),
+-            .r_rsp_valid_i    ( r_chan_valid                ),
+-            .r_rsp_ready_i    ( r_chan_ready                ),
+-            .r_rsp_first_i    ( r_dp_rsp.first              ),
+-            .r_decouple_aw_i  ( r_dp_req_out.decouple_aw    ),
++            .w_req_valid_i    ( w_chan_valid                ),
++            .w_req_ready_i    ( w_chan_ready                ),
++            .w_req_first_i    ( w_chan_first                ),
++            .w_decouple_aw_i  ( w_decouple_aw_out           ),
+             .aw_decouple_aw_i ( w_req.decouple_aw ),
+             .aw_req_i         ( w_req.aw_req                ),
+             .aw_valid_i       ( w_valid                     ),
+diff --git a/target/rtl/idma_backend_rw_axi_rw_axis.sv b/target/rtl/idma_backend_rw_axi_rw_axis.sv
+index 110f784..ff1a282 100644
+--- a/target/rtl/idma_backend_rw_axi_rw_axis.sv
++++ b/target/rtl/idma_backend_rw_axi_rw_axis.sv
+@@ -306,9 +306,10 @@ module idma_backend_rw_axi_rw_axis #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -619,8 +620,9 @@ module idma_backend_rw_axi_rw_axis #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_generated.sv b/target/rtl/idma_generated.sv
+index 75143a2..30015f0 100644
+--- a/target/rtl/idma_generated.sv
++++ b/target/rtl/idma_generated.sv
+@@ -101,9 +101,10 @@ module idma_transport_layer_rw_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -165,8 +166,6 @@ module idma_transport_layer_rw_axi #(
+         .ar_ready_o        ( ar_ready_o ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -238,6 +237,9 @@ module idma_transport_layer_rw_axi #(
+         .aw_ready_o         ( aw_ready_o ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+@@ -358,9 +360,10 @@ module idma_transport_layer_r_obi_w_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -420,8 +423,6 @@ module idma_transport_layer_r_obi_w_axi #(
+         .read_meta_ready_o ( ar_ready_o ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -493,6 +494,9 @@ module idma_transport_layer_r_obi_w_axi #(
+         .aw_ready_o         ( aw_ready_o ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+@@ -613,9 +617,10 @@ module idma_transport_layer_r_axi_w_obi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -677,8 +682,6 @@ module idma_transport_layer_r_axi_w_obi #(
+         .ar_ready_o        ( ar_ready_o ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -748,6 +751,9 @@ module idma_transport_layer_r_axi_w_obi #(
+         .aw_ready_o         ( aw_ready_o  ),
+         .write_req_o        ( obi_write_req_o ),
+         .write_rsp_i        ( obi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+@@ -880,9 +886,10 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -918,8 +925,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic axi_r_chan_valid, axis_r_chan_valid;
+-    logic axi_r_chan_ready, axis_r_chan_ready;
+     logic axi_r_dp_valid, axis_r_dp_valid;
+     logic axi_r_dp_ready, axis_r_dp_ready;
+     r_dp_rsp_t axi_r_dp_rsp, axis_r_dp_rsp;
+@@ -927,6 +932,8 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     logic axi_ar_ready, axis_ar_ready;
+ 
+     // Write multiplexed signals
++    logic axi_w_chan_valid, axi_w_chan_ready, axi_w_chan_first;
++    logic axis_w_chan_valid, axis_w_chan_ready, axis_w_chan_first;
+     logic axi_w_dp_rsp_valid, axis_w_dp_rsp_valid;
+     logic axi_w_dp_rsp_ready, axis_w_dp_rsp_ready;
+     logic axi_w_dp_ready, axis_w_dp_ready;
+@@ -970,8 +977,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .ar_ready_o        ( axi_ar_ready ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( axi_r_chan_valid ),
+-        .r_chan_ready_o    ( axi_r_chan_ready ),
+         .buffer_in_o       ( axi_buffer_in ),
+         .buffer_in_valid_o ( axi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -998,8 +1003,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .read_meta_ready_o ( axis_ar_ready ),
+         .read_req_i        ( axis_read_req_i ),
+         .read_rsp_o        ( axis_read_rsp_o ),
+-        .r_chan_valid_o    ( axis_r_chan_valid ),
+-        .r_chan_ready_o    ( axis_r_chan_ready ),
+         .buffer_in_o       ( axis_buffer_in ),
+         .buffer_in_valid_o ( axis_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -1020,8 +1023,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::AXI: begin
+-            r_chan_valid_o  = axi_r_chan_valid;
+-            r_chan_ready_o  = axi_r_chan_ready;
+ 
+             r_dp_ready_o    = axi_r_dp_ready;
+             r_dp_rsp_o      = axi_r_dp_rsp;
+@@ -1031,8 +1032,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+             buffer_in_valid = axi_buffer_in_valid;
+         end
+         idma_pkg::AXI_STREAM: begin
+-            r_chan_valid_o  = axis_r_chan_valid;
+-            r_chan_ready_o  = axis_r_chan_ready;
+ 
+             r_dp_ready_o    = axis_r_dp_ready;
+             r_dp_rsp_o      = axis_r_dp_rsp;
+@@ -1042,8 +1041,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+             buffer_in_valid = axis_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -1113,14 +1110,23 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         idma_pkg::AXI: begin
+             w_dp_req_ready   = axi_w_dp_ready;
+             buffer_out_ready = axi_buffer_out_ready;
++            w_chan_valid_o   = axi_w_chan_valid;
++            w_chan_ready_o   = axi_w_chan_ready;
++            w_chan_first_o   = axi_w_chan_first;
+         end
+         idma_pkg::AXI_STREAM: begin
+             w_dp_req_ready   = axis_w_dp_ready;
+             buffer_out_ready = axis_buffer_out_ready;
++            w_chan_valid_o   = axis_w_chan_valid;
++            w_chan_ready_o   = axis_w_chan_ready;
++            w_chan_first_o   = axis_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -1164,6 +1170,9 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .aw_ready_o         ( axi_aw_ready ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( axi_w_chan_valid ),
++        .w_chan_ready_o     ( axi_w_chan_ready ),
++        .w_chan_first_o     ( axi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axi_buffer_out_ready )
+@@ -1195,6 +1204,9 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .aw_ready_o         ( axis_aw_ready  ),
+         .write_req_o        ( axis_write_req_o ),
+         .write_rsp_i        ( axis_write_rsp_i ),
++        .w_chan_valid_o     ( axis_w_chan_valid ),
++        .w_chan_ready_o     ( axis_w_chan_ready ),
++        .w_chan_first_o     ( axis_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axis_buffer_out_ready )
+@@ -1414,9 +1426,10 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -1452,8 +1465,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic init_r_chan_valid, obi_r_chan_valid;
+-    logic init_r_chan_ready, obi_r_chan_ready;
+     logic init_r_dp_valid, obi_r_dp_valid;
+     logic init_r_dp_ready, obi_r_dp_ready;
+     r_dp_rsp_t init_r_dp_rsp, obi_r_dp_rsp;
+@@ -1461,6 +1472,8 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     logic init_ar_ready, obi_ar_ready;
+ 
+     // Write multiplexed signals
++    logic axi_w_chan_valid, axi_w_chan_ready, axi_w_chan_first;
++    logic init_w_chan_valid, init_w_chan_ready, init_w_chan_first;
+     logic axi_w_dp_rsp_valid, init_w_dp_rsp_valid;
+     logic axi_w_dp_rsp_ready, init_w_dp_rsp_ready;
+     logic axi_w_dp_ready, init_w_dp_ready;
+@@ -1502,8 +1515,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .read_meta_ready_o ( init_ar_ready ),
+         .read_req_o        ( init_read_req_o ),
+         .read_rsp_i        ( init_read_rsp_i ),
+-        .r_chan_valid_o    ( init_r_chan_valid ),
+-        .r_chan_ready_o    ( init_r_chan_ready ),
+         .buffer_in_o       ( init_buffer_in ),
+         .buffer_in_valid_o ( init_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -1530,8 +1541,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .read_meta_ready_o ( obi_ar_ready ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( obi_r_chan_valid ),
+-        .r_chan_ready_o    ( obi_r_chan_ready ),
+         .buffer_in_o       ( obi_buffer_in ),
+         .buffer_in_valid_o ( obi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -1552,8 +1561,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::INIT: begin
+-            r_chan_valid_o  = init_r_chan_valid;
+-            r_chan_ready_o  = init_r_chan_ready;
+ 
+             r_dp_ready_o    = init_r_dp_ready;
+             r_dp_rsp_o      = init_r_dp_rsp;
+@@ -1563,8 +1570,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+             buffer_in_valid = init_buffer_in_valid;
+         end
+         idma_pkg::OBI: begin
+-            r_chan_valid_o  = obi_r_chan_valid;
+-            r_chan_ready_o  = obi_r_chan_ready;
+ 
+             r_dp_ready_o    = obi_r_dp_ready;
+             r_dp_rsp_o      = obi_r_dp_rsp;
+@@ -1574,8 +1579,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+             buffer_in_valid = obi_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -1645,14 +1648,23 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         idma_pkg::AXI: begin
+             w_dp_req_ready   = axi_w_dp_ready;
+             buffer_out_ready = axi_buffer_out_ready;
++            w_chan_valid_o   = axi_w_chan_valid;
++            w_chan_ready_o   = axi_w_chan_ready;
++            w_chan_first_o   = axi_w_chan_first;
+         end
+         idma_pkg::INIT: begin
+             w_dp_req_ready   = init_w_dp_ready;
+             buffer_out_ready = init_buffer_out_ready;
++            w_chan_valid_o   = init_w_chan_valid;
++            w_chan_ready_o   = init_w_chan_ready;
++            w_chan_first_o   = init_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -1696,6 +1708,9 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .aw_ready_o         ( axi_aw_ready ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( axi_w_chan_valid ),
++        .w_chan_ready_o     ( axi_w_chan_ready ),
++        .w_chan_first_o     ( axi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axi_buffer_out_ready )
+@@ -1724,6 +1739,9 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .write_meta_ready_o ( init_aw_ready  ),
+         .write_req_o        ( init_write_req_o ),
+         .write_rsp_i        ( init_write_rsp_i ),
++        .w_chan_valid_o     ( init_w_chan_valid ),
++        .w_chan_ready_o     ( init_w_chan_ready ),
++        .w_chan_first_o     ( init_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( init_buffer_out_ready )
+@@ -1948,9 +1966,10 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -1986,8 +2005,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic axi_r_chan_valid, init_r_chan_valid, obi_r_chan_valid;
+-    logic axi_r_chan_ready, init_r_chan_ready, obi_r_chan_ready;
+     logic axi_r_dp_valid, init_r_dp_valid, obi_r_dp_valid;
+     logic axi_r_dp_ready, init_r_dp_ready, obi_r_dp_ready;
+     r_dp_rsp_t axi_r_dp_rsp, init_r_dp_rsp, obi_r_dp_rsp;
+@@ -1995,6 +2012,8 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     logic axi_ar_ready, init_ar_ready, obi_ar_ready;
+ 
+     // Write multiplexed signals
++    logic init_w_chan_valid, init_w_chan_ready, init_w_chan_first;
++    logic obi_w_chan_valid, obi_w_chan_ready, obi_w_chan_first;
+     logic init_w_dp_rsp_valid, obi_w_dp_rsp_valid;
+     logic init_w_dp_rsp_ready, obi_w_dp_rsp_ready;
+     logic init_w_dp_ready, obi_w_dp_ready;
+@@ -2038,8 +2057,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .ar_ready_o        ( axi_ar_ready ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( axi_r_chan_valid ),
+-        .r_chan_ready_o    ( axi_r_chan_ready ),
+         .buffer_in_o       ( axi_buffer_in ),
+         .buffer_in_valid_o ( axi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -2066,8 +2083,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .read_meta_ready_o ( init_ar_ready ),
+         .read_req_o        ( init_read_req_o ),
+         .read_rsp_i        ( init_read_rsp_i ),
+-        .r_chan_valid_o    ( init_r_chan_valid ),
+-        .r_chan_ready_o    ( init_r_chan_ready ),
+         .buffer_in_o       ( init_buffer_in ),
+         .buffer_in_valid_o ( init_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -2094,8 +2109,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .read_meta_ready_o ( obi_ar_ready ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( obi_r_chan_valid ),
+-        .r_chan_ready_o    ( obi_r_chan_ready ),
+         .buffer_in_o       ( obi_buffer_in ),
+         .buffer_in_valid_o ( obi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -2117,8 +2130,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::AXI: begin
+-            r_chan_valid_o  = axi_r_chan_valid;
+-            r_chan_ready_o  = axi_r_chan_ready;
+ 
+             r_dp_ready_o    = axi_r_dp_ready;
+             r_dp_rsp_o      = axi_r_dp_rsp;
+@@ -2128,8 +2139,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = axi_buffer_in_valid;
+         end
+         idma_pkg::INIT: begin
+-            r_chan_valid_o  = init_r_chan_valid;
+-            r_chan_ready_o  = init_r_chan_ready;
+ 
+             r_dp_ready_o    = init_r_dp_ready;
+             r_dp_rsp_o      = init_r_dp_rsp;
+@@ -2139,8 +2148,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = init_buffer_in_valid;
+         end
+         idma_pkg::OBI: begin
+-            r_chan_valid_o  = obi_r_chan_valid;
+-            r_chan_ready_o  = obi_r_chan_ready;
+ 
+             r_dp_ready_o    = obi_r_dp_ready;
+             r_dp_rsp_o      = obi_r_dp_rsp;
+@@ -2150,8 +2157,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = obi_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -2221,14 +2226,23 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         idma_pkg::INIT: begin
+             w_dp_req_ready   = init_w_dp_ready;
+             buffer_out_ready = init_buffer_out_ready;
++            w_chan_valid_o   = init_w_chan_valid;
++            w_chan_ready_o   = init_w_chan_ready;
++            w_chan_first_o   = init_w_chan_first;
+         end
+         idma_pkg::OBI: begin
+             w_dp_req_ready   = obi_w_dp_ready;
+             buffer_out_ready = obi_buffer_out_ready;
++            w_chan_valid_o   = obi_w_chan_valid;
++            w_chan_ready_o   = obi_w_chan_ready;
++            w_chan_first_o   = obi_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -2269,6 +2283,9 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .write_meta_ready_o ( init_aw_ready  ),
+         .write_req_o        ( init_write_req_o ),
+         .write_rsp_i        ( init_write_rsp_i ),
++        .w_chan_valid_o     ( init_w_chan_valid ),
++        .w_chan_ready_o     ( init_w_chan_ready ),
++        .w_chan_first_o     ( init_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( init_buffer_out_ready )
+@@ -2298,6 +2315,9 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .aw_ready_o         ( obi_aw_ready  ),
+         .write_req_o        ( obi_write_req_o ),
+         .write_rsp_i        ( obi_write_rsp_i ),
++        .w_chan_valid_o     ( obi_w_chan_valid ),
++        .w_chan_ready_o     ( obi_w_chan_ready ),
++        .w_chan_first_o     ( obi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( obi_buffer_out_ready )
+@@ -5397,9 +5417,10 @@ module idma_backend_rw_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -5732,8 +5753,9 @@ module idma_backend_rw_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -5741,6 +5763,28 @@ module idma_backend_rw_axi #(
+     //--------------------------------------
+ 
+     if (RAWCouplingAvail) begin : gen_r_aw_coupler
++        // per-transfer decouple_aw tag travelling with the write datapath request
++        logic w_decouple_aw_out;
++
++        // mirrors i_w_dp_req exactly: same depth, same push valid, same pop ready
++        stream_fifo_optimal_wrap #(
++            .Depth     ( NumAxInFlight ),
++            .type_t    ( logic                            ),
++            .PrintInfo ( PrintFifoInfo                    )
++        ) i_w_decouple_aw (
++            .clk_i      ( clk_i               ),
++            .rst_ni     ( rst_ni              ),
++            .testmode_i ( testmode_i          ),
++            .flush_i    ( 1'b0                ),
++            .usage_o    ( /* NOT CONNECTED */ ),
++            .data_i     ( w_req.decouple_aw   ),
++            .valid_i    ( w_valid             ),
++            .ready_o    ( /* NOT CONNECTED */ ),
++            .data_o     ( w_decouple_aw_out   ),
++            .valid_o    ( /* NOT CONNECTED */ ),
++            .ready_i    ( w_dp_req_out_ready  )
++        );
++
+         // instantiate the channel coupler
+         idma_channel_coupler #(
+             .NumAxInFlight   ( NumAxInFlight               ),
+@@ -5753,10 +5797,10 @@ module idma_backend_rw_axi #(
+             .clk_i            ( clk_i                       ),
+             .rst_ni           ( rst_ni                      ),
+             .testmode_i       ( testmode_i                  ),
+-            .r_rsp_valid_i    ( r_chan_valid                ),
+-            .r_rsp_ready_i    ( r_chan_ready                ),
+-            .r_rsp_first_i    ( r_dp_rsp.first              ),
+-            .r_decouple_aw_i  ( r_dp_req_out.decouple_aw    ),
++            .w_req_valid_i    ( w_chan_valid                ),
++            .w_req_ready_i    ( w_chan_ready                ),
++            .w_req_first_i    ( w_chan_first                ),
++            .w_decouple_aw_i  ( w_decouple_aw_out           ),
+             .aw_decouple_aw_i ( w_req.decouple_aw ),
+             .aw_req_i         ( w_req.aw_req                ),
+             .aw_valid_i       ( w_valid                     ),
+@@ -6104,9 +6148,10 @@ module idma_backend_r_obi_w_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -6407,8 +6452,9 @@ module idma_backend_r_obi_w_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -6759,9 +6805,10 @@ module idma_backend_r_axi_w_obi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -7062,8 +7109,9 @@ module idma_backend_r_axi_w_obi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -7437,9 +7485,10 @@ module idma_backend_rw_axi_rw_axis #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -7750,8 +7799,9 @@ module idma_backend_rw_axi_rw_axis #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -8132,9 +8182,10 @@ module idma_backend_r_obi_rw_init_w_axi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -8447,8 +8498,9 @@ module idma_backend_r_obi_rw_init_w_axi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+@@ -8831,9 +8883,10 @@ module idma_backend_r_axi_rw_init_rw_obi #(
+     logic      rsp_valid;
+     logic      rsp_ready;
+ 
+-    // Respone Channel valid and ready -> needed for bursting
+-    logic r_chan_valid;
+-    logic r_chan_ready;
++    // Write channel valid, ready and first -> needed to send AWs when Ws are available
++    logic w_chan_valid;
++    logic w_chan_ready;
++    logic w_chan_first;
+ 
+     //--------------------------------------
+     // Reject Zero Length Transfers
+@@ -9148,8 +9201,9 @@ module idma_backend_r_axi_rw_init_rw_obi #(
+         .r_dp_busy_o     ( busy_o.r_dp_busy     ),
+         .w_dp_busy_o     ( busy_o.w_dp_busy     ),
+         .buffer_busy_o   ( busy_o.buffer_busy   ),
+-        .r_chan_ready_o  ( r_chan_ready         ),
+-        .r_chan_valid_o  ( r_chan_valid         )
++        .w_chan_valid_o  ( w_chan_valid         ),
++        .w_chan_ready_o  ( w_chan_ready         ),
++        .w_chan_first_o  ( w_chan_first         )
+     );
+ 
+     //--------------------------------------
+diff --git a/target/rtl/idma_transport_layer_r_axi_rw_init_rw_obi.sv b/target/rtl/idma_transport_layer_r_axi_rw_init_rw_obi.sv
+index a161f14..bda7b06 100644
+--- a/target/rtl/idma_transport_layer_r_axi_rw_init_rw_obi.sv
++++ b/target/rtl/idma_transport_layer_r_axi_rw_init_rw_obi.sv
+@@ -124,9 +124,10 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -162,8 +163,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic axi_r_chan_valid, init_r_chan_valid, obi_r_chan_valid;
+-    logic axi_r_chan_ready, init_r_chan_ready, obi_r_chan_ready;
+     logic axi_r_dp_valid, init_r_dp_valid, obi_r_dp_valid;
+     logic axi_r_dp_ready, init_r_dp_ready, obi_r_dp_ready;
+     r_dp_rsp_t axi_r_dp_rsp, init_r_dp_rsp, obi_r_dp_rsp;
+@@ -171,6 +170,8 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     logic axi_ar_ready, init_ar_ready, obi_ar_ready;
+ 
+     // Write multiplexed signals
++    logic init_w_chan_valid, init_w_chan_ready, init_w_chan_first;
++    logic obi_w_chan_valid, obi_w_chan_ready, obi_w_chan_first;
+     logic init_w_dp_rsp_valid, obi_w_dp_rsp_valid;
+     logic init_w_dp_rsp_ready, obi_w_dp_rsp_ready;
+     logic init_w_dp_ready, obi_w_dp_ready;
+@@ -214,8 +215,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .ar_ready_o        ( axi_ar_ready ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( axi_r_chan_valid ),
+-        .r_chan_ready_o    ( axi_r_chan_ready ),
+         .buffer_in_o       ( axi_buffer_in ),
+         .buffer_in_valid_o ( axi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -242,8 +241,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .read_meta_ready_o ( init_ar_ready ),
+         .read_req_o        ( init_read_req_o ),
+         .read_rsp_i        ( init_read_rsp_i ),
+-        .r_chan_valid_o    ( init_r_chan_valid ),
+-        .r_chan_ready_o    ( init_r_chan_ready ),
+         .buffer_in_o       ( init_buffer_in ),
+         .buffer_in_valid_o ( init_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -270,8 +267,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .read_meta_ready_o ( obi_ar_ready ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( obi_r_chan_valid ),
+-        .r_chan_ready_o    ( obi_r_chan_ready ),
+         .buffer_in_o       ( obi_buffer_in ),
+         .buffer_in_valid_o ( obi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -293,8 +288,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::AXI: begin
+-            r_chan_valid_o  = axi_r_chan_valid;
+-            r_chan_ready_o  = axi_r_chan_ready;
+ 
+             r_dp_ready_o    = axi_r_dp_ready;
+             r_dp_rsp_o      = axi_r_dp_rsp;
+@@ -304,8 +297,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = axi_buffer_in_valid;
+         end
+         idma_pkg::INIT: begin
+-            r_chan_valid_o  = init_r_chan_valid;
+-            r_chan_ready_o  = init_r_chan_ready;
+ 
+             r_dp_ready_o    = init_r_dp_ready;
+             r_dp_rsp_o      = init_r_dp_rsp;
+@@ -315,8 +306,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = init_buffer_in_valid;
+         end
+         idma_pkg::OBI: begin
+-            r_chan_valid_o  = obi_r_chan_valid;
+-            r_chan_ready_o  = obi_r_chan_ready;
+ 
+             r_dp_ready_o    = obi_r_dp_ready;
+             r_dp_rsp_o      = obi_r_dp_rsp;
+@@ -326,8 +315,6 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+             buffer_in_valid = obi_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -397,14 +384,23 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         idma_pkg::INIT: begin
+             w_dp_req_ready   = init_w_dp_ready;
+             buffer_out_ready = init_buffer_out_ready;
++            w_chan_valid_o   = init_w_chan_valid;
++            w_chan_ready_o   = init_w_chan_ready;
++            w_chan_first_o   = init_w_chan_first;
+         end
+         idma_pkg::OBI: begin
+             w_dp_req_ready   = obi_w_dp_ready;
+             buffer_out_ready = obi_buffer_out_ready;
++            w_chan_valid_o   = obi_w_chan_valid;
++            w_chan_ready_o   = obi_w_chan_ready;
++            w_chan_first_o   = obi_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -445,6 +441,9 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .write_meta_ready_o ( init_aw_ready  ),
+         .write_req_o        ( init_write_req_o ),
+         .write_rsp_i        ( init_write_rsp_i ),
++        .w_chan_valid_o     ( init_w_chan_valid ),
++        .w_chan_ready_o     ( init_w_chan_ready ),
++        .w_chan_first_o     ( init_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( init_buffer_out_ready )
+@@ -474,6 +473,9 @@ module idma_transport_layer_r_axi_rw_init_rw_obi #(
+         .aw_ready_o         ( obi_aw_ready  ),
+         .write_req_o        ( obi_write_req_o ),
+         .write_rsp_i        ( obi_write_rsp_i ),
++        .w_chan_valid_o     ( obi_w_chan_valid ),
++        .w_chan_ready_o     ( obi_w_chan_ready ),
++        .w_chan_first_o     ( obi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( obi_buffer_out_ready )
+diff --git a/target/rtl/idma_transport_layer_r_axi_w_obi.sv b/target/rtl/idma_transport_layer_r_axi_w_obi.sv
+index 180d711..061fbf5 100644
+--- a/target/rtl/idma_transport_layer_r_axi_w_obi.sv
++++ b/target/rtl/idma_transport_layer_r_axi_w_obi.sv
+@@ -104,9 +104,10 @@ module idma_transport_layer_r_axi_w_obi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -168,8 +169,6 @@ module idma_transport_layer_r_axi_w_obi #(
+         .ar_ready_o        ( ar_ready_o ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -239,6 +238,9 @@ module idma_transport_layer_r_axi_w_obi #(
+         .aw_ready_o         ( aw_ready_o  ),
+         .write_req_o        ( obi_write_req_o ),
+         .write_rsp_i        ( obi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+diff --git a/target/rtl/idma_transport_layer_r_obi_rw_init_w_axi.sv b/target/rtl/idma_transport_layer_r_obi_rw_init_w_axi.sv
+index c4d2ac8..bc41484 100644
+--- a/target/rtl/idma_transport_layer_r_obi_rw_init_w_axi.sv
++++ b/target/rtl/idma_transport_layer_r_obi_rw_init_w_axi.sv
+@@ -119,9 +119,10 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -157,8 +158,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic init_r_chan_valid, obi_r_chan_valid;
+-    logic init_r_chan_ready, obi_r_chan_ready;
+     logic init_r_dp_valid, obi_r_dp_valid;
+     logic init_r_dp_ready, obi_r_dp_ready;
+     r_dp_rsp_t init_r_dp_rsp, obi_r_dp_rsp;
+@@ -166,6 +165,8 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     logic init_ar_ready, obi_ar_ready;
+ 
+     // Write multiplexed signals
++    logic axi_w_chan_valid, axi_w_chan_ready, axi_w_chan_first;
++    logic init_w_chan_valid, init_w_chan_ready, init_w_chan_first;
+     logic axi_w_dp_rsp_valid, init_w_dp_rsp_valid;
+     logic axi_w_dp_rsp_ready, init_w_dp_rsp_ready;
+     logic axi_w_dp_ready, init_w_dp_ready;
+@@ -207,8 +208,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .read_meta_ready_o ( init_ar_ready ),
+         .read_req_o        ( init_read_req_o ),
+         .read_rsp_i        ( init_read_rsp_i ),
+-        .r_chan_valid_o    ( init_r_chan_valid ),
+-        .r_chan_ready_o    ( init_r_chan_ready ),
+         .buffer_in_o       ( init_buffer_in ),
+         .buffer_in_valid_o ( init_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -235,8 +234,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .read_meta_ready_o ( obi_ar_ready ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( obi_r_chan_valid ),
+-        .r_chan_ready_o    ( obi_r_chan_ready ),
+         .buffer_in_o       ( obi_buffer_in ),
+         .buffer_in_valid_o ( obi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -257,8 +254,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::INIT: begin
+-            r_chan_valid_o  = init_r_chan_valid;
+-            r_chan_ready_o  = init_r_chan_ready;
+ 
+             r_dp_ready_o    = init_r_dp_ready;
+             r_dp_rsp_o      = init_r_dp_rsp;
+@@ -268,8 +263,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+             buffer_in_valid = init_buffer_in_valid;
+         end
+         idma_pkg::OBI: begin
+-            r_chan_valid_o  = obi_r_chan_valid;
+-            r_chan_ready_o  = obi_r_chan_ready;
+ 
+             r_dp_ready_o    = obi_r_dp_ready;
+             r_dp_rsp_o      = obi_r_dp_rsp;
+@@ -279,8 +272,6 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+             buffer_in_valid = obi_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -350,14 +341,23 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         idma_pkg::AXI: begin
+             w_dp_req_ready   = axi_w_dp_ready;
+             buffer_out_ready = axi_buffer_out_ready;
++            w_chan_valid_o   = axi_w_chan_valid;
++            w_chan_ready_o   = axi_w_chan_ready;
++            w_chan_first_o   = axi_w_chan_first;
+         end
+         idma_pkg::INIT: begin
+             w_dp_req_ready   = init_w_dp_ready;
+             buffer_out_ready = init_buffer_out_ready;
++            w_chan_valid_o   = init_w_chan_valid;
++            w_chan_ready_o   = init_w_chan_ready;
++            w_chan_first_o   = init_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -401,6 +401,9 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .aw_ready_o         ( axi_aw_ready ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( axi_w_chan_valid ),
++        .w_chan_ready_o     ( axi_w_chan_ready ),
++        .w_chan_first_o     ( axi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axi_buffer_out_ready )
+@@ -429,6 +432,9 @@ module idma_transport_layer_r_obi_rw_init_w_axi #(
+         .write_meta_ready_o ( init_aw_ready  ),
+         .write_req_o        ( init_write_req_o ),
+         .write_rsp_i        ( init_write_rsp_i ),
++        .w_chan_valid_o     ( init_w_chan_valid ),
++        .w_chan_ready_o     ( init_w_chan_ready ),
++        .w_chan_first_o     ( init_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( init_buffer_out_ready )
+diff --git a/target/rtl/idma_transport_layer_r_obi_w_axi.sv b/target/rtl/idma_transport_layer_r_obi_w_axi.sv
+index fd75f93..715951e 100644
+--- a/target/rtl/idma_transport_layer_r_obi_w_axi.sv
++++ b/target/rtl/idma_transport_layer_r_obi_w_axi.sv
+@@ -104,9 +104,10 @@ module idma_transport_layer_r_obi_w_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -166,8 +167,6 @@ module idma_transport_layer_r_obi_w_axi #(
+         .read_meta_ready_o ( ar_ready_o ),
+         .read_req_o        ( obi_read_req_o ),
+         .read_rsp_i        ( obi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -239,6 +238,9 @@ module idma_transport_layer_r_obi_w_axi #(
+         .aw_ready_o         ( aw_ready_o ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+diff --git a/target/rtl/idma_transport_layer_rw_axi.sv b/target/rtl/idma_transport_layer_rw_axi.sv
+index 4463d4b..90423b8 100644
+--- a/target/rtl/idma_transport_layer_rw_axi.sv
++++ b/target/rtl/idma_transport_layer_rw_axi.sv
+@@ -101,9 +101,10 @@ module idma_transport_layer_rw_axi #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -165,8 +166,6 @@ module idma_transport_layer_rw_axi #(
+         .ar_ready_o        ( ar_ready_o ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( r_chan_valid_o ),
+-        .r_chan_ready_o    ( r_chan_ready_o ),
+         .buffer_in_o       ( buffer_in ),
+         .buffer_in_valid_o ( buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -238,6 +237,9 @@ module idma_transport_layer_rw_axi #(
+         .aw_ready_o         ( aw_ready_o ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( w_chan_valid_o ),
++        .w_chan_ready_o     ( w_chan_ready_o ),
++        .w_chan_first_o     ( w_chan_first_o ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( buffer_out_ready )
+diff --git a/target/rtl/idma_transport_layer_rw_axi_rw_axis.sv b/target/rtl/idma_transport_layer_rw_axi_rw_axis.sv
+index 6e52eac..686b01b 100644
+--- a/target/rtl/idma_transport_layer_rw_axi_rw_axis.sv
++++ b/target/rtl/idma_transport_layer_rw_axi_rw_axis.sv
+@@ -116,9 +116,10 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     /// Datapath poison signal
+     input  logic dp_poison_i,
+ 
+-    /// Response channel valid and ready
+-    output logic r_chan_ready_o,
+-    output logic r_chan_valid_o,
++    /// Write channel valid, ready and first
++    output logic w_chan_valid_o,
++    output logic w_chan_ready_o,
++    output logic w_chan_first_o,
+ 
+     /// Read part of the datapath is busy
+     output logic r_dp_busy_o,
+@@ -154,8 +155,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     byte_t [StrbWidth-1:0] buffer_out, buffer_out_shifted;
+ 
+     // Read multiplexed signals
+-    logic axi_r_chan_valid, axis_r_chan_valid;
+-    logic axi_r_chan_ready, axis_r_chan_ready;
+     logic axi_r_dp_valid, axis_r_dp_valid;
+     logic axi_r_dp_ready, axis_r_dp_ready;
+     r_dp_rsp_t axi_r_dp_rsp, axis_r_dp_rsp;
+@@ -163,6 +162,8 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     logic axi_ar_ready, axis_ar_ready;
+ 
+     // Write multiplexed signals
++    logic axi_w_chan_valid, axi_w_chan_ready, axi_w_chan_first;
++    logic axis_w_chan_valid, axis_w_chan_ready, axis_w_chan_first;
+     logic axi_w_dp_rsp_valid, axis_w_dp_rsp_valid;
+     logic axi_w_dp_rsp_ready, axis_w_dp_rsp_ready;
+     logic axi_w_dp_ready, axis_w_dp_ready;
+@@ -206,8 +207,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .ar_ready_o        ( axi_ar_ready ),
+         .read_req_o        ( axi_read_req_o ),
+         .read_rsp_i        ( axi_read_rsp_i ),
+-        .r_chan_valid_o    ( axi_r_chan_valid ),
+-        .r_chan_ready_o    ( axi_r_chan_ready ),
+         .buffer_in_o       ( axi_buffer_in ),
+         .buffer_in_valid_o ( axi_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -234,8 +233,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .read_meta_ready_o ( axis_ar_ready ),
+         .read_req_i        ( axis_read_req_i ),
+         .read_rsp_o        ( axis_read_rsp_o ),
+-        .r_chan_valid_o    ( axis_r_chan_valid ),
+-        .r_chan_ready_o    ( axis_r_chan_ready ),
+         .buffer_in_o       ( axis_buffer_in ),
+         .buffer_in_valid_o ( axis_buffer_in_valid ),
+         .buffer_in_ready_i ( buffer_in_ready )
+@@ -256,8 +253,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+     always_comb begin : gen_read_multiplexer
+         case(r_dp_req_i.src_protocol)
+         idma_pkg::AXI: begin
+-            r_chan_valid_o  = axi_r_chan_valid;
+-            r_chan_ready_o  = axi_r_chan_ready;
+ 
+             r_dp_ready_o    = axi_r_dp_ready;
+             r_dp_rsp_o      = axi_r_dp_rsp;
+@@ -267,8 +262,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+             buffer_in_valid = axi_buffer_in_valid;
+         end
+         idma_pkg::AXI_STREAM: begin
+-            r_chan_valid_o  = axis_r_chan_valid;
+-            r_chan_ready_o  = axis_r_chan_ready;
+ 
+             r_dp_ready_o    = axis_r_dp_ready;
+             r_dp_rsp_o      = axis_r_dp_rsp;
+@@ -278,8 +271,6 @@ module idma_transport_layer_rw_axi_rw_axis #(
+             buffer_in_valid = axis_buffer_in_valid;
+         end
+         default: begin
+-            r_chan_valid_o  = 1'b0;
+-            r_chan_ready_o  = 1'b0;
+ 
+             r_dp_ready_o    = 1'b0;
+             r_dp_rsp_o      = '0;
+@@ -349,14 +340,23 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         idma_pkg::AXI: begin
+             w_dp_req_ready   = axi_w_dp_ready;
+             buffer_out_ready = axi_buffer_out_ready;
++            w_chan_valid_o   = axi_w_chan_valid;
++            w_chan_ready_o   = axi_w_chan_ready;
++            w_chan_first_o   = axi_w_chan_first;
+         end
+         idma_pkg::AXI_STREAM: begin
+             w_dp_req_ready   = axis_w_dp_ready;
+             buffer_out_ready = axis_buffer_out_ready;
++            w_chan_valid_o   = axis_w_chan_valid;
++            w_chan_ready_o   = axis_w_chan_ready;
++            w_chan_first_o   = axis_w_chan_first;
+         end
+         default: begin
+             w_dp_req_ready   = 1'b0;
+             buffer_out_ready = '0;
++            w_chan_valid_o   = 1'b0;
++            w_chan_ready_o   = 1'b0;
++            w_chan_first_o   = 1'b0;
+         end
+         endcase
+     end
+@@ -400,6 +400,9 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .aw_ready_o         ( axi_aw_ready ),
+         .write_req_o        ( axi_write_req_o ),
+         .write_rsp_i        ( axi_write_rsp_i ),
++        .w_chan_valid_o     ( axi_w_chan_valid ),
++        .w_chan_ready_o     ( axi_w_chan_ready ),
++        .w_chan_first_o     ( axi_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axi_buffer_out_ready )
+@@ -431,6 +434,9 @@ module idma_transport_layer_rw_axi_rw_axis #(
+         .aw_ready_o         ( axis_aw_ready  ),
+         .write_req_o        ( axis_write_req_o ),
+         .write_rsp_i        ( axis_write_rsp_i ),
++        .w_chan_valid_o     ( axis_w_chan_valid ),
++        .w_chan_ready_o     ( axis_w_chan_ready ),
++        .w_chan_first_o     ( axis_w_chan_first ),
+         .buffer_out_i       ( buffer_out_shifted ),
+         .buffer_out_valid_i ( buffer_out_valid_shifted ),
+         .buffer_out_ready_o ( axis_buffer_out_ready )
+diff --git a/util/mario/transport_layer.py b/util/mario/transport_layer.py
+index 17a23a3..0ef5d32 100644
+--- a/util/mario/transport_layer.py
++++ b/util/mario/transport_layer.py
+@@ -49,8 +49,6 @@ def render_read_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+             read_meta_request = 'ar_req_i'
+             read_meta_valid = 'ar_valid_i'
+             read_meta_ready = 'ar_ready_o'
+-            r_chan_valid = 'r_chan_valid_o'
+-            r_chan_ready = 'r_chan_ready_o'
+             buffer_in = 'buffer_in'
+             buffer_in_valid = 'buffer_in_valid'
+         else:
+@@ -68,8 +66,6 @@ def render_read_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+ (ar_req_i.src_protocol == idma_pkg::{db[rp]["protocol_enum"]}) & ar_valid_i\
+ '''
+             read_meta_ready = f'{rp}_ar_ready'
+-            r_chan_valid = f'{rp}_r_chan_valid'
+-            r_chan_ready = f'{rp}_r_chan_ready'
+             buffer_in = f'{rp}_buffer_in'
+             buffer_in_valid = f'{rp}_buffer_in_valid'
+ 
+@@ -87,8 +83,6 @@ def render_read_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+             'read_meta_ready': read_meta_ready,
+             'read_request': f'{rp}_read_req_{read_port_dir_req_str}',
+             'read_response': f'{rp}_read_rsp_{read_port_dir_rsp_str}',
+-            'r_chan_valid': r_chan_valid,
+-            'r_chan_ready': r_chan_ready,
+             'buffer_in': buffer_in,
+             'buffer_in_valid': buffer_in_valid
+         }
+@@ -131,6 +125,9 @@ def render_write_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+             write_meta_valid = 'aw_valid_i'
+             write_meta_ready = 'aw_ready_o'
+             buffer_out_ready = 'buffer_out_ready'
++            w_chan_valid = 'w_chan_valid_o'
++            w_chan_ready = 'w_chan_ready_o'
++            w_chan_first = 'w_chan_first_o'
+         else:
+             write_dp_valid_in = f'''\
+ (w_dp_req_i.dst_protocol == idma_pkg::{db[wp]["protocol_enum"]}) & w_dp_req_valid\
+@@ -145,6 +142,9 @@ def render_write_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+ '''
+             write_meta_ready = f'{wp}_aw_ready'
+             buffer_out_ready = f'{wp}_buffer_out_ready'
++            w_chan_valid = f'{wp}_w_chan_valid'
++            w_chan_ready = f'{wp}_w_chan_ready'
++            w_chan_first = f'{wp}_w_chan_first'
+ 
+         write_port_context = {
+             'database': db,
+@@ -160,6 +160,9 @@ def render_write_mgr_inst(prot_id: str, prot_ids: dict, db: dict) -> dict:
+             'write_meta_ready': write_meta_ready,
+             'write_request': f'{wp}_write_req_o',
+             'write_response': f'{wp}_write_rsp_i',
++            'w_chan_valid': w_chan_valid,
++            'w_chan_ready': w_chan_ready,
++            'w_chan_first': w_chan_first,
+             'buffer_out_ready': buffer_out_ready
+         }
+ 
