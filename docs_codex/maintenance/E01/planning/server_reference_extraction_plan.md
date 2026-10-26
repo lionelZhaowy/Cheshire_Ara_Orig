@@ -1,5 +1,324 @@
 # E01 / 243 服务器向量参考工程与固定工程实施方案
 
+<a id="provenance-organization-plan-20261025"></a>
+
+## 2026-10-25 第3轮：来源资料与历史记录整理（已完成）
+
+### 2026-10-25 实施结果
+
+用户明确“开始实施”后，已在正式`~/CheshireAra`完成归类。输入为本地HEAD `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`、第2轮及ELF/TARGET文档完成后的1048份实际工程输入；参考工程及本地FPGA源码未改。
+
+| 实际操作 | 结果 |
+| --- | --- |
+| 8份`2b_*` → `provenance/history/2b/` | 文件名、内容、权限保持 |
+| 22份`2c_*` → `provenance/history/2c/` | 成功/失败日志和旧清单均保留，历史路径/哈希不改写 |
+| 5份`2d_*` → `provenance/history/2d/` | 文件名、内容、权限保持 |
+| 根`README.md`、`docs/README.md` | 更新当前2D导航，说明来源用途、阶段快照和旧新位置映射；保留ELF/TARGET、Ara及特殊测试说明 |
+| `provenance/source_manifest.json` | 仅更新上述两份说明的当前哈希和维护记录；其余984条完全不变 |
+
+provenance文件总数仍为217，顶层43→8；没有新建artifacts、独立索引/管理脚本或兼容符号链接。35份移动文件合计2,670,724字节，逐文件内容/权限与备份一致，所有移动前位置已空出。其他1010份输入哈希/权限保持；生成资料、补丁、原清单、LICENSES、RTL/TB/软件/Make/compile/start/check_result保持。没有移动、删除或清理sw/build、sim/work及外部验收归档。
+
+**本轮检查：**986条活动来源哈希全匹配；被移动的35份文件不在活动destination中，JSON文件解析通过；两份说明25个本地链接目标存在，新provenance-history锚点有效，12段Bash片段语法检查通过。确认活动入口不引用被移动文件，source_manifest仍在原路径；仅将清单复制到备份中的临时检查文件并比较哈希一致，未调用编译入口。历史JSON内部路径保留原文，指南提供阶段目录映射；旧仿真产物仍按原外部归档索引定位。
+
+**没有构建、仿真、生成RTL、更新依赖、Git提交或GitHub推送。** 前两轮结果仍为之前实测，本轮交付是目录、引用及恢复能力检查，不是新的功能验证。
+
+**备份和回退：**服务器`~/CheshireAra_maintenance/provenance_history_20261025/`，本地`.e01_backups/provenance_history_20261025/`。`before.tar`与`after.tar`各38文件（35历史记录＋3修改文件），两地均实际展开并校验逐成员内容/权限；证据归档8成员（含7项校验索引）已核对。`moves.json`、`result.json`记录全部准确路径及改后哈希；完整差异在证据中的`changes.patch`。
+
+恢复步骤见[rollback.md](../../../../.e01_backups/provenance_history_20261025/rollback.md)：先检查当前38文件无后续变化、旧位置未重新占用，再恢复旧位置与导航；发现指南/清单并发修改必须只逆向本轮导航和两条文档记录、人工保留其他维护内容，不整包覆盖。保留空history目录和全部输出，工作工程未执行回退。本轮备份不撤销此前Ara迁移、特殊测试整理或ELF/TARGET文档。
+
+| 归档 | SHA256（两地一致） |
+| --- | --- |
+| `before.tar` | `0244d7228fc77078140e5374989eafe8c5ba9043c21b6e61c246ff34262a22e5` |
+| `after.tar` | `5f9e3c606bceb658fa559d946f926f324c862fb949f7a48268a8eee220f65267` |
+| `evidence.tar.gz` | `4ca968b7cc6845ccb9fb09ec442319833105c154038118b43f68f1bda587cba2` |
+
+[详细检查结果](../../../../.e01_backups/provenance_history_20261025/result.json)。本轮完成后停止，不追加其他整理。
+
+### 原规划（已获授权并实施，保留历史）
+
+本轮只规划。已通过Windows SSH只读核对正式`~/CheshireAra`的provenance目录、实际compile/start/check_result与软件Make入口、现有指南及来源清单；本地HEAD `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`，第1/2轮和后续ELF/TARGET文档修改均作为现状保留。未写服务器、移动文件、构建、仿真或清理产物。
+
+### 定位与取舍
+
+`provenance`意为来源及追溯资料，不是Codex专属目录。当前共217文件、约5.24MB，其中顶层43文件，`generation/`129文件、`original_manifests/`37文件、`patches/`8文件。活动`source_manifest.json`有986条，当前文件哈希全部匹配，其中155条指向provenance内的来源材料。
+
+- 编译入口直接复制`provenance/source_manifest.json`到BUILD_DIR，结果解析器记录该编译快照的哈希；因此保留活动路径和格式，不整目录改名。
+- 源码版本、原依赖锁/清单、许可证和差异记录必须随工程保存；即使最初由助手收集，也不是可以当缓存删除的内容。
+- `generation/`含真实模板、HJSON、生成器及原配方，当前不参与日常构建。保留原层级，不能混成普通日志，也不据目录存在宣称可以直接重新生成当前RTL。
+- 测试源码已在第2轮归类，继续留`sw/tests/regressions/`、`sw/link/regressions/`和`src/tb/regressions/`。ELF、日志、波形仍留`sw/build/`及`sim/work/`。**不新建工程根artifacts或Codex专属管理目录，不将这些内容合并到provenance。**
+
+### 最小目录调整
+
+仅移动顶层的35份2B/2C/2D历史文件，合计2,670,724字节；全部保留原文件名、字节及权限，不压缩、不去重、不删失败日志。下列glob是本轮查得的明确集合，实施前先冻结文件清单，不把后来新增的同名匹配文件自动纳入。
+
+| 当前内容 | 数量 | 拟位置/处理 |
+| --- | --- | --- |
+| `provenance/2b_*` | 8 | `provenance/history/2b/`：RTL提取/编译与比较记录 |
+| `provenance/2c_*` | 22 | `provenance/history/2c/`：软件提取、旧Make/README、旧清单和构建/比较日志 |
+| `provenance/2d_*` | 5 | `provenance/history/2d/`：搬迁复制及验证快照 |
+| `source_manifest.json` | 1 | 原位保留，当前来源入口 |
+| `reference.json`、`group_selection.json`、`excluded_inputs.json`、`regression_inputs.json`、`generation_inputs.json` | 5 | 原位保留，来源/选取依据；在现有指南标明阶段快照属性 |
+| `p1_p5_sync_20261024.json`、`cleanup_20261022.json` | 2 | 原位保留，既有指南直接引用的修补及外部证据定位记录 |
+| `original_manifests/`、`patches/`、`generation/` | 174文件 | 整体原位保留，不另拆内部历史文件或重生成差异 |
+
+整理后provenance顶层由43个文件降至8个，增加一个`history/`入口。不新增独立索引JSON、README或管理脚本；现有`docs/README.md`已承担目录/证据导航，直接在其中解释各类资料即可。
+
+`reference.json`记录早期参考基底和当时状态，不能把其HEAD当成当前参考工程HEAD；`regression_inputs.json`、`generation_inputs.json`同样不能不经核对当当前哈希表。当前文件映射与哈希以`source_manifest.json`为入口，结合后续维护记录/实际文件核实；`patches/`不预设为覆盖所有后续修改的完整累计补丁。本轮只说明含义，不改造版本管理或修订历史事实。
+
+### 引用、历史真实性与修改范围
+
+- 修改服务器根`README.md`和`docs/README.md`中当前导航，尤其把`provenance/2d_summary.json`改为`provenance/history/2d/2d_summary.json`；说明35文件旧新位置对应规则。
+- 历史JSON、旧README、日志、命令中的路径和哈希保留原样。指南明确：顶层`provenance/2b_* / 2c_* / 2d_*`旧记录分别到`history/2b / 2c / 2d`下找同名文件；原工作区/仿真产物路径另按原验证归档索引查找，不能一律套用这个映射。历史内容不伪改为新路径，不用兼容符号链接增加实体。
+- 35个候选均不在当前986条来源destination中；因此不需虚构35条活动源码记录。只更新上述两份指南已有条目的当前哈希与维护说明，保留其他来源条目、原source/source_sha256及后续ELF/TARGET维护记录。`docs/CONFIGURATION_AND_DEVELOPMENT.md`现有引用均为保留路径，本轮预计不修改。
+- 本地仅在既有计划、交接和任务表记录进展；活跃导航如有失效链接才最小调整，历史报告/备份中的旧路径不批量替换。
+- `~/CheshireAra_validation_archive_20261022/`、`~/CheshireAra_maintenance/`、本地`.e01_backups/`及现有sw/build、sim/work均不搬动或清理。参考`~/CheshireAraPULP`、GitHub、本地FPGA、.vscode、工具与许可证保持。
+
+### 获准后的实施与验证
+
+1. **备份及并发核对：**重新读实际目录/受影响说明和来源清单；保存35文件准确路径、哈希、权限，备份拟改的3文件（根README、docs/README、活动清单）。工程外备份再复制本地并实际解包核对。确认新位置无占用、没有其他对话正在编辑同一说明/清单；发现冲突先保留，不覆盖。
+2. **执行最小移动：**逐文件移动35项，只改当前导航、补目录用途与历史定位规则。对写入的说明/清单做写前哈希检查，确保未覆盖并发修改。无批量清理、无重生成RTL、无依赖或工具升级。
+3. **检查即可，不为归档运行仿真：**逐一比较35文件内容/权限和旧新映射；解析归档前后JSON确认合法，核对当前文档链接/锚点及旧路径定位规则；核对986条来源哈希，其他源码、Make、compile/start/check_result、TB、配置及既有产物不变。检查当前入口不读取被移动文件、活动清单仍在原位置；必要时将清单复制到临时检查目录并比较哈希，不调用RTL编译入口。
+4. **验收界限：**交付“35项移动、导航/清单检查通过、两地恢复核对通过”，不写成新功能验证或重新仿真通过。第1/2轮结果仍是此前实测结果。本轮不需要构建、仿真或扩大测试范围；若发现某个候选被活动入口读取，则先留在原位并调整计划说明，不顺手改构建脚本。
+5. **恢复：**记录旧新位置和改后哈希。需要回退时先确认旧位置未被重新占用、新位置及3个修改文件没有后续变化，再按备份恢复；若指南或来源清单有后续编辑，只逆向本轮导航/对应条目并保留其他记录，不整文件覆盖。输出、历史证据及失败记录始终保留。
+
+**待用户同意：仅将35份2B/2C/2D文件移入provenance/history，其他来源材料原位保留，不新建artifacts目录。** 本轮交付规划后停止。
+
+<a id="special-tests-organization-plan-20261025"></a>
+
+## 2026-10-25 第2轮：特殊测试与链接脚本整理（已完成）
+
+### 2026-10-25 实施结果
+
+用户明确“好的，开始实施”后，已在服务器正式`~/CheshireAra`完成本节方案。输入为本地HEAD `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`、Ara首批迁移及TB/Tcl排版后的1048份实际输入；参考工程`~/CheshireAraPULP`及本地FPGA源未修改，无Git提交/推送。
+
+- **9文件移动：**7个P1–P5 C文件移到`sw/tests/regressions/`，2个P4 ld移到`sw/link/regressions/`，原名、内容与权限全部保持。各文件明细见下方原规划表。
+- **5文件修改：**`sw/Makefile`拆分日常/维护构建集合并改源路径；`docs/README.md`增加使用说明；根`README.md`及`docs/CONFIGURATION_AND_DEVELOPMENT.md`修正默认数量/P4路径；`provenance/source_manifest.json`更新当前destination和变更记录。后两份说明是在实施检查时发现的必要同步，已纳入完整备份。没有改测试算法、golden、RTL、TB、仿真入口、静态清单或配置。
+- **默认7项：**`helloworld`、`helloworld.rom`、`vector_fixed`、`fmatmul.spm`、`rvv_test_vstart_csrs.spm`、`rvv_bounds.spm`、`memory_atomic.spm`。新OUT实际默认只生成7个ELF；`make -C sw regressions`显式增加其余24项，原ELF名称保留；`ara-tests`仍独立，不混入all。全部`.d`依赖仍读入，不删除旧输出。
+- **来源保护：**986条当前来源哈希全匹配，原source/source_sha256保留；整理时1034份不涉及输入内容/权限不变，9个移动文件内容/权限匹配，另5文件为上列修改。既有P1–P5报告和旧命令路径是历史快照，未伪改；另一轮TB/Tcl排版与Ara测试均保留，未开展provenance目录整理。
+
+**软件与运行验证：**先从未移动的当前源码在`sw/build/special_tests_20261025_before/`重新构建原31项及ara-vadd；整理后在`sw/build/special_tests_20261025/`依次执行all、regressions、ara-vadd，分别观察7/31/32个ELF。32项逐一比较入口、每个PT_LOAD的地址、filesz/memsz、权限、对齐和内容哈希，全部相同；6个P4 ELF均包含在比较内。移动后的C依赖路径正确，无参考工程依赖。三份使用说明的Bash片段语法检查通过。
+
+运行复用已核对soc源码一致的`sim/work/ara_tests_20261025/soc`，没有重新编译RTL；现有start仍逐次展开，独立运行目录为`sim/work/special_tests_20261025/runs/`。串行、无波形、每项600秒，以下7项均目标0/simv0/入口0、PASS、无未解释错误：
+
+| 用例 | 实际结果 |
+| --- | --- |
+| hello | PASS；Hello World! |
+| vector | PASS；Hello Vector World!；VECTOR_COPY errors=0 bytes=22 |
+| ara_vadd | PASS；ARA_DONE cases=7 checks=25 vsets=27 errors=0 |
+| p2 | PASS；P2_DONE c=835 e=0 repeat=8 |
+| p4_4 | PASS；P4_DONE case=4 c=1034 e=0 |
+| p4_5 | PASS；P4_DONE case=5 c=19 e=0 |
+| p4_6 | PASS；P4_DONE case=6 c=29 e=0 |
+
+
+P4三项的完整`[P4_*]`观察记录与前次P1–P5验收一致；均missing=0、bad=0、errors=0、launch=1。P2两lane各136次输入/输出相等、无非计算结果错配，标量early/store_without_addrack均0。P4 case1/2/3及其余未运行目标只证明本轮可装载内容/布局保持，**不写成重新仿真通过**。既有FS/libgcc、ROM padding限定告警、共享LLC限制不变。
+
+**备份及恢复：**服务器`~/CheshireAra_maintenance/special_tests_20261025/`；本地`.e01_backups/special_tests_20261025/`。完整回退输入是`rollback_before.tar`（14文件），`after.tar`保存14个最终文件；初始`before.tar`仅12文件，不含后续发现需同步更新的两份说明，不能单独完整回退。两个完整归档在服务器和本地实际恢复到独立目录，逐文件内容/权限核对通过。收尾时另一轮ELF/TARGET文档整理已更新两份指南及其来源条目；用户确认已结束并要求保留。当前三文件另外保存为`concurrent_docs.tar`，与本轮`after.tar`区别记录，没有覆盖后续修改；源码/Makefile仍与本轮验证版本一致。恢复步骤见[rollback.md](../../../../.e01_backups/special_tests_20261025/rollback.md)：旧版本整套恢复命令在当前后续文档哈希处会主动停止，不能绕过。仅回退本轮时，9个源文件、Make和根README可按本轮版本恢复，两份指南需保留新增ELF/TARGET内容并人工调整回退后的路径/构建集合；来源清单只逆向本轮映射及相关哈希，保留后续维护记录。明确授权连后续文档一起撤回时才按相反顺序使用两轮备份。未在工作工程执行回退，不清理输出。
+
+源码差异、映射、基准/新ELF、命令及7项结果保存在两地证据中；完整hart轨迹保留服务器运行目录。归档信息如下：
+
+| 文件 | SHA256 |
+| --- | --- |
+| `before.tar` | `2720c25f5770f03a1b8031ca20d9cb24357dfbd4d9e461b98d2b82c61529c8fe` |
+| `rollback_before.tar` | `b96704419f54e88d929b5c85d07d6685944e2d4b7acbd3d4bce1f86e73f00943` |
+| `after.tar` | `6df6a0cb829f5b897b83e0543e3656b9c2b021072ffc6001f22360bd5ad6b02a` |
+| `concurrent_docs.tar` | `e21d75fdd5c52bc968622915c035b5145388f47f4643622e141c52cf44a630be` |
+| `evidence.tar.gz` | `f127e35ba0ba65663c2d4aaf675f3151bcc2703a165f8ffb4ffbb084f945db0a` |
+
+证据归档242个成员（241项索引），两地归档与逐成员哈希/权限检查通过；[逐项验收](../../../../.e01_backups/special_tests_20261025/acceptance.json)。
+
+
+本轮完成后停止。第3轮provenance整体整理尚未规划/实施，不自动继续。
+
+### 原规划（已获授权并实施，保留历史）
+
+用户要求在Ara首批迁移完成后进行第2步规划。本轮经Windows SSH只读检查正式`~/CheshireAra`的实际软件清单、Makefile、链接脚本、仿真入口及相关来源记录；本地HEAD为`ca8395677691ba8d9d226ce4b5b5b49192b90f1c`。**没有移动服务器文件、修改构建入口、构建或仿真。** 第3轮provenance整体整理仍不开始；本节方案需用户同意后实施。
+
+### 整理目标与目录
+
+特殊测试仍是工程的可维护回归源码，后续改RTL时可用来检查旧bug是否重现；不当作一次性产物删除，也不放入含义不明确的Codex artifacts目录。复用已有`sw/tests/regressions/`；生成的ELF、日志和波形仍放`sw/build/`、`sim/work/`，历史证据不搬动。
+
+| 当前位置 | 拟调整 | 用途/边界 |
+| --- | --- | --- |
+| `sw/tests/p1_vstu_wrap.c` | 移入`sw/tests/regressions/`，原名不变 | 存储队列绕回复现 |
+| `sw/tests/p2_vmfpu_order.c`、`p2_vcpop_boundaries.c`、`p2_scalar_overlap.c` | 同上 | 浮点次序、mask边界、共享标量返回 |
+| `sw/tests/p3_div_flags.c` | 同上 | 除法/异常标志及mask矩阵，两目标共用一个源 |
+| `sw/tests/p4_preload_bytes.c` | 同上 | 六类ELF预加载边界 |
+| `sw/tests/p5_dma_1d.spm.c` | 同上 | 一维与二维交替DMA，两目标共用一个源 |
+| `sw/link/p4_single.ld`、`p4_multi.ld` | 移入`sw/link/regressions/`，原名不变 | 只用于P4；普通link目录顶层保留3种官方ld及公共ldh |
+| 已有`sw/tests/regressions/`其他源 | 保留原位置/内容 | 不趁机重命名或重新分类整个测试库；`vector_fixed.c`虽在此目录，仍作为日常示例构建 |
+| `src/tb/regressions/`及soc TB内P1–P5监视逻辑 | 保持 | 已隔离且按目标/开关使用；不移动刚排版的TB/Tcl，不修改compile/start/filelist |
+| `sw/tests/ara/rv64uv/`、公共头 | 保持 | 首批Ara测试继续显式`ara-*`/`ara-tests`构建 |
+
+总计只移动**7个C文件、2个ld文件**。源码、golden、链接布局、权限、ELF文件名和运行参数保持。无需新增README、独立Makefile、脚本或参数框架；在现有`sw/Makefile`及`docs/README.md`完成入口说明。
+
+### 默认构建与显式回归
+
+只搬目录不会解决当前默认生成31个ELF的问题。建议同时调整现有Make目标集合：
+
+- `make -C sw`默认构建7个日常ELF：`helloworld.elf`、`helloworld.rom.elf`、`vector_fixed.elf`、`fmatmul.spm.elf`、`rvv_test_vstart_csrs.spm.elf`、`rvv_bounds.spm.elf`、`memory_atomic.spm.elf`；保留对应库/map/dump和SPI镜像生成。
+- 新增一个显式`regressions`目标，构建其余24个既有ELF及dump：P1–P5共14个、RVV负例1个、DMA/LLC/SLINK维护目标9个。它**只构建，不自动运行**，其中有预期失败和已知限制，不能定义为“一键全通过”。
+- 保留现有逐个输出目标，如`make -C sw OUT="$PWD/sw/build/check" "$PWD/sw/build/check/p2_vmfpu_order.elf"`；执行命令仍使用原start入口。`make -C sw all regressions`可重建原31项集合；Ara11项仍另用`ara-tests`。
+- 复用现有split/direct规则及ELFS依赖收集，只明确日常/回归目标集合；不能为了从all排除而漏掉回归`.d`依赖。P4规则的链接脚本参数改为`regressions/p4_single`或`regressions/p4_multi`，现有`-L sw/link`继续解析`common.ldh`，不复制公共链接文件。
+- 不删除旧输出；旧目录里的特殊ELF不会因默认集合缩减自动消失。验收使用新OUT，避免把旧产物误认成本轮默认生成。
+
+这是有意改变默认构建集合，**不是已经实施的状态**。DMA维护测试仍可显式构建；今后需要日常DMA例程时另讨论，不借本轮把历史排查程序改写成用户示例。
+
+### 特殊ld的额外用途
+
+普通链接选择仍为：`spm.ld`在SPM运行，`dram.ld`在DRAM运行并设置对应栈，`rom.ld`规定ROM镜像装载地址与SPM运行地址。`common.ldh`为公共定义，不是第四种启动模式。
+
+P4脚本不表示新存储器配置，而是**强制生成普通布局不保证出现的ELF可装载段**：
+
+| P4用例 | 强制布局 | 检查目的 |
+| --- | --- | --- |
+| 1/2 | 1024/2048字节段 | 循环边界、避免多发空突发 |
+| 3 | 1031字节段 | 非整拍尾字节不丢失 |
+| 4 | 从`0x10000001`起的1024字节段 | 非拍对齐装载 |
+| 5 | 从`0x10000ff8`起的16字节段 | 4 KiB边界处分割事务 |
+| 6 | `0x10002000`起13字节，紧接9字节第二段 | 不用前段padding覆盖后段真实数据 |
+
+脚本还固定应用段、保留栈区域并检查段长度。它们对预加载器维护有价值，日常更换ELF不需要选择；不能用spm.ld替换它们后仍宣称P4边界覆盖保持。
+
+### 实施、验证与回退（待授权）
+
+1. **先备份。**重新核对现场及并发修改；将9个待移动文件、Makefile、docs和需要更新的活动来源记录备份到工程外并复制本地，保存哈希/权限/旧新路径。先确认新位置不存在冲突，不覆盖已有文件。保护另一轮已排版TB/Tcl及Ara迁移结果。
+2. **只改路径和集合。**移动9文件，调整Make路径/默认集合，在现有docs说明日常与显式回归。同步`provenance/source_manifest.json`的当前destination及Make/docs哈希，保留参考source/source_sha256；检查相关patch/活动路径引用，只有失效引用才最小修正。`regression_inputs.json`、P1–P5同步报告、旧命令/日志作为历史快照保留，不伪改历史路径。不得开展第3轮provenance搬迁/合并。
+3. **静态及软件验证。**逐文件比较移动前后内容/权限；核对默认目标7个、回归24个、Ara11个不进入all，全部依赖仍可追踪；从新OUT重建原31项以及`ara-vadd`。对照迁移前匹配版本的可装载字节、入口、PT_LOAD地址/长度/标志，特别检查全部6个P4 ELF；调试路径变化可使完整ELF哈希不同，不能仅据此判功能改变。若基准ELF无法匹配当前源/参数，先从未移动版本重建对照，不借用不明旧产物。
+4. **代表性串行复验。**先复用已确认源码一致的soc编译产物、用新RUN_DIR运行HelloWorld、vector_fixed、ara-vadd、P2次序、P4 case4/5/6，共7次；分别确认普通入口、未移动示例、Ara显式入口、移动C文件及特殊ld路径可用。保留P2/P4原配套监视参数和多层结果判据；P4其余case先由完整PT_LOAD/可装载字节一致性覆盖，不把未重跑项写成重新动态验证。普通运行无波形，每例600秒；失败先定位路径/构建差异，不改RTL。无新差异或失败不扩展成全工程重测。
+5. **可回退交付。**保留旧新映射、前后哈希、构建/运行记录和两地备份；实际解包检查可恢复。回退前确认涉及文件无后续修改，再按映射恢复旧位置及本轮入口记录，移除仅本轮新增且未变的目标文件；有并发变化停止覆盖、人工合并。保留输出和失败证据，不reset、不清理依赖。正式工程无Git的现状不在本轮改变。
+
+完成后只报告本轮目录/默认集合变更和实际验证；参考`~/CheshireAraPULP`、本地FPGA工程及GitHub均不修改。**本轮规划后停止；用户同意上述9文件移动及默认31→7、其余24显式构建后才实施。**
+
+<a id="ara-tests-migration-plan-20261025"></a>
+
+## 2026-10-25 Ara 官方 C 测试首批迁移（已完成）
+
+### 2026-10-25 实施结果
+
+用户“开始实施”后，已直接迁入服务器正式工程 **`~/CheshireAra`**，不是只保存在候选副本。输入为本地HEAD `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`、正式工程实际1033份输入，以及Ara `2895ba907e9eb14b3464609dc791a969d159a7c3` 锁定源码；参考工程HEAD保持`5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`。本轮不修改参考工程、不提交/推送GitHub。
+
+**实际文件：**新增下面11个C及4个头，共15个；修改`sw/Makefile`、`docs/README.md`、`provenance/source_manifest.json`共3个旧文件。Make只增加显式`ara-*`/`ara-tests`目标，原内容前缀和默认`all/ELFS`保持；使用现有`spm.ld/common.ldh`、启动、库、工具链和compile/start/check_result入口，没有新增ld或运行框架，没有改生产RTL、TB、配置、FS或cache。
+
+| 正式工程位置 | 文件 |
+| --- | --- |
+| `sw/tests/ara/rv64uv/` | `vadd.c vl.c vs.c vmul.c vredsum.c vslideup.c vcpop.c vls.c vss.c vluxei.c vsuxei.c` |
+| `sw/deps/ara/rv64uv/` | `vector_macros.h dataset.h rvv_debug_macros.h float_conversion.h` |
+
+**测试适配及原因：**完整差异在备份目录`patches/`，上游原文件在`upstream/`，`migration.json`逐项记录原始/适配后SHA。
+
+- 公共宏适配Cheshire UART、VS启用、成功/失败计数和返回码；各main只增加case执行计数。保留全部原数值输入及golden，逐文件数值token比对一致，没有删除case。成功输出缩减为最终统计，错误详情保留，避免串口打印占据大量仿真时间。
+- 修正VSET未声明固定临时寄存器破坏的问题，检查实际VL；VLOAD按所提供数组元素数装载并恢复原VL，避免mask小数组被当前VL越界读取；VCMP按期望元素数真正读回寄存器，避免短VL时比较旧结果缓冲区。补实际fence及memory clobber，未改地址别名、关闭cache或删比较。
+- vcpop使用标准`vcpop.m`助记符，把被写标量从input改为early-clobber output。只对这些测试关闭自动向量化/SLP和源文件LTO，防止检查代码使用被测寄存器；链接仍使用原库的LTO设置。未使用的`check_vtype_vl`漏增失败计数分支一并修正，但不宣称已动态覆盖该分支。
+- 保留上游ta/ma和尾部/mask的期望值；这部分结果属于**当前Ara实现回归**，不能解释成所有RVV实现都必须保留agnostic元素。SHL-0.51和头内许可文字保留，复用现有`LICENSES/ara/LICENSE`。
+
+**运行与判据：**新软件目录`sw/build/ara_tests_20261025/`，新硬件/运行目录`sim/work/ara_tests_20261025/`。使用现有入口新编译soc，各次串行、无波形、600秒。每次保留`command.json`、ELF哈希、`simulate.log`、`result.json`及hart轨迹；不是仅以simv=0判定。
+
+| 用例/组 | 实测结果 |
+| --- | --- |
+| HelloWorld、vector_fixed | 各PASS，向量复制errors=0 |
+| vadd | PASS；`ARA_DONE cases=7 checks=25 vsets=27 errors=0` |
+| vl | PASS；`ARA_DONE cases=4 checks=4 vsets=4 errors=0` |
+| vs | PASS；`ARA_DONE cases=4 checks=4 vsets=4 errors=0` |
+| vmul | PASS；`ARA_DONE cases=4 checks=16 vsets=16 errors=0` |
+| vredsum | PASS；`ARA_DONE cases=5 checks=20 vsets=20 errors=0` |
+| vslideup | PASS；`ARA_DONE cases=5 checks=20 vsets=20 errors=0` |
+| vcpop | PASS；`ARA_DONE cases=2 checks=8 vsets=14 errors=0` |
+| vls | PASS；`ARA_DONE cases=14 checks=14 vsets=14 errors=0` |
+| vss | PASS；`ARA_DONE cases=6 checks=6 vsets=6 errors=0` |
+| vluxei | PASS；`ARA_DONE cases=6 checks=22 vsets=26 errors=0` |
+| vsuxei | PASS；`ARA_DONE cases=2 checks=8 vsets=8 errors=0` |
+| 故意错误的vadd负例 | TARGET_FAIL；errors=1、target=1、simv=0、入口1（符合预期） |
+| rvv_bounds | PASS；5976项、0错误 |
+| P2浮点次序 | PASS；835项、0错误，repeat=8 |
+| P3 mask/异常矩阵 | PASS；753项、0错误 |
+| fmatmul | PASS；数值匹配，19883周期，与此前结果一致 |
+
+
+11个新用例共59个case函数、147组结果比较（不是147个向量元素）；每项`ARA_DONE`数量符合预期且errors=0。负例只在输出目录的临时C副本改错一个golden，正式源不变；确实得到errors=1、target=1、simv=0、入口1/TARGET_FAIL。18次验收运行为17 PASS及1预期负例。
+
+另保留1次早期verbose vadd诊断运行：轨迹确认在UART输出推进，因逐比较打印耗时主动结束，未将其计为通过或死锁；随后使用精简成功输出及上述宏适配重建再测。软件首轮链接曾因整体禁LTO与既有LTO库不兼容报undefined reference；改为测试对象单独禁LTO、链接保持既有设置后通过，未更换工具链或修改库。旧失败源、命令及日志保留。
+
+**容量/范围检查：**11个ELF均在现有64KiB链接区内，最少剩余31468字节；最大单函数静态栈帧1248字节。ROM实际传入栈顶`0x1001fff8`，11项轨迹中ELF执行区的SP与BSS均无重叠（`observed_stack.json`）；这是已执行路径观察，不是全路径栈证明。既有4项回归重建后的可装载字节与前次P1–P5版本一致。编译依赖无参考工程或`.bender`路径；986条来源哈希全部对应实际文件。保留原有RWX链接、MMIO链接符号数组边界、mmio.c符号比较以及上游vcpop常量截断告警，未通过屏蔽告警改变判据。
+
+**并发修改保护：**本轮发现另一对话已经排版两工程的slink_rx TB及LLC Tcl，并更新正式来源清单/差异patch。经用户确认后，以最新清单追加15项并更新本轮Make/docs记录，原969项保持。1033份初始输入中1027份哈希/权限不变，另6份为本轮3份与另一轮3份（共享清单在本轮3份中）；另一轮的3份文件与其完成后快照一致。参考工程仅保留那两份排版文件未提交状态，没有将它们纳入本轮提交或回退。
+
+**备份及恢复：**服务器`~/CheshireAra_maintenance/ara_tests_20261025/`，本地`.e01_backups/ara_tests_20261025/`。`before.tar`保留最初快照；**实际回退用`rollback_before.tar`，不能用最初来源清单覆盖后来排版记录**。`after.tar`保存最终18个文件；两个归档已实际恢复到独立目录，逐成员内容/权限核对通过，本地副本也校验。恢复步骤在两地`rollback.md`：先检查18文件仍与`source_validation.json`匹配，再恢复3旧文件、仅移除15新增源文件；发现后续变化即停止并人工合并，保留全部输出与日志，不使用reset或整目录覆盖。工作工程没有执行回退。
+
+首批迁移完成。未扩展到第二批浮点/全部ISA、异常/MMU、ASIC/工艺验收；FS/libgcc、ROM限定告警及共享LLC原有限制不变。特殊测试/ld归档及provenance整理仍为另外两轮，未实施。
+
+归档SHA256（两地一致）：
+
+| 文件 | SHA256 |
+| --- | --- |
+| `before.tar` | `90ac8aff27b981f8c2d11b7759a9d5adeab431d53250904d98331d1c7f800097` |
+| `rollback_before.tar` | `bcce328dd73bb0f68d1640482ffb7b3ab1d64ca8d52e993e211e1f763f8e4c09` |
+| `after.tar` | `5a4430e0fd976f9e89ac2a9faf0bcf6d38d3faa7d8869f8df34811099bb0691c` |
+| `evidence.tar.gz` | `500f3903d1937b8435f6713c34d28db89fa1b4e1b2f4ae8f4fc9b0d462f54ad9` |
+
+证据归档含252个成员（含251项逐文件索引）；本地逐成员哈希/权限核对通过。详见[本地恢复步骤](../../../../.e01_backups/ara_tests_20261025/rollback.md)、[逐项结果](../../../../.e01_backups/ara_tests_20261025/acceptance.json)。
+
+### 实施前规划（历史）
+
+**以下为原规划快照：**本轮只处理用户三个议题中的第1项：选取适合正式工程的Ara测试并规划迁移/初步验证。第2项特殊测试/链接脚本归档、第3项provenance整理另轮讨论，不在此移动文件。本轮服务器仅只读；没有复制源码、构建、仿真、修改参数或升级工具。
+
+### 输入与首批范围
+
+2026-10-25通过Windows OpenSSH读取服务器当前实际文件。参考R为`~/CheshireAraPULP`，正式F为`~/CheshireAra`；此前P1–P5已同步，不回退到纯上游。当前Ara来源HEAD为`2895ba907e9eb14b3464609dc791a969d159a7c3`，`apps/riscv-tests`路径无本地修改；`vadd.c`在该仓库中为普通跟踪文件，不需要初始化SDK或下载子模块。正式配置仍为2 lanes、VLEN=2048，软件当前GCC入口、lp64d和Cheshire启动保持。
+
+源码根记作A：`~/CheshireAraPULP/.bender/git/checkouts/ara-2c7b103275a16c87`。官方版本定位：[rv64uv C测试](https://github.com/pulp-platform/ara/tree/2895ba907e9eb14b3464609dc791a969d159a7c3/apps/riscv-tests/isa/rv64uv)、[公共宏](https://github.com/pulp-platform/ara/tree/2895ba907e9eb14b3464609dc791a969d159a7c3/apps/riscv-tests/isa/macros/vector)。本轮证据为服务器该锁定版本源码/Makefile的只读检查，不是对最新分支或远程PR状态的调查。
+
+建议首批11个C文件，先运行前三个，再逐项扩展。每个文件单独生成ELF；全部为待迁移、待验证，不把静态适用判断写为已通过。
+
+| 顺序 | 官方文件（A/apps/riscv-tests/isa/rv64uv/） | 初步检查目的 |
+| --- | --- | --- |
+| 1 | `vadd.c` | 整数vv/vx/vi加法、多SEW和mask；先验证公共宏/结果检查能正常工作 |
+| 2–3 | `vl.c`、`vs.c` | 8/16/32/64位单位步长载入/存储，元素对齐但相对数据拍偏移的地址；与当前WT D-cache、Ara共享内存配合 |
+| 4 | `vmul.c` | 整数乘法及mask，不依赖大型应用输入 |
+| 5 | `vredsum.c` | 整数归约，检查多lane数据汇聚 |
+| 6 | `vslideup.c` | slide数据重排及mask，与逐元素运算区别 |
+| 7 | `vcpop.c` | mask计数及标量返回；与已有P2边界/并发测试互补 |
+| 8–9 | `vls.c`、`vss.c` | 步长访存；逐项保留上游实际case，不宣称覆盖所有步长/边界 |
+| 10–11 | `vluxei.c`、`vsuxei.c` | 索引访存及源文件已有mask场景，检查实际内存结果 |
+
+选择依据：这些测试带确定输入/期望结果，通常比大型应用易定位失败；前三项成功后才能证明迁移适配基本可用。`vl.c/vs.c`中的`AXI_DWIDTH=128`实际用于数组字节对齐，不据变量名修改工程AXI位宽；当前测试也不能被描述为全部总线宽度组合验收。
+
+第二批候选为`vfadd.c`、`vfmul.c`、`vfmacc.c`，不自动包含在首批11项实施中。这些源文件混有FP16/FP32/FP64段落，需单独核对当前启用精度、标量NaN-boxing、舍入和异常判据；首批继续用已有P2/P3 FP32/FP64与fmatmul回归。不能悄悄删掉FP16后宣称完整官方用例通过。`vsetvl/vsetvli/vsetivli`、分段/整寄存器/异常访存留下一批，先解决公共判据与实际VL适配。FFT/卷积/softmax等应用暂缓，避免首批引入数据生成及大容量链接问题。Cheshire适配目录内多项`mmu_stub`/寄存器stub测试不迁入；已有非stub CSR和修正后的vector_fixed不重复复制。原vector_helloworld有将向量变量作为`%s`参数的旧错误，继续使用已修正并做数据比较的正式用例。
+
+### 拟迁入和修改的文件
+
+- 11个C文件：从上述rv64uv路径复制到拟定`F/sw/tests/ara/rv64uv/`，保留原文件名、版权、测试case和期望常量。独立子目录用于隔离官方测试集合，不搬动现有p*.c；目录归档议题仍留第2轮。
+- 公共头4个：`vector_macros.h`、`dataset.h`、`rvv_debug_macros.h`、`float_conversion.h`，从A的`apps/riscv-tests/isa/macros/vector/`迁到拟定`F/sw/deps/ara/rv64uv/`。即使首批不运行浮点，vector_macros仍包含float_conversion。首批不需要`long_array.h`或`float_macros.h`；实际预处理依赖如有额外项，先列明再最小复制。
+- 复用正式工程已有`encoding.h`、printf、UART/CLINT、`cheshire_util.h`、crt0和软件库；比较官方宏所需常量与现有encoding定义，不覆盖共用头。工具链版本不升级。
+- 首选已有`sw/link/spm.ld`和`common.ldh`，不新增ld。SPM链接区域当前为64KiB，需检查各ELF的text/data/bss、所有测试栈数组和ROM继承栈实际余量，不能只看链接是否成功。dataset中存在1024元素公共数组；按实际链接存活数据核对，不为塞进内存直接减小数据/删除case。放不下时该项暂缓并报告，不默默改地址图或切换dram.ld。
+- 只在现有`sw/Makefile`增加显式目标，例如`ara-vadd`及可选集合`ara-tests`。与当前`ELFS/all`分开，默认`make all`保持原集合；现有direct_test宏会追加到ELFS，不能直接无区分套用。复用现有构建机制，不另造自动运行器。
+- 在现有`docs/README.md`补一小节构建/运行方法和覆盖范围；在既有`provenance/source_manifest.json`等适用清单记源SHA、源路径、本地差异与新增目标。核对并保留SHL-0.51及头内NumPy许可文字，缺少许可证正文时按实际来源补入现有LICENSES目录。不新建迁移平台，不整理历史provenance。
+
+### 已发现的适配风险与处理原则
+
+1. **启动不是同一平台。** 官方apps使用自身runtime和链接文件，不能直接调用其Makefile：其中有工具链/Spike与生成链接脚本等路径。正式测试继续用Cheshire crt0；在各main进入/退出处最小添加UART初始化、向量启用、初始化计数及UART flush，保留原main返回失败数。官方非Spike的enable_vec/enable_fp为空，不能假定进入main时VS已就绪；沿现有初始化方式核对，不修改FS硬件或共用crt0。
+2. **公共宏不是天然可靠的验收器。** 当前`check_vtype_vl`非法类型失败分支仅printf/return、漏加num_failed；虽然首批不主动选配置测试，公共适配必须记录并修正失败计数，避免以后假通过。审查首批实际展开的比较宏、调用列表、返回码及成功结束标志；不能只grep最后一行PASSED。
+3. **标量/向量内存先后关系。** 官方`MEMORY_BARRIER`当前为空，正式平台需要核对现有fence语义并在所需生产/消费边界加编译器memory clobber及实际完成屏障。fence不等于清除WT D-cache旧副本；先按当前SoC一致性路径检查地址和缓存状态，不直接把所有指针改成uncached，也不为测试通过关闭cache。必要的测试端适配必须记录，不能掩盖硬件缺陷。
+4. **内联汇编与编译器。** 官方Make使用其LLVM路径，而正式工程使用GCC。VSET等宏写固定t0/t1但未显式声明破坏寄存器，访存汇编也存在缺少memory描述的情况。逐项审查首批实际用到的宏/汇编，在测试局部补准确约束；禁止自动向量化和SLP向量化，避免C检查循环使用被测向量寄存器；保留当前优化级别，必要时仅这些测试禁LTO，并检查反汇编，而不是全工程改编译选项。具体追加差异以实施时编译与检查证据为准。
+5. **VL、mask和tail。** 上游多个case以固定元素数比较，VSET采用ta/ma；先检查实际请求VL不被截短、每个case的实际VL与预期匹配。不要将架构允许不确定的masked/tail值当必然错误；若上游检查依赖当前实现保留值，应明确标为实现回归，或单独说明测试契约适配，不能偷偷改golden或跳过失败case。必要时只在这些测试的公共宏中加检查计数/实际VL检查，不新增通用框架。
+
+这些是静态检查发现的迁移风险，**不表示已在正式工程复现硬件缺陷**。源码适配和ISA/硬件修复必须分开报告。
+
+### 实施顺序、验证和回退（另行授权）
+
+1. 重新检查F和输入源码现状，备份将改动的Makefile/说明/来源清单；保存SHA、权限、新增文件清单及上游原文件。备份放工程外，并保留本地副本，不覆盖P1–P5备份，不新增F Git仓库作为隐含前提。
+2. 首先只迁入公共依赖和`vadd/vl/vs`。静态检查依赖、汇编约束、case数量和链接容量；构建到新的`sw/build/ara_tests_<日期>/`。复用经源码/配置/编译输入确认匹配的既有soc仿真器；不能确认匹配才用现有入口新建硬件输出，不修改RTL/TB。
+3. 先跑既有HelloWorld和vector_fixed确认入口，再串行运行这3个新ELF。程序必须进入并完成全部计划case，真实读回数据匹配；UART无FAILED/ERROR、目标0、simv0、入口PASS、无未解释断言，才能标通过。
+4. 针对一个明确比较点，在独立临时测试副本中故意改错一个期望值；必须出现失败计数、非零目标返回和入口失败。保留负例证据；正式迁入源仍保留正确golden。若旧宏漏报则先修测试判据，不能将其误报成硬件通过。
+5. 上述通过后逐项迁入并运行其余8个C用例；每个ELF独立记录源哈希、软件命令、运行命令、实际case/检查数、输出、simv身份和结果，不能用前3个通过推断全套通过。普通运行无波形，每例默认600秒；失败先保留证据并诊断测试/平台适配，授权内做最小测试修正。需要改生产RTL/架构、工具链或覆盖范围时暂停该项报告，不扩大为P1–P5之外的新修复。
+6. 完成后复跑已有`rvv_bounds`、`p2_vmfpu_order`、`p3_mask_matrix`和`fmatmul`，确认原软件入口及关键向量回归保持。若全部一次成功，计划18次运行：2基线＋11新增＋1预期负例＋4回归；失败重试另记，不承诺尚未实测的耗时/通过数。
+7. 核查正式工程不依赖R路径、Bender、网络下载或上游runtime；默认all集合未改变。交付逐项状态（通过/失败/未执行/不适用）、实际覆盖、完整差异与恢复命令。回退先确认没有后续并发修改，再恢复本轮修改的旧文件和仅本轮新增文件；保留所有日志和失败源，不执行reset/批量清理。
+
+初步通过只代表这些官方case在当前2-lane/VLEN2048平台适配后通过。尚未覆盖所有指令、LMUL、tail/mask策略、异常恢复、地址翻译、全部浮点格式或工艺实现；fmatmul回归也不能替代ISA覆盖。后续按缺口再扩充，不一次迁入整个apps。
+
+**原待授权事项已被用户“开始实施”取代；实施限首批11项，不开始第2/3轮目录整理。**
+
+
 2026-10-24 P1–P5同步完成：R先完成48次验证并推送GitHub `5986ba02`，F随后按映射同步并独立完成41次测试，39项共同用例与R一致。前后源码、两地备份及恢复核对齐备，集中配置/wrapper/静态入口与既有限制保持。见[结果与回退](official_upstream_maintenance_assessment.md#reference-formal-sync-20261024)。本轮完成停止，下方“未写回/待授权”为历史。
 
 2026-10-23 P3–P5修复与累计回归完成：按用户要求对范围内失败继续定位修复，隔离C的P3 SIMD异常标志、P4相邻段覆盖及P5 RTL/HAL均验证通过。累计7次新运行为6 PASS及SPI原padding限定告警接受，同版本3项DMA回归通过；最终`p1-p5-pass=5e0f973…`及双份源码/证据已校验，R/F保护核对保持。详见[实测、版本与恢复](official_upstream_maintenance_assessment.md#p3-p5-repair-20261023)。阶段B完成并停止，未写回R/F，阶段C仍需单独授权；下方为历史记录。

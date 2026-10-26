@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="880" viewBox="0 0 1540 880">
+<defs><marker id="arrow" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker></defs>
+<rect x="0" y="0" width="1540" height="880" fill="#FFFFFF"/>
+<text x="770.0" y="48" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">SRAM替换位置：以Ara的一个VRF bank为例</text>
+<text x="770" y="90" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" fill="#29292D">当前2 lanes × 每lane 8 banks；下图只展开其中一个bank。</text>
+<rect x="60" y="160" width="500" height="210" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text x="78" y="194" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">vector_regfile：现有消费者</text>
+<text x="78" y="228" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">req / wen / addr / wdata / be</text>
+<text x="78" y="258" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">有效位 = req &amp; ~wen，延迟1拍</text>
+<text x="78" y="288" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">目标队列也延迟1拍；数据送入操作数队列</text>
+<text x="78" y="318" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">地址6 bit；写数据64 bit；字节使能8 bit</text>
+<rect x="950" y="160" width="530" height="210" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text x="968" y="194" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">data_sram：现有tc_sram实例</text>
+<text x="968" y="228" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">64 words × 64 bit；单端口1RW</text>
+<text x="968" y="258" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">ByteWidth=8；Latency=1</text>
+<text x="968" y="288" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">SimInit="none"：复位不清空数据阵列</text>
+<text x="968" y="318" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">当前为通用行为实现，尚未映射工艺宏</text>
+<polyline points="560,225 950,225" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="755" y="208" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="18" font-weight="normal" text-anchor="middle" fill="#29292D">req / we / addr / wdata / be</text>
+<polyline points="950,310 560,310" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="755" y="294" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="middle" fill="#29292D">rdata：对齐1拍有效窗口</text>
+<rect x="60" y="450" width="500" height="145" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text x="78" y="484" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">现有时钟门控</text>
+<text x="78" y="518" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">en = req | 上拍req；test_en = 0</text>
+<text x="78" y="548" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">门控输出 vrf_clk 接SRAM时钟</text>
+<polyline points="310,370 310,450" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="330" y="415" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start" fill="#29292D">req（及寄存延迟）</text>
+<polyline points="560,510 825,510 825,350 950,350" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="680" y="493" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">vrf_clk</text>
+<rect x="950" y="600" width="530" height="180" fill="#F5E1C9" stroke="#29292D" stroke-width="1.8" stroke-dasharray="8 5"/>
+<text x="968" y="634" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">后续：工艺SRAM宏及必要适配</text>
+<text x="968" y="668" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">保持请求、1周期有效读、写掩码语义</text>
+<text x="968" y="698" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">核对使能极性、保持期、测试脚和库视图</text>
+<text x="968" y="728" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">若宏延迟不同，必须修改并验证消费者</text>
+<polyline points="1215,370 1215,600" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<text x="1240" y="475" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start" fill="#29292D">后续替换内部实现</text>
+<text x="1240" y="507" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="19" font-weight="normal" text-anchor="start" fill="#29292D">不是并联第二个存储</text>
+<text x="60" y="676" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">关键边界</text>
+<text x="60" y="716" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start" fill="#29292D">rst_ni复位控制状态，不代表数据初始化。</text>
+<text x="60" y="751" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start" fill="#29292D">宏必须保留有效数据；非有效期输出不要求逐拍复制模型。</text>
+<text x="60" y="786" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="21" font-weight="normal" text-anchor="start" fill="#29292D">当前test_en绑0，不等于已具备工艺宏MBIST/扫描接管。</text>
+<text x="770" y="845" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">实线：当前连接；虚线：尚未实施的替换关系。</text>
+</svg>

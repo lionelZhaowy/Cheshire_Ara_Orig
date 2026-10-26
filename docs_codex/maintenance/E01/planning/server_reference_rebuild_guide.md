@@ -1,5 +1,74 @@
 # Cheshire + Ara：服务器同版本重建速查
 
+<a id="cross-project-sync-rules"></a>
+
+## 两工程目录与代码同步规范（2026-10-25 用户确认）
+
+正式工程F为 `/home/zhaowy24/CheshireAra`，采用集中配置、wrapper、静态编译入口和独立软件构建；参考工程R为 `/home/zhaowy24/CheshireAraPULP`，保留官方目录组织及本地修复，供来源对照、补丁复现与参考验证。**保留两套布局，不为同步方便把R重构成F，也不把F恢复成R的布局。同步对象是本次授权的代码修改及必要配套，不是整个目录树。** R包含本地修改，不等同于未经修改的官方代码。
+
+### 常见路径映射
+
+下表是定位规则，执行时仍须核对当前文件、调用关系和来源记录；不表示表内整组文件都获准同步。
+
+| R中的位置 | F中的位置 | 同步注意事项 |
+| --- | --- | --- |
+| `.bender/git/checkouts/<组件>-<固定后缀>/…` | `src/cheshire_soc/<组件>/…` | 对已提取文件按组件内相对路径定位；后缀从现场确认，不能整包复制依赖或把`.bender`视为缓存清理。 |
+| `hw/…` | `src/cheshire_soc/cheshire_top/…` | `cheshire_pkg.sv`是集中配置例外，见下项。 |
+| `hw/cheshire_pkg.sv`、CVA6所选配置包 | `src/config/cheshire_pkg.sv`及对应CPU配置包 | 保留F有效配置、类型及参数派生；不能直接用R文件覆盖。 |
+| `target/sim/src/…`、`target/sim/models/…` | `src/tb/src/…`、`src/tb/models/…` | fixture/VIP可能含F wrapper、配置引用及层级适配，须比较修改内容后合并。 |
+| `_e01/…`中的已采用独立TB、探针及job输入 | `src/tb/regressions/{slink_rx,llc,idma}/…` | 来源分散，按现有清单逐项定位；历史实验、日志和产物不整体搬入。 |
+| `sw/tests/`或`_e01/…`中的维护用例 | `sw/tests/regressions/…` | 维护测试沿用F分组；日常测试仍在`sw/tests/`，Ara可选测试仍在`sw/tests/ara/rv64uv/`。 |
+| `sw/link/p4_single.ld`、`sw/link/p4_multi.ld` | `sw/link/regressions/`下同名文件 | 修改路径引用时保留链接地址及布局；不是一般链接脚本的整体搬迁规则。 |
+| R的Makefile、VCS脚本及测试入口 | `sw/Makefile`、`sim/scripts/` | 合并必要规则或选项，不复制R整份入口；保留F静态清单及统一compile/start选择独立TB的组织。 |
+
+### 每次同步须遵守的边界
+
+1. **确定实际输入。** 检查本地及R的HEAD、`git status --short`，核对F现有差异和相关文件的内容、哈希、权限。修复可能尚未提交，HEAD不能代替已验证工作区版本；当前R文件也不能仅凭路径认定与历史验收版本相同。
+2. **先备份再合并。** 保存受改文件及新增文件原先不存在的事实，记录可恢复位置；写入前再比较，避免覆盖并发修改。保留F的`src/config/`、`src/top/`、wrapper、静态入口、既有TB层级及已接受修复，除非本次授权明确要求改动。
+3. **复用现有软件组织。** F日常`all`、维护`regressions`及可选Ara构建组分别保留；维护用例加入已有`regressions`，不因同步引入重复分组或新的运行框架。ELF名称、编译期宏和运行参数分别核对；不要将R的默认目标集合覆盖到F，也不要因新增ELF就新增TARGET。
+4. **维护当前来源，保留历史。** 复用F `provenance/source_manifest.json`中的源路径、目标路径和维护记录，更新相关最终文件哈希，保留原来源信息。按现有用途更新相关patch或输入记录，不另建一份平行映射表；`provenance/history/`、原始来源清单及旧验证快照不重写为本次状态。
+5. **在目标工程验证。** 获得运行授权后，从F自身入口在新输出目录重新构建受影响的软件与仿真器，串行执行对应测试和相关回归；普通运行无波形，每例默认600秒。检查目标结果、仿真器/入口判定及断言，R的通过结果不能代替F验证。同步文档中的ELF/TARGET及构建组说明，并区分本次运行、历史结果和未测范围。
+6. **不扩大同步范围。** 不调用Bender、升级依赖、重生成原Boot ROM、搬入参考工程的工具环境或历史产物；不修改参考工程来消除路径差异，不清理旧验收归档。同步授权不自动包含Git提交、推送、综合或板测。
+
+本规范由根`AGENTS.md`导航，后续对话引用本节并列出本次文件即可，无须每次重述全部目录差异。它不代替具体任务授权。2026-10-25制定本规范时P6仍仅在R完成，F尚未同步；修复与测试清单见[当前P6报告](../reports/official_pr_failure_fixes_review.md#p6-fix-20261025)。
+
+<a id="llvm-default-20261026"></a>
+
+## LLVM默认软件链当前状态（2026-10-26）
+
+已先在R完成LLVM适配验证，再同步并独立验证F；目标裸机软件现默认Ara配套LLVM20.1.0/newlib/compiler-rt，输出`sw/build/llvm_p7`，不依赖目标GCC/libgcc。R38/F49新ELF、40/51主记录分别36/47正常PASS，SPI原限定告警/保留LLC未完成/两个预期负例分别报告；旧工具及产物保留，宿主g++仍用于VCS。随后R八文件LLVM修改已提交并推送[`6f2b2a3b`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/6f2b2a3be50eeb15eb93c0ada2164029a102c94c)，远端main读回一致；原两处诊断修改保留，其他工作区内容见[发布记录12.4](llvm_toolchain_migration_plan.md#llvm-github-push-20261026)。
+
+日常正式工程请读服务器`docs/README.md`及`docs/CONFIGURATION_AND_DEVELOPMENT.md`；本页的官方重建步骤及下方GCC默认描述属于历史，不代替当前入口。精确修改、实际运行、两地备份和回退见[LLVM迁移第12节](llvm_toolchain_migration_plan.md#llvm-resume-20261026)。没有调用Bender、重生Boot ROM、修改RTL或实施综合。
+
+<a id="p7-reference-formal-sync-20261026"></a>
+
+## P7当前同步结果（2026-10-26）
+
+R四文件提交[`4e30feec`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/4e30feec288f0157f2ae6c0fb9ea736314de902e)已在personal/main读回；此前先完成F独立重建和17次串行PASS，68组/13416项0错。F维护组31、日常7/Ara11，布局及静态入口保持。输入/逐项结果/两地备份与恢复见[报告13.6](../reports/official_pr_failure_fixes_review.md#p7-reference-formal-sync-20261026)；正式工程日常操作仍以服务器docs/README.md为准。该P7发布阶段默认GCC13.2；当前LLVM默认迁移已完成，见上节。下方P6为历史发布记录。
+
+<a id="p6-reference-formal-sync-20261025"></a>
+
+## 2026-10-25 P6已上云并完成F独立验证
+
+R P6六文件已提交并正常推送[个人仓库`cb20a03c`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/cb20a03c063d208d17eef024a1f6491152d509e8)，远端main读回一致；R两处原诊断修改保留，未混入提交。F随后按本页同步规范合入3RTL、两份regressions C及必要Make规则；自身新目录重建后11次仿真全部PASS，P6五项508组/38452项0错，P2三项及vector/RVV/fmatmul回归通过。
+
+两工程继续保留各自目录和构建组织：R沿用原p6-regressions；F五项加入既有regressions，构建组为日常7/维护29/可选Ara11，运行使用F原TARGET=soc。F自身的路径、编译宏、运行设置和结果已更新到其两份docs指南及README；没有复制R的整份Makefile或实验观察器。
+
+完整映射、运行目录、双份前后源码和恢复检查见[当前同步结果](../reports/official_pr_failure_fixes_review.md#p6-reference-formal-sync-20261025)。F未初始化Git或提交/推送，未综合、板测；下面“P6仅R、未提交、F未同步”保留同步前历史，不代表当前状态。
+
+<a id="p6-fix-20261025"></a>
+
+## 2026-10-25 P6仅参考工程R已修复
+
+R `~/CheshireAraPULP` 已写入P6：#475/#480相关局部＋本地MASKU数据归属、compress结束修复。生产路径8次仿真全部PASS；5个P6软件目标共508组/38452项0错。另有候选8 PASS及旧版预期停滞反例，详见[当前修改表、测试和备份](../reports/official_pr_failure_fixes_review.md#p6-fix-20261025)。默认`all`不扩展，软件显式入口为：
+
+```bash
+cd /home/zhaowy24/CheshireAraPULP
+make -C sw OUT="$PWD/sw/build/p6_fix_20261025/accepted" p6-regressions
+```
+
+R HEAD仍为 `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`，P6是**未提交工作区修改，未推送**，不能仅从该历史提交取得P6。前后源码及恢复说明已在服务器工程外和本地双份保存。正式工程F仍为已接受P1–P5及其后续整理状态，**本轮未同步P6**；下面“两工程同步”指P1–P5历史结果。未综合或板测。
+
 <a id="reference-formal-sync-20261024"></a>
 
 ## 2026-10-24 两工程同步与复验完成

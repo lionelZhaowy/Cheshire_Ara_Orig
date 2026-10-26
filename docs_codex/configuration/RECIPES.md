@@ -2,6 +2,9 @@
 
 # 常用配置与修改流程
 
+> 2026-10-25正式工程入口：请先读[当前配置与电路关系](../engineering/Fixed_Vector_SoC_Resource_Guide.md#q1)。`~/CheshireAra`已使用统一 `cheshire_pkg::Cfg`，不使用旧SELCFG/TB四配置选择；本文旧路径、默认值和2026-10-19服务器表保留为其历史输入说明，不直接作为正式工程修改步骤。
+
+
 返回 [配置导航](README.md)。本页的“已有”表示源码中有该组合/入口；“示例”表示可供实施讨论的修改方法；均不声称本轮运行通过。
 
 <a id="server-config-trace"></a>

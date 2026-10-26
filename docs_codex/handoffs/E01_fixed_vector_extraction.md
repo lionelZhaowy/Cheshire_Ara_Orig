@@ -1,11 +1,189 @@
 # E01 / 固定向量提取与服务器参考工程
 
+<a id="workspace-publish-20261026"></a>
+
+### 2026-10-26 两仓库剩余工作区内容按用户授权提交
+
+服务器R的两份原诊断文件已单独提交[`29f1e6f9`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/29f1e6f935f028ae947a1eae113370e5fe8db0b7)并正常推送personal/main，远端读回一致；受Git管理工作区干净，无未推送分支提交。两个文件内容/权限与此前验收版本保持，本次未重跑仿真或关闭原LLC缺陷。
+
+用户同时授权提交本地当前工程：进入时17份修改及4份新增，共21文件，均纳入本次本地提交，推送目标为`lionelZhaowy/Cheshire_Ara_Orig/main`，保留当前本地分支`mp/ara-pulp-v2`；不推送官方main或继承标签。范围含E01配置/SRAM、P6/P7/LLVM记录、两幅SVG、ABC快照、P01/LVDS预算及既有工作约定，不改动这些既有工程结果。精确提交及远端读回另存发布记录，不把先前“未提交”快照当作当前状态。
+
+备份目录本地`.e01_backups/workspace_publish_20261026_8jhtomhm/`，服务器工程外`~/CheshireAra_maintenance/workspace_publish_20261026_8jhtomhm/`。包含提交前原件/权限/哈希/差异及提交结果；R增量bundle需父基线`6f2b2a3b`。本地Markdown代码围栏、JSON/SVG解析和Git差异空白检查通过；这是发布检查，不新增构建、仿真、综合或图稿重绘结论。F保持既有文件状态，无Git。详见[迁移记录12.5](../maintenance/E01/planning/llvm_toolchain_migration_plan.md#workspace-publish-20261026)。
+
+<a id="llvm-github-push-20261026"></a>
+
+### 2026-10-26 LLVM八文件已提交并推送，其他修改保留
+
+用户授权后，仅R八份已验证文件提交[`6f2b2a3b`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/6f2b2a3be50eeb15eb93c0ada2164029a102c94c)并正常推送personal/main，远端读回一致，既有标签保持。提交内容/权限与下节验收版一致，本次没有重新构建或仿真；F保持已同步验证的文件状态，无Git。
+
+R无未推送分支提交；两处原诊断修改仍未提交且哈希/权限保持。本地旧仓库当前分支与自己的远端main一致，但有17份修改和4份未跟踪文件，涉及多个主题，未混入发布；另一个main及16标签属于官方已发布历史。R忽略项和工程外工具链/产物继续留存，不声称已全部纳入GitHub。双份提交前差异、增量bundle及push_result.json位于原LLVM维护目录的github_push/；具体8文件、剩余内容与备份限制见[LLVM计划12.4](../maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-github-push-20261026)。下节“未提交/HEAD为P7”保留迁移验收结束时快照，现状由本节更新。
+
+<a id="llvm-resume-20261026"></a>
+
+### 2026-10-26 LLVM默认迁移已完成，先R验证再F独立验证
+
+用户沿用原实施授权，要求LLVM作为默认、先R后F。R输入/结束HEAD为`4e30feec`，F保留静态目录和P7基线；当前目标裸机软件默认LLVM20.1.0、匹配newlib/compiler-rt，无目标GCC/libgcc依赖，宿主g++仍用于VCS。输出均为`sw/build/llvm_p7`。R九文件及F八文件修改包括必要Make/兼容/混合用例/默认路径/说明与来源；不改RTL、硬件参数或Boot ROM，不复制R整份入口。
+
+R38新ELF/40主记录：36 PASS、SPI原告警1、原LLC未完成1、预期负例2；根规则隔离SPM/DRAM探针各152/0。F49新ELF/51独立运行：47 PASS及相同四项特殊分类。混合自动向量465/0＋手写复制22字节0错，P7 68组/13416项、P6 508组/38452项0错，F Ara11目标59case/147比较0错，其余适用回归通过。首次DMA隐式RVV/VS Off异常已以软件选项修正后重跑通过，保留真实失败和旧产物；R前8通过结果仅在完整ELF和simv SHA相同时复用，94次实际调用含该额外诊断失败。SPI原四告警和LLC签名已对照源码/trace；另两LLVM布局完成检查不代表LLC修复。
+
+R其余4386项（含两处诊断修改）、F其余1046项输入保持；原件和R九/F八after两地实际展开核对。服务器`~/CheshireAra_maintenance/llvm_resume_20261026_tctflt0s/`和本地`.e01_backups/llvm_resume_20261026_tctflt0s/`保存源码差异、逐项结果及31.8MB完整结果包，827成员/269软件产物内容检查通过；其余完整CPU trace保留服务器并记哈希。R/F指南及F既有来源条目已更新，旧GCC/产物保留；未提交推送LLVM修改、综合或板测。范围、固定提交、首轮失败、实际结果及回退选择见[LLVM计划第12节](../maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-resume-20261026)。当前默认迁移任务完成；GitHub的P7提交不包含本轮LLVM工作区修改。
+
+<a id="p7-reference-formal-sync-20261026"></a>
+
+### 2026-10-26 P7已同步F并验证、R四文件已推送GitHub
+
+用户确认先R→F同步验证，再提交R。F映射2RTL、新C在regressions，Make仅加4行，默认7/维护31/Ara11；自身Make/compile/start重建14ELF及RTL后17次串行全PASS，P7 68组/13416项0错，三份原归档LLVM/GCC ELF未重编即465/0及22字节复制0错，12回归保持。随后R仅四文件提交[`4e30feec`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/4e30feec288f0157f2ae6c0fb9ea736314de902e)、正常推personal/main且读回一致，2诊断修改保持未暂存。F无Git；R本轮未重新仿真。
+
+F修改前7/后8、R前后6原件均有服务器工程外与本地副本并实际恢复检查；R增量bundle已两地保存、服务器git bundle verify通过，需cb20a03c父基线；F其他1046原输入及R全部4394输入内容/权限/链接保持。证据服务器`~/CheshireAra_maintenance/p7_sync_20261026_085142/`，本地`.e01_backups/p7_sync_20261026_085142/`；路径、哈希、17项逐一结果和回退注意见[报告13.6](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-reference-formal-sync-20261026)。维护来源及正式三指南同步，历史失败/备份保留。
+
+默认仍GCC13.2，LLVM构建规则尚未重新适配、迁移验收未完成；本轮未综合/板测/官方PR发言。P7已完成两工程验证与个人GitHub提交，本轮任务结束；后续LLVM迁移按既定方案另行进行。下方仅R及未提交为前阶段历史。
+
+<a id="p7-emul-implementation-20261025"></a>
+
+### 2026-10-26 P7第二次实施通过，仅R保留修复
+
+用户批准完整OPMVV目的EMUL分类计划，随后明确授权相关新错误继续尝试最小可综合修复。R输入及结束HEAD均`cb20a03c`、WT/2 lanes/VLEN2048；dispatcher采用#483固定局部＋本地目的分类/实际多寄存器等待，VALU本地退休VID无用输出，2 RTL合计32增4删；同一569行C及Make显式两目标保持GCC默认/P6。最终54组/6144数据/4224保护/109CSR与14组/1984数据/926保护/29CSR全0错，共68组/13416项。原LLVM归档失败ELF `287c24ef…`不重编即465/0及复制22字节0错，两标量同样通过；P1、P2三项、P3基础、P6五项、RVV和fmatmul共12回归全部PASS。最终17正例通过，另保留旧版2次及中间/监测3次，共22次实际运行，不改原旧控制异常判定。
+
+4321项原跟踪输入仅dispatcher/VALU/Make三项授权变化，其他4318项及原两处诊断修改保持；新增C保留，R无提交推送。原件/追加VALU及最终源码包两地实际恢复核对，203数据成员证据包SHA `8811010b…`两地一致。证据在`~/CheshireAra_maintenance/p7_emul_fix_20261025_220012/`与本地`.e01_backups/p7_emul_fix_20261025_220012/`；固定来源、完整分类、22次逐项结果及恢复检查见[报告13.5](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-emul-local-fix-20261025)。旧失败/备份未删除，F未写/未同步、LLVM迁移未恢复，未综合/PPA/板测或上游发言；LMUL4/8、VF4/8等P7定向矩阵、原ROM/LLC/FS/libgcc及P3尾部覆盖限制保持。当前阶段完成，后续正式工程同步或LLVM迁移沿既定范围另行推进；下方回退为第一次候选历史。
+
+<a id="p7-reshuffle-assessment-20261025"></a>
+
+### 2026-10-25 P7候选未通过，R已回退
+
+用户批准详细P7计划，仅R实施；固定#483 `6b664a2c…`的dispatcher局部7增1删、54组C及显式Make规则均成功构建。初版同ELF两次串行诊断：旧RTL2273错/22组、候选257错/4组，两次均有非零vstart算术控制的X/断言，不当作合格验收。候选前50组未置失败位，但51组VMACC e32/m2从index64仍错；实际OPMVV默认EMUL=1未恢复m2，造成仅一寄存器重排/记录的源码链与实际R字节布局模型精确解释首错`dc5bd2b9`（期望`09aa53b9`），内部信号尚未动态观测。该独立缺口超出固定补丁范围，未扩改。
+
+测试修正经用户明确批准：按实际`operand_requester.sv:317–319`支持边界，53/54由非零vstart加法替换为e32/m2、VL=VLMAX−1的VMACC/VMADD尾部保持，仍54组/6144数据/4224保护/109CSR。修订ELF `a4ac932e…`已构建，但候选51组另有失败后停止，17项修订验收全未运行；原归档LLVM `287c24ef…`未重编也未运行，不能声称465/0，P7及LLVM迁移均未完成。
+
+按失败计划已实际回退：只恢复dispatcher/Make，将新C移入工程外证据；4321项原跟踪输入、HEAD `cb20a03c`、原Git状态/完整差异匹配，原两处诊断修改保持，F未写。初版/修订源码、ELF、日志、trace哈希、候选差异、恢复检查和原件双份保留：服务器`/home/zhaowy24/CheshireAra_maintenance/p7_fix_20261025_205414/`，本地`.e01_backups/p7_fix_20261025/`。详见[13.4实际结果及17项状态](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-implementation-result-20261025)。本轮停止，无提交推送/上游发言；后续需先明确EMUL修复范围，不能仅继续剩余回归。下段为先前评估快照。
+
+用户要求先评估模块/代码量/验证成本，并作为P7记录；建议修复，未将评估自动扩大为RTL实施。只读确认R/F dispatcher完全相同，源重排缺口已有同题[Ara #483](https://github.com/pulp-platform/ara/pull/483)，open/未合并、head `6b664a2c…`，RTL仅新增7行/删除1行；优先验证该局部候选。预计一模块、一个约150–300行测试C及少量Make规则，约54组定向组合、R首轮约17次串行仿真，另计候选编译/定位及后续F复验。文件统一追加既有P表，详情见[报告第13节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-reshuffle-assessment-20261025)。本轮仅更新该报告、LLVM计划导航及本交接，原件在`.e01_backups/llvm_migration_20261025/p7_assessment_before/`；未写服务器、构建、仿真或对外发布。上游已有同题PR，成功后优先准备复现/回归贡献，不直接新建重复PR。
+
+<a id="llvm-toolchain-plan-20261025"></a>
+
+### 2026-10-25 LLVM工具链已构建；新增向量序列失败，R已回退、F未写
+
+用户在规划完成后明确回复“好的，开始实施”。固定Ara配套LLVM20.1.0、newlib4.2.0及compiler-rt已在工程外构建，根软件规则隔离验证通过；SPM/DRAM真实newlib/128位运算探针各152项0错。R临时六文件适配后36 ELF构建通过，但运行到第2例新增自动向量化检查465项/256错即停止，其余36条验收未执行。R六文件已实际恢复，18项原件内容/权限、HEAD和原两处Git差异匹配；F未写，原GCC HelloWorld历史ELF同simv新运行PASS。实现/备份见[第9节](../maintenance/E01/planning/llvm_toolchain_migration_plan.md#9-实施进度2026-10-25)。
+
+用户随后要求先详细分析编译器设置。完整新增C的GCC及LLVM标量对照均465/0并PASS；原失败ELF仅把add目的和store源改到另一向量寄存器即465/0，而load EEW提示32改8仍256错。实际R dispatcher中“完整覆盖省去目的重排”与“同源目的省去重复源重排”组合，可解释漏掉EW8→EW32源布局转换；从实际2-lane排列推导的模型与trace257/257输出完全匹配。未采内部请求波形、未改/验证RTL修复，不能宣称已全面排除LLVM问题。另确认LLD全局+D遗漏：外部加`-Wl,-mllvm,-mattr=+d`可消ABI告警，但HelloWorld及失败向量程序所有可装载段均保持，无法解释本次数据错误。详见[第10节的指令、对照与源码](../maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-vector-failure-analysis-20261025)。迁移尚未完成，不将外部二进制诊断作为生产修复或同步依据。
+
+以下为实施前的规划快照，保留输入与当时范围；其中“未实施/待确认”已被上文实际进展取代。
+
+用户选择以 Ara 配套 LLVM 全面替换当前目标裸机软件 GCC，顺序为先 R 适配验证、再按映射同步 F，并明确本轮只规划、修改必须可恢复。已写[迁移与回退计划](../maintenance/E01/planning/llvm_toolchain_migration_plan.md)，不代表获得实施授权。
+
+本地输入 `mp/ara-pulp-v2` / `ca8395677691ba8d9d226ce4b5b5b49192b90f1c` 及既有未提交内容；只读确认其 Ara 与 R checkout 同为 `2895ba907…`，锁定 LLVM `24a30daaa559829ad079f2ff7f73eb4e18095f88`（20.1.0）及 newlib `2e4ecbb3…`。R 实际 HEAD 为 `cb20a03c`、两处原诊断修改保持；F 无 Git，已有 P6，现为47 ELF（7/29/11），此前聊天中的42项不再适用于当前验收计划。
+
+主 Agent 经 Windows SSH只读检查实际 Makefile、启动/链接与环境，两名本地子 Agent 分别复核编译兼容和回退安排，均未写服务器。计划明确 R 的 `sw/Makefile` 与旧 `sw/sw.mk` 都需处理；后者会原位写对象、根解析会调用 Bender，因此使用一次性 Make 输入做软件规则隔离验证，不能写成已运行根默认 all。R通过之前F不写入；两工程分别保存实际原件并在临时目录展开验证恢复，回退前检查后续修改，按本轮差异恢复，不 reset/clean/覆盖整树。
+
+本轮只新增上述本地计划并在本交接增加导航；未修改共享状态/任务表或现有修复报告，未下载工具链、修改R/F、构建、仿真、提交或推送。既有交接修改前原件保存在 `.e01_backups/llvm_planning_20261025_a0mm0039/`，不将其误作服务器实施备份。下一步仅待用户审阅并明确开始实施；计划中的构建、验证与服务器恢复检查均未执行。
+
+<a id="p6-reference-formal-sync-20261025"></a>
+
+### 2026-10-25 P6已提交GitHub、同步F并独立验证
+
+用户明确授权R提交/推送后同步F，引用的F Prompt末尾“不提交/推送”按F阶段执行。R输入5986ba02及已验收六文件，单独提交`cb20a03c063d208d17eef024a1f6491152d509e8`、正常推送personal/main并读回一致；仅P6六文件入提交，两处原诊断修改保留。F无Git，以1051份非输出输入快照固定；本地输入ca839567及已有文档/未跟踪内容保留。本地主Agent经Windows SSH完成，没有委派服务器Agent。
+
+三份Ara RTL按组件内路径合入F，两份C放`sw/tests/regressions/`，Make仅增加五规则/7行；复用regressions，维护24→29、默认7及Ara11保持，无新TARGET。源码/测试内容与R提交一致，F集中配置/wrapper、静态入口、TB层级及既有P1–P5保持。来源清单更新7原条目、新增2条，其他979条保留；历史patch及旧来源快照保持。
+
+F在新sw/build及sim/work/p6_sync_20261025目录，通过自身Make、compile/start串行完成11次仿真，全部PASS。P6五项508组/38452项0错，P2的835/124/483项及vector 22字节、RVV 5976项、fmatmul校验通过。每例600秒、无波形，P6无附加运行参数；原P2监控开启。两份F指南及README已写实际ELF/TARGET/编译宏/运行设置和结果。R本轮没有重新仿真，使用相同源码已有记录。
+
+具体输入、统一修改表、逐项结果及恢复位置见[报告第12节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-reference-formal-sync-20261025)。F最终8原文件变化＋2新增C，其他1043输入及权限保持；前后源码包在服务器工程外`/home/zhaowy24/CheshireAra_maintenance/p6_sync_20261025_054434/`及本地`.e01_backups/p6_sync_20261025_sf0kdpzo/`保存并实际恢复核对，两地完整归档重读通过。增量R bundle要求5986父基线；完整trace留服务器并记SHA。回退须按after哈希保护后续修改，不整包恢复。
+
+本轮完成R发布与F同步验收；未为F初始化Git或提交/推送，未Bender/升级依赖/重生成ROM/综合/板测/公开上游PR。#479及原有覆盖限制保持。下方仅R、未提交和F未同步为先前历史阶段。
+
+<a id="cross-project-sync-rules-20261025"></a>
+
+### 2026-10-25 两工程同步规范与P6交接指令
+
+用户确认将两工程组织约束写入文档，并为当前P6对话编写同步Prompt：F/R保留各自目录与构建组织，按文件映射及局部差异同步，不为复制方便重构R或整包覆盖F。规范集中在[重建指南对应章节](../maintenance/E01/planning/server_reference_rebuild_guide.md#cross-project-sync-rules)，根`AGENTS.md`已加必读导航；包含配置/wrapper例外、测试分组、工作区版本核对、来源历史保护及F独立验证要求。
+
+本轮仅修改上述两份本地文档及本交接；未SSH、同步服务器代码、构建或仿真。输入L HEAD `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`，已有未提交修改及未跟踪文件保留；三文件修改前版本存于本地`.e01_backups/sync_layout_20261025/174602/`。P6实际同步及结果由接收Prompt的原对话实施、核查并更新原P6报告；本节不表示F已同步。
+
+<a id="p6-fix-20261025"></a>
+
+### 2026-10-25 P6实施及仿真完成（仅R）
+
+用户授权后续P6实施、仿真及修改表/文档更新。本地主Agent经Windows SSH写入R 3份RTL及`sw/Makefile`，新增`sw/tests/p6_maskb.c`、`p6_compress.c`；本地子Agent完成局部实现和独立静态复核，所有构建/仿真由主Agent串行执行。输入L `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`及既有未提交文档保持；R前后HEAD `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`，P6为未提交工作区修改。
+
+采用#475请求互斥、#480真实广播握手局部；本地MASKU vd输入valid/ready增加指令有效及真实用途条件，避免空闲误收标量数据。compress使用pending索引、完整扫描、最终双标记及空输出完成路径，处理末尾未选/全不选/跨选择字；未采用候选#469 compress段，保留原P2的VL尾位过滤。未改CPU返回协议或增加tag。具体6文件表、固定SHA及代码说明见[报告第1/11节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-fix-20261025)，该结果替代下方“生产未改/尚待修复”的候选状态，历史记录保留。
+
+本轮17次运行：候选8 PASS、同一新边界ELF在旧RTL上的预期INCOMPLETE/入口4一次、生产路径重建后8 PASS。永久5软件目标508组/38452项0错；旧v2/k0失败ELF3640项、P2的835/124/483项及vector/RVV/fmatmul也实际通过。初次统计模块展开失败及修正后重试日志均保留。当前配置为WT、2 lanes/VLEN2048、MASKU队列1；不是综合、任意配置或上游验收。
+
+其余4298跟踪输入内容/权限保持，原两处诊断修改、配置/入口、HEAD及61个符号链接属性保持。服务器工程外`~/CheshireAra_maintenance/p6_fix_20261025/`及本地`.e01_backups/p6_fix_20261025/`保存前后源码与证据；两地归档/成员核对、前后源码独立目录实际恢复均通过，回退须保留后续修改。完整trace留服务器并记录SHA。5份原未提交文档已备份，新增细节集中在原审查报告，未另建正式报告。
+
+本轮完成R实施和验证，**F未同步，未Git提交/推送、Bender、依赖升级、综合/板测或公开上游操作**；#479依用户决定不纳入。后续若同步F，须使用F当前映射逐文件处理并独立验证，不能用R整包覆盖。
+
+<a id="p6-candidate-check-20261025"></a>
+
+### 2026-10-25 P6候选检查完成：PR可部分复用，尚未写入生产源码
+
+用户授权检查/仿真现有PR，无法解决时提出方案，并决定#479暂不继续处理。本地主Agent经Windows SSH在R独立副本分别采用固定SHA的#475、#469 compress段，另对现场多余请求追加#480对照；5次硬件构建、21次串行运行完成。VL1三组各520项0错，compress部分选择7800项0错；全不选与VL130仍停滞。原延迟提取反例在两PR下仍585/1；#480把原VL4请求6→4并修好该点，但第二轮VL1仍1885/2，历史VL3也有X。确认空闲MASKU接收CPU标量值、下一条gather误用，以及旧队列头提前回应；两PR下既有P2回归483/0。
+
+[审查报告第10节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-candidate-check-20261025)保存具体版本、全部结果/停止记录、代码归属现场、修改方案和重跑入口。建议以#475/#480作请求端基础，再实现MASKU缓冲与CPU响应的数据归属、compress可跨字且全不选正常结束的逻辑；自定义方案未实施，不能记P6修复完成。未应用#479，未做F同步/综合/板测/上游发布。
+
+输入L `ca839567…`及原文档修改保持；R `5986ba02…`、4241份非符号链接跟踪常规文件/权限及原Git状态保持。只新增 `_e01/p6_20261025/` 与独立输出，原生产RTL/.bender未修改。工程外 `~/CheshireAra_maintenance/p6_20261025/` 及本地 `.e01_backups/p6_20261025/` 归档SHA一致，145数据成员内容/长度/权限校验完成，完整trace留服务器；原未提交四份文档已备份。当前检查与方案交付完成，生产修复/验收待后续步骤。
+
+<a id="ara-maskb-tests-20261025"></a>
+
+### 2026-10-25 Ara #475/#479：R授权测试完成，未实施修复
+
+用户本轮授权先在 `CheshireAraPULP` 测试。本地主Agent经Windows SSH执行，输入L `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`及既有未提交文档，R `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`及两份原诊断修改均保留。只在R `_e01/pr475_479_20261025/`、`work/pr475_479_20261025/`、对应 `sw/build/`/`work/runs/`新增测试和产物；未委派服务器Agent，未改生产RTL、配置、依赖、F或本地FPGA，未调用Bender/综合/提交推送。
+
+本轮实测：#475的gather→整数/浮点标量提取、compress→整数提取均复现，窗口出现后20001周期无进展；#479的两组各120次序列、8056检查通过，但每lane冲突接受窗口均0，仍缺该窗口覆盖。VL2选择位01的compress在没有后续比较时也停滞，与#450相符；另有gather后延迟提取的错误值待定位，不能归为两个PR已修。原P2-3的483项再次通过。原始INCOMPLETE/入口4、早期观察器错误和尾字节X断言/中止记录均保留，不改记PASS。
+
+详细命令、版本、结果/适用边界和下一步统一见[审查报告第9节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#ara-maskb-tests-20261025)。R前后4302跟踪文件内容/权限、HEAD、原Git状态一致；服务器工程外及本地 `.e01_backups/pr475_479_20261025/` 的162成员归档SHA一致，161数据成员及清单校验通过，完整trace仍在服务器。仅更新本报告、本交接及共享状态/任务表；原未提交文档已保存于该备份的 `docs_before/`。
+
+建议下一步先评审#475最小修复，分别定位compress终止和延迟标量旧值问题；#479保留待触发/配套验证。本轮没有修复授权，不自动回移、同步F或准备发布PR。
+
+2026-10-25 P1–P5文件总表整理：按用户确认，在[现有审查报告第1节](../maintenance/E01/reports/official_pr_failure_fixes_review.md#formal-p1-p5-files)列出正式工程10份修复文件、用途、官方PR局部/本地来源及错误后果；8个PR链接已核对，Ara #469仍未合并，固定采用SHA保持。历史候选前后结果折叠保留，完整SHA与代码审查仍在原章节；明确两工程已同步、P5未启用3D仅静态核对及P3尾部覆盖缺口。本地HEAD `ca839567…`及已有未提交修改保持；本轮仅改该报告与本交接，未SSH、修改工程、运行测试或提交推送。
+
+<a id="abc-review-20261025"></a>
+
+2026-10-25 ABC只读核查完成（本地主Agent＋三个本地子Agent）：输入L `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`及进入时已有修改；事实根为F `~/CheshireAra`，无Git元数据；R HEAD `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`仅作来源。经Windows SSH读取实际配置/消费者/P2/P3链，结束71份相关F输入哈希全部保持，读取并记录F五项历史result/log哈希；未构建、仿真、综合、修改服务器或提交推送。
+
+- **A：**[资源与配置指南](../engineering/Fixed_Vector_SoC_Resource_Guide.md#q1)改为正式入口 `Cfg=DefaultCfg`，替代旧SELCFG/独立cfg包描述；明确fixture/Make的基线限制及lane同时改变Ara AXI宽度。配置README/RECIPES只加当前入口引导，历史字段字典保留；未全面重核CSR/TLB逐位表。
+- **B：**[宏适配说明](../engineering/ASIC_Adaptation_and_Evidence.md#formal-sram-20261025)给出正式路径、掩码、1RW/1拍、初始化/门控/保持要求；48逻辑实例、159.90625KiB与原表一致。指出generic tc_sram并非严格无效期no_change，不将该差异认定为功能故障。
+- **C：**[独立复审](../maintenance/E01/reports/official_pr_failure_fixes_review.md#formal-review-20261025)核对两处自定义修改与C实际版本一致，补充MaskB/专用返回及格式mask流水依据。未确认新的RTL缺陷；F历史835/124/483/177/753检查均0错。具体覆盖缺口是P3向量固定VL4，未动态证明VL1/3尾部/不均匀lane异常屏蔽；仅提出原用例最小补测，未执行。
+
+交付复用三份正文，新增[配置图](../diagrams/2026-10-25_formal_config_sram/configuration_flow.svg)、[SRAM接口图](../diagrams/2026-10-25_formal_config_sram/sram_replacement.svg)和一份[输入/历史日志哈希快照](../maintenance/E01/reports/evidence/abc_review_20261025.json)。使用svg-pptx-diagrams-native及industrial-svg-pptx风格，SVG实际渲染查看，未生成PPT/PDF或新框架。最终检查文档链接、SVG结构/语义、差异空白和JSON；本轮只交付静态分析，综合/宏替换/补测另行授权。服务器可分发摘要仅建议补在现有修复记录，未写入。当前任务完成停止。
+
+
+2026-10-25 第3轮provenance归类完成：正式F的35份2B/2C/2D历史文件移入history，内容/权限及历史路径原文保持，顶层43→8，总数217保持。只改根README、docs/README和活动清单两条文档记录；986活动哈希全匹配，其他1010输入保持。25链接目标/12 Bash片段及两地38文件前后恢复检查通过；没有构建、仿真、清理产物或修改R。备份为服务器`~/CheshireAra_maintenance/provenance_history_20261025/`及本地`.e01_backups/provenance_history_20261025/`，回退先核对后续变化，保留前两轮及ELF/TARGET文档。见[结果与恢复](../maintenance/E01/planning/server_reference_extraction_plan.md#provenance-organization-plan-20261025)。三轮当前授权工作已完成，本轮停止。
+
+<a id="elf-target-docs-20261025"></a>
+
+### 2026-10-25 ELF / TARGET 对照文档已更新
+
+- **用户决定与范围：**用户确认继续使用“统一 compile/start，以 TARGET 选择独立 TB”，选择以服务器正式工程现有指南为查阅入口，并授权实施已讨论的文档计划。本轮仅修改 F 两份指南及对应来源记录；本地仅写本交接，不改参考工程、脚本、TB、软件或硬件配置。本地输入 HEAD `ca839567…`，已有 Ara／特殊测试规划等未提交内容保留。
+- **当前源码与原计划的差异：**最初规划中的“默认31个ELF”已经过时。写入前现场 Makefile 已由另一轮整理成 `all` 的7个日常目标、`regressions` 的24个维护目标，以及11个可选Ara目标，仍共42个ELF；P1–P5 C和P4 ld也已移动。文档按本次实际文件编写并保留其最新段落，本轮没有实施上述目录或默认集合调整；下方旧规划记录仍保留为当时快照。
+- **交付入口：**`/home/zhaowy24/CheshireAra/docs/CONFIGURATION_AND_DEVELOPMENT.md#elf-target` 第4节集中列出全部42个ELF的构建组、TARGET、配套参数、检查用途及既有结果，含6组P4 CASE和3组RX配对；P1–P5末尾旧表已并入此节。说明iDMA读取JOB_FILE而非ELF、ROM ELF经镜像使用IMAGE，以及编译期 `-DCASE` 与运行期 `+CASE` 的区别。`docs/README.md` 第1.5节提供对照导航，说明TARGET/BUILD_DIR匹配和OUT与BINARY/IMAGE的对应，保留最新Ara及维护目标说明。
+- **来源和检查：**仅更新 `provenance/source_manifest.json` 的两条文档当前哈希并追加维护记录，原来源／源哈希及其他984条保持。对照实际Make确认7＋24＋11共42个ELF全部有表项；TB开关、6组P4和3组RX参数匹配；15段Bash代码块 `bash -n` 和41个Markdown链接／锚点检查通过。服务器最终文件重读与已检查草稿一致，三文件权限保持，11份入口／TB／配置等受保护输入哈希及权限保持。**未执行构建、仿真或板测；表中通过结果均引用历史记录。** WSL SSH握手超时后复用Windows原生OpenSSH，未改连接配置。
+- **备份与恢复：**服务器 `~/CheshireAra_maintenance/elf_target_docs_20261025_AZsWy8/`，本地 `.e01_backups/elf_target_docs_20261025_AZsWy8/`。修改前三文件归档SHA256为 `9ee84af7167cb79ddded4a9d10bc5f727f1b0b52e41346c544fa59fe2fb97a32`，两地逐成员内容／权限核对通过；保存before/after清单、changes.patch、result.json、最终检查及rollback.md。回退前保留后续修改，共享来源清单若再变化只能恢复相关两条，不能直接整文件覆盖。未提交或推送，也未执行回退。
+
+2026-10-25 第2轮特殊测试/ld整理完成：F移动7个P1–P5 C及2个P4 ld、内容/权限保持；默认all为7项，显式regressions为24项，Ara仍独立。原31项及ara-vadd移动前后重新构建，32项可装载内容/入口/PT_LOAD均一致，7次代表性仿真全部PASS、P2/P4监视检查通过。另改Make、三份说明及活动来源清单，其他1034输入保持；R/RTL/TB/入口未改。两地备份位于`special_tests_20261025/`，完整前后14文件实际恢复检查通过。收尾发现后续ELF/TARGET文档修改，用户已确认保留；当前三文件另存concurrent_docs，回退必须合并后续文档/来源记录，禁止旧清单覆盖。详见[结果、命令与恢复](../maintenance/E01/planning/server_reference_extraction_plan.md#special-tests-organization-plan-20261025)。本轮停止，第3轮未开展。
+
+<a id="regression-formatting-20261025"></a>
+
+### 2026-10-25 LLC / Serial RX 测试排版整理并同步参考工程
+
+- **授权与输入：**用户要求整理 F `src/tb/regressions/llc/probe.tcl`、`src/tb/regressions/slink_rx/tb_slink_llc_rx.sv` 的缩进、空行及注释，并同步到 R。本地 HEAD `ca839567…`，已有 Ara 文档修改及备份保留；R 输入为干净的 `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`。本地 Agent 经 SSH 实施，没有委派服务器 Agent。
+- **实际文件：**F 上述两文件；R 对应 `_e01/dma_vector_check/pr80_204_20261021/llc_recheck/probe.tcl`、`_e01/dma_vector_check/slink_llc_rx_20261021/final/tb_slink_llc_rx.sv`。SV 采用两空格缩进，按观察、发送、启动和结果检查分段；Tcl 采用四空格缩进，将长采样字符串按信号换行，说明三个等待判断及采样/结束时间。未新增过程、模块或参数；保留 R 的 `SelectedCfg`、F 的 `i_soc` 层级以及原日志字符串。
+- **必要来源记录：**仅更新 F `provenance/source_manifest.json` 中两条当前哈希及用途说明，保留原 `source_sha256` 和读取时其他 969 条记录；仅重写 `provenance/patches/extraction_adaptations.patch` 对应两段，仍以原始参考输入为基底。未修改历史测试日志、结果、归档、RTL DUT、配置、filelist、compile/start 或软件。现场另有 Ara 测试运行，本轮没有启动仿真或触碰其源码/输出；本地其他对话新增的 Ara 实施进度已保留，不以本条改写其状态。
+- **检查结果：**两工程 SV 去除注释和空白后词法单元分别与原件一致（1644 / 1615）；Tcl 按反斜杠续行规则折叠后，解析树的命令、表达式、字符串与原件一致；跨工程检查仅有原先配置/层级差异。使用现有 `tclfmt 0.4.2 --indent 4 --check`、`tclint 0.4.2 --style-indent 4 --style-line-length 160` 检查通过；R `git diff --check` 通过，Git 仅两份对应源文件修改。六份文件的内容及原权限均已核对。**未重编、未仿真、未板测；原验收结果仍是历史结果。**
+- **备份与恢复：**服务器 `~/CheshireAra_maintenance/tb_style_20261025_r6oNWH/`；本地 `.e01_backups/tb_style_20261025_r6oNWH/`。修改前六文件（含来源清单和补丁）的归档 SHA256 为 `158eaa6b8d0cd5e809990caa4ead00baa8ebd0bd0a51c6729c732532f35dbbb3`，两地归档逐成员哈希/权限核对通过；`before.json`、`after.json`、`changes.patch`、`result.json` 和 `rollback.md` 保存实际差异与恢复边界。恢复前核对后续修改，尤其不能用旧完整来源清单覆盖其他对话的 Ara 工作。未执行回退、Git 提交或 GitHub 推送。
+
+2026-10-25 Ara首批迁移完成：直接写入正式`~/CheshireAra`的11个官方C测试及4头文件，修改Make/docs/来源清单；59case/147组比较全部通过，18次验收为17 PASS＋1预期负例，RVV5976/P2 835/P3 753均零错，fmatmul通过且19883周期。早期verbose vadd主动结束和首次LTO链接失败另存，不计通过。服务器`~/CheshireAra_maintenance/ara_tests_20261025/`及本地`.e01_backups/ara_tests_20261025/`保存前后源码、适配patch和证据，恢复归档实际展开/哈希/权限核对通过。回退须用保留另一轮排版记录的`rollback_before.tar`，不用初始清单覆盖并发修改。未改参考工程、生产RTL或默认all，未提交推送；后两项整理未开始。详见[改动、结果与恢复](../maintenance/E01/planning/server_reference_extraction_plan.md#ara-tests-migration-plan-20261025)。
+
+2026-10-25 历史规划记录（已被上述实施结果取代）：只读核对锁定Ara `2895ba907` 的rv64uv C测试和正式软件入口，建议11项、先vadd/vl/vs三项；列明公共宏、启动/内存/编译器适配和18次初步运行计划。未改服务器或构建/仿真；等待用户授权，特殊测试归档及provenance整理另轮处理。见[具体文件与验证计划](../maintenance/E01/planning/server_reference_extraction_plan.md#ara-tests-migration-plan-20261025)。
+
 2026-10-24本轮完成：先将R的P1–P5分项同步、48次复验并推送GitHub `5986ba02`，再同步F并从自身入口重建，41次运行/39项共同用例对照完成。原ROM告警限定接受、2项负例正确，其他38项PASS；未涉及的1006个F输入保持。R及F前后源码均有两地备份和实际恢复核对；详见[版本、结果与回退](../maintenance/E01/planning/official_upstream_maintenance_assessment.md#reference-formal-sync-20261024)。WSL断连后按用户指示改用Windows SSH，确认原P5运行完成后接续，无重复仿真。本轮完成停止，旧未同步/未授权记录为历史。
 
 ## 修改记录
 
 | 日期 | 角色 | 输入版本 | 修改与验证摘要 |
 | --- | --- | --- | --- |
+| 2026-10-25 | E01本地执行；Windows SSH | L `ca839567…`；F第2轮及后续文档状态 | 35历史文件归类，3文件导航/来源修改；1010其他输入保持、986哈希匹配，两地38文件恢复核对完成。未构建仿真或清理产物；三轮完成 |
+| 2026-10-25 | E01本地执行；Windows SSH | L `ca839567…`；Ara迁移/排版后F 1048输入 | 9文件移动、默认7/维护24；32 ELF内容/布局一致，7次PASS。双份备份/恢复核对，保留后续ELF/TARGET文档并注明回退合并要求；第3轮未开展 |
+| 2026-10-25 | E01本地执行；Windows SSH | L `ca839567…`；F 1033实际输入；Ara `2895ba907…` | 首批11 C/4头迁入F，18次验收17 PASS＋1预期负例，59case/147比较；4回归与前次一致。保留并发排版记录，双份前后源码/证据及实际恢复核对完成；详见本轮结果 |
 | 2026-10-24 | E01本地执行/独立只读复核；WSL及Windows SSH | L `c9abbb489`；R基线`424e4d2c`；F原1023输入 | R逐项修补及48次验证后上云5986ba02；F映射同步、41次验证/39项一致；17旧/27新版本文件恢复及两地备份校验完成。保留原配置与限制，见当前结果链接 |
 | 2026-10-23 | E01失败诊断与P3–P5局部修复；本地WSL SSH | C `p3-stopped` / `7b1c13f…` | P3残留SIMD mask与P4相邻段覆盖已定位修复，P5分RTL/HAL验证通过；`p3-pass`/`p4-pass`/`p5-pass`及两地备份已校验。累计7次新运行完成（6 PASS、SPI原限定告警接受），最终`p1-p5-pass=5e0f973…`、双份备份及R/F保护检查通过；见[当前记录](../maintenance/E01/planning/official_upstream_maintenance_assessment.md#p3-p5-repair-20261023) |
 | 2026-10-23 | E01继续P3–P5；本地WSL SSH实施 | C `p2-pass` / `7ac2e12…` | P3官方一行修改后同ELF177/20→177/6，0/0多报DZ消失但其他向量fflags仍失败，按计划停止；`p3-stopped`=`7b1c13f…`，双份源码/18成员证据归档校验完成，R/F不变。P4/P5及累计回归未继续，见[结果及恢复](../maintenance/E01/planning/official_upstream_maintenance_assessment.md#p3-stop-20261023) |

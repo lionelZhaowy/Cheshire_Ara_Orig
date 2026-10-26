@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="940" viewBox="0 0 1600 940">
+<defs><marker id="arrow" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" viewBox="0 0 3 3" refX="3" refY="1.5" orient="auto-start-reverse"><polygon points="0,0 3,1.5 0,3" fill="#314D66"/></marker></defs>
+<rect x="0" y="0" width="1600" height="940" fill="#FFFFFF"/>
+<text x="800.0" y="48" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#29292D">正式工程：配置如何形成硬件</text>
+<text x="800" y="88" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">静态编译入口选入 src/config/ 的唯一 profile 与 cheshire_pkg；箭头表示配置传递，不是数据总线。</text>
+<rect x="60" y="135" width="440" height="150" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text x="78" y="169" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">CPU profile</text>
+<text x="78" y="203" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">cv64a6_imafdcv_sv39</text>
+<text x="78" y="233" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">L1I：4 KiB / 4 路 / 128-bit 行</text>
+<text x="78" y="263" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">L1D：8 KiB / 4 路 / 256-bit 行 / WT</text>
+<rect x="600" y="135" width="940" height="150" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text x="618" y="169" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">cheshire_pkg：Cfg = DefaultCfg</text>
+<text x="618" y="203" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">Ara=1；AraNrLanes=2；AraVLEN=2048</text>
+<text x="618" y="233" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">LLC：8 路 × 256 行 × 8 个 word；AXI：48-bit 地址 / 64-bit 数据</text>
+<text x="618" y="263" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">同一 Cfg / 派生类型用于 SoC wrapper 与仿真 fixture</text>
+<polyline points="280,285 280,390" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<polyline points="600,235 545,235 545,425 500,425" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="560" y="330" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="18" font-weight="normal" text-anchor="start" fill="#29292D">SoC 覆盖</text>
+<rect x="60" y="390" width="440" height="170" fill="#E8DFED" stroke="#29292D" stroke-width="1.8"/>
+<text x="78" y="424" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">gen_cva6_cfg → build_config</text>
+<text x="78" y="458" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">CPU总线位宽由 Cfg 覆盖</text>
+<text x="78" y="488" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">PMP：profile 的 8 → 当前 0</text>
+<text x="78" y="518" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">派生 Cache 索引 / tag / 加速器配置</text>
+<polyline points="820,285 820,390" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<polyline points="1320,285 1320,390" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<rect x="600" y="390" width="440" height="170" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text x="618" y="424" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">Ara 参数与实例</text>
+<text x="618" y="458" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">NrLanes=2；VLEN=2048 bit</text>
+<text x="618" y="488" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">VRF：32 × VLEN / 8 = 8 KiB</text>
+<text x="618" y="518" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">Ara AXI 宽度 = 32 × lanes = 64 bit</text>
+<rect x="1140" y="390" width="400" height="170" fill="#D9EEE8" stroke="#29292D" stroke-width="1.8"/>
+<text x="1158" y="424" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">LLC 与互连派生</text>
+<text x="1158" y="458" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">8 × 256 × 8 × 64 / 8</text>
+<text x="1158" y="488" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">共享数据阵列 = 128 KiB</text>
+<text x="1158" y="518" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">地址窗口 / CPU属性随相关配置派生</text>
+<polyline points="280,560 280,655" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<polyline points="820,560 820,655" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<polyline points="1340,560 1340,655" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<rect x="60" y="655" width="440" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text x="78" y="689" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">CPU电路</text>
+<text x="78" y="723" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">L1数据 / 标签阵列、比较与选择</text>
+<text x="78" y="753" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">RVV专用接口；CPU VLEN仍为64</text>
+<rect x="600" y="655" width="440" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text x="618" y="689" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">Ara电路</text>
+<text x="618" y="723" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">2 lanes × 8 VRF banks</text>
+<text x="618" y="753" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">每 bank：64 × 64 bit / 1RW</text>
+<rect x="1140" y="655" width="400" height="140" fill="#D8E8F4" stroke="#29292D" stroke-width="1.8"/>
+<text x="1158" y="689" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#29292D">LLC/SPM电路</text>
+<text x="1158" y="723" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">8路数据阵列及对应标签阵列</text>
+<text x="1158" y="753" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="start" fill="#29292D">SPM / Cache按way共用，不另加容量</text>
+<polyline points="500,530 550,530 550,745 600,745" fill="none" stroke="#314D66" stroke-width="2.5" stroke-linejoin="miter" marker-end="url(#arrow)"/>
+<text x="560" y="615" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="18" font-weight="normal" text-anchor="start" fill="#29292D">CVA6Cfg</text>
+<text x="800" y="853" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#29292D">参数可派生 ≠ 任意组合已支持：fixture检查当前基线；软件Make仍只接受2 lanes。</text>
+<text x="800" y="893" font-family="Microsoft YaHei, WenQuanYi Zen Hei, sans-serif" font-size="20" font-weight="normal" text-anchor="middle" fill="#29292D">改变硬件配置需核对这些检查与消费者，再重新编译、展开和验证；本图为源码推导。</text>
+</svg>

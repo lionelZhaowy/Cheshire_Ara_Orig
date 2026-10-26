@@ -2,7 +2,11 @@
 
 返回[工程参考索引](README.md) · 配合[配置手册](../configuration/README.md)、[服务器仿真上手指南](../software/SERVER_SIMULATION_GUIDE.md)阅读。
 
-更新：2026-10-19。本文整理固定 Cheshire/CVA6/Ara 配置的资源问答，面向 RTL 阅读、SRAM 宏盘点及后续容量评估。数值来自当前源码静态推导；本轮未编译、仿真、综合或访问服务器，未修改硬件配置。
+更新：2026-10-25。已通过SSH只读核对正式工程 `~/CheshireAra` 的配置、相关静态编译分组和主要SRAM消费者。本轮未编译、仿真或综合，未修改服务器；结论是当前源码推导，不是新配置验收。
+
+**先看结论：**当前仍为2 lanes/VLEN2048、L1I 4 KiB、WT L1D 8 KiB、LLC/SPM共用128 KiB。配置已集中到 `src/config/cheshire_pkg.sv` 与CPU profile，旧 `SELCFG` 和独立cfg包不是正式入口；fixture和软件仍限制已验基线。主要数据/标签/VRF合计48个逻辑SRAM实例，容量不代表工艺面积。阅读路径：[配置与实际入口](#q1) → [容量表](#q2) → [修改与联动](#q7)；宏接口见[ASIC适配说明](ASIC_Adaptation_and_Evidence.md#formal-sram-20261025)。
+
+本轮更新Q1、主要SRAM及其配置关系；Q2.2/Q5中的CSR、TLB与预测器逐位统计沿用2026-10-19历史分析，没有重新穷举。
 
 2026-10-19 用户确认：提取工程保留集中配置入口，固定带 Ara 的功能组合，逐步开放资源参数，以应用验证和一致口径的面积/时序比较选择配置。**首次提取仍保持当前基线；认可评估方法不等于候选数值已支持、已验证或已选为产品配置。** 实施约束以 [ASIC 提取规格](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)为准，本文解释资源关系与评估方法。
 
@@ -27,9 +31,9 @@
 
 ## Q1．统计的是哪组配置？
 
-本地输入为 `mp/ara-pulp-v2` / `2f0f2d6f85979709fbc99dd4098447cb5587ce5f`，含已有未提交文档。源码定位指向本仓库受保护的 `.bender/` 快照，不假定在线最新版本行为相同。
+本轮事实根目录为服务器 `/home/zhaowy24/CheshireAra`（下文路径相对该目录）。正式工程没有 `.git`，以实际文件SHA256标识；参考工程当前HEAD为 `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`，不能用它替代正式文件。Cheshire来源基底仍为 `e040b7bbc7851a37faff3c4657ff8d656cc6e20a`，Ara来源 `2895ba907e9eb14b3464609dc791a969d159a7c3`、CVA6来源 `99eac9a649001bdf5b8f9da52e0ca73d5c48db1c`，另含已同步局部修复。
 
-服务器参考工程为 `~/CheshireAraPULP`。已有核查记录的 Cheshire 为 `e040b7bbc7851a37faff3c4657ff8d656cc6e20a`，Ara 为 `2895ba907e9eb14b3464609dc791a969d159a7c3`，CVA6 为 `99eac9a649001bdf5b8f9da52e0ca73d5c48db1c`。此前核对的 716 个直接编译源两端哈希相同，但不代表全部 include、软件、宏及工具环境等价；详见[范围对比](../maintenance/E01/reports/local_server_build_comparison.md)。本文沿用这些历史证据，不新增服务器验证结论。
+本地文档输入HEAD为 `ca8395677691ba8d9d226ce4b5b5b49192b90f1c`，保留进入时已有修改。文件哈希、核查范围与结束复查见[本次来源快照](../maintenance/E01/reports/evidence/abc_review_20261025.json)。`provenance/reference.json`是提取时来源快照，其旧HEAD/差异不是当前磁盘状态。
 
 | 配置项 | 本文固定值 | 生效位置或注意点 |
 | --- | --- | --- |
@@ -39,11 +43,23 @@
 | L1D | 8 KiB、4 路、32 B/行、WT | 64 组 |
 | SoC AXI | 地址 48 bit，数据 64 bit | L1 标签按 CPU PLEN 推导，LLC 标签按 AXI 地址宽度推导 |
 | LLC/SPM | 8 路、256 行/路、8 个 64-bit word/行 | 128 KiB 共用数据阵列 |
-| Ara | 开启，2 lanes，VLEN=2048 bit | TB Ara 配置为 `SELCFG=3`；使用 Ara 的真实 first-pass decoder |
+| Ara | 开启，2 lanes，VLEN=2048 bit | `cheshire_pkg::Cfg=DefaultCfg`；使用Ara真实first-pass decoder |
 | SRAM 选择 | `FpgaEn=0`、`TechnoCut=0`，Cache USER 存储关闭 | CVA6 选入 `sram_pulp.sv`；不统计未生成分支 |
 | TLB、预测器、PMP | ITLB/DTLB 各 16 项；RAS=2、BTB=32、BHT=128、PMP=0 | 后四项须检查 SoC 的 `gen_cva6_cfg()` 覆盖，不能只看 profile |
 
-配置链是 **profile → `gen_cva6_cfg()` 覆盖 → `build_config()` 派生 → 模块实例**；Ara 还需核对 SoC 配置和构建宏。见 [CPU profile][cpu-profile]、[Cheshire 配置包][chs-pkg]、[派生配置][cpu-build]、[TB 配置][tb-cfg]。
+配置链如下。CPU profile的初值可能被SoC覆盖；Ara硬件数值来自 `Cfg`，正式清单已删除无活动消费者的 `NR_LANES/VLEN` 数值宏。
+
+![正式工程配置传递与硬件影响](../diagrams/2026-10-25_formal_config_sram/configuration_flow.svg)
+
+| 正式工程入口 / 定位 | 实际职责与限制 |
+| --- | --- |
+| `src/config/cv64a6_imafdcv_sv39_config_pkg.sv`：`CVA6Config*` / `cva6_cfg` | 唯一CPU profile；L1容量、路数、行宽和WT类型从这里输入 |
+| `src/config/cheshire_pkg.sv:660–663`：`Cfg/CpuUserCfg/CpuCfg` | `Cfg=DefaultCfg`；`gen_cva6_cfg`再覆盖CPU总线/PMP/区域等字段，`build_config`派生内部位宽 |
+| `src/top/cheshire_ara_asic_soc.sv`及 `src/tb/src/fixture_cheshire_soc.sv` | wrapper和fixture导入相同配置/类型；fixture第170行检查Ara开启、2 lanes、VLEN2048、CPU RVV/VLEN64及UseDramSys=0 |
+| `sim/scripts/compile.cheshire_soc.sh` | 静态选择profile、真实decoder、普通 `tc_sram` 与 `sram_pulp`；compile只编译，start负责展开和运行 |
+| `sw/Makefile:30–32` | 从 `AraNrLanes`读取软件lane宏，但当前明确只接受2；软件参数不是另一套硬件配置 |
+
+因此，改参数前先区分“RTL能派生”“当前入口允许”“该配置已测试”。移除基线检查本身不能证明新配置正确。
 
 统计统一采用 `1 KiB=1024 B`，并区分：
 
@@ -275,11 +291,11 @@ LLC 源码中的启动 BIST 是现有功能机制，不自动等于已完成工�
 
 **不同 Cache 的容量可以分别配置；同一 Cache 内的容量、路数、组数、行长和 SRAM 形状存在派生关系。** 修改硬件参数需要重新编译/展开或综合，软件运行时不能增加物理容量。
 
-这里“固定”指固定向量功能组合、选中的实现与**每次构建的完整配置**，并不要求删除底层参数化能力。先用当前取值完成参考/提取对照，再按下表逐步开放；后续参数不是默认全部开放。
+这里“固定”指固定向量功能组合、选中的实现与**每次构建的完整配置**，并不要求删除底层参数化能力。当前取值已完成参考/提取对照；下表后续开放仍是建议，不是已完成参数试验。
 
 | 阶段 | 可研究的参数范围 | 保持条件 |
 | --- | --- | --- |
-| 首次提取 | 当前 L1I 4 KiB、L1D 8 KiB、LLC/SPM 128 KiB、2 lanes/VLEN2048 | 保留地址、中断、外设、启动及原子路径，先证明提取正确 |
+| 首次提取（历史已完成） | 当前 L1I 4 KiB、L1D 8 KiB、LLC/SPM 128 KiB、2 lanes/VLEN2048 | 保留地址、中断、外设、启动及原子路径，先证明提取正确 |
 | 第一批容量试验 | L1I/D 总容量、LLC 每路行数 | 保持路数、行宽、WT、AXI 位宽及 Ara 配置，先逐项比较 |
 | 后续按需开放 | TLB、预测器、队列深度及 VLEN | 先核查合法组合和关联逻辑，再增加定向验证；不因有参数就认定已支持 |
 | 单独架构评估 | lane 数、总线宽度、Cache 类型 | 影响并行度、接口或可见性语义，不能混入普通容量调整 |
@@ -363,7 +379,9 @@ VLEN 和 lane 是构建时硬件参数。运行时 `vsetvl` 改的是有效元�
 
 当前 [ara.sv][ara-top]要求 lane 数为 2 的幂且不超过 16，VLEN 为正的 2 的幂并不小于 ELEN；官方 `2_lanes.mk` 还注明 VLEN>128。基本检查不是所有组合的验证保证。[ara_pkg 的 `vaddr()` 注释][ara-pkg]明确提到充分测试的组织保持 **VLEN/NrLanes=1024、每 lane 8 bank**。改变比例时，需要额外验证映射、shuffle、slide、mask、尾部和访存；符合该比例也不能替代本 SoC 回归。
 
-当前 Cheshire 主路径按最终 SoC 配置的 `AraNrLanes/AraVLEN` 实例化 Ara，TB 函数直接写入 2/2048。[Ara 构建配置][ara-config]与[集成 Makefile][ara-make]虽导出 `NR_LANES/VLEN` 宏，单独修改宏不会改变这里的硬件取值。若保留使用这些宏的独立 Ara TB/Spyglass 入口，须把其值与所选配置对齐；不把没有实际消费者的宏当作必需的第二套配置。`VRFSize` 和 bank 深度继续从上层派生，不单独扩大底层数组后宣称 VLEN 已改变。
+正式入口在 `src/config/cheshire_pkg.sv` 的 `DefaultCfg.AraNrLanes/AraVLEN`；SoC实例读取 `Cfg`。旧“TB函数直接写入2/2048、Make导出硬件宏”只适用于参考集成路径，不是当前正式工程。`VRFSize`和bank深度继续从上层派生，不能仅扩大底层数组后宣称VLEN改变。
+
+**lane数还改变访存通路。** `src/cheshire_soc/cheshire_top/cheshire_soc.sv:606`令 `AraDataWideWidth=32×AraNrLanes`。当前2 lanes得到64 bit，和系统AXI64相等，`axi_dw_converter`走等宽直连；例如4 lanes会形成128→64转换，需同时验证打包、拆分、mask和访存。这只是结构推导，不是已验证的4-lane配置。
 
 ### Q7.3 修改后需要验证什么？
 
@@ -390,17 +408,18 @@ VLEN 和 lane 是构建时硬件参数。运行时 `vsetvl` 改的是有效元�
 
 ### Q7.4 脱离 Bender 后如何保留集中配置？
 
-拟在提取工程 `src/config/` 集中维护以下三类内容；这是待实现组织，不表示当前已存在这些文件：
+**已实现：**正式 `src/config/`只有两份活动配置源：CPU profile与 `cheshire_pkg.sv`。2026-10-22已将独立 `cheshire_ara_asic_cfg_pkg.sv`合入后者，当前不应重新创建该文件或第二套参数生成器。
 
-| 内容 | 职责 |
-| --- | --- |
-| `cv64a6_imafdcv_sv39_config_pkg.sv` | 保留唯一 `cva6_config_pkg`，固定 ISA/Cache 类型，集中管理允许调整的 L1 等字段 |
-| `cheshire_ara_asic_cfg_pkg.sv` | 导出本次唯一生效的 SoC 常量及统一派生类型，固定 Ara 开启，管理 LLC 和获准调整的 SoC 字段 |
-| `README.md` | 参数单位、基线、允许范围、联动关系、重做阶段及验证状态；明确候选值与已支持值 |
+继续复用 `profile → gen_cva6_cfg() → build_config()` 和 `CHESHIRE_TYPEDEF_ALL`，wrapper/fixture共享派生类型。TB不再通过旧 `SELCFG`数组选择硬件，但保留Q1列出的基线检查。软件从同一 `AraNrLanes`字段取值；变更lane/VLEN时必须明确修改相关检查、软件假设和验证范围，不能只删断言绕过限制。
 
-继续复用 `profile → gen_cva6_cfg() → build_config()` 和 `CHESHIRE_TYPEDEF_ALL`；不手抄第二份 tag、索引或 AXI 位宽。仿真与综合实例化同一 wrapper，TB 读取同一个配置，只管理激励和模型，不再用旧 `SELCFG`/硬编码覆盖硬件取值。
+| 变更 | 需要联动检查 | 后续最小重做范围（本轮未执行） |
+| --- | --- | --- |
+| L1容量/组织 | `build_config`派生索引/tag、每路4 KiB索引限制、回填/选择逻辑 | RTL编译＋展开；冷启动、同组冲突、边界/部分写；既有访存原子与应用回归 |
+| LLC行数/组织 | 数据/tag形状、SPM容量及CPU区域属性、ROM启动栈、链接预算 | RTL编译＋展开；正常ELF/ROM启动、容量边界及实际Cache/SPM模式检查；不扩大共享LLC旧失败排查 |
+| Ara VLEN/lane | VRF映射/bank、Ara接口宽度、fixture基线检查、软件lane限制 | RTL编译＋展开及受影响软件重建；既有Ara/RVV、P2/P3和向量搬运，并针对改变部分检查尾部/跨lane |
+| AXI宽度/地址宽度 | 所有端口类型、转换器、LLC word与tag、CPU覆盖、VIP及软件地址假设 | 单独接口变更评估；不能当作单一容量调整 |
 
-每次构建将所选配置快照留在自己的独立输出目录，记录实际输入；同一次编译只选一份同名配置包。保留原模块/包接口名，不增加 presets 目录或配置生成器。
+普通使用允许复用默认输出；参数实验为保留对照应另选输出目录。现有compile保存 `source_manifest.json`快照，不能将它误称为实时逐文件重新计算哈希。保留具体修改和真实输入，不另建管理框架。
 
 静态 filelist 可以覆盖参数化模块的容量变化；它不自动覆盖换 Cache 类型、ISA 或技术实现。提取时保留支持范围所需的 generate 分支、package/include 和依赖，不能仅按基线的一次展开结果删掉其他候选需要的源码。目录、来源和清单的具体约束沿用 [02 提取规格](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)，不另建配置生成框架。
 
@@ -424,7 +443,7 @@ v1 中 CPU 主要负责控制与调度，Ara 提供向量处理，NPU/ISP 有各
 
 优先用实测定位：L1/LLC 缺失、TLB 缺失、分支误预测、写缓冲等待、Ara 访存等待、GB/DDR 服务带宽及端到端完成时间；指标采集须核对当前计数器和接口实际支持范围。随后比较目标 SRAM 宏与综合时序，不能仅凭峰值 MAC、KiB 或“看到波形活动”决定扩容。
 
-当前实施顺序仍是先保留既定 2 lanes/VLEN 2048 和 Cache/LLC 配置，完成参考对照与独立提取，再将性能改动作为有单独输入、回归和结果对比的配置版本。
+参考对照与独立提取已经完成；当前保留既定2 lanes/VLEN2048和Cache/LLC配置。后续性能改动须作为有独立输入、回归和结果对比的配置版本，另行授权验证。
 
 <a id="application-comparison"></a>
 
@@ -471,7 +490,7 @@ v1 中 CPU 主要负责控制与调度，Ara 提供向量处理，NPU/ISP 有各
 
 ## 来源定位与维护
 
-源码链接指向当前仓库文件，查找符号比长期依赖固定行号更稳妥：
+本轮正式源码路径均相对 `/home/zhaowy24/CheshireAra`，行号对应[哈希快照](../maintenance/E01/reports/evidence/abc_review_20261025.json)。本地相对源码链接继续作为**历史导航**，不代表正式文件与本地旧版一致；下面旧表对应2026-10-19输入，当前入口以Q1为准。正式目录映射：CPU为 `src/cheshire_soc/cva6/`，Ara为 `src/cheshire_soc/ara/`，LLC为 `src/cheshire_soc/axi_llc/`，SoC为 `src/cheshire_soc/cheshire_top/`；CPU profile及cheshire_pkg已移到 `src/config/`。
 
 | 需追踪的事实 | 文件与定位符号 |
 | --- | --- |

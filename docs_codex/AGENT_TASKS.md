@@ -1,22 +1,36 @@
 # 多对话任务分工与启动方式
 
+2026-10-26 E01 [剩余工作区按用户授权发布](handoffs/E01_fixed_vector_extraction.md#workspace-publish-20261026)：R两处原诊断文件已单独提交并推送`29f1e6f9`，远端读回一致，受管工作区干净；本地原17修改/4新增纳入本次提交，目标为个人`Cheshire_Ara_Orig/main`。未改功能源码或重跑仿真，F保持；下方“诊断/本地未提交”为此前快照。
+
 创建于 2026-09-20。本表是任务路由，不是后台任务调度器，也不表示用户已授权实施所有任务。C00 协作文档初始化及 L01 配置/软件文档、离线入门教材已完成；M01/P01本轮仅完成文档子任务，其余工程实施未启动。
 
 ## 1. 任务表
 
+2026-10-26 E01 [LLVM默认编译器迁移已完成](maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-resume-20261026)：先R38新ELF/40项主矩阵及两探针，再F49新ELF/51项独立运行；正常PASS为36/47，另各SPI限定告警1、保留LLC未完成1及预期负例2。混合465/0＋22字节0错、P7 68组/13416项和P6 508组/38452项0错，F Ara11目标59case/147比较0错。当前目标软件默认LLVM20.1.0/newlib/compiler-rt，无目标GCC/libgcc依赖；宿主g++保留，输出`sw/build/llvm_p7`。原件/after两地实际恢复及结果包核对通过，未改RTL/参数/Boot ROM；随后R八文件已提交并推送[`6f2b2a3b`](https://github.com/lionelZhaowy/CheshireAraPULP/commit/6f2b2a3be50eeb15eb93c0ada2164029a102c94c)，远端main读回一致。R两份原诊断修改及本地17修改/4未跟踪保留，未混推；详见[发布与剩余内容](maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-github-push-20261026)。旧GCC/输出保留。下方“GCC默认/迁移停止”为历史。
+
+2026-10-26 E01 [P7已同步正式工程并验证，参考工程已提交GitHub](maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-reference-formal-sync-20261026)：F自身重建RTL及14 ELF后，17次串行仿真全部PASS；P7共68组/13416项0错，归档原LLVM向量及两标量均未重编即465/0、复制22字节0错，12回归通过。F保留既有布局，维护目标29→31，日常7/Ara11保持；其余1046原输入及R全部4394输入内容/权限保持。随后仅R四份P7源码提交并推送`4e30feec`，两处诊断修改保留；两地前后恢复/归档核对完成。默认仍GCC13.2，LLVM构建规则尚未重新适配、迁移验收未完成；未综合/板测/公开上游PR。下方仅R、未提交及F未同步均为前阶段历史。
+
+2026-10-26 E01 [P7仅R修复并验证通过](maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-emul-local-fix-20261025)：dispatcher＋VALU共32增4删，复用已有状态/队列；68组/13416项0错，原LLVM失败ELF未重编即465/0及复制22字节0错，两标量和12回归全PASS。22次实际运行保留旧版/中间失败，4318其他原输入及两处诊断修改保持，双份备份/实际恢复检查通过。R未提交修复保留，F未同步、LLVM迁移未恢复，未综合/发布。下方候选回退为前轮历史。
+
+2026-10-25 E01增量：[P7候选未通过并已回退](maintenance/E01/reports/official_pr_failure_fixes_review.md#p7-implementation-result-20261025)。固定#483局部候选编译成功，但初版VMACC m2仍错，独立EMUL缺口超出计划；非零vstart控制经用户批准替换，修订ELF已构建未运行，17项验收未执行。R 4321原输入/原差异恢复、F未写、LLVM迁移仍停止，无提交推送。下段为此前LLVM分析阶段。
+
+2026-10-25 E01此前增量：[LLVM迁移](maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-vector-failure-analysis-20261025)阶段A及R36 ELF构建通过，新增自动向量化运行失败后已恢复R六处源码，F未写。GCC/LLVM同源标量、换向量目的寄存器均465/0；布局模型与257项trace一致，彼时源重排缺口尚未实施RTL修复，迁移未完成。原P1–P6验收及其他任务边界保持。
+
 | ID / 建议对话标题 | 当前状态 | 主要交付 | 依赖与写入边界 |
 | --- | --- | --- | --- |
 | C00 项目协调与交接 | 协作入口及三人分工/条件排期文档完成（2026-10-18）；工程未启动 | 汇总状态、决策和冲突；[团队排期与对照表](engineering/Team_Responsibilities_and_Tapeout_Schedule.md)、[本主题交接](handoffs/C00_team_execution_plan.md)；不包办所有技术任务 | `AGENTS.md`、共享状态/任务索引；人员排期不替代 Agent 授权，不顺手修改 RTL |
-| E01 固定配置 ASIC 源码提取 | 本轮P1–P5两工程同步与复验完成 | [版本、测试与回退](maintenance/E01/planning/official_upstream_maintenance_assessment.md#reference-formal-sync-20261024) | R已验证上云5986ba02；F独立41次运行、39项对照一致，前后源码及证据双份备份/恢复核对完成。原配置/wrapper/静态入口和既有限制保持；停止，后续工作另行授权 |
+| E01 固定配置 ASIC 源码提取 | P1–P7及LLVM默认迁移已验证 | [版本、测试与回退](maintenance/E01/planning/official_upstream_maintenance_assessment.md#reference-formal-sync-20261024) | R已验证上云5986ba02；F独立41次运行、39项对照一致，前后源码及证据双份备份/恢复核对完成。原配置/wrapper/静态入口和既有限制保持；[Ara首批11项迁入F并验证](maintenance/E01/planning/server_reference_extraction_plan.md#ara-tests-migration-plan-20261025)：59case/147比较，17 PASS＋1预期负例；既有4回归一致，两地备份/恢复核对完成，[特殊测试/ld整理](maintenance/E01/planning/server_reference_extraction_plan.md#special-tests-organization-plan-20261025)已完成：9文件移动、默认7/维护24，32 ELF对照及7次PASS，保留后续文档并记录回退合并要求；[第3轮provenance整理](maintenance/E01/planning/server_reference_extraction_plan.md#provenance-organization-plan-20261025)已完成：35历史文件归类、顶层43→8；内容/引用/两地恢复检查通过，未构建仿真；[ABC核查](handoffs/E01_fixed_vector_extraction.md#abc-review-20261025)完成，只改本地图文；P3非整拍VL异常屏蔽列待补测，未新增运行；[本轮R测试](maintenance/E01/reports/official_pr_failure_fixes_review.md#ara-maskb-tests-20261025)：#475三种序列复现，#479各120组/8056检查通过但窗口0，#450相符停滞及延迟旧值待处理，原P2标量483项再通过；未修RTL/F；[P6候选检查](maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-candidate-check-20261025)：#475/#469局部/#480部分有效，仍有历史数据归属及compress全不选/跨字错误；仅独立副本，生产未改，#479暂不继续处理；[P6实施完成](maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-fix-20261025)：3RTL＋2C/Make，17次运行16 PASS＋1旧版预期停滞，生产8次全PASS，508组/38452项0错；4298其他输入保持，两地前后恢复验证，R未提交/推送，F未同步；前述候选状态由本结果更新；[P6提交及F复验完成](maintenance/E01/reports/official_pr_failure_fixes_review.md#p6-reference-formal-sync-20261025)：R六文件`cb20a03c`已推送；F按regressions布局同步、7/29/11构建组，11次全PASS、P6 508组/38452项0错；1043其他输入保持、两地恢复/归档通过，前述F未同步状态由本结果更新；[LLVM默认迁移完成](maintenance/E01/planning/llvm_toolchain_migration_plan.md#llvm-resume-20261026)：R38/F49新ELF、40/51项各按判据完成，普通PASS36/47，原SPI/LLC边界保留；恢复检查与两地结果包通过，R八文件LLVM提交6f2b2a3b已推送main；其他诊断和本地修改保留 |
 | V01 仿真与验收 | 未开始 | 回归用例、编译/展开/运行结果、可重现日志 | 计划可先做；新目录验证依赖 E01；与 E01 协调 TB、filelist 编辑权 |
 | S01 裸机软件与启动 | 未开始 | 启动/链接/软件构建、向量结果验证、启动路径分析 | 与 E01 确认目录及地址布局后管理新目录软件；原 `sw/` 默认只读 |
 | S01-B01 Platform ROM 返回路径修复 | 未开始（2026-10-06 已登记，尚未授权实施） | 对照官方 #187 最小修复、同步生成 ROM、验收正常返回及默认启动；[规格](03_Platform_ROM_Clock_IP_Configuration.md#s01-b01) | S01 主责，V01 验收、E01 同步提取；旧启动源码/生成 RTL 修改需另行明确授权，禁止为修复升级全工程依赖 |
 | M01 DDR 旁路与存储一致性 | M01-D文档完成；工程未实施 | [IP/DDR接口契约](engineering/IP_DDR_Interface_Contract.md)、输入责任与验证矩阵 | 待供应商/I01真实接口及E01基线；top/config/address map修改须另行授权并协调 |
 | I01 LVDS、ISP 与 NPU 集成 | RX 时序说明/图稿完成（2026-10-23）；RTL 未开始 | 外部规格清单、控制/数据/中断接口、带宽预算和接入方案 | 依赖传感器/IP 资料和 M01 内存契约；RTL 实施另行明确 |
-| P01 ASIC 工艺与实现准备 | 资源/封装预规划更新至 v1.6（2026-10-23）；工艺适配未实施 | [ASIC适配与证据手册](engineering/ASIC_Adaptation_and_Evidence.md)、[资源预算与封装专题](engineering/SoC_Resource_and_Packaging_Plan.md)、[主题交接](handoffs/P01_soc_resource_packaging.md) | 目标 SMIC55 工艺标识已确认；实际宏/PLL/PAD/PHY/封装/DFT/时序签核仍待配套输入及工程授权 |
+| P01 ASIC 工艺与实现准备 | 资源/封装预规划更新至 v1.7（2026-10-26）；工艺适配未实施 | [ASIC适配与证据手册](engineering/ASIC_Adaptation_and_Evidence.md)、[资源预算与封装专题](engineering/SoC_Resource_and_Packaging_Plan.md)、[主题交接](handoffs/P01_soc_resource_packaging.md) | 目标 SMIC55 工艺标识已确认；实际宏/PLL/PAD/PHY/封装/DFT/时序签核仍待配套输入及工程授权 |
 | L01 学习与源码问答 | 教材整理完成；DDR–GB 评审答疑与文档修订完成（2026-10-16），工程未实施 | [教材](learning/index.html)、[21篇RTL模块指南](rtl_modules/README.md)、[RTL指南交接](handoffs/L01_rtl_module_guide.md)、[组织交接](handoffs/L01_documentation_organization.md) | 软件全链、trap/OS、ASIC机制与测量已落地；新增参考页未改课程生成页。无真人试读/本轮目标运行；生产缺口保留 |
 
-2026-10-23 I01/P01：已按合作方确认的逐行 96×128 像素、12288 行和 RX 最低 8 时钟要求更新[资源专题](engineering/SoC_Resource_and_Packaging_Plan.md#lvds-rx-timing)，交付[两张 WaveDrom 接收时序图](diagrams/2026-10-23_lvds_rx_timing/README.md)。SDR/上升沿/LSB 先发仅当前绘图约定，行帧同步/消隐仍待定；按 RX 8/TX 暂定 16 计算 560/728 信号，30 FPS/500 Mbit/s 保持。见[P01交接](handoffs/P01_soc_resource_packaging.md#lvds-rx-timing-20261023)；仅文档及新时序图，工程实施与 E01 状态不变。
+2026-10-23 I01/P01（历史输入，已由下述 v1.7 替代）：已按合作方确认的逐行 96×128 像素、12288 行和 RX 最低 8 时钟要求更新[资源专题](engineering/SoC_Resource_and_Packaging_Plan.md#lvds-rx-timing)，交付[两张 WaveDrom 接收时序图](diagrams/2026-10-23_lvds_rx_timing/README.md)。SDR/上升沿/LSB 先发仅当前绘图约定，行帧同步/消隐仍待定；按 RX 8/TX 暂定 16 计算 560/728 信号，30 FPS/500 Mbit/s 保持。见[P01交接](handoffs/P01_soc_resource_packaging.md#lvds-rx-timing-20261023)；仅文档及新时序图，工程实施与 E01 状态不变。
+
+2026-10-26 I01/P01：RX 因面积限制改为 64 数据＋4 时钟、1C16D；TX 128 数据＋暂定 16 时钟保持。双向 LVDS/条件信号为 424/592；500 Mbit/s 时 RX 无法满足既定 30 FPS，取舍待确认。已更新[资源专题](engineering/SoC_Resource_and_Packaging_Plan.md)及相关说明，旧时序图标为历史输入；见[P01 交接](handoffs/P01_soc_resource_packaging.md#lvds-rx64-20261026)。仅文档与算例，工程实施与 E01 状态不变。
 
 2026-10-22 L01/I01 最小图稿修订：从原 3600×2025 单页 v1 增加 RX 像素直通线、TX FIFO 前 2:1 MUX 和 TX 寄存器短控制线；取消右扩展布局及外部强制，切换要求 CPU/配置总线可用。[现有目录图稿](diagrams/2026-10-22_soc_lvds_bypass/README.md)、[设计说明](engineering/LVDS_Raw_Bypass_Design.md)及[主题交接](handoffs/L01_lvds_isp_gb_soc_topology.md#lvds-minimal-v1-20261022)已同步；反压隔离、CDC 和吞吐待实现验证。仅完成图稿与说明，I01/P01 工程实施未开始，E01 不受影响。
 

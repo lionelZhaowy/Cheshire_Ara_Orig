@@ -2,7 +2,11 @@
 
 > 现行工程参考；2026-10-11 分类迁入 engineering，正文输入版本与验证边界保持。见[工程参考索引](README.md)。
 
-日期：2026-10-08。状态：**文档盘点完成；技术替换、源码提取与工程验证未实施。** 输入分支 `mp/ara-pulp-v2`，HEAD `459f9d6f5748e39063f7bb67e959c2f27859915d`；工作区带已有教材/图稿修改。本手册是定向接口盘点，不宣称已展开完整设计或穷举全部存储实例。
+更新：2026-10-25。**已只读核查正式工程主要SRAM的实际接口；技术宏替换、综合及物理验证仍未实施。** 源码提取与基线仿真已在此前E01完成，不能继续以旧底稿的“未提取”描述当前工程。
+
+本次阅读：[实际存储与接口](#formal-sram-20261025) → [初始化与有效窗口](#sram-semantics) → [宏资料与最小验证](#macro-next-checks)。容量及配置唯一表见[资源指南Q2](Fixed_Vector_SoC_Resource_Guide.md#q2)：本次限定对象为48个逻辑1RW实例，数据/标签/VRF合计159.90625 KiB；不等于整个SoC存储总量或工艺宏数量。服务器只读，无新构建、仿真或综合。
+
+历史底稿：2026-10-08，当时技术替换、源码提取与工程验证未实施。输入分支 `mp/ara-pulp-v2`，HEAD `459f9d6f5748e39063f7bb67e959c2f27859915d`；工作区带已有教材/图稿修改。本手册是定向接口盘点，不宣称已展开完整设计或穷举全部存储实例。
 
 [02 提取交接书](../02_Cheshire_Ara_ASIC_Extraction_Handoff.md)继续负责唯一配置、源码闭包、静态清单和阶段规格。本手册负责替换时要保持的语义、缺失资料及验收责任；原理教学在 [ASIC HTML 入口](../learning/future.html)。现有 [03 平台约定](../03_Platform_ROM_Clock_IP_Configuration.md)的职责和文件名保持不变。原计划 08 无需再创建同内容正文。
 
@@ -11,12 +15,64 @@
 2026-10-18 工艺状态补充（输入 `2f0f2d6f85979709fbc99dd4098447cb5587ce5f`）：用户已确认 SMIC55 工艺标识，完整名称、PAD/GB/NPU/面积候选与预算表见[资源与封装预规划](SoC_Resource_and_Packaging_Plan.md)。本次仅更新该输入及入口；原 2026-10-08 源码盘点、验证记录和输入版本保持，不视为重新展开或验证。
 
 - **用户确认**：迁移为独立静态清单工程；DDR 可提供 AXI4；NPU/ISP 要求绕过 LLC；沿 Platform ROM 钩子完成安全启动配置并保留运行时配置接口。原 2026-10-08 盘点时具体工艺未定，已由上述 2026-10-18 用户输入更新；实际 PDK/库配套、宏、PLL/PAD/PHY、封装、频率与域划分仍待核实或冻结。
-- **源码确认**：以下路径、端口、参数消费者和绑值；只对当前快照负责。
+- **源码确认**：本次正式SRAM依据见第2.1节；第2.2节旧路径、FPGA及其他技术单元描述仍对应2026-10-08历史快照。
 - **用户历史报告/已有产物**：VCU118 HelloWorld、既有 ELF 与图形证据按原报告保留，不计为本次新执行。
-- **本轮实测**：文档结构、链接、哈希保护和尺寸复算。未编译/未仿真/未综合/未板测/未做 STA、DFT 或物理签核。
+- **检查方式**：本次只读源码、容量复算、文档/图示和哈希检查；历史底稿曾做文档结构、链接、哈希保护和尺寸复算。未编译/未仿真/未综合/未板测/未做 STA、DFT 或物理签核。
 - **方案建议**：接口表、模型测试与准入条件；不产生生产修改授权。
 
 ## 2. 先识别资源，不按模块名决定替换
+
+<a id="formal-sram-20261025"></a>
+
+### 2.1 正式工程主要SRAM（2026-10-25）
+
+以下路径相对 `/home/zhaowy24/CheshireAra`。其目录无Git元数据，本次文件SHA256及结束复查保存在[来源快照](../maintenance/E01/reports/evidence/abc_review_20261025.json)；参考工程HEAD `5986ba021e1a0d30dbdb5ecb2cfa230a2c35947c`只作来源定位。有效配置为 `FpgaEn=0/TechnoCut=0`、Cache USER存储关闭；不选FPGA XPM、WB cache或其他未启用实现。
+
+为缩短路径，下表 `C`=`src/cheshire_soc/cva6`，`A`=`src/cheshire_soc/ara`，`L`=`src/cheshire_soc/axi_llc`。数量、深宽和容量详见[统一容量表](Fixed_Vector_SoC_Resource_Guide.md#q2)，这里列匹配工艺宏所需的访问语义。
+
+| 对象 / 逻辑实例形状 | 正式文件、实例定位 | 写掩码及组织 |
+| --- | --- | --- |
+| L1I数据：4×64×128 bit | `C/core/cache_subsystem/cva6_icache.sv:490`，`gen_sram[i].data_sram` | 16个字节使能均为1，实际整行写；每路一个bank |
+| L1I标签：4×64×47 bit | 同文件465，`gen_sram[i].tag_sram` | 6段字节使能全1，末段7有效bit；实际tag/valid整项写 |
+| WT L1D数据：4×64×256 bit | `C/core/cache_subsystem/wt_dcache_mem.sv:308`，`gen_data_banks[k].i_data_sram` | 32个字节使能；每bank对应行内一个64-bit word位置，每项横拼4路数据 |
+| WT L1D标签：4×64×46 bit | 同文件335，`gen_tag_srams[i].i_tag_sram` | 6段使能全1，末段6有效bit；tag/valid整项写 |
+| Ara VRF：16×64×64 bit | `A/hardware/src/lane/vector_regfile.sv:82`，每lane `gen_banks[bank].data_sram` | 8个字节使能；2 lanes×8 banks |
+| LLC/SPM数据：8×2048×64 bit | `L/src/axi_llc_data_way.sv:119`，`i_data_sram` | 8个字节使能来自AXI strobe；每way一个bank |
+| LLC标签：8×256×36 bit | `L/src/hit_miss_detect/axi_llc_tag_store.sv:270`，`gen_tag_macros[i].i_tag_store` | `ByteWidth=36`，一个整项使能，包含tag/valid/dirty |
+
+这些实例全部是**单端口1RW、posedge接收、高有效req/we/be、读延迟1周期**。WT D模块的3个上层请求端口经仲裁后访问bank，不要求3端口宏；同bank冲突需按现有仲裁重试，跨bank可并发。标签位宽不能擅自按64 bit计入逻辑容量；工艺宏取整或拼接的开销另算。
+
+实际编译入口 `sim/scripts/compile.cheshire_soc.sh:99/910`选择普通 `tc_sram.sv`及 `sram_pulp.sv`。CVA6路径为 `sram_cache → sram_pulp.sv中的sram → tc_sram`（`C/common/local/util/sram_cache.sv:106`、`sram_pulp.sv:43`）；LLC/VRF直接实例化 `tc_sram`。只替换CVA6包装层无法覆盖LLC/VRF，后续应在统一抽象接口选择工艺实现，本轮不增加包装代码。
+
+![以VRF bank说明现有接口与未来宏替换位置](../diagrams/2026-10-25_formal_config_sram/sram_replacement.svg)
+
+<a id="sram-semantics"></a>
+
+**时序与初始化为什么必须一起核对？** SRAM没有ready端口，消费者按既定周期使用结果：VRF在原始 `clk_i`下将 `req & ~wen`及目标队列延迟一拍（仅SRAM使用门控 `vrf_clk`）（`vector_regfile.sv:48–56`）；LLC数据路径明确要求 `DataMacroLatency=1`（`axi_llc_data_way.sv:144–146`）；CVA6包装固定Latency=1。两周期宏不能仅换模型后沿用原有效位。
+
+| 消费者 | 复位/初始化与保持要求 |
+| --- | --- |
+| 通用 `tc_sram` | `SimInit="none"`时复位只清上次读地址，不清数据阵列及读数据寄存器；数据须先由软件、回填或初始化流程写入 |
+| L1I | reset进入FLUSH，逐set写tag valid=0，不清data；依据 `cva6_icache.sv:372–390/520` |
+| WT L1D | missunit复位到INIT，再由 `init_ni`决定是否清tag valid。`init_ni`来自CPU controller的 `cache_init_no`；冷复位与内部uarch reset路径不同，不能笼统说每次reset均全清。依据 `wt_dcache_missunit.sv:408–418/556–558/598–600`、`cva6.sv:1333/1424`、`controller.sv:121–123/354–355/424` |
+| LLC | 上电tag BIST执行模式写读并最终清零；它不覆盖data、VRF或L1，不是完整制造MBIST。坏tag way可改为SPM使用，不等于宏repair。依据 `axi_llc_hit_miss.sv:317–329`、`axi_llc_tag_pattern_gen.sv`及 `axi_llc_config.sv:503–515` |
+| VRF | valid/目标队列复位，数据不清。当前VCS分支每bank门控使能为当前req与上拍req的逻辑或，低电平锁存门控使能，`test_en=0`；替换ICG/接DFT时须保持最后一次请求及结果时序。依据 `vector_regfile.sv:64–80`、`tech_cells_generic/src/rtl/tc_clk.sv:31–52` |
+
+**不能只按注释匹配 `no_change` 宏。** 当前 `src/cheshire_soc/tech_cells_generic/src/rtl/tc_sram.sv:115–151`每拍采样当前读地址或保存的上次读地址。读A、写A、再空闲时，空闲拍输出可能变成新A；因此注释“写时输出稳定”不表示无读请求时输出永久保持。本轮没有据此确认功能缺陷。
+
+适配必须保证**有效读窗口和背压保持期**：VRF只消费一拍valid对应数据；LLC数据在输出valid等待ready时阻止新SRAM请求（`axi_llc_data_way.sv:82–115`）。不能把所有无效周期输出都要求逐拍相同，也不能未经消费者检查就宣布真正no_change宏可直接替换。当前为1RW，通用模型的多端口碰撞优先级不是当前接口需求。
+
+`sram_pulp.sv:89–104`在USER关闭分支保留的数组处于 `synthesis translate_off`内，不计为可综合USER存储。Boot ROM组合case、FF寄存器文件、TLB及队列也不因含数组声明就归入上述48个SRAM实例；本轮未穷举全部外设存储。
+
+<a id="macro-next-checks"></a>
+
+**下一步需要的资料和最小验证（仅建议）：**工艺标识已确认，但具体宏尚未核验。需要同版本的可用深宽/端口/掩码、读延迟及使能/同址行为、工作角、上电/休眠/保持/测试脚，以及仿真模型、Liberty、LEF和测试修复说明。受限交付只记录授权接口摘要及受控位置，不复制进文档。
+
+后续选定宏后，先验证连续读、同址读写交替、逐字节写及未写字节保持；再验证VRF间歇请求/门控末拍/队列身份、L1冷启动/tag失效/回填与WT冲突、LLC有效返回背压和tag初始化。复用现有启动、访存原子、Ara/RVV及已通过搬运用例，按实际差异补最小检查；不重开共享LLC已知失败的扩展排查。模型功能通过仍不能代替目标库综合、STA或DFT验收。
+
+### 2.2 历史技术单元入口（2026-10-08，非当前正式清单）
+
+以下保留FPGA/时钟/PAD等后续适配背景，不表示本轮重新核查，也不表示XPM/MMCM/MIG参与当前正式仿真。当前CPU/VRF/LLC存储以第2.1节为准。
 
 | 当前资源/来源 | 本地可确认内容 | 替换时必须保持/明确 | 所需资料与责任人 |
 |---|---|---|---|
@@ -75,7 +131,7 @@
 | 用户/系统负责人 | 最终保留设备、频率/性能/功耗范围、启动介质、复位/低功耗要求 | 整理候选接口与依赖 | 冻结产品配置和接受标准 |
 | 工艺方/P01 | PDK/库版本、合法工作角、允许发布的宏/PLL/PAD 摘要及受控资料位置 | 说明所需视图、极性与周期 | 真实宏映射、时钟/IO 实现、物理签核 |
 | DDR 供应商/M01 | AXI4/控制器/PHY/器件、初始化、训练状态、模型与工具授权 | 与当前 LLC 出口建立契约 | 控制器替换、初始化软件、真实 DDR 验证 |
-| E01 | 唯一 profile/源码清单、实际展开实例、第三方差异 | 当前源码定向教学与盘点 | 完整资源数量/尺寸账本和可搬迁验证基线 |
+| E01 | 正式静态清单/配置及主要SRAM源码映射已提供；目标宏适配后仍需实际展开与差异记录 | 本文第2.1节及资源指南；未穷举所有存储 | 目标宏实例对应、适配后的重建与消费者验证 |
 | S01/V01 | 启动修复/软件约定、工具许可/模型、预期输出和回归环境 | 写带条件的测试计划 | 平台软件运行、消费者回归及错误场景 |
 | DFT/封装/板级团队 | 测试策略/ATE、封装/板/测试点与供电测量条件 | 制造测试及首硅路线设计 | 测试插入与制造交付、样片启动/功耗测量 |
 

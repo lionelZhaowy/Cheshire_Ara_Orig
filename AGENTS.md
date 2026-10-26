@@ -29,6 +29,7 @@
 - 团队有 MIPS/自定义总线经验，正在学习 RISC-V/AXI；回答用中文，按问题逐步解释。
 - 用户已在 VCU118 跑通 HelloWorld；不把这一结果扩大解释成 Ara、DDR 全功能或 ASIC 就绪。
 - 用户不希望投入大量时间维护 Bender。迁移目标是独立工程、集中配置和静态清单；服务器目标根目录为 `~/CheshireAra`，不再嵌套 `cheshire_ara_asic/`。Bender 至多用于必要的一次性离线解析。
+- **两工程同步规范（2026-10-25）：**正式工程 `CheshireAra` 与参考工程 `CheshireAraPULP` 保留各自目录和构建组织；同步按实际文件映射及局部差异进行，不为方便复制而重构参考工程，不整包覆盖。同步前必读[目录映射、配置例外和验证要求](docs_codex/maintenance/E01/planning/server_reference_rebuild_guide.md#cross-project-sync-rules)。该规范不单独授予同步、构建或运行权限。
 - 详细提取规格见 [ASIC 提取交接书](docs_codex/02_Cheshire_Ara_ASIC_Extraction_Handoff.md)。
 
 ## 软硬件方案的选择依据
